@@ -7,12 +7,9 @@ use strict;
 
 package LJ;
 
-use Apache;
+require Apache2::ServerUtil;
 use Apache::LiveJournal;
-use Apache::CompressClientFixup;
 use Apache::BML;
-use Apache::SendStats;
-use Apache::DebateSuicide;
 
 use Digest::MD5;
 use MIME::Words;
@@ -96,12 +93,12 @@ sub setup_start {
 sub setup_restart {
 
     # setup httpd.conf things for the user:
-    Apache->httpd_conf("DocumentRoot $LJ::HTDOCS")
+    Apache2::ServerUtil->server->add_config(['DocumentRoot $LJ::HTDOCS']);
         if $LJ::HTDOCS;
-    Apache->httpd_conf("ServerAdmin $LJ::ADMIN_EMAIL")
+    Apache2::ServerUtil->server->add_config(['ServerAdmin $LJ::ADMIN_EMAIL']);
         if $LJ::ADMIN_EMAIL;
 
-    Apache->httpd_conf(qq{
+    Apache2::ServerUtil->server->add_confi([qq{
 
 # This interferes with LJ's /~user URI, depending on the module order
 <IfModule mod_userdir.c>
@@ -109,21 +106,16 @@ sub setup_restart {
 </IfModule>
 
 PerlInitHandler Apache::LiveJournal
-PerlInitHandler Apache::SendStats
-PerlFixupHandler Apache::CompressClientFixup
-PerlCleanupHandler Apache::SendStats
-PerlCleanupHandler Apache::DebateSuicide
-PerlChildInitHandler Apache::SendStats
 DirectoryIndex index.html index.bml
-});
+}]);
 
     if ($LJ::BML_DENY_CONFIG) {
-        Apache->httpd_conf("PerlSetVar BML_denyconfig \"$LJ::BML_DENY_CONFIG\"\n");
+        Apache2::ServerUtil->server->add_config(["PerlSetVar BML_denyconfig \"$LJ::BML_DENY_CONFIG\"\n"]);
     }
 
     unless ($LJ::SERVER_TOTALLY_DOWN)
     {
-        Apache->httpd_conf(qq{
+        Apache2::ServerUtil->server->add_config([qq{
 # BML support:
 <Files ~ "\\.bml\$">
   SetHandler perl-script

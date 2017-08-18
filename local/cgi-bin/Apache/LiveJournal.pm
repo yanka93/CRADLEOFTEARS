@@ -4,9 +4,8 @@
 package Apache::LiveJournal;
 
 use strict;
-use Apache::Constants qw(:common REDIRECT HTTP_NOT_MODIFIED HTTP_MOVED_PERMANENTLY
+use Apache2::Const qw(:common REDIRECT HTTP_NOT_MODIFIED HTTP_MOVED_PERMANENTLY
                          M_TRACE M_OPTIONS);
-use Apache::File ();
 use lib "$ENV{'LJHOME'}/cgi-bin";
 use Apache::LiveJournal::PalImg;
 use LJ::S2;
@@ -14,7 +13,6 @@ use LJ::Blob;
 use Apache::LiveJournal::Interface::Blogger;
 use Apache::LiveJournal::Interface::AtomAPI;
 use Apache::LiveJournal::Interface::S2;
-use LJR::GD;
 
 BEGIN {
     $LJ::OPTMOD_ZLIB = eval "use Compress::Zlib (); 1;";
@@ -339,22 +337,6 @@ sub trans
         }
     }
 
-    my $bml_handler = sub {
-        my $filename = shift;
-        $r->handler("perl-script");
-        $r->notes("bml_filename" => $filename);
-#        $r->push_handlers(PerlHandler => \&Apache::BML::handler);
-        return OK;
-    };
-
-    # is this the embed module host
-    my $embed_host = $host;
-    $embed_host = $r->header_in("X-Forwarded-Host")
-      if $r->header_in("X-Forwarded-Host");
-    if ($LJ::EMBED_MODULE_DOMAIN && $embed_host =~ /$LJ::EMBED_MODULE_DOMAIN/) {
-        return $bml_handler->("$LJ::HOME/htdocs/tools/embedcontent.bml");
-    }
-
     my $journal_view = sub {
         my $opts = shift;
         $opts ||= {};
@@ -409,15 +391,8 @@ sub trans
             } else {
                 $mode = "entry";
             }
-        } elsif ($uuri =~ m#^/(\d+)\.htm$#) {
-            return redir($r, "http://$host$hostport$uri" . "l");
-
         } elsif ($uuri =~ m#^/(\d\d\d\d)(?:/(\d\d)(?:/(\d\d))?)?(/?)$#) {
             my ($year, $mon, $day, $slash) = ($1, $2, $3, $4);
-            # Year 2038 fix:
-            if ($year < 1970 || $year > 2037) { #crash in some rare cases
-                return 404;
-            }
             unless ($slash) {
                 return redir($r, "http://$host$hostport$uri/");
             }
@@ -437,8 +412,8 @@ sub trans
         } elsif ($uuri =~ m!
                  /([a-z\_]+)?           # optional /<viewname>
                  (.*)                   # path extra: /FriendGroup, for example
-                 !x && ($1 eq "" || defined $LJ::viewinfo{$1})) {
-
+                 !x && ($1 eq "" || defined $LJ::viewinfo{$1}))
+        {
             ($mode, $pe) = ($1, $2);
             $mode ||= "" unless length $pe;  # if no pathextra, then imply 'lastn'
 
@@ -537,12 +512,6 @@ sub trans
     # userpic
     return userpic_trans($r) if $uri =~ m!^/userpic/!;
 
-    # comments
-    return comments_trans($r) if $uri =~ m!^/comments/!;
-
-    # readable comments
-    return numreplies_trans($r) if $uri =~ m!^/numreplies/!;
-
     # front page journal
     if ($LJ::FRONTPAGE_JOURNAL) {
         my $view = $determine_view->($LJ::FRONTPAGE_JOURNAL, "front", $uri);
@@ -631,97 +600,8 @@ sub trans
         return redir($r, "$LJ::SITEROOT/approve.bml?$1");
     }
 
-    return FORBIDDEN if $uri =~ m!^/userpics! || $uri =~ m!^/comments! || $uri =~ m!^/numreplies!;
+    return FORBIDDEN if $uri =~ m!^/userpics!;
     return DECLINED;
-}
-
-sub numreplies_trans {
-    my $r = shift;
-
-    #readable comments url:  /numreplies/ljr_todo/35616
-    return NOT_FOUND unless $r->uri =~ m!^/(?:numreplies/)?(.*)/(\d+)$!;
-    my ($user, $ditemid) = ($1, $2);
-
-    # Load the user object and make sure talk is viewable
-    my $u = LJ::load_user($user);
-    return NOT_FOUND unless $u && $u->{'statusvis'} !~ /[XS]/;
-
-    my $itemid = $ditemid>>8;
-    my $row = LJ::get_log2_row($u, $itemid);
-    return NOT_FOUND unless $row;
-
-    my $new = "$LJ::SITEROOT/comments/$itemid/$u->{userid}";
-    return redir($r, $new, HTTP_MOVED_PERMANENTLY);
-}
-
-sub comments_trans {
-    my $r = shift;
-    
-    return NOT_FOUND unless $r->uri =~ m!^/(?:comments/)?(\d+)/(\d+)$!;
-    my ($itemid, $userid) = ($1, $2);
-
-    $RQ{'itemid'} = $itemid;
-    $RQ{'itemid-userid'} = $userid;
-
-    $r->notes("codepath" => "img.comments");
-    $r->handler("perl-script");
-    $r->push_handlers(PerlHandler => \&comments_content);
-
-    return OK;
-}
-
-sub comments_content {
-    my $r = shift;
-
-    my $itemid = $RQ{'itemid'};
-    my $userid = $RQ{'itemid-userid'}+0;
-
-    my $lastmod;
-    my $mime = "image/png";
-    my $size;
-    my $now = time();
-    # nginx use memcache directly, so avoid calculation - 60s is OK.
-    my $expires = 60;
-
-    my $send_headers = sub {
-
-        $r->content_type($mime);
-        $r->header_out("Cache-Control", "max-age=$expires, must-revalidate, no-transform");
-        $r->header_out("Last-Modified", LJ::time_to_http($lastmod));
-        $r->header_out("Expires", LJ::time_to_http($now + $expires));
-        $r->header_out("Content-length", $size+0);
-        $r->send_http_header();
-    };
-    
-    # Load the user object and pic and make sure the picture is viewable
-    my $u = LJ::load_userid($userid);
-    return NOT_FOUND unless $u && $u->{'statusvis'} !~ /[XS]/;
-    
-    my $row = LJ::get_log2_row($u, $itemid);
-    $lastmod = LJ::mysqldate_to_time($row->{'logtime'}, 0) if $row && $row->{'logtime'};
-    
-    my $count = LJ::Talk::get_replycount($u, $itemid);
-    
-    my $dbr = LJ::get_db_reader();
-    my ($font, $color, $ljr_es_lastmod) = $dbr->selectrow_array(
-      "SELECT font_name, font_color, UNIX_TIMESTAMP(update_time) FROM ljr_export_settings WHERE user=?",
-      undef, $u->{'user'});
-    
-    $font = "gdLargeFont" unless $font;
-    $color = "blue" unless $color;
-    
-    if ($ljr_es_lastmod) {
-      $lastmod = $ljr_es_lastmod unless $lastmod;
-    }
-    $lastmod = $now - 3600 * 24 * 31 unless $lastmod; # month
-    
-    my $img = LJR::GD::generate_number($count, $font, $color, "   ");
-    my $data = $img->png;
-    $size = length($data);
-    $send_headers->();
-    LJ::MemCache::set($r->uri, $data); #used by nginx! (NB!) $size < $MEMCACHE_COMPRESS_THRESHOLD. cleared in replycount_do()
-    $r->print($data) unless $r->header_only;
-    return OK;
 }
 
 sub userpic_trans
@@ -894,7 +774,7 @@ sub userpic_content
         if (-s $r->finfo) {
             $lastmod = (stat _)[9];
             $size = -s _;
-            my $fh = Apache::File->new($file);
+            my $fh = tempfile($file);
             my $magic;
             read($fh, $magic, 4);
             $set_mime->($magic);
@@ -1006,7 +886,7 @@ sub journal_content
 
     # check for faked cookies here, since this is pretty central.
     if ($criterr) {
-        $r->status_line("500 Invalid Cookies"); # client error, in fact
+        $r->status_line("500 Invalid Cookies");
         $r->content_type("text/html");
         # reset all cookies
         foreach my $dom (@LJ::COOKIE_DOMAIN_RESET) {
@@ -1037,13 +917,15 @@ sub journal_content
         'getargs' => \%GET,
         'vhost' => $RQ{'vhost'},
         'pathextra' => $RQ{'pathextra'},
+        'header' => {
+            'If-Modified-Since' => $r->header_in("If-Modified-Since"),
+        },
         'handle_with_bml_ref' => \$handle_with_bml,
     };
 
     my $user = $RQ{'user'};
     my $html = LJ::make_journal($user, $RQ{'mode'}, $remote, $opts);
 
-    return HTTP_NOT_MODIFIED if $opts->{'notmodified'};
     return redir($r, $opts->{'redir'}) if $opts->{'redir'};
     return $opts->{'handler_return'} if defined $opts->{'handler_return'};
 
@@ -1135,7 +1017,7 @@ sub journal_content
     }
 
     unless ($html) {
-        $status = "400 Bad Template";
+        $status = "500 Bad Template";
         $html = "<h1>Error</h1><p>User <b>$user</b> has messed up their journal template definition.</p>";
         $generate_iejunk = 1;
     }
@@ -1152,19 +1034,30 @@ sub journal_content
     }
 
     $r->content_type($opts->{'contenttype'});
-    $r->header_out("Cache-Control", "private, proxy-revalidate") unless $opts->{'cachecontrol'};
-    $r->header_out("Cache-Control", $opts->{'cachecontrol'}) if $opts->{'cachecontrol'};
+    $r->header_out("Cache-Control", "private, proxy-revalidate");
 
     $html .= ("<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxx -->\n" x 100) if $generate_iejunk;
 
-    unless ($generate_iejunk) {
-        my $etag;
-        $etag = Digest::MD5::md5_hex(pack('C*', unpack('C*', $html)));
-        $etag = '"' . $etag . '"';
-        $r->header_out("ETag", $etag);
+    my $do_gzip = $LJ::DO_GZIP && $LJ::OPTMOD_ZLIB;
+    if ($do_gzip) {
+        my $ctbase = $opts->{'contenttype'};
+        $ctbase =~ s/;.*//;
+        $do_gzip = 0 unless $LJ::GZIP_OKAY{$ctbase};
+        $do_gzip = 0 if $r->header_in("Accept-Encoding") !~ /gzip/;
     }
-
     my $length = length($html);
+    $do_gzip = 0 if $length < 500;
+
+    if ($do_gzip) {
+        my $pre_len = $length;
+        $r->notes("bytes_pregzip" => $pre_len);
+        $html = Compress::Zlib::memGzip($html);
+        $length = length($html);
+        $r->header_out('Content-Encoding', 'gzip');
+    }
+    # Let caches know that Accept-Encoding will change content
+    $r->header_out('Vary', 'Accept-Encoding');
+
     $r->header_out("Content-length", $length);
     $r->send_http_header();
     $r->print($html) unless $r->header_only;
@@ -1210,7 +1103,8 @@ sub customview_content
         $remote = LJ::get_remote();
     }
 
-    my $opts =   { "nocache" => $FORM{'nocache'},
+    my $data = (LJ::make_journal($user, "", $remote,
+                 { "nocache" => $FORM{'nocache'},
                    "vhost" => "customview",
                    "nooverride" => $nooverride,
                    "styleid" => $styleid,
@@ -1218,12 +1112,8 @@ sub customview_content
                    "args" => scalar $r->args,
                    "getargs" => \%FORM,
                    "r" => $r,
-               };
-	       
-    my $data = (LJ::make_journal($user, "", $remote, $opts)
+               })
           || "<b>[$LJ::SITENAME: Bad username, styleid, or style definition]</b>");
-
-    return HTTP_NOT_MODIFIED if $opts->{'notmodified'};
 
     if ($FORM{'enc'} eq "js") {
         $data =~ s/\\/\\\\/g;
@@ -1337,7 +1227,6 @@ sub db_logger
 
     return if $ctype =~ m!^image/! and $LJ::DONT_LOG_IMAGES;
     return if $uri =~ m!^/(img|userpic)/! and $LJ::DONT_LOG_IMAGES;
-    return if $uri =~ m!^/(comments)/! and $LJ::DONT_LOG_IMAGES;
 
     my $dbl = LJ::get_dbh("logs");
     my @dinsertd_socks;
@@ -1524,7 +1413,7 @@ sub db_logger
 
     if (@dinsertd_socks) {
         $var->{_table} = $table;
-        my $string = "INSERT " . Storable::nfreeze($var) . "\r\n";
+        my $string = "INSERT " . Storable::freeze($var) . "\r\n";
         my $len = "\x01" . substr(pack("N", length($string) - 2), 1, 3);
         $string = $len . $string;
 

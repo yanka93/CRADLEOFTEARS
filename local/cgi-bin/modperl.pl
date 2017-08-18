@@ -3,8 +3,8 @@
 
 package LJ::ModPerl;
 use strict;
+use diagnostics;
 use lib "$ENV{'LJHOME'}/cgi-bin";
-use Apache;
 
 # pull in libraries and do per-start initialization once.
 require "modperl_subs.pl";
