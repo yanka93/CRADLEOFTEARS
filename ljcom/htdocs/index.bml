@@ -1,0 +1,225 @@
+<?page
+title=><?sitename?>
+head<=
+<meta name="description" content="<?_ml .meta.desc _ml?>" />
+<meta name="keywords" content="<?_ml .meta.keywords _ml?>" />
+<meta name="rating" content="General" />
+<meta name="ROBOTS" content="All" />
+<meta name="revisit-after" content="14 days" />
+<script language="JavaScript" type='text/javascript'>
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<=head
+bodyopts<=
+<?_code
+ if ($GET{'frank'} eq "urinate") {
+     return "onload=\"MM_preloadImages('<?imgprefix?>/goat-pee.gif')\"";
+ } else {
+     return "onload=\"MM_preloadImages('<?imgprefix?>/goat-hover.gif')\"";
+ }
+_code?>
+<=bodyopts
+pretitle<=
+<table align="right" width="97" cellpadding="7"><tr><td>
+<p style="text-align: center">
+<?_code
+{
+    return $LJ::ALT_FRONT_GOAT || "<a onmouseout='MM_swapImgRestore()' onmouseover=\"MM_swapImage('frankani','','$LJ::IMGPREFIX/goat-" . ($FORM{'frank'} eq "urinate" ? "pee" : "hover") . ".gif',1)\" href='/site/goat.bml'><img name='frankani' src='$LJ::IMGPREFIX/goat-normal.gif' width='110' height='101' hspace='2' vspace='2' border='0' alt='$ML{'.frank.image.alt'}' /></a><br />$ML{'.frank.logo'}";
+}
+_code?>
+</p>
+
+<?_code
+{
+    my $now = time();
+    unless ((defined $LJ::CACHE_STAT_ACCTS || defined $LJ::CACHE_STAT_ACCTS_ACTIVE) &&
+            (! defined $LJ::CACHE_STAT_ACCTS_TIME || $LJ::CACHE_STAT_ACCTS_TIME > $now-600)) {
+        my $db = LJ::get_db_reader();
+        $LJ::CACHE_STAT_ACCTS = $db->selectrow_array("SELECT statval FROM stats WHERE statcat='size' AND statkey='accounts'")+0;
+        $LJ::CACHE_STAT_ACCTS_ACTIVE = $db->selectrow_array("SELECT statval FROM stats WHERE statcat='size' AND statkey='accounts_active'")+0;
+        $LJ::CACHE_STAT_ACCTS_TIME = $now;
+    }
+    return unless $LJ::CACHE_STAT_ACCTS && $LJ::CACHE_STAT_ACCTS_ACTIVE;
+    return <<"END_BOX";
+<table style='margin-top: 10px;' width="100%" bgcolor="<?emcolor?>" border="0" cellpadding="1" cellspacing="0">
+<tr bgcolor="<?emcolor?>"><td bgcolor="<?emcolor?>"><b>&nbsp;<a href="/stats.bml"><?_ml portal.ministats.title _ml?></a></b></td></tr>
+<tr><td><table bgcolor="#ffffff" width="100%"><tr><td valign='top' align='center'>
+
+<table><tr><td align="right"><strong><?_ml portal.ministats.total _ml?></strong></td><td align="right">$LJ::CACHE_STAT_ACCTS</td></tr>
+<tr><td align="right"><strong><?_ml portal.ministats.active _ml?></strong></td><td align="right">$LJ::CACHE_STAT_ACCTS_ACTIVE</td></tr></table>
+
+</td></tr></table>
+</td></tr></table>
+
+END_BOX
+
+}
+_code?>
+
+<?_code
+{
+    return unless @LJ::MEMCACHE_SERVERS;
+
+    my $stat = LJ::MemCache::get("blob:ljcom_latestposts_stats");
+    return unless ref $stat eq 'ARRAY';
+
+    my $delta = $stat->[1] - $stat->[2];
+    return unless $delta;
+
+    my $rate_sec = $stat->[0] / $delta;
+
+    my $rate_min = $rate_sec * 60;
+    my $fmt_min = $rate_min > 10 ? "%.0f" : "%.2f";
+
+    my $rate_hour = $rate_min * 60;
+    my $fmt_hour = $rate_hour > 10 ? "%.0f" : "%.2f";
+
+    my $post_min  = sprintf($fmt_min, $rate_min);
+    my $post_hour = sprintf($fmt_hour, $rate_hour);
+
+    return <<"END_BOX";
+<table style='margin-top: 10px;' width="100%" bgcolor="<?emcolor?>" border="0" cellpadding="1" cellspacing="0">
+<tr bgcolor="<?emcolor?>"><td bgcolor="<?emcolor?>"><b>&nbsp;<a href="stats.bml">$ML{'.post'}</a></b></td></tr>
+<tr><td><table bgcolor="#ffffff" width="100%"><tr><td valign='top' align='center'>
+
+<table>
+<tr><td align="right" style="white-space: nowrap"><strong>$ML{'.post.hour'}</strong></td><td align="right">$post_hour</td></tr>
+<tr><td align="right" style="white-space: nowrap"><strong>$ML{'.post.min'}</strong></td><td align="right">$post_min</td></tr>
+<tr><td align="right" style="white-space: nowrap">
+<a href='stats/latest.bml'><strong>$ML{'.post.latest'}</strong></a></td><td align="right">
+<a href='stats/latest-rss.bml'><img src="<?imgprefix?>/xml.gif" width='36' height='14' alt='RSS version' align='right' border='0' /></a>
+</td></tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+
+END_BOX
+
+    return $ret;
+
+}
+_code?>
+
+</td></tr></table>
+<=pretitle
+body<=
+<?_code
+    use strict;
+
+    my $text = "<?h1 $ML{'.about.header'} h1?>";
+    $text .= '<?p '.BML::ml('.about.us', {'aopts'=>'href="http://www.livejournal.org"'}).' p?>';
+    $text .= '<?p '.BML::ml('.about.joining', {'aopts1'=>'href="/paidaccounts/"', 'aopts2'=>'href="/site/accounts.bml"'}).' p?>';
+    $text .= "<?h1 $ML{'.learnmore.header'} h1?>";
+    $text .= '<?p '.BML::ml('.learnmore.text', {'aopts1'=>'href="/site/about.bml"', 'aopts2'=>'href="/create.bml"'}).' p?>';
+    return $text;
+_code?>
+<?_code
+{ #'
+    # It's kinda stupid this code is so similar to other journal generation code,
+    # but once we hit log2 to get the logtime (to only show items if they're
+    # newer than a week), we kinda have to.  I suppose the proper way to do
+    # this is to change S2 to have logtime available, distribute in ljcom
+    # an S2 layer to do this logic (only show most recent 1 item if in last
+    # week) and lookup the styleid/layerid from here, and call into S2.
+    # and then cache the whole result for 5 minutes.  but this works for now.
+
+    return "" if $LJ::DISABLED{'frontnews'};
+
+    my $hdr = "<?h1 $ML{'.news.title'} h1?>";
+    $hdr .= "<?p " . BML::ml('.news.text', {'aopts'=>'href="/news.bml"'}) . " p?>";
+
+    my $news = LJ::MemCache::get('frontnews');
+    if (defined $news) {
+        return "$hdr $news" if $news;
+        return "";
+    }
+    $news = "";
+
+    my $set = sub {
+        my $news = shift;
+        LJ::MemCache::set('frontnews', $news||"", 60*5);
+        return $news ? "$hdr $news" : "";
+    };
+
+    my $u = LJ::load_user("news");
+    return $set->("") unless $u;
+    my @items = LJ::get_recent_items({
+        'userid' => $u->{'userid'},
+        'clusterid' => $u->{'clusterid'},
+        'clustersource' => 'slave',
+        'order' => 'logtime',
+        'itemshow' => 1,
+        'dateformat' => 'S2',
+        'friendsview' => 1,     # so we get rlogtime
+    });
+    
+    return $set->("") unless @items;
+    my $item = $items[0];
+
+    my $delta = time() - ($LJ::EndOfTime - $item->{rlogtime});
+    return $set->("") unless $delta < 86400 * 7;
+
+    my $pd = LJ::get_posts_raw([ $u->{'clusterid'}, $u->{'userid'}, $item->{itemid} ]);
+    my $key = "$u->{userid}:$item->{itemid}";
+    my $text = $pd->{'text'}->{$key};
+    my $props = $pd->{'prop'}->{$key};
+    $item->{'replycount'} = int($pd->{'replycount'}->{$key});
+
+    return $set->("") unless $text;
+
+    LJ::CleanHTML::clean_subject(\$text->[0]);
+    LJ::CleanHTML::clean_event(\$text->[1], { 'preformatted' => $props->{'opt_preformatted'},
+                                          'cuturl' => LJ::item_link($u, $item->{itemid}, $item->{'anum'}), });
+    my $ditemid = $item->{itemid}*256+$item->{anum};
+    LJ::expand_embedded($u, $ditemid, undef, \$text->[1]);
+
+    $news .= "<div style='margin: 15px 30px 20px 30px; border: 1px dashed gray; padding: 5px'>";
+
+    my $date = substr($item->{'alldatepart'}, 0, 10);
+    $date =~ s/ /-/g;
+    $news .= "<b>$text->[0]</b><br /><small>$date</small><br/><br/>";
+    $news .= $text->[1];
+
+    my $link = LJ::item_link($u, $item->{itemid}, $item->{anum});
+
+    $news .= "<div style='text-align: right'>( ";
+    if ($item->{'replycount'}) {
+        $news .= "<a href='$link'><b>" . (($item->{'replycount'} == 1) ? "1 comment" : "$item->{'replycount'} comments") . "</b></a>";
+    } else {
+        $news .= "<a href='$link'><b>Link</b></a>";
+    }
+    unless ($props->{'opt_nocomments'}) {
+        $news .= " | <a href='$link?mode=reply'><b>Leave a comment</b></a>";
+    }
+    
+    $news .= " )</div>";
+    $news .= "</div>";
+    return $set->($news);
+}
+_code?>
+
+<=body
+page?>

@@ -1,0 +1,161 @@
+<?_code
+
+ use strict;
+ use vars qw(%GET %POST $title $body $arg);
+
+ $title = "";
+ $body = "";
+ my $type = $POST{'type'} || $GET{'type'};
+ my $q = $POST{'q'} || $GET{'q'};
+ my $output = lc($POST{'output'}) || lc($GET{'output'});
+ my $dbr = LJ::get_db_reader();
+
+ if ($type eq "user") {
+
+     ## magic mode
+     if ($q =~ /^\*(\d+)/) {
+         return BML::redirect("$LJ::SITEROOT/talkread.bml?itemid=$1");
+     }
+
+     my $user = lc($q);
+     
+     my $what;
+     if ($user =~ s!/(\w+)!!) {
+         $what = $1;
+     }
+
+     $user =~ s/-/_/g;
+     $user =~ s/[^\w]//g;
+     if ($user) {
+         my $url;
+         if ($what eq "pics") {
+             $url = "$LJ::SITEROOT/allpics.bml?user=$user";
+         } elsif ($output eq "foaf") {
+             $url = LJ::journal_base($user) . '/data/foaf';
+         } else {
+             $url = "$LJ::SITEROOT/userinfo.bml?user=$user";
+             $url .= "&mode=full" if $what eq 'full';
+         }
+
+         return BML::redirect($url);
+     } else {
+         return BML::redirect("$LJ::SITEROOT/random.bml");
+     }
+ }
+
+ if ($type eq "int") {
+     my $int = lc($q);
+     if ($int) {
+         return BML::redirect("$LJ::SITEROOT/interests.bml?int=" . LJ::eurl($int));
+     } else {
+         $title = $ML{'.nointerest.title'};
+         $body = "<?h1 $ML{'Error'} h1?><?p $ML{'.nointerest.text'} p?>";
+         return;
+     }
+ }
+
+ if ($type eq "email") {
+     my $email = lc($q);
+     unless ($email) {
+         $title = $ML{'.noaddress.title'};
+         $body = "<?h1 $ML{'Error'} h1?><?p $ML{'.noaddress.text'} p?>";
+         return;
+     } else {
+         my $sth = $dbr->prepare("SELECT * FROM user u WHERE u.journaltype='P' AND u.statusvis='V' ".
+                                 "AND u.allow_contactshow='Y' AND u.email=? LIMIT 1");
+         $sth->execute($email);
+         my $u = $sth->fetchrow_hashref;
+         if ($u) {
+             LJ::load_user_props($u, "opt_whatemailshow");
+             if ($u->{'opt_whatemailshow'} eq "A" || $u->{'opt_whatemailshow'} eq "B") {
+                 if ($output eq "foaf") {
+                     return BML::redirect(LJ::journal_base($u) . '/data/foaf');
+                 } else {    
+                     return BML::redirect("$LJ::SITEROOT/userinfo.bml?user=$u->{'user'}");
+                 }
+             }
+         }
+         $title = $ML{'.nomatch.title'};
+         $body = "<?h1 $ML{'Sorry'} h1?><?p $ML{'.nomatch.text'} p?>";
+         return;
+     }
+ }
+
+ if ($type eq "aolim" || $type eq "icq" ||
+     $type eq "yahoo" || $type eq "msn" ||
+     $type eq "jabber") {
+
+     # lame solution to people "stealing" lower userids' chat values in search results
+     my $sth = $dbr->prepare("SELECT u.userid, u.user FROM user u, userproplist upl, userprop up ".
+                             "WHERE u.journaltype='P' AND u.statusvis='V' ".
+                             "AND u.allow_contactshow='Y' AND u.userid=up.userid ".
+                             "AND up.upropid=upl.upropid AND upl.name=? AND up.value=? ".
+                             "LIMIT 100");
+     $sth->execute($type, $q);
+     my @rows;
+     push @rows, $_ while $_ = $sth->fetchrow_hashref;
+     @rows = sort { $a->{'userid'} <=> $b->{'userid'} } @rows;
+
+     if (@rows) {
+         my $u = $rows[0];
+         if ($output eq "foaf") {
+             return BML::redirect(LJ::journal_base($u) . '/data/foaf');
+         } else {
+             return BML::redirect("$LJ::SITEROOT/userinfo.bml?user=$u->{'user'}");
+         }
+     } else {
+         $title = $ML{'.nomatch.title'};
+         $body = "<?h1 $ML{'Sorry'} h1?><?p $ML{'.nomatch.text'} p?>";
+         return;
+     }
+     
+ }
+
+ if ($type eq "region") {
+     $q =~ s/^\s+//; $q =~ s/\s+$//;
+     my @parts = split(/\s*,\s*/, $q);
+     if (@parts==0 || @parts>3) {
+         $title = $ML{'.formaterror'};
+         $body .= "<?h1 $ML{'.region.head'} h1?><?p $ML{'.region.bodytext'} p?>";
+         return;
+     }
+     
+     my ($qarg, $sth);
+
+     $qarg = $dbr->quote($parts[-1]);
+     
+     $sth = $dbr->prepare("SELECT code FROM codes WHERE type='country' AND (code=$qarg OR item=$arg) LIMIT 1");
+     $sth->execute;
+     my ($country) = $sth->fetchrow_array;
+     my ($state, $city);
+     
+     if ($country) { 
+         pop @parts; 
+         if (@parts == 1) {
+             $state = $parts[0];
+         } elsif (@parts == 2) {
+             ($city, $state) = @parts;
+         }
+     } else {
+         $country = "US";
+         if (@parts ==1) {
+             $city = $parts[0];
+         } elsif (@parts == 2) {
+             ($city, $state) = @parts;
+         }
+     }
+     ($city, $state, $country) = map { LJ::eurl($_); } ($city, $state, $country);
+     
+     return BML::redirect("$LJ::SITEROOT/directory.bml?s_loc=1&loc_cn=$country&loc_st=$state&loc_ci=$city&opt_sort=ut&opt_format=pics&opt_pagesize=50");
+ }
+
+ return;
+
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c <LJDEP>
+link: htdocs/talkread.bml, htdocs/allpics.bml, htdocs/userinfo.bml, htdocs/random.bml
+link: htdocs/interests.bml, htdocs/directorysearch.bml, htdocs/directory.bml
+</LJDEP> _c?>
+

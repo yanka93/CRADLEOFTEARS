@@ -1,0 +1,70 @@
+<?page
+TITLE=>Клиенты для обновления дневника
+HEAD<=
+<=HEAD
+BODYOPTS<=<?_code
+#  return "onLoad=\""";
+           _code?>
+<=BODYOPTS
+BODY<=
+
+<p>Блог на <a href="http://lj.rossia.org/">lj.rossia.org</a> можно обновлять <a href="http://lj.rossia.org/update.bml">прямо из веб-браузера</a>, но можно также использовать небольшую программу-клиент.</p>
+
+<p><em>Обратите внимание, что в настройках требуется указать сервер <kbd>http://lj.rossia.org/</kbd>.</em></p>
+
+<h2>*NIX</h2>
+
+<ul>
+<li><a href="http://www.dropline.net/drivel/">Drivel</a>, <a href="http://logjam.danga.com/">LogJam</a> — под <a href="http://www.gtk.org/">GTK</a>.</li>
+<li><a href="http://kluje.sourceforge.net/">KLuJe</a> — для <a href="http://kde.org/">KDE</a> (в качестве сервера укажите <kbd>http://lj.rossia.org/<strong>interface/flat/</strong></kbd>).</li>
+<li><a href="http://edward.oconnor.cx/ljupdate/">ljupdate</a> — для <a href="http://www.gnu.org/software/emacs/">EMACS</a>.
+
+<p>Установите файлы ljupdate, например, в <kbd>~/elisp/ljupdate</kbd>. Требуются библиотеки <kbd>http-cookies.el</kbd>, <kbd>http-get.el</kbd>, <kbd>http-post.el</kbd>; если их нет, то загрузите при помощи <kbd>make fetch</kbd> или <a href="http://savannah.nongnu.org/cgi-bin/viewcvs/http-emacs/http-emacs/">вручную из CVS</a>.</p>
+
+<p>В <kbd>~/.emacs</kbd> напишите что-то вроде</p>
+
+<pre>(add-to-list 'load-path "~/elisp")
+(add-to-list 'load-path "~/elisp/ljupdate")
+(require 'ljupdate)</pre>
+
+<p>Настройки можно указать при помощи <kbd>M-x customize-group RET ljupdate RET</kbd>.</p>
+
+<p>Далее работайте с командами <kbd>lj-...</kbd> (в частности, <kbd>lj-login</kbd>, <kbd>lj-logout</kbd>, <kbd>lj-compose</kbd>).</p>
+</li>
+</ul>
+
+<h2>Windows</h2>
+
+<ul>
+<li><a href="http://semagic.sourceforge.net/">Semagic</a>.</li>
+</ul>
+
+<h2>Кроссплатформенные</h2>
+
+<ul>
+<li><a href="http://ljcharm.sourceforge.net/">CHARM</a> — на <a href="http://python.org/">Python</a>, консольный.
+
+<p>В <kbd>~/.charmrc</kbd> надо написать</p>
+
+<pre>login = usr pwd
+url = http://lj.rossia.org/interface/flat</pre>
+
+<p>Для редактирования текстов будет использоваться <kbd>$EDITOR</kbd>.</p>
+</li>
+
+<li><a href="https://addons.mozilla.org/firefox/addon/1811">Deepest Sender</a> — расширение для <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a> (в качестве сервера укажите <kbd>http://lj.rossia.org/<strong>interface/flat/</strong></kbd>).</li>
+
+<li><a href="http://umlautllama.com/projects/perl/#jlj">JLJ</a> — на <a href="http://www.perl.org/">Perl</a>, консольный.
+
+<p>В <kbd>~/.livejournal.rc</kbd> надо написать</p>
+
+<pre>server: lj.rossia.org
+postcgi: /interface/flat
+user: usr
+password: pwd</pre>
+</li>
+<li><a href="http://www.panteleyev.org/petrus-blogger/">Petrus Blogger</a> — на <a href="http://java.com/">Java</a>, с графическим интерфейсом.</li>
+</ul>
+
+<=BODY
+page?>

@@ -1,0 +1,79 @@
+<?page
+title=>Where are you?
+body<=
+<?_code
+{
+    use strict;
+
+    # get a 'fake' remote ($u loaded from cookie) with no real authentication
+    my $get_fake_remote = sub { 
+
+        my ($authtype, $user, $sessid, $auth, $_sopts) =
+            split(/:/, $BML::COOKIE{ljsession});
+
+        # fail unless it *seems* to be well-formed
+        return undef unless $authtype eq "ws" && $sessid =~ /^\d+$/ && $auth =~ /^[a-zA-Z0-9]{10}$/;
+
+        my $u = LJ::load_user($user);
+        return undef unless $u && $u->{statusvis} ne 'L';
+
+        return $u;
+    };
+
+    my $remote = LJ::get_remote();
+    my $remote_is_fake = 0;
+    unless ($remote) {
+        $remote_is_fake = 1;
+        $remote = $get_fake_remote->();
+    }
+    return "Not logged in." unless $remote;
+
+    my $ret = "";
+
+    my $authas = $remote->{user};
+    my $u = $remote;
+
+    # authas only works if $remote is not fake
+    unless ($remote_is_fake) {
+
+        # logic to authenticate as alternate user
+        $authas = $GET{'authas'} || $remote->{'user'};
+        $u = LJ::get_authas_user($authas);
+        return LJ::bad_input("You could not be authenticated as the specified user.")
+            unless $u;
+
+        # authas switcher form
+        $ret .= "<form method='get' action='whereami.bml'>";
+        $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} });
+        $ret .= "</form>";
+    }
+
+    # human-readable cluster name
+    my $name = LJ::get_cluster_description($u->{clusterid}, 1);
+
+    if ($remote_is_fake) {
+        $ret .= "<p>You appear to be logged in as " . LJ::ljuser($authas) . ", which is on " .
+            "$name, but your login session was unable to be retrieved, most likely " .
+            "because $name is currently down.  If you own any communities, you won't be able to " .
+            "see where they are during this time.  If they won't load, they're probably down for " .
+            "maintenance.</p>";
+    } else {
+        $ret .= "<p>" . LJ::ljuser($authas) . " is on $name.</p>";
+    }
+
+    # is their cluster down?
+    unless (LJ::get_cluster_master($u)) {
+        $ret .= "<?h2 Cluster Status Alert h2?>";
+        $ret .= "<?p $name appears to be down, most likely for maintenance. " .
+            "Please follow the " . LJ::ljuser('lj_maintenance', { type => 'C' }) . " journal for " .
+            "further status updates. p?>";
+
+        $ret .= "<?p Further information about system-level outages can also be found at " . 
+            "<a href='http://status.livejournal.org/'>status.livejournal.org</a>. p?>";
+    }
+
+    return $ret;
+}
+_code?>
+<=body
+page?>

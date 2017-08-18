@@ -1,0 +1,19 @@
+<?page
+title=>S2
+body<=
+
+<?h1 What is S2 h1?>
+<?p
+S2 is going to be LiveJournal's new style system language, used to control the format of journals.  S2 is currently the planning and development stage.  If you're interested in helping, contact <A href="/userinfo.bml?user=bradfitz">bradfitz</a> to join the <a href="/userinfo.bml?user=lj_dev">lj_dev</a> group.
+p?>
+
+<?h1 Documents h1?>
+<?p
+<ul>
+<li><a href="goals.bml">Design Goals</a> -- with a comparison to the existing style language
+<li><a href="2001-02-03.txt">2001-02-03.txt</a> -- misc notes, with some hints as to what S2's syntax may look like
+</ul>
+p?>
+
+<=body
+page?>

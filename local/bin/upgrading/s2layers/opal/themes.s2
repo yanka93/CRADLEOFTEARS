@@ -1,0 +1,105 @@
+#NEWLAYER: opal/irishluck
+layerinfo "type" = "theme";
+layerinfo "name" = "The Luck of the Irish";
+layerinfo redist_uniq = "opal/irishluck";
+layerinfo "source_viewable" = 1;
+set color_med = "#8BA485";
+set color_fg_font = "#01331E";
+set color_fg = "#A1CB78";
+set color_med_font = "#E5FCDE";
+set color_bg = "#0B4107";
+
+#NEWLAYER: opal/undersea
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/undersea";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Under the Sea";
+set color_med = "#98A3A4";
+set color_fg = "#93CBCA";
+set color_med_font = "#526160";
+set color_bg = "#124D51";
+
+#NEWLAYER: opal/forest
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/forest";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Natural Forest";
+set color_link = "#4C6502";
+set color_med = "#90a47a";
+set color_bg_font = "#ffeabf";
+set color_fg = "#cacba9";
+set color_med_font = "#eaf2cc";
+set color_bg = "#514541";
+set color_visited = "#846D06";
+
+#NEWLAYER: opal/greybeard
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/greybeard";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Greybeard";
+set color_link = "#05445C";
+set color_med = "#6a6a6a";
+set color_fg_font = "#dddddd";
+set color_bg = "#424242";
+set color_visited = "#390856";
+set color_fg = "#7c7c7c";
+set color_med_font = "#E2E2E2";
+
+#NEWLAYER: opal/desert
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/desert";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Spring Desert";
+set color_link = "#4c6502";
+set color_med = "#bc7f48";
+set color_fg_font = "#794234";
+set color_fg = "#cea36f";
+set color_med_font = "#F2E6C8";
+set color_bg = "#795021";
+
+
+#NEWLAYER: opal/carnvial
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/carnvial";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Carnvial";
+set color_med = "#9681b7";
+set color_fg = "#E9973F";
+set color_bg = "#2d4b9b";
+
+#NEWLAYER: opal/snowcone
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/snowcone";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Snow Cone";
+set color_med = "#7c9bc1";
+set color_fg_font = "#4F6C9C";
+set color_fg = "#bfe2f8";
+set color_bg = "#8d54a0";
+
+#NEWLAYER: opal/adobeclay
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/adobeclay";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Adobe Clay";
+set color_link = "#FF9422";
+set color_med = "#a4562b";
+set color_fg_font = "#33100b";
+set color_fg = "#c1643b";
+set color_med_font = "#fce7d5";
+set color_bg = "#7b4832";
+set color_visited = "#FFC437";
+
+#NEWLAYER: opal/gentle
+layerinfo "type" = "theme";
+layerinfo redist_uniq = "opal/gentle";
+layerinfo "source_viewable" = 1;
+layerinfo "name" = "Gentle";
+set color_bg_font = "#616568";
+set color_fg = "#ebdbd0";
+set color_visited = "#A97F63";
+set color_link = "#bd9a82";
+set color_med = "#b3c5c5";
+set color_bg = "#a2b2b1";
+set color_med_font = "#878894";
+set color_fg_font = "#757575";

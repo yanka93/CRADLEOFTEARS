@@ -1,0 +1,26 @@
+Escape HTML tags:
+<?_eh In structural HTML, the <b> tag should be replaced with <strong> and the
+<i> tag with <em>. _eh?>
+
+Escape a code example:
+<pre><code><?_eh
+# Overload Apache::FakeRequest's print to append output to a variable.
+{
+	no warnings 'redefine';
+	*Apache::FakeRequest::print = sub {
+		my $r = shift;
+		$Output .= join('', @_)
+	};
+	*Apache::FakeRequest::log_error = sub {
+		my $r - shift;
+		print STDERR @_, "\n"; $Errout .= join('', @_)
+	};
+	*Apache::FakeRequest::pnotes = sub {
+		my ( $r, $key ) = @_;
+		$Pnotes->{ $key } = shift if @_;
+		$Pnotes->{ $key };
+	};
+}
+_eh?></code></pre>
+
+

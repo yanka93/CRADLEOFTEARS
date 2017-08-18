@@ -1,0 +1,151 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+    use YAML ();
+    use Storable ();
+    use Data::Dumper ();
+
+    my $remote = LJ::get_remote();
+
+    return "<b>Error:</b> You don't have access to see servers."
+        unless LJ::check_priv($remote, "siteadmin", "serverview");
+    
+    # YAML parser is slow as fuck.
+    my $realfile = "$LJ::HOME/cgi-bin/servers.yaml";
+    my $cached = "$LJ::HOME/var/servers.yaml.cache";
+
+    my $servers;
+    
+    if (-e $cached && (stat(_))[9] > (stat($realfile))[9]) {
+        # use the pre-parsed version from Storable, which doesn't suck.
+        $servers = Storable::retrieve($cached);
+    } else {
+        $servers = YAML::LoadFile($realfile); 
+        Storable::store($servers, $cached);
+    }
+
+    my $ret;
+    $ret .= "<h1>Servers</h1>";
+
+    my $name = $GET{'name'};
+    my $mode = $GET{'mode'};
+    my $job = $GET{'job'};
+    $mode = "1job" if $job;
+    $mode = "1name" if $name;
+
+    foreach (['', 'By Name'],
+             ['job', 'By Job'],
+             ['ip', 'By IP'],
+             ['cab', 'By Cabinet'],
+             ) {
+        if ($mode eq $_->[0]) {
+            $ret .= "[<b>$_->[1]</b>]\n";
+        } else {
+            $ret .= "[<a href='servers.bml?mode=$_->[0]'>$_->[1]</a>]\n";
+        }
+    }
+
+    # sanitize the data structure a bit, and pick up on jobs/etc
+    my %jobs;
+    my %ip;
+    foreach my $name (keys %$servers) {
+        my $s = $servers->{$name};
+        $s->{'jobs'} = [ $s->{'jobs'} ] unless ref $s->{'jobs'} eq "ARRAY";
+        foreach (@{$s->{'jobs'}}) { $jobs{$_}->{$name} = 1; }
+
+        my $ip = $s->{'ip'};
+        my $hip = join(':', map { sprintf("%02x", $_) } split(/\./, $ip));
+        $ip{$hip} = $name;
+    }
+
+    # show a single server
+    if ($name) {
+        unless ($servers->{$name}) { $ret .= "bogus name"; return $ret; }
+        my $dp = Data::Dumper::Dumper($servers->{$name});
+        my $link = sub {
+            my $roles = shift;
+            $roles =~ s/\'(.+?)\'/\'<a href="servers.bml?job=$1">$1<\/a>\'/g;
+            return "'jobs' => [$roles]";
+        };
+        $dp =~ s/\'jobs\' => \[(.+?)\]/$link->($1)/se;
+        $ret .= "<h2>$name</h2><pre>$dp</pre>";
+        return $ret;
+    }
+
+    my $serv_line = sub {
+        my $name = shift;
+        my $text = shift;
+        unless ($text) {
+            my $s = $servers->{$name};
+            my $pip = $s->{'ip'};
+            my $jobs = join(', ', map { "<a href='servers.bml?job=$_'>$_</a>" } @{$s->{'jobs'}});
+            $text = "[$pip] $jobs";
+        }
+        return "<p><b><a href='servers.bml?name=$name'>$name</a></b> $text</p>\n";
+    };
+
+    # show a single job
+    if ($job) {
+        unless ($jobs{$job}) { $ret .= "bogus job"; return $ret; }
+        $ret .= "<h2>Job: $job</h2><ul>";
+        foreach my $name (sort keys %{$jobs{$job}}) {
+            $ret .= $serv_line->($name);
+        }
+        $ret .= "</ul>";
+        return $ret;
+    }
+
+    # by job
+    if ($mode eq "job") {
+        foreach my $job (sort keys %jobs) {
+            $ret .= "<h2>Job: $job</h2><ul>\n";
+            foreach my $name (sort keys %{$jobs{$job}}) {
+                $ret .= $serv_line->($name);
+            }
+            $ret .= "</ul>";
+        }
+        return $ret;
+    }
+
+    # by cabinet
+    if ($mode eq "cab") {
+        my %cab;
+        my %u;
+        foreach my $name (keys %$servers) {
+            my $s = $servers->{$name};
+            next unless $s->{'rack'};
+            $cab{$s->{'rack'}->{'cabinet'}}->{$name} = 0;  # not sure where for now
+            next unless $s->{'rack'}->{'size'} =~ /\d+/;
+            $u{$s->{'rack'}->{'cabinet'}} += $&;
+        }
+        foreach my $cab (sort { $a <=> $b } keys %cab) {
+            $ret .= "<h2>Cabinet: $cab ($u{$cab}U)</h2><ul>\n";
+            my $ch = $cab{$cab};
+            foreach my $name (sort { $ch->{$a} <=> $ch->{$b} } keys %$ch) {
+                my $s = $servers->{$name};
+                $ret .= $serv_line->($name, $s->{'rack'}->{'size'});
+            }
+            $ret .= "</ul>";
+        }
+        return $ret;
+    }
+
+    # by ip
+    if ($mode eq "ip") {
+        foreach my $ip (sort keys %ip) {
+            my $dip = join('.', map { hex $_ } split(/:/, $ip));
+            my $name = $ip{$ip};
+            $ret .= $serv_line->($name, "[$dip]");
+        }
+        return $ret;
+    }
+   
+    # by name
+    foreach my $name (sort keys %$servers) {
+        $ret .= $serv_line->($name);
+    }
+
+    return $ret;
+}
+_code?>

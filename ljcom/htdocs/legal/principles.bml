@@ -1,0 +1,94 @@
+<?page
+title=>LiveJournal.com Guiding Principles
+head<=
+<style type='text/css'>
+<!--
+dl.gp {
+    margin-left: 30px;
+    margin-top: 1.5em;
+}
+dl.gp dt {
+    font-weight: bold;
+    margin-top: 1em;
+}
+-->
+</style>
+<=head
+body<=
+<?_code
+    LJ::set_active_crumb('guidingprinciples');
+_code?>
+
+<?h1 Our Principles h1?>
+
+<?p We at LiveJournal try to make our service a pleasant experience for our
+users, so we've assembled a list of business principles that help guide our
+operation of the LiveJournal service. p?>
+
+<?h1 We operate the LiveJournal service with the following goals: h1?>
+
+<dl class='gp'>
+
+<dt>Work with the community, for the community</dt>
+
+<dd>We will strive to keep you informed of changes to the best of our
+abilities without being intrusive, and to run our business based on
+feedback from the LiveJournal community, with the LiveJournal community's
+best interests in mind.</dd>
+
+<dt>Honor the status of every account</dt>
+
+<dd>We fully intend to honor the status of our users' accounts, as
+follows: Permanent accounts will be honored for the life of the
+service. Paid accounts will remain as paid accounts until they expire,
+unless they are renewed in advance. Early adopters will be granted access
+to the paid features that were freely available in the early history of the
+site. (Account status valid with the exception of account termination by
+means of <a href="/legal/tos.bml">Terms of Service</a> violation.)</dd>
+
+<dt>Maintain reliable uptime</dt>
+
+<dd>We try to keep things running smoothly for everyone, especially since
+we use the system, too. Unfortunately, server hangups do occur, but we will
+plan ahead to try to avoid them.</dd>
+
+<dt>Avoid banner advertisements</dt>
+
+<dd>As it's one of our larger pet peeves, we have avoided putting banner
+advertisements on the site. Although our Terms of Service permits us to
+change our policy in the future, we've found throughout the past few years
+that our "paid accounts" business model has, so far, made banners ads
+unnecessary.</dd>
+
+<dt>Avoid spam</dt>
+
+<dd>We strongly believe that spam has no place on the internet, and
+we endeavor not to send you e-mail without your implied or explicit
+consent. When you sign up for the Service, we understand that to mean
+you want to communicate with us and hear from us about our products and
+services. If we do send you a message or contact you, we give you an option
+to opt-out so that we won't send you similar messages in the future. We are
+not in the business of selling lists of users' e-mail addresses or personal
+information, though we may share users' information under certain special
+circumstances, such as with an entity that owns or is owned by LiveJournal,
+with our service providers and vendors in connection with the operation of
+the service and our business, where we think it is appropriate or required
+by law or to protect our legal rights, or if the business is being sold or
+reorganized. (For more information on these special circumstances, click
+<a href="/legal/privacy.bml">here</a>.)</dd>
+
+<dt>Support the Free Software movement</dt>
+
+<dd>We're big supporters of Open Source software - we have used it and
+contributed to it extensively.  As part of our contribution to the Open
+Source community, we have made available to the public a large amount of
+source code for software that we've used to run the LiveJournal service,
+and that contributed source code will remain free and open.  We plan to
+continue to give back to the community by contributing certain bug fixes,
+testing, documentation and new code.  In addition, we continue to encourage
+people to innovate using the open source code we have contributed.</dd>
+
+</dl>
+
+<=body
+page?>

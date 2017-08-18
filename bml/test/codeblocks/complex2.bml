@@ -1,0 +1,28 @@
+<?_code
+	package Foo;
+
+	sub new {
+		my $class = shift;
+		my ( $this, $that ) = @_;
+		bless {
+			this	=> $this || "default this",
+			that	=> $that || "default that",
+		}, $class;
+	}
+
+	sub this { my $self = shift; $self->{this} = shift if @_; $self->{this} }
+	sub that { my $self = shift; $self->{that} = shift if @_; $self->{that} }
+
+	sub msg {
+		my $self = shift;
+		return "[This: ". $self->this . ", That: ". $self->that . "]";
+	}
+_code?>
+
+
+<?_code
+	my $f = new Foo "pony", "not yours";
+	$f->msg;
+_code?>
+
+

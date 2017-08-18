@@ -1,0 +1,8 @@
+<?_code 
+{
+    # tool used to live here, but was later change to offer
+    # non-admin capabilities as well for permanent account
+    # sales - whitaker
+    BML::redirect("$LJ::SITEROOT/tools/xfer_remaining.bml") 
+}
+_code?>

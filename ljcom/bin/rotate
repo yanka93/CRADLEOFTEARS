@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+#
+
+@files = @ARGV;
+$base = $0;
+$base =~ s/^.+\///;
+if (@files==0 || $files[0] =~ /^-/)
+{
+  die "Usage: $base logfiles\n";
+}
+@files = grep { -e } @files;
+
+($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
+$mon++; $year+=1900;
+
+$num = 0;
+$ext = sprintf("%04d.%02d.%02d.%02d.rotlog", $year, $mon, $mday, $num);
+
+$dirty=1;
+while ($dirty)
+{
+   $dirty=0;
+   foreach $file (@files)
+   {
+     $dirty =1 if (-e "$file.$ext.gz" || -e "$file.$ext");
+   }
+
+   if ($dirty)
+   {
+     $num++;
+     $ext = sprintf("%04d.%02d.%02d.%02d.rotlog", $year, $mon, $mday, $num);
+   }
+}
+
+foreach $file (@files)
+{
+   rename $file, "$file.$ext";
+}

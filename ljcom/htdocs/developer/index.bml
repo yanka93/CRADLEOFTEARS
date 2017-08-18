@@ -1,0 +1,52 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?h1 <?_ml .notice.header _ml?>    h1?>
+<?p  <?_ml .notice1 _ml?>           p?>
+<?p  <?_ml .notice2 _ml?>           p?>
+
+<?h1 <?_ml .code.header _ml?>      h1?>
+<?p  <?_ml .code _ml?>              p?>
+
+<?h1 <?_ml .dbschema.header _ml?>  h1?>
+<?p  <?_ml .dbschema _ml?>          p?>
+
+<?h1 <?_ml .styles.header _ml?>    h1?>
+<?p  <?_ml .styles _ml?>            p?>
+<?h2 <?_ml .styles.s1.header _ml?> h2?>
+<dl>
+  <dt><a href="styles.bml"><?_ml .styles.s1.system _ml?></a></dt>
+  <dd><?_ml .styles.s1.system.about _ml?></dd>
+  <dt><a href="views.bml"><?_ml .styles.s1.views _ml?></a></dt>
+  <dd><?_ml .styles.s1.views.about _ml?></dd>
+  <dt><a href="varlist.bml"><?_ml .styles.s1.varlist _ml?></a></dt>
+  <dd><?_ml .styles.s1.varlist.about _ml?></dd>
+</dl>
+
+<?h2 <?_ml .styles.s2.header _ml?> h2?>
+<dl>
+  <dt><a href="/doc/s2/"><?_ml .styles.s2.manual _ml?></a></dt>
+  <dd><?_ml .styles.s2.manual.about _ml?></dd>
+  <dt><a href="/customize/advanced/layerbrowse.bml"><?_ml .styles.s2.layerbrowse _ml?></a></dt>
+  <dd><?_ml .styles.s2.layerbrowse.about _ml?></dd>
+</dl>
+
+<?h1 <?_ml .embedding.header _ml?> h1?>
+<?p  <?_ml .embedding _ml?>         p?>
+
+<?h1 <?_ml .clients.header _ml?>   h1?>
+<?p  <?_ml .clients _ml?>           p?>
+     <?_ml .clients.links         _ml?>
+
+<?h1 Exporting Comments h1?>
+<?p Exporting comments made on a journal or in a community can be accomplished with the comment
+exporting tool.  Please see our <a href="exporting.bml">comment exporting tutorial</a> for more
+information. p?>
+
+<=body
+head<=
+<style type="text/css">
+    dt { font-weight: bold; }
+</style>
+<=head
+page?>

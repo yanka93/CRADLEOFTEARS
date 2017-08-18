@@ -1,0 +1,3248 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.btn.status|notes=Submit button for form
+/accountstatus.bml.btn.status=Ändra status
+
+/accountstatus.bml.error.db=Det uppstod ett databasfel med din
+
+/accountstatus.bml.error.invalid=Ogiltig statustyp.
+
+/accountstatus.bml.error.nochange.suspend|notes=You can't change a journal to be unsuspended. This message is for users who attempt to do so.
+/accountstatus.bml.error.nochange.suspend=Kan inte ändra journalstatus från suspenderad.
+
+/accountstatus.bml.header.success=Avklarat
+
+/accountstatus.bml.journalstatus.about=Vill du radera eller återställa din journal, denna sida är var du gör det.  När du väl raderat din journal har du 30 dagar att återställa den, ifall att du ångrar dig.  Efter 30 dagar blir journalen permanent raderad och det kommer inte att bli möjligt att återfå den.
+
+/accountstatus.bml.journalstatus.head=Journal aktiveringsstatus
+
+/accountstatus.bml.journalstatus.select.activated=Aktiverad
+
+/accountstatus.bml.journalstatus.select.deleted=Raderad
+
+/accountstatus.bml.journalstatus.select.suspended=Avstängd
+
+/accountstatus.bml.message.nochange=Din journalstatus förblev <b>[[statusvis]]</b>,
+
+/accountstatus.bml.message.success=Din journalstatus har ändrats till <b>[[statusvis]]</b>,
+
+/accountstatus.bml.title=Kontostatus
+
+/allpics.bml.current=Nuvarande bilder
+
+/allpics.bml.default=<u>Standard</u>
+
+/allpics.bml.edit2=Du är möjligen intresserad i att <a href='[[editlink]]'>redigera dina bildnyckelord</a> eller <a href='[[uploadlink]]'>ladda upp en ny bild</a>.
+
+/allpics.bml.error.noparam=Du måste specificera en användar-parameter.
+
+/allpics.bml.keywords=Nyckelord.
+
+/allpics.bml.nopics.text.other=Den här användaren har ej laddat upp några användarbilder.
+
+/allpics.bml.nopics.text2=Du har inga bilder uppladdade. Att hämta en, gå <a href='[[link]]'>hit</a>.
+
+/allpics.bml.nopics.title=Inga bilder.
+
+/allpics.bml.pics=Här är användar-bilder för [[user]].
+
+/allpics.bml.title=Användar-bilder.
+
+/approve.bml.comm.success=Avklarat
+
+/approve.bml.error.internerr.invalidaction=Datorfel: ogiltig behandling
+
+/approve.bml.error.invalidargument=Ogiltig argument given
+
+/approve.bml.error.unknownactiontype=Odefinierad behandlingstyp
+
+/approve.bml.shared.success=Avklarat
+
+/approve.bml.shared.text<<
+Du fick postningstillgång till [[shared]].
+Klicka <a [[aopts]]>här</a> att tillägga delade journalen till din vänlista.
+.
+
+/approve.bml.title=Godkänna behandling
+
+/birthdays.bml.description=Nedan är födelsedagarna av alla som du har på vänlistan.
+
+/birthdays.bml.title=Födelsedagar
+
+/changepassword.bml.btn.proceed=Fortsätta
+
+/changepassword.bml.changepassword.header=Ändra lösenordet
+
+/changepassword.bml.changepassword.instructions=Fyll in formuläret nedan att ändra ditt lösenord. För hjälp med att välja ett bra lösenord, se <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">denna länk</a>.
+
+/changepassword.bml.email.body<<
+Ditt lösenord har ändrats hos [[sitename]].
+
+Att återfå det i framtiden, gå till:
+
+  [[siteroot]]/lostinfo.bml
+
+Tack,
+[[sitename]] Team
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=Lösenordsförändring
+
+/changepassword.bml.error.badcheck=Ogiltigt nytt lösenord: [[error]]
+
+/changepassword.bml.error.badnewpassword=Dina nya lösenord är inte lika.   Du gjorde möjligen ett stavfel i ett av dem. Var god skriva om och bekräfta ditt lösenord.
+
+/changepassword.bml.error.badoldpassword=Ditt gamla lösenord är fel.
+
+/changepassword.bml.error.blankpassword=Ditt nya lösenord får inte vara blankt.
+
+/changepassword.bml.error.changetestaccount=Kan inte ändra testkontots lösenord.
+
+/changepassword.bml.error.characterlimit=Lösenord kan inte innehålla fler än 30 tecken.
+
+/changepassword.bml.error.invaliduser=Ogiltig användare <B>[[user]]</B>.  Denna användare finns inte.  Är du säker att du stavade rätt?
+
+/changepassword.bml.error.mustenterusername=Du måste ange ditt användarnamn.
+
+/changepassword.bml.error.nonascii=Lösenord är begränsade till ASCII-tecknen.  Var god välja ett lösenord som inte har icke-ASCII tecken i det.
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=Du kan inte ändra ditt lösenord om ditt nuvarande epostadress inte har bekräftats.
+
+/changepassword.bml.newpassword=Nytt lösenord:
+
+/changepassword.bml.newpasswordagain=Nytt lösenord (igen):
+
+/changepassword.bml.oldpassword=Gammalt lösenord:
+
+/changepassword.bml.proceed.instructions=Tryck knappen nedan att spara lösenordsförändringen.  Du kommer också att få epostmeddelande som noterar lösenordsförändringen.
+
+/changepassword.bml.relogin=Du har också blivit utloggad från alla dina existerande sessioner. Du borde <a [[aopts]]>logga in igen</a> innan du fortsätter.
+
+/changepassword.bml.success.text=Ditt lösenord har ändrats och epost har skickats till dig med ett påminnelsemeddelande.
+
+/changepassword.bml.title=Ändra lösenord
+
+/community/index.bml.title=Intressegrupp-center
+
+/community/join.bml.button.join=Gå med i intressegruppen
+
+/community/join.bml.label.addtofriends=Lägg till "[[maintainer]]" till vänlistan.<br>
+
+/community/join.bml.label.allowposting=Denna intressegrupp tillåter inlägg från alla medlemmar, så du har nu behörighet att posta i det. Om du redan har en LiveJournal-klient öppen på din dator måste du logga ut och in igen för att denna journal ska dyka upp i listan av journaler som du kan posta i.
+
+/community/join.bml.label.auth=Även om du nu är listad som 
+
+/community/join.bml.label.banned=Underhållsansvarige för denna intressegrupp har förbjudit dig från att gå med.
+
+/community/join.bml.label.closed=Denna intressegrupp är en sluten sådan. Om du intresserad av att gå med i den, vänligen kontakta dess underhållsanvarige. Nedan finns en lista över underhållsansvariga för denna intressegrupp. [[admins]]
+
+/community/join.bml.label.commlogged=Du är inloggad som ett delat/intressegrupp konto, inte ditt personliga konto.
+
+/community/join.bml.label.errorcomminfo=Specifierade intressegrupp-informationen är inte giltig.
+
+/community/join.bml.label.expls=Klicka på knappen nedan för att bli medlem i "[[maintainer]]" intressegruppen. Avmarkera rutan nedan om gå med i intressegruppen utan att se intressegrupp-inlägg på din vänsida.
+
+/community/join.bml.label.loginfirst=För att bli medlem i en intressegrupp måste du först <a href="/login.bml?ret=1">logga in</a>.
+
+/community/join.bml.label.membernow=Du är nu medlem i <a href="/userinfo.bml?user=[[username]]">[[commname]] intressegruppen</a>
+
+/community/join.bml.label.sure=Är du säker?
+
+/community/join.bml.success=Avklarat
+
+/community/join.bml.title=Bli medlem i intressegruppen
+
+/community/leave.bml.button.leave=Lämna intressegruppen
+
+/community/leave.bml.label.buttontoleave=Klicka på knappen nedan för att lämna "[[commname]]" intressegruppen.
+
+/community/leave.bml.label.infoerror=Specifierade intressegruppinformationen är inte giltig.
+
+/community/leave.bml.label.logoutfirst=För att lämna en intressegrupp måste du först <a href="/login.bml?ret=1">logga in</a>.
+
+/community/leave.bml.label.removed=Du är nu borttagen från <a href="/userinfo.bml?user=[[commuser]]">[[commname]] intressegruppen</a>
+
+/community/leave.bml.label.removefromfriends=Ta också bort "[[user]]" från vänlistan.
+
+/community/leave.bml.success=Avklarat
+
+/community/leave.bml.sure=Är du säker?
+
+/community/leave.bml.title=Lämna intressegruppen
+
+/community/manage.bml.commlist.actions=<b>Aktivitet</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Medlemmar</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Medlemmar
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Inställningar</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Inställningar
+
+/community/manage.bml.commlist.header=Dina communities
+
+/community/manage.bml.commlist.none=<i>Du är inte underhållsansvarig i någon intressegrupp.</i>
+
+/community/manage.bml.commlist.text=Här visas communities som du är underhållsansvarig i:
+
+/community/manage.bml.commlist.title=<b>Titel</b>
+
+/community/manage.bml.commlist.username=<b>Användarnamn</b>
+
+/community/manage.bml.create.header=Skapa en intressegrupp
+
+/community/manage.bml.create.text=Du kan också <a href='[[link]]'><b>skapa en ny intressegrupp</b></a>.
+
+/community/manage.bml.title=Intressegrupp underhåll
+
+/community/members.bml.error.alreadyadded=[[user]] var inte tillagd för att den har redan tillgång till intressegruppen.
+
+/community/members.bml.error.alreadysent=[[user] kunde inte läggas till för att de redan skickats konfirmations-epost vid tidpunkten: <i>[[datetime]]</i>. Var god vänta på ett svar.
+
+/community/members.bml.error.invaliduser=Kan inte lägga till intressegrupp eller syndikerat konto: [[user]]
+
+/community/members.bml.error.noaccess=Endast underhållsansvariga för intressegruppen är tillåtna att redigera medlemskapslistor. Du är inte underhållsansvarig i intressegrupp [[comm]]. 
+
+/community/members.bml.error.noattr=Inga egenskaper valda för användare: [[user]]
+
+/community/members.bml.error.nocomm=Intressegrupp finns inte.
+
+/community/members.bml.error.nouser=Användare finns inte: <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>Underhållsansvarig</b>
+
+/community/members.bml.key.member=<b>Medlem</b>
+
+/community/members.bml.key.moderate=<b>Moderator</b>
+
+/community/members.bml.key.post=<b>Postningstillgång</b>
+
+/community/members.bml.key.preapprove=Omodererad
+
+/community/members.bml.manage2=Underhålla intressegrupper
+
+/community/members.bml.name=<b>Intressegruppnamn:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(Nästa sida...)</i>
+
+/community/members.bml.prevlink=<i>(Tidigare sida...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>Inställningar</a>]
+
+/community/members.bml.success.header=Avklarat
+
+/community/members.bml.success.message=Dina ändringar har sparats.
+
+/community/members.bml.success.return=<a href='[[link]]'>Tillbaka till listan</a>
+
+/community/members.bml.title=Intressegruppmedlemmar
+
+/community/members.bml.update=Uppdatera inställningar
+
+/community/moderate.bml.approve.button=Ja, godkänn detta
+
+/community/moderate.bml.approve.header=Godkänna inlägget?
+
+/community/moderate.bml.approve.preapprove=Lägg också till användaren [[user]] till listan av redan godkända användare i denna intressegrupp.
+
+/community/moderate.bml.approve.text=Är du säker att du vill godkänna detta inlägg?
+
+/community/moderate.bml.brlist.actions=Behandlingar
+
+/community/moderate.bml.brlist.poster=Postare
+
+/community/moderate.bml.brlist.subject=Ämnet börjar
+
+/community/moderate.bml.brlist.time=Tid
+
+/community/moderate.bml.brlist.view=Vy
+
+/community/moderate.bml.browse.empty=Moderationslistan är tom.
+
+/community/moderate.bml.browse.header=Moderera intressegrupp
+
+/community/moderate.bml.browse.text=Här är moderationslistan för intressegruppen [[link]]
+
+/community/moderate.bml.choice.approve=Godkänna
+
+/community/moderate.bml.choice.reject=Avslå
+
+/community/moderate.bml.error.noaccess=Du modererar inte denna intressegrupp [[comm]].
+
+/community/moderate.bml.error.noentry=Inlägg funnits inte (möjligen redan behandlad av en annan underhållare).
+
+/community/moderate.bml.error.nolist=Du modererar inte några intressegrupper.
+
+/community/moderate.bml.error.notfound=Intressegruppkonto funnits inte.
+
+/community/moderate.bml.manage=Underhålla intressegrupper
+
+/community/moderate.bml.moderate=Moderera denna intressegrupp.
+
+/community/moderate.bml.modlist.actions=Aktioner
+
+/community/moderate.bml.modlist.actmodempty=[Moderera]
+
+/community/moderate.bml.modlist.actmoderate=Moderera
+
+/community/moderate.bml.modlist.count=Kö storlek
+
+/community/moderate.bml.modlist.header=Moderera communities
+
+/community/moderate.bml.modlist.title=Titel
+
+/community/moderate.bml.modlist.username=Användarnamn
+
+/community/moderate.bml.posted.appheader=Godkänd i förväg
+
+/community/moderate.bml.posted.apptext=Dessutom har användaren [[user]] lagts till i listan av för-godkända användare i denna intressegrupp.
+
+/community/moderate.bml.posted.header=Avklarat
+
+/community/moderate.bml.posted.proterror=Inlägget har inte postats pga. protokollfelet: [[err]]
+
+/community/moderate.bml.posted.text=Inlägget har postats.
+
+/community/moderate.bml.reject.button=Ja, avslå det
+
+/community/moderate.bml.reject.header=Förkasta detta inlägg?
+
+/community/moderate.bml.reject.reason=Du kan också förklara för postaren dina skäl för att avvisa inlägget. Skälen skickas till postaren med epost.
+
+/community/moderate.bml.reject.text=Är du säker på att du vill förkasta detta inlägg?
+
+/community/moderate.bml.rejected.header=Förkastat
+
+/community/moderate.bml.rejected.text=Detta inlägg har blivit förkastat.
+
+/community/moderate.bml.title=Intressegrupp moderering
+
+/community/search.bml.button.clear=Rensa formulär
+
+/community/search.bml.button.search=Sök!
+
+/community/search.bml.checkbox.onlywithpics=Endast intressegrupper med bilder
+
+/community/search.bml.label.byinterest=Intressevis
+
+/community/search.bml.label.bylocation=Regionsvis
+
+/community/search.bml.label.bytime=Genom uppdaterings-tidpunkt
+
+/community/search.bml.label.city=Ort
+
+/community/search.bml.label.country=Land:
+
+/community/search.bml.label.displayoptions=Visa alternativ
+
+/community/search.bml.label.hasmember=Har medlem
+
+/community/search.bml.label.othercriteria=Andra kriterier
+
+/community/search.bml.label.outputformat=Format:
+
+/community/search.bml.label.records=Träffar per sida:
+
+/community/search.bml.label.searchcomm=Sök intressegrupper
+
+/community/search.bml.label.selecriteria=Välj kriterier nedan för de sätt du vill hitta communites genom. Resultaten är en kombination av alla sökta kriterier. Med andra ord, alla kryssrutor du klickat i betyder "OCH", inte "ELLER".
+
+/community/search.bml.label.sortmethod=Sorteringsmetod:
+
+/community/search.bml.label.stateprovince=Stat/Provins:
+
+/community/search.bml.label.updated=Uppdaterad senast
+
+/community/search.bml.sel.bypicture=Efter bild
+
+/community/search.bml.sel.communityname=Namn på intressegrupp
+
+/community/search.bml.sel.commview=Intressegruppsvy
+
+/community/search.bml.sel.day=dag
+
+/community/search.bml.sel.month=månad
+
+/community/search.bml.sel.simple=Enkel
+
+/community/search.bml.sel.updatetime=Tid för uppdatering
+
+/community/search.bml.sel.username=Användarnamn
+
+/community/search.bml.sel.week=vecka
+
+/community/search.bml.title=Intressegrupp-sökning
+
+/community/settings.bml.button.changecommunity=Spara inställningar
+
+/community/settings.bml.button.createcommunity=Skapa intressegrupp
+
+/community/settings.bml.error.badpassword=Ogiltigt lösenord för intressegruppen
+
+/community/settings.bml.error.hasentries=Detta konto har redan inlägg och kan inte förvandlas.
+
+/community/settings.bml.error.maintainertype=Underhållningsansvariga kontot måste vara till en person, inte ett annat delat konto.
+
+/community/settings.bml.error.noaccess=Endast underhållsansvariga för intressegrupper kan redigera intressegruppsinställningar.  Du är inte förvaltare i intressegruppen [[comm]].
+
+/community/settings.bml.error.notcomm=Inte ett intressegruppkonto.
+
+/community/settings.bml.error.notfound=Intressegruppkontot hittades inte.
+
+/community/settings.bml.error.samenames=Förvaltarekontot och intressegruppkontot kan inte vara demsamma.
+
+/community/settings.bml.label.anybodycan=<b>Alla medlemmar</b><br />Alla kan posta när de blivit medlemmar.
+
+/community/settings.bml.label.changeheader=Ändra intressegrupp inställningar
+
+/community/settings.bml.label.changetext=Här kan du ändra inställningarna på intressegruppen som du äger eller förvaltar.
+
+/community/settings.bml.label.commchanged=Dina intressegruppsinställningar har ändrats.
+
+/community/settings.bml.label.commcreate=Detta är kontot som du vill förvandla till en intressegrupp. Det måste <a href="/create.bml">redan ha skapats</a>, men kan inte ha använts av en individ, då denna förvandlingen kommer att tillåta många användare att kunna posta i det.
+
+/community/settings.bml.label.commcreated=Din intressegrupp har nu skapats.
+
+/community/settings.bml.label.commheader=Intressegruppkonto
+
+/community/settings.bml.label.comminfo=Intressegrupp info
+
+/community/settings.bml.label.commopts=Intressegrupp anpassningar
+
+/community/settings.bml.label.commsite=Intressegrupp webbplats
+
+/community/settings.bml.label.community=IntressegruppÖ
+
+/community/settings.bml.label.createheader=Skapa intressegrupp
+
+/community/settings.bml.label.createtext=Härifrån kan du skapa en intressegruppkonto.  En intressegrupp  ("community") är en särskild sorts konto som andra användare kan delta och sätta inlägg i.  Ett exempel på en intressegrupp är <a href="/userinfo.bml?user=swedes">Svenskar på LiveJournal</a>.
+
+/community/settings.bml.label.howoperates=Bestäm hur din intressegrupp fungerar.  Du kan ändra dessa urval sedan.
+
+/community/settings.bml.label.maintainer=Underhållsansvarig:
+
+/community/settings.bml.label.maintainer.login=Om detta är inte underhållningsansvarige kontot, <a href="/login.bml?ret=1">logga in</a> med ett annat konto.
+
+/community/settings.bml.label.managepage=<a [[aopts]]>Intressegruppsunderhåll</a> - att lägga till medlemmar, ge postningstillgång, utnämna medlare, osv.
+
+/community/settings.bml.label.membership=Medlemskap
+
+/community/settings.bml.label.modis=<b>Modererat</b><br />Nya inlägg måste godkännas av moderator.
+
+/community/settings.bml.label.modisnt=<b>Omodererat</b><br />Nya inlägg visas direkt.
+
+/community/settings.bml.label.modtext=Är imlägg till denna intressegrupp modererade?
+
+/community/settings.bml.label.nmcan=<b>Icke-medlemmar kan posta</b><br />Användare kan posta i intressegruppen utan att gå med i den.
+
+/community/settings.bml.label.nmcant=<b>Icke-medlemmar kan posta</b><br />Användare måste gå med i intressegruppen att kunna posta i den.
+
+/community/settings.bml.label.nmheader=Icke-medlem post 
+
+/community/settings.bml.label.nmtext=Kan användare posta intressegruppen utan att bli medlem?
+
+/community/settings.bml.label.openmemb=<b>Öppen medlemskap</b><br/>Vem som helst kan bli medlem utan att godkännas.
+
+/community/settings.bml.label.password=Lösenord
+
+/community/settings.bml.label.postaccess=Postningstillgång
+
+/community/settings.bml.label.rellinks=Viktiga länkar:
+
+/community/settings.bml.label.selcan=<b>Utvalda medlemmar</b><br />Endast vissa medlemmar kan posta, efter de får tillgång från den underhållsansvarige.
+
+/community/settings.bml.label.username=Användarnamn:
+
+/community/settings.bml.label.whocanjoin=Vem kan delta i din intressegrupp?
+
+/community/settings.bml.label.whocanpost=Vem kan posta till intressegruppen?
+
+/community/settings.bml.manage2=Underhålla intressegrupper
+
+/community/settings.bml.members=[<a href='[[link]]'>Medlemmar</a>]
+
+/community/settings.bml.name=<b>Intressegrupp namn:</b> [[name]]
+
+/community/settings.bml.success=Avklarat
+
+/community/settings.bml.title.create=Skapa intressegrupp
+
+/community/settings.bml.title.modify=Intressegrupp inställningar
+
+/create.bml.age.check.question=Är du yngre än 13 år?
+
+/create.bml.age.check.yes=Ja, jag är under 13 år.
+
+/create.bml.age.check2.question=Är du minst 13 år gammal?
+
+/create.bml.age.check2.yes=Ja, jag är inte mindre än 13 år.
+
+/create.bml.age.head=Ålder
+
+/create.bml.btn.create=Skapa journal
+
+/create.bml.btn.proceed=Fortsätt...
+
+/create.bml.captcha.answer=Svar:
+
+/create.bml.captcha.audiodesc=Ange siffrorna du hör för att bevisa du är ingen spamrobot:
+
+/create.bml.captcha.desc=Ange bokstäverna och siffrorna som du ser nedan, att bevisa att du inte är en spamrobot. Kan du inte läsa texten, skriv AUDIO och ta en ljudtest istället.
+
+/create.bml.captcha.invalid=Ogiltigt svar på förra intyget.  Försök igen.
+
+/create.bml.captcha.play=Spela ljudet
+
+/create.bml.captcha.prove=Bekräfta att du är människa
+
+/create.bml.clusterselect.cluster=Kluster:
+
+/create.bml.clusterselect.clusternum=Kluster [[number]]
+
+/create.bml.clusterselect.head=Klusterurval
+
+/create.bml.clusterselect.nocluster=Inget kluster
+
+/create.bml.clusterselect.text=Var vänling välj kluster du vill skapa ett konto på. <b>Obs:<b> Detta är för debug och test endast. I produktion kommer användare inte välja detta, eller ens veta om det.
+
+/create.bml.create.head=Skapa en ny journal
+
+/create.bml.create.text=Att skapa en ny LiveJournal är enkelt, följ bara instruktionerna nedan!
+
+/create.bml.email.head=Din epost adress
+
+/create.bml.email.input.head=Epost adress:
+
+/create.bml.error.coppa.under13=Tyvvär, på grund av COPPA-restriktioner, kan du inte använda LiveJournals tjänster förrän du fyllt 13 år. Vänligen kom tillbaka på din 13:e födelsedag.
+
+/create.bml.error.email.blank=Du måste ange din epost adress.
+
+/create.bml.error.email.lj_domain=Man får inte använda en [[domain]] e-post adress när man skapar ett konto.  Var god ange en annan e-post adress.
+
+/create.bml.error.email.nospaces=Inga mellanslag är tillåtna i en e-postadress. Har du AOL är din e-postadress lika med ditt screen namn utan mellanslag, följt av <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=Du kan bara använda ASCII tecke i lösenordet.
+
+/create.bml.error.password.blank=Du måste ange ett lösenord.
+
+/create.bml.error.password.nomatch=Lösenorden matchar inte varandra.
+
+/create.bml.error.postrequired=POST krävs.
+
+/create.bml.error.username.blank=Ange alias/smeknamn.
+
+/create.bml.error.username.inuse=Användarnamnet används redan, ange ett annat.
+
+/create.bml.error.username.iscode=Användarnamnet verkar vara en invitationskod, inte ett användarnamn.
+
+/create.bml.error.username.mustenter=Du måste ange ett användarnamn.
+
+/create.bml.error.username.reserved=Tyvärr, det är ett reserverat användarnamn.
+
+/create.bml.initial.friend.news=LiveJournal nyheter och händelser
+
+/create.bml.initialfriends=Lägg till dessa journaler till din vänlista att hålla reda på sajtnyheter och information.
+
+/create.bml.initialfriends.heading=Vänner att börja med
+
+/create.bml.name.head=Ditt namn
+
+/create.bml.name.input.head=Namn:
+
+/create.bml.name.text=Vilket är ditt namn eller smeknamn? Det kommer synas högst upp i din journal, det kommer även synas i användar katalogen om du valt att bli visad där. Du behöver inte ange ditt fulla namn eller ens ditt riktiga namn.
+
+/create.bml.password.head=Lösenord
+
+/create.bml.password.input.head1=Lösenord: 
+
+/create.bml.password.input.head2=Bekräfta lösenord:
+
+/create.bml.password.text=Välj lösenord.
+
+/create.bml.proceed.btn.proceed=Fortsätt...
+
+/create.bml.proceed.warning=Klicka endast på <b>Fortsätt</b> <i>en gång</i>!!
+
+/create.bml.success.btn.enterinfo=Ange personlig information
+
+/create.bml.success.head=Avklarat!
+
+/create.bml.success.text1=Din journal har skapats. Viktig registreringsinformation har skickats till <FONT SIZE=+1><B>[[email]]</B></FONT> innehållande vidare uppgifter. Var vänlig och bekräfta skapandet av din journal genom att klicka på länken som skickats till dig via e-post.
+
+/create.bml.success.text2=Din LiveJournal kommer vara tillgänglig på:
+
+/create.bml.success.text3=Var vänlig fyll i information om dig själv. Det mesta är frivilligt, men det ger oss en bild av vilka som använder LiveJournal.
+
+/create.bml.title=Skapa ny journal
+
+/create.bml.tos.error=Du måste läsa och acceptera användarvillkoren innan du skapar ett konto.
+
+/create.bml.tos.haveread=Jag har läst och accepterat användarvillkoren.
+
+/create.bml.tos.heading=Användarvillkor.
+
+/create.bml.tos.p1.2=Innan du fortsätter måste du läsa och gå med på <a [[aopts]]>serviceavtalet</a>.
+
+/create.bml.useacctcodes.entercode=För att skapa ett nytt konto, ange en invitationskod. För mer information, läs <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">Hur skapar man ett konto?</a>
+
+/create.bml.useacctcodes.welcome=Välkommen
+
+/create.bml.username.box.head=Användarnamn:
+
+/create.bml.username.charsallowed=Ditt användarnamn kan endast innehålla gemener (a-z) och siffror (0-9) och underscore tecknet. <br />Dessutom får det inte vara längre än 15 tecken. 
+
+/create.bml.username.forpaidaccts=Eller, för betalda konton:
+
+/create.bml.username.head=Användarnamn
+
+/create.bml.username.ljaddress=Din journal kommer att finnas på denna adress:
+
+/create.bml.username.text=Varje [[sitename]]-användare måste ha sitt egna unika användarnamn. Ditt användarnamn är vad som kommer att synas i adressen till din egna journal och det namn du använder för att logga in till [[sitename]] servern. Det visas också när du postar kommentarer i andra personers journaler.
+
+/create.bml.username.username=användarnamn
+
+/customize/index.bml.change=Ändra
+
+/customize/index.bml.choose.s1=Gammalt system (S1)
+
+/customize/index.bml.choose.s2=Nytt system (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=Kunde inte generera användarlager
+
+/customize/index.bml.error.fail_create_style=Misslyckades att skapa ny stil.
+
+/customize/index.bml.error.not_your_layout=Inte din utformning.
+
+/customize/index.bml.error.not_your_theme=Inte ditt tema
+
+/customize/index.bml.error.no_core_parent=Ingen core förälder?
+
+/customize/index.bml.previews=(Tidigare)
+
+/customize/index.bml.s1.header=Använder S1
+
+/customize/index.bml.s2.advanced.denied=Endast betalda, permanenta, och "Early Adopter" kontoinnehavare kan använda det avancerade kustomiseringsområdet. <a href="/paidaccounts"> Mer om fördelarna att ha ett betalt konto</a>.
+
+/customize/index.bml.s2.advanced.header=Avancerade anpassningar
+
+/customize/index.bml.s2.customize.header=Steg 2: Anpassa utformning
+
+/customize/index.bml.s2.customize.language=Följande språk stöds fullt eller delvis av denna layout.
+
+/customize/index.bml.s2.customize.language.custom=(Anpassat)
+
+/customize/index.bml.s2.customize.language.header=Språk
+
+/customize/index.bml.s2.customize.settings=Vill du ytterligar anpassa din journal, här kan du justera individuella inställningar att få den att se ut precis hur du vill.
+
+/customize/index.bml.s2.customize.settings.delete=Ta bort annpassningar
+
+/customize/index.bml.s2.customize.settings.delete.confirm=Är du säker att du vill ta bort dessa anpassningar?
+
+/customize/index.bml.s2.customize.settings.edit=Redigera anpassningar
+
+/customize/index.bml.s2.customize.settings.header=Ändra individuella inställningar
+
+/customize/index.bml.s2.customize.settings.new=Anpassa
+
+/customize/index.bml.s2.customize.themes.header=Teman
+
+/customize/index.bml.s2.related.editinfo.about=Bestäm din journals titlar och andra urval.
+
+/customize/index.bml.title=Anpassa journal
+
+/delcomment.bml.changeoptions<<
+<strong>OBS:</strong> Från [[link]] sidan kan du välja om <em>alla</em>, <em>registrade användare</em>, eller
+<em>endast vänner</em> får posta kommentarer.
+.
+
+/delcomment.bml.confirm.banuser=Bannlysa [[user]] från att kommentera i din journal
+
+/delcomment.bml.confirm.body=Är du säker att du vill radera denna kommentar?
+
+/delcomment.bml.confirm.head=Radera kommentaren?
+
+/delcomment.bml.confirm.spam=Markera kommentar som spam
+
+/delcomment.bml.confirm.submit=Radera kommentar
+
+/delcomment.bml.error.alreadydeleted=Valda kommentaren har redan raderats.
+
+/delcomment.bml.error.cantdelete=En kommentar kan endast raderas av författaren eller journalägaren.
+
+/delcomment.bml.error.cantdelete.comm=En kommentar kan endast raderas av författaren, journalinläggsägaren, eller en intressegruppunderhållare.
+
+/delcomment.bml.error.invalidtype=Ogiltig kommentartyp. Denna sida behandlar endast kommentarer i journalinlägg.
+
+/developer/index.bml.clients<<
+Så du vill skapa eller förbättra en LiveJournal klient för din platform? Fantastiskt!
+Nedanför finns några nödvändiga referenser för att låta dig veta hur LiveJournal fungerar.
+.
+
+/developer/index.bml.clients.header=Skriva LiveJournal Klienter
+
+/developer/index.bml.clients.links<<
+<dl>
+  <dt><a href="/doc/server/ljp.csp.guide.html"><b>LiveJournal server&lt;-&gt;klient protokoll</b></a></dt>
+  <dd>Lär dig hur LiveJournal klienten på din dator samtalar med LiveJournal-servern.  Att förstå detta är första steget innan du kan skapa eller ändra en klient på din plattform.</dd>
+  <dt><a href="/doc/server/ljp.csp.protocol.html"><b>Complete  Protocol Docs</b></a></dt>
+  <dd>Alla olika protokoll-sätt och metoder.</dd>
+  <dt><a href="/download/"><b>Klientlista</b></a></dt>
+  <dd>En lista av de flesta klienter som kan användas med LiveJournal. De flesta av dessa klienter har öppen källkod, och alla är gratis att använda. Detta är en bra plats att hitta exempel för din klient.</dd>
+</dl>
+.
+
+/developer/index.bml.code.header=LiveJournals Kodarkiv
+
+/developer/index.bml.dbschema=Nyfiken om <a href="/doc/server/ljp.dbschema.ref.html">databasschemat</a>? SQL:n att skapa alla tabellerna och ifylla dem är inkluderad med serverkällkoden.
+
+/developer/index.bml.dbschema.header=Databas Schema
+
+/developer/index.bml.embedding.header=Inbäddera LiveJournal
+
+/developer/index.bml.notice.header=Observera
+
+/developer/index.bml.notice1=Följande information är endast till programmerare och avancerade änvändare. Vill de bara använda LiveJournal att ha en journal, går det fint. Vanliga användare behöver inte bry sig om detta.
+
+/developer/index.bml.notice2=Med det sagt, är innehållet nedan uppbruten i två delar:  information om hur man anpassar sidornas utseende i LiveJournal, och information om hur man skriver LiveJournalklienter till LiveJournal servern.
+
+/developer/index.bml.styles.header=Anpassning av LiveJournals utseende
+
+/developer/index.bml.styles.s1.system=Stilsystem
+
+/developer/index.bml.styles.s1.varlist=Variabellista
+
+/developer/index.bml.styles.s1.views=Visa typer
+
+/directory.bml.browse.country.title=Bläddra journaler i landordning
+
+/directory.bml.browse.usa.title=Bläddra journaler i USA-delstatsordning
+
+/doc/index.bml.about=Välkommen till LiveJournals dokumenteringsförråd, där man kan finna information på de flesta ämnen gällande LiveJournals servicer och serverprogram.  Välj ett ämne från de följande:
+
+/doc/index.bml.about.header=Välkommen
+
+/doc/index.bml.docs.faq.about=Vanliga frågor och svar om LiveJournal.com
+
+/doc/index.bml.docs.faq.title=Vanliga frågor och svar
+
+/doc/index.bml.docs.header=Dokument
+
+/doc/index.bml.docs.howto.about=Råd om hur man anpassar ens LiveJournal konto.
+
+/doc/index.bml.docs.server.about=Allt man behöver veta om hur man installerar, underhåller, och hackar en LiveJournal installation
+
+/doc/index.bml.docs.server.title=LiveJournal serverhandbok
+
+/doc/index.bml.docs.tour.about=Avsedd för nya besökare att lära sig om webbplatsen
+
+/doc/index.bml.docs.tour.title=Rundtur
+
+/doc/index.bml.title=Dokumentering
+
+/doc/index.bml.volunteering.about=Vill du hjälpa till med LiveJournals dokumentering, kolla de följande intressegrupper:
+
+/doc/index.bml.volunteering.header=Deltagande
+
+/doc/index.bml.volunteering.ljsysdoc=Diskussioner om LiveJournals dokumenteringssystem
+
+/doc/index.bml.volunteering.ljuserdoc=Användare dokumenteringsdiskussioner
+
+/doc/tour/index.bml.clients.caption<<
+LiveJournal klient är ett litet program som körs på din dator som tillåter dig att uppdatera din journal när du är online, utan att ha något browserfönster öppet.
+Klienter finns tillgängliga för nästan alla sorters platformar och är enkla att anpassa.
+.
+
+/doc/tour/index.bml.clients.title=Klienter
+
+/doc/tour/index.bml.comms.caption=LiveJournal är ett stort interaktivt samhälle, så det vore inte så konstigt om andra användare har liknande intressen. Vi erbjuder möjligheten att skapa intressegrupper, eller journaler som många kan posta i.
+
+/doc/tour/index.bml.create.caption=LiveJournal är ett medlemsbaserat journaleringssamhälle. Den här sidan förklarar vad medlemskap medger, varför medlemskap är viktigt och vilka förmåner ett medlemskap ger. Den innehåller också ett formulär för att skapa dig ett eget konto.
+
+/doc/tour/index.bml.create.title=Skapa konto
+
+/doc/tour/index.bml.friends.caption=Du kan hålla koll på dina vänner genom LiveJournal, genom att använda den inbyggda "vänner" funktionen. Om du hittar en journal du finner intressant, lägg till den till din vänlista, vilket låter dig läsa alla dina vänners inlägg på en och samma sida.
+
+/doc/tour/index.bml.friends.title=Vänner
+
+/doc/tour/index.bml.intro.title=Välkommen
+
+/doc/tour/index.bml.modify.caption=Det är också möjligt att ändra utseendet på din journal på många olika sätt, med att använda förbestämda stiler och färgtema. Gör din journal så unik som du vill!
+
+/doc/tour/index.bml.modify.title=Anpassning
+
+/doc/tour/index.bml.nav.next=Nästa --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- Förra
+
+/doc/tour/index.bml.profile.caption=Medlemmar i LiveJournal är uppmanade att sätta in information om sig i sina profiler, så vi får insikt i vem använder webbplatsen och hur vi kan bäst betjäna dem.  Men inget av detta är obligatoriskt &mdash; den enda informationen som krävs att börja använda LiveJournal är ett namn, en epostadress, och ett lösenord.
+
+/doc/tour/index.bml.profile.title=Profiler
+
+/doc/tour/index.bml.sitemap.title=Sajtkarta
+
+/doc/tour/index.bml.support.caption=Hjälpsidan listar ämneområden som hjälper till att förklara vad LiveJournal är, vanliga frågor och svar om webbplatsen, och annan hjälpsam information om servicen, bolaget, och övriga LiveJournalsamhället.
+
+/doc/tour/index.bml.support.title=Få hjälp
+
+/doc/tour/index.bml.title=Rundtur - [[title]]
+
+/doc/tour/index.bml.update.title=Uppdaterar
+
+/editinfo.bml.allowshowcontact.about=Du bör ha detta alternativ valt. Detta låter andra kunna ta kontakt med dig då det visar din e-postadress, ICQ-nummer och namn för AOL Instant Messenger. 
+
+/editinfo.bml.allowshowcontact.email=E-postadress som ska visas (om synlig):
+
+/editinfo.bml.allowshowcontact.email.actual_only=Endast riktig adress
+
+/editinfo.bml.allowshowcontact.email.both=Båda (riktig + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Endast LiveJournal-adress
+
+/editinfo.bml.allowshowcontact.email.neither=Ingen. Visa inga e-post adresser.
+
+/editinfo.bml.allowshowcontact.email.no_show=Visa inga e-post adresser.
+
+/editinfo.bml.allowshowcontact.email.show=Visa e-postadress
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Med alternativet ovan, kan du också välja att gömma din epost adress (medan annan kontakt information visas), visa bara din Livejournal adress (endast <a href="/paidaccounts/">betalande användare</a>), visa bara din riktiga adress, eller visa båda.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Med valalternativet ovan, kan du också välja att dölja din emailadress (fortfarande visandes den andra kontakt-informationen).
+
+/editinfo.bml.allowshowcontact.title=Visa din kontaktinformation på din LiveJournal-sida?
+
+/editinfo.bml.allowshowinfo.about=Välj detta alernativ om du vill att din stad/region/land och födelsedag ska vara synligt för andra användare.
+
+/editinfo.bml.allowshowinfo.title=Visa område &amp; födelsedag?
+
+/editinfo.bml.autotranslate.about<<
+Använd detta alternativ för att tala om för LiveJournal vilken teckenuppsättning du använt i dina inlägg och kommentarer innan LiveJournal konverterade till Unicode.
+
+Om du skriver på svenska eller engelska, välj "Western European" här.
+.
+
+/editinfo.bml.autotranslate.header=Auto-konvertera äldre inlägg från:
+
+/editinfo.bml.bday.title=Födelsedag
+
+/editinfo.bml.bday.year.opt=Födelseår är valfritt
+
+/editinfo.bml.bdayreminders.about=Om du vill får email-påminnelser om födelsedagar för dina vänner på LiveJournal, ticka för denna box.
+
+/editinfo.bml.bdayreminders.header=Skicka födelsedagspåminnelser (tillfälligt otillgänglig)
+
+/editinfo.bml.bio.about=Här kan du skriva en liten mini-biografi om dig själv som kommer att visas på din användarinfo sida.
+
+/editinfo.bml.bio.header=Om dig
+
+/editinfo.bml.blockrobots.about<<
+Markerar du detta alternativ, kommer robotar/spindlar att bli ombedda att ignorera din journal.
+Inte alla robotar/spindlar respekterar reglerna, men de flesta söksidornas robotar gör det. 
+.
+
+/editinfo.bml.blockrobots.header=Hindra Robotar/Spindlar från att indexera din journal
+
+/editinfo.bml.chat.msnusername.title=MSN användarnamn
+
+/editinfo.bml.city.title=Stad
+
+/editinfo.bml.country.choose=Välj ett land
+
+/editinfo.bml.country.title=Land
+
+/editinfo.bml.donotlog=Nej
+
+/editinfo.bml.email.title=E-post
+
+/editinfo.bml.enableboards.about=Markera det här alternativet om du vill att andra ska kunna svara på de journalinlägg du har postat.
+
+/editinfo.bml.enableboards.header=Tillåt forum
+
+/editinfo.bml.encoding.about=Oroa dig inte över detta. Genrellt sett, endast internationella användare som skriver i flera olika språk behöver oroa sig för att ändra nånting här.
+
+/editinfo.bml.encoding.header=Kodningsalternativ
+
+/editinfo.bml.error.day.notinmonth=Ogiltig dag i den månaden.
+
+/editinfo.bml.error.day.outofrange=Ogiltig födelsedag dag.  Ange en dag från 1-31.
+
+/editinfo.bml.error.email.lj_domain<<
+Du kan inte ange en @[[domain]]-epostadress.
+Ange din riktiga adress i det här fältet.
+Om du är en Betalande användare kommer din [[user]]@[[domain]]-adress vidarebefodra till din riktiga adress.
+För att välja vilka adresser som skall publiceras, se stycket "Visa Kontaktinformation".
+.
+
+/editinfo.bml.error.email.none=Du måste ange din epostadress.
+
+/editinfo.bml.error.email.no_space=Mellanslag &auml;r inte till&aring;tna i en e-postadress. Om du anv&auml;nder AOL, kom ih&aring;g att din e-postadress &auml;r ditt anv&auml;ndarnamn utan mellanslag, f&ouml;ljt av <b>@aol.com</b>
+
+/editinfo.bml.error.excessive_int=Du har angett för många intressen. Gränsen är 150, men du har angett [[intcount]]. De ändringar som gjorts till dina intressen har inte sparats. Gå tillbaka och korta ned listan och spara den en gång till.
+
+/editinfo.bml.error.invalidbio=Din lagrade biografi innehåller otillåtna tecken. Var vänlig gå till <a href='/utf8convert.bml'><b>konverteringssidan</a> för att konvertera den till Unicode.
+
+/editinfo.bml.error.invalidints=Din lagrade intresselista innehåller otillåtna tecken. Var vänlig gå till <a href='/utf8convert.bml'><b>konverteringssidan</a> för att konvertera den till Unicode.
+
+/editinfo.bml.error.invalidname=Ditt namn innehåller otillåtna tecken. Var vänlig gå till <a href='/utf8convert.bml'><b>konverteringssidan</a> för att konvertera den till Unicode.
+
+/editinfo.bml.error.locale.country_ne_state=Du specificerade USA som ditt land, men du skrev in en icke-USA stat i "annan stat/provins/område" fältet.
+
+/editinfo.bml.error.locale.invalid_country=På något sätt valde du ett felaktigt land.
+
+/editinfo.bml.error.locale.state_ne_country=Du angav ett icke-USA land men valde en USA stat.
+
+/editinfo.bml.error.locale.zip_ne_state<<
+Ditt postnummer matchar inte staten/provinsen/området du specificerade.
+Antingen fyll i rätt information, eller radera en eller bådera av staten/provinsen/området fälten.
+.
+
+/editinfo.bml.error.locale.zip_requires_us<<
+Du skrev in ett postnummer men du valde inte USA som ditt land.
+Vi samlar endast postnummer-information om personer i USA.
+Vänligen gå tillbaka och ta bort postnumret eller välj United States som ditt land.
+.
+
+/editinfo.bml.error.month.outofrange=Ogiltig födelsedagsmånad.  Ange en månad från 1-12. (Jan-Dec)
+
+/editinfo.bml.error.noname=Du måste uppge ditt namn. Det räcker med ditt förnamn, och du kan ange ett smeknamn eller nätnamn i stället..
+
+/editinfo.bml.error.tm.require.number=Om du kommer att använda text meddelande, måste du ange ditt telefonnumer.
+
+/editinfo.bml.error.tm.require_provider<<
+Om du kommer att använda text meddelanden, måste du ange vilken operatör du använder.
+
+Om din operatör inte finns listad, kontakta oss med information om hur din operatörs text-meddelande fungerar så vi kan lägga till stöd för det.
+.
+
+/editinfo.bml.error.year.notenoughdigits=Ogiltigt födelsedagsår. Ange ett år med fyra siffror.
+
+/editinfo.bml.error.year.outofrange=Ogiltigt födelsedagsår.
+
+/editinfo.bml.finished.about=När du är klar klickar du på knappen "Spara ändringar" nedan:
+
+/editinfo.bml.finished.header=Klar?
+
+/editinfo.bml.finished.save_button=Spara ändringar
+
+/editinfo.bml.gender.title=Kön
+
+/editinfo.bml.getreplies.about=Markera detta om du vill få epost-uppdateringar när folk svarar på dina journalinlägg i forumet (med kommentarer).
+
+/editinfo.bml.getreplies.header=Få forum-uppdateringar
+
+/editinfo.bml.hidefriendof.about=Om du markerar detta, döljs listan av personer som listar dig som vän på din användarinfo-sida
+
+/editinfo.bml.hidefriendof.header=Göm "Vän till" lista
+
+/editinfo.bml.howhear.about<<
+För nyfikenhets skull, var hörde du om [[sitename]] från?
+Om det var en specifik person, skriv in deras användarnamn, om det var från en annan källa/artikel/webbsida, skriv in lämplig information.
+.
+
+/editinfo.bml.howhear.header=Nyfikenhet
+
+/editinfo.bml.htmlemail.about<<
+Markera detta om ditt epost-program helt stödjer HTML i dina epost.
+Många klienter försöker stödja det men misslyckas något så fruktansvärt.
+Om du lämnar det omarkerat, kommer LiveJournal endast att skicka text-epost.
+.
+
+/editinfo.bml.htmlemail.header=Skicka HTML-e-post
+
+/editinfo.bml.int.about=Om du vill att andra ska kunna söka och hitta dig efter dina intressen skriver du en lista med vad du tycker om här nedan. Avgränsa dina intressen med ett kommatecken. Korta fraser med ett ord fungerar bäst. <b>Tumregel:</b> Intresset ska kunna infogas i meningen "Jag tycker om ________". När du anger substantiv bör du använda pluralformen, så att det blir konsekvent. "Jag tycker om DVD-filmer" i stället för "Jag tycker om DVD-film".
+
+/editinfo.bml.int.ex.bad=<FONT COLOR=#FF0000><B>DÅLIGT</B></FONT> Exempel: <B>Jag tycker om att lyssna på många musikgrupper, titta på filmer, prata med vänner och gå på klubbar.</B> Sånt ska du skriva i din biografi ovan.
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>BRA</B></FONT> Exempel: <B>cykla, åka skidor, datorer, dvd-filmer, mp3:or, ost, kvinnor</B>
+
+/editinfo.bml.int.header=Intressen
+
+/editinfo.bml.login.enterinfo=Ange ditt användarnamn och ditt lösenord om du vill ändra din personliga information.
+
+/editinfo.bml.login.forgot.header=Glömt någonting?
+
+/editinfo.bml.login.forgot.recover=Om du glömt ditt användarnamn eller ditt lösenord kan du <a href='lostinfo.bml'>få tag på det här!</a>.
+
+/editinfo.bml.logip.always=Alltid
+
+/editinfo.bml.logip.anon_only=Endast anonyma postare
+
+/editinfo.bml.logip.header=Logga IP-adresser av personer som svarar?
+
+/editinfo.bml.mangleaddress.about=Om du är rädd att spam-robotar kommer att hitta din epostadress på LiveJournal, välj detta alternativ och din epostadress kommer att bli modifierad så att den inte blir hittad av epost-samlande robotar.
+
+/editinfo.bml.mangleaddress.header=Förvräng din visade epost adress
+
+/editinfo.bml.name.title=Namn
+
+/editinfo.bml.newemail.subject=Epostadress ändrat
+
+/editinfo.bml.numcomments.about=Kryssa i här om du vill lägga till kommentars räknare på URLer för att få din browser att visa annan länkfärg på uppdaterade inlägg.
+
+/editinfo.bml.numcomments.header=Lägg till &amp;nc=xx till kommentar-URL:er
+
+/editinfo.bml.optional=Valfritt
+
+/editinfo.bml.opt_in.about<<
+Om du vill veta när vi lägger till nya tuffa funktioner på LiveJournal, kryssa i här.
+Dessa email du får kommer vara ganska sällsynta, inte mer än ett eller kanske två i månaden oftast.
+Din epost adress kommer inte vara synlig för andra användare och du kan stänga av detta när som helst.
+.
+
+/editinfo.bml.opt_in.header=Skicka LiveJournal-nyheter.
+
+/editinfo.bml.persinfo.disclaimer=Fyll i lite information om dig själv. Vi är nyfikna och tycker om att föra statistik. Vi kommer inte att göra något elakt med den här informationen, utan vi vill bara veta vilka våra användare är och vart de finns. Vi uppskattar om du är ärlig. Om du är orolig kan du läsa vår <a href="/legal/privacy.bml">sekretesspolicy</a>.
+
+/editinfo.bml.persinfo.header=Personlig information
+
+/editinfo.bml.screen.all=Alla
+
+/editinfo.bml.screen.anon=Endast Anonyma
+
+/editinfo.bml.screen.header=Vilka svar vill du ha förvals-avskärmade?
+
+/editinfo.bml.screen.none=Ingen
+
+/editinfo.bml.screen.nonfriends=Ej listade vänner
+
+/editinfo.bml.screen.nonmembers=Ej listade medlemmar
+
+/editinfo.bml.security.header=Vem får se din kontaktinformation?
+
+/editinfo.bml.security.visibility.anybody=Alla
+
+/editinfo.bml.security.visibility.everybody=Alla
+
+/editinfo.bml.security.visibility.friends=Endast vänner
+
+/editinfo.bml.security.visibility.regusers=Registrerade användare
+
+/editinfo.bml.settings.friendspage.title=Vänsida titel:
+
+/editinfo.bml.settings.friendspage.title.optional=Ange <i>om du vill</i> en titel för din vänsida. (ingen HTML)
+
+/editinfo.bml.settings.header=LiveJournal-alternativ
+
+/editinfo.bml.settings.journal.subtitle=Journal undertitel:
+
+/editinfo.bml.settings.journal.subtitle.optional=Ange <i>om du vill</i> en titel och undertitel för din vänsida. (ingen HTML)
+
+/editinfo.bml.settings.journal.title=Journaltitel:
+
+/editinfo.bml.settings.privacy.about=Välj nedan dina personliga Integritetsanpassningar.
+
+/editinfo.bml.settings.privacy.header=Integritetsanpassningar
+
+/editinfo.bml.state.other=Eller, ange annan stat/provins/område
+
+/editinfo.bml.state.title=Stat
+
+/editinfo.bml.state.us=Förenta Staterna
+
+/editinfo.bml.success.header=Avklarat
+
+/editinfo.bml.success.message=Din information och <a href="/users/[[user]]/">journal</a> inställningar och <a href="/userinfo.bml?user=[[user]]">profil</a> har blivit uppdaterade.
+
+/editinfo.bml.switch.button=Byt
+
+/editinfo.bml.switch.header=Byt journal
+
+/editinfo.bml.switch.workwith=Använd journal:
+
+/editinfo.bml.title=Ändra personlig information
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">detailjer</a>
+
+/editinfo.bml.tm.phonenum=Fullt telefonnummer:
+
+/editinfo.bml.tm.sec.about=Möjliggör textmeddelanden från andra användare.
+
+/editinfo.bml.tm.sec.title=Säkerhetsnivå:
+
+/editinfo.bml.tm.servprov=Operatör
+
+/editinfo.bml.tm.title=Textmeddelanden
+
+/editinfo.bml.translatemailto.about=Ifall du väljer att ta emot Forum-svar via email, och din emailklient inte kan hantera Unicode (UTF-8) meddelande så bra, använd detta alternativ för att specificera en annan slags kodning som LiveJournal automatiskt kommer att översätta text till, i kommentarer som skickas till dig.
+
+/editinfo.bml.translatemailto.header=Översätt epostmeddelanden till:
+
+/editinfo.bml.unbanusers.about=Du har blockerat följande användare från att posta kommentarer i din journal. Klicka i märkrutan vid deras namn för att ta bort blockeringen.
+
+/editinfo.bml.unbanusers.header=Upphäv 
+
+/editinfo.bml.userpic.about=Nedan är minatyrbilden du har valt att ladda upp för att representera dig själv på LiveJournal-sidan, i din journal, och i dina vänners journaler:
+
+/editinfo.bml.userpic.edit=För att ta bort denna bild, eller ladda upp en ny, <a href="/editpics.bml#upload" target="_blank">gå hit</a>.
+
+/editinfo.bml.userpic.header=Din bild
+
+/editinfo.bml.userpic.none=inga bilder uppladdade
+
+/editinfo.bml.weblogscom.about=Välj detta om du vill ha Weblogs.com visa din journal när du postar nya offentliga inlägg.
+
+/editinfo.bml.weblogscom.header=Underrätta Weblogs.com om uppdateringar
+
+/editinfo.bml.webpagename.title=Websidans namn
+
+/editinfo.bml.webpageurl.title=Websidans URL
+
+/editinfo.bml.whoreply.header=Vilka kan svara på dina inlägg?
+
+/editinfo.bml.zip.title=Postnummer
+
+/editinfo.bml.zip.usonly=5-siffriga postnummer; endast Amerikanska residenter 
+
+/editjournal.bml.btn.proceed=Fortsätt...
+
+/editjournal.bml.certainday=Särskild dag:
+
+/editjournal.bml.recententries=senaste inlägg
+
+/editjournal.bml.recententry=Senaste inlägget
+
+/editjournal.bml.title=Ändra inlägg
+
+/editjournal.bml.viewwhat=Visa inlägg:
+
+/editjournal_do.bml.btn.edit=Ändra valt inlägg
+
+/editjournal_do.bml.btn.save=Spara inlägg
+
+/editjournal_do.bml.continue.head=Fortsätt...
+
+/editjournal_do.bml.continue.text=Tryck på Ändra-knappen när du valt vad du vill ändra eller radera.
+
+/editjournal_do.bml.currmood=<A HREF="/moodlist.bml">Humör</A>:
+
+/editjournal_do.bml.currmusic=Musik:
+
+/editjournal_do.bml.date=Datum:
+
+/editjournal_do.bml.default=förvalt
+
+/editjournal_do.bml.edit.text=Detta är journalinlägget som du valde att redigera.  Ändra det du vill ändra på, och tryck på Spara-knappen i botten på sidan.<br /><br /> Om du vill radera inlägget, radera all text och tryck på Spara. Inlägget kommer då att tas bort.
+
+/editjournal_do.bml.error.getting=Det gick inte att hämta inläggen som skulle ändras:
+
+/editjournal_do.bml.error.modify=Det gick inte att ändra din journal:
+
+/editjournal_do.bml.error.nofind=Hittar inte valt inlägg.
+
+/editjournal_do.bml.event=Händelse:
+
+/editjournal_do.bml.localtime=Lokal tid:
+
+/editjournal_do.bml.noneother=Inget, eller annat:
+
+/editjournal_do.bml.opt.backdate=Datumändra:
+
+/editjournal_do.bml.opt.backdate.about=visas inte på vännervy
+
+/editjournal_do.bml.opt.nocomments=Tillåt inte kommentarer:
+
+/editjournal_do.bml.opt.noemail=E-posta inte kommentarer:
+
+/editjournal_do.bml.opt.noformat=Auto-formatera inte:
+
+/editjournal_do.bml.other=Annat:
+
+/editjournal_do.bml.pickentry.head=Välj ett inlägg att ändra
+
+/editjournal_do.bml.pickentry.text=Välj vad du vill ändra och tryck på Ändra-knappen.
+
+/editjournal_do.bml.picture=<a href="[[url]]">Bild</a> att använda:
+
+/editjournal_do.bml.save.head=Spara...
+
+/editjournal_do.bml.save.text=När du har ändrat klart, tryck på Spara-knappen.
+
+/editjournal_do.bml.subject=<B>Ämne:</B> <I>(valfritt)</I>
+
+/editjournal_do.bml.success.delete=Inlägget är raderat.
+
+/editjournal_do.bml.success.edit=Inlägget har ändrats. Du kan se det <a href="[[url]]">här</a>.
+
+/editjournal_do.bml.success.head=Avklarat
+
+/editjournal_do.bml.timeformat=24-timmars-tid
+
+/editjournal_do.bml.title=Ändra inlägg
+
+/editpics.bml.btn.proceed=Fortsätt
+
+/editpics.bml.curpics=Aktuella bilder
+
+/editpics.bml.error.badurl=Adressen för bilden att ladda upp ser inte rätt ut.  Den borde börja med <b>http://</b>
+
+/editpics.bml.error.filetoolarge=Bilden att ladda upp är för stor.  Filstorleken kan inte vara mer än [[maxsize]].
+
+/editpics.bml.error.invalidimage=Ogiltig bildfil.
+
+/editpics.bml.error.toomanypics2=Du har redan största tillåtna antalet [[maxpics]] bilder.  Du kan inte ladda upp denna bild tills du raderar en av de som redan finns.
+
+/editpics.bml.error.unsupportedtype=Filer med typ [[filetype]] är inte tillåtna.  Du kan endast ladda upp GIF, PNG, eller JPG filer.  Nästan alla bild/foto program kan göra denna förvandling åt dig.
+
+/editpics.bml.error.urlerror=Ett fel har upstått under bilduppladdningen.
+
+/editpics.bml.fromfile=Från <u>f</u>il:
+
+/editpics.bml.fromurl=Från U<u>R</u>L:
+
+/editpics.bml.kilobytes=kB
+
+/editpics.bml.nopics=Inga bilder
+
+/editpics.bml.restriction.fileformat=Filformat måste vara en av PNG, GIF eller JPG
+
+/editpics.bml.restriction.filesize=filstorlek måste vara mindre än 40kB
+
+/editpics.bml.restriction.imagesize=Bildytan kan inte vara större än 100x100 pixel.
+
+/editpics.bml.title=Redigera användarbilder
+
+/editpics.bml.uploadheader=Ladda upp en ny bild
+
+/export.bml.btn.proceed=Fortsätt...
+
+/export.bml.description=Denna funktion tilllåter att nerladda hela din journal till en anpassad säkerhetskopia. För mer information om funktionen, se <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=8">denna länk</a>.
+
+/export.bml.fields=Fält:
+
+/export.bml.format.csv=CVS (Komma separerade värden)
+
+/export.bml.label.encoding=Kodering:
+
+/export.bml.label.field.currents=Humör &amp; musik
+
+/export.bml.label.field.event=<b>Händelse</b>
+
+/export.bml.label.field.eventtime=Tid (enligt användarens klocka)
+
+/export.bml.label.field.itemid=ID-nummer
+
+/export.bml.label.field.logtime=Loggtid (enligt systemklockan)
+
+/export.bml.label.field.security=Säkerhetsnivå
+
+/export.bml.label.field.subject=Ämne
+
+/export.bml.label.header=Rubrik
+
+/export.bml.label.month=Välj månad:
+
+/export.bml.label.month.year=åååå:
+
+/export.bml.label.notranslation=Överföra inte mellan koderingar
+
+/export.bml.label.what=Exportera vad:
+
+/export.bml.title=Exportera journal
+
+/export.bml.what.entries=Journalinlägg
+
+/friends/add.bml.add.header=Avklarat
+
+/friends/add.bml.add.text=Användare [[user]] lades till på din vänlista. Du kan se din vänsida <a href="[[url]]">här</a>.
+
+/friends/add.bml.add.title=Vän tillagd!
+
+/friends/add.bml.btn.add=Lägg till [[user]]
+
+/friends/add.bml.btn.modify=Ändra
+
+/friends/add.bml.btn.remove=Ta bort
+
+/friends/add.bml.colors.bg=Bakgrund
+
+/friends/add.bml.colors.fg=Förgrund
+
+/friends/add.bml.colors.header=Färger
+
+/friends/add.bml.colors.hover=(Håll musmarkören över en färg för att se dess namn)
+
+/friends/add.bml.colors.text=Du kan också välja färg för [[user]] i din vänlista.
+
+/friends/add.bml.confirm.header=Lägg till <b>[[user]]</b> som vän?
+
+/friends/add.bml.confirm.text=För att lägga till <b>[[user]]</b> till din vänlista, klicka på knappen nedan.
+
+/friends/add.bml.confirm.title=Lägg till vän
+
+/friends/add.bml.error1.header=Logga in först
+
+/friends/add.bml.error1.text=För att lägga till en användare till din vänlista måste du först <A HREF="/login.bml?ret=1">logga in</A>. Om du inte redan har en journal kan du <a href="/create.bml">skapa</a> en för att läsa dina vänners journaler.
+
+/friends/add.bml.error1.title=Lägg till vän
+
+/friends/add.bml.error2.text=Användarnamn saknas eller är fel. För att lägga till en vän, gå till <A HREF="/friends/edit.bml">Ändra vänner</A>.
+
+/friends/add.bml.error3.text=Du har redan <b>[[user]]</b> i din vänlista. Du kan i alla fall ändra färger du valt för att representera honom/henne.
+
+/friends/add.bml.error3.title=Ändra vän
+
+/friends/add.bml.groups.header=Vängrupper
+
+/friends/add.bml.groups.nogroup=Du har inga vängrupper.
+
+/friends/add.bml.groups.text=Vilka vängrupper vill du att användaren ska tillhöra?  Med vängrupper kan du sålla din vänlista och bestämma vilken grupp som kan läsa vilka inlägg.
+
+/friends/add.bml.remove.header=Avklarat
+
+/friends/add.bml.remove.text=<?ljuser [[user]] ljuser?> togs bort från din vänlista. Du kan se din vänsida <a href="[[url]]">här</a>.
+
+/friends/add.bml.remove.title=Vän borttagen!
+
+/friends/edit.bml.title=Ändra vänner
+
+/friends/editgroups.bml.btn.ge.del=Radera
+
+/friends/editgroups.bml.btn.ge.new=Ny
+
+/friends/editgroups.bml.btn.ge.ren=Byt namn
+
+/friends/editgroups.bml.btn.gs.private=Privat
+
+/friends/editgroups.bml.btn.gs.public=Offentlig
+
+/friends/editgroups.bml.btn.mv.down=Flytta ner
+
+/friends/editgroups.bml.btn.mv.up=Flytta upp
+
+/friends/editgroups.bml.confirm.delete=Är du säker att du vill radera denna vängrupp?
+
+/friends/editgroups.bml.done.btn=Spara ändringar
+
+/friends/editgroups.bml.done.header=Klar?
+
+/friends/editgroups.bml.done.text=När du är klar, klicka på knappen nedan för att spara dina ändringar.
+
+/friends/editgroups.bml.error.max30|notes=It is important for the JavaScript on this page to work that this string remains a single line without linebreaks. Additionally, it must not contain any quotation marks.
+/friends/editgroups.bml.error.max30=Du har för många vängrupper (max 30). Om du har raderat en eller fler grupper men ännu inte sparat ändringarna, gör det nu, gå tillbaka till denna sida och ladda om. Du kommer då ha möjligheten att skapa nya vängrupper.
+
+/friends/editgroups.bml.error.text=Följande fel inträffade:
+
+/friends/editgroups.bml.group.public=(offentlig)
+
+/friends/editgroups.bml.ingroup=I gruppen:
+
+/friends/editgroups.bml.ingroup.not=Inte i gruppen:
+
+/friends/editgroups.bml.prompt.newname=Namnge den nya vängruppen:
+
+/friends/editgroups.bml.prompt.rename=Byt namn på vängruppen till:
+
+/friends/editgroups.bml.saved.header=Sparat
+
+/friends/editgroups.bml.saved.text=Dina vängrupper är nu sparade.
+
+/friends/editgroups.bml.text=Denna sida tillåter dig ändra dina vängrupper.  Vängrupper används för säkerhetsinställningar på dina inlägg och att sålla din vänlista. För hjälp, se <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">Vad är vängrupper? Hur använder jag dem?</a>
+
+/friends/editgroups.bml.text.sec=<strong>Säkerhetsmeddelande:</strong> Vill du ta bort en grupp och skapa en ny, gör <strong>inte</strong> detta genom att byta namn på en grupp och sedan ändra den. Om du gör det kommer den nya gruppen att kunna se alla de inlägg som den gamla gruppen kunde se.
+
+/friends/editgroups.bml.title=Ändra vängrupper
+
+/friends/editgroups.bml.yourgroups=Dina vängrupper:
+
+/friends/edit_do.bml.addfriends.head=Lägg till vänner
+
+/friends/edit_do.bml.addfriends.text=Skriv in dina vänners LiveJournal-namn i rutorna nedan, och välj vilka bak- och förgrundsfärger du vill ge dem...
+
+/friends/edit_do.bml.background=Bakgrund
+
+/friends/edit_do.bml.bgcolor=Bakgrundsfärg:
+
+/friends/edit_do.bml.btn.close=Stäng
+
+/friends/edit_do.bml.btn.save=Spara ändringar
+
+/friends/edit_do.bml.btn.toggle=Se färgförhandsvisning
+
+/friends/edit_do.bml.done.head=Klar?
+
+/friends/edit_do.bml.done.text=När du är klar, klicka på "Spara ändringar" nedan...
+
+/friends/edit_do.bml.error.updating=Ett fel inträffade när din vänlista uppdaterades:
+
+/friends/edit_do.bml.fellowfriends.head=Gemensamma vänner
+
+/friends/edit_do.bml.fellowfriends.text=Följande personer har dig som vän, och du kanske vill lägga till dem. Det här är för att du ska veta deras LiveJournal-namn, och du behöver inte lägga till dem om du inte vill.
+
+/friends/edit_do.bml.foreground=Förgrund
+
+/friends/edit_do.bml.friend=Vän
+
+/friends/edit_do.bml.hover=Peka med musen på en färg för att se dess namn
+
+/friends/edit_do.bml.name=Namn
+
+/friends/edit_do.bml.needmore=Om du vill lägga till så många vänner att de inte får plats nedan, spara ändringarna och gå tillbaka hit, så kan du lägga till fler.
+
+/friends/edit_do.bml.nofriends.head=Inga vänner?
+
+/friends/edit_do.bml.nofriends.text=Du har ännu inte uppgivit några vänner. Vi är säkra på att du har några! <tt>:)</tt> Skriv bara in deras LiveJournal-namn nedan...
+
+/friends/edit_do.bml.opt.delete=Radera?
+
+/friends/edit_do.bml.success.head=Avklarat
+
+/friends/edit_do.bml.success.text=Dina vänner har uppdaterades. Du kan titta på din nyligen uppdaterade vänsida <a href="[[url]]">här</a>.
+
+/friends/edit_do.bml.textcolor=Textfärg:
+
+/friends/edit_do.bml.title=Ändra vänner
+
+/friends/edit_do.bml.user=Användare
+
+/friends/edit_do.bml.viewer=Färg-visare
+
+/friends/edit_do.bml.yourfriends.head=Dina vänner
+
+/friends/edit_do.bml.yourfriends.text=Du har dessa vänner:
+
+/friends/index.bml.security.custom=Med "anpassade" inlägg kan du specifiera vilka vängrupper kan se ditt inlägg. Men vissa <a href="/download/">klienter</a> saknar förmågan att anpassa säkerhetsnivåer.
+
+/friends/index.bml.title=Vän-verktyg
+
+/friends/popwithfriends.bml.account_type=Tyvärr fungerar inte detta verktyg för din kontotyp.
+
+/friends/popwithfriends.bml.count=Antal
+
+/friends/popwithfriends.bml.intro=Många av dina vänner, men inte du, har dessa vänner.
+
+/friends/popwithfriends.bml.intro_own=Många av dina vänner har dessa vänner. Även dina vänner finns med i listan.
+
+/friends/popwithfriends.bml.no_users=Inga användare
+
+/friends/popwithfriends.bml.title=Populära användare bland dina vänner
+
+/friends/popwithfriends.bml.user=Användare
+
+/index.bml.about.joining=Medlemskap i sajten är gratis. Användare kan välja att <a [[aopts1]]>uppgradera</a> sina konton att få <a [[aopts2]]>ytterliga funktioner</a>.
+
+/index.bml.boldcreate=Skapa din egen LiveJournal!
+
+/index.bml.frank.image.alt=Frank, LiveJournals maskot.
+
+/index.bml.frank.logo=<b><i>"Bäääääh",</i> säger <a href="/site/goat.bml">Frank</a>.</b>
+
+/index.bml.learnmore.text=Var god läs våran <a [[aopts1]]>funktionsöverblick</a>. Övertygat?<b><a [[aopts2]]>Skapa</a></b> din egen LiveJournal! 
+
+/index.bml.meta.desc=På LiveJournal.com kan du dela dina tankar med världen.
+
+/index.bml.meta.keywords=dagbok, dagbok på nätet, skriva dagbok, online-dagbok, webdagbok
+
+/interests.bml.add.added.head=Tillagd!
+
+/interests.bml.add.added.text=Detta intresse har lagts till på din lista.
+
+/interests.bml.add.btn.text=Lägg till [[interest]]
+
+/interests.bml.add.confirm.head=Bekräfta
+
+/interests.bml.add.confirm.text=För att lägga till <b>[[interest]]</b> som intresse, klicka på knappen nedan.
+
+/interests.bml.add.toomany.head=Tyvärr...
+
+/interests.bml.add.toomany.text=Du har redan [[maxinterests]] intressen angivna.
+
+/interests.bml.addint=Om du också är intresserad av detta och vill lägga till dig till denna lista, <a href="/interests.bml?mode=add&amp;intid=[[qintid]]">klicka här</A>.
+
+/interests.bml.btn.switch=Byta
+
+/interests.bml.communities.head=Relevanta communities
+
+/interests.bml.communities.text=Följande communities är också intresserade av <b>"[[interest]]"</b>.
+
+/interests.bml.count=Antal
+
+/interests.bml.enmasse.btn=Visa lista
+
+/interests.bml.enmasse.header=Lägg till/ta bort intressen
+
+/interests.bml.enmasse.intro=Ändra dina intressen baserad på dennes:
+
+/interests.bml.error.add.mustlogin=Du måste vara inloggad för att lägga till intressen på detta sätt.
+
+/interests.bml.error.enmasse.mustlogin=Du måste <a href="/login.bml?ret=1">inloggad</a> för att använda denna funktion.
+
+/interests.bml.error.enmasse.noaccess=Du verkar inte ha tillgång till journalen [[user]].
+
+/interests.bml.error.findsim_do.intnotfound=Intresseämnet hittades inte.
+
+/interests.bml.error.nointerests=Valda användaren finns inte eller har inga intressen.
+
+/interests.bml.findsim.searchwait=<b>Obs:</b> Sökningen kan ta flera sekunder. Ha tålamod.
+
+/interests.bml.findsim_do.account.notallowed=Tyvärr, din kontotyp tillåter inte användning av detta verktyg.
+
+/interests.bml.findsim_do.magic=Magiskt<br />Index
+
+/interests.bml.findsim_do.magic.head=Magiskt Index?
+
+/interests.bml.findsim_do.magic.text=För varje matchande användare beräknas ett magiskt index, en sammanvägning av två faktorer: antalet gemensamma intressen, och några extra poäng för gemensamma, ovanliga intressen.
+
+/interests.bml.findsim_do.nomatch.head=Inga träffar
+
+/interests.bml.findsim_do.nomatch.text=Inga användare liknar [[user]].
+
+/interests.bml.findsim_do.notdefined=Användare [[user]] har inga angivna intressen.
+
+/interests.bml.findsim_do.similar.head=Liknande användare
+
+/interests.bml.findsim_do.similar.text=Följande användare är mest lika [[user]]
+
+/interests.bml.finished.about=När du är färdig, tryck på "Spara ändringar" knappen nedan:
+
+/interests.bml.finished.header=Färdig?
+
+/interests.bml.finished.save_button=Spara förändringar
+
+/interests.bml.interest=Intressen
+
+/interests.bml.interested.btn.find=Hitta
+
+/interests.bml.interested.in=Hitta personer och intressegrupper intresserade av:
+
+/interests.bml.interests.findsim=Hitta användare med intressen som liknar dem för:
+
+/interests.bml.interests.head=Intressen
+
+/interests.bml.interests.text=Här är några kul saker du kan göra med intressen.
+
+/interests.bml.interests.viewpop=Visa populära intressen
+
+/interests.bml.login.enterinfo=Ange ditt användarnamn och lösenord att ändra dina intressen.
+
+/interests.bml.login.proceed=Fortsätta...
+
+/interests.bml.match=[[count]] träffar:
+
+/interests.bml.matches=[[count]] träffar:
+
+/interests.bml.morestuff=Mera kul saker kan hittas på <A HREF="/interests.bml">intressesidan</A>.
+
+/interests.bml.nointerests.text=Har du inga intressen angivna? Lägg till några genom att gå till <A HREF="/editinfo.bml">Ändra personlig info & inställningar</A>.
+
+/interests.bml.popular.head=Populära intressen
+
+/interests.bml.popular.text=Följande intressen är populärast.
+
+/interests.bml.results.added=Intressen som du valde är tillagda i din intresselista.
+
+/interests.bml.results.both=Intressen som du valde är tillagda i din intresselista, och de som du avvalde har tagits bort.
+
+/interests.bml.results.deleted=Intressen som du avvalde har tagits bort från din intresselista.
+
+/interests.bml.results.del_and_toomany=Intressen som du avvalde har tagits bort från din intresselista.  Men du valde för många intressen att lägga till.  Du får bara ha sammanlagt [[intcount]] intressen.  Inga av de valda intressen var tillagda till din intresselista. Du kommer förmodligen att vilja försöka igen, med färre intressen valda.
+
+/interests.bml.results.goback=Du kommer förmodligen att vilja gå tillbaka till [[user]]s <a href='[[url]]'>profil</a> som du läste förut.
+
+/interests.bml.results.header=Resultat
+
+/interests.bml.results.message=Se din uppdaterade <a href='[[url]]'>profilsida</a>.
+
+/interests.bml.results.nothing=Du gjorde inga förändringar.
+
+/interests.bml.results.toomany=Du valde för många intressen att lägga till.  Du får bara ha sammanlagt [[intcount]] intressen.  Inga av de valda intressen var tillagda till din intresselista. Du kommer förmodligen att vilja försöka igen, med färre intressen valda.
+
+/interests.bml.title=Intressen
+
+/interests.bml.toomany.body=Det finns [[intcount]] personer och/eller communities som har det här som intresse. Ingen lista kommer visas.
+
+/interests.bml.toomany.head=Många träffar
+
+/interests.bml.users.head=Intresserade användare
+
+/interests.bml.users.text=Följande användare är också intresserade i <b>[[interest]]</b>.
+
+/legal/index.bml.about.header=Översikt
+
+/legal/index.bml.docs.coppa.about=Den amerikanska barnsäkerhetslagen (Children's Online Privacy Protection Act; COPPA) reglerar hur personuppgifter rörande eller lämnade av barn under tretton års ålder får samlas in eller användas på internet. Vår COPPA-sida förklarar hur vi ställer oss till denna lag, och sammanfattar hur COPPA-frågor ska hanteras.
+
+/legal/index.bml.docs.header=Dokument
+
+/legal/index.bml.docs.privacy.about=I Integritetspolicyn sammanfattar vi vilken information vi samlar in om våra medlemmar och hur vi använder den informationen.
+
+/legal/index.bml.title=Juridisk Information
+
+/legal/privacy.bml.title=Integritetspolicy
+
+/legal/tos.bml.title=Serviceavtal
+
+/login.bml.bindip.label=Bind till IP-adress
+
+/login.bml.bindip.no=Nej (fungerar med alla Internetleverantörer)
+
+/login.bml.bindip.yes=Ja (säkrare)
+
+/login.bml.error.mustenterusername=Du måste <a href='/login.bml'>ange ett användarnamn</a>.
+
+/login.bml.expire.btn.neverexpire=Sätt förfallotid till OÄNDLIG
+
+/login.bml.expire.btn.sessiononly=Sätt förfallotid till ENDAST SESSION
+
+/login.bml.expire.neverexpire.text=Din inloggning är <b>oändlig</b>, så om du använder en dator på en skola, ett bibliotek eller någon annanstans där andra människor har tillgång till datorn, kom ihåg att logga ut när du är klar! Eller ändra din inloggning till att förfalla när du stänger din browser:
+
+/login.bml.expire.sessiononly.text=Din inloggning kommer förfalla när du stänger din browser. Om den här är din egen dator och du är den enda som använder den, kan du sätta inloggningen till att aldrig förfalla:
+
+/login.bml.links.head=Länkar
+
+/login.bml.links.link1=Din <a href='/users/[[username]]/friends'>vänsida</a>.
+
+/login.bml.links.link2=Din <a href='/todo/'>att-göra-lista</a>.
+
+/login.bml.loggedin.head=Inloggad!
+
+/login.bml.loggedin.text=Du är nu inloggad.
+
+/login.bml.login.btn.changeopts=Ändra inställningar
+
+/login.bml.login.btn.login=Logga in...
+
+/login.bml.login.expiration=Förfall:
+
+/login.bml.login.forget=Glömt?
+
+/login.bml.login.head=Logga in
+
+/login.bml.login.never=Aldrig
+
+/login.bml.login.otheropts=Andra inställningar:
+
+/login.bml.login.password=Lösenord:
+
+/login.bml.login.text1=För att logga in på [[sitename]], ange användarnamn och lösenord nedan. <b>Nya användare:</b> För att skapa ett konto, <a href='/create.bml'>gå hit</a>.
+
+/login.bml.login.text2=Du kan också ange när din inloggning kommer att förfalla. Standard-förvalet är att din inloggning förfaller då du stänger din browser, vilket fungerar bäst på offentliga datorer. Om du är den enda användaren på din dator och ingen annan har tillgång till den, kan du välja att ha en inloggning som aldrig förfaller. För mer information om detta och andra inloggningsurval, se <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=135">Vad är möjligheterna när jag loggar in?</a>
+
+/login.bml.login.text3=[[username]], du är nu inloggad i [[sitename]]. Om du vill, bläddra genom sajten med våran <a href="/site/">sajtkarta</a>.
+
+/login.bml.login.username=Användarnamn:
+
+/login.bml.login.whenbrowsercloses=När browsern stängs
+
+/login.bml.logout.btn=Logga ut
+
+/login.bml.title=Logga in
+
+/login.bml.whylogin.benefit1=Du behöver inte längre ange användarnamn/lösenord någonstans på siten.
+
+/login.bml.whylogin.benefit2=Du får möjlighet att se dina vänners "skyddade" journalinlägg, om de gett dig tillträde till dem.
+
+/login.bml.whylogin.benefit3=Många funktioner är bara synliga och tillgängliga när du är inloggad.
+
+/login.bml.whylogin.head=Varför logga in?
+
+/login.bml.whylogin.text=Här är några av fördelarna med att vara inloggad:
+
+/logout.bml.already.head=Redan utloggad
+
+/logout.bml.already.text=Du är redan utloggad.
+
+/logout.bml.killall.btn=Avsluta alla mina sessioner
+
+/logout.bml.killall.head=Andra sessioner
+
+/logout.bml.killall.text=Du har andra aktiva sessioner på andra datorer. Vill du avsluta även dem, och inte bara den här? (Läs<a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=159">denna FAQ:n</a> för mer information.) 
+
+/logout.bml.loggedout.already=Redan utloggad.
+
+/logout.bml.loggedout.head=Utloggad
+
+/logout.bml.loggedout.killedall=Alla dina sessioner har avslutats.
+
+/logout.bml.loggedout.success=Utloggad.
+
+/logout.bml.loggedout.text=Du är nu utloggad.
+
+/logout.bml.logout.btn=Logga ut
+
+/logout.bml.logout.head=Logga ut?
+
+/logout.bml.logout.text=Klicka på knappen nedan för att logga ut.
+
+/logout.bml.title=Logga ut
+
+/lostinfo.bml.btn.proceed=Fortsätt
+
+/lostinfo.bml.enter_email=Ange din e-postadress:
+
+/lostinfo.bml.enter_email_optional=E-postadress: (frivillig uppgift)
+
+/lostinfo.bml.enter_username=Ange ditt användarnamn:
+
+/lostinfo.bml.lostpassword.text=Om du har glömt ditt lösenord, ange ditt användarnamn och, eventuellt, den epostadress du vill ha ditt lösenord skickat till. Epostadressen måste vara en du tidigare har använt på LiveJournal och som du tidigare har fått bekräftad. Om du lämnar adressfältet tomt kommer lösenordet att skickas till din nuvarande epostadress.
+
+/lostinfo.bml.lostpassword.title=Har du glömt ditt lösenord?
+
+/lostinfo.bml.lostusername.text=Om du har glömt ditt användarnamn, ange din e-postadress, så skickar vi det till dig.
+
+/lostinfo.bml.lostusername.title=Har du glömt ditt användarnamn?
+
+/lostinfo.bml.title=Förlorad information
+
+/lostinfo_do.bml.error.no_usernames_for_email=Inget användarnamn hittat för denna epost adress: [[address]].
+
+/lostinfo_do.bml.error1.text=Du använde aldrig den emailadressen med detta konto eller så var den aldrig validerad.
+
+/lostinfo_do.bml.lostpasswordmail.part1<<
+*** Det här är ett automatiskt genererat mail. Du behöver inte svara på det. ***
+
+Det här är en påminnelse från [[sitename]] om ditt lösenord. Ditt användarnamn och lösenord samt den e-postadress din journal är registrerad på står här nedanför.
+
+     Användarnamn: [[username]]
+         Lösenord: [[password]]
+     E-postadress: [[emailadr]]
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=För att bekräfta din e-postadress, gå hit:
+
+/lostinfo_do.bml.lostpasswordmail.part3<<
+Någon från [[remoteip]] begärde denna information på webb-sidan.
+
+Om det inte var du som begärde att få ditt lösenord e-postat till dig, behöver du inte oroa dig. Det är ju trots allt du och inte någon annan som ser det här mailet. Det är möjligt att användaren som begärde att lösenordet skulle skickas ut har fel, och tror att han eller hon har rätt till det här användarnamnet. Det är också möjligt att någon stavade sitt användarnamn eller sin e-postadress fel.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part4|notes=Site-local text.  For 'en', it's blank.
+/lostinfo_do.bml.lostpasswordmail.part4=Om du verkligen tror att ditt konto inte är säkert, läs http://www.livejournal.com/support/faqbrowse.bml?faqid=117 för att ta reda på hur du säkrar det.
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Användbara länkar:
+
+  Din LiveJournal:
+    [[journalurl]]
+
+  Uppdatera din journal online:
+    [[updateurl]]
+
+Hälsningar,
+LiveJournal-teamet
+
+[[rooturl]]
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Förlorat lösenord
+
+/lostinfo_do.bml.password_mailed.text=Ditt lösenord har skickats.
+
+/lostinfo_do.bml.password_mailed.title=Lösenordet skickat!
+
+/lostinfo_do.bml.title=Förlorad information
+
+/lostinfo_do.bml.username_mailed.text=Ditt användarnamn har skickats.
+
+/lostinfo_do.bml.username_mailed.title=Användarnamn skickat!
+
+/manage/index.bml.communities.create.about=Skapa en ny intressegrupp
+
+/manage/links.bml.success=Dina länkar har sparats.
+
+/manage/pubkey.bml.successhead=Avklarat
+
+/modify.bml.title=Ändra journal
+
+/modify_do.bml.availablestyles.head=Tillgängliga stilar
+
+/modify_do.bml.availablestyles.userstyles=Användarstilar:
+
+/modify_do.bml.colortheme.about=Här kan du välja vilket färgtema du vill ha till de utseendeinställningar du gjort. Du kan också ange egna färger, om du inte tycker om de som finns att välja på.
+
+/modify_do.bml.colortheme.area.head=Användningsområde
+
+/modify_do.bml.colortheme.color.head1=Färg
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb eller färgens namn)
+
+/modify_do.bml.colortheme.customcolors=Egna färger
+
+/modify_do.bml.colortheme.defaulttheme=Standardtema
+
+/modify_do.bml.colortheme.head=Färgtema
+
+/modify_do.bml.domainalias.about=Om du har ett domännamn registrerat (eller om du planerar att registrera ett) och vill att den domänen ska hänvisa till din LiveJournal, skriv in det här:
+
+/modify_do.bml.domainalias.domainname=Domännamn:
+
+/modify_do.bml.domainalias.example=Exempel: <i>min-journal.com</i>
+
+/modify_do.bml.domainalias.head=Domänalias
+
+/modify_do.bml.domainalias.helptext=För att detta skall fungera, måste du ordna så att ditt domännamns DNS pekar på samma IP-adress som [[sitename]]. För mer information, läs <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=129">denna FAQ:n</a>. 
+
+/modify_do.bml.done.btn.savechanges=Spara ändringar
+
+/modify_do.bml.done.head=Klar?
+
+/modify_do.bml.done.text=När du är klar, klicka på "Spara ändringar" knappen nedanför...
+
+/modify_do.bml.error.dupdomainalias=En annan användare har redan registerat sig för att använda ditt angivna domän-alias.
+
+/modify_do.bml.error.stylenotavailable=En av stilarna du har valt är inte tillgänglig. Det är resultat av att någon raderat stilen, eller att du valt en du inte har rätt att välja.
+
+/modify_do.bml.friends.about=Här finns inställningar som styr hur din vänsida ser ut.
+
+/modify_do.bml.friends.head=Vännervy
+
+/modify_do.bml.friends.opt.usesharedpic.about=Denna inställning avgör vilken bild du ser på din vänsida när en användare postar i en delad journal eller i en intressegruppjournal. Om du klickar för här, kommer du att se intressegruppens ikon. Om du låter bli, kommer du att se ikonen för den person som postar inlägget. 
+
+/modify_do.bml.friends.opt.usesharedpic.head=Använd delade journalers bilder istället för användarbilder
+
+/modify_do.bml.journaloptions.about=Härifrån kan du anpassa hur dina LiveJournal-sidor ser ut. Om du är riktigt nyfiken på hur allt fungerar, läs <a href="/developer/" target=_blank>utvecklarinformationen</a>. Annars antar vi att du nöjer dig med de grundläggande inställningarna nedanför:
+
+/modify_do.bml.journaloptions.head=Journalinställningar
+
+/modify_do.bml.journalstatus.about=Om du vill radera eller upphäva radering av din journal, gör du det här. När du raderat din journal har du 30 dagar på dig att upphäva raderingen, om du skulle ändra dig. Efter 30 dagar, kommer journalen att raderas permanent och därefter går den inte att få tillbaka på något sätt.
+
+/modify_do.bml.journalstatus.head=Journalaktiveringsstatus
+
+/modify_do.bml.journalstatus.select.activated=Aktiverad
+
+/modify_do.bml.journalstatus.select.deleted=Raderad
+
+/modify_do.bml.journalstatus.select.suspended=Avstängd
+
+/modify_do.bml.moodicons.about=När du postar journalinlägg kan du också ange ditt aktuella humör. Några användare har gjort uppsättningar av humörikoner som du kan välja mellan. Vill du inte ha några bilder bredvid ditt humör, välj "None". (Du behöver förstås inte alls använda humör-funktionen.)
+
+/modify_do.bml.moodicons.head=Humörikoner
+
+/modify_do.bml.moodicons.opt.forcefriends.about=Använd alltid humörteman för alla vänner på din vänsida.
+
+/modify_do.bml.moodicons.personal=Personliga teman:
+
+/modify_do.bml.moodicons.preview=förhandsgranska
+
+/modify_do.bml.moodicons.select=Välj humör-ikonsuppsättning:
+
+/modify_do.bml.overrides.about|staleness=1
+/modify_do.bml.overrides.about=Du kan gå förbi denna delen.  detta hör till justering på mycket särkilda saker om din webbsidolayout.  Läs  <a href="/developer/" target=_blank>utvecklarinformationen</a> för fler detaljer.  Observera också att åtsidosättning ändrar bara en eller två saker i en stil.  Vill du åtsidosätta allting måste du  <A HREF="/styles/create.bml" TARGET=_blank>skapa din egen stil</A>.
+
+/modify_do.bml.overrides.box.head=Åtsidosättning:
+
+/modify_do.bml.overrides.head=Stil åtsidosättning
+
+/modify_do.bml.overrides.note=Notera att alla stil variabler inte kan bli åtsidosatta. Läs <a href="/developer/varlist.bml">dokumentationen</a> för fler detaljer.<br/>Var också medveten om att redigeringsförsök på dina åtsidosättningar med en tagg som inte tillåts i dokumenthuvuden &ndash; t.ex. &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt;, och många andra taggar &ndash; får sådana taggar att tas bort.  Dom enda HTML taggar som kan användas i *_HEAD åtsidosättningar är dom som är giltiga i huvudet på ett vanligt HTML dokument.  Dessa taggar är endast &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, och &lt;meta&gt;.
+
+/modify_do.bml.overrides.warning=HÄR SKRIVER DU <U>INTE</U> I DIN JOURNAL!!
+
+/modify_do.bml.pagelayoutstyle.about=Denna inställningen bestämmer hur din journal ser ut i skärmen.
+
+/modify_do.bml.pagelayoutstyle.head=Sidlayoutstil
+
+/modify_do.bml.pagelayoutstyle.warning=Din kontotyp tillåter dig bara välja mellan ett begränsat antal stilar.
+
+/modify_do.bml.success.head=Avklarat
+
+/modify_do.bml.success.text=Dina journalinställningar har blivit uppdaterade. Du kan se din journal <A HREF="[[url]]">här</A>.
+
+/paidaccounts/index.bml.costs.header=Så, hur mycket kostar det då?
+
+/paidaccounts/index.bml.costs.rates=Kostnaderna är:
+
+/paidaccounts/index.bml.costs.rates.amount.header=Belopp
+
+/paidaccounts/index.bml.costs.rates.inexpensive=Det blir litet mera än <b>$2/månad</b> för årsprenumrering.  Det kommer knappast att panka ut dig.  Det förargligaste blir nog att dra ut plånboken, hitta kreditkortet och skriva in din information.
+
+/paidaccounts/index.bml.costs.rates.time.header=Tid
+
+/paidaccounts/index.bml.features.header=Vilka häftiga funktioner får jag då?
+
+/paidaccounts/index.bml.title=Om betalda konton
+
+/paidaccounts/index.bml.whypay.argument<<
+Nej, såklart inte. Betala för webtjänster är irriterande, vi håller med.
+Det är därför nästan alla LiveJournals funktioner är gratis.
+För övrigt, om du är nöjd med den service du får, stöd oss och skaffa ett betalt konto.
+.
+
+/paidaccounts/index.bml.whypay.header=Måste jag betala för att använda LiveJournal?
+
+/paidaccounts/index.bml.whypay.no_ads=Det kostar pengar att driva websiter (servrar, colocation och bandbredd), och det verkar bättre att betala för det än att tvinga på dig popup-banners och spamma dig med reklam.
+
+/paidaccounts/index.bml.your_username=ditt_användarnamn
+
+/paidaccounts/usepaypal.bml.delivery.badformat=Ogiltigt formaterat leverans datum. Måste vara i formen <i>yyyy-mm-dd</i> eller <i>yyyy-mm-dd hh:mm</i>.
+
+/paidaccounts/usepaypal.bml.delivery.past=Leveransdatum kan inte vara i dåtid. Lämna tomt för att leverera direkt.
+
+/paidaccounts/usepaypal.bml.delivery.toofuture=Leveransdatum kan inte vara mer än en månad in i framtiden.
+
+/pay/index.bml.deliverydate.details=Format: <i>yyyy-mm-dd hh:mm</i> (GMT Tid)<br />(anges inget fördröjs inte leveransen)
+
+/pay/index.bml.deliverydate.label=Leveransdatum:
+
+/pay/index.bml.gift.anonymous=Anonym gåva
+
+/press/staff.bml.back2=Tillbaka till presssidan
+
+/press/staff.bml.contact=Om du behöver kontakta oss, skriv ett e-brev till <a href="mailto:webmaster@livejournal.com">webmaster@livejournal.com</a> (på engelska).
+
+/press/staff.bml.denisep.quip=Du får det nästa tisdag
+
+/press/staff.bml.lisa.title=Systemadministrator
+
+/press/staff.bml.ryanfitz.title=Betalningstjänster
+
+/press/staff.bml.sandy.title=Konto- och andra underhåll
+
+/press/staff.bml.whitaker.quip=Vad nu?
+
+/register.bml.email.body<<
+Denna är bekräftelseposten du begärde.
+Att färdiggöra kontobekräftelsen, folj denna länk:
+
+    [[conflink]]
+
+Det är möjligt att du blir tvungen att kopiera länken till din browser.
+
+med vänlig hälsning,
+[[sitename]]
+[[sitelink]]
+.
+
+/register.bml.new.header=Avklarat
+
+/register.bml.sent.header=Avklarat
+
+/register.bml.trans.header=Avklarat
+
+/rename/use.bml.heading.success=Avklarat
+
+/site/contract.bml.promise=Vi håller fast vid att vi kommer att:
+
+/site/contract.bml.promise.account=Visa hänsyn till statusen av varje konto
+
+/site/contract.bml.promise.ads=Förbli reklamfri
+
+/site/contract.bml.promise.community=Arbeta för samhället, med samhället
+
+/site/contract.bml.promisetoyou.header=Vårat löfte till Er
+
+/site/goat.bml.image.alt=Frank, LiveJournal maskoten.
+
+/site/goat.bml.image.caption=<i>"Bäää,"</i> säger Frank.
+
+/site/goat.bml.meet.body=<?p accenttecken
+
+/site/goat.bml.meet.header=Möta Frank
+
+/site/goat.bml.title=Bocken Frank
+
+/styles/create_do.bml.success.head=Avklarat
+
+/styles/index.bml.nav.browse=Stilbläddrare
+
+/suggestions/index.bml.howto.title=Hur ger jag ett förslag?
+
+/suggestions/index.bml.info.title=Annat information
+
+/suggestions/index.bml.title=Förslagsstället
+
+/suggestions/index.bml.welcome.text=Användarförslag är en viktig del av LiveJournal.  Har du något som du tycker är en bra idé, följ dessa steg att få de som underhåller sajten att uppmärksamma den. 
+
+/suggestions/index.bml.welcome.title=Välkommen!
+
+/support/append_request.bml.invalid.blank=Ditt meddelande var tomt. Var vänlig ange någonting i meddelandefältet.
+
+/support/append_request.bml.logged.title=Avklarat
+
+/support/encodings.bml.edit.header=Jag kan inte redigera mina inlägg i webbgränssnitten!
+
+/support/encodings.bml.editcl.header=Jag kan inte redigera mina inlägg i klientprogrammen!
+
+/support/encodings.bml.editcl.text=<?p Finns det en nyare version av ditt klientprogram som kan utnyttja Unicode, använd den.  Om inte kan du endast skriva inlägg som har ASCII symboler i dem (alltså bara Latinska alfabetet och de vanliga skiljetecken).  Att göra inlägg med ovanliga symboler eller på andra språk än engelska måste man annars använda webbsidan att skriva, som i alla fall fungerar bra. p?>
+
+/support/encodings.bml.groups.header=Jag kan inte redigera mina vänlistor med min klientprogram!
+
+/support/encodings.bml.groups.text=<?p Detta är förmodligen pga att du har vängrupper med namn som inte är exklusivt i ASCII text (t.ex. skriven i icke-latinska bokstäver eller med accenttecken).  Att kunna lyckas använda sådana gruppnamn måste du använda en klient som kan utnyttja Uncode-text.  Alternativt kan du ändra namnen på grupperna till endast-ASCII namn med <a href="/friends/editgroups.bml">grupp redigeringssidan</a> och använda ditt nuvarande klientprogram. p?>
+
+/support/encodings.bml.overview.header=Väd gäller här?
+
+/support/encodings.bml.overview.text<<
+<?p LiveJournal använder Unicode att bevara och visa allting: texterna i journalinlägg, kommentarer, namn, och personlig information... allting. Unicode är en mycket  ... standard för att bearbeta text.  Till exempel, det tillåter användare att tillägga information på flera språk samtidigt. Det stödjer förmågan att översätta och underhålla användargränssnitten på olika språk. p?>
+
+<?p Journalinlägg och kommentarer som hade varit i LiveJournal innan Unicode började användas måste översättas till Unicode dynamiskt att tillåta användaren att kunna se eller ändra dem. Denna sida förklarar hur man tar itu med de vanligaste problemen i det sammanhanget. p?>
+.
+
+/support/encodings.bml.still.text=<?p Du kan försöka ställa frågan på <a href="/support/">Hjälpsidan</a>. p?>
+
+/support/faqbrowse.bml.backfaq=Tillbaka till <a href="faq.bml">FAQ</a>.
+
+/support/faqbrowse.bml.backsupport=Tillbaka till <a href="./">Support</a>.
+
+/support/faqbrowse.bml.edit.faq=Redigera denna FAQ
+
+/support/faqbrowse.bml.error.nofaq=Den valda vanliga frågan/svaret finns inte.
+
+/support/faqbrowse.bml.lastupdated=Senast Uppdaterad:
+
+/support/faqbrowse.bml.title_cat=Vanliga frågor och svar - [[catname]]
+
+/support/faqbrowse.bml.title_num=vfs fråga #[[num]]
+
+/support/see_overrides.bml.error.nos1=Denna användaren invänder inte S1.
+
+/talkmulti.bml.deleted.body=Kommentarerna har raderats.  Du kan se övriga kommentartrådet <a href="[[link]]">här</a>.
+
+/talkmulti.bml.deleted.title=Kommentarer raderade
+
+/talkmulti.bml.error.comms_deleted=En av kommentarerna har raderats sedan du valde den.  För säkerhetsskäl, vänligen gå tillbaka och försök igen.
+
+/talkmulti.bml.error.inconsistent_data=Angivna data är inkonsekventa.
+
+/talkmulti.bml.error.invalid=Felaktiga parametrar angivna.
+
+/talkmulti.bml.error.invalid_mode=Du valde inget att göra. Gå tillbaka och välj om du vill avskärma, oavskärma, eller ta bort kommentarerna.
+
+/talkmulti.bml.error.login=Du är inte inloggad.
+
+/talkmulti.bml.error.none_selected=Du har inte valt några kommentarer.
+
+/talkmulti.bml.error.privs.delete=Du är inte tillåten att radera dessa kommentarer.
+
+/talkmulti.bml.error.privs.screen=Du är inte tillåten att avskärma dessa kommentarer.
+
+/talkmulti.bml.error.privs.unscreen=Du är inte tillåten att oavskärma dessa kommentarer.
+
+/talkmulti.bml.screened.body=Kommentarerna har avskärmats.  Du kan se dem <a href="[[link]]">här</a>.
+
+/talkmulti.bml.screened.title=Kommentarer avskärmade
+
+/talkmulti.bml.title.delete=Radera flertalet kommentarer
+
+/talkpost.bml.allowedhtml=Tillåt HTML
+
+/talkpost.bml.error.cannotreplynopost=Du kan inte svara på ett inlägg som inte finns
+
+/talkpost.bml.error.nocommentsjournal=Användaren har stängt av kommentarer i sin journal.
+
+/talkpost.bml.error.nocommentspost=Användaren har stängt av kommentarer för detta inlägg.
+
+/talkpost.bml.error.noreplypost=Svar till inlägg inte funnet (raderat?)
+
+/talkpost.bml.error.noreply_deleted=Denna kommentar har raderats. Du kan inte svara på det.
+
+/talkpost.bml.error.noreply_screened=Denna kommentar är avskärmad och du har inte tillåtelse att se eller svara på den. 
+
+/talkpost.bml.label.picturetouse= <a href='/allpics.bml?user=[[username]]'>Bild</a> att använda:
+
+/talkpost.bml.loganonip=<b>Obs!</b> Den här användaren har aktiverat loggning av IP-adresser för anonyma postare.
+
+/talkpost.bml.loginq=Logga in?
+
+/talkpost.bml.logyourip=<b>Notera!</b>Den här användaren loggar din IP-adress när du svarar.
+
+/talkpost.bml.nosubjecthtml=Ingen HTML är tillåten i subjektraden
+
+/talkpost.bml.opt.anonymous=Anonym
+
+/talkpost.bml.opt.defpic=(förval)
+
+/talkpost.bml.opt.friendsonly=- Den här användaren har tillåter bara icke-anonyma och vänner att svara. Du kan svara här endast om [[username]] har dig som vän.
+
+/talkpost.bml.opt.from=Från:
+
+/talkpost.bml.opt.ljuser=LiveJournal användare:
+
+/talkpost.bml.opt.loggedin=<b>Inloggad användare:</b> [[username]]
+
+/talkpost.bml.opt.message=Meddelande:
+
+/talkpost.bml.opt.noanonpost=- användaren tillåter inte anonym postning.
+
+/talkpost.bml.opt.noautoformat=Auto-formatera inte:
+
+/talkpost.bml.opt.noimage=Ingen bild
+
+/talkpost.bml.opt.preview=Förhandsgranska
+
+/talkpost.bml.opt.spellcheck=Stavningskontrollera inlägg före postning (på engelska)
+
+/talkpost.bml.opt.subject=Subjekt:
+
+/talkpost.bml.opt.submit=Skriv kommentar
+
+/talkpost.bml.paraformat=Stycket kommer automatiskt formateras (förvalt)
+
+/talkpost.bml.postresponse=Skriv en kommentar som svar:
+
+/talkpost.bml.title=Skriv kommentar
+
+/talkpost.bml.usermismatch<<
+Du har skrivit in ett användarnamn, men avbeställt 'LiveJournal användare' inställningen.
+
+Antingen radera användarfältet eller välja aktuella postningsinställningen och försök igen.
+.
+
+/talkpost.bml.warnscreened=<b>Notera:</b> Denna kommentar avskärmad. Att svara på den kommer automatiskt att oavskärma den och göra den synlig.
+
+/talkpost_do.bml.error.badpassword=Felaktigt lösenord för det angivna användarnamnet. Du kan få tillbaka ditt borttappade lösenord <a href='/lostinfo.bml'>här</a>.
+
+/talkpost_do.bml.error.badusername=Användaren du namngav finns inte på Livejournal. Du kan hitta ditt användarnamn <a href='/lostinfo.bml'>här</a> om du glömt det, eller så kan du svara "anonymt".
+
+/talkpost_do.bml.error.banned=Du har inte tillåtelse att posta i denna användarens journal.
+
+/talkpost_do.bml.error.blankmessage=Ditt meddelande var tomt. Skriv något i meddelandefältet.
+
+/talkpost_do.bml.error.confused_identity=Du angav ett användarnamn, men valde att posta anonymt eller som den aktuella inloggade användaren. Gå tillbaka och dig för vilket du vill använda.
+
+/talkpost_do.bml.error.deleted=Din journal har blivit borttagen. Du kan inte posta meddelanden.
+
+/talkpost_do.bml.error.friendsonly=Endast vänner till [[user]] får posta i denna journal.
+
+/talkpost_do.bml.error.lostcookie=Dina login cookies verkar ha försvunnit?
+
+/talkpost_do.bml.error.manybytes=Tyvärr, din kommentar av [[current]] överstiger det maximala antalet tecken av [[limit]]. Gå tillbaka, korta ner det och prova posta igen.
+
+/talkpost_do.bml.error.manychars=Tyvärr, din kommentar av [[current]] överstiger det maximala antalet tecken av [[limit]]. Gå tillbaka, korta ner det och prova posta igen.
+
+/talkpost_do.bml.error.mustlogin=Du måste vara inloggad eller använda användarnamn/lösenord för att svara på det här skyddade inlägget.
+
+/talkpost_do.bml.error.noanon=Du kan inte svara anonymt i den här personens journal.
+
+/talkpost_do.bml.error.noauth=Du har inte tillåtelse att svara på det här skyddade inlägget.
+
+/talkpost_do.bml.error.nocomments=Den här användaren har slagit av möjligheten att svara på det här inlägget.
+
+/talkpost_do.bml.error.noparent=Kan inte svara på en icke-existerande kommentar.
+
+/talkpost_do.bml.error.notafriend=Tyvärr, användare <b>[[user]]</b> listar dig inte som en vän, och de har angett "endast vänner" alternativet för vem som kan svara på deras journal.
+
+/talkpost_do.bml.error.nousername=Du angav inte ditt LiveJournal-användarnamn. Du kan välja att posta som "Anonym" om du inte har ett LiveJournal-konto.
+
+/talkpost_do.bml.error.noverify=Tyvärr, du är inte tillåten att posta kommentarer i andra personers journaler innan din epostadress har blivit verifierad. Om du tappat bort konfirmations-eposten för detta, <a href='/register.bml'>kan du få det återsänt</a>. 
+
+/talkpost_do.bml.error.postshared=Du kan inte posta från ett delat- eller intressegruppkonto. Delade konton representerar en grupp av människor, inte en individuell person.
+
+/talkpost_do.bml.error.screened=Du har inte tillåtelse att svara på denna avskärmade kommentar.
+
+/talkpost_do.bml.error.suspended=Din journal har blivit avstängd. Du kan inte posta några meddelanden.
+
+/talkpost_do.bml.error.testacct=Test konton kan bara användas till testjournaler.
+
+/talkpost_do.bml.opt.preview=Förhandsgranska
+
+/talkpost_do.bml.preview=Nedan visas hur din kommentar kommer att se ut. Använd formuläret nedan för att göra ändringar. Eller, skicka det.
+
+/talkpost_do.bml.preview.subject=<b>Ämne: </b>
+
+/talkpost_do.bml.preview.submit=Skicka
+
+/talkpost_do.bml.preview.title=Förhandsgranska
+
+/talkpost_do.bml.success.loggedin=Du är nu inloggad.
+
+/talkpost_do.bml.success.message=Din kommentar har lagts till. Du kan läsa den genom att klicka <a href="[[link]]">här</a>.
+
+/talkpost_do.bml.success.screened.comm=Din kommentar har blivit tillagd. Enligt inställningarna för denna intressegrupp, är den markerad som avskärmad, och kommer att vara synlig endast för dig och underhållsansvarige för intressegruppen tills dess att de väljer att oavskärma den. Du kan se din kommentar <a href="[[link]]">här</a>.
+
+/talkpost_do.bml.success.screened.user=Din kommentar har blivit tillagd. Enligt inställningarna för denna journal, är den markerad som avskärmad, och kommer att vara synlig endast för dig och ägaren till journalen tills dess att de väljer att oavskärma den. Du kan se din kommentar <a href="[[link]]">här</a>.
+
+/talkpost_do.bml.success.title=Avklarat
+
+/talkpost_do.bml.success.unscreened=Nu har den avskärmade kommentaren du svarat på blivit oavskärmad och är nu synlig.
+
+/talkpost_do.bml.title=Kommentar postats
+
+/talkpost_do.bml.title.preview=Förhandsgranska kommentar
+
+/talkread.bml.anonuser=<i>(Anonym)</i>
+
+/talkread.bml.confirm.action=Är du säker att du vill radera de valda kommentarerna?
+
+/talkread.bml.deletedpost=<b>(Raderat inlägg)</b>
+
+/talkread.bml.deleteduser=<i>(Raderad användare: [[username]])</i>
+
+/talkread.bml.fromip=(från [[ip]])
+
+/talkread.bml.noreplies=Inga svar
+
+/talkread.bml.nosubject=(inget ämne)
+
+/talkread.bml.replysuspended=<b>(Svar från avstängd användare)</b>
+
+/talkread.bml.select=Välj
+
+/talkread.bml.subjectdeleted=[raderad]
+
+/talkread.bml.talkmulti.delete=Radera
+
+/talkread.bml.talkmulti.submit=Verkställ 
+
+/talkread.bml.talkmulti.unscreen=Oavskärma
+
+/talkread.bml.title=Läs kommentarer
+
+/talkscreen.bml.error.login=Du måste vara inloggad för att kunna hålla på med avskärmade kommentarer.
+
+/talkscreen.bml.error.privs.screen=Du har inte tillåtelse att oavskärma denna kommentar.
+
+/talkscreen.bml.error.privs.unscreen=Du är tillåten att oavskärma denna kommentar.
+
+/talkscreen.bml.screen.doit=Ja, avskärma denna kommentar.
+
+/talkscreen.bml.screen.sure.body=Är du säker på att du vill avskärma denna kommentar?
+
+/talkscreen.bml.screened.body|staleness=1
+/talkscreen.bml.screened.body=Kommentaren har blivit avskärmad.
+
+/talkscreen.bml.screened.title=Avklarat
+
+/talkscreen.bml.unscreen.doit=Ja, oavskärma denna kommentar.
+
+/talkscreen.bml.unscreen.sure.body=Är du säker på att du vill oavskärma denna kommentar?
+
+/talkscreen.bml.unscreen.sure.title=Oavskärma denna kommentar?
+
+/talkscreen.bml.unscreened.body|staleness=1
+/talkscreen.bml.unscreened.body=Kommentaren har blivit oavskärmad.
+
+/talkscreen.bml.unscreened.title=Avklarat
+
+/tools/emailmanage.bml.address.current.title=Nuvarande adress
+
+/tools/emailmanage.bml.address.old.text=Följande är en lista av emailadresserna som var använda med ditt konto, och tiden då de stängs av som primära emailadressen.  Bocka in de som du vill radera.
+
+/tools/emailmanage.bml.address.old.title=Tidigare adress
+
+/tools/emailmanage.bml.delete_selected=Radera valda
+
+/tools/emailmanage.bml.desc.title=Beskrivning
+
+/tools/emailmanage.bml.log.deleted=Raderade: [[email]] @ [[time]]
+
+/tools/emailmanage.bml.log.deleted.title=Förändringar sparade
+
+/tools/emailmanage.bml.notvalidated.text=Att använda denna verktyg måste din nuvarande epostadress [[email]] bekräftas. Om du tappat bort konfirmations-eposten för detta, <a href='/register.bml'>kan du få det återsänt</a>. När du bekräftat epostadressen, kom tillbaka här.
+
+/tools/emailmanage.bml.notvalidated.title=Email inte bekräftad
+
+/tools/emailmanage.bml.title=Email underhåll
+
+/tools/memadd.bml.add_previous<<
+<?h1 Lägg till i minnen... h1?> 
+<?p För att lägga till journal-inlägget du just tittade på till dina "minnen", fyll i formuläret nedan. p?>
+
+.
+
+/tools/memadd.bml.body.added.body=Din lista med minnesvärda inlägg har uppdaterats
+
+/tools/memadd.bml.body.added.header=Avklarat
+
+/tools/memadd.bml.description=Beskrivning
+
+/tools/memadd.bml.description.text<<
+Ge detta journal-inlägg en beskrivning så att du kan komma ihåg det.
+För att radera detta inlägg från din lista med minnesvärda inlägg, lämna en blank beskrivning.
+.
+
+/tools/memadd.bml.error.deleted.body=Journal-inlägget tidigare beskrivet som "[[desc]]" har blivit borttaget från din lista med minnesvärda inlägg.
+
+/tools/memadd.bml.error.deleted.title=Minne raderat
+
+/tools/memadd.bml.error.entry_deleted=Journa-inlägg existerar inte längre. Minne raderat.
+
+/tools/memadd.bml.error.fivekeywords=Endast 5 nyckelord/kategorier är tillåtna per minnesvärt inlägg.
+
+/tools/memadd.bml.error.invalid_security=Ogiltigt eller saknat säkerhetsval
+
+/tools/memadd.bml.error.login=Du måste <a href="/login.bml?ret=1">inloggad</a> för att använda denna funktion. Gå och logga in och du kommer att bli återförd hit sedan.
+
+/tools/memadd.bml.error.maxsize=Detta nyckelord överstiger den maximalt tillåtna storleken: "[[keyword]]"
+
+/tools/memadd.bml.error.nodescription.body<<
+För att lägga till ett journal-inlägg till din lista med minnen, måster du ge det en beskrivning.
+För att ta bort ett minne, kan du editera det och ta bort beskrivningen, men du hade inte redan detta inlägg i dina minnen.
+.
+
+/tools/memadd.bml.error.nodescription.title=Ingen beskrivning
+
+/tools/memadd.bml.form.reset=Återställ
+
+/tools/memadd.bml.form.submit=Skicka
+
+/tools/memadd.bml.keywords=Nyckelord
+
+/tools/memadd.bml.keywords.example=Exempel: <b>Kul, Fånigt, Romantiskt</b>
+
+/tools/memadd.bml.keywords.select=Eller, du kan och välja nyckelord du har använt tidigare:
+
+/tools/memadd.bml.keywords.text=Varför är detta inlägg minnesvärt?  Ange inget eller upp till fem komma-separerade nyckelord eller kategorier så du enkelt kan hitta det igen.
+
+/tools/memadd.bml.login.enterinfo=Ange namn och lösenord för det konto du vill spara minnet till.
+
+/tools/memadd.bml.login.forgot.header=Glömt någonting?
+
+/tools/memadd.bml.login.forgot.recover=Om du glömt ditt användarnamn eller lösenord, <a href='lostinfo.bml'>återfå det här!</a>.
+
+/tools/memadd.bml.multiple_selections=Håll ner 'Control' när du väljer nyckelord för att välja flera samtidigt.
+
+/tools/memadd.bml.security=Säkerhet:
+
+/tools/memadd.bml.security.friendsonly=Endast vänner
+
+/tools/memadd.bml.security.private=Privat
+
+/tools/memadd.bml.security.public=Allmänt
+
+/tools/memadd.bml.title=Lägg till minnen
+
+/tools/memadd.bml.title.added=Tillagd
+
+/tools/memadd.bml.title.add_memory=Tillägg minne
+
+/tools/memadd.bml.title.deleted=Borttaget
+
+/tools/memadd.bml.title.edit_memory=Ändra minnesvärt inlägg
+
+/tools/memadd.bml.whocansee<<
+Vem kan se att du markerat detta inlägg som minnesvärt?
+Vem som helst, endast personer du listar som en vän, eller bara du själv?
+.
+
+/tools/memories.bml.back=Tillbaka
+
+/tools/memories.bml.body.keyword<<
+[[keyword]]
+
+Följande är en lista av "[[keyword]]" journal inlägg som <b>[[user]]</b> funnit minnesvärda.
+.
+
+/tools/memories.bml.body.list_categories<<
+<?h1 Minnesvärda inlägg h1?>
+
+<?p Följande är en lista av kategorier som <b>[[user]]</b> har placerat minnesvärda inlägg i. p?>
+.
+
+/tools/memories.bml.body.memorable=Följande är en lista av okategoriserade journal inlägg som <b>[[user]]</b> funnit minnesvärda.
+
+/tools/memories.bml.delete.deleted.head=Avklarat
+
+/tools/memories.bml.edit=ändra
+
+/tools/memories.bml.error.noentries.body<<
+Detta kan bero på att:<ol>
+<li>användaren har inte definerat några minnesvärda händelser</li>
+<li>användarens minnesvärda händelser är skyddade och du har inte tillgång för att se dem, eller</li>
+<li>denna användare har inga minnen som matchar ditt sökta filter-kriterium</li></ol>
+.
+
+/tools/memories.bml.error.noentries.title=Inga minnen hittade.
+
+/tools/memories.bml.filter.all=Alla minnen
+
+/tools/memories.bml.filter.other=Endast andra inlägg
+
+/tools/memories.bml.filter.own=Endast inlägg från '[[user]]' 
+
+/tools/memories.bml.form.filter=Filtrera inlägg på:
+
+/tools/memories.bml.form.sort=ordna inlägg med:
+
+/tools/memories.bml.form.switch=Byt
+
+/tools/memories.bml.sort.description=Beskrivning
+
+/tools/memories.bml.sort.orderadded=Adderingsordning
+
+/tools/memories.bml.title.keyword=Minnesvärda [[keyword]] inlägg
+
+/tools/memories.bml.title.memorable=Minnesvärda inlägg
+
+/tools/memories.bml.uncategorized=Okategoriserad
+
+/update.bml.altpost=Journal att posta i: 
+
+/update.bml.btn.update=Uppdatera journal
+
+/update.bml.currmood=Nuvarande <A HREF="/moodlist.bml">humör</A>:
+
+/update.bml.currmusic=Musik:
+
+/update.bml.date=Datum:
+
+/update.bml.default=förvalt
+
+/update.bml.defaultjournal=([[user]]) -- förvalt
+
+/update.bml.error.disabled=Ditt konotyp tillåter inte postning.
+
+/update.bml.error.login=Inloggninsfel:
+
+/update.bml.error.update=Inlägguppdateringsfel:
+
+/update.bml.event=Text:
+
+/update.bml.full=Full uppdateringssida
+
+/update.bml.localtime=Lokal tid:
+
+/update.bml.loggingin=Loggar in på server...
+
+/update.bml.noneother=Inget, ellar annat:
+
+/update.bml.note=<b>Obs:</b> Tid och datum ovan är från vår server. Justera den mot din lokala tid innan du postar inlägget.
+
+/update.bml.opt.backdate=Datumändra:
+
+/update.bml.opt.backdate.about=visas inte på vännervy
+
+/update.bml.opt.defpic=(förvalt)
+
+/update.bml.opt.nocomments=Inaktivera kommentarer:
+
+/update.bml.opt.noemail=Skicka inte kommentarer med epost:
+
+/update.bml.opt.noformat=Auto-formatera inte:
+
+/update.bml.opt.spellcheck=Stavningskontrollera inlägg före postning (på engelska)
+
+/update.bml.options=Valfria inställningar
+
+/update.bml.other=Andra:
+
+/update.bml.picture=<a href="[[url]]">Bild</a> att använda:
+
+/update.bml.security.custom=Anpassa...
+
+/update.bml.security.friends=Vänner
+
+/update.bml.security.head=Säkerhetsnivå:
+
+/update.bml.security.private=Privat
+
+/update.bml.security.public=Offentlig
+
+/update.bml.servermsg=Också, servern har ett meddelande för dig:
+
+/update.bml.simple=Du använder enkla sidan.  För flera urval, <a href="[[url]]">klicka här</a>.
+
+/update.bml.spellchecked=Stavningskontrollerade posten:
+
+/update.bml.subject=<b>Ämne:</b> </i>(valfritt)</i>
+
+/update.bml.timeformat=24 timmars tid
+
+/update.bml.title=Uppdatera journal
+
+/update.bml.title.readonly=Skrivskyddat läge
+
+/update.bml.update.alternate=Vill du inte <a href="/download/">ladda ner en klient</a> till din dator, eller om ett existerar inte för din dator, kan du använda denna sidan att uppdatera din LiveJournal. Den är också värdefull om du är på semester eller inte har din vanliga dator tillgänglig. Har du ett <a href="/support/faqbrowse.bml?faqid=21">betalt konto</a>, kan du uppdatera din journal <a href="/support/faqbrowse.bml?faqid=187">med epost</a>, <a href="/support/faqbrowse.bml?faqid=183"></a>spela in telefoninlägg</a> utanför räckhåll av en dator, eller <a href="/support/faqbrowse.bml?faqid=69">skapa enkät</a>  i dina inlägg.
+
+/update.bml.update.head=Uppdatera din journal...
+
+/update.bml.update.success=Uppdateringen lyckats.  Du kan titta på den uppdaterade journalen <a href="[[uri]]">här</a>.
+
+/update.bml.updating=Uppdaterar journalen...
+
+/uploadpic.bml.error.unsupportedtype=Filer av typ [[filetype]] stöds inte. Du kan ladda upp endast GIF, PNG, eller JPG filer.  Nästan alla bild/foto programm kan förvandla din bild till en av giltiga typerna.
+
+/userinfo.bml.about.comm=Om:
+
+/userinfo.bml.about.user=Självbeskrivning:
+
+/userinfo.bml.body.leave=Du kan <a href="/community/leave.bml?comm=[[commname]]">lämna intressegruppen</a> när du vill.
+
+/userinfo.bml.comminfo.body=Nedan är information för "[[commname]]" intressegruppen på LiveJournal.
+
+/userinfo.bml.comminfo.name=Intressegruppinformation
+
+/userinfo.bml.date.never=<i>Aldrig.</i>
+
+/userinfo.bml.error.malfname|staleness=1
+/userinfo.bml.error.malfname=Felaktig användarnamn.
+
+/userinfo.bml.error.notloggedin=Vill du se din egen användarprofil, måste du <a href='/login.bml?ret=1'>logga in</a>.
+
+/userinfo.bml.friendof.comm=Granskat av:
+
+/userinfo.bml.friendof.hidden=(gömd)
+
+/userinfo.bml.friendof.syndreadcount=Antal läsare
+
+/userinfo.bml.friendof.user=Vän till:
+
+/userinfo.bml.friends.comm=Medlemmar
+
+/userinfo.bml.friends.user=Vänner
+
+/userinfo.bml.label.adduser=Lägg till användare
+
+/userinfo.bml.label.birthdate=Födelsedatum:
+
+/userinfo.bml.label.clientsused=Använda <a href="[[siteroot]]/download/">Klienter</a>:
+
+/userinfo.bml.label.comments=Kommentarer:
+
+/userinfo.bml.label.composted=<b>Postade:</b> [[num]] - 
+
+/userinfo.bml.label.comreceived=<b>Mottagna:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Skapad:
+
+/userinfo.bml.label.dateupdated=Uppdaterad:
+
+/userinfo.bml.label.email=Epost:
+
+/userinfo.bml.label.interests=Intressen
+
+/userinfo.bml.label.interests.modifyyours=ändra&nbsp;dina
+
+/userinfo.bml.label.interests.removesome=radera&nbsp;några
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] intressen inte visade</b>
+
+/userinfo.bml.label.journalentrs=Journalinlägg:
+
+/userinfo.bml.label.location=Plats:
+
+/userinfo.bml.label.memberof=Medlem i
+
+/userinfo.bml.label.memories=Minnen:
+
+/userinfo.bml.label.moredetails=(fler detaljer...)
+
+/userinfo.bml.label.msnusername=MSN användarnamn:
+
+/userinfo.bml.label.name=Namn:
+
+/userinfo.bml.label.nofriends=<i>Inga listade.</i>
+
+/userinfo.bml.label.post=Posta i "[[journal]]"
+
+/userinfo.bml.label.reqfinduser=Endast användare med 'finduser' tillstånd kan leta efter andra användare med användarid.
+
+/userinfo.bml.label.searchjournal=Sök i denna journal
+
+/userinfo.bml.label.sendmessage=Skicka meddelande
+
+/userinfo.bml.label.shared=Postningstillgång:
+
+/userinfo.bml.label.supportpoints=Support poäng
+
+/userinfo.bml.label.textmessage=<nobr>Textmeddelande</nobr>:
+
+/userinfo.bml.label.todo=Att-göra lista
+
+/userinfo.bml.label.user=Användare:
+
+/userinfo.bml.label.viewfriends=Visa vänner
+
+/userinfo.bml.label.viewmembers=Visa medlemmar
+
+/userinfo.bml.label.website=Webbplats:
+
+/userinfo.bml.membership.body=Att gå med i denna intressegrupp, <a href="/community/join.bml?comm=[[commname]]">klicka här</a>.
+
+/userinfo.bml.memories.entries=[[count]] inlägg
+
+/userinfo.bml.memories.entry=[[count]] inlägg
+
+/userinfo.bml.monitor.comm=Granska intressegrupp
+
+/userinfo.bml.monitor.user=Lägg till denna användaren till din vänlista.
+
+/userinfo.bml.nonexist.body=Användarnamnet <b>[[user]]</b> är inte registrerat.
+
+/userinfo.bml.nonexist.name=Okänd användare
+
+/userinfo.bml.sendmessage.body=<a href="[[link]]">Skicka <b>[[user]]</b> ett textmeddelande</a><br />till sin mobiltelefon/personsökare.
+
+/userinfo.bml.syn.last.never=Aldrig
+
+/userinfo.bml.syn.lastcheck=sista koll:
+
+/userinfo.bml.syn.nextcheck=nästa koll:
+
+/userinfo.bml.syn.parseerror=Felmeddelande:
+
+/userinfo.bml.tellafriend=Värva en vän!
+
+/userinfo.bml.timeupdate.dayago=Igår
+
+/userinfo.bml.timeupdate.daysago=[[num]] dagar sedan
+
+/userinfo.bml.timeupdate.hourago=1 timme sedan
+
+/userinfo.bml.timeupdate.hoursago=[[num]] timmar sedan
+
+/userinfo.bml.timeupdate.minuteago=1 minut sedan
+
+/userinfo.bml.timeupdate.minutesago=[[num]] minuter sedan
+
+/userinfo.bml.timeupdate.secondago=1 sekund sedan
+
+/userinfo.bml.timeupdate.secondsago=[[num]] sekunder sedan
+
+/userinfo.bml.timeupdate.weekago=1 vecka sedan
+
+/userinfo.bml.timeupdate.weeksago=[[num]] veckor sedan
+
+/userinfo.bml.title=Användar info
+
+/userinfo.bml.title.communityinfo=Intressegrupp info
+
+/userinfo.bml.userinfo.body=Nedan är användarinformation om [[username]].  Är du denna användare kan du redigera din information (eller välja vilken information publiceras) på <a href="[[siteroot]]/editinfo.bml">Personlig info sidan</a>.
+
+/userinfo.bml.userinfo.name=Användarinformation
+
+BML.parse_multipart.parse=Fel i uppladdning
+
+BML.parse_multipart.toolarge=Uppladdning för stor.
+
+BML.parse_multipart.unknowntype=Okänd innehållstyp
+
+btn.search=Sök
+
+crumb.acctfeatures=Funktioner för varje kontotyp
+
+crumb.download=Ladda ner en klient
+
+crumb.siteopts=Bläddringsinställningar
+
+date.day.friday.long=fredag
+
+date.day.friday.short=fr
+
+date.day.monday.long=måndag
+
+date.day.monday.short=må
+
+date.day.saturday.long=l
+
+date.day.saturday.short=lö
+
+date.day.sunday.long=söndag
+
+date.day.sunday.short=sö
+
+date.day.thursday.long=torsdag
+
+date.day.thursday.short=to
+
+date.day.tuesday.long=tisdag
+
+date.day.tuesday.short=ti
+
+date.day.wednesday.long=onsdag
+
+date.day.wednesday.short=on
+
+date.month.april.long=april
+
+date.month.april.short=apr
+
+date.month.august.long=augusti
+
+date.month.august.short=aug
+
+date.month.december.long=december
+
+date.month.december.short=dec
+
+date.month.february.long=februari
+
+date.month.february.short=feb
+
+date.month.january.long=januari
+
+date.month.january.short=jan
+
+date.month.july.long=juli
+
+date.month.july.short=juli
+
+date.month.june.long=juni
+
+date.month.june.short=juni
+
+date.month.march.long=mars
+
+date.month.march.short=mars
+
+date.month.may.long=maj
+
+date.month.may.short=maj
+
+date.month.november.long=november
+
+date.month.november.short=nov
+
+date.month.october.long=oktober
+
+date.month.october.short=okt
+
+date.month.september.long=september
+
+date.month.september.short=sept
+
+dystopia.btn.login=LOGIN
+
+dystopia.hello_anonymous=Välkommen till LiveJournal!
+
+dystopia.hello_loggedin=Hej, [[username]]!
+
+dystopia.nav.createjournal=Skapa en Journal
+
+dystopia.nav.developer=Utvecklarområde
+
+dystopia.nav.download=Hämta
+
+dystopia.nav.editentries=Ändra Inlägg
+
+dystopia.nav.editfriends=Dina vänner
+
+dystopia.nav.editpassword=Ditt lösenord
+
+dystopia.nav.editpics=Dina bilder
+
+dystopia.nav.editstyle=Ändra stil
+
+dystopia.nav.faq=Frågor & svar
+
+dystopia.nav.findcomm=Gruppvis
+
+dystopia.nav.finddir=Katalogsökning
+
+dystopia.nav.findint=Intressevis
+
+dystopia.nav.findrandom=Slumpvis
+
+dystopia.nav.findregion=Regionsvis
+
+dystopia.nav.home=Hem
+
+dystopia.nav.journalcalendar=Kalender
+
+dystopia.nav.journalfriends=Vänner
+
+dystopia.nav.journalinfo=Användarinfo
+
+dystopia.nav.journalrecent=Aktuella inlägg
+
+dystopia.nav.legalprivacy=Integritetspolicy
+
+dystopia.nav.legaltos=Användaravtal
+
+dystopia.nav.login=Logga in
+
+dystopia.nav.logout=Logga ut
+
+dystopia.nav.lostinfo=Glömt lösenordet?
+
+dystopia.nav.memories=Minnen
+
+dystopia.nav.modifyjournal=Ändra journal
+
+dystopia.nav.news=Nyheter
+
+dystopia.nav.paidaccts=Betalande användare
+
+dystopia.nav.paymentarea=Betalningssida
+
+dystopia.nav.personalinfo=Personlig info
+
+dystopia.nav.sitemap=Sajtkarta
+
+dystopia.nav.siteopts=Bläddringsurval
+
+dystopia.nav.support=Frågor?
+
+dystopia.nav.updatejournal=Uppdatera
+
+dystopia.nav.width|notes=Some languages require the bar on the left to be wider.  Feel free to keep the default value.
+dystopia.nav.width=135
+
+dystopia.navhead.findusers=Hitta användare
+
+dystopia.navhead.help=Hjälp & Support
+
+dystopia.navhead.journal=Din journal
+
+dystopia.navhead.legal=Juridisk information
+
+dystopia.navhead.settings=Dina&nbsp;inställningar
+
+dystopia.navhead.welcome=Välkommen!
+
+dystopia.search.icq=ICQ-nummer
+
+dystopia.search.int=Intressevis
+
+dystopia.search.msn=MSN Användarnamn
+
+dystopia.search.region=Regionsvis
+
+dystopia.searchlj=Sök LiveJournal:
+
+Email=E-post
+
+email.newacct.body<<
+Gratulerar! Nu har du ett nytt Livejournalkonto!
+
+Att göra färdigt journalskapelsen och verifiera ditt epostadress, gå hit:
+
+   [[regurl]]
+
+URL:en till din nya journal är:
+
+   [[siteroot]]/users/[[username]]/
+
+och:
+
+   [[siteroot]]/~[[username]]/
+
+Nedan visas ditt livejournal användarnamn och lösenord:
+
+   användarnamn: [[username]]
+   lösenord: [[password]]
+
+Du kan gå på [[siteroot]]/ att komma fram till ditt konto, skapa nya journalinlägg, och ändra dina journalanpassningar, men vi rekommenderarar att du laddar ner en LiveJournal klient. Det är enklaste sättet att uppdatera din journal, och det finns klienter till många olika datorer! Hämta en på : [[siiteroot]]/download/
+
+Att börja på LiveJournal kan bli svårt när du inte känner till någon. Läs http://newbies.livejournal.com att få klipska, hjälpsamma råd... med litet tur dröjer det inte länge tills du proffs på LiveJournal!
+
+Vi hoppas att du får lika mycket nöje från LiveJournal som vi får från att ge dig tillgång till den. Har du frågor om hur man använder LiveJournal, var god besök supportsidan:
+
+   [[siteroot]]/support/
+
+Där finner du svar på nästan alla frågor som kan ställas om LiveJournal.
+
+Vårat mål är att göra LiveJournal totalt häftig... om vi kan göra något att det blir enklare, tjänligare, mer anpassningsbar, eller vadsomhelst... låt oss bara veta. Vi driver inte sajten att tjäna pengar. Vi är ingen dotcomföretag betald med riskvilligt kapital som hoppas på IPO... sajten drivs endast av dem som använder den. Låt oss veta vad du vill få ut från den.
+
+Har du frågor, får man vanligen svar från supportgruppen inom ett dygn.
+
+Enjoy!
+
+[[sitename]] Team
+[[siteroot]]/
+.
+
+email.newacct.subject=Välkommen till LiveJournal
+
+Error|notes=typically used inside an H1 tag to announce an error.
+Error=Fel
+
+error.badpassword=Felaktigt lösenord.
+
+error.dberror=Ett databasfel har uppstått:
+
+error.deleted.name=Raderad
+
+error.deleted.text=Denna journal har blivit raderad. Om du är [[user]], har du en period av 30 dagar från och med dagen för radering att återta journalen. Efter 30 dagar kommer vi att radera allt innehåll permanent från våra servrar.
+
+error.deleted.title=Raderat konto
+
+error.invalidauth=Du kan inte bekräftas som specifierade användaren.
+
+error.ipbanned=Din IP-adress är för tillfället bannlyst för att ha övergått inloggningsfelfrekvensen.
+
+error.malformeduser=Felaktigt användarnamn.
+
+error.nobutton=Ingen knapp tryckt?
+
+error.nodb=Databasen är tillfälligt otillgänglig.
+
+error.nodbmaintenance=Denna delen av databasen är tillfälligt nere för underhåll. Prova igen om ett par minuter.
+
+error.noentry=Finns inget sådant journal inlägg.
+
+error.nojournal=Okänd journal
+
+error.noremote=Du måste <a href="/login.bml?ret=1">logga in</a> att använda denna sidan.
+
+error.procrequest=Det uppkom ett fel då din begäran behandlades.
+
+error.purged.name=Raderad
+
+error.purged.text=Denna journal har blivit raderad och bortrensad.
+
+error.purged.title=Bortrensat konto
+
+error.suspended.name=Avstängd.
+
+error.suspended.text=Denna journal har antingen blivit temporärt eller permanent avstängd.  Är du [[user]] var god läs vanliga frågor och svar uppslagsidan <cite><a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=106">Mitt konto har avstängts! Hur får jag det tillbaka?</a></cite> för mer information.  OBS: Att försäkra våra användares hemlighet, kan [[sitename]] inte diskutera själen för avstängning med någon annan än kontots ägare.
+
+error.suspended.title=Avstängt konto.
+
+error.tempdisabled=Detta konto är temporärt obrukbart.
+
+error.unknownmode=Okänt läge.
+
+error.usernameinvalid=Användarnamn innehåller ogiltitiga tecken.
+
+error.usernamelong=Användarnamn är för långt, 15 tecken är max.
+
+error.username_notfound=Användarnamnet inte hittat.
+
+Help=Hjälp
+
+label.security.custom=Egen...
+
+label.security.friends=Vänner
+
+label.security.head=Säkerhetsnivå:
+
+label.security.private=Privat
+
+label.security.public=Publik
+
+label.switch.button=Byt
+
+label.switch.header=Byt journal
+
+label.switch.workwith=Arbeta med journal:
+
+langname.be=Vitryska
+
+langname.da=Danska
+
+langname.de=Tyska
+
+langname.en=Engelska
+
+langname.en_GB=Engelska
+
+langname.en_LJ=Engelska
+
+langname.es=Spanska
+
+langname.et=Esntiska
+
+langname.fi=Finska
+
+langname.fr=Franska
+
+langname.ga=Irlänska
+
+langname.gd=Gaeliska
+
+langname.he=Hebreiska
+
+langname.hu=Ungerska
+
+langname.is=Islänska
+
+langname.it=Italienska
+
+langname.ja=Japanska
+
+langname.lv=Lettiska
+
+langname.ms=Malajiska
+
+langname.nb=Norska Bokmål
+
+langname.nl=Hollänska
+
+langname.nn=Nynorska
+
+langname.pl=Polska
+
+langname.pt=Portugisiska
+
+langname.ru=Ryska
+
+langname.sv=Svenska
+
+langname.tr=Turkiska
+
+langname.zh=Förenklad Kinesiska
+
+ljcom.account.free=Gratiskonto
+
+ljcom.accounttype=Kontotyp
+
+ljcom.badpass.email=Ditt lösenord kan inte vara baserat på din epost adress.
+
+ljcom.badpass.realname=Ditt löseord kan inte vara baserat på ditt riktiga namn.
+
+ljcom.badpass.username=Ditt lösenord kan inte vara baserat på ditt användarnamn.
+
+ljcom.meetup.moreinfo=(<a href="[[link]]">Mer information</a>)
+
+ljcom.userinfo.accounttype=Kontotyp
+
+ljcom.userinfo.types.free=Gratiskonto
+
+ljcom.userinfo.types.permanent=Permanent konto
+
+ljlib.pageofpages=Sida [[page]] av [[total]]
+
+lostinfo.head=Glömt någonting?
+
+lostinfo.text=Om du tappat bort användarnamn eller lösenord, <a href="lostinfo.bml">återfå det här</a>.
+
+lynx.nav.siteopts=Bläddringsurval
+
+Password=Lösenord
+
+password.max30=Lösenord bör inte vara längre än 30 tecken.
+
+portal.bdays.count.des=Vanligen visas de 5 vännerna med de närmsta födelsedagarna.
+
+portal.bdays.count.name=Födelsedagar att visa
+
+portal.bdays.portalname=Födelsedagar
+
+portal.bdays.portaltitle=Födelsedagar
+
+portal.goat.name=Sajtmaskot
+
+portal.goattext.des=Vad vill du ha din bock säga?  Det enda som egentliga bockar säger är 'bäää', men du kan låtsas att bocken säger något annat om du verkligen vill det.
+
+portal.goattext.name=Bocktext
+
+portal.login.portalname=Loginfält
+
+portal.memories.entriesnoun=inlägg
+
+portal.memories.entrynoun=inlägg
+
+portal.memories.portalname=Minnesvärda inlägg
+
+portal.memories.portaltitle=Minnesvärda inlägg
+
+portal.ministats.active=Aktiv:
+
+portal.ministats.title=Användar statistik
+
+portal.newtolj.name=webbplatslänkar
+
+portal.popfaq.portalname=10 mest-lästa vanliga frågor och svar
+
+portal.popfaq.portaltitle=10 mest-lästa vanliga frågor och svar
+
+portal.randuser.count.des=Vanligen är 1 slumpvald användare visad, men du kan få upp till 10 listade i smala kolumner, eller 5 lodrätt i en bred kolumn
+
+portal.randuser.count.name=Antalet slumpvalda användare att visa
+
+portal.randuser.error.tableempty=Det finns inga slumpvalda användare.  Kontakta underhållare.
+
+portal.randuser.hidename.des=Vanligen är slumpvalda användarnamnet visat.  Välja detta att ta bort det.
+
+portal.randuser.hidename.name=Dölj namn
+
+portal.randuser.hidepic.des=Vanligen visas en slumpvald bild, om en finns till. Ibocka denna att ta bort den.
+
+portal.randuser.hidepic.name=Dölj användarbild
+
+portal.randuser.portalname=Slumpvald användare
+
+portal.randuser.portaltitle=Slumpvald användare
+
+portal.randuser.portaltitleplural=Slumpvalda användare
+
+portal.recent.error.noentries=Tyvärr, inga inlägg.
+
+portal.recent.error.userstatus=Användaren har raderat eller avstängt deras konto.
+
+portal.recent.items.description=Vanligen är endast det nyaste inlägget visat.
+
+portal.recent.items.name=Saker att visa
+
+portal.recent.journal.description=Från vilken journal vill du se de nyaste inläggen?
+
+portal.recent.nosubject=(Inget ämne)
+
+portal.recent.permlink=Länk
+
+portal.recent.portalname=Nytt inläggsvy
+
+portal.recent.portaltitle=Aktuell inlägg ruta
+
+portal.recent.showtext.description=Vanligen visas endast ämnen.
+
+portal.recent.showtext.name=Inkludera text
+
+portal.stats.journalentyest=Gårdagens journalinlägg
+
+portal.stats.portalname=Sajtstatistik
+
+portal.stats.portaltitle=Statistik
+
+portal.stats.totalusers=Antalet användare
+
+portal.update.mode.simple=Enkel
+
+portal.update.portalname=Journaluppdatering
+
+portal.update.portaltitle=Uppdatera din journal
+
+protocol.bad_password=Ditt lösenord är för lätt att gissa. Vi rekommenderar att du byter det, annars riskerar du att få din journal "kapad". Besök [[siteroot]]/changepassword.bml för att ändra ditt lösenord.
+
+protocol.hello_test=Hejsan Testkonto!
+
+protocol.mail_bouncing=Du använder en ogiltig e-postadress.  All e-post som vi försöker att skicka dig studsar tillbaka. Vi fordrar en giltig e-postadress att fortsätta använda [[sitename]]. Läs [[siteroot]]/support/faqbrowse.bml?faqid=19 att se hur man ändrar e-postadress.
+
+protocol.modpost=Ditt inlägg är nu i modereringskön.  Det blir godkänt eller avslagit av en av intressegruppsmodererarna.
+
+protocol.must_revalidate=Du måste bekräfta din nya epost adress. Din gamla epost adress var bekräftad men eftersom du har ändrat måste du bekräfta den nya. Om du inte bekräftar din nya adress kommer du inte kunna utnyttja alla funktioner på [[sitename]]. Besök [[siteroot]]/support/faqbrowse.bml?faqid=11 för mer information.
+
+protocol.not_validated=Din epostadress har inte bekräftats.  Du får fortsätta att använda [[sitename]], men om du bekräftar inte din adress, kommer du att inte få tillgång till alla funktioner på LiveJournal.  Se instruktionerna som skickades när du skapade  din journal, eller läs [[siteroot]]/support/faqbrowse.bml?faqid=11 för mer information.
+
+protocol.old_win32_client=Det finns mycket nyare windows LiveJournal-klienter tillgängliga, och vi föreslår att du uppdaterar.  Se [[siteroot]]/download/ att nerladda en nyare klient.
+
+protocol.readonly=Ditt konto är tillfälligt endast läsbar.  Vissa funktioner kommer att inte fungera på några minuter.
+
+Sorry|notes=typically used to announce that the requested action can't be done.
+Sorry=Tyvärr.
+
+talk.anonwrote=Någon skrev,
+
+talk.anonwrote_comm=Någon skrev i [[commlink]],
+
+talk.btn.preview=Förhandsgranska
+
+talk.commentpermlink=länk
+
+talk.commentpost=Kommentera
+
+talk.commentsread=Läs kommentarer
+
+talk.curname_Mood=<b>Humör:</b>
+
+talk.curname_Music=<b>Lyssnar på:</b>
+
+talk.error.bogusargs=Felaktiga argument
+
+talk.error.comm_deleted=Kommentaren har raderats.
+
+talk.error.deleted=Denna journal är raderad.
+
+talk.error.deleted.title=Raderad.
+
+talk.error.mustlogin=Du måste vara inloggad för att kunna läsa det här skyddade inlägget.
+
+talk.error.nocomment=Kommentaren existerar inte.
+
+talk.error.noentry=Inget sånt inlägg.
+
+talk.error.nojournal=Fel: kunde inte hitta journal genom argument.
+
+talk.error.nosuchjournal=Det finns ingen sådan journal
+
+talk.error.notauthorised=Du är inte authoriserad att se detta skyddade inlägg.
+
+talk.error.suspended=Denna journal/postare är avstängd.
+
+talk.error.suspended.title=Avstängd
+
+talk.parentlink=Föregående
+
+talk.readsimilar=Läs liknande journalinlägg:
+
+talk.replytothis=Skriv ett svar
+
+talk.somebodywrote=[[realname]] ([[userlink]]) skrev,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) skrev i [[commlink]],
+
+talk.spellcheck=Stavningskontroll under förhandsgranskning
+
+talk.threadlink=Tråd
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_swedish
+
+Username=Användarnamn
+
+userpic.inactive=Avstängt
+
+xcolibur.greeting.anon=Välkommen till LiveJournal!
+
+xcolibur.greeting.logged_in=Välkommen [[name]]! [[logout]]
+
+xcolibur.login=Logga in?
+
+xcolibur.logout=Logga&nbsp;ut?
+
+xcolibur.nav.about=Om
+
+xcolibur.nav.about.download=Nerladda
+
+xcolibur.nav.about.general=Allmän information
+
+xcolibur.nav.about.paidaccounts=Betalda konton
+
+xcolibur.nav.about.sitenews=Site Nyheter
+
+xcolibur.nav.about.stats=Statistik
+
+xcolibur.nav.footer.sitemap=Sajtkarta
+
+xcolibur.nav.help=Hjälp
+
+xcolibur.nav.help.ask=Ställa en fråga
+
+xcolibur.nav.help.contact=Kontaktinformation
+
+xcolibur.nav.help.faq=<abbr title="Vanliga frågor och svar">FAQ</abbr>
+
+xcolibur.nav.help.lostpassword=Förlorat lösenord
+
+xcolibur.nav.home=Hem
+
+xcolibur.nav.journal.archive=Arkiv
+
+xcolibur.nav.journal.edit.entries=Redigera Inlägg
+
+xcolibur.nav.journal.friends=Vänner
+
+xcolibur.nav.journal.memories=Minnen
+
+xcolibur.nav.journal.recent=Senaste
+
+xcolibur.nav.journal.update=Uppdatera
+
+xcolibur.nav.manage=Underhålla
+
+xcolibur.nav.manage.community=Intressegrupper
+
+xcolibur.nav.manage.customize=Anpassa
+
+xcolibur.nav.manage.entries=Inlägg
+
+xcolibur.nav.manage.friends=Vänner
+
+xcolibur.nav.manage.password=Lösenord
+
+xcolibur.nav.manage.pics=Användarbilder
+
+xcolibur.nav.search=Sök
+
+xcolibur.nav.search.directory.search=Avancerat
+
+xcolibur.nav.search.interests=Intressen
+
+xcolibur.nav.search.random=Slumpvis
+
+xcolibur.nav.siteopts=Bläddringsurval
+
+xcolibur.nav.title=Navigera:
+
+xcolibur.nav.welcome=Välkommen
+
+xcolibur.nav.welcome.create=Skapa konto
+
+xcolibur.nav.welcome.login=Logga in
+
+xcolibur.nav.welcome.update=Uppdatera din journal
+
+xcolibur.search=Sök:
+
+xcolibur.search.category=Kategori
+
+xcolibur.search.icq=ICQ UIN
+
+xcolibur.search.int=Intresse
+
+xcolibur.search.msn=MSN Användarnamn
+
+xcolibur.upgrade=Uppgradera ditt konto
+

@@ -1,0 +1,181 @@
+<?page
+title=>Paid Time Transfer
+
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $dbh = LJ::get_db_writer();
+    
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $has_priv = LJ::check_priv($remote, "moneyenter");
+
+    # disable authas mechanism for priv'd users
+    delete $GET{'authas'} if $has_priv;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+
+    # extra arguments for get requests
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+
+    my $ret = "";
+    my $dbh = LJ::get_db_writer();
+ 
+    my $is_perm = sub { return $_[0]->{caps} & (1 << $LJ::Pay::capinf{perm}->{bit}) };
+    my $paid_bit = (1 << $LJ::Pay::capinf{paid}->{bit});
+
+    my $get_days = sub { return sprintf("%0.02f", $_[0] / 86400) };
+    my $get_secs = sub {
+        return $dbh->selectrow_array
+            ("SELECT UNIX_TIMESTAMP(paiduntil)-UNIX_TIMESTAMP() " .
+             "FROM paiduser WHERE userid=?", undef, $_[0]->{userid});
+    };
+
+    if (LJ::did_post() && $POST{'submit'}) {
+        my $u_from = ($has_priv ? LJ::load_user($POST{user}) : $remote)
+            or return LJ::bad_input("User <b>$POST{user}</b> doesn't exist.");
+        my $u_to = LJ::load_user($POST{userto})
+            or return LJ::bad_input("User <b>$POST{userto}</b> doesn't exist.");
+
+        return LJ::bad_input("Source and destination users must be different")
+            if LJ::u_equals($u_from, $u_to);
+
+        return LJ::bad_input("Source user must be currently logged in user")
+            unless $has_priv || LJ::u_equals($u_from, $u);
+
+        return LJ::bad_input("Destination user already has a permanent account!")
+            if $is_perm->($u_to);
+
+        return LJ::bad_input("You must have purchased a permanent account to transfer paid time to another user.")
+            unless $has_priv || $is_perm->($u_from);
+
+        my $secs = $get_secs->($u_from);
+        my $days = $get_days->($secs);
+        return "<?h1 Error h1?><?p User " . LJ::ljuser($u_from) . " does not have any paid time left. p?>"
+            unless $secs > 0;
+
+        $ret .= "Transferred <b>$days</b> days from " . LJ::ljuser($u_from) . " to " . LJ::ljuser($u_to) . "\n";
+        
+        # first try inserting in the case of a new paid account
+        LJ::update_user($u_to, { raw => "caps=caps|$paid_bit" });
+        $dbh->do("INSERT INTO paiduser (userid, paiduntil) " .
+                 "VALUES (?, FROM_UNIXTIME(UNIX_TIMESTAMP()+?))",
+                 undef, $u_to->{userid}, $secs);
+
+        # already a paid user, just extend their existing row
+        if ($dbh->err) {
+            $dbh->do("UPDATE paiduser " .
+                     "SET paiduntil=FROM_UNIXTIME(UNIX_TIMESTAMP(paiduntil)+?) " . 
+                     "WHERE userid=?", undef, $secs, $u_to->{userid});
+        }
+
+        # log to statushistory so there's a record of this action
+        my $logmesg = "Transferred $days days: $u_from->{user} => $u_to->{user}";
+        LJ::statushistory_add($u_from, $remote->{'userid'}, "acct_xfer_src", $logmesg);
+        LJ::statushistory_add($u_to,   $remote->{'userid'}, "acct_xfer_dest", $logmesg);
+     
+        ### take away time from source 
+        if ($is_perm->($u_from)) {
+            # take away their paid until time so they can't give it away again.
+            # don't remove them from paiduser though, since they're permanent and need
+            # to be here to get the email alias generated.
+            $dbh->do("UPDATE paiduser SET paiduntil='0000-00-00' WHERE userid=?",
+                     undef, $u_from->{userid});
+        } else {
+            $dbh->do("DELETE FROM paiduser WHERE userid=?", 
+                     undef, $u_from->{userid});
+
+            LJ::update_user($u_from->{userid}, { raw => "caps=caps&~$paid_bit" });
+        }
+
+        my $source = $has_priv && $POST{'anon'} ? "(ANONYMOUS)" : $u_from->{user};
+
+        LJ::send_mail({ 'to' => $u_to->{email},
+                        'from' => $LJ::ACCOUNTS_EMAIL,
+                        'fromname' => 'LiveJournal',
+                        'subject' => "Gift!  Paid account left-overs...",
+                        'body' => "Hey,\n\nUser $source has decided to transfer his/her remaining paid time to you.  So, you now have a paid account (if you didn't have one already) and $days more days of paid account status.\n\nYou can find out more about paid accounts and their benefits at http://www.livejournal.com/paidaccounts/\n\nEnjoy!\n",
+                    });
+     
+        return $ret;
+    } 
+
+    # authas switcher form -- makes no sense if user is priv'd
+    unless ($has_priv) {
+        $ret .= "<form method='get' action='xfer_remaining.bml'>\n";
+        $ret .= LJ::make_authas_select($remote, { authas => $GET{'authas'} }) . "\n";
+        $ret .= "</form>\n\n";
+    }
+
+    $ret .= "<?h1 Transfer Paid Time h1?>";
+
+    # standard intro paragraph for users
+    if ($has_priv) {
+        $ret .= "<?p This tool will allow you to transfer all remaining paid time ";
+        $ret .= "from one user to another. p?>";
+
+    # only available to admins and perm account holders
+    } elsif (! $is_perm->($u)) {
+        $ret .= "<?p This tool is only available to users who have recently purchased permanent ";
+        $ret .= "accounts and wish to transfer their remaining paid time to another user. p?>";
+        return $ret;
+
+    # standard form for normal permanent accounts
+    } else {
+
+        my $secs = $get_secs->($u);
+        my $days = $get_days->($secs);
+
+        $ret .= "<?p This tool will allow you to transfer all of your remaining paid time ";
+        $ret .= "(currently $days days) " if $secs > 0;
+        $ret .= "to any other non-permanent account. p?>";
+
+        unless ($secs > 0) {
+            $ret .= "<?p You don't have any remaining paid time to transfer! Have ";
+            $ret .= "you already used this tool in the past? p?>";
+            return $ret;
+        }
+    }
+
+    # begin submission form
+    $ret .= "<form method='post'><table>";
+
+    # from user
+    $ret .= "<tr><td align='right'>From:</td><td>";
+    if ($has_priv) {
+        $ret .= LJ::html_text({ size => 15, maxlength => 15, name => 'user' });
+    } else {
+        $ret .= LJ::ljuser($u);
+    }
+    $ret .= "</td></tr>";
+
+    # to user
+    $ret .= "<tr><td align='right'>To:</td>";
+    $ret .= "<td>" . LJ::html_text({ size => 15, maxlength => 15, name => 'userto' });
+    $ret .= "</td></tr>";
+
+    # anonymous option for admins
+    if ($has_priv) {
+        $ret .= "<tr><td align='right'>Anonymous?</td>";
+        $ret .= "<td>" . LJ::html_check({ value => 1, name => 'anon' });
+        $ret .= "</td></tr>";
+    }
+
+    $ret .= "<tr><td>&nbsp;</td><td>";
+    $ret .= LJ::html_submit('submit' => "Transfer");
+    $ret .= "</td></tr></table></form>";
+
+    return $ret;
+}
+_code?>
+<=body
+
+page?>

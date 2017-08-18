@@ -1,0 +1,97 @@
+<?page
+title=>Apply Payment
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $remote = LJ::get_remote();
+    return "<?p You are not currently logged in.  If you have an account already, go <a href='/login.bml?ret=1'>login</a> " .
+        "first.  Otherwise, go <a href='/create.bml'>create an account</a> using your payment code, and the payment will be " .
+        "automatically applied to the newly created account. p?>"
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+
+    my $ret = '';
+
+    # authas switcher form
+    $ret .= "<form method='get' action='apply.bml'>\n";
+    $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+    $ret .= "</form>\n\n";
+
+    $ret .= "<?h1 About h1?><?p This page lets you apply a payment code towards an existing account.  p?>";
+
+    # handle form submission
+    if ($POST{'code'}) {
+        my $dbh = LJ::get_db_writer();
+
+        my $code = $POST{'code'};
+        return LJ::bad_input("Invalid code") unless length($code) == 12;
+        my ($acid, $auth) = LJ::acct_code_decode($code);
+        my ($usedby, $realauth) = 
+            $dbh->selectrow_array("SELECT rcptid, auth FROM acctcode ".
+                                  "WHERE acid=?", undef, $acid);
+        return LJ::bad_input("Invalid code") unless $realauth && $auth eq $realauth;
+        return LJ::bad_input("You've already applied this payment") if $usedby == $u->{'userid'};
+        return LJ::bad_input("Somebody else has already applied this payment") if $usedby;
+        
+        my $months;
+
+        if (my $pi = $dbh->selectrow_hashref("SELECT pi.item, pi.qty ".
+                                             "FROM payitems pi, acctpayitem api ".
+                                             "WHERE pi.piid=api.piid AND api.acid=?", 
+                                             undef, $acid)) {
+            $months = 99 if $pi->{'item'} eq "perm";
+            $months = $pi->{'qty'} if $pi->{'item'} eq "paidacct";
+        } else {
+            $months = $dbh->selectrow_array("SELECT p.months ".
+                                            "FROM payments p, acctpay ap ".
+                                            "WHERE p.payid=ap.payid ".
+                                            "AND ap.acid=?", undef, $acid);
+        }
+
+        return "The code provided has no paid time associated with it." unless $months > 0;
+
+        if ($u->{'caps'} & 16) {
+            return "You already have a permanent account, so applying this ".
+                "second permanent account code would do nothing." if $months == 99;
+            return "You already have a permament account, so applying $months ".
+                "extra paid account months would do nothing.";
+        }
+
+        # double click protection
+        my $rows = $dbh->do("UPDATE acctcode SET rcptid=? WHERE acid=?", undef,
+                            $u->{'userid'}, $acid);
+        if ($rows) {
+            LJ::Pay::add_paid_months($dbh, $u->{'userid'}, $months);
+        }
+
+        return "<?h1 Success h1?><?p You now have a permanent account. p?>" if $months == 99;
+        return "<?h1 Success h1?><?p $months extra paid account months have been applied to your account. p?>";
+    }
+
+    # show form before post
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+    $ret .= "<form method='post' action='apply.bml$getextra'>";
+    $ret .= "<?h1 Payment Code h1?><?p Enter a payment code to apply towards the <?ljuser $u->{'user'} ljuser?> account. p?>";
+
+    $ret .= "<?standout Code: ";
+    $ret .= LJ::html_text({ 'name' => 'code', 'size' => 13, 'maxlength' => 12, 'value' => $GET{'code'} }) . " ";
+    $ret .= LJ::html_submit("Apply") . " standout?>";
+
+    $ret .= "</form>";
+
+    return $ret;
+
+
+}
+_code?>
+<=body
+page?>
+
+

@@ -1,0 +1,81 @@
+<?page
+title=>Submit Request
+body<=
+
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    LJ::set_active_crumb('supportsubmit');
+
+    my $apache_req = shift;
+    my $r = $apache_req->{'r'};
+
+    my @errors = ();
+
+    unless (LJ::did_post() && LJ::check_referer('/support/submit.bml')) { push @errors, "<?requirepost?>"; }
+
+    my $u;
+    my $user;
+    my $remote;
+
+    my %req;  # the request we're building to submit
+
+    if ($POST{'reqtype'} eq "user") 
+    {
+        $req{'reqtype'} = "user";
+        $user = LJ::canonical_username($POST{'user'});
+        if ($POST{'password'} eq "_REMOTE") {
+            $remote = LJ::get_remote();
+            if ($remote && $remote->{'user'} eq $user) {
+                $u = LJ::load_user($remote->{'user'});
+                $req{'requserid'} = $remote->{'userid'};
+            }
+        }
+        unless ($req{'requserid'}) {
+            $u = LJ::load_user($user);
+            push @errors, "Invalid username" unless $u;
+            if (LJ::auth_okay($u, $POST{'password'}, $POST{'hpassword'})) {
+                $req{'requserid'} = $u->{'userid'};
+            } else {
+                push @errors, "Invalid password";
+            }
+        }
+        $req{'reqemail'} = $u->{'email'};
+    }
+    elsif ($POST{'reqtype'} eq "email")
+    {
+        $req{'reqtype'} = "email";
+        $req{'reqemail'} = $POST{'email'};
+     
+        LJ::check_email($POST{'email'}, \@errors);
+    }
+
+    $req{'reqname'} = $POST{'reqname'};
+    $req{'body'} = $POST{'message'};
+    $req{'subject'} = $POST{'subject'};
+    $req{'spcatid'} = $POST{'spcatid'};
+    $req{'uniq'} = $r->notes('uniq');
+
+    # insert diagnostic information
+    $req{useragent} = BML::get_client_header('User-Agent') 
+        if $LJ::SUPPORT_DIAGNOSTICS{track_useragent};
+
+    return LJ::bad_input(@errors) if @errors;
+    my $spid = LJ::Support::file_request(\@errors, \%req);
+    return LJ::bad_input(@errors) if @errors;
+ 
+    my $url = "$LJ::SITEROOT/support/see_request.bml?id=$spid";
+    
+    return "Your $LJ::SITENAMESHORT support request has been filed and will be answered as soon as possible.  Your request tracking number is <B>$spid</B>.  You can track its progress here: <div style='margin-left: 30px'><a href='$url'>$url</a></div>";
+}
+_code?>
+
+<?hr?>
+<p>Back to the <a href="./">support area</a>.</p>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/support/see_request.bml, htdocs/support/index.bml
+</LJDEP> _c?>

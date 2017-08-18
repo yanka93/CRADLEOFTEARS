@@ -1,0 +1,9 @@
+Makefile.PL
+CHANGES
+MANIFEST
+Socket.pm
+META.yml                                 Module meta-data (added by MakeMaker)
+t/00-use.t
+t/05-postloop.t
+t/10-events.t
+

@@ -1,0 +1,219 @@
+Installing Debian on a new LJ web slave
+=======================================
+
+Rebuilding an existing machine?
+
+    * Take machine down on BIG-IP (optional. if not, one or two
+      dropped connections before BIG-IP does it for us)
+
+Setting up a new machine?
+
+    * allocate an IP address, set it up on internal DNS server
+
+    * let that IP address SNAT out of the BIG-IP
+
+* Reboot machine with Debian CD.  If machine has no CD-ROM, open case
+  and attach CD-ROM to an IDE channel.
+
+* at "boot:" prompt, press <ENTER>
+
+Debian installation menu:
+
+* Configure keyboard: qwerty
+
+* Partition hard disk:
+
+   hda1   4000  /        * bootable
+   hda2  15000  /home
+   hda3   1500  (swap)
+
+  (make swap double ram, / 4G, and the rest to /home)
+
+* Init swap partition
+
+* Init Linux Partitions:
+
+  /, then /home
+  (hit enter a lot, but but 'no' to linux 2.0 compatibility)
+
+* Install operating system kernel & modules
+  
+  from cdrom
+  where does it reside?  hit enter (universal solution)
+  'default': The default stable archive
+
+* Configure Device Driver modules
+
+  - skip the floppy module step, yes, <enter>
+  - net: eepro100, enter, enter, enter
+  - exit, exit.
+
+* Configure the network
+
+  hostname: lj-foo
+  DHCP config? no.
+  IP: 10.0.0.n 
+  Netmask: 255.255.255.0
+  Gateway: 10.0.0.14
+  Domain name: lj
+  DNS: 10.2.0.1
+
+* Install the base system
+
+  from cdrom, enter, enter, where reside? enter.
+  default stable archive
+
+* Configure the base system
+
+  US/Pacific
+  Hardware clock to GMT?  Yes.
+
+* Make Linux Bootable directly from hard disk
+
+  on /dev/hda
+
+* Take out CDROM
+
+* Reboot the System
+
+Debian System Configuration:
+
+* MD5 passwords?  yes.
+
+* Shadow passwords?  yes.
+
+* Root password:  *************
+
+* Normal user account?  yes:
+
+  username:  lj
+  fullname:  LiveJournal
+  password:  ***********
+  
+* Remove PCMCIA?  yes.
+
+* PPP?  no.
+
+* Select method apt will access Debian archive: http
+
+  non-US?  yes.
+  non-free?  yes.
+  contrib?  yes.
+  country:  US, http.us.washington.edu
+  proxy:  http://10.0.0.17:3128/
+
+* Add other apt source?  no.
+
+* Addition software method?  simple.
+
+* Tab, enter... Finish.  (get nothing now)
+
+* new packages need to be installed? continue? <enter>
+
+* exim configuration:  5  (we're gonna scrap it later)
+
+* erase debs?  <enter>, yes.
+
+* "Have fun!", debian says.  (Aren't we already?)
+
+Out of the installer:
+
+* login as root
+
+lj-foo:~# ae /etc/apt/sources.list
+
+  Make the file be these two lines:
+
+  deb http://http.us.debian.org/debian/ unstable main non-free contrib
+  deb http://non-us.debian.org/debian-non-US unstable/non-US main contrib non-free
+
+lj-foo:~# export http_proxy="http://10.0.0.17:3128/"
+lj-foo:~# apt-get update
+lj-foo:~# apt-get dist-upgrade
+
+More debconf!
+
+System readable homes?  sure.  (no public user accounts anyway)
+Restart services?  yeah.
+use installer's conf file for PAM?  I (yeah) (and whenever else)
+exim config:  5 again
+groff-base:  I
+
+lj-foo:~# apt-get install ssh
+enter, enter, enter.
+
+lj-foo:~# apt-get install lynx
+
+lj-foo:~# lynx -source http://www.livejournal.com/misc/pkg-webslave.txt | xargs apt-get -y install 
+
+If Squid cache is being a bitch, disable it for any missing packages:
+
+lj-foo:~# lynx -source http://www.livejournal.com/misc/pkg-webslave.txt | http_proxy='' xargs apt-get -y install 
+
+Ntpdate debconf:
+
+   Timeserver?  'timeserver' (internal DNS name)
+
+
+######### Warning: non-hax0rs can stop here ################
+
+lj-foo:~# mount
+# Then for each ext2 mount do:
+lj-foo:~# tune2fs -i 0 -c 0 -j /dev/hda1
+lj-foo:~# tune2fs -i 0 -c 0 -j /dev/hda2
+
+* change /etc/fstab to be 'auto' instead of 'ext2'
+
+* vga=1 in /etc/lilo.conf
+
+* put new kernel on machine with ext3 (static), smp, etc.
+
+* copy /etc/init.d/mii-tool from another machine
+
+* update-rc.d mii-tool start 41 S .
+
+* reboot
+
+* add ulimit -u 1024 to the bottom of /etc/profile
+
+* apt-get install postfix
+  copy /etc/postfix/* over from another debian machine.
+  Modify the bottom of /etc/postfix/main.cf to match the host.
+  Run "postalias /etc/aliases"
+  Restart postfix.
+
+* copy /etc/apache/* over from another debian machine.
+  Replace in the machine's IP and hostnamee.
+
+* copy /etc/snmp/snmpd.conf over from another debian machine.
+  Restart snmpd.
+
+* /etc/init.d/inetd.stop
+  chmod -x /etc/init.d/inetd (update-rc.d -f inetd remove ?)
+
+* rsync as user lj
+  mkdir logs
+  mkdir temp
+  mkdir var
+  rm .procmailrc
+
+* copy /etc/init.d/ljrpcd over from another debian machine.
+  run update-rc.d ljrpcd defaults 50
+  /etc/init.d/ljrpcd start
+
+* restart apache
+
+* run ssh-keygen, put slave:~/.ssh/identity.pub in
+  masterweb:~/.ssh/authorized_keys
+
+* put masterweb:~/.ssh/id_rsa.pub in 
+  slave:~/.ssh/authorized_keys2
+
+* copy lj cron and root cron from another debian web slave over.
+
+(work in progress ... much more coming soon)
+  
+
+
+
+

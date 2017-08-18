@@ -1,0 +1,5 @@
+<?_code
+    # this file exists purely because there might still be
+    # links to it.
+    return BML::redirect("$LJ::SITEROOT/pay/?item=rename");
+_code?>

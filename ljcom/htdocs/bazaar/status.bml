@@ -1,0 +1,112 @@
+<?page
+title=>Bazaar Status
+body<=
+
+<p>[&lt;&lt; <a href="./">Back</a>]</p>
+
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $dbh = LJ::get_db_writer();
+    my ($ret, $sth);
+    my $remote = LJ::get_remote($dbh);
+
+    my $bzid = $GET{'bzid'}+0;
+    my $bz;
+    unless ($bzid) {
+        $bz = $dbh->selectrow_hashref("SELECT * FROM bzrs WHERE open='1' ".
+                                      "ORDER BY datestart LIMIT 1");
+        return "No bazaar session is currently active." unless $bz;
+    } else {
+        $bz = $dbh->selectrow_hashref("SELECT * FROM bzrs WHERE bzid=?",
+                                      undef, $bzid);
+        return "Invalid bazaar ID" unless $bz;
+    }
+    $bzid = $bz->{'bzid'};
+
+    my (@pot, $pot);
+    $sth = $dbh->prepare("SELECT dateadd, amt, reason FROM bzrpot ".
+                         "WHERE bzid=? ORDER BY dateadd");
+    $sth->execute($bzid);
+    while ($_ = $sth->fetchrow_hashref) {
+        push @pot, $_;
+        $pot += $_->{'amt'};
+    }
+
+    my $is_voter;
+    $sth = $dbh->prepare("SELECT u.user, u.name, v.weight FROM bzrvoter v, user u ".
+                         "WHERE u.userid=v.userid AND v.bzid=? ".
+                         "ORDER BY v.weight DESC");
+    $sth->execute($bzid);
+    my @voters;
+    while ($_ = $sth->fetchrow_hashref) {
+        push @voters, $_;
+        $_->{'_votelink'} = 1 if $bz->{'open'} && $remote && 
+            $remote->{'user'} eq $_->{'user'};
+    }
+
+    $ret .= "<table>\n";
+    $ret .= "<tr><td align='right'><b>Bazaar Session:</b></td><td><a href=\"status.bml?bzid=$bzid\">\#$bzid</a>: $bz->{'name'}</td></tr>\n";
+    $ret .= "<tr><td align='right'><b>Start Time:</b></td><td>$bz->{'datestart'}</td></tr>\n";
+    my $state = $bz->{'open'} ? "In progress" : "Completed";
+    $ret .= "<tr><td align='right'><b>State:</b></td><td>$state</td></tr>\n";
+    $ret .= "<tr valign='top'><td align='right'><b>Pot:</b></td><td><span style='font-size: 15pt; font-weight: bold; font-family: arial,helvetica; color: #008000; background-color: #80ff80'>\$" . sprintf("%0.02f", $pot) . "</span>";
+    
+    if (@pot > 1) {
+        $ret .= "<p><b>Details:</b><table>";
+        foreach (@pot) {
+            my $reason = $_->{'reason'};
+            if ($LJ::ZILLA_ROOT) {
+                $reason =~ s/bug (\d+)/<a href="$LJ::ZILLA_ROOT\/$1">$&<\/a>/gi;
+            }
+            $ret .= sprintf("<tr><td>%s</td><td align='right'><b>\$%0.02f</b></td><td>%s</td></tr>\n", 
+                            substr($_->{'dateadd'}, 0, 10),
+                            $_->{'amt'}, $reason);
+        }
+        $ret .= "</table>";
+    }
+
+    $ret .= "</td></tr>\n";
+
+    $ret .= "</table>\n";
+
+    $ret .= "<?h1 Voters h1?><?p The following users have voting power for this Bazaar session, based on their contributions in the previous month.  Some users below are employees who have only earned voting rights, and not money from last month's pot.  View <a href='details.bml'>the details</a> to find out how the system works. p?>";
+    
+    $ret .= "<div style='margin-left: 30px'><table>";
+    $ret .= "<tr><td align='left'><b>User</b></td><td align='right' width='100'><b>Weight</b></td><td></td></tr>\n";
+    foreach my $v (@voters) {
+        my $name = LJ::eall($v->{'name'});
+        $ret .= "<tr><td>" . LJ::ljuser($v->{'user'}) . " - $name</td><td align='right'>" .
+            sprintf("%0.02f%%", $v->{'weight'}*100) . "</td>";
+        $ret .= "<td>";
+        if ($v->{'_votelink'}) {
+            $ret .= "[<a href='vote.bml'>Vote</a>]";
+        }
+        $ret .= "</td></tr>\n";
+    }
+    $ret .= "</table></div>";
+
+    $ret .= "<?h1 Recognized Contributors & Contributions h1?><?p This month's voters have so far recognized the following contributions, sorted by contribution date.  p?>";
+    $ret .= "<div style='margin-left: 30px'>";
+    $sth = $dbh->prepare("SELECT DISTINCT u.user, c.coid, c.cat, c.des, c.url, c.dateadd ".
+                         "FROM contributed c, useridmap u, bzrvote v, bzrvoter vr ".
+                         "WHERE u.userid=c.userid AND v.bzid=? AND vr.bzid=v.bzid ".
+                         "AND vr.userid=v.userid AND v.coid=c.coid AND v.weight > 0 ".
+                         "ORDER BY c.dateadd");
+    $sth->execute($bzid);
+    while (my $c = $sth->fetchrow_hashref) {
+        my $des = LJ::eall($c->{'des'});
+        $des = "<a href='$c->{'url'}'>$des</a>" if $c->{'url'};
+        $ret .= "<p>[<a href='/site/contributors.bml?mode=detail&coid=$c->{'coid'}'>$c->{'coid'}</a>] ";
+        $ret .= LJ::ljuser($c->{'user'}) . ": $des ($c->{'cat'}; $c->{'dateadd'})</p>\n";
+    }
+    $ret .= "</div>";
+
+    return $ret;
+
+}
+_code?>
+<=body
+page?>

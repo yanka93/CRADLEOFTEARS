@@ -1,0 +1,53 @@
+Switch Ports:
+3 - Wendy
+4 - Terrance
+5 - Kyle
+6 - Mackey
+7 - Bebe
+8 - Ike
+9- Pip
+10- phillip
+11- Stan
+12- Hat
+13 - Marklar
+14- Gerald
+15- blank
+16- Sheila
+17 blank
+18- Mayor
+19- Jesus
+20- blank
+21- blank
+22- blank
+23- blank
+24- Timmy
+25- blank
+26- Gobbles
+27- blank
+28- BIG/ip
+29 blank
+30- Cartman
+
+Order of stuff in cabinet:
+OLD CISCO
+Wendy
+Terrance
+Kyle
+Mackey
+Bebe
+Ike
+Pip
+Philip
+Stan
+Hat
+BIG/IP
+Timmy
+Gobbles
+Mayor
+CISCO
+Marklar
+Jesus
+Kenny
+Gerald
+Sheila
+RAID ENCLOSURE

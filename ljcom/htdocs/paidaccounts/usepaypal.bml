@@ -1,0 +1,99 @@
+<?page
+title=>Pay using PayPal
+body<=
+
+<?_code
+
+ my $ret;
+ 
+ my $user = LJ::canonical_username($FORM{'user'});
+
+ my $u = LJ::load_user($user);
+
+ unless ($u) {
+     return "<?h1 Error h1?><?p Unknown user p?>";
+ }
+
+ if ($FORM{'loggedin'}) {
+     my $remote = LJ::get_remote();
+     unless ($remote && $remote->{'user'} eq $user) {
+         return "<?h1 Error h1?><?p Invalid login?  No longer logged in? p?>";
+     }
+ } else {
+     unless (LJ::auth_okay($u, $FORM{'password'}, $FORM{'hpassword'})) {
+         return "<?h1 Invalid password h1?><?p The password you entered is not correct. p?>";
+     }
+ }
+
+ my $giftfor = LJ::canonical_username($FORM{'giftfor'});
+
+ if ($FORM{'giftfor'} && ! $giftfor) {
+     return "<?h1 Error h1?><?p The username you entered for the gift recipient doesn't look like a username. p?>";
+ }
+
+ # can't buy a gift for yourself.
+ undef $giftfor if ($giftfor eq $user);
+
+ if ($giftfor) {
+     my $gu = LJ::load_user($giftfor);
+     unless ($gu) {
+         return "<?h1 Error h1?><?p The gift recipient's username doesn't seem to exist. p?>";
+     }
+     if ($gu->{'caps'} & 16) {
+         return "<?h1 Error h1?><?p User <?ljuser $gu->{'user'} ljuser?> has a permanent account.  You can't buy them a gift payment. p?>";
+     }
+ }
+
+
+ my $months = $FORM{'months'};
+ my $amount;
+ if (defined $LJ::Pay::account{$months}) {
+     $amount = $LJ::Pay::account{$months}->{'amount'};
+ }
+
+ unless ($amount) {
+     return "<?h1 Error h1?><?p You did not select the number of months you want to pay for. p?>";     
+ }
+
+ my $forkey = $giftfor ? "&for=$giftfor" : "";
+ my $forwho = $giftfor ? ", for $giftfor" : "";
+ my $anonkey = $FORM{'anon'} ? "&anon=1" : "";
+ my $datekey;
+ if ($FORM{'giveafter'}) {
+     return "<?h1 $ML{'Error'} h1?><?p $ML{'.delivery.badformat'} p?>"
+         unless ($FORM{'giveafter'} =~ /^(\d\d\d\d)\-(\d\d)\-(\d\d)(?: (\d\d):(\d\d))?/);
+     
+     my $dtime = 0;
+     eval { $dtime = Time::Local::timegm(0, $5, $4, $3, $2-1, $1); };
+     return "<?h1 $ML{'Error'} h1?><?p $ML{'.delivery.badformat'} p?>" if @$;
+
+     my $delay = $dtime - time();
+     return "<?h1 $ML{'Error'} h1?><?p $ML{'.delivery.past'} p?>" if $delay < 0;
+     return "<?h1 $ML{'Error'} h1?><?p $ML{'.delivery.toofuture'} p?>" 
+         if $delay > 60*60*24*31;
+     
+     $datekey = "&giveafter=$dtime";
+ }
+
+ $ret .= "All your LiveJournal data has been validated.  To continue the purchase, click the PayPal icon below to go to PayPal's secure server and pay.  PayPal then sends us a notification of the payment and your account will be automatically setup.";
+ $ret .= "<center>";
+ $ret .= "<form method=\"post\" action=\"https://www.paypal.com/cgi-bin/webscr\">\n";
+ $ret .= "<input type=hidden name=cmd value=_xclick>\n";
+ $ret .= "<input type=hidden name=business value=\"paypal\@livejournal.com\">\n";
+ $ret .= "<input type=hidden name=item_name value=\"$months months paid account ($user$forwho)\">\n";
+ $ret .= "<input type=hidden name=custom value=\"months=$months&user=$user$forkey$anonkey$datekey\">\n";
+ $ret .= "<input type=hidden name=amount value=\"$amount\">\n";
+ $ret .= "<input type=hidden name='no_shipping' value='1'>\n";
+ $ret .= "<input type=hidden name='no_note' value='1'>\n";
+ $ret .= "<input type=hidden name=return value=\"http://www.livejournal.com/paidaccounts/thankyou.bml\">\n";
+ $ret .= "<input type=hidden name=notify_url value=\"http://www.livejournal.com/paidaccounts/pp_notify.bml\">\n";
+ $ret .= "<input type=hidden name=cmd value=_xclick>\n";
+ $ret .= "<input type=image src=\"http://images.paypal.com/images/x-click-but3.gif\" value=\"Buy...\">\n";
+ $ret .= "</form>\n";
+ $ret .= "</center>";
+
+ return $ret;
+ _code?>
+<=body
+page?>
+

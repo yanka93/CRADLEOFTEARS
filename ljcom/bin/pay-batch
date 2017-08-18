@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# <LJDEP>
+# prog: bin/ljmaint.pl
+# </LJDEP>
+
+~lj/bin/ljmaint.pl pay_mail pay_updateaccounts
+
+

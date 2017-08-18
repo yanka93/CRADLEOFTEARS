@@ -1,0 +1,56 @@
+<html>
+<head><title>Netstat</title>
+<body>
+<?_code
+
+ use strict;
+
+
+ # only logged in users:
+
+ my $u = LJ::get_remote();
+ return "You must be logged in to view this tool." unless $u;
+ return "You don't have 'finduser' priv." unless LJ::check_priv($u, "finduser");
+
+
+ # view load average
+ ##my $uptime = ` top -b |head -12 `;
+
+ my $uptime = `uptime`;
+
+ # but hide uptime :)
+ my @uptime = split(/,\s*/, $uptime);
+ @uptime = splice(@uptime, 3);
+ $uptime = join(", ", @uptime);
+
+
+ # netstat
+ my $netstat0 = `nice netstat -tanW `;
+ my $ip = '80.84.69.51';
+
+ my $netstat1 = `echo "$netstat0" | grep ':8' | awk '{print \$6}' | sort | uniq -c `;
+
+ my $netstat2 = `echo "$netstat0" |grep -v TIME_WAIT |grep "0 127.0.0.2:8" |grep -v LISTEN | sort -k 5 `;
+
+ my $netstat3 = `echo "$netstat0" |grep -v TIME_WAIT |grep $ip:80 |grep -v LISTEN | sort -k 5 `;
+
+ # but hide IP
+ $netstat3 =~ s/$ip/" lj.rossia.org"/eg;
+
+ my $netstat = $netstat1 . "\n" . $netstat2 . "\n" . $netstat3 ;
+
+
+ # htmt
+ my $ret =  $uptime ;
+ $ret  =  $ret . "                                               <a href='http://lj.rossia.org/1488_server-status_'>requests</a>";
+
+ $ret  =  "<pre>" . $ret . "\n" . $netstat . "</pre>";
+
+ return $ret;
+
+
+
+_code?>
+</body>
+</html>
+

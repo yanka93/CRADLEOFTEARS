@@ -1,0 +1,67 @@
+<html><!-- Webgood Page for Hidden PIN Code -->
+<head>
+<title>Webgood Page</title>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<table bgcolor="#FFFFFF" border="1" width="525">
+<tr><td align="center">
+
+  <center>
+  <br>
+  <font size=7 color=blue>
+Approved
+  </font>
+  <br>
+  <br>
+
+  <font size=3 color="#000000" face="Arial,Helvetica">
+Write down the following information immediately:
+  <br>
+  <br>
+Transaction #: <font color=red><B>%%TRAN?</B></font>
+<br>
+PIN Code: <font color=red><B>[SACCT]-%%CODE?</B></font>
+  <br>
+  <br>
+You will NOT see this information again!
+  <br>
+  <br>
+  </font>
+
+If you ever have any billing questions, you will need to refer to the numbers above.
+  <br>
+  <br>
+  <br>
+<form method="POST" action="http://www.livejournal.com/paidaccounts/ibill_credit.bml">
+  <input name="sacct" type="hidden" value="[SACCT]">
+  <input name="code" type="hidden" value="%%CODE?">
+  <input name="tran" type="hidden" value="0"> <!-- whatever this is? -->
+  <input type="submit" value="Complete Sign-Up &gt;&gt;&gt;">
+  </font>
+</form>
+
+
+<br>
+<br>
+
+<font size=2 face="Arial,Helvetica">
+If you have any questions, comments or encounter any problems, please contact <a href="mailto:accounts@livejournal.com">accounts@livejournal.com</a>
+</font>
+<br>
+<br>
+</center>
+
+
+&nbsp;
+</td></tr>
+</table>
+
+</center></div>
+
+
+</body>
+</html>
+

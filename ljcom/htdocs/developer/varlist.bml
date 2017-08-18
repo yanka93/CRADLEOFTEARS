@@ -1,0 +1,34 @@
+<?_info
+nocache=>1
+_info?><?page
+title=>Variable List
+body<=
+<?h1 Introduction h1?>
+<?p
+The following information is a list of the variables that users may define to control the look of their journal pages.  Click a variable name to see more information about it, including its properties, if any.  None of this will probably make sense unless you read the <a href="styles.bml">information about the style system</a>, which includes information on how to define variables and values.
+p?>
+
+<?h1 Variables h1?>
+<?p
+Click a variable name for more information about how and where to use it.
+<UL>
+<?_code
+
+ my @vars;
+ LJ::load_objects_from_file("vars.dat", \@vars);
+ my $ret = "";
+
+ foreach my $v (sort { $a->{'name'} cmp $b->{'name'} } @vars) {
+     $ret .= "<li><a href=\"varinfo.bml?$v->{'name'}\"><b>$v->{'name'}</b></a></li>\n";
+ }
+ return $ret;
+
+_code?>
+</UL>
+p?>
+
+<?hr?>
+Back to <A HREF="/developer/">Developer Area</A>.
+
+<=body
+page?>

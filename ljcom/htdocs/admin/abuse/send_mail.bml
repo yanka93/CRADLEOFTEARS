@@ -1,0 +1,12 @@
+<?page
+body<=
+<?_code
+
+ # This file is now out of date!
+ BML::redirect('/admin/sendmail/send.bml');
+
+_code?>
+<=body
+page?><?_c <LJDEP>
+link: htdocs/admin/abuse/index.bml
+</LJDEP> _c?>

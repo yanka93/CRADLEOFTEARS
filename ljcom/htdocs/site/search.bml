@@ -1,0 +1,42 @@
+<?_info
+localblocks<=
+pof=>{s}<a href='/paidaccounts/'><img src='<?imgprefix?>/talk/md10_thumbup.gif' width='25' height='19' alt='&#10004;' style='vertical-align: middle; border:0;' /></a>
+<=localblocks
+_info?><?page
+title=>Search
+body<=
+<?_code
+    LJ::set_active_crumb('search');
+_code?>
+<? h1 Search h1?>
+<?pof?> = Paid Only Feature
+<?h1 Search Methods h1?>
+
+<ul>
+<li>
+    <?h2 <a href="/random.bml">View a Random Journal</a> h2?>
+    <?p Find a random journal that was updated during the last day. p?>
+</li>
+<li>
+    <?h2 <a href="/directory.bml">Search By Region</a> <?pof?> h2?>
+    <?p Find journals by state or country. p?>
+</li>
+<li>
+    <?h2 <a href="/interests.bml">Search By Interests</a> h2?>
+    <?p Find people and communities by interest. p?>
+</li>
+<li>
+<?h2 <a href="/directorysearch.bml">Advanced Search</a> <?pof?> h2?>
+    <?p Search by multiple criteria. p?>
+</li>
+</ul>
+
+
+<=body
+page?>
+<?_c
+<LJDEP>
+link: htdocs/random.bml, htdocs/directory.bml
+link: htdocs/interests.bml, htdocs/directorysearch.bml
+</LJDEP>
+_c?>

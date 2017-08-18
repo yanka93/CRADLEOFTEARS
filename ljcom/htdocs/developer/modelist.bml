@@ -1,0 +1,37 @@
+<?_info
+nocache=>1
+_info?><?page
+title=>Protocol Mode List
+body<=
+
+<?h1 Introduction h1?>
+<?p
+The following information is a list of the different request modes you can make to the LiveJournal server using the <A HREF="protocol.bml">LiveJournal protocol</A>.  Click one for more information, including request and response variables.
+p?>
+
+<?h1 Variables h1?>
+<?p
+Click a variable name for more information about how and where to use it.
+<DL>
+<?_code
+
+ my @vars;
+ LJ::load_objects_from_file("protocol.dat", \@vars);
+ my $ret = "";
+
+ foreach my $v (sort { $a->{'name'} cmp $b->{'name'} } @vars)
+ {
+     $ret .= "<DT><A HREF=\"modeinfo.bml?$v->{'name'}\"><B>$v->{'name'}</B></A>";
+     $ret .= "<DD>" . $v->{'props'}->{'des'} . "\n";
+ }
+ return $ret;
+
+_code?>
+</DL>
+p?>
+
+<?hr?>
+Back to <A HREF="/developer/">Developer Area</A>.
+
+<=body
+page?>

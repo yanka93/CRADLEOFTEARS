@@ -1,0 +1,28 @@
+User-agent: *
+Disallow: /directory
+Disallow: /interests
+Disallow: /tools/tell
+Disallow: /tools/memadd
+Disallow: /tools/search.bml
+Disallow: /friends/
+Disallow: /interface/
+Disallow: /translate/
+Disallow: /comments/
+Disallow: /numreplies/
+Disallow: /users/imp_
+Disallow: /userinfo.bml?user=imp_
+Disallow: /talk
+Disallow: /stats/stats.txt
+Disallow: /create
+#
+Crawl-delay: 1
+
+Host: lj.rossia.org
+
+#
+# Blocked journals aren't listed here because robots.txt files
+# can't be above 50k or so, depending on the spider.
+# 
+# Instead, blocked journals have HTML inserted in them which
+# should prevent behaved spiders from indexing it.
+#

@@ -1,0 +1,118 @@
+<?_code
+
+ use strict;
+ use vars qw(%FORM $body $title %ML);
+
+ $title = "";
+ $body  = "";
+ my $ret;
+
+ my $tour =
+ {
+     intro =>
+     {
+         source => "intro.png",
+         href => "/",
+         next => 'create',
+     },
+     create => 
+     {
+         source => "create.png",
+         href => "/create.bml",
+         prev => 'about',
+         next => 'profile',
+     },
+     profile =>
+     {
+         source => "profile.png",
+         href => "/editinfo.bml",
+         prev => 'create',
+         next => 'update',
+     },
+     update => 
+     {
+         source => "update.png",
+         href => "/update.bml",
+         prev => 'profile',
+         next => 'modify',
+     },
+     modify =>
+     {
+         source => "modify.png",
+         href => "/modify.bml",
+         prev => 'update',
+         next => 'friends',
+     },
+     friends =>
+     {
+         source => "friends.jpg",
+         href => "/friends/",
+         prev => 'modify',
+         next => 'comms',
+     },
+     comms =>
+     {
+         source => "comms.jpg",
+         href => "/community/",
+         prev => 'friends',
+         next => 'clients',
+     },
+     clients =>
+     {
+         source => "clients.png",
+         href => "/download/",
+         prev => 'comms',
+         next => 'support',
+     },
+     support =>
+     {
+         source => "support.png",
+         href => "/support/",
+         prev => 'clients',
+         next => 'sitemap',
+     },
+     sitemap =>
+     {
+         source => "sitemap.png",
+         href => "/site/",
+         prev => 'support',
+     },
+ };
+
+ my $display = sub
+ {
+     my ($page, $code) = @_;
+     $ret .= '<table width="500" align="center" summary="">';
+     $ret .= "<tr><td colspan='3' align='center'><a href='$page->{'href'}'>";
+     $ret .= "<img src='$LJ::IMGPREFIX/tour/$page->{'source'}' border='1' width='350'/></a>";
+     $ret .= "<br /></td></tr>\n<tr>";
+     if ($page->{'prev'}) {
+         $ret .= "<td align='right'><a href=\"./?page=$page->{'prev'}\">";
+         $ret .= $ML{'.nav.prev'} . "</a>";
+     }
+     $ret .= "<td align='center'>" . $ML{".$code.title"} . "</td>";
+     if ($page->{'next'}) {
+         $ret .= "<td align='left'><a href=\"./?page=$page->{'next'}\">";
+         $ret .= $ML{'.nav.next'} . "</a>";
+     }
+     $ret .= "<tr><td align='justify' colspan='3'><?hr?><blockquote>" . $ML{".$code.caption"};
+     $ret .= "</blockquote></td></tr></table>";
+
+     return $ret;
+ };
+
+ unless (defined $FORM{'page'} and exists $tour->{$FORM{'page'}})
+ {
+     $body = $display->($tour->{'intro'}, "intro");
+     $title = BML::ml('.title', { 'title' => $ML{'.intro.title'} });
+ } else {
+     $body = $display->($tour->{$FORM{'page'}}, $FORM{'page'});
+     $title = BML::ml('.title', { 'title' => $ML{".$FORM{'page'}.title"} });
+ }
+ return;
+_code?>
+
+<?page
+title=><?_code return $title _code?>
+body=><?_code return $body; _code?>
+page?>

@@ -1,0 +1,233 @@
+#NEWLAYER: 3column/blue
+layerinfo "type" = "theme";
+layerinfo "name" = "Blue";
+layerinfo "redist_uniq" = "3column/blue";
+
+set color_bg = "#e9f3fa";
+set font_color = "#0d446b";
+set link_color = "#0d446b";
+set link_hover = "#0d446b";
+set link_side = "#0d446b";
+set link_side_h = "#0d446b";
+set side_bg = "#e9f3fa";
+set entries_bg = "#e9f3fa";
+set entries_border = "#0d446b";
+set side_t_color = "#0d446b";
+set button_bg = "#e9f3fa";
+set button_bg_h = "#b0cce0";
+set entries_font_color = "#0d446b";
+set side_border = "#0d446b";
+set c_sub_color = "#b0cce0";
+set c_sub_bg = "#0d446b";
+set side_h_color = "#0d446b";
+set side_h_border = "#0d446b";
+set side_h_bg = "#b0cce0";
+set sub_color = "#0d446b";
+
+#NEWLAYER: 3column/dark
+layerinfo "type" = "theme";
+layerinfo "name" = "Dark";
+layerinfo "redist_uniq" = "3column/dark";
+
+set color_bg = "#000000";
+set font_color = "#c0c0c0";
+set link_color = "#202020";
+set link_hover = "#FFFFFF";
+set link_side = "#95432D";
+set link_side_h = "#BA7625";
+set side_bg = "#000000";
+set side_t_color = "C0C0C0";
+set side_border = "#000000";
+set side_h_color = "#C0C0C0";
+set side_h_border = "#C0C0C0";
+set side_h_bg = "#000000";
+set entries_bg = "#58494E";
+set entries_border = "#FFFFFF";
+set button_bg = "#FFFFFF";
+set button_bg_h = "#c0c0c0";
+set entries_font_color = "#000000";
+set c_sub_color = "#000000";
+set c_sub_bg = "#ffffff";
+set sub_color = "#C0C0C0";
+
+#NEWLAYER: 3column/earth
+layerinfo "type" = "theme";
+layerinfo "name" = "Earth";
+layerinfo "redist_uniq" = "3column/earth";
+
+set color_bg = "#ECECEA";
+set font_color = "#4F4637";
+set link_color = "#4F4637";
+set link_hover = "#1D4629";
+set link_side = "#7B6E59";
+set link_side_h = "#1D4629";
+set side_bg = "#DBCEB9";
+set side_t_color = "4F4637";
+set side_border = "#7B6E59";
+set side_h_color = "#ECECEA";
+set side_h_border = "#ECECEA";
+set side_h_bg = "#7B6E59";
+set entries_bg = "#AB9F8B";
+set entries_border = "#7B6E59";
+set button_bg = "#ECECEA";
+set button_bg_h = "#4F4637";
+set entries_font_color = "#4F4637";
+set c_sub_color = "#4F4637";
+set c_sub_bg = "#ECECEA";
+set sub_color = "#4F4637";
+
+#NEWLAYER: 3column/unnamed
+layerinfo "type" = "theme";
+layerinfo "name" = "Unnamed";
+layerinfo "redist_uniq" = "3column/unnamed";
+
+set color_bg = "#E5D5C6";
+set font_color = "#000000";
+set link_color = "#202020";
+set link_hover = "#000000";
+set link_side = "#95432D";
+set link_side_h = "#D63C3C";
+set side_bg = "#E5D5C6";
+set side_t_color = "#000000";
+set side_border = "#E5D5C6";
+set side_h_color = "#000000";
+set side_h_border = "#000000";
+set side_h_bg = "#E5D5C6";
+set entries_bg = "#E5D5C6";
+set entries_border = "#E5D5C6";
+set button_bg = "#E5D5C6";
+set button_bg_h = "#ccab8a";
+set entries_font_color = "#000000";
+set c_sub_color = "#ccab8a";
+set c_sub_bg = "#E5D5C6";
+set sub_color = "#000000";
+
+#NEWLAYER: 3column/greenenvy
+layerinfo "type" = "theme";
+layerinfo "name" = "Green of Envy";
+layerinfo "redist_uniq" = "3column/greenenvy";
+
+set color_bg = "#d8ece7";
+set font_color = "#1b2d29";
+set link_color = "#1b2d29";
+set link_hover = "#1b2d29";
+set link_side = "#1b2d29";
+set link_side_h = "#1b2d29";
+set side_bg = "#d8ece7";
+set entries_bg = "#d8ece7";
+set entries_border = "#1b2d29";
+set side_t_color = "#1b2d29";
+set button_bg = "#d8ece7";
+set button_bg_h = "#b1d5cb";
+set entries_font_color = "#1b2d29";
+set side_border = "#1b2d29";
+set c_sub_color = "#b1d5cb";
+set c_sub_bg = "#1b2d29";
+set side_h_color = "#1b2d29";
+set side_h_border = "#1b2d29";
+set side_h_bg = "#b1d5cb";
+set sub_color = "#1b2d29";
+
+#NEWLAYER: 3column/blackwhite
+layerinfo "type" = "theme";
+layerinfo "name" = "Black and White";
+layerinfo "redist_uniq" = "3column/blackwhite";
+
+set color_bg = "#FFFFFF";
+set font_color = "#808080";
+set link_color = "#808080";
+set link_hover = "#202020";
+set link_side = "#c0c0c0";
+set link_side_h = "#FFFFFF";
+set side_bg = "#000000";
+set side_t_color = "808080";
+set side_border = "#ffffff";
+set side_h_color = "#c0c0c0";
+set side_h_border = "#c0c0c0";
+set side_h_bg = "#808080";
+set entries_bg = "#ffffff";
+set entries_border = "#000000";
+set button_bg = "#c0c0c0";
+set button_bg_h = "#808080";
+set entries_font_color = "#000000";
+set c_sub_color = "#ffffff";
+set c_sub_bg = "#000000";
+set sub_color = "#202020";
+
+#NEWLAYER: 3column/agentorange
+layerinfo "type" = "theme";
+layerinfo "name" = "Agent Orange";
+layerinfo "redist_uniq" = "3column/agentorange";
+
+set color_bg = "#f7e6d3";
+set font_color = "#582604";
+set link_color = "#582604";
+set link_hover = "#582604";
+set link_side = "#582604";
+set link_side_h = "#582604";
+set side_bg = "#f7e6d3";
+set entries_bg = "#f7e6d3";
+set entries_border = "#582604";
+set side_t_color = "#582604";
+set button_bg = "#f7e6d3";
+set button_bg_h = "#e0c7aa";
+set entries_font_color = "#582604";
+set side_border = "#582604";
+set c_sub_color = "#e0c7aa";
+set c_sub_bg = "#582604";
+set side_h_color = "#582604";
+set side_h_border = "#582604";
+set side_h_bg = "#e0c7aa";
+set sub_color = "#b64c06";
+
+#NEWLAYER: 3column/purple
+layerinfo "type" = "theme";
+layerinfo "name" = "Purple";
+layerinfo "redist_uniq" = "3column/purple";
+
+set color_bg = "#e8cff1";
+set font_color = "#410458";
+set link_color = "#410458";
+set link_hover = "#410458";
+set link_side = "#410458";
+set link_side_h = "#410458";
+set side_bg = "#e8cff1";
+set entries_bg = "#e8cff1";
+set entries_border = "#410458";
+set side_t_color = "#410458";
+set button_bg = "#e8cff1";
+set button_bg_h = "#d1aae0";
+set entries_font_color = "#410458";
+set side_border = "#410458";
+set c_sub_color = "#d1aae0";
+set c_sub_bg = "#410458";
+set side_h_color = "#410458";
+set side_h_border = "#410458";
+set side_h_bg = "#d1aae0";
+set sub_color = "#410458";
+
+#NEWLAYER: 3column/mellowyellow
+layerinfo "type" = "theme";
+layerinfo "name" = "Mellow Yellow";
+layerinfo "redist_uniq" = "3column/mellowyellow";
+
+set color_bg = "#f8f6da";
+set font_color = "#42331e";
+set link_color = "#42331e";
+set link_hover = "#8d452f";
+set link_side = "#8d452f";
+set link_side_h = "#42331e";
+set side_bg = "#f2c98e";
+set entries_bg = "#f8f6da";
+set entries_border = "#42331e";
+set side_t_color = "#42331e";
+set button_bg = "#f2c98e";
+set button_bg_h = "#e8c098";
+set entries_font_color = "#42331e";
+set side_border = "#42331e";
+set c_sub_color = "#42331e";
+set c_sub_bg = "#f2c98e";
+set side_h_color = "#333333";
+set side_h_border = "#333333";
+set side_h_bg = "#f8f6da";
+set sub_color = "#d39945";

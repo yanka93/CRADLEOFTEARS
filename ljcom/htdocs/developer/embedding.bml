@@ -1,0 +1,470 @@
+<?_code
+
+use strict;
+use vars qw(%FORM $body $title);
+
+$title = "Embedding LiveJournal";
+$body = "";
+my $ret = "";
+
+# until this is in a database somewhere, here is the basic data structure:
+# @methods =
+# {
+#  'group' => "short lowercase 'group of methods' name",
+#  'title' => "full title",
+#  'detail' => "optional extra description",
+#  'methods' =>
+#    [
+#     'name' => "optional method name",
+#     'author' => "optional method author",
+#     'text' => "mandatory paragraph",
+#     'explanation' => "optional 'why this does such and such'",
+#     'note' => "optional 'warning' or 'caution'",
+#     'example' => "mandatory example",
+#    ]
+# };
+
+my $method_javascript =
+{
+    'text' =>
+        "<?p The simplest way to embed your journal into your website is to just insert ".
+        "this JavaScript wherever in your webpage HTML that you want your journal to ".
+        "show up. In browsers where JavaScript is unavailable, a link to your journal can ".
+        "be shown instead. p?>",
+    'explanation' =>
+        "<?p This JavaScript fragment loads JavaScript from LiveJournal. ".
+        "The special thing to note here is the &amp;enc=js at the end of the customview.cgi arguments ".
+        'that tells LiveJournal to encode the page as one big <tt>document.write("....");</tt> JavaScript command. p?>',
+    'example' => <<"EOT",
+&lt;script language="JavaScript"
+src="http://www.livejournal.com/customview.cgi?username=[[username]]&amp;amp;styleid=101&amp;amp;enc=js"&gt;
+&lt;noscript&gt;&lt;a href="http://[[username]].livejournal.com/"&gt;View my LiveJournal&lt;/a&gt;&lt;/noscript&gt;
+&lt;/script&gt;
+EOT
+};
+
+my $method_frameslayers =
+{
+    'text' => 
+        "<?p One way to hide <tt>www.livejournal.com</tt> from the URL and make your journal ".
+        "look like part of your site is using frames... put the HTML page with the ".
+        "<tt>&lt;frameset&gt;</tt> on your own server, and then make one of the frames be ".
+        "your journal.  This method will work with any frame-supporting browser, ".
+        "including Netscape and Internet Explorer. p?>".
+        "<?p Additionally, HTML-4.0 compliant browsers are supposed to let you embed a ".
+        "frame inline with your page, so it doesn't have to be on the far side. ".
+        "This is called an <code>&lt;iframe&gt;</code>. Internet Explorer supports this, as do ".
+        "Netscape 6, Mozilla and all recent Opera versions. Inline frames ".
+        "aren't as compatible as normal frames, and won't work in Netscape 4. ".
+        "The following example shows an <tt>iframe</tt>: p?>",
+    'note' => 
+        "<?p For more information on <code>&lt;iframe&gt;</code>, see ".
+        "<a href=\"http://www.w3.org/TR/REC-html40/present/frames.html\#h-16.5\">the HTML 4.0 spec</a>. p?>",
+    'example' => <<"EOT",
+&lt;center&gt;
+&lt;iframe name="livejournal"
+src="http://www.livejournal.com/users/[[username]]/" 
+frameborder="0"
+scrolling="auto" height="400" width="460"&gt;
+&lt;a href="http://[[username]].livejournal.com/"&gt;View my LiveJournal&lt;/a&gt;
+&lt;/iframe&gt;
+&lt;/center&gt;
+EOT
+};
+
+my $method_cgi_script =
+{
+    'name' => "Basic CGI Script",
+    'text' =>
+        "<?p You can write a CGI script (a program that runs on your server) to download ".
+        "your journal and then spit it back out to your clients. You could write a CGI ".
+        "script like this in any language, but by far the easiest language would be Perl, mostly ".
+        "because just about every hosting provider supports it. p?>",
+    'explanation' =>
+        "<?p The client will never see <tt>www.livejournal.com</tt>, because your server is ".
+        "actually the one that's downloading it. p?>",
+    'note' =>
+        "<?p This example uses the <em>LibWWW</em> module for perl, which you may need to install on your server, ".
+        "or have your admin do it. p?>",
+    'example' =>
+        <<"EOT",
+#!/usr/bin/perl
+
+use LWP::Simple;
+print "Content-type: text/html\\n\\n";
+print get('http://www.livejournal.com/customview.cgi' .
+          '?username=[[username]]&styleid=101');
+EOT
+};
+
+my $method_cgi_ssi =
+{
+    'name' => "Server Side Includes and CGI",
+    'text' =>
+        "<?p If you already have some existing content that you don't want to modify and you ".
+        "just want your LiveJournal inserted into an existing HTML document on your server ".
+        "everytime a client requests it, you can create the CGI script in the previous example ".
+        "and then place the example below into a server-parsed HTML document. p?>",
+    'note' =>
+        "<?p To get an HTML file to be server parsed, you usually have to name it <tt>.shtml</tt>, ".
+        "or set its execute bit; it depends on your webserver and how it's configured. ".
+        "In order to figure that out you might need to talk to your sysadmin. p?>",
+    'example' =>
+        <<"EOT",
+&lt;!--#exec cgi="/cgi-bin/livejournal.cgi" --&gt;
+EOT
+};
+
+my $method_bml =
+{
+    'text' => 
+        "<?p If you're using <a href=\"http://www.bradfitz.com/bml/\">BML</a> on your server, you need ".
+        "to do two things in your document. First, you need to set the NOCACHE flag (example included), so that the visitor's ".
+        "browser doesn't store old states of the page in cache. Then you simply need to add in the given ".
+        "_CODE block somewhere on your page. p?>\n".
+        "<?p Since BML evaluates markup blocks returned from code blocks, you can include BML markup in your ".
+        "embedding style in order to make your embedded journal fit in with your BML scheme. p?>",
+    'note' =>
+        "<?p This uses the <em>LibWWW</em> module for Perl, which you may need to install on your server, ".
+        "or have your admin do it. p?>",
+    'example' => 
+        "<?_info\nNOCACHE=>1\n_info?>\n\n".
+        BML::ehtml("<?_code\n\n  use LWP::Simple;\n".
+                   "  return get('http://www.livejournal.com/customview.cgi' .\n".
+                   "             '?username=[[username]]&styleid=101');\n\n".
+                   "_code?>"),
+};
+
+my $method_python =
+{
+    'author' => " Jeremy Tribby",
+    'text'=>
+        "<?p Embedding your LiveJournal is easy with Python; just use the urllib class. p?>",
+    'example' => <<"EOT",
+&lt;%
+import urllib
+u = urllib.open('http://www.livejournal.com/customview.cgi?username=[[username]]&styleid=101')
+print 'Content-type: text/html\\n\\n'
+print u.read()
+%&gt;
+EOT
+};
+
+my $method_flash =
+{
+    'text' => 
+        "One of our users informed us that it is possible to have Flash download a list of ".
+        "variables to prefill into text elements in a Flash file. The formatting of these ".
+        "variable=value pairs are the same as in URLs. To accomodate this need, we provide ".
+        "a style which does this formatting for you. As an example, see the URL below.",
+    'example' => 
+        'http://www.livejournal.com/customview.cgi?username=[[username]]&styleid=103',
+};
+my $method_php_fpassthru =
+{
+    'name' => "Using <code>fpassthru()</code>",
+    'author' => "<a href=\"http://www.whump.com/moreLikeThis/\">Bill Humpries</a>",
+    'text' => "<?p This method simply opens the journal URL, and then prints the content. p?>",
+    'explanation' =>
+        "<?p This method uses <tt>fopen()</tt> to open the journal URL, and then uses <tt>fpassthru()</tt> ".
+        "to pass the journal content to stdout. p?>",
+    'example' => <<"EOT",
+&lt;?php
+\$journalURL = "http://www.livejournal.com/".
+              "customview.cgi?username=[[username]]&styleid=101";
+ 
+if (\$fh = fopen(\$journalURL,"r"))  {
+    fpassthru(\$fh);
+} else {
+    echo "&lt;p&gt;Unable to load journal.&lt;/p&gt;\\n";
+}
+?&gt;
+EOT
+};
+
+my $method_php_fsockopen =
+{
+    'name' => "Using <code>fsockopen()</code>",
+    'author' => "<a href=\"mailto:elliot\@rightnowtech.com\">Elliot Schlegelmilch</a>",
+    'text' => "<?p This method is slightly different, and may work even if URL fopen wrappers aren't enabled on your server. p?>",
+    'explanation' =>
+        "<?p This method uses <code>fsockopen()</code> to open a network socket to the journal site, and then uses the HTTP protocol to ".
+        "request the journal's content. Given that it doesn't fail, it will simply fetch each line of the server's response. p?>",
+    'example' => <<"EOT",
+&lt;?php
+\$fp = fsockopen("www.livejournal.com", 80, &\$errno, \&\$errstr, 30);
+if(\$fp) {
+    fputs(\$fp,"GET /customview.cgi?".
+              "username=[[username]]&styleid=101 HTTP/1.0\\n\\n");
+    while(!feof(\$fp)) {
+        echo fgets(\$fp,128);
+    }
+    fclose(\$fp);
+}
+?&gt;
+EOT
+};
+
+my $method_php_file =
+{
+    'name' => "Using <code>file()</code>",
+    'author' => "<a href=\"mailto:jay\@fudge.org\">Jay Cuthrell</a>",
+    'text' => "This method is useful for those that want a line by line parse of their journal, with line number references.",
+    'explanation' =>
+        "<?p This method uses the <code>file()</code> function to read in the journal content as a large array, and then it prints ".
+        "it back out line by line. p?>",
+    'example' => <<"EOT",
+&lt;?php
+\$page = "http://www.livejournal.com/customview.cgi".
+        "?username=[[username]]&styleid=101";
+\$content = file(\$page);
+\$slurp = "";
+while (list(\$foo,\$bar) = each(\$content)) {
+    \$slurp .= \$bar; 
+}
+echo \$slurp; 
+?&gt;
+EOT
+};
+
+my $method_php_include =
+{
+    'name' => "Using <code>include()</code>",
+    'author' => "<a href=\"mailto:jon\@csh.rit.edu\">Jon Parise</a>",
+    'text' => "<?p This simply includes the journal page inside of the PHP page. p?>",
+    'note' => "<?p This requires you have URL fopen wrappers enabled (they're on by default in PHP 4). p?>",
+    'example' => <<"EOT",
+&lt;?php
+include "http://www.livejournal.com/customview.cgi".
+        "?username=[[username]]&styleid=101";
+?&gt;
+EOT
+};
+
+my $method_asp_xmlhttp =
+{
+    'name' => "Using the <tt>Microsoft.XMLHTTP</tt> component",
+    'author' => "<a href=\"mailto:Pavel.Titov\@mtu-net.ru\">Pavel Titov</a>",
+    'text' => "<?p This is an easy way to embed your journal using the <tt>Microsoft.XMLHTTP</tt> component and IIS. p?>",
+    'example' => <<"EOT",
+&lt;%
+    Response.Buffer = True
+    Dim xml
+ 
+    ' Create an xmlhttp object:
+    Set xml = Server.CreateObject("Microsoft.XMLHTTP")
+    ' Or, for version 3.0 of XMLHTTP, use:
+    ' Set xml = Server.CreateObject("MSXML2.ServerXMLHTTP")
+ 
+    ' Opens the connection to the remote server.
+    xml.Open "GET", 
+             "http://www.livejournal.com/customview.cgi?username=[[username]]&styleid=101",
+             False
+ 
+    ' Actually Sends the request and returns the data:
+    xml.Send
+ 
+    Response.Write xml.responseText
+ 
+    Set xml = Nothing
+%&gt;
+EOT
+};
+
+my $method_asp_perlscript =
+{
+    'name' => "Using PerlScript",
+    'author' => "<a href=\"mailto:ansley\@net-impact.net\">Ansley Ingram</a>",
+    'text' => "<?p Here is how to embed your LiveJournal on your site using ASP and PerlScript. p?>",
+    'note' =>
+        "<?p Unfortuately, many WinNT hosting providers don't offer PerlScript. ".
+        "PerlScript is included in the <a href=\"http://www.activestate.com/ActivePerl/\">ActivePerl</a> ".
+        "installation for NT from ActiveState. p?>",
+    'example' => <<"EOT",
+&lt;%\@language=perlscript%&gt;
+&lt;%
+    use LWP::Simple;
+    \$Response->Write(get 'http://www.livejournal.com/customview.cgi?' .
+                         'username=[[username]]&styleid=101');
+%&gt;
+EOT
+};
+
+my $method_aolserver =
+{
+    'author' => "<?ljuser jackal ljuser?>",
+    'text' => "<?p You can embed your LiveJournal on your site using AOLServer's .adp pages. p?>",
+    'note' => 
+        "<?p This is <strong>not</strong> for people using AOL's Internet Access service; ".
+        "it is for people using the AOLServer web server. p?>",
+    'example' => <<"EOT",
+&lt;%
+ ns_puts "[ns_geturl http://www.livejournal.com/customview.cgi?username=[[username]]&styleid=101 ]"
+%&gt;
+EOT
+};
+
+my $method_coldfusion =
+{
+    'author' => "<?ljuser mrh ljuser?>",
+    'text' => "<?p Cold Fusion users can embed their journals as follows. p?>",
+    'example' => <<"EOT",
+&lt;CFHTTP
+URL="http://www.livejournal.com/customview.cgi?username=[[username]]&styleid=101"
+         METHOD="GET"&gt;
+&lt;/CFHTTP&gt;
+&lt;CFOUTPUT&gt;\#cfhttp.filecontent\#&lt;/CFOUTPUT&gt;
+EOT
+};
+
+my @methods =
+(
+ {'group' => "js",
+  'title' => "JavaScript",
+  'detail' => "The easiest way to embed",
+  'methods' => [$method_javascript],
+ },
+ {'group' => "frameslayers",
+  'title' => "HTML Frames",
+  'detail' => "The next easiest way",
+  'methods' => [$method_frameslayers],
+ },
+ {'group' => "cgi",
+  'title' => "CGI Scripts",
+  'detail' => "Easy server side programming",
+  'methods' => [$method_cgi_script, $method_cgi_ssi,],
+ },
+ {'group' => "bml",
+  'title' => "Better Markup Language",
+  'detail' => "Using the language of LiveJournal",
+  'methods' => [$method_bml],
+ },
+ {'group' => "flash",
+  'title' => "Macromedia Flash",
+  'methods' => [$method_flash],
+ },
+ {'group' => "php",
+  'title' => "PHP",
+  'methods' => [$method_php_fpassthru, $method_php_fsockopen, $method_php_file, $method_php_include],
+ },
+ {'group' => "python",
+  'title' => "Python",
+  'methods' => [$method_python],
+ },
+ {'group' => "asp",
+  'title' => "Active Server Pages",
+  'methods' => [$method_asp_xmlhttp, $method_asp_perlscript],
+ },
+ {'group' => "coldfusion",
+  'title' => "Cold Fusion",
+  'methods' => [$method_coldfusion],
+ },
+ {'group' => "adp",
+  'title' => "AOLServer .adp pages",
+  'methods' => [$method_aolserver],
+ },
+);
+
+my $selected_method_group = $FORM{'method'};
+my $valid_selection = (defined $selected_method_group and
+                        ($selected_method_group eq "all" or
+                         grep { $selected_method_group eq $_->{'group'} } @methods));
+
+unless ($valid_selection)
+{
+    $ret .= <<"EOT";
+<?h1 Introduction h1?>
+<?p Not everyone likes to link to LiveJournal.com to show their LiveJournal;
+a lot of people prefer to embed it directly into their own home page. p?>
+<?p However, doing so isn't always easy.  There are a lot of differences 
+between servers, and outside of these basic instructions below, 
+we don't have much time to help everybody configure their own servers correctly.  
+Even if you don't have control over your server, there are still some 
+HTML-only ways to do it, although less transparently and with other additional
+caveats. p?>
+<?p Note that embedding is a <a href="/paidaccounts/">paid account</a> feature,
+and so these instructions will not work for users with free accounts. p?>
+
+Listed below are some of the different ways that you can embed your journal.
+    <ul>
+EOT
+      foreach my $method (@methods) {
+          my $group = LJ::eurl($method->{'group'});
+          $ret .= "<li><a href=\"embedding.bml?method=$group\"><b>$method->{'title'}</b></a>";
+          if (defined $method->{'detail'}) {
+              $ret .= " - $method->{detail}\n";
+          }
+      }
+      $ret .= <<"EOT";
+    </ul>
+
+<?p
+  Optionally, you can <a href="embedding.bml?method=all">view all</a> of the methods on
+one page.
+p?>
+<?hr?>
+<a href="./">&lt;&lt; Back to the developer area</a>
+EOT
+    $body = $ret;
+    return;
+}
+
+my $remote = LJ::get_remote_noauth();
+my $ru=$remote->{'user'} || "<var>username</var>";
+
+my $display_method = sub 
+{
+     my $method = shift;
+     my $heading = (shift() ? "H1" : "H2");
+     
+     next if not defined $method->{'methods'};
+     foreach $method (@{$method->{'methods'}}) {
+         if (defined $method->{'name'}) {
+             $ret .="<?$heading $method->{'name'} $heading?>\n";
+         }
+         if (defined $method->{'author'}) {
+             $ret .="<?p <span style=\"font-weight: bold;\">Contributed by:</span> ";
+             $ret .= $method->{'author'} . " p?>";
+         }
+         $ret .= "$method->{text}\n";
+         if (defined $method->{'explanation'}) {
+             $ret .= "<?h2 Explanation h2?>$method->{'explanation'}\n";
+         }
+         if (defined $method->{'note'}) {
+             $ret .= "<?h2 Note h2?>$method->{'note'}\n";
+         }
+         my $example=$method->{'example'};
+         $example=~s/\[\[username\]\]/$ru/gs;
+         $ret .= '<pre style="color: #0000ff">';
+         $ret .= $example;
+         $ret .= '</pre>';
+     }
+ };
+
+if ($selected_method_group eq "all") {
+     $title .= " - All Methods";
+     foreach my $method (@methods) {
+         $ret .= "<?h1 $method->{'title'} h1?>\n";
+         $display_method->($method);
+         $ret .= "<?hr?>";
+     }
+
+ } else {
+     foreach my $method (@methods) {
+         if ($method->{'group'} eq $selected_method_group) {
+             $title .= " - $method->{'title'}";
+#             $ret .= "<?h1 $method->{'title'} h1?>\n";
+             $display_method->($method,1);
+             $ret .= "<?hr?>";
+         }
+     }
+ }
+$ret .= '<a href="./embedding.bml">&lt;&lt; Back to the embedding page</a>';
+$body = $ret;
+return;
+_code?>
+
+<?page
+title=><?_code return $title _code?>
+body=><?_code return $body _code?>
+page?>

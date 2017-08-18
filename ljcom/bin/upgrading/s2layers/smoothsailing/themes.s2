@@ -1,0 +1,612 @@
+#NEWLAYER: smoothsailing/starry
+layerinfo "redist_uniq" = "smoothsailing/starry";
+layerinfo "type" = "theme";
+layerinfo "name" = "Starry Night";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#000000";
+    set color_header_title_text = "#FFFFB9";
+    set color_header_subtitle_text = "#dddddd";   
+    set color_header_menubar_background = "#000044";
+    set color_header_menubar_text = "#FFFFB9";
+    set color_header_menubar_background_hover = "#000000";
+    set color_header_menubar_text_hover = "#dddddd";
+    set color_header_borders = "#89a2be";
+
+    set color_body_links = "#ffffb9";
+    set color_body_links_visited = "#dddddd";
+    set color_body_titlebar_background = "#aaaaaa";
+    set color_body_titlebar_text = "#000044";
+    set color_body_footer_background = "#000000";
+    set color_body_footer_text = "#ffffb9";
+    set color_body_background = "#000044";
+    set color_body_text = "#FFFFB9";
+
+    set color_body_entrytitle_background = "#000000";
+    set color_body_entrytitle_background_alternate = "#aaaaaa";
+    set color_body_entrytitle_border = "#89A2BE";
+    set color_body_entrytitle_text = "#89a2be";
+    set color_body_entrytitle_links = "#89a2be";
+    set color_body_entry_background = "#000044";
+    set color_body_entry_userinfo_background = "#000044";
+    set color_body_entry_text = "#FFFFB9";
+
+    set color_month_borders = "#89A2BE";
+    set color_month_title_background = "#aaaaaa";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#aaaaaa";
+    set color_month_postcount = "#FFFFB9";
+
+
+
+#NEWLAYER: smoothsailing/pink
+layerinfo "redist_uniq" = "smoothsailing/pink";
+layerinfo "type" = "theme";
+layerinfo "name" = "Pretty in Pink";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#CC4E5C";
+    set color_header_title_text = "#FFEEFF";
+    set color_header_subtitle_text = "#FFB6C1";  
+    set color_header_menubar_background = "#e6828f";
+    set color_header_menubar_text = "#FFEEFF";
+    set color_header_menubar_background_hover = "#CC4E5C";
+    set color_header_menubar_text_hover = "#FFEEFF";
+    set color_header_borders = "#FFEEFF";
+
+    set color_body_links = "#CC4E5C";
+    set color_body_links_visited = "#CC4E5C";
+    set color_body_titlebar_background = "#FFB6C1";
+    set color_body_titlebar_text = "#CC4E5C";
+    set color_body_footer_background = "#FFB6C1";
+    set color_body_footer_text = "#CC4E5C";
+    set color_body_background = "#FFEEFF";
+    set color_body_text = "#CC4E5C";
+    set color_body_entrytitle_background = "#FFB6C1";
+    set color_body_entrytitle_background_alternate = "#e6828f";
+    set color_body_entrytitle_border = "#CC4E5C";
+    set color_body_entrytitle_text = "#CC4E5C";
+    set color_body_entrytitle_links = "#CC4E5C";
+    set color_body_entry_text = "#CC4E5C";
+    set color_body_entry_background = "#FFEEFF";
+    set color_body_entry_userinfo_background = "#FFEEFF";
+
+    set color_month_borders = "#CC4E5C";
+    set color_month_title_background = "#FFB6C1";
+    set color_month_title_text = "#CC4E5C";
+    set color_month_dates = "#CC4E5C";
+    set color_month_postcount = "#e6828f";
+
+
+
+
+#NEWLAYER: smoothsailing/easter
+layerinfo "redist_uniq" = "smoothsailing/easter";
+layerinfo "type" = "theme";
+layerinfo "name" = "Easter Basket";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#00B789";
+    set color_header_title_text = "#FFFF82";
+    set color_header_subtitle_text = "#005100";   
+    set color_header_menubar_background = "#FFFF82";
+    set color_header_menubar_text = "#005100";
+    set color_header_menubar_background_hover = "#C7A0CB";
+    set color_header_menubar_text_hover = "#005100";
+    set color_header_borders = "#009300";
+
+    set color_body_links = "#005100";
+    set color_body_links_visited = "#005100";
+    set color_body_titlebar_background = "#C7A0CB";
+    set color_body_titlebar_text = "#005100";
+    set color_body_footer_background = "#C7A0CB";
+    set color_body_footer_text = "#005100";
+    set color_body_background = "#DDDFF0";
+    set color_body_text = "#005100";
+    set color_body_entrytitle_background = "#FFFF82";
+    set color_body_entrytitle_background_alternate = "#C7A0CB";
+    set color_body_entrytitle_border = "#009300";
+    set color_body_entrytitle_text = "#005100";
+    set color_body_entrytitle_links = "#005100";
+    set color_body_entry_text = "#005100";
+    set color_body_entry_background = "#DDDFF0";
+    set color_body_entry_userinfo_background = "#DDDFF0";
+
+    set color_month_borders = "#00B789";
+    set color_month_title_background = "#FFFF82";
+    set color_month_title_text = "#005100";
+    set color_month_dates = "#C7A0CB";
+    set color_month_postcount = "#005100";
+
+
+
+
+#NEWLAYER: smoothsailing/mocha
+layerinfo "redist_uniq" = "smoothsailing/mocha";
+layerinfo "type" = "theme";
+layerinfo "name" = "Mochachino";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#666666";
+    set color_header_title_text = "#e6e6e6";
+    set color_header_subtitle_text = "#B1A68B";   
+    set color_header_menubar_background = "#635a48";
+    set color_header_menubar_text = "#b1a68b";
+    set color_header_menubar_background_hover = "#b1a68b";
+    set color_header_menubar_text_hover = "#666666";
+    set color_header_borders = "#e6e6e6";
+
+    set color_body_links = "#464640";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#B1A68B";
+    set color_body_titlebar_text = "#e6e6e6";
+    set color_body_footer_background = "#b1a68b";
+    set color_body_footer_text = "#e6e6e6";
+    set color_body_background = "#e6e6e6";
+    set color_body_entrytitle_background = "#b1a68b";
+    set color_body_entrytitle_background_alternate = "#796D51";
+    set color_body_entrytitle_border = "#666666";
+    set color_body_entrytitle_text = "#e6e6e6";
+    set color_body_entrytitle_links = "#e6e6e6";
+    set color_body_entry_text = "#464640";
+    set color_body_entry_background = "#e6e6e6";
+    set color_body_entry_userinfo_background = "#e6e6e6";
+
+    set color_month_borders = "#666666";
+    set color_month_title_background = "#e6e6e6";
+    set color_month_title_text = "#464640";
+    set color_month_dates = "#464640";
+    set color_month_postcount = "#796D51";
+
+#NEWLAYER: smoothsailing/yellow
+layerinfo "redist_uniq" = "smoothsailing/yellow";
+layerinfo "type" = "theme";
+layerinfo "name" = "Insane Yellow";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#202020"; 
+    set color_header_title_text = "#FFFF04";
+    set color_header_subtitle_text = "#dddddd";   
+    set color_header_menubar_background = "#000000"; 
+    set color_header_menubar_text = "#FFFFB9";
+    set color_header_menubar_background_hover = "#202020"; 
+    set color_header_menubar_text_hover = "#FFFFB9";
+    set color_header_borders = "#FFFF04";
+
+    set color_body_links = "#aaaaaa";
+    set color_body_links_visited = "#dddddd";
+    set color_body_titlebar_background = "#aaaaaa";
+    set color_body_titlebar_text = "#000000";
+    set color_body_footer_background = "#202020"; 
+    set color_body_footer_text = "#ffffb9";
+    set color_body_background = "#000000"; 
+    set color_body_text = "#FFFFB9";
+
+    set color_body_entrytitle_background = "#202020"; 
+    set color_body_entrytitle_background_alternate = "#aaaaaa";
+    set color_body_entrytitle_border = "#FFFF04";
+    set color_body_entrytitle_text = "#FFFF04";
+    set color_body_entrytitle_links = "#FFFF04";
+    set color_body_entry_background = "#000000"; 
+    set color_body_entry_userinfo_background = "#000000"; 
+    set color_body_entry_text = "#aaaaaa";
+
+    set color_month_borders = "#FFFFB9";
+    set color_month_title_background = "#aaaaaa";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#aaaaaa";
+    set color_month_postcount = "#FFFFB9";
+
+
+#NEWLAYER: smoothsailing/forest
+layerinfo "redist_uniq" = "smoothsailing/forest";
+layerinfo "type" = "theme";
+layerinfo "name" = "In the Forest";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#635a48";
+    set color_header_title_text = "#e7dfcf";
+    set color_header_subtitle_text = "#607c6d";   
+    set color_header_menubar_background = "#899ba3";
+    set color_header_menubar_text = "#464640";
+    set color_header_menubar_background_hover = "#e7dfcf";
+    set color_header_menubar_text_hover = "#464640";
+    set color_header_borders = "#464640";
+
+    set color_body_links = "#e7dfcf";
+    set color_body_links_visited = "#e7dfcf";
+    set color_body_titlebar_background = "#e7dfcf";
+    set color_body_titlebar_text = "#464640";
+    set color_body_footer_background = "#e7dfcf";
+    set color_body_footer_text = "#464640";
+    set color_body_background = "#607c6d";
+    set color_body_text = "#e7dfcf";
+
+    set color_body_entrytitle_background = "#635a48";
+    set color_body_entrytitle_background_alternate = "#464640";
+    set color_body_entrytitle_border = "#e7dfcf";
+    set color_body_entrytitle_text = "#e7dfcf";
+    set color_body_entrytitle_links = "#e7dfcf";
+    set color_body_entry_userinfo_background = "#626b5b";
+    set color_body_entry_background = "#626b5b";
+    set color_body_entry_text = "#e7dfcf";
+
+    set color_month_borders = "#464640";
+    set color_month_title_background = "#e7dfcf";
+    set color_month_title_text = "#464640";
+    set color_month_dates = "#899ba3";
+    set color_month_postcount = "#e7dfcf";
+
+
+
+#NEWLAYER: smoothsailing/red
+layerinfo "redist_uniq" = "smoothsailing/red";
+layerinfo "type" = "theme";
+layerinfo "name" = "Seeing Red";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#bb0000";
+    set color_header_title_text = "#ffffff";
+    set color_header_subtitle_text = "#ffffff";   
+    set color_header_menubar_background = "#880000";
+    set color_header_menubar_text = "#ffffff";
+    set color_header_menubar_background_hover = "#ffffff";
+    set color_header_menubar_text_hover = "#bb0000";
+    set color_header_borders = "#ffffff";
+    set color_body_links = "#880000";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#bb0000";
+    set color_body_titlebar_text = "#ffffff";
+    set color_body_footer_background = "#bb0000";
+    set color_body_footer_text = "#ffffff";
+    set color_body_background = "#f6f6f6";
+    set color_body_text = "#880000";
+    set color_body_entrytitle_background = "#bb0000";
+    set color_body_entrytitle_background_alternate = "#880000";
+    set color_body_entrytitle_border = "#000000";
+    set color_body_entrytitle_text = "#ffffff";
+    set color_body_entrytitle_links = "#ffffff";
+    set color_body_entry_background = "#f6f6f6";
+    set color_body_entry_text = "#880000";
+    set color_month_borders = "#880000";
+    set color_month_title_background = "#bb0000";
+    set color_month_title_text = "#ffffff";
+    set color_month_dates = "#880000";
+    set color_month_postcount = "#bb0000";
+
+
+
+#NEWLAYER: smoothsailing/army
+layerinfo "redist_uniq" = "smoothsailing/army";
+layerinfo "type" = "theme";
+layerinfo "name" = "Army Attire";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#444444";
+    set color_header_title_text = "#cccc99";
+    set color_header_subtitle_text = "#e6e6e6";   
+    set color_header_menubar_background = "#665d34";
+    set color_header_menubar_text = "#cccc99";
+    set color_header_menubar_background_hover = "#cccc99";
+    set color_header_menubar_text_hover = "#444444";
+    set color_header_borders = "#e6e6e6";
+
+    set color_body_links = "#444444";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#cccc99";
+    set color_body_titlebar_text = "#665d34";
+    set color_body_footer_background = "#cccc99";
+    set color_body_footer_text = "#665d34";
+    set color_body_background = "#e6e6e6";
+
+    set color_body_entrytitle_background = "#cccc99";
+    set color_body_entrytitle_background_alternate = "#665d34";
+    set color_body_entrytitle_border = "#444444";
+    set color_body_entrytitle_text = "#665d34";
+    set color_body_entrytitle_links = "#665d34";
+    set color_body_entry_text = "#444444";
+    set color_body_entry_background = "#e6e6e6";
+    set color_body_entry_userinfo_background = "#e6e6e6";
+
+    set color_month_borders = "#444444";
+    set color_month_title_background = "#e6e6e6";
+    set color_month_title_text = "#444444";
+    set color_month_dates = "#444444";
+    set color_month_postcount = "#665d34";
+
+
+
+#NEWLAYER: smoothsailing/midnight
+layerinfo "redist_uniq" = "smoothsailing/midnight";
+layerinfo "type" = "theme";
+layerinfo "name" = "Midnight";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#000000";
+    set color_header_title_text = "#BEAA61";
+    set color_header_subtitle_text = "#76456B";   
+    set color_header_menubar_background = "#76456B";
+    set color_header_menubar_text = "#dddddd";
+    set color_header_menubar_background_hover = "#000000";
+    set color_header_menubar_text_hover = "#dddddd";
+    set color_header_borders = "#dddddd";
+
+    set color_body_links = "#aaaaaa";
+    set color_body_links_visited = "#dddddd";
+    set color_body_titlebar_background = "#BEAA61";
+    set color_body_titlebar_text = "#000000";
+    set color_body_footer_background = "#76456B";
+    set color_body_footer_text = "#dddddd";
+    set color_body_background = "#000000";
+    set color_body_text = "#aaaaaa";
+
+    set color_body_entrytitle_background = "#76456B";
+    set color_body_entrytitle_background_alternate = "#888888";
+    set color_body_entrytitle_border = "#cccccc";
+    set color_body_entrytitle_text = "#dddddd";
+    set color_body_entrytitle_links = "#dddddd";
+    set color_body_entry_userinfo_background = "#000000";
+    set color_body_entry_background = "#000000";
+    set color_body_entry_text = "#aaaaaa";
+
+    set color_month_borders = "#dddddd";
+    set color_month_title_background = "#aaaaaa";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#aaaaaa";
+    set color_month_postcount = "#BEAA61";
+
+
+
+#NEWLAYER: smoothsailing/violet
+layerinfo "redist_uniq" = "smoothsailing/violet";
+layerinfo "type" = "theme";
+layerinfo "name" = "Very Violet";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#7c52ab"; 
+    set color_header_subtitle_text = "#dbcfe9";   
+    set color_header_menubar_background = "#bfaad7"; 
+    set color_header_menubar_background_hover = "#7c52ab"; 
+    set color_body_links_visited = "#563976";
+    set color_body_titlebar_background = "#dbcfe9";
+    set color_body_footer_background = "#bfaad7";
+    set color_body_entrytitle_background = "#dbcfe9";
+
+#NEWLAYER: smoothsailing/purple
+layerinfo "redist_uniq" = "smoothsailing/purple";
+layerinfo "type" = "theme";
+layerinfo "name" = "Bruised Purple";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_body_entrytitle_border = "#d4ddee";
+    set color_body_footer_text = "#454b74";
+    set color_month_title_text = "#8792bd";
+    set color_header_borders = "#8792bd";
+    set color_body_links_visited = "#dddddd";
+    set color_header_menubar_text_hover = "#ffffff";
+    set color_body_titlebar_text = "#454b74";
+    set color_body_entrytitle_background_alternate = "#d4ddee";
+    set color_body_entrytitle_links = "#6b7da6";
+    set color_body_entry_background = "#454b74";
+    set color_header_title_background = "#454b74";
+    set color_body_entry_userinfo_background = "#454b74";
+    set color_month_dates = "#8792bd";
+    set color_body_links = "#ececec";
+    set color_body_background = "#6b7da6";
+    set color_month_postcount = "#8792bd";
+    set color_body_entry_text = "#8792bd";
+    set color_body_text = "#ffffff";
+    set color_body_entrytitle_background = "#d4ddee";
+    set color_header_menubar_text = "#ffffff";
+    set color_body_entrytitle_text = "#454b74";
+
+#NEWLAYER: smoothsailing/parrot
+layerinfo "redist_uniq" = "smoothsailing/parrot";
+layerinfo "type" = "theme";
+layerinfo "name" = "Parrot Feathers";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#009900";
+    set color_header_title_text = "#f8f8f8";
+    set color_header_subtitle_text = "#66ff66";   
+    set color_header_menubar_background = "#33cc33";
+    set color_header_menubar_text = "#ffffff";
+    set color_header_menubar_background_hover = "#66ff66";
+    set color_header_menubar_text_hover = "#ffffff";
+    set color_header_borders = "#ffffff";
+
+    set color_body_links = "#006600";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#66cc66";
+    set color_body_titlebar_text = "#ffffff";
+    set color_body_footer_background = "#66cc66";
+    set color_body_footer_text = "#ffffff";
+    set color_body_background = "#f8f8f8";
+    set color_body_text = "#000000";
+
+    set color_body_entrytitle_background = "#66cc66";
+    set color_body_entrytitle_background_alternate = "#66ff66";
+    set color_body_entrytitle_border = "#006600";
+    set color_body_entrytitle_text = "#000000";
+    set color_body_entrytitle_links = "#000000";
+    set color_body_entry_background = "#f8f8f8";
+    set color_body_entry_userinfo_background = "#f8f8f8";
+    set color_body_entry_text = "#000000";
+
+    set color_month_borders = "#006600";
+    set color_month_title_background = "#f8f8f8";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#000000";
+    set color_month_postcount = "#006600";
+
+#NEWLAYER: smoothsailing/toxic
+layerinfo "redist_uniq" = "smoothsailing/toxic";
+layerinfo "type" = "theme";
+layerinfo "name" = "Toxic Teal";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#7cb3b0";
+    set color_header_title_text = "#496a68";
+    set color_header_subtitle_text = "#c9eae8";   
+    set color_header_menubar_background = "#aededb";
+    set color_header_menubar_text = "#496a68";
+    set color_header_menubar_background_hover = "#c9eae8";
+    set color_header_menubar_text_hover = "#496a68";
+    set color_header_borders = "#496a68";
+
+    set color_body_links = "#496a68";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#c9eae8";
+    set color_body_titlebar_text = "#496a68";
+    set color_body_footer_background = "#c9eae8";
+    set color_body_footer_text = "#496a68";
+    set color_body_background = "#496a68";
+    set color_body_text = "#aededb";
+
+    set color_body_entrytitle_background = "#7cb3b0";
+    set color_body_entrytitle_background_alternate = "#6e9e9b";
+    set color_body_entrytitle_border = "#c9eae8";
+    set color_body_entrytitle_text = "#000000";
+    set color_body_entrytitle_links = "#000000";
+    set color_body_entry_background = "#aededb";
+    set color_body_entry_userinfo_background = "#aededb";
+    set color_body_entry_text = "#000000";
+
+    set color_month_borders = "#496a68";
+    set color_month_title_background = "#c9eae8";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#000000";
+    set color_month_postcount = "#496a68";
+
+#NEWLAYER: smoothsailing/banana
+layerinfo "redist_uniq" = "smoothsailing/banana";
+layerinfo "type" = "theme";
+layerinfo "name" = "Banana Tree";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#3D5D2E";
+    set color_header_title_text = "#F6F6BB";
+    set color_header_subtitle_text = "#E1D751";   
+    set color_header_menubar_background = "#E1D751";
+    set color_header_menubar_text = "#3D5D2E";
+    set color_header_menubar_background_hover = "#9A722E";
+    set color_header_menubar_text_hover = "#F6F6BB";
+    set color_header_borders = "#F6F6BB";
+
+    set color_body_links = "#3D5D2E";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#9A722E";
+    set color_body_titlebar_text = "#F6F6BB";
+    set color_body_footer_background = "#3D5D2E";
+    set color_body_footer_text = "#F6F6BB";
+    set color_body_background = "#F6F6BB";
+    set color_body_text = "#3D5D2E";
+
+    set color_body_entrytitle_background = "#3D5D2E";
+    set color_body_entrytitle_background_alternate = "#9A722E";
+    set color_body_entrytitle_border = "#9A722E";
+    set color_body_entrytitle_text = "#E1D751";
+    set color_body_entrytitle_links = "#E1D751";
+    set color_body_entry_background = "#F6F6BB";
+    set color_body_entry_userinfo_background = "#F6F6BB";
+    set color_body_entry_text = "#000000";
+
+    set color_month_borders = "#9A722E";
+    set color_month_title_background = "#F6F6BB";
+    set color_month_title_text = "#3D5D2E";
+    set color_month_dates = "#000000";
+    set color_month_postcount = "#3D5D2E";
+
+#NEWLAYER: smoothsailing/fire
+layerinfo "redist_uniq" = "smoothsailing/fire";
+layerinfo "type" = "theme";
+layerinfo "name" = "Under Fire";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#95261F";
+    set color_header_title_text = "#F5EBC2";
+    set color_header_subtitle_text = "#CA6036";   
+    set color_header_menubar_background = "#CA6036";
+    set color_header_menubar_text = "#F5EBC2";
+    set color_header_menubar_background_hover = "#DEB450";
+    set color_header_menubar_text_hover = "#95261F";
+    set color_header_borders = "#F5EBC2";
+
+    set color_body_links = "#95261F";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#DEB450";
+    set color_body_titlebar_text = "#95261F";
+    set color_body_footer_background = "#95261F";
+    set color_body_footer_text = "#F5EBC2";
+    set color_body_background = "#F5EBC2";
+    set color_body_text = "#000000";
+
+    set color_body_entrytitle_background = "#95261F";
+    set color_body_entrytitle_background_alternate = "#CA6036";
+    set color_body_entrytitle_border = "#DEB450";
+    set color_body_entrytitle_text = "#F5EBC2";
+    set color_body_entrytitle_links = "#F5EBC2";
+    set color_body_entry_background = "#F5EBC2";
+    set color_body_entry_userinfo_background = "#F5EBC2";
+    set color_body_entry_text = "#000000";
+
+    set color_month_borders = "#95261F";
+    set color_month_title_background = "#F5EBC2";
+    set color_month_title_text = "#95261F";
+    set color_month_dates = "#95261F";
+    set color_month_postcount = "#CA6036";
+
+#NEWLAYER: smoothsailing/chocolate
+layerinfo "redist_uniq" = "smoothsailing/chocolate";
+layerinfo "type" = "theme";
+layerinfo "name" = "Chocolate Caramel Creme";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+
+    set color_header_title_background = "#6D4506";
+    set color_header_title_text = "#E1D6C0";
+    set color_header_subtitle_text = "#CF9B48";   
+    set color_header_menubar_background = "#A2701F";
+    set color_header_menubar_text = "#E1D6C0";
+    set color_header_menubar_background_hover = "#CF9B48";
+    set color_header_menubar_text_hover = "#E1D6C0";
+    set color_header_borders = "#E1D6C0";
+
+    set color_body_links = "#6D4506";
+    set color_body_links_visited = "#000000";
+    set color_body_titlebar_background = "#CF9B48";
+    set color_body_titlebar_text = "#E1D6C0";
+    set color_body_footer_background = "#6D4506";
+    set color_body_footer_text = "#E1D6C0";
+    set color_body_background = "#E1D6C0";
+    set color_body_text = "#000000";
+
+    set color_body_entrytitle_background = "#A2701F";
+    set color_body_entrytitle_background_alternate = "#CF9B48";
+    set color_body_entrytitle_border = "#6D4506";
+    set color_body_entrytitle_text = "#E1D6C0";
+    set color_body_entrytitle_links = "#E1D6C0";
+    set color_body_entry_background = "#E1D6C0";
+    set color_body_entry_userinfo_background = "#E1D6C0";
+    set color_body_entry_text = "#000000";
+
+    set color_month_borders = "#A2701F";
+    set color_month_title_background = "#E1D6C0";
+    set color_month_title_text = "#6D4506";
+    set color_month_dates = "#6D4506";
+    set color_month_postcount = "#A2701F";

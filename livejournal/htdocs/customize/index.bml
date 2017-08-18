@@ -1,0 +1,361 @@
+<?page
+title=><?_ml .title _ml?>
+head<=
+<style>
+    option.disabled { color: GrayText; }
+</style>
+<=head
+
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST %FORM);
+
+    LJ::set_active_crumb('customize');
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'journal'} || $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+
+    my $userid = $u->{'userid'};
+    my $has_cap = LJ::get_cap($u, "s2styles");
+    
+    return $LJ::MSG_READONLY_USER if LJ::get_cap($u, "readonly");
+
+    my $ret;
+
+    # authas switcher form
+    $ret .= "<form method='get' action='index.bml'>\n";
+    $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} || $GET{'journal'} }) . "\n";
+    $ret .= "</form>\n\n";
+
+    LJ::load_user_props($u, "stylesys", "s2_style");
+    $u->{'stylesys'} ||= 1;
+
+    my $pub = LJ::S2::get_public_layers();
+    my $userlay = LJ::S2::get_layers_of_user($u);
+    my %style = LJ::S2::get_style($u, "verify");
+
+    my $get_lang = sub {
+        my $styleid = shift;
+        foreach ($userlay, $pub) {
+            return $_->{$styleid}->{'langcode'} if
+                $_->{$styleid} && $_->{$styleid}->{'langcode'};
+        }
+        return undef;
+    };
+    my $langcode = $get_lang->($style{'i18n'}) || $get_lang->($style{'i18nc'});
+
+    if ($POST{'save:stylesys'}) {
+        my $num = $POST{'stylesys'} == 2 ? 2 : 1;
+        LJ::set_userprop($u, "stylesys", $num);
+        return BML::redirect("/customize/?journal=$u->{'user'}");
+    }
+
+    my $implicit_style_create = sub {
+
+        # create new style if necessary
+        unless ($u->{'s2_style'}) {
+            my $layid = $style{'layout'};
+            my $lay = $pub->{$layid} || $userlay->{$layid};
+            my $uniq = (split("/", $lay->{'uniq'}))[0] || $lay->{'s2lid'};
+
+            unless ($u->{'s2_style'} = LJ::S2::create_style($u, "wizard-$uniq")) {
+                die "<?h1 $ML{'Error'} h1?><?p $ML{'.error.fail_create_style'} p?>";
+            }
+            LJ::set_userprop($u, "s2_style", $u->{'s2_style'});
+        }
+
+        # save values in %style to db
+        LJ::S2::set_style_layers($u, $u->{'s2_style'}, %style);
+    };
+
+    if ($POST{'save:layout'}) {
+        my $layid = $POST{'layoutid'}+0;
+        return BML::redirect("/customize/?journal=$u->{'user'}")
+            if $layid == $style{'layout'};
+
+        my $lay = $pub->{$layid};
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.disallowed_user_layer'} p?>"
+            if ! $lay and $lay ||= $userlay->{$layid} and ! $has_cap;
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.not_your_layout'} p?>"
+            unless $lay && LJ::S2::can_use_layer($u, $lay->{'uniq'});
+
+        my $coreid = $lay->{'b2lid'};
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.no_core_parent'} p?>"
+            unless $coreid;
+
+        # delete s2_style and replace it with a new
+        # or existing style for this layout
+        delete $u->{'s2_style'};
+
+        my $uniq = (split("/", $lay->{'uniq'}))[0] || $lay->{'s2lid'};
+        my $usersty = LJ::S2::load_user_styles($u);
+        foreach (keys %$usersty) {
+            next unless $usersty->{$_} eq "wizard-$uniq";
+
+            $u->{'s2_style'} = $_;
+            LJ::set_userprop($u, "s2_style", $u->{'s2_style'});
+
+            # now we have to populate %style from this style, but not core and layout,
+            # as those are reset below
+            my $stylay = LJ::S2::get_style_layers($u, $u->{'s2_style'});
+            foreach my $layer (qw(user theme i18nc i18n)) {
+                $style{$layer} = exists $stylay->{$layer} ? $stylay->{$layer} : 0;
+            }
+
+            last;
+        }
+
+        # no existing style found, create a new one
+        unless ($u->{'s2_style'}) {
+            $style{'user'} = $style{'theme'} = $style{'i18nc'} = $style{'i18n'} = 0;
+        }
+
+        # even if we're using an existing style that we found by name (uniq), we need to
+        # set layout and core layers to make sure the style still has the proper layout
+        $style{'layout'} = $layid;
+        $style{'core'} = $coreid;
+
+        $implicit_style_create->();
+
+        return BML::redirect("/customize/?journal=$u->{'user'}");
+    }
+
+    if ($POST{'action:deluser'}) {
+        LJ::S2::delete_layer($style{'user'});
+        LJ::S2::set_style_layers($u, $u->{'s2_style'}, "user", 0) if $style{'user'};
+        return BML::redirect("/customize/?journal=$u->{'user'}");
+    }
+
+    if ($POST{'action:edituser'}) {
+
+        unless ($style{'user'}) {
+            $style{'user'} = LJ::S2::create_layer($u, $style{'layout'}, "user");
+            return "<?h1 $ML{'Error'} h1?> <?p $ML{'.error.cant_generate_user_layer'} p?>"
+                unless $style{'user'};
+        }
+
+        $implicit_style_create->();
+
+        return BML::redirect("/customize/layer.bml?w=user&journal=$authas");
+    }
+
+    if ($POST{'save:theme'}) {
+        my $themeid = $POST{'themeid'}+0;
+        return BML::redirect("/customize/?journal=$u->{'user'}")
+            if $themeid == $style{'theme'};
+
+        my $lay = $pub->{$themeid};
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.disallowed_theme_layer'} p?>"
+            if ! $lay and $lay ||= $userlay->{$themeid} and ! $has_cap;
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.not_your_theme'} p?>" if $themeid && ! $lay;
+        $style{'theme'} = $themeid;
+
+        $implicit_style_create->();
+
+        # TODO: conflict resolution.  check if there
+        # exists a user layer, and ask user if they want to 
+        # override it using the theme exclusively.
+        return BML::redirect("/customize/?journal=$u->{'user'}");
+    }
+
+    if ($POST{'save:langcode'}) {
+        my $langcode = $POST{'langcode'};
+        return BML::redirect("/customize/?journal=$u->{'user'}")
+            if $langcode eq 'custom';
+
+        my @langs = LJ::S2::get_layout_langs($pub, $style{'layout'});
+        my ($i18n, $i18nc);
+
+        # scan for an i18n user layer
+        foreach (values %$userlay) {
+            last if
+                $_->{'b2lid'} == $style{'layout'} &&
+                $_->{'type'} eq 'i18n' &&
+                $_->{'langcode'} eq $langcode &&
+                ($i18n = $_->{'s2lid'});
+        }
+
+        # scan for i18nc public layer and i18n layer if necessary
+        foreach (values %$pub) {
+            last if $i18nc && $i18n;
+
+            next if
+                ! $i18nc &&
+                $_->{'type'} eq 'i18nc' &&
+                $_->{'langcode'} eq $langcode &&
+                ($i18nc = $_->{'s2lid'});
+
+            next if
+                ! $i18n && 
+                $_->{'b2lid'} == $style{'layout'} &&
+                $_->{'type'} eq 'i18n' &&
+                $_->{'langcode'} eq $langcode &&
+                ($i18n = $_->{'s2lid'});
+        }
+
+        $style{'i18nc'} = $i18nc;
+        $style{'i18n'} = $i18n;
+
+        $implicit_style_create->();
+
+        # TODO: conflict resolution.  check if there
+        # exists a user layer, and ask user if they want to 
+        # override it using the theme exclusively.
+        return BML::redirect("/customize/?journal=$u->{'user'}");
+    }
+
+    # choose style system
+    $ret .= "<form method='post' action='./?journal=$u->{'user'}'>";
+    $ret .= "<?h1 $ML{'.choose.header'} h1?><?p $ML{'.choose'} p?>";
+    $ret .= "<blockquote>";
+    $ret .= LJ::html_select({ 'name' => 'stylesys', 'selected' => $u->{'stylesys'} },
+                            1, "$ML{'.choose.s1'}",
+                            2, "$ML{'.choose.s2'}");
+    $ret .= " <input type='submit' name='save:stylesys' value='$ML{'.change'}'>";
+    $ret .= "</blockquote>";
+
+    # no more options if they're using S1.
+    if ($u->{'stylesys'} == 1) {
+        $ret .= "<?h1 $ML{'.s1.header'} h1?><?p ";
+        $ret .= BML::ml('.s1.2', { aopts => "href='$LJ::SITEROOT/modify.bml?authas=$authas'" });
+        $ret .= " p?></form>";
+        return $ret;
+    }
+
+    # choose layout
+    my @layouts = map  { $_, $pub->{$_}->{'name'} } 
+                  sort { $pub->{$a}->{'name'} cmp $pub->{$b}->{'name'} }
+                  grep { my $tmp = $_;
+                         $tmp =~ /^\d+$/ && 
+                         $pub->{$tmp}->{'type'} eq "layout" &&
+                         LJ::S2::can_use_layer($u, $pub->{$tmp}->{'uniq'}) &&
+                         ($_ = $tmp)
+                       } keys %$pub;
+
+    # custom layers can will be shown in the "Custom Layers" and "Disabled Layers" groups
+    # depending on the user's account status.  if they don't have the s2styles cap, then
+    # they will have all layers disabled, except for the one they are currently using.
+    my $custom_layer_list = sub {
+        my ($type, $ptype) = @_;
+        my @layers = ();
+        
+        my @user = map { $_, $userlay->{$_}->{'name'} ? $userlay->{$_}->{'name'} : "\#$_" } 
+                   sort { $userlay->{$a}->{'name'} cmp $userlay->{$b}->{'name'} || $a <=> $b }
+                   grep { /^\d+$/ && $userlay->{$_}->{'b2lid'} == $style{$ptype} && 
+                          $userlay->{$_}->{'type'} eq $type &&
+                          ($has_cap || $_ == $style{$type}) }
+                   keys %$userlay;
+        if (@user) {
+            push @layers, { value    => "",
+                            text     => "--- Custom Layers: ---",
+                            disabled => 1 }, @user;
+        }
+
+        unless ($has_cap) {
+            my @disabled =
+                map { { value    => $_,
+                        text     => $userlay->{$_}->{'name'} ? $userlay->{$_}->{'name'} : "\#$_",
+                        disabled => 1 } } 
+                sort { $userlay->{$a}->{'name'} cmp $userlay->{$b}->{'name'} || 
+                       $userlay->{$a}->{'s2lid'} <=> $userlay->{$b}->{'s2lid'} }
+                grep { /^\d+$/ && $userlay->{$_}->{'b2lid'} == $style{$ptype} && 
+                       $userlay->{$_}->{'type'} eq $type && $_ != $style{$type} }
+                keys %$userlay;
+            if (@disabled) {
+                push @layers, { value    => "",
+                                text     => "--- Disabled Layers: ---",
+                                disabled => 1 }, @disabled;
+            }
+        }
+
+        return @layers;
+    };
+
+    # add user/disabled ones
+    push @layouts, $custom_layer_list->('layout', 'core');
+
+    $ret .= "<?h1 $ML{'.s2.layout.header'} h1?><?p $ML{'.s2.layout'} p?>";
+    $ret .= "<blockquote>";
+    $ret .= LJ::html_select({ 'name' => 'layoutid',
+                              'selected' => $style{'layout'},  },
+                            @layouts);
+    $ret .= " <input type='submit' name='save:layout' value='$ML{'.change'}'> <a href=\"preview.bml?journal=$u->{'user'}\">$ML{'.previews'}</a>";
+    $ret .= "</blockquote>";
+
+    # pick other stuff
+    $ret .= "<?h1 $ML{'.s2.customize.header'} h1?>";
+    $ret .= "<?p $ML{'.s2.customize'} p?>";
+
+    # langauge
+    my @langs = LJ::S2::get_layout_langs($pub, $style{'layout'});
+
+    # they have set a custom i18n layer
+    if ($style{'i18n'} && 
+        ($style{'i18nc'} != $style{'i18n'} || ! defined $pub->{$style{'i18n'}})) {
+        push @langs, 'custom', $ML{'.s2.customize.language.custom'};
+        $langcode = 'custom';
+    }
+    
+    $ret .= "<?h2 $ML{'.s2.customize.language.header'} h2?><?p $ML{'.s2.customize.language'} p?>";
+    $ret .= "<blockquote>";
+    $ret .= LJ::html_select({ 'name' => 'langcode',
+                              'selected' => $langcode, },
+                            0 => $ML{'.s2.customize.language.default'},
+                            @langs);
+    $ret .= " <input type='submit' name='save:langcode' value='$ML{'.change'}'>";
+    $ret .= "</blockquote>";
+    
+    # theme
+    my @themes = LJ::S2::get_layout_themes_select([$pub], $style{'layout'});
+
+    # add user/disabled ones
+    push @themes, $custom_layer_list->('theme', 'layout');
+
+    $ret .= "<?h2 $ML{'.s2.customize.themes.header'} h2?><?p p?>";
+    $ret .= "<blockquote>";
+    $ret .= LJ::html_select({ 'name' => 'themeid',
+                              'selected' => $style{'theme'}, },
+                            '0' => $ML{'.s2.customize.themes.default'},
+                            @themes);
+    $ret .= " <input type='submit' name='save:theme' value='$ML{'.change'}'> <a href=\"themes.bml?journal=$u->{'user'}\">$ML{'.previews'}</a>";
+    $ret .= "</blockquote>";
+    
+    # customize
+    $ret .= "<?h2 $ML{'.s2.customize.settings.header'} h2?><?p $ML{'.s2.customize.settings'} p?>";
+    $ret .= "<blockquote>";
+    if ($style{'user'}) {
+        $ret .= LJ::html_submit('action:edituser', $ML{'.s2.customize.settings.edit'});
+        $ret .= LJ::html_submit('action:deluser', $ML{'.s2.customize.settings.delete'},
+                                { 'onclick' => "return confirm('" . LJ::ejs($ML{'.s2.customize.settings.delete.confirm'}) . "')" });
+    } else {
+        $ret .= "<input type='submit' name='action:edituser' value='$ML{'.s2.customize.settings.new'}'>\n";
+    }
+    $ret .= "</blockquote>";
+
+    $ret .= "</form>";
+
+    $ret .= "<?h1 $ML{'.s2.related.header'} h1?>";
+    $ret .= "<dl><dt>$ML{'.s2.advanced.header'}</dt><dd>";
+    $ret .= $has_cap ? $ML{'.s2.advanced.permitted'} : $ML{'.s2.advanced.denied'};
+    $ret .= "</dd><dt><a href='/manage/links.bml?authas=$authas'>$ML{'/manage/links.bml.title'}</a></dt><dd>$ML{'.s2.related.links.about'}</dd>";
+    $ret .= "<dt><a href='/modify.bml?authas=$authas'>$ML{'/modify.bml.title'}</a></dt><dd>$ML{'.s2.related.modify.about'}</dd>";
+    $ret .= "<dt><a href='/editinfo.bml?authas=$authas'>$ML{'/editinfo.bml.title'}</a></dt><dd>$ML{'.s2.related.editinfo.about'}</dd></dl>";
+
+    return $ret;
+}
+_code?>
+<=body
+head<=
+<style type='text/css'>
+    dt { font-weight: bold }
+</style>
+<=head
+page?>

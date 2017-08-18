@@ -1,0 +1,80 @@
+<?page
+title=>Design Goals
+body<=
+
+<a href="./">&lt;&lt; Back</a>
+
+<?h1 Design Goals h1?>
+<?p
+Here is a table summarizing the primary design goals of S2 and how they contrast with the existing style system, which I guess we can call S1:
+p?>
+<p><table border=0 cellpadding=6>
+<tr bgcolor=<?emcolor?>><td><b>Feature</b></td><td><b>S1</b></td><td><b>S2</b></td></tr>
+
+<tr valign=top>
+<td><b>Flexible & Extensible</b></td>
+<td>
+The current style system forces users to define a template
+for each new type of view: recent entries, friends page,
+day view, calendar, etc.  If we want to add a new view
+type, users have to basically write their style.
+</td>
+<td>
+In the new style system you describe the formatting of objects,
+not the formatting of views.  Thus, we can easily add new views
+in the future, and making a "lastn" view pretty much makes ally
+your other views automatically.
+</td>
+</tr>
+
+<tr valign=top>
+<td><b>Safe</b></td>
+<td>
+The current system is completely safe.  It's so brain-dead
+that it can't be anything <i>but</i> but safe.  You have 
+to have some intelligence to be harmful.
+</td>
+<td>
+The new style system is its own language that gets compiled into another language, and run on the webserver.  Letting users run code on the server is inherently dangerous... it obviously has to be free of things "rm -rf /", but also, it has to be free from infinite loops, and anything that could consume large amounts of resources.
+<p>The S2 language does not have while loops, gotos, or any other control construct that would permit an infinite loops.  It only has <tt>if/else</tt> blocks, and <tt>foreach</tt> over finite lists.  Also, you can only call methods and functions defined in the core layer, so users can't write functions <tt>foo</tt> and <tt>bar</tt> which simply call each other.
+</td>
+</tr>
+
+<tr valign=top>
+<td><b>Fast</b></td>
+<td>
+The current system is a CPU hog, doing tons of parsing, text munging and substitutions and run-time.
+</td>
+<td>
+In the new system, S2 code will be parsed, checked, and compiled before the page is loaded.  When a page is loaded in the future, the code will just be run, which will already be in the language that the LiveJournal server runs on.  For LiveJournal.com, this will be Perl but in the future we could write a PHP or Java servlet backend to the S2 compiler.
+</td>
+</tr>
+
+<tr valign=top>
+<td><b>Internationalizablilty</b></td>
+<td>
+The current style system can support non-English languages and locales, but hardly:
+<p>-- The server injects a lot of English into S1 variables, especially in dates.
+<br>-- The calendar always begins weeks on Sunday.
+<br>-- The system to make nouns plural (2 Comments, 3 Replies) is very English-specific.
+<br>-- Porting a style to a new language involves forking the style and modifying away, losing all future changes to the original style.
+</td>
+<td>
+The new style system is being design for internationalization.  One of the S2 layers is an "i18n layer", which overrides English method definitions from the core and sets properties, like the day weeks start on.
+</td>
+</tr>
+
+<tr valign=top>
+<td><b>Easy</b></td>
+<td>
+Hahah ... the currently style system was never designed to be easy.  It was designed for a few people (me, maybe a friend or two) to make styles, which we'd then make public.  I never envisioned everybody using LiveJournal to begin with, much less trying to make styles.
+</td>
+<td>
+Wizards and tools will generate S2 behind the scenes for most users.  The hard-core users can write their styles and overlay layers in the raw S2 language.
+</td>
+</tr>
+
+</table>
+
+<=body
+page?>

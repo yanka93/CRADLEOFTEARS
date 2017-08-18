@@ -1,0 +1,97 @@
+<?page
+title=>Bazaar Details
+body<=
+
+<p>[&lt;&lt; <a href="./">Back</a>]</p>
+
+<?h1 Seed Voters h1?>
+<?p
+To kick-start the system, the voters for the first month are the LiveJournal employees.
+p?>
+
+<?h1 Voting for yourself h1?>
+<?p
+You can't explictly vote for yourself.  To prevent oscillations,
+however, the system assigns a percentage of your votes back to
+yourself, based on the weighted average of what the other voters for the
+current month gave you.
+p?>
+
+<?h1 LiveJournal.com employees h1?><?p
+
+Full-time LiveJournal.com employees receive votes and use their voting
+power, but don't take any percentage of the pot.  Part-time employees
+likewise receive votes and use their voting power, but they can
+receive some money from the pot past a certain per-employee threshold.
+For instance, if the threshold for part-time employee "Bob" were
+$1,000 and he earned $800, he'd get nothing.  If he earned
+$1,200 of the pot, he'd actually get $200, and the other $1,000 would
+stay in the pot, to be divided amongst everybody else.
+
+p?>
+
+<?h1 Requirement to receive money h1?><?p Before you're eligible to
+receive money from the pot, you must first complete the necessary tax
+forms and a copyright assignment agreement.  If you're outside of the
+United States, things may be tedious or impossible, depending on your
+country and its relation with the United States.  We won't mail out
+checks smaller than $50.  However, see the next section.
+p?>
+
+<?h1 Cash-out alternative h1?><?p If it's too difficult for you to
+receive money, or your balance is too low, we'll also let you apply
+your pending balance towards LiveJournal <a href="/pay/">payment</a>
+coupons.  A minimum $5 coupon may be generated.  p?>
+
+<?h1 Participant Types h1?><?p
+All participants in the bazaar fall into one of the following types:
+<ul>
+<li><b>Voter only</b> -- not eligible to receive money (full-time LiveJournal employees, and anybody who contacts us and tells us that they don't wish to receive money)</li>
+<li><b>Part-time employees</b> -- details above.  can vote, and can get some of the earned pot.</li>
+<li><b>Money Queuing</b> -- (default state)  You haven't done the paperwork to receive money yet, but your earnings are being held for up to three months.  If after 5 months you do the paperwork, you'll receive the money you earned in the previous three months.</li>
+<li><b>Money Recipient</b> -- you've done the paperwork and you'll get paid at the end of the month, after votes are tallied and reviewed.  Money will be held indefinitely until you earn at least $25.  (except if you live outside of the US and wire fees are high, in which case we won't pay until you've earned at least double what it'd cost to wire the money)
+</ul>
+p?>
+
+<?h1 Privacy h1?>
+<?p
+Each user's state (above) is private.  They may share it if others if they like, but we won't reveal it.
+p?>
+<?p
+The voting weight you give to other people's contributions is private, except
+to LiveJournal staff for the purpose of review.
+p?>
+<?p
+LiveJournal will make public the current month's voters, and their voting power,
+but not how much money they made in the previous month.  Because the type of each
+user is also hidden, it's not possible to accurately infer the money received.
+p?>
+
+<?h1 Minimum Percentages h1?>
+<?p
+Certain LiveJournal employees retain a guaranteed minimum voting percentage each month.
+p?>
+
+<?h1 Cheating h1?><?p
+LiveJournal reserves the right to review voting, and disqualify people
+if questionable voting is taking place.  (people voting for each other
+exclusively each month, etc)
+p?>
+
+<?h1 Pot increases h1?><?p
+LiveJournal decides when projects are completed and when the pot amount increases.  Completion of a project marked with $n increase doesn't necessarily mean you'll earn $n.  You'll earn whatever the community decides it's worth.
+p?>
+
+<?h1 Acknowledgements vs. Voting h1?>
+<?p
+
+The default voting weight for a contribution acknowledgement is zero.
+This lets you acknowledge that somebody did something (so they get
+listed on the contributors page) but without giving them a percentage
+of the pot.  It's up to every voting user to decide what's important to
+them and what deserves the pot (and voting rights).
+
+p?>
+
+<=body
+page?>

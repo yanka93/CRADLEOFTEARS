@@ -1,0 +1,6 @@
+heading=><h1 class="heading"><img src="logo.png"/> %%DATA%%</h1>
+subhead<=
+<!-- This is a subheading, which naturally requires a chicken above it -->
+<img src="chicken.png" /><br />
+<h2 class="subheading">%%DATA%%</h2>
+<=subhead

@@ -1,0 +1,622 @@
+# LiveJournal.com-specific library 
+#
+# This file is NOT licensed under the GPL.  As with everything in the
+# "ljcom" CVS repository, this file is the property of Danga
+# Interactive and is made available to the public only as a reference 
+# as to the best way to modify/extend the base LiveJournal server code
+# (which is licensed under the GPL).
+#
+# Feel free to read and learn from things in "ljcom", but don't use
+# our schemes because we don't want your site looking like
+# LiveJournal.com (our logo and site scheme are our identity and we
+# don't want to confuse users)
+#
+# Instead, use/modify one of the schemes in the "livejournal" repository.
+# (Ideally you'd make your own entirely)
+#
+
+_parent=>global.look
+
+help=>{Ds}<a href="%%data%%"><img src="<?imgprefix?>/help.gif" alt="(<?_ml Help _ml?>)" title="(<?_ml Help _ml?>)" width='14' height='14' hspace='2' align='absmiddle' border='0'></a>
+
+h1=>{D}<p><span class="heading">%%data%%</span>
+h1/follow_choices=>{D}<span class="heading">%%data%%</span>
+
+h2=>{D}<p><span class="heading2">%%data%%</span>
+
+# Banner Header: search results banner, content desriptor, etc...
+bh=>{D}<p align="center"><font face="Arial,Helvetica" color="#cc0000" size="-1"><b>%%data%%</b></font>
+
+grin=>{S}&lt;grin&gt;
+hr=>{S}<p align="center"><font color=#660066>*</font></p>
+
+newline=>{S}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+p=>{DRp}<br />%%data%%
+p/follow_p=>{DRps}<br /><img src="<?imgprefix?>/dot.gif" width="1" vspace="6" height="1"><br />%%data%%
+
+emcolor=>{S}#a7c7e8
+emcolorlite=>{S}#d9e9f9
+altcolor1=>{S}#d9e9f9
+altcolor2=>{S}#a7c7e8
+
+de=>{DRp}<span style="color:#909090;">%%data%%</span>
+
+standout<=
+{DRps}<center><font size="1"><br /></font>
+<table cellspacing="0" cellpadding="0" border="0" bgcolor="<?emcolor?>">
+ <tr align="left">
+  <td width="7" align="left" valign="top">
+   <img width="7" height="7" src="<?imgprefix?>/dys/corn_nw.gif" alt="/"></td>
+  <td height="7">
+   <img height="7" src="<?imgprefix?>/dot.gif" alt=""></td>
+  <td width="7" valign="top" align="right">
+   <img height="7" src="<?imgprefix?>/dys/corn_ne.gif" alt="\"></td>
+ </tr><tr align="left">
+  <td width="7">
+   <img width="7" height="1" src="<?imgprefix?>/dot.gif" alt=""></td>
+  <td valign="top">
+%%data%%
+
+  </td>
+  <td width="7">
+   <img width="7" height="1" src="<?imgprefix?>/dot.gif" alt=""></td>
+ </tr><tr>
+  <td width="7" align=left valign=top>
+   <img width="7" height="7" src="<?imgprefix?>/dys/corn_sw.gif" alt="\"></td>
+  <td height="7">
+   <img height="7" src="<?imgprefix?>/dot.gif" alt=""></td>
+  <td width="7" valign=top align=right>
+   <img height="7" src="<?imgprefix?>/dys/corn_se.gif" alt="/"></td>
+ </tr>
+</table>
+
+</center>
+<=standout
+
+warningbar<=
+{DRps}<div class="warningbar" style="background-image: URL('<?imgprefix?>/message-warning.gif');">
+%%data%%
+</div>
+<=warningbar
+
+errorbar<=
+{DRps}<div class="errorbar" style="background-image: URL('<?imgprefix?>/message-error.gif');">
+%%data%%
+</div>
+<=errorbar
+
+soerror=><div style='background-color:#d0eef9; color:red; font-weight:bold; text-align:center'>%%data%%</div>
+emailex=><div style='width: 50%; font-family: courier; background-color: #efefef; border: dotted #cdcdcd 2px; padding: 5px;'>%%data%%</div>
+
+######################### choices stuff
+
+choice=>{PRps}<dt><img src="<?imgprefix?>/dys/b_purp.gif" align="absmiddle" width="8" height="8"> <a href="%%data2%%"><font face="Arial,Helvetica"><b>%%data1%%</b></font></a><dd><font size="2">%%data3%%</font>
+
+choices<=
+{FRp}<p><div class="choice"><table width="100%" cellpadding="2" cellspacing="5">
+<tr>
+<td valign="top" width="50%">
+<dl>
+%%items%%
+</dl>
+</td>
+<td valign="top" width="50%">
+<dl>
+%%itemsb%%
+</dl>
+</td>
+</tr>
+</table></div>
+<=choices
+
+ENTRYFORMCSS<=
+{Ss}
+<style type="text/css">
+#EntryForm #MetaInfo {
+    width: 100%;
+}
+#EntryForm th {
+    font-size: .85em;
+}
+#EntryForm #SubmitBar {
+    background-color: #dfdfdf;
+    padding: 5px;
+    text-align: center;
+    border: 1px outset #000;
+    margin-left: auto; margin-right: auto;
+}
+#MetaInfo tr {
+    padding-bottom: 10px;
+}
+#metainfo th { 
+    text-align: left; 
+}
+#mood_preview {
+    display: none;
+}
+#datetime_box input, #datetime_box select {
+    margin-right: 2px;
+}
+#EntryForm legend {
+    font-weight: bold;
+}
+#EntryForm #Options {
+    margin-left: 0; margin-right: 0; padding: 0;
+    background-color: #dfdfdf;
+    border: 1px outset #000;
+}
+#EntryForm #Options th {
+    text-align: left;
+}
+#EntryForm #infobox {
+    text-align: center;
+}
+#EntryForm #infobox table {
+    background-color: #dfdfdf;
+    border: 2px solid <?emcolor?>;
+}
+#EntryForm textarea {
+    border: 1px inset #000;
+    padding: 2px;
+}
+#EntryForm #Security option {
+    padding-left: 18px;
+}
+#EntryForm #security_public {
+    background-image: url("<?imgprefix?>/userinfo.gif");
+    background-repeat: no-repeat;
+}
+#EntryForm #security_private {
+    background-image: url("<?imgprefix?>/icon_private.gif");
+    background-repeat: no-repeat;
+}
+#EntryForm #security_friends, #EntryForm #security_custom {
+    background-image: url("<?imgprefix?>/icon_protected.gif");
+    background-repeat: no-repeat;
+}
+#EntryForm #UserpicPreviewImage {
+    border: 1px solid #000;
+}
+#EntryForm {
+    width: 100%;
+}
+</style>
+<=ENTRYFORMCSS
+
+##################################################################################
+################################### MAIN PAGE ####################################
+##################################################################################
+
+PAGE<=
+{Fps}<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<?_code
+{
+    my $remote = LJ::get_remote(); # will be requested later and returned from cache
+    return LJ::LJcom::expresslane_html_comment($remote, $_[0]->{r});
+}
+_code?>
+<head>
+<link rel="SHORTCUT ICON" href="<?siteroot?>/favicon.ico">
+<link rel="home" title="Home" href="/" />
+<link rel="contents" title="Site Map" href="/site/" />
+<link rel="help" title="Technical Support" href="/support/" />
+<title><?_code {
+    my $elhash = $_[2];
+    return $elhash->{'WINDOWTITLE'} || $elhash->{'TITLE'};
+} _code?></title>
+<?metactype?>
+<style type="text/css">
+<!--
+p, td { font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+li { font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+body { font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0px; }
+.navtext {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FF9900; font-weight: bold}
+.navlinks {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FFFFFF; text-decoration: underline}
+a:link {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #000066; }
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #000066; }
+a:active {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #006699; }
+.wtext {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF}
+.login {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px}
+.wtextunbld { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FFFFFF }
+.copy { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000}
+.heading {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #660066; font-weight: bold}
+.heading2 {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #660066; font-style: italic }
+.talk-comment { margin-top: 1em; }
+.lesstop { margin-top: 2px; }
+.formitem { color: #343434; font-size: 1em; }
+.formnumber { font-weight: bold; margin-top: 1.8em; font-size: .9em; }
+.formitemName { font-weight: bold; font-size: .9em; margin-top: 1.8em; }
+.formitemDesc { margin-top: .4em; margin-bottom: .4em; color: #505050; }
+.formitemNote { color: #da6320; font-size: .9em; margin-top: .4em; margin-bottom: .4em; }
+.formitemFlag { color: #CE0000; font-size: .9em; margin-top: .4em; margin-bottom: .4em; }
+.borderedtable { border: solid 1px black; }
+.borderedtable th { background-color: #dddddd; border-bottom: solid 1px black; padding-left: 10px; padding-right: 10px; white-space: nowrap; font-size: 0.8em; }
+
+#Comments q { padding-left: 2.5em; font-style: italic; }
+
+.errorbar {
+    color: #000;
+    font: 12px Verdana, Arial, Sans-Serif;
+    background-color: #FFEEEE;
+    background-repeat: repeat-x;
+    border: 1px solid #FF9999;
+    padding: 8px;
+    margin-top: auto; margin-bottom: auto;
+    margin-left: auto; margin-right: auto;
+    width: auto;
+    text-align: left;
+}
+.warningbar {
+    color: #000;
+    font: 12px Verdana, Arial, Sans-Serif;
+    background-color: #FFFFDD;
+    background-repeat: repeat-x;
+    border: 1px solid #FFCC33;
+    padding: 8px;
+    margin-top: auto; margin-bottom: auto;
+    margin-left: auto; margin-right: auto;
+    width: auto;
+    text-align: left;
+}
+-->
+</style>
+
+<script language="JavaScript">
+  window.onerror = null;  // damn javascript.
+</script>
+<?_code return (! LJ::get_remote() &&
+                ! $LJ::IS_SSL &&
+                ! $LJ::REQ_HEAD_HAS{'chalresp_js'}++) ?
+                $LJ::COMMON_CODE{'chalresp_js'} : "";
+_code?>
+<?_code
+    use strict;
+    my $crumb_up;
+    if(LJ::get_active_crumb() ne '')
+    {
+        my $parentcrumb = LJ::get_parent_crumb();
+        $crumb_up = "<link rel='up' title='$parentcrumb->[0]' href='$parentcrumb->[1]' />";
+    }
+    return $crumb_up;
+_code?>
+%%head%%
+</head>
+<body bgcolor="#FFFFFF" background="<?imgprefix?>/dys/bg.gif" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" text="#000000" link="#660066" vlink="#000066" alink="#CC6600" %%bodyopts%%>
+<basefont face="Verdana,Arial,Helvetica">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top">
+	<td  colspan='2'>
+            <table width='100%' border="0" cellspacing="0" cellpadding="0" background="<?imgprefix?>/dys/bg_top.gif">
+		<tr>
+                  <td><a href="<?siteroot?>/"><img src="<?imgprefix?>/dys/logo1.gif" width="122" height="51" border="0"></a></td>
+		  <td width="163" align="left" valign="top"><a href="<?siteroot?>/"><img src="<?imgprefix?>/dys/logo2.gif" width="170" height="51" border="0"></a></td>
+		  <td background="<?imgprefix?>/dys/bg_top.gif" align="left" valign="top" width="244">&nbsp;</td>
+		  <td background="<?imgprefix?>/dys/bg_top.gif" align="left" valign="top" width="100%">&nbsp;</td>
+		</tr>
+	  </table>
+	</td>
+  </tr>
+
+<!-- logo, then search & logged in links bar stack on top of each other -->
+
+  <tr align="left" valign="top">
+	<td width="<?_ml dystopia.nav.width _ml?>" height="49"
+><?_code
+  unless ($BML::COOKIE{'langpref'}) {
+      return '<img src="<?imgprefix?>/dys/logo3-lang.gif" width="122" height="52" border="0" ismap="ismap" usemap="#setlang"><map name="setlang"><area href="/manage/siteopts.bml" shape="rect" coords="50,25,122,50"></map>';
+  } else {
+      return '<img src="<?imgprefix?>/dys/logo3.gif" width="122" height="52" border="0">';
+  }
+_code?></td>
+  <td height="49">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <colgroup span="3">
+  <col width="19%" />
+  <col width="34%" />
+  <col width="47%" />
+  </colgroup>
+
+<!-- search bar -->
+		<tr valign="top">
+		  <td height="24" width="19%" align="left">&nbsp;</td>
+                  <form action="/multisearch.bml">
+		  <td height="24" align="right" valign="middle" colspan="2" nowrap="nowrap">
+<font face="verdana, arial, sans-serif" color=#333333 size=-2>
+			<span class="wtextunbld"><label for='searchlj'><?_ml dystopia.searchlj _ml?></label>&nbsp;</span>
+<?_code
+#BML:cache
+ my $ret;
+ my ($cur, $val) = ("user", "");
+ my ($uri, $args) = (BML::get_uri(), BML::get_query_string());
+ if ($uri eq '/interests.bml' && $args =~ /int=(.+?)(&|$)/) {             
+     $cur = "int";
+     $val = LJ::durl($1);
+ }
+ if ($FORM{'s_loc'}) {
+     $cur = "region";
+ }
+
+ my $hval = LJ::ehtml($val);
+ $ret .= "<input id='searchlj' type='text' name='q' size='15' class='login' value='$hval'> ";
+ $ret .= '<select style="FONT-SIZE: 10px; FONT-FAMILY: verdana, arial, helvetica" name=type>';
+ foreach my $it (
+	["user", BML::ml("Username")], 
+	["email", BML::ml("Email")], 
+	["region", BML::ml("dystopia.search.region")], 
+	["int", BML::ml("dystopia.search.int")],
+	["aolim", BML::ml("dystopia.search.aolim")],
+	["icq", BML::ml("dystopia.search.icq")],
+	["yahoo", BML::ml("dystopia.search.yahoo")],
+	["msn", BML::ml("dystopia.search.msn")],
+	["jabber", BML::ml("dystopia.search.jabber")],
+	) {
+     next if ($it->[0] eq "region" && $LJ::DISABLED{'directory'});
+     my $sel = $cur eq $it->[0] ? " SELECTED" : "";
+     $ret .= "<option value=$it->[0]$sel>$it->[1]";
+ }
+ return BML::noparse($ret);
+_code?>
+			</select>
+			<img src="<?imgprefix?>/dot.gif" width="1" height="5">
+                        <input type=submit value="<?_ml btn.search _ml?>" class="login">
+			</font>
+			</td></form>
+		</tr>
+<!-- /search livejournal bar -->
+
+
+<!-- logged in bar -->
+		<tr>
+		  <td height="27" class="wtext" width="53%" colspan="2" nowrap="nowrap" valign="middle">
+<?_code
+#BML:cache
+ if (LJ::get_remote()) {
+     return BML::noparse(BML::ml("dystopia.hello_loggedin", { 'username' => LJ::get_remote()->{'user'} }));
+ } else {
+     return BML::noparse(BML::ml("dystopia.hello_anonymous"))
+ }
+_code?></td>
+		  <td height="27" width="47%" nowrap="nowrap" align="right" valign="middle">
+<a href="/"><span class="navlinks"><?_ml dystopia.nav.home _ml?></span></a> <span class="navtext">|</span>
+<a href="/site/"><span class="navlinks"><?_ml dystopia.nav.sitemap _ml?></span></a> <span class="navtext">|</span>
+<a href="/news.bml"><span class="navlinks"><?_ml dystopia.nav.news _ml?></span></a> <span class="navtext">|</span>
+<a href="/manage/siteopts.bml"><span class="navlinks"><?_ml dystopia.nav.siteopts _ml?></span></a> <span class="navtext">|</span>
+<a href="/support/"><span class="navlinks"><?_ml Help _ml?></span></a>
+<?_code
+#BML:cache
+ my $r = LJ::get_remote();
+ if ($r) {
+     return BML::noparse(' <span class="navtext">|</span> <a href="/logout.bml?user=' . "$r->{'user'}&amp;sessid=$r->{'_session'}->{'sessid'}" . '"><span class="navlinks">' . BML::ml("dystopia.nav.logout") . '</span></a>');
+ }	
+ return;
+_code?>
+<img src="<?imgprefix?>/dys/5x5.gif" width="10" height="5"></td>
+		</tr>
+<!-- /logged in bar -->
+
+	  </table>
+	</td>
+  </tr>
+<!-- /logo, search, logged in bar -->
+
+<!-- left sidebar and body -->
+
+  <tr align="left" valign="top">
+	<td bgcolor="#336699" width="<?_ml dystopia.nav.width _ml?>" height="813">
+	  <table width="<?_ml dystopia.nav.width _ml?>" border="0" cellspacing="0" cellpadding="10">
+<?_code
+#BML:cache
+ my @nav;
+ my $remote = LJ::get_remote();
+ if ($remote) {
+     push @nav, { 'name' => BML::ml('dystopia.navhead.journal'),
+		  'links' => [ { 'url' => '/update.bml',
+				 'text' => BML::ml('dystopia.nav.updatejournal'), },
+			       { 'url' => "/users/$remote->{'user'}/",
+				 'text' => BML::ml('dystopia.nav.journalrecent'), },
+			       { 'url' => "/users/$remote->{'user'}/calendar",
+				 'text' => BML::ml('dystopia.nav.journalcalendar'), },
+			       { 'url' => "/users/$remote->{'user'}/friends",
+				 'text' => BML::ml('dystopia.nav.journalfriends'),
+				 'extra' => '/friends/filter.bml', },
+			       { 'url' => "/userinfo.bml?user=$remote->{'user'}",
+				 'text' => BML::ml('dystopia.nav.journalinfo'),
+				 'extra' => "/userinfo.bml?user=$remote->{'user'}&mode=full",
+			     },
+			       { 'url' => "/tools/memories.bml?user=$remote->{'user'}",
+				 'text' => BML::ml('dystopia.nav.memories'), },
+			       { 'url' => "/editjournal.bml",
+				 'text' => BML::ml('dystopia.nav.editentries'), },
+			       ],
+	      };
+     push @nav, { 'name' => BML::ml('dystopia.navhead.settings'),
+		  'links' => [ { 'url' => '/manage/',
+                                 'text' => BML::ml('dystopia.nav.manage') },
+                               { 'url' => '/editinfo.bml',
+				 'text' => BML::ml('dystopia.nav.personalinfo') },
+			       { 'url' => "/friends/edit.bml",
+				 'text' => BML::ml('dystopia.nav.editfriends'), },
+			       { 'url' => "/editpics.bml",
+				 'text' => BML::ml('dystopia.nav.editpics'), },
+			       { 'url' => "/changepassword.bml",
+				 'text' => BML::ml('dystopia.nav.editpassword'), },
+			       { 'url' => "/modify.bml",
+				 'text' => BML::ml('dystopia.nav.modifyjournal'), },
+			       { 'url' => "/styles/edit.bml",
+				 'text' => BML::ml('dystopia.nav.editstyle'), },
+			       ],
+	      };
+ }
+ else 
+ {
+     push @nav, { 'name' => BML::ml('dystopia.navhead.welcome'),
+		  'links' => [ 
+			       { 'url' => '/login.bml',
+				 'text' => BML::ml('dystopia.nav.login'), },
+			       { 'url' => '/create.bml',
+				 'text' => BML::ml('dystopia.nav.createjournal'), },
+			       { 'url' => "/update.bml",
+				 'text' => BML::ml('dystopia.nav.updatejournal'), },
+			       ],
+	      };
+
+ }
+ 
+ push @nav, { 'name' => BML::ml('dystopia.navhead.findusers'),
+	      'links' => [ 
+			   { 'url' => '/random.bml',
+			     'text' => BML::ml('dystopia.nav.findrandom'), },
+			   $LJ::DISABLED{'directory'} ? () : 
+			   (
+			    { 'url' => '/directory.bml',
+			      'text' => BML::ml('dystopia.nav.findregion'), }
+			    ),
+			   { 'url' => '/community/',
+			     'text' => BML::ml('dystopia.nav.findcomm'), },
+			   { 'url' => '/interests.bml',
+			     'text' => BML::ml('dystopia.nav.findint'), },
+			   $LJ::DISABLED{'directory'} ? () : 
+			   (
+			    { 'url' => '/directorysearch.bml',
+			      'text' => BML::ml('dystopia.nav.finddir'), }
+			    ),
+			   ],
+	  };
+
+ push @nav, { 'name' => 'LiveJournal',
+	      'links' => [ 
+			   { 'url' => '/download/',
+			     'text' => BML::ml('dystopia.nav.download'), },
+			   { 'url' => '/paidaccounts/',
+			     'text' => BML::ml('dystopia.nav.paidaccts'), },
+			   { 'url' => '/pay/',
+			     'text' => BML::ml('dystopia.nav.paymentarea'), },
+			   ],
+	  };
+
+ push @nav, { 'name' => BML::ml('dystopia.navhead.help'),
+	      'links' => [ { 'url' => '/support/faq.bml',
+			     'text' => BML::ml('dystopia.nav.faq'), },
+			   { 'url' => '/support/',
+			     'text' => BML::ml('dystopia.nav.support'), },
+			   { 'url' => '/lostinfo.bml',
+			     'text' => BML::ml('dystopia.nav.lostinfo'), },
+			   { 'url' => '/developer/',
+			     'text' => BML::ml('dystopia.nav.developer'), },
+			   { 'url' => '/press/staff.bml',
+			     'text' => BML::ml('dystopia.nav.contact'), },
+			   ],
+	  };
+
+ push @nav, { 'name' => BML::ml('dystopia.navhead.legal'),
+	      'links' => [ { 'url' => '/tos.html',
+			     'text' => BML::ml('dystopia.nav.legaltos'), },
+			   { 'url' => '/privacy.bml',
+			     'text' => BML::ml('dystopia.nav.legalprivacy'), },
+			  # { 'url' => '/legal/dmca.bml',
+			  #   'text' => BML::ml('dystopia.nav.legaldmca'), },
+			   ],
+	  };
+
+ 
+ my $ret = $LJ::DYS_LEFT_TOP;
+ foreach my $sec (@nav) {
+     $ret .= "<tr align=left valign=top><td><p><span class=navtext>$sec->{'name'}</span><br />";
+     foreach my $l (@{$sec->{'links'}}) {
+	 $ret .= "<a href=\"$l->{'url'}\"><span class=navlinks>$l->{'text'}</span></a>";
+	 if ($l->{'extra'}) {
+	     $ret .= " <a href=\"$l->{'extra'}\"><span class=navlinks>...</span></a>";
+	 }
+	 $ret .= "<br />";
+     }
+     $ret .= "</td></tr>";
+ }
+ return BML::noparse($ret);
+
+_code?>
+		<tr align="left" valign="top">
+		  <td>&nbsp;</td>
+		</tr>
+		<tr align="left" valign="top">
+		  <td>&nbsp;</td>
+		</tr>
+		<tr align="left" valign="top">
+		  <td>&nbsp;</td>
+		</tr>
+	  </table>
+	  <p>&nbsp;</p>
+	  <p>&nbsp;</p>
+	</td>
+	<td height="813" bgcolor="#FFFFFF">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+<!-- login bar -->
+<?_code
+#BML:cache
+#WITHPORTAL: unless ($remote || BML::get_uri() eq "/") {
+ my $remote = LJ::get_remote();
+ unless ($remote || BML::get_uri eq '/login.bml') {
+     my $button;
+     my $logincaption = BML::ml('dystopia.btn.login');
+     if ($logincaption eq 'LOGIN') {
+         if (! $LJ::IS_SSL) { 
+             $button = "<input type=image onclick='return sendForm()' src='$LJ::IMGPREFIX/dys/login_but.gif' width='48' height='15' border='0'>";
+         } else {
+             $button = "<input type=image src='$LJ::IMGPREFIX/dys/login_but.gif' width='48' height='15' border='0'>";
+         }
+     } else {
+         if (! $LJ::IS_SSL) { 
+             $button = "<input type='submit' onclick='return sendForm()' value='$ML{'dystopia.btn.login'}' style='margin-top: 0px; margin-bottom: 1px; font-weight: bold;  height: 19px; border: 1px solid #ffffff; background: #336699 none; color: #ffffff; padding-left: 0px; padding-right: 0px'></td>";
+         } else {
+             $button = "<input type='submit' value='$ML{'dystopia.btn.login'}' style='margin-top: 0px; margin-bottom: 1px; font-weight: bold;  height: 19px; border: 1px solid #ffffff; background: #336699 none; color: #ffffff; padding-left: 0px; padding-right: 0px'></td>";
+         }
+     }
+     
+     my $chal = LJ::challenge_generate(300);
+     return <<"END_LOGIN_BAR";
+     <form action="/login.bml" method="post" id='login'>
+         <input type="hidden" name="mode" value="login" />
+         <input type='hidden' name='chal' id='login_chal' value='$chal' />
+         <input type='hidden' name='response' id='login_response' value='' />
+         <tr>
+             <td align="right" valign="top" bgcolor="#FFFFFF">
+             <table border='0' cellspacing='0' cellpadding='0' width='200' align='right'>
+             <tr>
+                 <td align="left" valign="bottom" bgcolor="#660066"><img src="<?imgprefix?>/dys/lg_crnrgif.gif" width="14" height="23"></td>
+                 <td align="right" valign="middle" bgcolor="#660066" class="wtextunbld" nowrap="nowrap">&nbsp;$ML{'Username'}:&nbsp;</td>
+                 <td align="center" valign="top" bgcolor="#660066" class="wtext" nowrap="nowrap"><input type="text" name="user" size="15" maxlength="15" class="login" style="<?loginboxstyle?>"></td>
+                 <td align="right" valign="middle" bgcolor="#660066" class="wtextunbld" nowrap="nowrap">&nbsp;$ML{'Password'}:&nbsp;</td>
+                 <td align="center" valign="top" bgcolor="#660066" class="wtext" nowrap="nowrap"><input type="password" name="password" size="10" id='xc_password' class="login"></td>
+                 <td align="center" valign="middle" bgcolor="#660066" nowrap="nowrap">&nbsp;$button</tr>
+             </table>
+         </td></tr>
+         </form>
+END_LOGIN_BAR
+ }
+ return;
+
+_code?>
+<!-- /login bar -->
+
+		<tr align="left" valign="top" bgcolor="#ffffff">
+		  <td height="585" colspan="7">
+
+<!-- body area -->
+<table border="0" cellspacing="0" cellpadding="10" width="100%"><tr><td>
+
+<?breadcrumbs?>
+
+%%pretitle%%
+
+<font size="+2" face="Verdana, Arial, Helvetica" color=#000066>%%title%%</font><p>
+
+%%body%%
+
+</td></tr></table>
+<!-- /body area -->
+</td></tr></table>
+</td></tr></table>
+</body></html>
+<=PAGE
+

@@ -1,0 +1,40 @@
+<?page
+title=><?_ml .title _ml?>
+head<=
+<style type='text/css'>
+<!--
+    dl.sitecontract { 
+        margin-left: 30px;
+        margin-top: 1.5em;
+    }
+dl.sitecontract dt {
+  font-weight: bold; 
+  margin-top: 1em;
+}
+
+-->
+</style>
+<=head
+body<=
+<?_code
+    LJ::set_active_crumb('contract');
+_code?>
+<?h1 <?_ml .promisetoyou.header _ml?> h1?>
+<?p  <?_ml .promisetoyou        _ml?>  p?>
+<?h1 <?_ml .promise             _ml?> h1?>
+<dl class='sitecontract'>
+  <dt><?_ml .promise.community _ml?></dt>
+  <dd><?_ml .promise.community.about _ml?></dd>
+  <dt><?_ml .promise.account _ml?></dt>
+  <dd><?_ml .promise.account.about _ml?></dd>
+  <dt><?_ml .promise.uptime _ml?></dt>
+  <dd><?_ml .promise.uptime.about _ml?></dd>
+  <dt><?_ml .promise.ads _ml?></dt>
+  <dd><?_ml .promise.ads.about _ml?></dd>
+  <dt><?_ml .promise.spam _ml?></dt>
+  <dd><?_ml .promise.spam.about _ml?></dd>
+  <dt><?_ml .promise.opensource _ml?></dt>
+  <dd><?_ml .promise.opensource.about _ml?></dd>
+</dl>
+<=body
+page?>

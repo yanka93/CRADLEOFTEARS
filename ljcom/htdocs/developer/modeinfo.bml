@@ -1,0 +1,67 @@
+<?_info
+nocache=>1
+_info?><?page
+title=><?_code $v = LJ::ehtml(BML::get_query_string()); return "Mode: $v"; _code?>
+body<=
+<?h1 Mode Details... h1?>
+<?p
+The following are details on the <?_code return $v; _code?> request mode.
+p?>
+
+<?_code
+
+ my @vars;
+ LJ::load_objects_from_file("protocol.dat", \@vars);
+ my $ret = "";
+
+ foreach my $v (grep { $_->{'name'} eq $v  } @vars)
+ {
+     my $mode = $v->{'name'};
+     $ret .= "<p><table width='100%' bgcolor='#C0C0C0'><tr><td><font size='+1'><b>$mode</b></font></td></tr></table>\n\n";
+     $ret .= "<table cellspacing='2'>\n";
+     $ret .= "<tr valign='top'><td align='left' colspan='2' bgcolor='#e0e0e0'><i>Description</i></td></tr>\n";
+     $ret .= "<tr><td colspan='2'>$v->{'props'}->{'des'}</td></tr>\n";
+
+     unshift (@{$v->{'props'}->{'request'}}, 
+              { 'name' => "mode", 'props' => { 'des' => "The protocol request mode: <b><tt>$mode</tt></b>", } },
+              { 'name' => "user", 'props' => { 'des' => "Username.  Leading and trailing whitespace is ignored, as is case.", } },
+              { 'name' => "password", 'props' => { 'des' => "Password in plain-text.  Either this needs to be sent, or <tt>hpassword</tt>.", } },
+              { 'name' => "hpassword", 'props' => { 'des' => "Alternative to plain-text <tt>password</tt>.  Password as an MD5 hex digest.  Not perfectly secure, but defeats the most simple of network sniffers.", } },
+              { 'name' => "ver", 'props' => { 'des' => "Protocol version supported by the client; assumed to be 0 if not specified.  See <a href='versions.bml'>this document</a> for details on the protocol version.", 'optional' => 1, } },
+              );
+     unshift (@{$v->{'props'}->{'response'}}, 
+              { 'name' => "success", 'props' => { 'des' => "<b><tt>OK</tt></b> on success or <b><tt>FAIL</tt></b> when there's an error.  When there's an error, see <tt>errmsg</tt> for the error text.  The absence of this variable should also be considered an error.", } },
+              { 'name' => "errmsg", 'props' => { 'des' => "The error message if <tt>success</tt> was <tt>FAIL</tt>, not present if <tt>OK</tt>.  If the success variable isn't present, this variable most likely won't be either (in the case of a server error), and clients should just report \"Server Error, try again later.\".", } },
+              );
+
+     foreach my $rr (qw(request response)) 
+     {
+         $ret .= "<tr valign='top'><td align='left' colspan='2' bgcolor='#e0e0e0'><i>" . ucfirst($rr) . "</i></td></tr>\n";
+         foreach (@{$v->{'props'}->{$rr}}) 
+         {
+             my $des = $_->{'props'}->{'des'};
+             $des =~ s!\[special\[logprops\]\]!<a href="/doc/server/ljp.csp.proplist.html">logprops</a>!;
+             $ret .= "<tr valign='top'><td align='left' nowrap='nowrap' bgcolor='#f0f0f0'><b>$_->{'name'}</b></td>";
+             $ret .= "<td>";
+             if ($_->{'props'}->{'optional'}) {
+                 $ret .= "<i>(Optional)</i>  ";
+             }
+             $ret .= $des;
+             $ret .= "</td>";
+             $ret .= "</tr>\n";
+         }
+     }
+
+     $ret .= "</table>\n";
+ }
+ return $ret;
+
+_code?>
+
+<?hr?>
+Back to <a href="modelist.bml">Protocol Modes</a>.<br/>
+Back to <a href="protocol.bml">Protocol Documentation</a>.<br/>
+Back to <a href="/developer/">Developer Area</a>.
+
+<=body
+page?>

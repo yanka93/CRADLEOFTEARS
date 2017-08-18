@@ -1,0 +1,29 @@
+<?page
+title=>Encoding Choices
+body<=
+
+<?p We offer three options for phone post encodings:
+MP3, Ogg Vorbis, and GSM-encoded WAV. Which you choose is up to you. p?>
+
+<?h1 MP3 h1?>
+<?p MP3 files are playable by nearly everyone. They can also be
+transfered to a handheld MP3 player, so you can listen to your
+friends' phone posts on the go.
+p?>
+
+<?h1 Ogg Vorbis h1?>
+<?p 
+Ogg Vorbis is a high-quality, open-source alternative                                                                          
+to MP3. Information on what .ogg is and how to play them can be found
+on our <a href="/phonepost/ogg.bml">Ogg Vorbis</a> page.
+p?>
+
+<?h1 WAV h1?>
+<?p 
+WAV files are smaller and more compact, but they don't sound
+as good as MP3 or Ogg. Use this if file size is an issue for you.
+p?>
+
+<=body
+page?>
+

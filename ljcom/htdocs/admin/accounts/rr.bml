@@ -1,0 +1,199 @@
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+    use LWP;
+    use LWP::UserAgent;
+
+    my $dbh = LJ::get_db_writer();
+    my $sth;
+
+    my $remote = LJ::get_remote();
+    return "<?needlogin?>" unless $remote;
+
+    unless (LJ::remote_has_priv($remote, "moneyenter")) {
+        return "You don't have rights to refund/revoke payments.";
+    }
+
+    return "POST required" unless LJ::did_post();
+
+    my $cartobj = LJ::Pay::load_cart($POST{'cart'});
+    return "Invalid cart." unless $cartobj;
+    return "Can't refund/revoke items that weren't paid for." 
+        unless $cartobj->{'used'} eq "Y";
+
+    my %refund;
+    foreach my $n (split(/[\s\,]+/, $POST{'plist'})) {
+        next if $n =~ /\D/;
+        unless (grep { $_->{'piid'} == $n } @{$cartobj->{'items'}}) {
+            return "Invalid piid ($n) for this order.";
+        }
+        $refund{$n} = 1;
+    }
+    
+    my @revoke;
+    my $refund_amt;
+    my $total_refund = 1;
+    foreach my $it (@{$cartobj->{'items'}}) {
+        if ($refund{$it->{'piid'}} && ($it->{'status'} eq "done" || $it->{'status'} eq "pend")) {
+            push @revoke, $it;
+            $refund_amt += $it->{'amt'};
+
+            # note we've already refunded shipping for this item
+            $it->{'ship_refund_done'}++;
+
+        } else {
+            $total_refund = 0;
+        }
+    }
+    unless (@revoke) {
+        return "No items selected to refund/revoke";
+    }
+
+    # if we revoked any items in need of shipping, just refund all shipping costs
+    foreach my $it (@revoke) {
+        next unless LJ::Pay::item_needs_shipping($it);
+
+        foreach (@{$cartobj->{'items'}}) {
+            next unless $_->{'item'} eq 'shipping';
+            next if $_->{'ship_refund_done'};
+            $refund_amt += $_->{'amt'};
+
+            push @revoke, $_;
+            last;
+        }
+
+        last;
+    }
+    
+    my $cardnum = $POST{'partialnum'};
+    my $expdate = $POST{'expdate'};
+
+    # refund if Auth.net
+    my $transid;
+    my $refund = sub {
+        my $type = shift;  # "VOID" or "CREDIT";
+
+        unless (defined $transid) {
+            my $res;
+            $res = $dbh->selectrow_array("SELECT pval FROM payvars WHERE payid=? AND pkey='an-refund'",
+                                         undef, $cartobj->{'payid'});
+            if ($res) {
+                # if payment is relatively new, we still have the refund data around
+                my @f = split(/,/, $res);
+                $transid = $f[0];
+                $expdate = $f[1];
+		# $cardnum = "$f[2]***$f[3]"; # old way.
+		$cardnum = "$f[3]";           # new way. stupid authorize.net.
+            } else {
+                # otherwise the refund info's probably been purged, so we'll get the transid
+                # and card fingerprint from the user
+                $res = $dbh->selectrow_array("SELECT response FROM authnetlog WHERE payid=? AND cmd='authcap' AND result='pass' ORDER BY datesent DESC LIMIT 1", undef, $cartobj->{'payid'});
+                return 0 unless $res;
+                $transid = (split(/,/, $res))[6];
+            }
+        }
+
+        my $ua = new LWP::UserAgent;
+        $ua->agent("LJ-AuthNet/1.0");
+        my $vars = {
+            'x_Version' => '3.1',
+            'x_Delim_Data' => 'True',
+            'x_Login' => $LJ::AUTHNET_USER,
+            'x_Password' => $LJ::AUTHNET_PASS,
+            'x_Type' => $type,
+            'x_Merchant_Email' => $LJ::AUTHNET_MERCHANT,
+            'x_Trans_ID' => $transid,
+            'x_Card_Num' => $cardnum,
+	   #'x_Exp_Date' => $expdate,  # no longer required
+        };
+        if ($type eq "CREDIT") {
+            $vars->{'x_Amount'} = $refund_amt;
+        }
+
+        my $req = new HTTP::Request POST => 'https://secure.authorize.net/gateway/transact.dll';
+        $req->content_type('application/x-www-form-urlencoded');
+        $req->content(join("&", map { LJ::eurl($_) . "=" . LJ::eurl($vars->{$_}) } keys %$vars));
+        # Pass request to the user agent and get a response back
+        my $res = $ua->request($req);
+        my ($ct, $err);
+        if ($res->is_success) {
+            $ct = $res->content;
+        } else {
+            return 0;
+        }
+
+        my @fields = split(/,/, $ct);
+        my $pass = $fields[0] == 1;
+
+        $dbh->do("INSERT INTO authnetlog (cmd, payid, datesent, amt, result, response) ".
+                 "VALUES (?,?,NOW(),?,?,?)", undef, lc($type), 
+                 $cartobj->{'payid'}, $refund_amt, $pass ? "pass" : "fail", $ct);
+        die $dbh->errstr if $dbh->err;
+
+        return $pass;
+    };
+
+    if ($cartobj->{'method'} eq "cc" && ! $POST{'no_refund'}) {
+        return "Error: merchant gateway is currently down, please try again later."
+            if $LJ::AUTHNET_DOWN > 0.5;
+        unless (($total_refund && $refund->("VOID")) ||
+                $refund->("CREDIT")) {
+            return "Error: unable to refund.  Check error messages.  Not revoking items.";
+        }
+    }
+
+    my $piids = join(",", map { $_->{'piid'} } @revoke);
+    LJ::Pay::payvar_add($cartobj->{'payid'}, "revoke", 
+                        LJ::mysql_time(time()) . ": (piid $piids) $POST{'refreason'}");
+    
+    # group revoked items by userid for locking
+    my %revoke_uid = ();
+    foreach my $it (@revoke) {
+        my $uid = $it->{'rcptid'} || 'anon';
+        push @{$revoke_uid{$uid}}, $it;
+    }
+
+    # remove items from account, one userid at a time
+    foreach my $uid (keys %revoke_uid) {
+
+        unless ($uid eq 'anon') {
+            LJ::Pay::get_lock($uid)
+                or return "Could not obtain lock on account, please try again later";
+        }
+
+        LJ::Pay::revoke_payitems(@{$revoke_uid{$uid}});
+
+        unless ($uid eq 'anon') {
+            LJ::Pay::release_lock($uid);
+        }
+    }
+
+    # if any coupons were revoked, display the payids they were used on
+    # so the admin can make a human judgement if anything else needs to
+    # be revoked
+    my @cp_rev = map { $_->{'tokenid'} } grep { $_->{'item'} eq 'coupon' && $_->{'amt'} > 0 } @revoke;
+    my $bind = join(",", map { "?" } @cp_rev);
+    my $cp_ids = $dbh->selectcol_arrayref("SELECT payid FROM coupon WHERE cpid IN ($bind)",
+                                          undef, @cp_rev) || [];
+
+    my $cp_ret;
+    if (@$cp_ids) {
+        $cp_ret = "<p>Coupons have revoked.  Below are the payment IDs on which they were used. " .
+            "You may wish to review these payments to determine if further action should " .
+            "be taken.</p>";
+        $cp_ret .= "<ul>" .
+            join("", map { "<li><a href='paiddetails.bml?payid=$_'>Payment #$_</a></li>" } @$cp_ids) .
+                "</ul>";
+    }
+
+    # if this was a fraudulent payment, mark it as refunded.
+    my $fraud = $dbh->selectrow_array("SELECT pval FROM fraudstatus ".
+                                      "WHERE payid=? AND pkey='fraud_status'",
+                                       undef, $cartobj->{'payid'});
+    LJ::Pay::payvar_set($cartobj->{'payid'}, "fraud_status", "refunded") if $fraud eq 'suspect';
+    
+    return "Success.  Press back and reload for details.$cp_ret";
+    
+}
+_code?>

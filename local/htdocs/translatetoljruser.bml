@@ -1,0 +1,82 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+{
+sub process ($)
+{
+ my ($id) = @_;
+ my $ftext = '<lj ';
+ my $rtext = '<ljr ';
+
+ my $dbh = LJ::get_db_writer();
+
+# Process entry subject lines in own journal
+
+ $dbh->do("update logtext2 set subject = replace(subject, \'" . $ftext . "\', \'" . $rtext . "\') where journalid = ? and subject like \'%\' + \'" . $ftext . "\' + \'%\'", undef, $id);
+
+# Process entry bodies in own journal
+
+ $dbh->do("update logtext2 set event = replace(event, \'" . $ftext . "\', \'" . $rtext . "\') where journalid = ? and event like \'%\' + \'" . $ftext . "\' + \'%\'", undef, $id);
+
+# Process entry subject lines in communities
+
+ $dbh->do("update logtext2  left join log2 on logtext2.journalid=log2.journalid and logtext2.jitemid=log2.jitemid left join community on logtext2.journalid=community.userid set subject = replace(subject, \'" . $ftext . "\', \'" . $rtext . "\') where journalid = ? and subject like \'%\' + \'" . $ftext . "\' + \'%\'", undef, $id);
+
+# Process entry bodies in own journal
+
+ $dbh->do("update logtext2 set event = replace(event, \'" . $ftext . "\', \'" . $rtext . "\') where journalid = ? and event like \'%\' + \'" . $ftext . "\' + \'%\'", undef, $id);
+
+
+ $dbh->do("update talktext2 left join talk2 on talktext2.journalid=talk2.journalid and talktext2.jtalkid=talk2.jtalkid set talktext2.body = replace(talktext2.body, \'" . $ftext . "\', \'" . $rtext . "\') where talk2.posterid = ? and talktext2.body like \'%\' + \'" . $ftext . "\' + \'%\'", undef, $id);
+
+
+return 1;
+}
+
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+    my $id = $remote->{'userid'};
+
+    # process form submission
+    if (LJ::did_post()) {
+
+        my $res = process($id);
+
+        # error updating?
+        return "<?h1 Что-то не сработало! h1?>\n"
+            unless $res;
+
+        # success
+        return "<?h1 Конвертация успешно проведена. h1?>\n";
+}
+
+    # update form
+
+    my $ret;
+
+    $ret .= "<?h1 Переход на новый тэг ljr user. h1?><p>Мы ввели новую систему тэгов lj user и lj comm, которая позволяет легко различать пользователей разных сайтов и устраняет путаницу. Но есть одно &quot;но&quot;: тэг lj user без дополнительного аргумента site теперь означает пользователя www.livejournal.com - а пользователи lj.rossia.org обозначаются тэгом ljr user. Если вы уже неоднократно использовали в своих записях lj user, имея в виду пользователей lj.rossia.org, здесь вы можете автоматически поправить все свои записи по новым правилам.</p><p>Имейте в виду, что это опасная операция: вы доверяете программе делать изменения в своих записях в базе данных. Конечно, мы тестировали эту программу, но любая программа все равно глупая. Действительно ли вы этого хотите? Если вы не абсолютно уверены, лучше не надо.</p><p>Технически, программа делает следующее: находит все ваши записи (включая записи в сообщества), меняет \"&lt;lj \" на \"&lt;ljr \", потом делает то же в заголовках записей и в оставленных вами где бы то ни было комментариях.</p><p>Вы сейчас работаете как пользователь <b>";
+
+    $ret .= $remote->{'user'};
+
+    $ret .= "</b>\n";
+
+    $ret .= "<form method='post' action='translatetoljruser.bml'>\n";
+    $ret .= "<input type=submit value='Update to new ljr user tag'>";
+    $ret .= "</form>\n\n";
+
+    return $ret;
+}
+_code?>
+<=body
+page?>
+

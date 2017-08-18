@@ -1,0 +1,43 @@
+<?page
+title=>The Bazaar
+body<=
+
+The bazaar isn't really used anymore because it was too tedious to
+maintain.  We'd like to fix it and bring it back, but fixing it would
+require analyzing what went wrong.
+
+<?_c
+
+<?h1 What is The Bazaar? h1?>
+<?p
+The Bazaar is a system to foster LiveJournal.com development goals and improve communication amongst the people who are doing work on the site.
+p?>
+<?p
+There are a lot of <a href="details.bml">details</a>, but the basic gist is that each month there is a virtual pot, with so much money in it.  At the end of the month the pot is divided up between the different <a href="/site/contributors.bml">contributors</a>, based on weightings determined by the pot recipients of the previous month.  The LiveJournal staff increases the pot amount as the month goes on when key goals are met and projects completed.
+p?>
+<?p
+This system has the following benefits:<ul>
+<li style='margin-top: 10px'>It gets money out to people who deserve it, without LiveJournal.com needing to hire and manage tons of people, who might have fluctuating amounts of free time, with school or other life commitments.</li>
+<li style='margin-top: 10px'>It lets us assign rough dollar amounts to projects we'd like to see done, without having to figure out exactly what everything's worth.  We just commit to increasing the pot by, say, $200 for some project.  The community's votes may end up making it worth $150 or $300.</li>
+<li style='margin-top: 10px'>It encourages communication.  People have to let other people know what they're doing, and when they've finished it, to get acknowledged.</li>
+<li style='margin-top: 10px'>It encourages projects getting done.  If somebody disappears for a few weeks, it's likely somebody else will finish their project first.  Maybe the second person did it from scratch so the first person gets nothing, or maybe the second person worked off the former's ideas/code, and the community awards the first person some fraction.  In any case, it relieves the need for anybody to hassle people to finish projects.</li>
+<li style='margin-top: 10px'>It encourages people to <a href="/site/contributors.bml">list their contributions</a>.  Even if they choose to not work for money, getting acknowledged at least gives them voting power for the next month.</il>
+</ul>
+p?>
+
+<?h1 Areas h1?>
+<?choices
+items<=
+<?choice Status|status.bml|Current status: who has voting power, and what the pot's at choice?>
+<?choice Vote|vote.bml|Weight contributions for this month. choice?>
+<=items
+itemsb<=
+<?choice Details|details.bml|Details & rules choice?>
+<?choice Balance|balance.bml|Your Balance choice?>
+<=itemsb
+choices?>
+
+_c?>
+
+<=body
+page?>

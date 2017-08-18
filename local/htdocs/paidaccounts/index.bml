@@ -1,0 +1,78 @@
+
+<?page
+TITLE=>Donations
+HEAD<=
+<=HEAD
+BODYOPTS<=<?_code
+#  return "onLoad=\""";
+           _code?>
+<=BODYOPTS
+BODY<=
+
+
+Платных аккаунтов у нас пока нет. Извините.
+<p>
+
+Если хотите, вы можете сделать пожертвование на развитие и поддержку
+сервера. Для этого можно воспользоваться платёжными системами PayPal
+или Яндекс.деньги.
+</p>
+<h2>Пожертвование с помощью системы Яндекс.деньги</h2>
+<p>
+Номер счёта, на который можно переводить пожертвования: 4100197259538
+</p>
+<p>
+Если у вас есть аккаунт в системе Яндекс.деньги, вы можете просто
+перевести деньги со счёта на счёт. В случае, если вы пользуетесь
+веб-интерфейсом ("Яндекс.кошелёк"), вам необходимо сделать следующее.
+</p>
+<ul>
+<li><a href="https://passport.yandex.ru/">Авторизуйтесь</a> на сайте
+  <a href="http://yandex.ru">yandex.ru</a>.</li>
+<li>Перейдите на страницу <a href="https://money.yandex.ru">https://money.yandex.ru</a>.
+<li>Кликните по ссылке "Перевести" (в верхней части страницы, рядом с
+  изображением конверта).</li>
+<li>Выберите вариант "перевод на счёт", отметив соответствующую галочку
+(радиокнопку).</li>
+<li>В поле "Номер счёта получателя" введите 4100197259538</li>
+<li>В поле "Сумма" введите сумму перевода.</li>
+<li>Нажмите кнопку "Перевести".</li>
+<li>На появившейся странице введите свой платёжный пароль в поле "Введите
+ваш платёжный пароль:".</li>
+<li>Нажмите кнопку "Платить".</li>
+</ul>
+<p>
+Пользователи программы "Интернет.кошелёк" могут переводить деньги с
+помощью этой программы (как это сделать, описано <a href="https://money.yandex.ru/doc.xml?id=522709">здесь</a>).
+</p>
+<p>Если у вас нет аккаунта в системе Яндекс.деньги, вы можете
+  воспользоваться <a href="https://money.yandex.ru/doc.xml?id=157119">банковским
+  переводом</a>, <a href="https://money.yandex.ru/doc.xml?id=242340">почтовым
+  переводом</a>, пополнить счёт для пожертвований 
+  через <a href="https://money.yandex.ru/doc.xml?id=522781">платёжные
+  терминалы</a> 
+  или <a href="https://money.yandex.ru/doc.xml?id=522870">банкоматы</a>,  <a href="https://money.yandex.ru/doc.xml?id=242314">с
+  помощью системы интернет-банкинга</a>, а также из других платёжных
+  систем с
+  помощью <a href="http://misc.roboxchange.com/External/Yandex/Index.aspx">Центра 
+  Интернет-платежей</a> (принимаются WebMoney, E-gold, Internet.Money
+  и MoneyMail).
+
+<h2> Пожертвование через PayPal </h2>
+
+Пожертвовать на LJR можно тут:
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
+<p>
+Спасибо!
+<p>
+Привет
+
+<=BODY
+page?>

@@ -1,0 +1,8 @@
+oneline=>{P}Arg one: %%DATA1%%; Arg two: %%DATA2%%
+
+multiline<={P}
+Arg one: %%DATA1%%
+Arg two: %%DATA2%%
+<=multiline
+
+

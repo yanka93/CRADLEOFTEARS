@@ -1,0 +1,147 @@
+﻿<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+  LJ::set_active_crumb('import');
+  return;
+_code?>
+
+<?_code
+{
+  my $err = sub {
+    my $txt = shift;
+    return "<?inerr " . $txt . " inerr?><br/>";
+  };
+  
+  use strict;
+  use vars qw(%POST %GET);
+  use POSIX;
+  
+  my $records_per_page = 10;
+
+  return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+  my $remote = LJ::get_remote();
+  return LJ::bad_input("You must be logged in to access import page.")
+    unless $remote;
+
+  return"<b>Error:</b> You don't have access to view import results."
+    unless (LJ::check_priv($remote, "siteadmin", "importresults"));
+
+  my $authas = $GET{'authas'} || $remote->{'user'};
+  my $u = LJ::get_authas_user($authas);
+  return LJ::bad_input("You could not be authenticated as the specified user.")
+    unless $u;
+
+  my $ret;
+  my $dbr;
+
+  $dbr = LJ::get_db_reader();
+  return $err->("Can't get database reader!") unless $dbr;
+
+  $ret = "<?h1 Очередь импорта всех пользователей h1?>\n<br/>";
+
+  my $sth1;
+  my $max_importid;
+
+  $sth1 = $dbr->prepare("SELECT max(importid) as mi FROM ljr_iqueue");
+  $sth1->execute();
+  if (my $r = $sth1->fetchrow_hashref) {
+    $max_importid = $r->{"mi"};
+  }
+  $sth1->finish;
+
+  if (!$max_importid) {
+    return $err->("Import queue is empty right now. Check out <a href=import-results.bml>import results</a> instead.")
+  }
+
+  $ret .= "<br/>Check out <a href=import-results.bml>import results</a> also.<br/>";
+
+  my $tot_pages = POSIX::floor($max_importid / $records_per_page) + 1;
+  my $offset = $max_importid - POSIX::floor($max_importid / $records_per_page) * $records_per_page;
+  my $i;
+
+
+  if (!defined($GET{"page"}) || int($GET{"page"}) == 0 ) {
+    $GET{"page"} = $tot_pages;
+  }
+  else {
+    $GET{"page"} = abs(int($GET{"page"}));
+  }
+
+
+  $ret .= "<br/><font size=+1>Страницы:&nbsp;&nbsp;</font><font size=+2>";
+
+  my $lindex;
+  my $rindex;
+
+  $lindex = $GET{"page"} + 5;
+  if ($lindex > $tot_pages) {
+    $rindex = $rindex - ($lindex - $tot_pages);
+    $lindex = $tot_pages;
+  }
+  $rindex = $rindex + $GET{"page"} - 5;
+  if ($rindex < 1) {
+    $lindex = $lindex + abs($rindex) - 1;
+    $rindex = 1;
+  }
+
+  for ($i = $lindex; $i >= $rindex; $i--) {
+    if ($i == $GET{"page"}) {
+      $ret .= $i . "&nbsp;";
+    }
+    else {
+      $ret .= "<a href=import-queue.bml?page=$i>$i</a>&nbsp;";
+    }
+  }
+  $ret .= "</font>";
+
+  $ret .= "<form action='import-queue.bml' method='get'>";
+  $ret .= "<input type=submit value='&nbsp;Обновить&nbsp;'>";
+  $ret .= "<input type=hidden name=page id=page value='" . $GET{"page"} . "'";
+  $ret .= "</form><br/><br/>";
+
+  $sth1 = $dbr->prepare(
+    "SELECT * FROM ljr_iqueue where importid <= " .
+      (($GET{"page"} - 1) * $records_per_page + $offset) .
+    " and importid > " .
+      ((($GET{"page"} - 1) * $records_per_page) + $offset - $records_per_page) .
+    " order by priority, importid desc "
+    );
+  $sth1->execute();
+
+  $ret .= "<table border=0 cellpadding=5 cellspacing=0>";
+  $ret .= "<tr bgcolor=#DDDDDD>";
+  $ret .= "<td>Приоритет</td>";
+  $ret .= "<td>Номер</td>";
+  $ret .= "<td>Исходный<br/>сервер</td>";
+  $ret .= "<td>Пользователь<br/>на исходном сервере</td>";
+  $ret .= "<td>Протокол</td>";
+  $ret .= "<td>Пользователь<br/>LJ.Rossia.org</td>";
+  $ret .= "<td>Дата и время<br/>создания заявки</td>";
+  $ret .= "</tr>";
+
+  while (my $r = $sth1->fetchrow_hashref) {
+    $ret .= "<tr>";
+    $ret .= "<td>" . $r->{priority} . "</td>";
+    $ret .= "<td>" . $r->{importid} . "</td>";
+    $ret .= "<td>" . $r->{remote_site} . "</td>";
+    $ret .= "<td><a href=http://" . $r->{remote_site} ."/users/" . $r->{remote_user} . ">" .
+      $r->{remote_user} . "</a></td>";
+    $ret .= "<td>" . $r->{remote_protocol} . "</td>";
+    $ret .= "<td><a href=" . $LJ::SITEROOT . "/users/" . $r->{local_user} . ">" .
+      $r->{local_user} . "</a></td>";
+    $ret .= "<td>" . $r->{qdate} . "</td>";
+    $ret .= "</tr>";
+    $ret .= "<tr bgcolor=#DDDDDD><td colspan=10></td></tr>";
+  }
+  $ret .= "</table>";
+  $sth1->finish;
+
+  return $ret;
+}
+_code?>
+
+
+<=body
+page?>

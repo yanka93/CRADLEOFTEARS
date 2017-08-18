@@ -1,0 +1,8 @@
+---
+# Notice: we always include trailing slash into variable directories path.
+ljr_home: /opt/LJR/
+ljr_livejournal_root: /opt/LJR/livejournal/
+ljr_lj_root: /opt/LJR/local/
+ljr_host: 192.168.93.93
+ljr_port: 8080
+ljr_log_root: /var/log/LJR/

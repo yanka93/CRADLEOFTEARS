@@ -1,0 +1,102 @@
+<?page
+title=>Comments Received
+body<=
+
+<?_code
+
+ return "<B>Down for Maintenance</B><BR>This page used database queries that were horribly unoptimized and killed the rest of the site.  This is currently being fixed on the LiveJournal development server, and when it's fixed, the main server will be updated and this page will be available again.";	
+
+ my $dbh = LJ::get_db_writer();
+
+ my $ret = "";
+
+ my $user = lc($FORM{'user'});
+ my $quser = $dbh->quote($user);
+ my $month = $FORM{'month'};
+ my $year;
+
+ if ($month =~ /^(\d\d\d\d)-(\d\d)$/) {
+     $year = $1;
+     $month = $2;
+ } else {
+     my @nowtime = localtime();
+     $year = $nowtime[5]+1900;
+     $month = sprintf("%02d", $nowtime[4]+1);
+ }
+ my $qyear = $dbh->quote($year);
+ my $qmonth = $dbh->quote($month);
+
+ $sth = $dbh->prepare("SELECT * FROM user WHERE user=$quser");
+ $sth->execute;
+ my $u = $sth->fetchrow_hashref;
+
+ unless ($u) {
+     return "<?h1 Unknown user h1?><?p There doth not exist a user with the username <B>$user</B>.  Sorry. p?>";
+ }
+
+ # get number of posts per month
+ $sth = $dbh->prepare("SELECT DATE_FORMAT(datepost, '%Y-%m') AS 'month', DATE_FORMAT(datepost, '%Y-%M') AS 'monthpretty', COUNT(*) AS 'count' FROM talkpost WHERE userjournal=$quser GROUP BY 1, 2 ORDER BY 1");
+ $sth->execute;
+ %permonth = ();
+ while ($_ = $sth->fetchrow_hashref) {
+     $permonth{$_->{'month'}} = { format => $_->{'monthpretty'},
+                                  count => $_->{'count'} };
+ }
+
+ $ret .= "<?h1 Comments Received in $year/$month h1?><?p Below are a list of journal entries of <A HREF=\"/userinfo.bml?user=$user\">$u->{'name'}</A> which have been commented on by others, in reverse chronological order.  You can also view other months this user has received comments: p?>";
+ $ret .= "<FORM><INPUT TYPE=HIDDEN NAME=user VALUE=$user><CENTER>Month: <SELECT NAME=month>";
+ foreach (reverse sort keys %permonth) {
+     my $sel = $_ eq $FORM{'month'} ? "SELECTED" : "";
+     $ret .= "<OPTION VALUE=\"$_\" $sel>$permonth{$_}->{'format'}\n";
+ }
+ $ret .= "</SELECT><INPUT TYPE=SUBMIT VALUE=\"View\"></CENTER><P>";
+
+ # load the comment numbers
+ $sth = $dbh->prepare("SELECT itemid, COUNT(*) AS 'count' FROM talkpost WHERE userjournal=$quser AND YEAR(datepost)=$qyear AND MONTH(datepost)=$qmonth GROUP BY 1 ORDER BY datepost DESC");
+ $sth->execute;
+ @items = ();
+ push @items, $_ while ($_ = $sth->fetchrow_hashref);
+
+ $TRUNCATE_SIZE = 100;
+
+ # load the comments
+ my $itemid_in = join(", ", 0, map { $_->{'itemid'} } @items);
+ $sth = $dbh->prepare("SELECT l.itemid, l.subject, l.eventtime, LEFT(l.event, $TRUNCATE_SIZE) AS 'eventtrunc', LENGTH(l.event) as 'eventlength' FROM log l LEFT JOIN friends f ON l.ownerid=f.userid AND f.friendid=$qremuid WHERE l.ownerid=$u->{'userid'} AND l.itemid IN ($itemid_in) AND ((l.security='public') OR (l.security='usemask' AND l.allowmask & f.groupmask) OR (l.ownerid=$qremuid))");
+ $sth->execute;
+
+ if ($dbh->err) { return "<B>I'm working on this work now, I know it's an error.....</B>:  " . $dbh->errstr; }
+
+ my %item = ();
+ $item{$_->{'itemid'}} = $_ while ($_ = $sth->fetchrow_hashref);
+
+ $ret .= "<P><TABLE CELLPADDING=4 BORDER=1>\n";
+ $ret .= "<TR BGCOLOR=#E0E0E0><TD><B>Date</B></TD><TD><B>Comment</B></TD><TD NOWRAP><B># Comments</B></TD></TR>\n";
+
+ foreach my $i (@items)
+ {
+     $id = $i->{'itemid'};
+     next unless (defined $item{$id}->{'eventtime'});
+     $date = $item{$id}->{'eventtime'};
+     $date =~ s/ /<BR>/;
+     $ret .= "<TR><TD ALIGN=CENTER NOWRAP><FONT SIZE=-1>$date</FONT></TD><TD>";
+     $event = $item{$id}->{'eventtrunc'};
+     $event =~ s/\<[^\>]*$//;
+     LJ::CleanHTML::clean_event(\$event);
+     
+     if ($item{$id}->{'eventlength'} > $TRUNCATE_LENGTH) { $event .= "..."; }
+     if ($item{$id}->{'subject'}) {
+         $ret .= "<B>$item{$id}->{'subject'}</B><BR>";
+     }
+     $ret .= "$event</TD>";
+     $ret .= "<TD ALIGN=CENTER><B><A HREF=\"/talkread.bml?itemid=$id\">$i->{'count'}</A></B></TD></TR>\n";
+     
+ }
+ $ret .= "</TABLE>\n";
+ return $ret;
+
+_code?>
+
+
+
+<=body
+page?>

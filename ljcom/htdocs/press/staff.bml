@@ -1,0 +1,169 @@
+<?_info
+localblocks<=
+
+employee<=
+{FpRs}
+    <td width="8%" valign="top" align="right">
+      <img src='%%userpic%%' alt='' style='border: 1px solid #000000; max-width: 100px' />
+    </td>
+    <td width="42%" valign="top" height="13"> 
+      <strong>%%position%%</strong>
+      <p>
+        <strong>%%fullname%%</strong><br />
+        %%username%%
+        <br /><cite>%%quip%%</cite>
+      </p>
+    </td>
+<=employee
+
+<=localblocks
+_info?><?page
+title=><?_ml .title _ml?>
+body<=
+<?p <?_ml .administration.about _ml?> p?>
+<?standout
+Contact LiveJournal:
+<ul style='font-weight: bold;'>
+  <li><a href="/support/">Customer Service &amp; Technical Support</a></li>
+  <li><a href="/abuse/report.bml">Terms of Service Violations</a></li>
+  <li><a href="/press/">Press Information</a></li>
+  <li><a href="/feedback/">Feedback &amp; Suggestions</a></li>
+</ul>
+standout?>
+<table width="100%" border="0" cellpadding="0" cellspacing="12" summary="">
+  <tr><td align="center" colspan="4"><?hr?></td></tr>
+  <tr><td align="center" colspan="4"><?h2 <?_ml .developers _ml?> h2?></td></tr>
+
+<tr> 
+
+<?employee
+fullname=>Brad Fitzpatrick
+username=><?ljuser bradfitz ljuser?>
+userpic=>http://userpic.livejournal.com/2101580/2
+position=><?_ml .bradfitz.title _ml?>
+quip=><?_ml .bradfitz.quip _ml?>
+employee?>
+
+<?employee
+fullname=>Anatoly Vorobey
+username=><?ljuser avva ljuser?>
+userpic=>http://userpic.livejournal.com/1510131/111931
+position=><?_ml .avva.title _ml?>
+employee?>
+
+</tr><tr>
+
+<?employee
+fullname=>Mark Smith
+username=><?ljuser marksmith ljuser?>
+userpic=>http://userpic.livejournal.com/10630385/1767539
+position=><?_ml .smithy.title _ml?>
+employee?>
+
+<?employee
+fullname=>Mahlon Smith
+username=><?ljuser mahlon ljuser?>
+userpic=>http://userpic.livejournal.com/8297438/1388180
+position=><?_ml .mahlon.title _ml?>
+quip=><?_ml .mahlon.quip _ml?>
+employee?>
+
+</tr><tr>
+
+<?employee
+fullname=>Brad Whitaker
+username=><?ljuser whitaker ljuser?>
+userpic=>http://userpic.livejournal.com/28673/15
+position=><?_ml .whitaker.title _ml?>
+quip=><?_ml .whitaker.quip _ml?>
+employee?>
+
+<?employee
+fullname=>David Recordon
+username=><?ljuser daveman692 ljuser?>
+userpic=>http://userpic.livejournal.com/19057448/1356357
+position=><?_ml .david.title _ml?>
+employee?>
+
+</tr>
+
+  <tr><td align="center" colspan="4"><?h2 <?_ml .sysadmin _ml?> h2?></td></tr>
+
+<tr>
+
+<?employee
+fullname=>Lisa Phillips
+username=><?ljuser lisa ljuser?>
+userpic=>http://userpic.livejournal.com/23389645/17750
+position=><?_ml .lisa.title _ml?>
+employee?>
+
+<?employee
+fullname=>Matthew Wilson
+username=><?ljuser mwilson ljuser?>
+userpic=>http://www.livejournal.com/userpic/11102420/1494231
+position=><?_ml .matthew.title _ml?>
+employee?>
+
+</tr>
+
+  <tr><td align="center" colspan="4"><?h2 <?_ml .custserv _ml?> h2?></td></tr>
+
+<tr>
+<?employee
+fullname=>Denise Paolucci
+username=><?ljuser denisep ljuser?>
+userpic=>http://userpic.livejournal.com/3338120/819197
+position=><?_ml .denisep.title _ml?>
+quip=><?_ml .denisep.quip _ml?>
+employee?>
+
+<?employee
+fullname=>Jesse Proulx
+username=><?ljuser jproulx ljuser?>
+userpic=>http://userpic.livejournal.com/2576480/472111
+position=><?_ml .jproulx.title _ml?>
+quip=><?_ml .jproulx.quip _ml?>
+employee?>
+</tr><tr>
+
+<?employee
+fullname=>Mark Ferrell
+username=><?ljuser markf ljuser?>
+userpic=>http://userpic.livejournal.com/7008939/1314111
+position=><?_ml .ferrell.title _ml?>
+employee?>
+
+<?employee
+fullname=>Frank the Goat
+username=><?ljuser frank ljuser?>
+userpic=>http://stat.livejournal.com/img/goat.gif
+position=>Mascot
+employee?>
+
+</tr>
+
+  <tr><td align="center" colspan="4"><?h2 <?_ml .accountserv _ml?> h2?></td></tr>
+
+<tr>
+
+<?employee
+fullname=>Ryan Fitzpatrick
+username=><?ljuser ryanfitz ljuser?>
+userpic=>http://userpic.livejournal.com/9660051/21
+position=><?_ml .ryanfitz.title _ml?>
+employee?>
+
+<?employee
+fullname=>Sandy Fitzpatrick
+username=><?ljuser sandy ljuser?>
+userpic=>http://userpic.livejournal.com/3522/4652
+position=><?_ml .sandy.title _ml?>
+employee?>
+
+</tr><tr><td align="center" colspan="4"><?hr?></td></tr></table>
+
+<?p <?_code return BML::ml("Backlink", { link => '/press/', text => $ML{'.back2'} });  _code?> p?>
+
+<=body
+page?>

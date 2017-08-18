@@ -1,0 +1,6 @@
+Simple infinite recursion:
+<b>[Error: Too deep recursion: RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG -> RTAG]</b>
+
+Complex infinite recursion:
+<b>[Error: Too deep recursion: 1TAG -> 2TAG -> REDTAG -> BLUETAG -> 1TAG -> 2TAG -> REDTAG -> BLUETAG -> 1TAG -> 2TAG -> REDTAG]</b>
+

@@ -1,0 +1,64 @@
+<preface id="bml.preface">
+  <!-- Was going to use <section>s, but we don't need more pages. -->
+  <!-- Not as clean, but it works                                 -->
+  <title>Preface</title>
+  <para>
+    This is a comprehensive manual aimed towards people wishing to
+    use <abbrev>BML</abbrev> for their website needs.
+    Some of the topics covered include setting up <abbrev>BML</abbrev> for
+    a website, writing a custom <abbrev>BML</abbrev> scheme, and
+    customization &amp; optimization of a <abbrev>BML</abbrev> installation.
+  </para>
+  <formalpara>
+    <title>Target Audience</title>
+    <para>
+      This book was written for anyone interested in installing and using
+      <abbrev>BML</abbrev> for their own purposes, and for people who are 
+      just generally interested in how <abbrev>BML</abbrev> works.
+    </para>
+  </formalpara>
+  <para>
+    Readers of this book should be familiar with administering a web
+    site, and have at least a brief knowledge of <abbrev>HTML</abbrev>.
+  </para>
+  <formalpara><title>Organization</title><para>
+    The Manual is organized into certain chapters:
+  </para><para>
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="bml.tutorial" /></term>
+       <listitem><para>
+          A tutorial covering the basics of <abbrev>BML</abbrev>, and 
+          explaining how to write a <abbrev>BML</abbrev> document.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><xref linkend="bml.flags" /></term>
+        <listitem><para>
+          A reference to <abbrev>BML</abbrev> block flags.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><xref linkend="bml.core" /></term>
+        <listitem><para>
+          A reference to the core <abbrev>BML</abbrev> blocks.
+        </para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><xref linkend="bml.api.ref" /></term>
+        <listitem><para>
+          An application programming interface reference.
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </para></formalpara>
+  <formalpara>
+    <title>Versions</title>
+    <para>
+      An online version of this book can be found at: 
+      <ulink url="http://www.livejournal.com/doc/server/bml.index.html" />. 
+      To compile these pages for your own, refer to:
+      <filename>/doc/raw/notes.txt</filename> in <abbrev>CVS</abbrev>.
+    </para>
+  </formalpara>
+</preface>

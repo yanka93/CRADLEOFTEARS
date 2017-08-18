@@ -1,0 +1,135 @@
+<?page
+title=>Sizing Chart
+body<=
+<?_code
+    return LJ::set_active_crumb('sizechart');
+_code?>
+
+[&lt;&lt; <a href='/pay/'>View Current Order</a>] [&lt;&lt; <a href='/store/'>Back to store</a>]
+
+<?h1 T-shirts (Short & Long) h1?>
+<?p Sizes S-XXL are <b>Gildan Ultra</b> 100% cotton preshrunk Jersey, 6.1oz per Sq Yd.  Size 3XL is <b>JersyZT</b> 6.0 oz.  Size 4XL is <b>Bayside</b>. p?>
+
+<table style='margin-left: 40px; margin-top: 10px; margin-bottom: 20px' cellpadding='3'>
+<tr align='right'>
+  <td></td>
+  <td><b>S</b></td>
+  <td><b>M</b></td>
+  <td><b>L</b></td>
+  <td><b>XL</b></td>
+  <td><b>XXL</b></td>
+  <td><b>3XL</b></td>
+  <td><b>4XL</b></td>
+</tr>
+<tr align='right'>
+  <td><b>Width</b></ttd>
+  <td>18"</td>
+  <td>20"</td>
+  <td>22"</td>
+  <td>24"</td>
+  <td>26"</td>
+  <td>28"</td>
+  <td>30"</td>
+</tr>
+<tr align='right'>
+  <td><b>Length</b></ttd>
+  <td>28"</td>
+  <td>29"</td>
+  <td>30"</td>
+  <td>31"</td>
+  <td>32"</td>
+  <td>33"</td>
+  <td>34"</td>
+</tr>
+</table>
+
+
+<?h1 Embroidered Polos h1?>
+<?p
+Polos are <b>Outer Banks Pique Polo</b> 6.5 oz.
+p?>
+
+<table style='margin-left: 40px; margin-top: 10px' cellpadding='3'>
+<tr align='right'>
+  <td></td>
+  <td><b>S</b></td>
+  <td><b>M</b></td>
+  <td><b>L</b></td>
+  <td><b>XL</b></td>
+  <td><b>XXL</b></td>
+  <td><b>3XL</b></td>
+</tr>
+<tr align='right'>
+  <td><b>Length</b></ttd>
+  <td>28"</td>
+  <td>30"</td>
+  <td>31"</td>
+  <td>32"</td>
+  <td>33"</td>
+  <td>34"</td>
+</tr>
+<tr align='right'>
+  <td><b>Sleeve Length</b></ttd>
+  <td>10"</td>
+  <td>10.5"</td>
+  <td>11"</td>
+  <td>11.5"</td>
+  <td>12"</td>
+  <td>12.5"</td>
+</tr>
+<tr align='right'>
+  <td><b>Width</b></ttd>
+  <td>19.5"</td>
+  <td>21.5"</td>
+  <td>23.5"</td>
+  <td>25"</td>
+  <td>26.5"</td>
+  <td>28.5"</td>
+</tr>
+</table>
+
+<?p
+All above measurements are in inches.  The length reflects the distance form
+the intersection of the collar and shoulder seam to the bottom seam of the
+shirt. The sleeve length is measured from the intersection of the collar and
+shoulder seam to the bottom seam of the sleeve.  The width reflects the
+distance from side seam to side seam, when measured at least 2 inches below
+the bottom of the arm opening.
+p?>
+
+<?h1 Baby Doll h1?>
+<?p
+Sizing for the <b>American Apparel Girly Crew</b> women's t-shirts:
+p?>
+
+<table style='margin-left: 40px; margin-top: 10px' cellpadding='3'>
+<tr align='right'><td></td><td><b>Small</b></td><td><b>Medium</td><td><b>Large</b></td><td><b>X-Large</b></td></tr>
+<tr align='right'><td></td><td>2/4</td><td>6/8</td><td>10/12</td><td>12/14</td></tr>
+<tr align='right'><td><b>bust</b><td>33"/34"</td><td>35"/36"</td><td>37"/38"</td><td>39"</td></tr>
+<tr align='right'><td><b>waist</b></td><td>25"/26"</td><td>27"/28"</td><td>29"/30"</td><td>31"/32"</td></tr>
+</table>
+
+<?p
+However, these shirts are intended to be fitted, and these sizes and
+measurements reflect this type of fit.  The shirts will stretch, but
+many women would feel more comfortable in a size larger than what they
+would usually purchase.
+p?>
+
+<?h1 Hooded Sweatshirt h1?>
+<?p
+This is a <b>Hanes Hooded Sweatshirt</b>.  Pre-shrunk with a drawstring hood,
+pouch pocket, spandex ribbed cuffs and waistband.  90% cotton, 10% polyester
+heavyweight fabric.  Sorry, dimensions are not currently available.
+p?>
+
+<?h1 Stonewashed Cap h1?>
+<?p
+This is a six panel, low-profile, fitted-looking baseball cap.
+The flexfit headband (elastic scrunchy band) fits a wide range of
+sizes: 6 7/8 - 7 3/8.
+p?>
+
+<=body
+page?>
+

@@ -1,0 +1,194 @@
+<?page
+title=>Process Credit Card
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $req = shift;
+    my $r = $req->{'r'};
+
+    my $cart = $GET{'c'};
+    my $cartobj = LJ::Pay::load_cart($cart);
+    return BML::redirect("$LJ::SITEROOT/pay/") unless $cartobj;
+
+    # cart tied to user?
+    if ($cartobj->{'userid'}) {
+
+        my $remote = LJ::get_remote();
+        return "You must be logged in as this cart's owner to proceed with checkout."
+            unless $remote;
+        return "You do not own this cart.  If you'd like to start a new cart, please click " .
+            "<a href='./?c=new'>here</a>." 
+            unless $cartobj->{'userid'} == $remote->{'userid'};
+    }
+
+    # if there is no userid, then we know it's clean because we checked
+    # each individual item for email blocks when they were added to the cart
+
+    # is merchant gateway down?
+    return "<?h1 Payment Gateway Down h1?>" .
+        "<?p We're sorry, but our credit card transaction gateway is currently down. " .
+        "Please try back in a few minutes. p?>"
+            if $LJ::AUTHNET_DOWN;
+
+    my $needs_shipping = LJ::Pay::cart_needs_shipping($cartobj);
+    my $has_coppa      = LJ::Pay::cart_contains_coppa($cartobj);
+
+    my $amt_total = $cartobj->{amount};
+    if ($amt_total <= 0 && $has_coppa) {
+        $amt_total = '0.01';
+    }
+
+    my $amt_charge = sprintf("%0.02f", $amt_total);
+    my $amt_pretty = "\$${amt_charge} USD";
+
+    my $ret;    
+    $ret .= "<?h1 Order ($cart) h1?><?p ";
+    LJ::Pay::render_cart($cartobj, \$ret, { 'secureimg' => 1 });
+    $ret .= " p?>";
+
+    if ($cartobj->{'mailed'} ne "C") {
+        $ret .= "<?h1 Already Paid h1?><?p This order has already been paid for. p?>";
+        return $ret;
+    }
+
+    if ($needs_shipping && ! $POST{'confirm_address'}) {
+        my %payvar;
+        my $dbh = LJ::get_db_writer();
+        my $sth = $dbh->prepare("SELECT pkey, pval FROM payvars WHERE payid=? AND pkey LIKE 'ship%'");
+        $sth->execute($cartobj->{'payid'});
+        while (my ($k, $v)= $sth->fetchrow_array) { $payvar{$k} = $v; }
+
+        my %country;
+        LJ::load_codes({ "country" => \%country });
+
+        $ret .= "<?h1 Shipping Address h1?>";
+        $ret .= "<?p If the following is incorrect, go <a href=\"$LJ::SITEROOT/pay/?c=$cart\">back to your order</a> and check out again, correcting the shipping address. p?><div style='margin-left: 50px; margin-bottom: 20px'>";
+        $ret .= "$payvar{'ship_name'}<br />";
+        $ret .= "$payvar{'ship_addr1'}<br />";
+        $ret .= "$payvar{'ship_addr2'}<br />" if $payvar{'ship_addr2'};
+        $ret .= "$payvar{'ship_city'}, $payvar{'ship_state'} $payvar{'ship_zip'}<br />";
+        my $ctry = uc($payvar{'ship_country'});
+        if ($ctry ne "US") {
+            $ret .= $country{$ctry};
+        }
+        $ret .= "</div>";        
+    }
+
+    unless (LJ::Pay::is_valid_cart($cartobj)) {
+        return "The given cart contains items that are no longer valid.  This could be caused by conflicts with other " .
+            "carts created during the same time.  Please try again with a new cart.";
+    }
+
+    # if the amount is free then it was probably free before, but needed shipping
+    # so we had to get to this point before deciding whether to charge them anything
+    # or not. dont' need to collect credit card information
+    if ($cartobj->{'amount'} <= 0 && $needs_shipping && !$has_coppa) {
+
+        unless ($POST{'confirm_address'}) {
+            $ret .= "<form method='post' action='cc.bml?c=$cart'>";
+            $ret .= LJ::html_submit('confirm_address', "Complete Order");
+            $ret .= "</form>";
+            return $ret;
+        }
+
+        # set this cart as ready to be processed, and 'free' method
+        my $dbh = LJ::get_db_writer();
+        $dbh->do("UPDATE payments SET used='N', mailed='N', ".
+                 "method='free', daterecv=NOW() WHERE payid=?", undef,
+                 $cartobj->{'payid'});
+
+        $ret .= "<?h1 Order Completed h1?>";
+        $ret .= "<?p There is no charge for this order. p?>";
+        return $ret;
+    }
+
+    # tab index
+    my $tidx = 0;
+    $ret .= "<form method='post' autocomplete='off' action='ccpay.bml' style='display: inline'>";
+
+    # coppa stuff if cart contains age verification
+    if ($has_coppa) {
+        $ret .= "<?h1 Age Verification (for COPPA Compliance) h1?>";
+        $ret .= "<?p The above request contains an age verification item for an account.  In order to complete the process, we need to collect an email address for a parent of this user. p?>";
+        $ret .= "<?p This email address must not be the same as the one on the account.  A verification email will be sent to the address entered.  It is required that you read the email and use the link inside to verify this account. p?>";
+
+        $ret .= "<div style='margin-left: 40px; margin-bottom: 20px;'>";
+        $ret .= "<b>Parent or Guardian's Email Address:</b> ";
+        $ret .= LJ::html_text({ name => 'paremail', size => '30', maxlength => '255', tabindex => ++$tidx });
+        $ret .= "</div>";
+    }
+
+    $ret .= "<?h1 Credit Card Information h1?>";
+    if ($has_coppa && $cartobj->{amount} <= 0) {
+        $ret .= "<?p An authorization may appear on your statement from <b>Danga Interactive</b>, ";
+        $ret .= "which is the legal name of the company that runs LiveJournal.com. Some banks do ";
+        $ret .= "not show authorization requests on billing statements. p?>";
+        $ret .= "<?p Since your cart contains only a <a href='$LJ::SITEROOT/legal/coppa.bml'>COPPA</a> Age Verification item, ";
+        $ret .= "we will attempt verify that the information you have entered is correct and that at least $amt_pretty ";
+        $ret .= "is available on your card.  However, you will <i>not</i> be charged. p?>";
+    } else {
+        $ret .= "<?p Charge will appear on your statement from <b>Danga Interactive</b>, which is the legal name of the company that runs LiveJournal.com. p?>";
+    }
+    $ret .= LJ::html_hidden("cart", $cart);
+    $ret .= LJ::html_hidden("amt_charge", $amt_charge);
+    $ret .= "<div style='margin-left: 20px'><table>";
+
+    $ret .= "<tr><td></td><td align='left'><b><u>Card Info</u></b></td></tr>\n";
+    $ret .= "<tr><td align='right'>Name on card:</td><td>";
+    $ret .= LJ::html_text({ name => 'cardname', size => '30', maxlength => '40', tabindex => ++$tidx}) . "</td></tr>";
+    $ret .= "<tr><td align='right'>Card Number:</td><td>";
+    $ret .= LJ::html_text({ name => 'cardnum', size => '22', maxlength => '22', tabindex => ++$tidx }) . "</td></tr>";
+    $ret .= "<tr><td align='right'>Expiration Date:</td><td>";
+    $ret .= LJ::html_text({ name => 'expdate_mm', size => '3', maxlength => '2', tabindex => ++$tidx }) . " / ";
+    $ret .= LJ::html_text({ name => 'expdate_yy', size => '4', maxlength => '4', tabindex => ++$tidx }) . " (mm/yy)</td></tr>";
+
+    if ($LJ::USE_CARD_CODE) {
+        $ret .= "<tr><td align='right'><a href='cvv2.bml' target='_blank'>Card Verification Number</a>:</td><td>";
+        $ret .= LJ::html_text({ name => 'cardcode', size => '4', maxlength => '4', tabindex => ++$tidx }) . "</td></tr>";
+    }
+
+    $ret .= "<tr><td></td><td align='left'><b><u>Billing Address</u></b> (for card verification)</td></tr>\n";
+    $ret .= "<tr><td align='right'>Address:</td><td>";
+    $ret .= LJ::html_text({ name => 'bill_addr', size => '30', maxlength => '40', tabindex => ++$tidx }) . "</td></tr>";
+    $ret .= "<tr><td align='right'>City:</td><td>";
+    $ret .= LJ::html_text({ name => 'bill_city', size => '30', maxlength => '40', tabindex => ++$tidx }) . "</td></tr>";
+    $ret .= "<tr><td align='right'>State:</td><td>";
+    $ret .= LJ::html_text({ name => 'bill_state', size => '20', maxlength => '40', tabindex => ++$tidx }) . " (code or full name)</td></tr>";
+    $ret .= "<tr><td align='right'>Zip/Postal Code:</td><td>";
+    $ret .= LJ::html_text({ name => 'bill_zip', size => '9', maxlength => '10', tabindex => ++$tidx }) . "</td></tr>";
+
+    my %countries;
+    LJ::load_codes({ "country" => \%countries });
+
+    $ret .= "<tr><td align='right'>Country:</td><td>";
+    $ret .= LJ::html_select({ name => 'bill_country', tabindex => ++$tidx },
+                            map { $_, $countries{$_} } 
+                            ("US", sort { $countries{$a} cmp $countries{$b} } keys %countries));
+    $ret .= "</td></tr>";
+
+    $ret .= "<tr><td></td><td align='left'><b><u>Other Info</u></b></td></tr>\n";
+    $ret .= "<tr><td align='right'>Optional Receipt Email:</td><td>";
+    $ret .= LJ::html_text({ name => 'email', size => '30', maxlength => '50', tabindex => ++$tidx }) . "</td></tr>";
+    $ret .= "<tr><td align='right'>Amount:</td><td><b>$amt_pretty</b></td></tr>";
+    $ret .= "<tr><td align='right'></td><td>";
+    if ($has_coppa && $cartobj->{amount} <= 0) {
+        $ret .= LJ::html_submit(undef, 'Perform Authorization (No Charge)', { tabindex => ++$tidx });
+    } else {
+        $ret .= LJ::html_submit(undef, 'Make Payment', { tabindex => ++$tidx });
+    }
+    $ret .= "<br />(Click once and wait)</tr>";
+    $ret .= "</table></div></form>";
+
+    $ret .= "<?h1 Security Assurance h1?><?p Your credit card info is sent over the Internet encrypted, both from your computer to LiveJournal, and from LiveJournal to the bank.  Your credit card number is immediately forgotten after this transaction and never stored on any of our servers. p?>";
+    return $ret;
+
+}
+_code?>
+
+<=body
+page?>
+
+

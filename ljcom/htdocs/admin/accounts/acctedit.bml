@@ -1,0 +1,309 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $remote = LJ::get_remote();
+    return "You must first <a href=\"$LJ::SITEROOT/login.bml?ret=1\">log in</a>."
+        unless $remote;
+
+    return LJ::no_access_error("You don't have access to use this tool.", "moneyenter")
+        unless LJ::remote_has_priv($remote, "moneyenter");
+
+    # heading
+    my $ret = "<h2>Account Management</h2>";
+
+    # no user specified, get one
+    unless ($GET{'user'}) {
+        $ret .= "<form method='get'>";
+        $ret .= "User: " . LJ::html_text({ 'name' => 'user', 'size' => 15, 'maxlength' => 15 }) . " ";
+        $ret .= LJ::html_submit('Load');
+        $ret .= "</form>";
+        return $ret;
+    }
+
+    # load user
+    my $user = LJ::canonical_username($GET{'user'});
+    my $u = LJ::load_user($user, "force");
+    return "Invalid user: '$user'" unless $u;
+
+    # establish some cap bit -> item mappings
+    my %bonus_caps = map { $LJ::Pay::bonus{$_}->{'cap'}, $_ } keys %LJ::Pay::bonus;
+
+    my $zerodate = "0000-00-00 00:00:00";
+
+    my $dbh = LJ::get_db_writer();
+
+    # save chanes
+    if (LJ::did_post()) {
+
+        # 'notes' field is required
+        return "<?h1 Error h1?><?p The 'notes' fields is required.  Please enter a description of " .
+            "the action you are performing, why it was done, etc. p?>" unless $POST{'notes'};
+
+        my @bits_set;
+        my @bits_del;
+        my $logmsg;
+
+        # save bit-only features
+        foreach my $bit (0..14) {
+
+            # make sure $bit is a valid cap as specified by %LJ::CAP (for general caps),
+            # or either %LJ::Pay::capinf or %LJ::Pay::bonus (for local caps)
+            next unless 
+                ( ref $LJ::CAP{$bit} eq 'HASH' ||
+                  (grep { defined $_->{cap} && $_->{cap} == $bit } values %LJ::Pay::bonus) ||
+                  (grep { defined $_->{cap} && $_->{cap} == $bit } values %LJ::Pay::capinf) );
+
+            # build bit mask to set at the end
+            unless ($POST{"cap_${bit}_set"}) {
+                push @bits_del, $bit;
+                next;
+            }
+
+            push @bits_set, $bit;
+        }
+
+        # save paid account expiration
+        {
+            my $exp = $POST{'paid_exp'};
+
+            # check expiration date format
+            if (defined $exp) {
+                return "<b>Error:</b> Invalid expiration date format, expecting: yyyy-mm-dd hh:mm:ss"
+                    unless $exp =~ /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
+            }
+
+            # does a paiduser row already exist?
+            my $paiduntil = $dbh->selectrow_array("SELECT paiduntil FROM paiduser WHERE userid=?",
+                                                  undef, $u->{'userid'});
+
+            # update existing row
+            if ($paiduntil) {
+
+                # if expdate is 0000-00-00 00:00:00, just delete the row
+                if ($exp eq $zerodate) {
+                    $dbh->do("DELETE FROM paiduser WHERE userid=?", undef, $u->{'userid'});
+
+                    $logmsg .= "[delete] item: paid_account, paiduntil: $exp\n";
+                }
+
+                # unnecessary query?
+                next if $paiduntil eq $exp;
+
+                # otherwise do an update
+                $dbh->do("UPDATE paiduser SET paiduntil=? WHERE userid=?",
+                         undef, $exp, $u->{'userid'});
+
+                $logmsg .= "[update] item: paid_account, paiduntil: $exp\n";
+
+            # insert new, non-blank, row
+            } elsif ($exp ne $zerodate) {
+                $dbh->do("INSERT INTO paiduser (userid, paiduntil) " .
+                         "VALUES (?, ?)", undef, $u->{'userid'}, $exp);
+
+                $logmsg .= "[insert] item: paid_account, paiduntil: $exp\n";
+            }
+        }
+
+
+        # update bonus feature
+        foreach my $itemname (sort keys %LJ::Pay::bonus) {
+            my $bitem = $LJ::Pay::bonus{$itemname};
+            next unless ref $bitem eq 'HASH';
+
+            my ($exp, $size, $days) = map { $POST{"${itemname}_$_"} } qw(exp size daysleft);
+
+            # check expiration date format
+            if (defined $exp) {
+                return "<b>Error:</b> Invalid expiration date format, expecting: yyyy-mm-dd hh:mm:ss"
+                    unless $exp =~ /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
+            }
+
+            # see if row exists
+            my $dbrow = $dbh->selectrow_hashref("SELECT expdate, size, daysleft FROM paidexp " .
+                                                "WHERE userid=? AND item=?",
+                                                undef, $u->{'userid'}, $itemname);
+
+            # row exists, do an update
+            if ($dbrow) {
+
+                # if a zero row, just delete
+                if ($exp eq $zerodate && ! $size && ! $days) {
+                    $dbh->do("DELETE FROM paidexp WHERE userid=? AND item=?", undef, $u->{'userid'}, $itemname);
+                    $logmsg .= "[delete] item: $itemname, expdate: $exp, size: $size, daysleft: $days\n";
+
+                    next;
+                }
+
+                # prepare update query
+                my $sets;
+                $sets .= "expdate=" . $dbh->quote($exp) . "," if defined $exp && $dbrow->{'expdate'} ne $exp;
+                $sets .= "size=" . $dbh->quote($size) . "," if defined $size && $dbrow->{'size'} != $size;
+                $sets .= "daysleft=" . $dbh->quote($days) . "," if defined $days && $dbrow->{'daysleft'} != $days;
+                chop $sets if $sets;
+
+                # unnecessary query?
+                next unless $sets;
+
+                # otherwise do an update
+                $dbh->do("UPDATE paidexp SET $sets WHERE userid=? AND item=?",
+                         undef, $u->{'userid'}, $itemname);
+
+                $logmsg .= "[update] item: $itemname, expdate: $exp, size: $size, daysleft: $days\n";
+
+            # if no rows, then we need to insert a new row, but not an empty one
+            } elsif ($exp ne $zerodate || $size > 0 || $days > 0) {
+                $exp  ||= $zerodate;
+                $size ||= 0;
+                $days ||= 0;
+
+                $dbh->do("INSERT INTO paidexp (userid, item, size, expdate, daysleft) VALUES (?, ?, ?, ?, ?)",
+                         undef, $u->{'userid'}, $itemname, $size, $exp, $days);
+
+                $logmsg .= "[insert] item: $itemname, expdate: $exp, size: $size, daysleft: $days\n";
+            }
+
+            # call any necessary apply_hooks
+            my $apply_hook = $bitem->{apply_hook};
+            if ($apply_hook && ref $apply_hook eq 'CODE') {
+                $apply_hook->($u, $itemname);
+            }
+        }
+
+        # note which caps were changed and log $logmsg to statushistory
+        {
+            my $caps_add = join(",", @bits_set);
+            my $caps_del = join(",", @bits_del);
+            $logmsg .= "[caps] add: $caps_add, del: $caps_del\n";
+            $logmsg .= "[notes] $POST{'notes'}";
+
+            LJ::statushistory_add($u->{'userid'}, $remote->{'userid'},
+                                  "acctedit", $logmsg);
+        }
+
+        # done looping through possible bits
+        LJ::modify_caps($u, \@bits_set, \@bits_del);
+
+        return "<?h1 Success! h1?><?p Changes to this account have been saved. p?>";
+    }
+    
+
+    ### update form
+
+    $ret .= "<form method='post' action='acctedit.bml?user=$u->{'user'}'>";
+    $ret .= "<table border='1' cellspacing='0' cellpadding='5'>";
+    $ret .= "<tr><td>Bit</td><td>Class</td><td>Set?</td><td>Expiration</td></tr>";
+
+    # so we know which bits to skip when going through %LJ::CAP hash
+    my %special_bit = ($LJ::Pay::capinf{'paid'}->{'bit'} => 1);
+    while (my ($itemname, $ref) = each %LJ::Pay::bonus) {
+        $special_bit{$ref->{'cap'}} = 1;
+    }
+
+    # do bit-only features
+    foreach my $bit (sort { $a <=> $b } keys %LJ::CAP) {
+        next unless ref $LJ::CAP{$bit} eq 'HASH';
+        next if $special_bit{$bit};
+
+        my $has_cap = $u->{'caps'} & 1 << $bit || 0;
+        my $name = $LJ::CAP{$bit}->{'_name'} || "<i>(no name)</i>";
+        $name = "<b>$name</b>" if $has_cap;
+        $ret .= "<tr><td align='middle'>$bit</td><td><label for='cap_${bit}_set'>$name</label></td><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => "cap_${bit}_set",
+                                 'id' => "cap_${bit}_set", 'value' => 1, 
+                                 'selected' => $has_cap }) . "</td>";
+
+        # expiration
+        $ret .= "<td>&nbsp;</td></tr>";
+    }
+
+    # paid account status
+    {
+        my $bit = $LJ::Pay::capinf{'paid'}->{'bit'};
+        my $has_cap = $u->{'caps'} & 1 << $bit || 0;
+        my $name = "Paid Account";
+        $name = "<b>$name</b>" if $has_cap;
+        $ret .= "<tr><td align='middle'>$bit</td><td><label for='cap_${bit}_set'>$name</label></td>";
+
+        $ret .= "<td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => "cap_${bit}_set",
+                                 'id' => "cap_${bit}_set", 'value' => 1, 
+                                 'selected' => $has_cap }) . "</td>";
+
+        # get paid account status from database
+        my $exp = $dbh->selectrow_array("SELECT paiduntil FROM paiduser WHERE userid=?",
+                                        undef, $u->{'userid'});
+
+        # expiration text box
+        $ret .= "<td>";
+        $ret .= LJ::html_text({ 'name' => "paid_exp", 'value' => $exp || $zerodate,
+                                'size' => 19, 'maxlength' => 19 });
+
+        $ret .= "</td></tr>";
+    }
+
+    # bonus features
+    foreach my $itemname (sort { $LJ::Pay::bonus{$a}->{'bit'} <=> $LJ::Pay::bonus{$b}->{'bit'} } keys %LJ::Pay::bonus) {
+        my $bitem = $LJ::Pay::bonus{$itemname};
+        next unless ref $bitem eq 'HASH';
+
+        my $bit = $bitem->{'cap'};
+        my $has_cap = $u->{'caps'} & 1 << $bit || 0;
+        my $name = $bitem->{'name'};
+        $name = "<b>$name</b>" if $has_cap;
+        $ret .= "<tr><td align='middle'>$bit</td><td><label for='cap_${bit}_set'>$name</label></td>";
+
+        $ret .= "<td>";
+        if (defined $bit) {
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => "cap_${bit}_set",
+                                     'id' => "cap_${bit}_set", 'value' => 1, 
+                                     'selected' => $has_cap });
+        } else {
+            $ret .= "&nbsp;";
+        }
+        $ret .= "</td>";
+
+        # get activation status from the db
+        my ($exp, $size, $daysleft) = 
+            $dbh->selectrow_array("SELECT expdate, size, daysleft FROM paidexp " .
+                                  "WHERE userid=? AND item=?",
+                                  undef, $u->{'userid'}, $itemname);
+        $size += 0;
+        $daysleft += 0;
+
+        # expire text box
+        $ret .= "<td>";
+        $ret .= LJ::html_text({ 'name' => "${itemname}_exp", 'value' => $exp || $zerodate,
+                                'size' => 19, 'maxlength' => 19 });
+
+        # need a size box?
+        if (LJ::Pay::is_bonus($bonus_caps{$bit}, 'sized')) {
+            $ret .= "<br />Size: ";
+            $ret .= LJ::html_text({ 'name' => => "${itemname}_size", 'value' => $size,
+                                    'size' => 5, 'maxlength' => 5 });
+        }
+
+        # daysleft text box
+        $ret .= "<br />Daysleft: ";
+        $ret .= LJ::html_text({ 'name' => => "${itemname}_daysleft", 'value' => $daysleft,
+                                'size' => 3, 'maxlength' => 3 });
+
+        $ret .= "</td></tr>";
+    }
+
+
+    $ret .= "<tr><td colspan='4' align='left'><b>Notes: </b> <small><i>(required)</i></small><br />";
+    $ret .= LJ::html_textarea({ 'name' => 'notes', 'rows' => 3, 'cols' => 60, 'wrap' => 'soft' });
+    $ret .= "</td></tr><tr><td colspan='4' align='right'>";
+    $ret .= LJ::html_submit('Update') . "</td></tr>";
+
+    $ret .= "</table>";
+    $ret .= "</form>";
+
+    return $ret;
+
+}
+
+_code?>
+

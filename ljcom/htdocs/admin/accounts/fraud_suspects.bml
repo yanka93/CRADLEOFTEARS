@@ -1,0 +1,66 @@
+<html><head>
+<title>Fraud suspects</title>
+<style>
+    h1 { font-size: 20pt; }
+    h2 { font-size: 17pt; }
+    .label { background: #ccc; text-align: right; vertical-align: top; }
+    .data { background: #eee; padding-left: 10px; }
+    .tbl td { border-bottom: 1px solid #aaa; }
+    .tbl
+    {
+        font-family: Verdana, sans-serif;
+        font-size: 11px;
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        border-left: 1px solid #aaa;
+        width: 500px; margin-bottom: 10px;
+    }
+</style>
+</head><body>
+<?_code
+
+my $dbh = LJ::get_db_writer();
+
+my $ret;
+my $remote = LJ::get_remote();
+
+my $viewall = LJ::remote_has_priv($remote, "moneyview");
+my $viewsearch = 0;
+if (! $viewall) {
+    $viewsearch = LJ::remote_has_priv($remote, "moneysearch");
+}
+
+unless ($viewall || $viewsearch) {
+    return "You don't have access to see this, or you're not logged in.";
+}
+
+my $sql = q{
+    SELECT * FROM fraudsuspects
+};
+my $data = $dbh->selectall_hashref($sql, 'payid', undef);
+
+$ret .= "<h1>Possible fraudulent payments</h1>";
+foreach my $row (sort { $a->{dateadd} <=> $b->{dateadd} } values %$data) {
+    my $added = gmtime($row->{dateadd});
+    my $reason = $row->{reason};
+    $reason =~ s#\n#<br />#mg;
+    $ret .= <<EOF;
+    <table border='0' cellspacing='0' class='tbl'>
+    <tr>
+        <td class='label'>Payid:</td>
+        <td class='data'><a href='paiddetails.bml?payid=$row->{payid}'>$row->{payid}</a></td>
+    </tr>
+        <td class='label'>Date added:</td>
+        <td class='data'>$added</td>
+    </tr>
+        <td class='label'>Reason:</td>
+        <td class='data'>$reason</td>
+    </tr>
+    </table>
+EOF
+}
+
+return $ret;
+
+_code?>
+</body></html>

@@ -1,0 +1,50 @@
+<?_code
+{
+    use strict;
+    my $body = \$_[1]->{'body'};
+
+    my $remote = LJ::get_remote();
+    my $userid = $remote && $remote->{'userid'} ? $remote->{'userid'} : 0;
+
+    if ($POST{'action:submit'}) {
+        if (LJ::trim($POST{'survey'}) ne "") {
+            my $dbh = LJ::get_db_writer();
+            my $sth = $dbh->prepare("INSERT INTO fotobilder_feedback VALUES (?,?,'N',NOW(),?)");
+            $POST{'survey'} .= "\n\nUser-agent: " . BML::get_client_header('User-Agent');
+            $sth->execute($POST{'url'}, $userid, $POST{'survey'});
+            
+            $$body .= $dbh->err ? "<?h1 Database Error h1?><?p There was an error trying to file your survey. Please report the following back to us: " . $dbh->errstr . " p?>" :
+                "<?h1 Thank You h1?><?p Thank you for giving us your feedback. If you see anything else you'd like to comment on, ".
+                "you can fill out as many surveys as you'd like, or post to the community <?ljcomm fotobilder_user ljcomm?>. p?>"; 
+            return;
+        }
+    }
+
+    unless ($POST{'url'}) {
+        $$body = "<?h1 Oops! h1?><?p The only way to fill out this survey is to press the \"Provide Feedback\" button on ".
+            "<a href='http://pics.livejournal.com/'>http://pics.livejournal.com</a>, provided at the bottom of each page. ".
+            "If there wasn't a button for you to press, or you have some other related feedback, please post about it to ".
+            "the community <?ljcomm fotobilder_user ljcomm?>. Thank you! p?>";
+    } else {
+        $$body .= "<?p Please be as descriptive as possible in providing your feedback about the page http://pics.livejournal.com$POST{'url'}. ".
+            "We're trying to gather as much information as we can, in particular: p?><ul><li>Was the page easy to use?</li>".
+            "<li>Were any aspects of the page confusing to follow?</li><li>Was it easy to stop and pick up where you left off?</li>".
+            "<li>Did the page keep your interest until you were done?</li></ul>";
+
+        $$body .= "<?p If you're reporting an error, please copy and paste the exact text of any error messages you received. ";
+        $$body .= "These are extremely useful for developers trying to track down any problems you may be having. p?>";
+
+        $$body .= "<form method='POST'>";
+        $$body .= LJ::html_hidden('url',$POST{'url'});
+        $$body .= LJ::html_textarea({ 'name' => "survey", 'rows' => 10, 'cols' => 40, 'style' => "width: 100%; border-top: 1px solid #000; border-left: 1px solid #000; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd", });
+        $$body .= "<div style='text-align: right'>" . LJ::html_submit('action:submit',"Send Survey") . "</div>";
+        $$body .= "</form>";
+    }
+
+    return;
+}
+_code?>
+<?page
+title=>FotoBilder Feedback Survey
+body=><?_code return $_[1]->{'body'}; _code?>
+page?>

@@ -1,0 +1,179 @@
+#NEWLAYER: anovelconundrum/renaissance
+layerinfo "type" = "theme";
+layerinfo "name" = "Renaissance";
+layerinfo "redist_uniq" = "anovelconundrum/renaissance";
+
+set font_secondary_fallback = "";
+set font_secondary_size = 10;
+set font_secondary_type = "serif";
+set font_leading = 12;
+set page_back = "#FAF2C8";
+set font_fallback = "";
+set font_secondary_base = "Garamond";
+set font_base = "Garamond";
+
+#NEWLAYER: anovelconundrum/modern
+layerinfo "type" = "theme";
+layerinfo "name" = "Modern";
+layerinfo "redist_uniq" = "anovelconundrum/modern";
+
+set font_leading = 14;
+set page_back = "#F5F5E8";
+set font_fallback = "";
+set font_base = "Georgia";
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.1em";
+set dcLen = 5000;
+
+#NEWLAYER: anovelconundrum/clippy
+layerinfo "type" = "theme";
+layerinfo "name" = "Clippy";
+layerinfo "redist_uniq" = "anovelconundrum/clippy";
+
+set font_leading = 13;
+set page_back = "#FFFFFF";
+set font_fallback = "Times";
+set font_base = "Times New Roman";
+set font_secondary_base = "Helvetica";
+set font_secondary_fallback = "Arial";
+set font_secondary_type = "sans-serif";
+set font_secondary_size = 8;
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.1em";
+set flourish_rm = "0.08em";
+set dcLen = 99999;
+set body_width = "65ex";
+
+#NEWLAYER: anovelconundrum/childsplay
+layerinfo "type" = "theme";
+layerinfo "name" = "Child's Play";
+layerinfo "redist_uniq" = "anovelconundrum/childsplay";
+
+set page_back = "#FFE6FF";
+set font_base = "Comic Sans";
+set font_fallback = "Chalkboard";
+set font_type = "cursive";
+set font_secondary_base = "";
+set font_secondary_fallback = "";
+set font_secondary_type = "";
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.12em";
+set flourish_rm = "0.08em";
+set dcLen = 1000;
+
+#NEWLAYER: anovelconundrum/laketahoe
+layerinfo "type" = "theme";
+layerinfo "name" = "Lake Tahoe";
+layerinfo "redist_uniq" = "anovelconundrum/laketahoe";
+
+set page_back = "#E6E6FF";
+set font_base = "Tahoma";
+set font_fallback = "Verdana";
+set font_type = "sans-serif";
+set font_secondary_base = "";
+set font_secondary_fallback = "";
+set font_secondary_type = "";
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.14em";
+set flourish_rm = "0.08em";
+set dcLen = 500;
+
+#NEWLAYER: anovelconundrum/deardiary
+layerinfo "type" = "theme";
+layerinfo "name" = "Dear Diary";
+layerinfo "redist_uniq" = "anovelconundrum/deardiary";
+
+set page_back = "#f9f7d6";
+set font_base = "Lucida Handwriting";
+set font_fallback = "";
+set font_type = "cursive";
+set font_leading = 16;
+set body_width = "38em";
+set font_secondary_base = "";
+set font_secondary_fallback = "";
+set font_secondary_type = "";
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.12em";
+set flourish_rm = "0.05em";
+set dcLen = 500;
+
+#NEWLAYER: anovelconundrum/scribal
+layerinfo "type" = "theme";
+layerinfo "name" = "Scribal";
+layerinfo "redist_uniq" = "anovelconundrum/scribal";
+
+set page_back = "#FAF2C8";
+set font_base = "Lucida Calligraphy";
+set font_fallback = "";
+set font_type = "cursive";
+set font_leading = 15;
+set title_smallcaps = false;
+set title_underline = true;
+set font_secondary_base = "";
+set font_secondary_fallback = "";
+set font_secondary_type = "";
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.12em";
+set flourish_rm = "0.05em";
+set dcLen = 500;
+
+#NEWLAYER: anovelconundrum/glossy
+layerinfo "type" = "theme";
+layerinfo "name" = "Glossy Magazine";
+layerinfo "redist_uniq" = "anovelconundrum/glossy";
+
+set page_back = "#F4FBFF";
+set font_base = "Lucida Bright";
+set font_fallback = "Georgia";
+set font_type = "serif";
+set font_secondary_base = "Lucida Sans";
+set font_secondary_fallback = "";
+set font_secondary_type = "sans-serif";
+set font_secondary_size = 9;
+set font_flourish_base = "Agency FB";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.08em";
+set flourish_rm = "0.02em";
+set dcLen = 1200;
+
+#NEWLAYER: anovelconundrum/retro
+layerinfo "type" = "theme";
+layerinfo "name" = "Retrossential";
+layerinfo "redist_uniq" = "anovelconundrum/retro";
+
+set page_back = "#f9f9e3";
+set font_base = "Rockwell";
+set font_fallback = "";
+set font_type = "serif";
+set font_size = 11;
+set font_secondary_base = "";
+set font_secondary_fallback = "";
+set font_secondary_type = "";
+set font_secondary_size = 10;
+set font_flourish_base = "";
+set font_flourish_fallback = "";
+set font_flourish_type = "";
+set flourish_rm = "0.05em";
+set dc_rm = "0.12em";
+set flourish_rm = "0.05em";
+set dcLen = 500;

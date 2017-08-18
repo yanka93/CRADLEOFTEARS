@@ -1,0 +1,12 @@
+<html>
+<head><title>Test1</title></head>
+<body>
+
+Test of local block foo: [foo][/foo]
+
+Another test of local block foo: [foo]with data this time[/foo]
+
+
+</body>
+</html>
+

@@ -1,0 +1,115 @@
+<chapter id="bml.core">
+  <chapterinfo>
+    <title>Core <abbrev>BML</abbrev> blocks</title>
+  </chapterinfo>
+  <title>Core <abbrev>BML</abbrev> blocks</title>
+  <para>
+    Core blocks are predefined blocks that are named with a leading underscore. 
+    Most core blocks have a higher purpose than simple template use: 
+  </para>
+  <variablelist>
+    <varlistentry>
+      <term><literal role="core.bml.block">_code</literal></term>
+      <listitem><para>
+        <literal>&lt;?_code _code?&gt;</literal> blocks are perhaps the most useful feature of 
+        <abbrev>BML</abbrev> outside of the ability to have global site templates. 
+        These blocks allow template authors to embed pieces of executable Perl code 
+        within the bml page that get executed on the server.
+      </para><para>
+      </para><para>
+        The code you write gets executed in its own package (namespace) called 
+        <computeroutput>BMLCodeBlock::</computeroutput>.
+        Any variables you declare in one code block on a page without using 
+        <literal>my</literal> are carried on to the next <literal>_code</literal> block.
+      </para><para>
+        Because the BML parser must evaluate everything on the page before sending the 
+        <abbrev>HTTP</abbrev> headers, make sure you don't print anything. 
+        Any output printed to <literal>STDOUT</literal> will just be interpreted as 
+        <abbrev>HTTP</abbrev> headers. How the <literal>_code</literal> blocks work is 
+        that you need to return a value at the end.
+        Whatever value your code fragment returns is what the block evaluates to. 
+        Usually what you end up doing is building a string, concatenating things to it 
+        over and over, and then returning it at the end.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal role="core.bml.block">_c</literal> - <literal role="core.bml.block">_comment</literal></term>
+      <listitem><para>
+        Comment blocks are templates that do not get parsed into resultant text later, 
+        and are useful when <abbrev>HTML</abbrev> style comments
+        (<quote><literal>&lt;!-- --&gt;</literal></quote>) are not desired.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal role="core.bml.block">_info</literal></term>
+      <listitem><para>
+        Information blocks can be used to include special information about the particular 
+        <abbrev>BML</abbrev> page the block is contained in. 
+        <variablelist>
+          <title><literal>_info</literal> directives</title>
+          <varlistentry>
+            <term><literal>package</literal></term>
+            <listitem><para>Specify and load a required package</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>nocache</literal></term>
+            <listitem><para>Specified page is dynamic, and shouldn't be cached</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>static</literal></term>
+            <listitem><para>Specified page is static; ok to cache</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>noheaders</literal></term>
+            <listitem><para>Turn off default <abbrev>BML</abbrev> headers</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>nocontent</literal></term>
+            <listitem><para>Specify that page has no cacheable content</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>localblocks</literal></term>
+            <listitem><para>Declare page specific <abbrev>BML</abbrev> blocks.</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal role="core.bml.block">_include</literal></term>
+      <listitem><para>
+        Include blocks can be used to integrate a text file straight into a <abbrev>BML</abbrev>
+        file. Include files can be written in BML or plain text. 
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal role="core.bml.block">_e*</literal></term>
+      <listitem><para>
+        <literal>_e*</literal> are a variety of escape blocks, each with a different purpose:
+        <variablelist>
+          <varlistentry>
+            <term><literal>_eh</literal></term>
+            <listitem><para>Replace certain <abbrev>ASCII</abbrev> characters with their <abbrev>HTML</abbrev> entity counterparts</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>_eb</literal></term>
+            <listitem><para>Replace certain <abbrev>ASCII</abbrev> characters that can trigger <abbrev>BML</abbrev> blocks (<quote><literal>&lt;?xml?&gt;</literal></quote>) with their <abbrev>HTML</abbrev> entity counterparts</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>_eu</literal></term>
+            <listitem><para>Escape non-compliant <abbrev>ASCII</abbrev> characters in <acronym>URL</acronym>s</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>_ea</literal></term>
+            <listitem><para>Escape text by passing through <literal>eh</literal> and then <literal>eb</literal></para></listitem>
+          </varlistentry>
+        </variablelist>
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal role="core.bml.block">_ml</literal></term>
+      <listitem><para>
+        Multi language blocks are used to interchange certain text blocks with the specified language-domain translation.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+</chapter>

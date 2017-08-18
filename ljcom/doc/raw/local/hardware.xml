@@ -1,0 +1,633 @@
+<?xml version="1.0"?>
+<!DOCTYPE hardwarelist SYSTEM "hardware.dtd">
+<hardwarelist>
+
+<machine name="kenny">
+<physical>
+  <type>server</type>
+  <vendor>Dell</vendor>
+  <size>6</size>
+  <proc>Dual P3 (Coppermine) 933 Mhz</proc>
+  <mem>2 GB</mem>
+  <disk>SCSI: 2x9 GB, 2x18 GB</disk>
+  <other>AMI MegaRAID card</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <os>Debian</os>
+  <raid config='1'>9 GB</raid>
+  <raid config='0'>36 GB</raid>
+  <ip>10.0.0.1</ip>
+  <mysqlid>2</mysqlid>
+</config>
+<notes>
+Kenny was one of our first two servers.  We bought it at the
+same time as Cartman.  Kenny was our web server and 
+named so we could say "You killed Kenny, you bastard!" since
+we anticipated growth faster than we could buy new servers.
+</notes>
+</machine>
+
+<machine name="cartman">
+<physical>
+  <type>server</type>
+  <vendor>Dell</vendor>
+  <size>6</size>
+  <proc>Dual P3 (Coppermine) 866 Mhz</proc>
+  <mem>2 GB</mem>
+  <disk>SCSI: 2x9 GB, 2x18 GB, 2x18 GB 10k</disk>
+  <other>AMI MegaRAID card</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>cluster master</role>
+  <os>Debian</os>
+  <raid config='1'>9 GB</raid>
+  <raid config='5'>36 GB (1 hotspare)</raid>
+  <ip>10.0.0.2</ip>
+  <mysqlid>1</mysqlid>
+</config>
+<notes>
+Cartman was one of our first two servers along with Kenny.
+Cartman's a big fat ass, and so was this thing, both in
+physical size and disk space.  It was our master database
+server until we got Jesus and Kyle's mom.  Now it's a
+cluster master.
+</notes>
+</machine>
+
+<machine name="stan">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 800 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.3</ip>
+</config>
+<notes>
+Stan and Kyle were bought at the same time.  No front panel.
+hda serial: IBM-DTLA-307020 - Model: IBM 75GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="kyle">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 800 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <role>mail backup</role>
+  <os>FreeBSD</os>
+  <ip>10.0.0.4</ip>
+</config>
+<notes>
+Stan and Kyle were bought at the same time.  No front panel.
+hda serial: IBM-DTLA-307020 - Model: IBM 75GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="wendy">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 800 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.5</ip>
+</config>
+<notes>
+Bought with Bebe.  Named as such because we have a 60% female user base and had no female servers.
+</notes>
+</machine>
+
+<machine name="bebe">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 800 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>mail</role>
+  <role>userpic</role>
+  <os>Debian</os>
+  <ip>10.0.0.6</ip>
+</config>
+<notes>
+Bought with Wendy.  They're best friends.
+hda serial: IBM-DTLA-307020 - Model: IBM 75GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="terrance">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 866 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>FreeBSD</os>
+  <ip>10.0.0.7</ip>
+</config>
+<notes>
+Bought with Phillip.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="phillip">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 866 Mhz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.8</ip>
+</config>
+<notes>
+Bought with Terrance.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="mackey">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1 Ghz</proc>
+  <mem>3.5 GB</mem>
+  <disk>SCSI: 3x18 GB (IBM: DDYS-T18350M)</disk>
+  <other>64 MB Mylex AcceleRAID 170 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <role>dns</role>
+  <os>Debian</os>
+  <raid config='5'>36 GB</raid>
+  <ip>10.0.0.9</ip>
+  <mysqlid>4</mysqlid>
+</config>
+<notes>
+Mackey and Hat (Mr. Mackey and Mr. Hat) were our first 1U db slaves.
+</notes>
+</machine>
+
+<machine name="hat">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1 Ghz</proc>
+  <mem>3 GB</mem>
+  <disk>SCSI: 3x18 GB (IBM: DDYS-T18350M)</disk>
+  <other>64 MB Mylex AcceleRAID 170 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <os>Debian</os>
+  <raid config='5'>36 GB</raid>
+  <ip>10.0.0.10</ip>
+  <mysqlid>5</mysqlid>
+</config>
+<notes>
+Mackey and Hat (Mr. Mackey and Mr. Hat) were our first 1U db slaves.
+</notes>
+</machine>
+
+<machine name="ike">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1Ghz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.11</ip>
+</config>
+<notes>
+Bought with Pip.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="pip">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1Ghz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>userpic</role>
+  <os>Debian</os>
+  <ip>10.0.0.12</ip>
+</config>
+<notes>
+Bought with Ike.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="timmy">
+<physical>
+  <type>server</type>
+  <vendor>ESS</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1 Ghz</proc>
+  <mem>2 GB</mem>
+  <disk>SCSI: 2x18 GB (IBM)</disk>
+  <other>64 MB Mylex AcceleRAID 170 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <os>Debian</os>
+  <raid config='0'>36G</raid>
+  <ip>10.0.0.13</ip>
+  <mysqlid>6</mysqlid>
+</config>
+<notes>
+Timmy and Gobbles. They took more than a month to ship, and arrived
+in a non-working state, with some broken hardware.
+
+One drive died.  Now only has 2, in a raid 0 config.
+</notes>
+</machine>
+
+<machine name="marklar">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>2</size>
+  <proc>Dual P3 (Coppermine) 933 Mhz</proc>
+  <mem>3.5 GB</mem>
+  <disk>SCSI: 6x18 GB (IBM DDYS-T18350M)</disk>
+  <other>Mylex AcceleRAID 352, 64 MB (dac960)</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>misc</role>
+  <os>Debian</os>
+  <raid config='5'>85G</raid>
+  <ip>10.0.0.15</ip>
+  <mysqlid>3</mysqlid>
+</config>
+<notes>
+Brad bought this to replace his old machine at Virtualis, and serves many
+misc roles: slave database when needed (if another dies), file backup machine,
+log processing, etc.
+</notes>
+</machine>
+
+<machine name="gobbles">
+<physical>          
+  <type>server</type>
+  <vendor>ESS</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Coppermine) 1 Ghz</proc>
+  <mem>3 GB</mem>
+  <disk>SCSI: 3x18 GB (IBM)</disk>
+  <other>64 MB Mylex AcceleRAID 170 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+</physical>
+<config>  
+  <role>db</role>
+  <os>Debian</os>
+  <raid config='0'>54G</raid>
+  <ip>10.0.0.16</ip>
+  <mysqlid>7</mysqlid>
+</config>
+<notes>
+Timmy and Gobbles. They took more than a month to ship, and arrived
+in a non-working state, with some broken hardware.
+</notes>
+</machine>
+
+<machine name="mayor">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>P3 (Coppermine) 866 Mhz</proc>
+  <mem>256 MB</mem>
+  <disk>IDE: 18G</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>staging</role>
+  <role>dns</role>
+  <role>netsaint</role>
+  <role>statserv</role>
+  <os>Debian</os>
+  <ip>10.0.0.17</ip>
+</config>
+<notes>
+We bought this machine as an 'el cheapo box to run all of the
+monitorying/syncronizing software.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="gerald">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18G</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>  
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.18</ip>
+</config>
+<notes> 
+Bought with sheila. First ones to go above 1 Ghz, and will
+function as the new paid web slaves.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="sheila">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>512 MB</mem>
+  <disk>IDE: 18G</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.19</ip>
+</config>
+<notes>
+Bought with gerald. First ones to go above 1 Ghz, and will
+function as the new paid web slaves.
+hda serial: IC35L020AVER07-0 - Model: IBM 60GXP 20.57GB
+</notes>
+</machine>
+
+<machine name="jesus">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>4</size>
+  <proc>Dual P3 (Xeon) 700 Mhz (2 MB L2 cache)</proc>
+  <mem>12 GB</mem>
+  <disk>SCSI: 1x18 GB</disk>
+  <other>64 MB IBM ServeRAID-4Mx PCI RAID Controller</other>
+  <other>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <os>Debian</os>
+  <ip>10.0.0.20</ip>
+  <mysqlid>8</mysqlid>
+</config>
+<notes>
+This monster is the new master DB. We bought it with room to grow,
+still. An identical machine named "santa" will be purchased to run
+as a hot spare and slave DB.
+</notes>
+</machine>
+
+<machine name="kylesmom">
+<physical>
+  <type>disk array</type>
+  <vendor>IBM</vendor>
+  <size>3</size>
+  <disk>SCSI: 8x36 GB 10k</disk>
+</physical>
+<config>
+  <raid config='10'>139G</raid>
+</config>
+<notes>
+This is the IBM drive enclosure for Jesus.
+</notes>
+</machine>
+
+<machine name="bigip">
+<physical>
+  <type>load balancer</type>
+  <size>2</size>
+</physical>
+<config>
+  <ip>10.0.0.14</ip>
+</config>
+<notes>
+Best frickin' load balancer ever made.
+</notes>
+</machine>
+
+<machine name="cisco">
+<physical>
+  <type>switch</type>
+  <vendor>lanblvd</vendor>
+  <size>1</size>
+  <other count='24'>10/100 mbps port</other>
+</physical>
+<config>
+  <ip>10.0.0.200</ip>
+</config>
+<notes>
+External switch. (2924)
+</notes>
+</machine>
+
+<machine name="cisco2">
+<physical>
+  <type>switch</type>
+  <vendor>lanblvd</vendor>
+  <size>1</size>
+  <other count='48'>10/100 mbps port</other>
+  <other count='2'>GBIC port</other>
+</physical>
+<config>
+  <ip>10.0.0.201</ip>
+</config>
+<notes>
+Internal switch. (2948G)
+Linked with Multimode (SC-SC) fiber to cisco3.
+</notes>
+</machine>
+
+<machine name="cisco3">
+<physical>
+  <type>switch</type>
+  <vendor>lanblvd</vendor>
+  <size>1</size>
+  <other count='24'>10/100 mbps port</other>
+  <other count='2'>GBIC port</other>
+</physical>
+<config>
+  <ip>10.0.0.201</ip>
+</config>
+<notes>
+Internal switch #2 (3500XL)
+Linked with Multimode (SC-SC) fiber to cisco2.
+</notes>
+</machine>
+
+<machine name="garrison">
+<physical>
+   <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Tualatin) 1.24 Ghz</proc>
+  <mem>4 GB</mem>
+  <disk>SCSI: 1x36 GB</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>db</role>
+  <os>Debian</os>
+  <ip>10.0.0.21</ip>
+  <mysqlid>10</mysqlid>
+</config>
+</machine>
+
+<machine name="marvin">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>768 MB</mem>
+  <disk>IDE: 36G</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.22</ip>
+</config>
+<notes>
+Bought with hankey.
+hda serial: IC35L040AVER07 - Model: IBM 60GXP 41.17GB
+</notes>
+</machine>
+
+<machine name="hankey">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>1</size>
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>768 MB</mem>
+  <disk>IDE: 36G</disk>
+  <other count='2'>eepro100</other>
+</physical>
+<config>
+  <role>web</role>
+  <os>Debian</os>
+  <ip>10.0.0.23</ip>
+</config>
+<notes>
+Bought with marvin.
+hda serial: IC35L040AVER07 - Model: IBM 60GXP 41.17GB
+</notes>
+</machine>
+
+<machine name="santa">
+<physical>             
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>2</size>      
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>4 GB</mem>                      
+  <disk>SCSI: 4x18 GB (IBM: DDYS-T18350M) 2x9 GB</disk>
+  <other>32 MB Mylex AcceleRAID 352 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+  <other count='2'>redundant power supply</other>
+</physical>                        
+<config>   
+  <role>cluster master</role>
+  <os>Debian</os>
+  <raid config='1'>9 GB</raid> 
+  <raid config='5'>36 GB (1 hotspare)</raid>
+  <ip>10.0.0.24</ip>            
+  <mysqlid>11</mysqlid>
+</config>             
+<notes>  
+First wave of new cluster masters. Bought with Chef. The system
+disks were bought separately.
+</notes>                                                            
+</machine>
+
+<machine name="chef">
+<physical>
+  <type>server</type>
+  <vendor>ASL</vendor>
+  <size>2</size>
+  <proc>Dual P3 (Tualatin) 1.26 Ghz</proc>
+  <mem>4 GB</mem>
+  <disk>SCSI: 4x18 GB (IBM: DDYS-T18350M) 2x9 GB</disk>
+  <other>32 MB Mylex AcceleRAID 352 PCI RAID Controller</other>
+  <other count='2'>eepro100</other>
+  <other count='2'>redundant power supply</other>
+</physical>                                                    
+<config>                           
+  <role>cluster master</role>
+  <os>Debian</os>            
+  <raid config='1'>9 GB</raid> 
+  <raid config='5'>36 GB (1 hotspare)</raid>
+  <ip>10.0.0.25</ip>                                 
+  <mysqlid>12</mysqlid>  
+</config>             
+<notes>               
+First wave of new cluster masters. Bought with Santa. The system
+disks were bought separately.                      
+</notes>                                                            
+</machine>
+
+</hardwarelist>

@@ -1,0 +1,8 @@
+<book id="bml.index">
+  &bml.bookinfo;
+  &bml.preface;
+  &bml.tutorial;
+  &bml.flags;
+  &bml.core;
+  &bml.api.ref;
+</book>

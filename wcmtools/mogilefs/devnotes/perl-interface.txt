@@ -1,0 +1,102 @@
+FB will want:
+
+   Give me new $fh for a given key.  (which is for a domain)
+   Give me a path to a file to sendfile.  (from a key)
+
+Perl <-> mogilefs interface:
+
+   1) request new fid/path for a given key
+
+        < CREATE_OPEN domain=test&key=foo%27+sdf&class=<class_ident>
+        > ERR <errcode> <errstring>
+              nodb
+              foo
+        > OK <arg_length> fid=234&devid=342&path=/blah/foo/sdff
+        > ERR invalid_domain "Provided domain is not registered"
+
+        'key' may be optional, in which an anonymous file (not in
+          namespace is returned).  essentially a temp/spool file.
+
+        optional request key:  'multi_dest=1' signals that server should
+        reply not with keys "devid" and "path" but instead with:
+
+             dev_count=3
+             devid_1=10
+             devid_2=17
+             devid_3=26
+             path_1=http://host1:7500/dev10/...
+             path_2=http://host2:7500/dev17/...
+             path_3=http://host3:7500/dev26/...
+
+        .. that way if the server unknowingly gave the client a down storage node,
+        the client can immediately try somewhere else.
+
+   2) close fid (and the devid, path that was written to)
+
+        < CREATE_CLOSE domain=test&key=foo&fid=343&devid=34&path=/sdf/sf/sdf
+
+        -- fid and devid are totally opaque strings.  server just uses
+           them to verify the path and key.
+
+        -- it's possible two clients did a CREATE_OPEN on same key, got
+           diff fids (123 and 124), then 123 closes first and loses, since
+           key is now owned by 124, not 123.
+
+        > ERR expiredfid URL_encode("Expired file: another connection created the same file between your open and close")
+        > ERR bogus_devid "Devid doesn't correspond to path"
+        > ERR invalid_domain "Provided domain is not registered"
+
+
+   3) give string path to a given domainid+key
+
+        < GET_PATHS domain=test&key=FOOBAR
+        
+	> OK <arg_length> paths=<n>&path1=.....&path2=.....
+
+           (client should prefer them in order given)
+
+    4) delete a key
+
+        < DELETE domain=test&key=sdfsdfsdfsdf
+        > OK 0
+
+        
+    5) get a list of domains and classes for them
+
+        < GET_DOMAINS
+        > OK domains=1&domain1=test&domain1classes=1&domain1class1name=alt&domain1class1mindevcount=2
+
+        -- this is a two level hash; there are N domains (taken from the
+           key 'domains') and their names are stored in 'domainX' where X is
+           in the range 1..N.
+
+        -- each domain has N classes (taken from 'domainXclasses');
+           each class has two keys in the form of 'domainXclassYname' and
+           'domainXclassYmindevcount' where Y is in the range of 1..N.
+
+           
+    6) create a new domain on the fly
+    
+        < CREATE_DOMAIN domain=mynewdomain
+        > OK domain=mynewdomain
+
+        -- returns the domain you just created as the only response value
+
+
+    7) create a new class
+
+        < CREATE_CLASS domain=mynewdomain&class=theclass&mindevcount=2
+        > OK domain=mynewdomain&class=theclass&mindevcount=2
+
+        -- creates a new class under the domain you specify named 'class' with
+           the minimum device replication count of 'mindevcount'
+
+
+    8) updates a class's minimum device replica count
+
+        < UPDATE_CLASS domain=mynewdomain&class=theclass&mindevcount=3
+        > OK domain=mynewdomain&class=theclass&mindevcount=3
+
+        -- same as create_class except it overwrites the mindevcount of the class
+           you are specifying.  useful if you want to change the replica count
+           for a class.

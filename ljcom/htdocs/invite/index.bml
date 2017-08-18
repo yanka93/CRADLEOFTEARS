@@ -1,0 +1,80 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET $title $body);
+
+    $title = $ML{'.title'};
+    $body = "";
+
+    my $err = sub {
+        $title = $ML{'.error'};
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return $err->($ML{'error.invalidauth'})
+        unless $u;
+
+    # extra arguments for get requests
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+
+    # authas switcher form
+    $body .= "<form method='get' action='./'>\n";
+    $body .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+    $body .= "</form>\n\n";
+
+    $body .= "<?h1 $ML{'.invite_header'} h1?><?p $ML{'.why_codes'} p?>";
+    $body .= "<?h1 $ML{'.how_header'} h1?>";
+    $body .= BML::ml('.how_detail', { 'factors_url' => "$LJ::SITEROOT/support/faqbrowse.bml?faqid=103" });
+
+    $body .= "<p><center>";
+    $body .= "<table border=\"2\" cellpadding=\"5\">";
+
+    $body .= "<tr><td><b>$ML{'.code'}</b></td><td><b>$ML{'.redeemed'}</b></td></tr>\n";
+
+    my $dbh = LJ::get_db_writer();
+    my $sth = $dbh->prepare("SELECT acid, rcptid, auth FROM acctcode WHERE userid=? ORDER BY rcptid");
+    $sth->execute($u->{'userid'});
+    my $ct = 0;
+
+    while (my ($acid, $rcptid, $auth) = $sth->fetchrow_array)
+    {
+        my $code = LJ::acct_code_encode($acid, $auth);
+        my $rcpt;
+        if ($rcptid) {
+            $rcpt = LJ::get_username($rcptid);
+            next unless $rcpt;
+        }
+        $ct++;
+
+        $body .= "<tr><td><font size=\"+1\"><tt>$code</tt></font></td><td>";
+        if ($rcpt) {
+            $body .= "<?ljuser $rcpt ljuser?>";
+        } else {
+            $body .= "<i>$ML{'.unused'}</i>";
+            $body .= " " . BML::ml('Actionlink', { 'link' => "<a href=\"/create.bml?code=$code\">$ML{'.use'}</a>" });
+        }
+        $body .= "</td></tr>\n";
+    }
+
+    unless ($ct) {
+        $body .= "<tr><td colspan=\"2\"><i>$ML{'.none'}</i></td></tr>\n";
+    }
+
+    $body .= "<tr><td colspan=\"2\" align=\"center\"><b><a href=\"gen.bml$getextra\">$ML{'.genmore '}</a></b></td></tr>\n";
+
+    $body .= "</table>";
+    $body .= "</center>";
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

@@ -1,0 +1,25 @@
+<?page
+title=>Feedback
+body<=
+<?h1 Let us know what you think h1?>
+<?p We're trying hard to make LiveJournal.com the best journaling site on the web.
+Your views on what we're doing and how we could make things even better are important to us.
+So if there's anything you want to tell us, please check out the options below: p?>
+<dl>
+<dt style="font-weight: bold"><a href="/suggestions/">Have a suggestion?</a></dt>
+<dd>
+For suggestions about our site or service, feel free to check out the suggestions area.
+</dd>
+<dt style="font-weight: bold"><a href="/support/">Have a technical problem?</a></dt>
+<dd>
+If you have a technical problem with the site or service, check out the support area.
+Here you can check out the list of Frequently Asked Questions, or submit your own question.
+</dd>
+<dt style="font-weight: bold"><a href="/support/submit.bml">Report a Bug</a></dt>
+<dd>
+If you feel you have come across a bug on our pages or in our service, please report it to our
+support team for verification.
+</dd>
+</dl>
+<=body
+page?>

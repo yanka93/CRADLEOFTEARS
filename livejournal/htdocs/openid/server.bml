@@ -1,0 +1,20 @@
+<?_info
+nocache=>1
+_info?><?_code
+{
+    return "OpenID consumer support is disabled" unless LJ::OpenID::server_enabled();
+
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $nos = LJ::OpenID::server(\%GET, \%POST);
+
+    my ($type, $data) = $nos->handle_page(redirect_for_setup => 1);
+    if ($type eq "redirect") {
+        return BML::redirect($data);
+    } else {
+        BML::set_content_type($type) if $type;
+        return $data;
+    }
+}
+_code?>

@@ -1,0 +1,5 @@
+mysql_databases:
+  - livejournal
+mysql_user: dev
+mysql_password: 1234
+mysql_root_password: "@ns1bl3!"

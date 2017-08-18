@@ -1,0 +1,68 @@
+<?_code
+{
+    use strict;
+    use vars qw($title $body);
+
+    LJ::set_active_crumb('leavecomm');
+
+    $title = $ML{'.title'};
+    $body = "";
+
+    my $error = sub {
+        $body = "<?h1 $ML{'Error'} h1?><?p $_[0] p?>";
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $error->($ML{'.label.logoutfirst'}) unless $remote;
+
+    # get info about the community
+    my $cuserid = $FORM{'cuserid'}+0;
+    my $cu = $FORM{comm} ? 
+             LJ::load_user($FORM{comm}) : # they gave us the comm name
+             LJ::load_userid($cuserid);   # they gave us the comm id
+
+    # error check
+    return $error->($ML{'.label.infoerror'})
+        unless $cu && $cu->{journaltype} =~ /[CS]/;
+
+    # used in both paths below
+    my $ecname = LJ::ehtml($cu->{'name'});
+
+    if ($FORM{confirm}) {
+        # get current list of maintainers to make sure the last one doesn't leave
+        my $maintids = LJ::load_rel_user($cu->{userid}, 'A');
+        return $error->($ML{'error.nodb'}) unless ref $maintids eq 'ARRAY';
+
+        # error if we're a maintainer and there are no others
+        my $ismaint     = grep { $_ == $remote->{userid} } @$maintids;
+        my $othermaints = grep { $_ != $remote->{userid} } @$maintids;
+        return $error->($ML{'.label.lastmaintainer'}) if $ismaint && !$othermaints;
+
+        # remove user from community's friends list
+        LJ::leave_community($remote, $cu, $FORM{removefriend});
+
+        # success message
+        $body .= "<?h1 $ML{'.success'} h1?><?p " .
+                 BML::ml('.label.removed', { commuser => $cu->{user}, commname => $ecname }) .
+                 " p?>";
+    } else {
+        # show a confirmation form
+        $body .= "<?h1 $ML{'.sure'} h1?><?p " . BML::ml('.label.buttontoleave', { commname => $ecname }) . " p?>";
+        $body .= '<form method="post" action="leave.bml">';
+        $body .= LJ::html_hidden("cuserid", $cu->{userid}, "confirm", 1) . "<p align='center'>";
+        $body .= LJ::html_check({ name => 'removefriend', selected => 1, value => 1 }) . " ";
+        $body .= BML::ml('.label.removefromfriends', { user => $ecname });
+        $body .= '<br /><br />' . LJ::html_submit(undef, $ML{'.button.leave'}) . '</p></form>';
+    } 
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c <LJDEP>
+link: htdocs/login.bml, htdocs/userinfo.bml
+post: htdocs/community/leave.bml
+</LJDEP> _c?>
+

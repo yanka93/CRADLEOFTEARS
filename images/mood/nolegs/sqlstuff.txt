@@ -1,0 +1,160 @@
+replace into moodthemedata values (2, 2, "/img/mood/nolegs/angry.gif", 30, 30);
+
+replace into moodthemedata values (2, 1, "/img/mood/nolegs/aggravated.gif", 30, 30);
+
+replace into moodthemedata values (2, 3, "/img/mood/nolegs/annoyed.gif", 30, 30);
+
+replace into moodthemedata values (2, 8, "/img/mood/nolegs/cranky.gif", 30, 30);
+
+replace into moodthemedata values (2, 12, "/img/mood/nolegs/enraged.gif", 30, 30);
+
+replace into moodthemedata values (2, 47, "/img/mood/nolegs/frustrated.gif", 30, 30);
+
+replace into moodthemedata values (2, 19, "/img/mood/nolegs/infuriated.gif", 30, 30);
+
+replace into moodthemedata values (2, 20, "/img/mood/nolegs/irate.gif", 30, 30);
+
+replace into moodthemedata values (2, 23, "/img/mood/nolegs/moody.gif", 30, 30);
+
+replace into moodthemedata values (2, 24, "/img/mood/nolegs/pissed.gif", 30, 30);
+
+replace into moodthemedata values (2, 28, "/img/mood/nolegs/stressed.gif", 30, 30);
+
+replace into moodthemedata values (2, 6, "/img/mood/nolegs/confused.gif", 30, 30);
+
+replace into moodthemedata values (2, 56, "/img/mood/nolegs/curious.gif", 30, 30);
+
+replace into moodthemedata values (2, 45, "/img/mood/nolegs/determined.gif", 30, 30);
+
+replace into moodthemedata values (2, 11, "/img/mood/nolegs/energetic.gif", 30, 30);
+
+replace into moodthemedata values (2, 59, "/img/mood/nolegs/bouncy.gif", 30, 30);
+
+replace into moodthemedata values (2, 52, "/img/mood/nolegs/hyper.gif", 30, 30);
+
+replace into moodthemedata values (2, 13, "/img/mood/nolegs/enthralled.gif", 30, 30);
+
+replace into moodthemedata values (2, 15, "/img/mood/nolegs/happy.gif", 30, 30);
+
+replace into moodthemedata values (2, 44, "/img/mood/nolegs/amused.gif", 30, 30);
+
+replace into moodthemedata values (2, 41, "/img/mood/nolegs/excited.gif", 30, 30);
+
+replace into moodthemedata values (2, 16, "/img/mood/nolegs/high.gif", 30, 30);
+
+replace into moodthemedata values (2, 17, "/img/mood/nolegs/horny.gif", 30, 30);
+
+replace into moodthemedata values (2, 21, "/img/mood/nolegs/jubilant.gif", 30, 30);
+
+replace into moodthemedata values (2, 70, "/img/mood/nolegs/optimistic.gif", 30, 30);
+
+replace into moodthemedata values (2, 43, "/img/mood/nolegs/hopeful.gif", 30, 30);
+
+replace into moodthemedata values (2, 69, "/img/mood/nolegs/refreshed.gif", 30, 30);
+
+replace into moodthemedata values (2, 62, "/img/mood/nolegs/rejuvenated.gif", 30, 30);
+
+
+replace into moodthemedata values (2, 53, "/img/mood/nolegs/relaxed.gif", 30, 30);
+
+replace into moodthemedata values (2, 68, "/img/mood/nolegs/calm.gif", 30, 30);
+
+replace into moodthemedata values (2, 57, "/img/mood/nolegs/mellow.gif", 30, 30);
+
+replace into moodthemedata values (2, 58, "/img/mood/nolegs/peaceful.gif", 30, 30);
+
+replace into moodthemedata values (2, 77, "/img/mood/nolegs/recumbant.gif", 30, 30);
+
+replace into moodthemedata values (2, 26, "/img/mood/nolegs/satisfied.gif", 30, 30);
+
+replace into moodthemedata values (2, 64, "/img/mood/nolegs/content.gif", 30, 30);
+
+replace into moodthemedata values (2, 63, "/img/mood/nolegs/complacent.gif", 30, 30);
+
+replace into moodthemedata values (2, 65, "/img/mood/nolegs/indifferent.gif", 30, 30);
+
+replace into moodthemedata values (2, 42, "/img/mood/nolegs/relieved.gif", 30, 30);
+
+replace into moodthemedata values (2, 66, "/img/mood/nolegs/silly.gif", 30, 30);
+
+
+replace into moodthemedata values (2, 35, "/img/mood/nolegs/ditzy.gif", 30, 30);
+
+replace into moodthemedata values (2, 67, "/img/mood/nolegs/flirty.gif", 30, 30);
+
+replace into moodthemedata values (2, 72, "/img/mood/nolegs/giggly.gif", 30, 30);
+
+replace into moodthemedata values (2, 36, "/img/mood/nolegs/mischievous.gif", 30, 30);
+
+replace into moodthemedata values (2, 48, "/img/mood/nolegs/indescribable.gif", 30, 30);
+
+replace into moodthemedata values (2, 61, "/img/mood/nolegs/okay.gif", 30, 30);
+
+replace into moodthemedata values (2, 33, "/img/mood/nolegs/lazy.gif", 30, 30);
+
+replace into moodthemedata values (2, 78, "/img/mood/nolegs/exanimate.gif", 30, 30);
+
+replace into moodthemedata values (2, 75, "/img/mood/nolegs/lethargic.gif", 30, 30);
+
+replace into moodthemedata values (2, 76, "/img/mood/nolegs/listless.gif", 30, 30);
+
+replace into moodthemedata values (2, 25, "/img/mood/nolegs/sad.gif", 30, 30);
+
+replace into moodthemedata values (2, 5, "/img/mood/nolegs/bored.gif", 30, 30);
+
+replace into moodthemedata values (2, 7, "/img/mood/nolegs/crappy.gif", 30, 30);
+
+replace into moodthemedata values (2, 9, "/img/mood/nolegs/depressed.gif", 30, 30);
+
+replace into moodthemedata values (2, 55, "/img/mood/nolegs/disappointed.gif", 30, 30);
+
+replace into moodthemedata values (2, 10, "/img/mood/nolegs/discontent.gif", 30, 30);
+
+replace into moodthemedata values (2, 80, "/img/mood/nolegs/envious.gif", 30, 30);
+
+replace into moodthemedata values (2, 38, "/img/mood/nolegs/gloomy.gif", 30, 30);
+
+replace into moodthemedata values (2, 71, "/img/mood/nolegs/pessimistic.gif", 30, 30);
+
+replace into moodthemedata values (2, 22, "/img/mood/nolegs/lonely.gif", 30, 30);
+
+replace into moodthemedata values (2, 39, "/img/mood/nolegs/melancholy.gif", 30, 30);
+
+replace into moodthemedata values (2, 37, "/img/mood/nolegs/morose.gif", 30, 30);
+
+replace into moodthemedata values (2, 74, "/img/mood/nolegs/uncomfortable.gif", 30, 30);
+
+replace into moodthemedata values (2, 34, "/img/mood/nolegs/drunk.gif", 30, 30);
+
+replace into moodthemedata values (2, 14, "/img/mood/nolegs/exhausted.gif", 30, 30);
+
+replace into moodthemedata values (2, 40, "/img/mood/nolegs/drained.gif", 30, 30);
+
+replace into moodthemedata values (2, 31, "/img/mood/nolegs/tired.gif", 30, 30);
+
+replace into moodthemedata values (2, 51, "/img/mood/nolegs/groggy.gif", 30, 30);
+
+replace into moodthemedata values (2, 49, "/img/mood/nolegs/sleepy.gif", 30, 30);
+
+replace into moodthemedata values (2, 18, "/img/mood/nolegs/hungry.gif", 30, 30);
+
+replace into moodthemedata values (2, 54, "/img/mood/nolegs/restless.gif", 30, 30);
+
+replace into moodthemedata values (2, 27, "/img/mood/nolegs/sore.gif", 30, 30);
+
+replace into moodthemedata values (2, 29, "/img/mood/nolegs/thirsty.gif", 30, 30);
+
+
+replace into moodthemedata values (2, 46, "/img/mood/nolegs/scared.gif", 30, 30);
+
+replace into moodthemedata values (2, 4, "/img/mood/nolegs/anxious.gif", 30, 30);
+
+replace into moodthemedata values (2, 79, "/img/mood/nolegs/embarrassed.gif", 30, 30);
+
+replace into moodthemedata values (2, 30, "/img/mood/nolegs/thoughtful.gif", 30, 30);
+
+replace into moodthemedata values (2, 60, "/img/mood/nolegs/nostalgic.gif", 30, 30);
+
+replace into moodthemedata values (2, 73, "/img/mood/nolegs/pensive.gif", 30, 30);
+
+replace into moodthemedata values (2, 32, "/img/mood/nolegs/touched.gif", 30, 30);

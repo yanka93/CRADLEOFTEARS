@@ -1,0 +1,113 @@
+---
+- name: install common stuff
+  become: true
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - zsh
+    - git
+
+- name: install zsh as default for vagrant user
+  become: true
+  command: chsh -s /bin/zsh vagrant
+
+- name: clone oh-my-zsh
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: /home/vagrant/.oh-my-zsh
+
+- name: source zshrc for vagrant
+  copy:
+    remote_src: true
+    src: /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template
+    dest: /home/vagrant/.zshrc
+
+- name: copy LJR motd
+  become: true
+  copy:
+    src: ljr/files/ljrmotd.tail
+    dest: /etc/motd
+
+- name: install ljr deps
+  become: true
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - memcached
+    - httpd
+    - httpd-devel
+    - httpd-manual
+    - httpd-tools
+    - mod_perl
+    - mod_perl-devel
+    - perl-Apache-DBI
+    - perl-Apache-Session
+    - perl-Apache-RPC
+    - perl-Class-Autouse
+    - perl-Class-DBI-mysql
+    - perl-Digest-SHA1
+    - perl-GD
+    - perl-Inline
+    - perl-Inline-Files
+    - perl-IO-stringy
+    - perl-Image-Size
+    - perl-MIME-Lite
+    - perl-MIME-tools
+    - perl-MailTools
+    - perl-Net-DNS
+    - perl-Parse-RecDescent
+    - perl-String-CRC32
+    - perl-Unicode-Map8
+    - perl-Unicode-MapUTF8
+    - perl-Unicode-String
+    - perl-URI
+    - perl-XML-Simple
+
+- name: create dir for perl inline
+  become: true
+  file:
+    dest: "{{ ljr_lj_root }}cgi-bin/Inline"
+    state: directory
+    owner: vagrant
+
+- name: copy inline script
+  become: true
+  copy:
+    dest: "{{ ljr_lj_root }}bin/lj-inline.pl"
+    src: "{{ ljr_livejournal_root }}bin/lj-inline.pl"
+    remote_src: yes
+
+- name: compile perl inline
+  shell: "LJHOME={{ ljr_lj_root }} LJ_INLINE_DIR=cgi-bin/Inline  perl {{ ljr_lj_root }}bin/lj-inline.pl"
+  args:
+    chdir: "{{ ljr_lj_root }}"
+
+- name: source ljr config
+  template:
+    src: ljr/templates/ljconfig.pl.j2
+    dest: "{{ ljr_lj_root }}cgi-bin/ljconfig.pl"
+
+- name: create LJR log dirs
+  become: true
+  file:
+    name: "{{ ljr_log_root }}"
+    state: directory
+    recurse: true
+    owner: apache
+
+- name: link LJR directory to Perl runtime
+  become: true
+  file:
+    path: "/usr/local/lib64/perl5"
+    state: link
+    src: "{{ ljr_lj_root }}cgi-bin"
+    owner: vagrant
+
+- name: source apache2 config
+  become: true
+  template:
+    src: ljr/templates/httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - restart httpd

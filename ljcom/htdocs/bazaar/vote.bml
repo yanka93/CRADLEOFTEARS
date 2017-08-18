@@ -1,0 +1,154 @@
+<?page
+title=>Bazaar Voting
+body<=
+
+<p>[&lt;&lt; <a href="./">Back</a>]</p>
+
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $dbh = LJ::get_db_writer();
+    my ($ret, $sth);
+    my $remote = LJ::get_remote();
+
+    return "You must first <a href='/login.bml?ret=1'>login</a>." unless $remote;
+
+    my $bz = $dbh->selectrow_hashref("SELECT * FROM bzrs WHERE open='1' ".
+                                     "ORDER BY datestart LIMIT 1");
+    return "No bazaar session is currently active." unless $bz;
+    my $bzid = $bz->{'bzid'};
+
+    return "You aren't a voter for the <a href='status.bml?bzid=$bzid'>current bazaar</a> session."
+        unless $dbh->selectrow_array("SELECT weight FROM bzrvoter WHERE bzid=? AND userid=?",
+                                     undef, $bzid, $remote->{'userid'});
+
+    # load votes (if voter)
+    my %votes;
+    $sth = $dbh->prepare("SELECT u.user, v.coid, v.weight, c.cat, c.des, c.url, c.dateadd ".
+                         "FROM bzrvote v, contributed c, useridmap u ".
+                         "WHERE v.bzid=? AND v.userid=? AND v.coid=c.coid ".
+                         "AND u.userid=c.userid");
+    $sth->execute($bzid, $remote->{'userid'});
+    while (my $v = $sth->fetchrow_hashref) {
+        $votes{$v->{'coid'}} = $v;
+    }
+
+    my @unvote;
+    $sth = $dbh->prepare("SELECT u.user, c.coid, c.cat, c.des, c.url, c.dateadd ".
+                         "FROM contributed c, useridmap u ".
+                         "WHERE u.userid=c.userid AND c.dateadd > ? ".
+                         "AND c.userid <> ?");
+    $sth->execute($bz->{'datestart'}, $remote->{'userid'});
+    while (my $v = $sth->fetchrow_hashref) {
+        next if defined $votes{$v->{'coid'}};
+        push @unvote, $v;
+    }
+
+    if (LJ::did_post()) {
+
+        foreach my $id (keys %votes) {
+            next if $POST{"weight_$id"} eq "";
+            my $new = int($POST{"weight_$id"});
+            $new = 0 if $new < 0;
+            next if $POST{"weight_$id"} eq $votes{$id}->{'weight'};
+            $votes{$id}->{'weight'} = $new;
+            $dbh->do("REPLACE INTO bzrvote (bzid, userid, coid, weight) VALUES (?,?,?,?)",
+                     undef, $bzid, $remote->{'userid'}, $id, $new);
+        }
+
+        foreach my $v (@unvote) {
+            my $id = $v->{'coid'};
+            next if $POST{"weight_$id"} eq "";
+
+            # delete contribution (so much stupid crap get submitted, like:
+            # "I gave my friend a code!")
+            if ($POST{"weight_$id"} eq "d") {
+                if (LJ::check_priv($dbh, $remote, "contrib_delete")) {
+                    $dbh->do("DELETE FROM contributed WHERE coid=?", undef, $id);
+                    $dbh->do("DELETE FROM contributedack WHERE coid=?", undef, $id);
+                }
+                $v->{'_deleted'} = 1;
+                next;
+            }
+
+            $votes{$id} = $v;
+            my $new = int($POST{"weight_$id"});
+            $new = 0 if $new < 0;
+            $votes{$id}->{'weight'} = $new;
+            $dbh->do("REPLACE INTO bzrvote (bzid, userid, coid, weight) VALUES (?,?,?,?)",
+                     undef, $bzid, $remote->{'userid'}, $id, $new);
+            if ($new) {
+                $dbh->do("INSERT IGNORE INTO contributedack (coid, ackuserid) VALUES (?,?)",
+                         undef, $v->{'coid'}, $remote->{'userid'});
+            }
+        }
+
+        # remove items that were just voted for
+        @unvote = grep { ! $votes{$_->{'coid'}} && ! $_->{'_deleted'} } @unvote;
+        
+        if ($POST{'new_id'}) {
+            my $c = $dbh->selectrow_hashref("SELECT u.user, c.coid, c.cat, c.des, c.url, c.dateadd ".
+                                            "FROM contributed c, useridmap u WHERE c.coid=? ".
+                                            "AND c.dateadd > DATE_SUB(NOW(), INTERVAL 60 DAY) ".
+                                            "AND u.userid=c.userid",
+                                            undef, $POST{'new_id'});
+            return "Error: invalid contribution ID.  Either does not exist, or is too old."
+                unless $c;
+            return "Error: can't vote for your own contributions"
+                if $c->{'user'} eq $remote->{'user'};
+            $c->{'weight'} = ($POST{'new_weight'}+0) || 1;
+            $dbh->do("REPLACE INTO bzrvote (bzid, userid, coid, weight) VALUES (?,?,?,?)",
+                     undef, $bzid, $remote->{'userid'}, $c->{'coid'}, $c->{'weight'});
+            LJ::Contrib::ack($c->{'coid'}, $remote->{'userid'});
+            $votes{$c->{'coid'}} = $c;
+        }
+    }
+
+    $ret .= "<?h1 Your Votes h1?><?p As a voter in <a href='status.bml?bzid=$bzid'>this bazaar session</a>, you can add contributions you'd like to recognize here, and weight them all appropriately in regards to each other. p?>";
+    
+    $ret .= "<form method='post' action='vote.bml' style='margin-left: 30px'>";
+    $ret .= "<table><tr><td width='250'><b>Contribution</b></td><td><b>Weight</b></td><td></td></tr>\n";
+    my $tw = 0;
+    foreach (values %votes) { $tw += $_->{'weight'}; }
+
+    my $row = sub {
+        my $v = shift;
+        my $des = LJ::eall($v->{'des'});
+        if ($v->{'url'}) {
+            $v->{'url'} = LJ::eall($v->{'url'});
+            $des = "<a href='$v->{'url'}'>$des</a>";
+        }
+        my $per = $v->{'weight'} ne "" ? sprintf("%0.02f%%", $v->{'weight'}*100/($tw||1)) : "";
+        $ret .= "<tr valign='top'><td>[<a href='/site/contributors.bml?mode=detail&coid=$v->{'coid'}'>$v->{'coid'}</a>] ";
+        $ret .= LJ::ljuser($v->{'user'}) . ": ";
+        $ret .= "$des<br />$v->{'cat'}, $v->{'dateadd'}</td><td><input name='weight_$v->{'coid'}' value='$v->{'weight'}' size='4'></td><td>$per</td></tr>";
+    };
+
+    # the ones that have been voted for, skipping zero weight
+    foreach my $v (sort { $b->{'weight'} <=> $a->{'weight'} } values %votes) {
+        next unless $v->{'weight'};
+        $row->($v);
+    }
+
+    $ret .= "<tr><td><i>New vote item:</i> <a href='/site/contributors.bml'>Contribution</a> ID: <input size='4' name='new_id'></td><td><input size='4' name='new_weight'></td><td></td></tr>\n";
+    $ret .= "<tr><td></td><td><input type='submit' value='Save'></td><td></td></tr>\n";
+
+    # unweighted contributions
+    if (@unvote) {
+        $ret .= "<tr><td colspan='2'><b>Contributions you haven't weighted:</b><br />(set to 0 to remove from this list)</td></tr>\n";
+        foreach my $v (@unvote) {
+            $row->($v);
+        }
+        $ret .= "<tr><td></td><td><input type='submit' value='Save'></td><td></td></tr>\n";
+    }
+
+    $ret .= "</table></form>";
+
+    return $ret;
+
+}
+_code?>
+<=body
+page?>

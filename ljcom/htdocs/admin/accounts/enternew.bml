@@ -1,0 +1,371 @@
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    my $remote = LJ::get_remote();
+    return "<?needlogin?>" unless $remote;
+
+    return "You don't have access to enter payments: need 'moneyenter' priv."
+        unless LJ::remote_has_priv($remote, "moneyenter");
+
+    my $grant_perm = LJ::check_priv($remote, "grantperm");
+
+    my %methods = 
+        ( 'paypal'       => 'PayPal',
+          'moneybookers' => 'Money Bookers',
+          'cash'         => 'Cash',
+          'check'        => 'Check',
+          'moneyorder'   => 'Money Order',
+          'free'         => 'Free',
+          );
+
+    if (LJ::did_post() && $POST{'submit'}) {
+
+        # determine purchase user and recipient user/email
+        my $user = LJ::canonical_username($POST{'user'});
+        my $giftfrom = LJ::canonical_username($POST{'giftfrom'});
+        my $rcptemail = $POST{'email'};
+        my $userid = 0;
+        my $rcptuser = $user;
+        my $rcptuserid = 0;
+
+        # user, no email
+        unless ($rcptemail) {
+            return LJ::bad_input("Invalid user specified.")
+                unless $user;
+
+            $userid = LJ::get_userid($user)
+                or return LJ::bad_input("User <b>$user</b> doesn't exist.");
+            $rcptuserid = $userid;
+        }
+
+        if ($giftfrom) {
+            $rcptuser = $user;
+            $rcptuserid = $userid;
+
+            $user = $giftfrom;
+            $userid = LJ::get_userid($giftfrom);
+
+            return LJ::bad_input("Gift user <b>$giftfrom</b> doesn't exist.")
+                unless $userid;
+        }
+
+        return LJ::bad_input("Invalid recipient specified")
+            unless $rcptuserid || $rcptemail;
+
+        my %pay;   # payments row
+        my %payit; # payitems row
+
+        return LJ::bad_input("Must enter a dollar amount for this order.")
+            unless defined $POST{'amount'};
+
+        # handle $11.11 as well as '11.11'
+        $POST{'amount'} =~ s/^\$//;
+        $POST{'amount'} += 0;
+        $pay{'amount'} = $POST{'amount'};
+        $payit{'amt'} = $POST{'amount'};
+
+        # check for valid method
+        $pay{'method'} = lc($POST{'method'});
+        return LJ::bad_input("Invalid payment method: $pay{'method'}")
+            unless grep { $pay{'method'} } keys %methods;
+
+        # check datesent format
+        return LJ::bad_input("Invalid date format.")
+            unless $POST{'datesent'} =~ /^\d\d\d\d-\d\d-\d\d/;
+        $pay{'datesent'} = $POST{'datesent'};
+
+        # paid account
+        if ($POST{'item'} eq "paidacct") {
+
+            return LJ::bad_input("No months specified or auto-detected.  Payment <b>not</b> entered.")
+                unless $POST{'paidacct_mo'};
+
+            $payit{'subitem'} = undef;
+            $payit{'qty'} = $POST{'paidacct_mo'};
+
+        # perm account
+        } elsif ($POST{'item'} eq 'perm') {
+
+            # need a special priv to grant perm accounts
+            return LJ::bad_input("You do not have permission to create permanent accounts.")
+                unless $grant_perm;
+
+        # coupons
+        } elsif ($POST{'item'} eq 'coupon') {
+
+            return LJ::bad_input("You selected a coupon but didn't enter a dollar amount.")
+                unless $POST{'amount'};
+
+            $payit{'subitem'} = "dollaroff";
+            $payit{'subitem'} .= $POST{'coupon_type'} =~ /^(tan|int)$/ ? $POST{'coupon_type'} : '';
+
+            $payit{'qty'} = undef;
+
+        # userpics
+        } elsif ($POST{'item'} eq 'userpic') {
+
+            return LJ::bad_input("Cannot send userpics to an email address")
+                unless $rcptuserid;
+
+            return LJ::bad_input("Must specify a number of months for userpics")
+                unless $POST{'userpic_mo'};
+
+            return LJ::bad_input("Cannot apply userpics to the account.")
+                unless LJ::Pay::can_apply_bool_bonus($rcptuserid, undef, 'userpic');
+
+            $payit{'qty'} = $POST{'userpic_mo'};
+            $payit{'subitem'} = undef;
+
+        # disk quota
+        } elsif ($POST{'item'} eq 'diskquota') {
+
+            return LJ::bad_input("Cannot send disk quota to an email address")
+                unless $rcptuserid;
+
+            return LJ::bad_input("Must specify a number of months for disk quota.")
+                unless $POST{'diskquota_mo'};
+
+            return LJ::bad_input("Must specify a size (in megabytes) for disk quota.")
+                unless $POST{'diskquota_size'};
+
+            return LJ::bad_input("Cannot apply disk quota to account.")
+                unless LJ::Pay::can_apply_sized_bonus($rcptuserid, undef, 'diskquota', 
+                                                      $POST{'diskquota_size'}, $POST{'diskquota_mo'});
+
+            $payit{'qty'} = $POST{'diskquota_mo'};
+            my ($prev_exp, $prev_size) = LJ::Pay::get_bonus_dim($rcptuserid, 'diskquota');
+            $payit{'subitem'} = "$POST{'diskquota_size'}-$prev_exp-$prev_size";
+
+        # rename token
+        } elsif ($POST{'item'} eq 'rename') {
+
+            # subitem, qty need to be undef, so that's already fine
+
+        # verify it's a valid item
+        } else {
+            return LJ::bad_input("Must select the item the user is paying for.");
+        }
+        $payit{'item'} = $POST{'item'};
+        $payit{'rcptemail'} = $rcptemail || undef;
+        $payit{'rcptid'} = $rcptuserid || 0;
+
+        # at this point, the following should be properly set and validated:
+        #    - %pay:   (datesent, amount)
+        #    - %payit: (rcptid, rcptemail, amt, item, subitem, qty)
+
+        ### now, insert a payment
+
+        my $dbh = LJ::get_db_writer();
+        $dbh->do("INSERT INTO payments (anum, userid, datesent, daterecv, amount, " .
+                 "used, mailed, notes, method, forwhat) " .
+                 "VALUES (0, ?, ?, NOW(), ?, 'N', 'N', ?, ?, 'cart')",
+                 undef, $userid, $pay{'datesent'}, $pay{'amount'}, 
+                 $POST{'notes'}, $pay{'method'});
+        return "<?h1 Database Error! h1?><?p " . $dbh->errstr . " p?>" if $dbh->err;
+
+        my $payid = $dbh->{'mysql_insertid'};
+        $payit{'payid'} = $payid;
+        $dbh->do("INSERT INTO payvars (payid, pkey, pval) VALUES (?, 'notes', ?)",
+                 undef, $payid, $POST{'inote'}) if $POST{'inote'};
+
+        # create a coupon if necessary
+        if ($payit{'item'} eq "coupon") {
+
+            my $type = "dollaroff";
+            my $cptype = $POST{'coupon_type'} =~ /^(tan|int)$/ ? $POST{'coupon_type'} : '';
+            $type .= $cptype;
+
+            ($payit{'tokenid'}, $payit{'token'}) =
+                LJ::Pay::new_coupon($type, $payit{'amt'}, $rcptuserid, $payid);
+            return "<?h1 Error h1?><?p Error generating coupon. p?>"
+                unless $payit{'tokenid'} && $payit{'token'};
+
+            my $cpemail = $rcptemail;
+            if ($rcptuserid) {
+                my $u = LJ::load_userid($rcptuserid);
+                $cpemail = $u->{'email'} if $u;
+
+                # we kindasorta trust this user now
+                LJ::Pay::note_payment_from_user($u);
+            }
+
+            LJ::Pay::send_coupon_email($cpemail, $payit{'token'}, $payit{'amt'}, $cptype);
+        }
+
+        # now that we've optionally created a coupon token, log a payitem row
+        {
+            my $cartobj = LJ::Pay::load_cart("$payid-0");
+            LJ::Pay::add_cart_item($cartobj, \%payit)
+                or return "<?h1 Error h1?><?p Error generating cart item. p?>";
+        }
+
+        # log a statushistory row if there's a userid to associate it with
+        if ($userid) {
+            my $mo = $POST{'months'}+0;
+            my $rcpt = "rcptemail=$rcptemail";
+            if ($rcptuserid) {
+                my $u = LJ::load_userid($rcptuserid);
+                $rcpt = "rcptuser=$u->{'user'}" if $u;
+            }
+            LJ::statushistory_add($userid, $remote->{'userid'}, "payenter", 
+                                  "item=$payit{'item'}, subitem=$payit{'subitem'}, qty=$payit{'qty'}, amt=$payit{'amt'}, $rcpt");
+        }
+
+        # send email notification of this action
+        my $rcpt = $rcptuser || $rcptemail;
+        my $msgbody = "Entered by $remote->{'user'}: payment \#$payid for $rcpt\n\n";
+        foreach my $k (sort keys %POST) {
+            $msgbody .= "$k:\n===============\n$POST{$k}\n\n";
+        }
+        LJ::send_mail({ 'to' => "paypal\@$LJ::DOMAIN", # TODO: not paypal
+                        'from' => $LJ::BOGUS_EMAIL,
+                        'subject' => "Payment \#$payid -- $rcpt",
+                        'body' => $msgbody,
+                    });
+
+        $dbh->do("INSERT INTO paymentsearch (payid, ikey, ival) VALUES (?,?,?)",
+                 undef, $payid, "handemail", $rcptemail)
+            unless $userid;
+
+        return "<?h1 Success h1?><?p Payment \#$payid entered for <b>$rcpt</b> for \$$pay{'amount'} for: p?><ul>" .
+            join("", map { "<li>$_->[0]=$_->[1]</li>" } 
+                 (['user' => $user], ['rcptuser' => $rcptuser], ['rcptemail' => $rcptemail],
+                  ['method' => lc($POST{'method'})], ['item' => $payit{'item'}], 
+                  ['subitem' => $payit{'subitem'}], ['qty' => $payit{'qty'}], ['token' => $payit{'token'} ])
+                 ) .
+                 "</ul>";
+                  
+    }
+
+
+    # payment form
+    my $ret;
+
+    $ret = "Hello, $remote->{'user'}!  Enter a payment:";
+
+    $ret .= "<hr /><form method='post'>";
+    $ret .= "<table align='left'><tr valign='top'><td align='left'>";
+
+    $ret .= "<table><tr><td align='right'>Payment Type:</td>";
+    $ret .= "<td>" . LJ::html_select({ 'name' => 'method' },
+                                     '', '(select)', map { $_ => $methods{$_} } keys %methods) . "</td></tr>";
+
+    $ret .= "<tr>";
+    $ret .= $GET{'newacct'} ?
+        ("<td align='right'>Rcpt Email:</td>" .
+         "<td>" . LJ::html_text({ 'name' => 'email', 'size' => '40', 'maxlength' => 50 }) .
+         "(<a href='enternew.bml'>back</a>)</td>") :
+        ("<td align='right'>Rcpt Username:</td>" .
+         "<td>" . LJ::html_text({ 'name' => 'user', 'size' => 15, 'maxlength' => 15 }) .
+         "(<a href='enternew.bml?newacct=1'>new account?</a>)</td>");
+    $ret .= "</tr>";
+
+    $ret .= "<tr valign='top'><td align='right'>Gift From <sup>(Opt)</sup>:</td><td>";
+    $ret .= LJ::html_text({ 'name' => 'giftfrom', 'size' => 15, 'maxlength' => 15 });
+    $ret .= "</td></tr>";
+
+    $ret .= "<tr valign='top'><td align='right'>Date Sent:</td><td>";
+    $ret .= LJ::html_text({ 'name' => 'datesent', 'size' => 23, 'maxlength' => 19, 'value' => LJ::mysql_time() });
+    $ret .= "<br /><tt>yyyy-mm-dd <font color='#909090'>[hh:mm:ss]</font></tt></td></tr>";
+
+    $ret .= "<tr><td align='right'>Amount:</td><td>";
+    $ret .= "\$" . LJ::html_text({ 'name' => 'amount', 'size' => 6, 'maxlength' => 6 }) . " USD</td></tr>";
+
+    # notes
+    $ret .= "<tr><td align='right' valign='top'>Internal note:</td><td>";
+    $ret .= LJ::html_text({ 'name' => 'inote', 'size' => 40, 'maxlength' => 255 });
+    $ret .= "</td></tr>";
+
+    $ret .= "<tr><td align='right' valign='top'>Note to user:</td><td>";
+    $ret .= LJ::html_textarea({ 'name' => 'notes', 'rows' => 10, 'cols' => 40, 'wrap' => 'soft' });
+    $ret .= "</td></tr>";
+
+    $ret .= "<tr><td>&nbsp;</td><td>";
+    $ret .= LJ::html_submit('submit', "Process Payment");
+    $ret .= "</td></tr></table>";
+
+    $ret .= "</td><td align='left'>";
+
+    # indivual item types
+    $ret .= "<table cellspacing=0 cellpadding=0>";
+
+    my $sep = "<tr><td>&nbsp;</td><td><hr></td></tr>";
+
+    # paid time
+    $ret .= "<tr valign='top'><td align='right'>";
+    $ret .= "<label for='item-paidacct'>Paid time:</label> ";
+    $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'paidacct',
+                             'id' => 'item-paidacct' }) . "</td>";
+
+    $ret .= "<td>Months: ";
+    $ret .= LJ::html_text({ 'name' => 'paidacct_mo', 'size' => 2, 'maxlength' => 2 });
+    $ret .= "</td></tr>";
+
+    $ret .= $sep;
+
+    # permanent account
+    if ($grant_perm) {
+        $ret .= "<tr valign='top'><td align='right'>";
+        $ret .= "<label for='item-perm'>Permanent Acct:</label> ";
+        $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'perm',
+                                 'id' => 'item-perm' }) . "</td>";
+
+        $ret .= "<td>&nbsp;</td></tr>";
+        $ret .= $sep;
+    }
+
+
+    # userpics
+    $ret .= "<tr valign='top'>";
+    $ret .= "<td align='right'><label for='item-userpic'>Userpics:</label> ";
+    $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'userpic',
+                             'id' => 'item-userpic' }) . "</td>";
+    $ret .= "<td> Months: ";
+    $ret .= LJ::html_text({ 'name' => 'userpic_mo', 'size' => 2, 'maxlength' => 2 });
+    $ret .= "</td></tr>";
+
+    $ret .= $sep;
+
+    # quota
+    $ret .= "<tr valign='top'>";
+    $ret .= "<td align='right'><label for='item-diskquota'>Disk Quota:</label> ";
+    $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'diskquota',
+                             'id' => 'item-diskquota' }) . "</td>";
+
+    $ret .= "<td><table cellspacing=0><tr valign='top'><td>Size:</td><td>";
+    $ret .= LJ::html_text({ 'name' => 'diskquota_size', 'size' => 4, 'maxlength' => 4 });
+    $ret .= "</td></tr><tr valign='top'><td>Months:</td><td>";
+    $ret .= LJ::html_text({ 'name' => 'diskquota_mo', 'size' => 2, 'maxlength' => 2 });
+    $ret .= "</td></tr></table";
+    $ret .= "</td></tr>";
+
+    $ret .= $sep;
+
+    # coupons
+    $ret .= "<td align='right'><label for='item-coupon'>Coupon:</label> ";
+    $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'coupon',
+                             'id' => 'item-coupon' }) . "</td>";
+
+    $ret .= "<td> ". LJ::html_select({ 'type' => 'check', 'name' => 'coupon_type', 
+                                       'id' => 'coupon_type', 'value' => 'gen' },
+                                     'gen' => "General",
+                                     'int' => "Intangible only",
+                                     'tan' => "Tangible only", );
+    $ret .= "</td></tr>";
+
+    $ret .= $sep;
+
+    # rename
+    $ret .= "<tr valign='top'>";
+    $ret .= "<td align='right'><label for='item-rename'>Rename:</label> ";
+    $ret .= LJ::html_check({ 'type' => 'radio', 'name' => 'item', 'value' => 'rename',
+                             'id' => 'item-rename' }) . "</td>";
+    $ret .= "<td>&nbsp;</td></tr>";
+
+    $ret .= "</table>";
+
+    return $ret;
+}
+_code?>

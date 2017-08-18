@@ -1,0 +1,46 @@
+<?page
+title=>Поиск по журналу
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET %ML);
+
+    my $u = defined $GET{'journal'} ? LJ::load_user($GET{'journal'}) : LJ::get_remote();
+    return LJ::bad_input($ML{'error.nojournal'}) unless $u;
+
+    my $ljuser = LJ::ljuser($u);
+
+    $u = $u->{user};
+
+    my $ret = qq{
+    <?standout
+    <form action="http://blogs.yandex.ru/search.xml" method="get" style="display:inline">
+        <input type="hidden" name="server" value="lj.rossia.org" />
+        <input type="hidden" name="author" value="$u" />
+
+        <table cellpadding="3">
+            <tr>
+                <td align="left">Searching in:</td>
+                <td align="left">$ljuser</td>
+            </tr>
+            <tr>
+                <td align="left">Search for:</td>
+                <td align="left"><input maxlength="256" size="45" name="text" value="" /></td>
+            </tr>
+            <tr>
+                <td>&#x00a0;</td>
+                <td align="left"><input type="submit" value="Search" name="btnG" /></td>
+            </tr>
+        </table>
+    </form>
+standout?>
+
+    <p>Для поиска используется <a href="http://blogs.yandex.ru/">blogs.yandex.ru</a>.</p>
+};
+
+    return $ret;
+}
+_code?>
+<=body
+page?>

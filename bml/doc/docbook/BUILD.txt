@@ -1,0 +1,5 @@
+To build the BML documentation from these DocBook sources, you'll need
+apidoc.pl from wcmtools here, and then run generate.pl.
+
+FIXME: better notes
+

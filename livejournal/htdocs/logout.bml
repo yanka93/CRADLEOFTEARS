@@ -1,0 +1,78 @@
+<?_code # -*- mode: bml -*- 
+{
+    use strict;
+    use vars qw($body %POST %GET);
+
+    LJ::set_active_crumb('logout');
+
+    $body = "";
+
+    my $u = LJ::get_remote();
+    my $user = $POST{'user'} || $GET{'user'};
+    my $sessid = $POST{'sessid'} || $GET{'sessid'};
+
+    unless ($u) {
+        $body = "$ML{'.loggedout.already'}";
+        return;
+    }
+
+    if ($POST{'action:killall'}) {
+        $u->kill_all_sessions;
+        delete $COOKIE{'BMLschemepref'};
+        BML::set_scheme(undef);
+        $body = $ML{'.loggedout.killedall'};
+        return;
+    }
+
+    if ($u->{'_session'} &&
+        $user eq $u->{'user'} &&
+        $sessid == $u->{'_session'}->{'sessid'})
+    {
+        $u->kill_session;
+        delete $COOKIE{'BMLschemepref'};
+        BML::set_scheme(undef);
+        $body = "$ML{'.loggedout.success'}";
+
+        # Redirect to offsite uri if allowed.
+        if ($POST{'ret'}) {
+            my $redir_host = $1 if $POST{'ret'} =~ m#^http://([\.:\w-]+)#i;
+            return BML::redirect($POST{'ret'}) if $LJ::REDIRECT_ALLOWED{$redir_host};
+        }
+
+        return;
+    }
+
+    $body .= "<form action='logout.bml' method='post'>";
+    $body .= LJ::html_hidden('ret', $GET{'ret'}) if $GET{'ret'};
+    $body .= LJ::html_hidden("user", $u->{'user'},
+                             "sessid", $u->{'_session'}->{'sessid'});
+    $body .= "<?h1 $ML{'.logout.head'} h1?><?p $ML{'.logout.text'} ";
+    $body .= "<blockquote><input type='submit' value='$ML{'.logout.btn'}'></blockquote> p?></form>";
+
+    # do they have any other sessions?
+    my $udbr = LJ::get_cluster_reader($u);
+    unless ($udbr) {
+        $body = "<?h1 $ML{'Error'} h1?><?p $ML{'error.nodb'} p?>";
+        return undef;
+    }
+
+    my $curid = $u->{'_session'}->{'sessid'} || 0;
+
+    my $sessions = $udbr->selectcol_arrayref("SELECT sessid FROM sessions WHERE ".
+					     "userid=$u->{'userid'} AND timeexpire > UNIX_TIMESTAMP() ".
+                                             "AND sessid <> $curid");
+    if (@$sessions) {
+        $body .= "<form method='post' action='logout.bml'>";
+        $body .= LJ::html_hidden("action:killall", '1');
+        $body .= "<?h1 $ML{'.killall.head'} h1?><?p $ML{'.killall.text'} ";
+        $body .= "<blockquote><input type='submit' value='$ML{'.killall.btn'}'></blockquote> p?></form>";
+    }
+
+    return;
+
+}
+
+_code?><?page
+title=><?_ml .title _ml?>
+body=><?_code return $body; _code?>
+page?>

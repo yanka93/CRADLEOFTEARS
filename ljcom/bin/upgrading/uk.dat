@@ -1,0 +1,3070 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=Якщо ви бажаєте видалити або відновити ваш журнал, то ви може зробити це тут. Якщо ви видалили ваш журнал, але змінили свою думку і вирішили відновити його, то ви можете зробити це впродовж 30 днів. Після 30 днів журнал буде видалений назавжди без можливості відновлення.
+
+/accountstatus.bml.journalstatus.head=Статус Активації Журналу
+
+/accountstatus.bml.journalstatus.select.activated=Активний
+
+/accountstatus.bml.journalstatus.select.deleted=Видалений
+
+/accountstatus.bml.journalstatus.select.head=Статус
+
+/accountstatus.bml.journalstatus.select.suspended=Призупинений
+
+/allpics.bml.current=Зображення
+
+/allpics.bml.default=<u>За замовчуванням</u>
+
+/allpics.bml.edit2=Можливо вас цікавить <a href='[[editlink]]'>редагування ваших зображень</a> чи <a href='[[uploadlink]]'>загрузка нових зображень</a>.
+
+/allpics.bml.error.noparam=Вам потрібно визначити параметр користувача
+
+/allpics.bml.keywords=Ключові слова:
+
+/allpics.bml.nopics.text.other=Цей користувач не завантажив жодного зображення.
+
+/allpics.bml.nopics.text2=Ви не завантажили жодного зображення. Це можна зробити <a href='[[link]]'>тут</a>.
+
+/allpics.bml.nopics.title=Немає зобажень
+
+/allpics.bml.pics=Це зображення користувача [[user]].
+
+/allpics.bml.title=Зображення користувача
+
+/changepassword.bml.btn.proceed=Продовжити
+
+/changepassword.bml.changepassword.header=Замінити пароль
+
+/changepassword.bml.changepassword.instructions=Для зміни пароля заповніть наведену нижче форму. Ознайомтеся з <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">цією сторінкою</a> для вибору вдалого пароля та для безпеки вашого акаунту.
+
+/changepassword.bml.email.body<<
+Ваш пароль для [[sitename]] було змінено.
+
+Щоб отримати його, зайдіть на сторінку
+
+[[siteroot]]/lostinfo.bml
+
+З повагою,
+Команда [[sitename]]
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=Зміна паролю
+
+/changepassword.bml.error.badcheck=Поганий новий пароль: [[error]]
+
+/changepassword.bml.error.badnewpassword=Підтвердження нового паролю не співпадає з новим паролем. Можливо ви помилилися при наборі. Будь ласка, наберіть та підтвердіть новий пароль знову.
+
+/changepassword.bml.error.badoldpassword=Ваш старий пароль невірний.
+
+/changepassword.bml.error.blankpassword=Ваш новий пароль не може бути пустим.
+
+/changepassword.bml.error.changetestaccount=Не можу змінити пароль тестового акаунту.
+
+/changepassword.bml.error.characterlimit=Довжина пароля обмежена 30 символами.
+
+/changepassword.bml.error.invaliduser=Невірний користувач <B>[[user]]</B>. Такого користувача не існує. Ви впевнені, що вказали ім’я користувача коректно?
+
+/changepassword.bml.error.mustenterusername=Ви повинні ввести ім'я користувача.
+
+/changepassword.bml.error.nonascii=У паролі допускається використовувати тільки ASCII-символи. Будь ласка, оберіть пароль, що використовує тільки ASCII-символи.
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=Ви не можете змінити ваш пароль, якщо ваш email не було перевірено.
+
+/changepassword.bml.newpassword=Новий пароль:
+
+/changepassword.bml.newpasswordagain=Новий пароль (повторно):
+
+/changepassword.bml.oldpassword=Старий пароль:
+
+/changepassword.bml.proceed.instructions=Натисніть кнопку внизу і ваш пароль буде змінено. Ви отримаєте листа, що засвідчить зміну пароля.
+
+/changepassword.bml.success.text=Ваш пароль змінено та було надіслано на вашу адресу листа із повідомленням про це.
+
+/changepassword.bml.title=Змінити пароль
+
+/community/index.bml.main<<
+<?h1 Welcome! h1?> 
+<?p 
+Вітаємо в Центрі Спільнот Живого Журналу. Це місце, в якому можна дізнатися де і як зконтактувати з вашими товаришами по Живому Журналу, обговорюючи спільні інтереси та захоплення. Адже Живий Журнал - це не тільки місце для вашого щоденника, це ще й місце для зустрічей, знайомств, обміну враженнями та місце, де можна просто весело провести час. Ось деякі особливості спільнот, щоб ви були максимально повно поінформовані. 
+p?> 
+
+<?h1 New? h1?> 
+<?p 
+Ви новачок в Живому Журналі і не знаєте як ним користуватись? Тоді вам спочатку треба глянути сюди <a href="/community/newbies"><strong>The 'Newbies' Lounge</strong></a>, де ви знайдете відповіді на багато з питань що в вас виникнуть. Відвідайте <?ljcomm newbies ljcomm?>, вивчіть і станете майже миттєво профі
+p?> 
+
+<?h1 Stay informed! h1?> 
+<?p 
+Трохи зупинимось на тому, що відбувається в Живому Журналі. Тут є кілька офіціних спільнот, котрі ви можлио захочете переглянути. Наступні особливо корисні. 
+<br /><br /> 
+Додати <?ljuser news ljuser?> до списку друзів, щоб не відставати від подій та проблем, котрі властиві навіть спільнотам Живого Журналу.<br /> 
+Додати <?ljcomm lj_maintenance ljcomm?> до списку друзів, щоб бути інформованим про всі заплановані зупинки сервісу, та мати змогу повідомляти адміністрацію Живого Журналу про незаплановані. 
+p?> 
+
+
+<?h1 Chat! h1?> 
+<?p 
+Користувачі Живого Журналу надзвичайно комунікабельні та говіркі. Багато хто з них користує популярні сервіси миттєвого доставленні повідомлень, такі як <a href="http://www.aim.com/index.adp"><strong>AIM</strong></a>, <a href="http://web.icq.com/"><strong>ICQ</strong></a>, <a href="http://messenger.yahoo.com/"><strong>Yahoo!</strong></a>, <a href="http://messenger.msn.com/"><strong>MSN</strong></a>, або <a href="http://www.jabber.org/"><strong>Jabber</strong></a> Якщо і ви ними користуєтесь, впевніться, що повідомили про це в ваших<a href="/editinfo.bml"><strong>налаштуваннях про персональну інформацію</strong></a>. Якщо у вас <a href="/paidaccounts/"><strong>платний акаунт</strong></a>, ви також можете вказати свій номер мобільного телефону та пейджер щоб <a href="/support/faqbrowse.bml?faqid=30"><strong>отримувати текстові повідомлення</strong></a>. 
+p?> 
+
+<?h1 Volunteer! h1?> 
+<?p 
+Не соромтесь, якщо хочете допомогти чи підтримати нас. Найкращий спосіб це зробити, це придбати <a href="/paidaccounts/"><strong>платний акаунт</strong></a>. Є звичайно й інші способи підтримати нас.
+<br /><br /> 
+Живий Журнал - це Open Source проект; якщо ви володієте мовами программування, вмієте створювати server side applications, ви можете приєднатись до<strong> спільноти розробників Живого Журналу</strong>, <?ljcomm lj_dev ljcomm?>. Якщо у вас є ідеї, як покращити Живий Журнал, відмітьте  <strong>Унія Пропозицій Живого Журналу</strong>, <?ljcomm suggestions ljcomm?>. Якщо ви хочете чимось краще допомогти, відвідайте <strong>Бізнес спільноту Живого Журналу</strong>, <?ljcomm lj_biz ljcomm?>. Якщо вам подобається допомагати людям, відвідайте  наш центр техпідтримки і допоможіть кому-небуть з новачків. Якщо володієте навичками графічного дизайну, позначте <strong>Арт-спільнота Живого Журналу</strong>, <?ljcomm lj_art ljcomm?>. 
+p?> 
+
+<?h1 What is a Community? h1?> 
+<?p 
+Спільнота, це зазвичай журнал, що веде хтось з учасників Живого Журналу і створюється він для людей зі спільними інтересами. Спільноти вільні до використання та створення... будь-хто може створювати їх, також вони легко налаштовуються! Спільноти покривають теми від <a href="/community/anime/"><strong>мультяшок</strong></a> до <a href="/community/zen_within/"><strong>Дзен будизму</strong></a>, від <a href="/community/astronomy/"><strong>астрономії</strong></a> до <a href="/community/invader_zim/"><strong>"Zim"</strong></a>. Ви також знайдете регіональні спільноти для будь-якого куточка світу. Скоріш за все є спільнота й вашої місцини також! 
+p?> 
+
+<?h1 How do I create my own Community? h1?> 
+<?p 
+В цьому <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>FAQ</strong></a> описано, що потрібно щоб створи власну спільноту. Також є пара тематичних FAQ (<a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>Основні FAQ-и про спільноти</strong></a> і <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong> FAQ по управлінню спільнотами </strong></a>) містять майже все що може вам знадобитися. Якщо ж ви всетаки потребуєте більше інформації, скористайтесь <a href="http://www.livejournal.com/support/submit.bml"><strong>формою подачі запиту до техпідтримки</strong></a>. 
+p?> 
+
+<?h1 Як шукати інші спільноти? h1?> 
+<?p 
+В даний момент існують дві офіційні ЖЖ спільноти спеціально створені щоб допомогти вам в пошуку співтовариств, що можуть вас зацікавити. 
+p?> 
+
+<ul> 
+<li><strong><a href="./search.bml">Пошук спільноти</a></strong></li> 
+<li><strong>Відмітити  Promotions спільноти (<?ljcomm community_promo ljcomm?>)</strong></li> 
+<li><strong>Відмітити пошук спільноти (<?ljcomm community_quest ljcomm?>)</strong></li> 
+</ul> 
+
+<?p 
+Можливо, на ваш погляд тут дещо відсутнє?<br /> 
+E-mail <a href="mailto:jproulx-(a)-livejournal-dot-com">Jesse Proulx</a>, (<?ljuser jproulx ljuser?>) the Community Director. 
+p?>
+.
+
+/community/index.bml.title=Центр спільнот
+
+/community/join.bml.button.join=Приєднатися до спільноти
+
+/community/join.bml.label.addtofriends=Додати "[[maintainer]]" до списку друзів.
+
+/community/join.bml.label.allowposting=Ця спільнота дозволяє писати усім учасникам, тому ви можете створювати у ній нові записи. Якщо у вас вже запущено програму-клієнт, необхідно припинити її роботу та знову завантажити, щоб ця спільнота з'явилася у списку журналів, до яких ви можете писати.
+
+/community/join.bml.label.auth=Не дивлячись на те, що ви є учасником цієї спільноти, ви не можете до неї писати. Якщо ви бажаєте отримати право писати у цю спільноту, зв'яжіться з одним з наглядачів. Список наглядачів цієї спільноти: [[admins]]
+
+/community/join.bml.label.banned=Наглядач ціє спільноти заборонив вам приєднуватися.
+
+/community/join.bml.label.closed=Ця спільнота закрита. Якщо ви бажаєте приєднатись, будь ласка, зв'яжіться з одним з наглядачів. Список наглядачів цієї спільноти: [[admins]]
+
+/community/join.bml.label.commlogged=Ви увійшли під спільним записом або записом спільноти, не під вашим персональним записом
+
+/community/join.bml.label.errorcomminfo=Вказана інформація про спільноту не є припустимою.
+
+/community/join.bml.label.expls=Натисніть кнопку нижче, щоб приєднатися до спільноти "[[maintainer]]". Зніміть помітку, якщо ви не бажаєте бачити записи зі спільноти у вашій стрічці друзів.
+
+/community/join.bml.label.loginfirst=Щоб приєднатися до спільноти спочатку ви повинні <a href="/login.bml?ret=1">увійти до журналу</a>.
+
+/community/join.bml.label.membernow=Тепер ви є учасником спільноти <a href="/userinfo.bml?user=[[username]]">[[commname]]</a>
+
+/community/join.bml.label.sure=Ви впевнені?
+
+/community/join.bml.success=Успішно
+
+/community/join.bml.title=Приєднатись до спільноти
+
+/community/leave.bml.button.leave=Залишити спільноту
+
+/community/leave.bml.label.buttontoleave=Натисніть кнопку унизу, щоби покинути спільноту "[[commname]]".
+
+/community/leave.bml.label.infoerror=Вказана інформіція про спільноту не є припустимою.
+
+/community/leave.bml.label.logoutfirst=Щоб залишити спільноту, спочатку ви повинні <a href="/login.bml?ret=1">увійти до журналу</a>.
+
+/community/leave.bml.label.removed=Тепер вас вилучено зі спільноти <a href="/userinfo.bml?user=[[commuser]]">[[commname]]</a>
+
+/community/leave.bml.label.removefromfriends=Також вилучити "[[user]]" зі списку друзів.
+
+/community/leave.bml.success=Успішно
+
+/community/leave.bml.sure=Ви впевнені?
+
+/community/leave.bml.title=Залишити спільноту
+
+/community/manage.bml.commlist.actinfo=Інформація
+
+/community/manage.bml.commlist.actions=<b>Дії</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Учасники</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Учасники
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Параметри</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Параметри
+
+/community/manage.bml.commlist.header=Ваші спільноти
+
+/community/manage.bml.commlist.none=<i>Ви не керуєте жодною спільнотою.</i>
+
+/community/manage.bml.commlist.text=Цими спільнотами ви керуєте або допомагаєте керувати:
+
+/community/manage.bml.commlist.title=Назва
+
+/community/manage.bml.commlist.username=Ім'я користувача
+
+/community/manage.bml.create.header=Створити спільноту
+
+/community/manage.bml.create.text=Ви також можете <a href='[[link]]'><b>створити нову спільноту</b></a>.
+
+/community/manage.bml.title=Керувати спільнотою
+
+/community/members.bml.error.alreadyadded=[[user]] не був доданий тому, що він вже маєть доступ до спільноти.
+
+/community/members.bml.error.alreadysent=[[user]] не може бути доданий тому, що ймоу <i>[[datetime]]</i> вже було надіслано лист-підтвердження. Будь ласка, почекайте на його відповідь.
+
+/community/members.bml.error.invaliduser=Неможливо додати спільноту чи об'єднаний акаунт: [[user]]
+
+/community/members.bml.error.noaccess=Тільки наглядачі спільноти можуть редагувати списки учасників. Ви не є наглядачем спільноти [[comm]].
+
+/community/members.bml.error.noattr=Не вибрано атрибутів для користувача: [[user]]
+
+/community/members.bml.error.nocomm=Спільноту не знайдено.
+
+/community/members.bml.error.nouser=Користувач не існує: <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>Наглядач</b>
+
+/community/members.bml.key.member=<b>Учасник</b>
+
+/community/members.bml.key.moderate=<b>Модератор</b>
+
+/community/members.bml.key.post=Дозволено писати
+
+/community/members.bml.key.preapprove=Не цензорується
+
+/community/members.bml.manage2=Керування спільнотами
+
+/community/members.bml.name=<b>Ім'я спільноти:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(Наступна сторінка...)</i>
+
+/community/members.bml.prevlink=<i>(Попередня сторінка...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>Параметри</a>]
+
+/community/members.bml.success.header=Успішно
+
+/community/members.bml.success.message=Зміни успішно збережено.
+
+/community/members.bml.success.return=<a href='[[link]]'>Повернутись до списку</a>
+
+/community/members.bml.title=Учасники спільноти
+
+/community/members.bml.update=Оновити параметри
+
+/community/moderate.bml.approve.button=Так, схвалити
+
+/community/moderate.bml.approve.header=Схвалити цей запис?
+
+/community/moderate.bml.approve.preapprove=Також додати користувача [[user]] до списку немодеруємих корустувачів цієї спільноти.
+
+/community/moderate.bml.approve.text=Ви впевнені. що бажаєте схвалити цей запис?
+
+/community/moderate.bml.brlist.actions=Дії
+
+/community/moderate.bml.brlist.poster=Автор
+
+/community/moderate.bml.brlist.subject=Початок теми
+
+/community/moderate.bml.brlist.time=Час
+
+/community/moderate.bml.brlist.view=Дивитись
+
+/community/moderate.bml.browse.empty=Черга на цензорування порожня.
+
+/community/moderate.bml.browse.header=Модерувати спільноту
+
+/community/moderate.bml.browse.text=Ось черга на модерацію для цієї спільноти [[link]]
+
+/community/moderate.bml.choice.approve=Схвалити
+
+/community/moderate.bml.choice.reject=Відхилити
+
+/community/moderate.bml.error.noaccess=Ви не модеруєте спільноту [[comm]].
+
+/community/moderate.bml.error.noentry=Запис не знайдено (можливо, він обролений іншим модератором).
+
+/community/moderate.bml.error.nolist=Ви не модеруєте жодної спільноти
+
+/community/moderate.bml.error.notfound=Акаунт спільноти не знайдено.
+
+/community/moderate.bml.manage=Керувати спільнотами
+
+/community/moderate.bml.moderate=Модерувати цю спільноту
+
+/community/moderate.bml.modlist.actions=Дії
+
+/community/moderate.bml.modlist.actmodempty=[Модерувати]
+
+/community/moderate.bml.modlist.actmoderate=Модерувати
+
+/community/moderate.bml.modlist.count=Розмір черги
+
+/community/moderate.bml.modlist.header=Модерувати спільноти
+
+/community/moderate.bml.modlist.title=Назва
+
+/community/moderate.bml.modlist.username=Ім'я користувача
+
+/community/moderate.bml.posted.appheader=Без модерації
+
+/community/moderate.bml.posted.apptext=На додаток, користувач [[user]] був приєднаний до списку немодеруємих користувачів цієї спільноти.
+
+/community/moderate.bml.posted.header=Успішно
+
+/community/moderate.bml.posted.proterror=Запис не було опубліковано через помилку протокола: [[err]]
+
+/community/moderate.bml.posted.text=Запис був успішно опубліковано.
+
+/community/moderate.bml.reject.button=Так, відхилити
+
+/community/moderate.bml.reject.header=Відхилити цей запис?
+
+/community/moderate.bml.reject.reason|staleness=1
+/community/moderate.bml.reject.reason=Ви можете пояснити автору причини, з яких ви відхиляєте цей запис. Вони будуть відправлені йому по e-mail.
+
+/community/moderate.bml.reject.text=Ви впевнені, що хочете відхилити цей запис?
+
+/community/moderate.bml.rejected.header=Відхилено.
+
+/community/moderate.bml.rejected.text=Запис відхилено.
+
+/community/moderate.bml.title=Модерація спільноти
+
+/community/search.bml.button.clear=Очистити форму
+
+/community/search.bml.button.search=Шукати!
+
+/community/search.bml.checkbox.onlywithpics=Тільки спільноти з зображеннями
+
+/community/search.bml.label.byinterest=За інтересами
+
+/community/search.bml.label.bylocation=За місцезнаходженням
+
+/community/search.bml.label.bytime=За часом оновлення журналу
+
+/community/search.bml.label.city=Місто:
+
+/community/search.bml.label.country=Країна:
+
+/community/search.bml.label.displayoptions=Показати опції
+
+/community/search.bml.label.hasmember=Має учасників
+
+/community/search.bml.label.othercriteria=Інші критерії
+
+/community/search.bml.label.outputformat=Формат виводу:
+
+/community/search.bml.label.records=Записів на сторінку:
+
+/community/search.bml.label.searchcomm=Шукати спільноти
+
+/community/search.bml.label.selecriteria=Виберіть критерії, за якими ви бажаєте шукати спільноти. Результатом пошуку буде перетин по усім критеріям. Іншими словами, кожна помічена позиція означає "І", а не "АБО".
+
+/community/search.bml.label.sortmethod=Метод сортування:
+
+/community/search.bml.label.stateprovince=Штат/область
+
+/community/search.bml.label.updated=Останній раз оновлювалось протягом
+
+/community/search.bml.sel.bypicture=По зображенням
+
+/community/search.bml.sel.communityname=Назва спільноти
+
+/community/search.bml.sel.commview=Вид спільноти
+
+/community/search.bml.sel.day=дня
+
+/community/search.bml.sel.month=місяця
+
+/community/search.bml.sel.simple=Простий
+
+/community/search.bml.sel.updatetime=За часом оновлення
+
+/community/search.bml.sel.username=За іменем користувача
+
+/community/search.bml.sel.week=тижня
+
+/community/search.bml.title=Пошук спільноти
+
+/community/settings.bml.button.changecommunity=Оновити параметри
+
+/community/settings.bml.button.createcommunity=Створити спільноту
+
+/community/settings.bml.error.badpassword=Невірний пароль спільноти
+
+/community/settings.bml.error.hasentries=Цей акаунт вже має записи і не може бути перетворений.
+
+/community/settings.bml.error.maintainertype=Наглядачем має бути особа, а не інший спільний акаунт.
+
+/community/settings.bml.error.noaccess=Тільки наглядач спільноти може редагувати параметри спільноти. Ви не є наглядачем спільноти [[comm]].
+
+/community/settings.bml.error.notcomm=Це не акаунт спільноти.
+
+/community/settings.bml.error.notfound=Акаунт спільноти не знайдено.
+
+/community/settings.bml.error.samenames=Акаунти наглядача і спільноти не можуть бути тим самим.
+
+/community/settings.bml.label.anybodycan=<b>Всі учасники</b><br />Будь-хто з учасників може писати.
+
+/community/settings.bml.label.changeheader=Змінити параметри спільноти
+
+/community/settings.bml.label.changetext=Тут ви можете змінити параметри спільноти, якою ви керуєте або допомагаєте наглядати.
+
+/community/settings.bml.label.commchanged=Параметри вашої спільноти змінено.
+
+/community/settings.bml.label.commcreate=Це акаунт, який ви бажаєте перетворити на спільноту. Він <a href="/create.bml">повинен існувати</a>, але не повинен використовуватись кимось індивідуально, тому що після цього багато різних користувачів матимуть змогу писати в нього.
+
+/community/settings.bml.label.commcreated=Спільноту створено.
+
+/community/settings.bml.label.commheader=Акаунт спільноти
+
+/community/settings.bml.label.comminfo=Інформація про спільноту.
+
+/community/settings.bml.label.commopts=Опції спільноти
+
+/community/settings.bml.label.commsite=Вебсайт спільноти
+
+/community/settings.bml.label.community=Спільнота:
+
+/community/settings.bml.label.createheader=Створити спільноту
+
+/community/settings.bml.label.createtext=Звідси ви можете створити акаунт спільноти. Спільнота є спеціальним типом акаунту, до якого інші користувачі можуть приєднуватися та писати. Для прикладу спільноти подивіться <a href="/userinfo.bml?user=lj_ukrainian">центр підтримки української мови</a>.
+
+/community/settings.bml.label.howoperates=Оберіть яким чином ваша спільнота оперується. Ви можете змінити це пізніше.
+
+/community/settings.bml.label.maintainer=Наглядач:
+
+/community/settings.bml.label.maintainer.login=Якщо це не акаунт наглядача, <a href='/login.bml?ret=1'>увійдіть до журналу</a> як хтось інший.
+
+/community/settings.bml.label.membership=Участь
+
+/community/settings.bml.label.modheader=Модерація
+
+/community/settings.bml.label.modis=<b>Модерована</b><br />Нові записи мають бути схвалені модератором.
+
+/community/settings.bml.label.modisnt=<b>Немодерована</b><br />Нові записи з'являться одразу.
+
+/community/settings.bml.label.modtext=Ця спільнота є модерованою?
+
+/community/settings.bml.label.nmcan=<b>Усі можуть писати</b><br />Користувачі можуть писати у спільноту не приєднуючись до неї.
+
+/community/settings.bml.label.nmcant=<b>Тільки учасники можуть писати</b><br />Користувачі мають приєднатися до спільноти, щоби мати право писати у неї.
+
+/community/settings.bml.label.nmheader=Доступ для не-учасників
+
+/community/settings.bml.label.nmtext=Чи можуть кристувачі писати до спільноти, не приєднуючись до неї?
+
+/community/settings.bml.label.openmemb=<b>Відкрита участь</b><br />Хто завгодно можє приєднатися до спільноти.
+
+/community/settings.bml.label.password=Пароль:
+
+/community/settings.bml.label.postaccess=Доступ до написання
+
+/community/settings.bml.label.rellinks=Важливі посилання:
+
+/community/settings.bml.label.selcan=<b>Виберіть учасників</b><br />Тільки ті учасники можуть писати, яким дозволив наглядач.
+
+/community/settings.bml.label.username=Ім'я користувача:
+
+/community/settings.bml.label.whocanjoin=Хто може приєднуватися до спільноти?
+
+/community/settings.bml.label.whocanpost=Хто може писати у спільноту?
+
+/community/settings.bml.manage2=Керувати спільнотами
+
+/community/settings.bml.members=[<a href='[[link]]'>Учасники</a>]
+
+/community/settings.bml.name=<b>Назва спільноти:</b> [[name]]
+
+/community/settings.bml.success=Успішно
+
+/community/settings.bml.title.create=Створити спільноту
+
+/community/settings.bml.title.modify=Опції спільноти
+
+/create.bml.age.check.question=Вам менше 13 років?
+
+/create.bml.age.check.yes=Так, мені менше 13 років.
+
+/create.bml.age.check2.question=Вам більше 13 років?
+
+/create.bml.age.check2.yes=Так, мені більше 13 років.
+
+/create.bml.age.head=Вік
+
+/create.bml.btn.create=Створити журнал
+
+/create.bml.btn.proceed=Продовжити...
+
+/create.bml.clusterselect.cluster=Кластер:
+
+/create.bml.clusterselect.clusternum=Кластер [[number]]
+
+/create.bml.clusterselect.head=Вібір кластеру
+
+/create.bml.clusterselect.nocluster=Немає кластеру
+
+/create.bml.clusterselect.text=Будь ласка, оберіть кластер, в якому бажаєте створити новий акаунт. <b>Зауважте:</b> Це відладова/тестова опція. Її не бачитимуть та не знатимуть кінцеві користувачі.
+
+/create.bml.create.head=Створити новий журнал
+
+/create.bml.create.text=Створити новий журнал дуже просто, тільки слідкуйте інструкцій!
+
+/create.bml.email.head=Ваша електронна адреса (email)
+
+/create.bml.email.input.head=Електронна адреса (email):
+
+/create.bml.error.coppa.under13=Вибачте, але за заборонами COPPA, ви не маєте права користуватися Живим Журналом. Будб ласка, повертайтеся після 13-ї річниці.
+
+/create.bml.error.email.blank=Ви повинні надати ваш email.
+
+/create.bml.error.email.lj_domain=Ви не можете використовувати e-mail на [[domain]]. Будь ласка, вкажіть іншу адресу e-mail.
+
+/create.bml.error.email.nospaces=В електронній адрессі не повинно бути пробілів. Якщо ви абонент AOL, памятайте, що ваша адреса є вашим АОL-ім'ям з видаленими пробілами, що закінчується <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=У паролі можливо використання лише символів ASCII.
+
+/create.bml.error.password.blank=Ви повинні ввести пароль.
+
+/create.bml.error.password.nomatch=Паролі не співпадають.
+
+/create.bml.error.username.blank=Будь ласка, вкажіть ім'я або назву чи призвісько.
+
+/create.bml.error.username.inuse=І'мя вже використовується; будь ласка, виберіть інше.
+
+/create.bml.error.username.iscode=Введене ім'я більше схоже на код-запрошення, ніж на ім'я.
+
+/create.bml.error.username.mustenter=Ви повинні ввести і'мя користувача.
+
+/create.bml.error.username.reserved=Вибачте, це зарезервоване і'мя.
+
+/create.bml.initial.friend.lj_maintenance=Звіти про заплановані та незаплановані простої сервісу та підтримка.
+
+/create.bml.initial.friend.news=Новини та події Живого Журналу
+
+/create.bml.initialfriends=Дадати ці журнали до списку друзів, що буде поповнюватись на сторінці з новинами та інформацією.
+
+/create.bml.initialfriends.heading=Початкові друзі
+
+/create.bml.name.head=Ваше ім'я
+
+/create.bml.name.input.head=Ім'я:
+
+/create.bml.name.text=Яке ваше ім'я чи прізвисько? Воно з'явиться в заголовку вашого журналу. А також щоб опинитись в списку користувачів. Ви не зобов'язані вказувати ваше справжнє і тим більше повне ім'я.
+
+/create.bml.password.head=Пароль
+
+/create.bml.password.input.head1=Пароль:
+
+/create.bml.password.input.head2=Підтвердіть пароль:
+
+/create.bml.password.text=Оберіть пароль.
+
+/create.bml.proceed.btn.proceed=Продовжити...
+
+/create.bml.proceed.warning=Натискайте <b>Продовжити</b> <i>лише один раз</i>!!
+
+/create.bml.success.btn.enterinfo=Введіть персональну інформацію
+
+/create.bml.success.head=Успішно!
+
+/create.bml.success.text1=Ваш журнал було створено. Важлива реєстраційна інформація була вислана на <font size="+1"><b>[[email]]</b></font>, яка містить подальші інструкції. Обов'язково підтвердіть реєстрацію, клікнувши на посилання у листі.
+
+/create.bml.success.text2=Ваш Живий Журнал буде доступний тут:
+
+/create.bml.success.text3=А тепер, будь ласка, приділіть трохи часу щоб заповнити деяку інформацію про себе. Вона, як правило, не обов'язкова, але дає можливість зрозуміти, хто користується цим журналом.
+
+/create.bml.title=Створити новий журнал
+
+/create.bml.tos.error=Ви повинні прочитати та погодитись з умовами використання журналу  перед його створенням.
+
+/create.bml.tos.haveread=Я прочитав та погодився з умовами використання.
+
+/create.bml.tos.heading=Умови використання
+
+/create.bml.useacctcodes.entercode=Для створення нового журналу, введіть код. Для більш вичерпної інформації читайте <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">Як мені створити акаунт?</a>
+
+/create.bml.useacctcodes.welcome=Ласкаво просимо
+
+/create.bml.username.box.head=Імя користувача:
+
+/create.bml.username.charsallowed=Ваше ім'я користувача повинне складатися тільки з  латинських літер нижнього регістру (a-z), цифр (0-9) та символу підкреслення (_).<br />До того ж воно не повинне складатися більше ніж з 15 символів. 
+
+/create.bml.username.forpaidaccts=Або платний акаунт:
+
+/create.bml.username.head=Ім'я користувача
+
+/create.bml.username.ljaddress=Ваш журнал буде за цією адресою:
+
+/create.bml.username.text=Кожний [[sitename]] користувач повинен мати унікальне і'мя. Ваше і'мя - це те, що відображається в адресі вашого журналу та використовується вами для входу до [[sitename]] серверу. Воно також відображається, коли ви залишаєте коментарі в журналах інших людей.
+
+/create.bml.username.username=ім'я користувача
+
+/customize/index.bml.change=Змінити
+
+/customize/index.bml.choose=Бажаєте користуватись старою системою стилів, чи новою?
+
+/customize/index.bml.choose.header=Оберіть систему стилів
+
+/customize/index.bml.choose.s1=Стара система (S1)
+
+/customize/index.bml.choose.s2=Нова система (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=Не вдається згенерувати рівень користувача.
+
+/customize/index.bml.error.fail_create_style=Неможливо створити новий стиль.
+
+/customize/index.bml.error.not_your_layout=Не ваша схема.
+
+/customize/index.bml.error.not_your_theme=Не ваша тема
+
+/customize/index.bml.error.no_core_parent=без базового предка?
+
+/customize/index.bml.previews=(Попередній перегляд)
+
+/customize/index.bml.s1=Стару систему стилей можна настроїти на сторінці <a href="/modify.bml">Настроїти журнал</a>
+
+/customize/index.bml.s1.header=Використовуючи S1
+
+/customize/index.bml.s2.advanced.denied=Тільки платні, ранні та постійні користувачі можуть використовувати розширений набір засобів. <a href="/paidaccounts/">Дізнатись про переваги платного акаунта</a>.
+
+/customize/index.bml.s2.advanced.header=Розширений набір засобів
+
+/customize/index.bml.s2.advanced.permitted=Для створення нових схеми та стилю з чернетки відвідайте <a href='./advanced/'> розділ розширених налаштувань.
+
+/customize/index.bml.s2.customize=Наступні налаштування залежать від обраної схеми.
+
+/customize/index.bml.s2.customize.header=Налаштування схеми
+
+/customize/index.bml.s2.customize.language=Ці мови частково або повністю підтримуються цією схемою.
+
+/customize/index.bml.s2.customize.language.custom=(Вибраний)
+
+/customize/index.bml.s2.customize.language.header=Мова
+
+/customize/index.bml.s2.customize.settings=Якщо ви бажаєте продовжити налаштування журналу, тут ви можете вказати індивідуальні установки, щоб отримати той вигляд, який бажаєте.
+
+/customize/index.bml.s2.customize.settings.delete=Видалити налаштування
+
+/customize/index.bml.s2.customize.settings.edit=Редагувати налаштування
+
+/customize/index.bml.s2.customize.settings.header=Змінити індивідуальні установки
+
+/customize/index.bml.s2.customize.settings.new=Налаштування
+
+/customize/index.bml.s2.customize.themes=Виберіть одну з наступних доступних тем для цієї схеми.
+
+/customize/index.bml.s2.customize.themes.default=(Схема за замовчуванням)
+
+/customize/index.bml.s2.customize.themes.header=Теми
+
+/customize/index.bml.s2.layout=Виберіть схему. Оскільки вибір теми ті анших налаштувань залежать від обраної схеми, ви можете втратити всі свої попередні налаштування.
+
+/customize/index.bml.s2.layout.header=Крок 1: Схема
+
+/customize/index.bml.s2.related.editinfo.about=Встановити назву журналу та різні опції.
+
+/customize/index.bml.s2.related.header=Пов'язані сторінки
+
+/customize/index.bml.s2.related.links.about=Деякі стилі можуть включати ваш список управлінських посилань.
+
+/customize/index.bml.s2.related.modify.about=Вкажіть набір зображень для вашого журналу.
+
+/customize/index.bml.title=Налаштування Журналу
+
+/delcomment.bml.changeoptions<<
+<strong>Примітка:</strong> З [[link]] сторінки, ви можете обрати чи дозволяти <em>всім</em>, <em> тільки зареестрованим користувачам</em>, або
+<em>тільки друзям</em> залишати повідомлення для вас.
+.
+
+/delcomment.bml.confirm.banuser=Заборонити [[user]] коментувати в вашому журналі
+
+/delcomment.bml.confirm.body=Ви справді хочете видалити цей коментар?
+
+/delcomment.bml.confirm.head=Видалити цей коментар?
+
+/delcomment.bml.confirm.submit=Видалити коментар
+
+/delcomment.bml.error.alreadydeleted=Вказаний коментар успішно видалено.
+
+/delcomment.bml.error.cantdelete=Коментар може видалити тільки його автор або власник журналу.
+
+/delcomment.bml.error.cantdelete.comm=Коментар може видалити його автор, автор нитки діалогу або власник спільноти..
+
+/delcomment.bml.error.invalidtype=Не вірний тип коментару.
+
+/delcomment.bml.error.nocomment=Вибраний коментар відсутній.
+
+/delcomment.bml.success.andban=Коментар видалено, користувачу [[user]] заборонено коментувати в вашому журналі.
+
+/delcomment.bml.success.head=Видалено
+
+/delcomment.bml.success.noban=Коментар видалено.
+
+/delcomment.bml.title=Видалення коментарю
+
+/developer/index.bml.clients=То ви бажаєте покращити ЖЖ-клієнт для вашої платформи? Чудово! Нижче деякі необхідні джерела інформації про те як працює Живий Журнал.
+
+/developer/index.bml.clients.header=Написання за допомогою ЖЖ-клієнта
+
+/developer/index.bml.clients.links<<
+<dl>
+  <dt><a href="/doc/server/ljp.csp.guide.html"><b>ЖЖ Сервер&lt;-&gt;Клієнт протокол</b></a></dt>
+  <dd>Довідатись як ЖЖ-клієнт на вашому компутері звертається до ЖЖ-Сервером і навпаки.
+  Розуміння цього - первинна річ, необхідна вам для перед роботою над покращенням ЖЖ-клієнта.</dd>
+  <dt><a href="/doc/server/ljp.csp.protocol.html"><b>Повна документація про протокол</b></a></dt>
+  <dd>Все різноманіття типів протоколів &amp; методів.</dd>
+  <dt><a href="/download/"><b>Список клієнтів</b></a></dt>
+  <dd>Список клієнтів, що використовуються для з'єднання з ЖЖ. більшість з цих клієнтів з відкритим кодом і вільно розповсюджуються. Це найкраще місце для прикладів при створенні вашого клієнта.</dd>
+</dl>
+
+.
+
+/developer/index.bml.code=Щоб побачити як працює мехінізм Живого Журналу, та щоб заглянути всередину деяких з клієнтів, зверніться до сторінки <a href="/code/">Code</a>.
+
+/developer/index.bml.code.header=Репозитарій коду Живого Журналу
+
+/developer/index.bml.dbschema<<
+Цікавлять деталі про <a href="/doc/server/ljp.dbschema.ref.html">схему бази даних</a>? SQL, що створює всі таблиці та наповнює їх включений в серверний код.
+
+.
+
+/developer/index.bml.dbschema.header=Схема бази даних.
+
+/developer/index.bml.embedding=Бажаєте правильно включити ваш журнал в свою домашню сторінку? Тут <a href="./embedding.bml">кілька способів</a> як це зробити в залежності від того який доступ маєте до управління вашим сервером. Ви повинні піклуватись тільки про це, якщо ви не хочете щоб в URL вашого журналу не було присутнє <tt>www.livejournal.com</tt>.
+
+/developer/index.bml.embedding.header=Впровадження Живого Журналу
+
+/developer/index.bml.notice.header=Повідомлення
+
+/developer/index.bml.notice1=Наступна інформація призначена тільки для програмістів та досвідчених користувачів. Якщо ви бажаєте використовувати ЖЖ для зберігання вашого журналу, ЧУДОВО! Звичайні користувачі не повинні турбуватись про наступний матеріал.
+
+/developer/index.bml.notice2=Як вже згадано, зміст нижче поділено на два розділи: інформація щодо того як налаштувати зовнішній вигляд сторінки вашого ЖЖ і інформація про писання клієнтами Живого Журналу на ЖЖ-сервер.
+
+/developer/index.bml.styles=Вам не подобається шлях в сторінок вашого журналу? Не переживайте! Все піддається корегуванню і якщо ви прочитаєте документацію нижче, ви знатимете все, що потрібно, щоб шлях до ваших мторінок був таким, як вам потрібно. 
+
+/developer/index.bml.styles.header=Вибір вигляду Живого Журналу
+
+/developer/index.bml.styles.s1.header=Стиль Системний 1
+
+/developer/index.bml.styles.s1.system=Системний стиль
+
+/developer/index.bml.styles.s1.system.about=Основне про встановлення першого системного стилю.
+
+/developer/index.bml.styles.s1.varlist=Список змінних
+
+/developer/index.bml.styles.s1.varlist.about=Алфавітний перелік всіх змінних що ви можете вибрати.
+
+/developer/index.bml.styles.s1.views=Перегляд типів
+
+/developer/index.bml.styles.s1.views.about=Список різноманітних способів перегляду вашого журналу, якими можете скористатись, та детальний опис їх.
+
+/developer/index.bml.styles.s2.header=Системний Стиль 2
+
+/developer/index.bml.styles.s2.layerbrowse=S2 Схема перегляду
+
+/developer/index.bml.styles.s2.layerbrowse.about=Повний список доступних S2 схем, що містять стилі системи S2. Важливим тут є ядро схеми, що задане базовими змінними, функціями та класами, котрі роблять S2 повнофункціональною мовою дизайну, як от.
+
+/developer/index.bml.styles.s2.manual=S2 
+
+/developer/index.bml.styles.s2.manual.about=Повна інформація про використання S2 в Живому Журналі
+
+/developer/index.bml.title=Інформація для розробників.
+
+/directory.bml.error.accounttype=Вибачте, але тип вашого акаунту не дозволяє виконувати пошук у каталозі, або ви не <a href='/login.bml'>увійшли до журналу</a>. Якщо тип вашого акаунту дозволяє пошук у каталозі, перевірте, чи увійшли ви до журналу.
+
+/doc/index.bml.about=Ласкаво просимо до бібліотеки документації Живого Журналу. Тут ви зможете знайти більшість описі ЖЖ-послуг або серверного програмного забезпечення.  Виберіть розділ нижче:
+
+/doc/index.bml.about.header=Ласкаво просимо
+
+/doc/index.bml.docs.faq.about=Питання, що найчастіше запитують про LiveJournal.com
+
+/doc/index.bml.docs.faq.title=FAQ (Питання, що найчастіше запитують)
+
+/doc/index.bml.docs.header=Документація
+
+/doc/index.bml.docs.howto.about=Підказки та прийоми в допомогу налаштуванню ЖЖ-акаунту
+
+/doc/index.bml.docs.server.about=Все що вам потрібно знати про встановлення, керування та хак ЖЖ
+
+/doc/index.bml.docs.server.title=Сервер ЖЖ. Інструкція користувача.
+
+/doc/index.bml.docs.tour.about=Створено для нових користувачів, щоб познайомити з сайтом.
+
+/doc/index.bml.docs.tour.title=Огляд
+
+/doc/index.bml.title=Документація
+
+/doc/index.bml.volunteering.about=Якщо потребуєте допомоги, а в документацію вам ритись ліньки, відвідайте наш форум:
+
+/doc/index.bml.volunteering.header=Волонтерство
+
+/doc/index.bml.volunteering.ljsysdoc=Обговорення системи ЖЖ-документації
+
+/doc/index.bml.volunteering.ljuserdoc=Обговорення документації для кінечних користувачів
+
+/doc/tour/index.bml.clients.caption<<
+Програми-клієнти Живого Журналу це невеликі програми, що запускаються на вашому компю'тері, тим самим дозволяючи вам писати у ваш журнал не відкриваючи вікна браузера.
+Програми-клієнти доступні майже для всіх платформ та прості у налаштуванні та використанні.
+.
+
+/doc/tour/index.bml.clients.title=Клієнти
+
+/doc/tour/index.bml.comms.caption=Живий Журнал - це велетенська інтерактивна спільнота, тому не дивуйтесь, що є так багато членів цієї спільноти зі схожими інтересами та захопленнями. Також ми надаємо змогу створити спільноту або журнал, щоб люди могли дописувати туди. 
+
+/doc/tour/index.bml.comms.title=Спільноти
+
+/doc/tour/index.bml.create.caption=Живий Журнал це співтовариство засноване на дружбі. На цій сторінці пояснюється, що участь у цій спільноті тягне за собою, чим воно важливе та вигідне. Також тут міститься форма для створення власного акаунту.
+
+/doc/tour/index.bml.create.title=Створення акаунту
+
+/doc/tour/index.bml.friends.caption<<
+Ви маєте змогу відслідковувати повідомлення в журналах ваших друзів, використовуючи розділ "Друзі".
+Знайшовши новий журнал, що здається вам цікавим, ви можете додати його до вашого списку друзів. Це дась вам змогу читати повідомлення з цього журналу й надалі, по мірі їх появи.
+.
+
+/doc/tour/index.bml.friends.title=Друзі
+
+/doc/tour/index.bml.intro.caption=Цей огляд створено для нових відвідувачів, щоб допомогти познайомитись з сайтом. Тут буде вказано де знаходяться найважливіші розділи, та деякі цікаві можливості.
+
+/doc/tour/index.bml.intro.title=Ласкаво просимо
+
+/doc/tour/index.bml.modify.caption=Також можливо формувати ваш журнал багатьма різними способами, використовуючи готові стилі, та системи кольорів. Зробіть ваш журнал таким же унікальним та неповторним, як ви самі!
+
+/doc/tour/index.bml.modify.title=Персоналізація
+
+/doc/tour/index.bml.nav.next=Наступне --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- Попереднє
+
+/doc/tour/index.bml.profile.caption<<
+Вітається згода користувачів Живого Журналу залишити трохи інформації про себе в їх профайлах. Це дає змогу нам оцінувати аудиторію користувачів ЖЖ і ми маємо змогу краще допомагати їм.
+Однак, це не є обовязковою вимогою, а тільки побажанням. Обовязковим для створення власного журналу є тільки вказування наступної інформації: назва, електронна адреса та пароль.
+.
+
+/doc/tour/index.bml.profile.title=Профіль
+
+/doc/tour/index.bml.sitemap.caption<<
+Сподіваємось, що огляд дав вам трохи корисної початкової інформації про сайт Живий Журнал та його послуги.
+Якщо потребуєте допомоги пов'язаної з Живим Журналом зверніться до <a href="/support/">нашого відділу підтримки</a>. Якщо бажаєте продовжити ознайомлення, зверніться до <a href="/site/">мапи сайту</a> щоб побачити всі сторінки на цьому сайті.
+.
+
+/doc/tour/index.bml.sitemap.title=Мапа сайту
+
+/doc/tour/index.bml.support.caption=Сторінка підтримки містить перелік розділів, що допоможуть пояснити що таке Живий Журнал, часті запитання про сайт та інша корисна інформація про послуги, компанію та спільноту в цілому.
+
+/doc/tour/index.bml.support.title=Як отримати допомогу
+
+/doc/tour/index.bml.title=Огляд - [[title]]
+
+/doc/tour/index.bml.update.caption<<
+Обновлення Живого Журналу є основою обслуговування ЖЖ; ось - те, в чому ми пропонуємо нашим користувачам поділитись з нами своїм життям і думками.
+Обновлювати журнал не складно. Просто пишете повідомлення в запрпоновану форму і натискаєте клавішу "Оновити журнал". Також ви можете використовувати при оновленні журналу розширені можливості, такі як перевірка правопису, додаткове інформація до вашого повідомлення (котру музику наразі слухаєте чи який у вас зараз настрій).
+.
+
+/doc/tour/index.bml.update.title=Поновлення
+
+/editinfo.bml.allowshowcontact.about=Краще тримати цю опцію увімкненою. Це дозволить іншим користувачам зв'язатися з вами за e-mail адресою, номером ICQ та ім'ям AOL Instant Messenger, які ви вкажете у Живому Журналі.
+
+/editinfo.bml.allowshowcontact.email=Показувати e-mail адресу:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Тільки дійсну адресу
+
+/editinfo.bml.allowshowcontact.email.both=Обидві (дійсну та [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Тільки адресу у Живому Журналі
+
+/editinfo.bml.allowshowcontact.email.neither=Не показувати жодної e-mail адреси.
+
+/editinfo.bml.allowshowcontact.email.no_show=Не показувати e-mail адресу
+
+/editinfo.bml.allowshowcontact.email.show=Показувати e-mail адресу
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Ви також можете вибрати не показувати вашу e-mail адресу (у той час показуючи іншу контактну інформацію), показувати лише адресу в Живому Журналі (тільки для <a href="/paidaccounts/">платних користувачів</a>), показувати тільки справжню адресу, чи показувати обидві.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Ви також можете вибрати не показувати вашу e-mail адресу (у той час показуючи іншу контактну інформацію).
+
+/editinfo.bml.allowshowcontact.title=Показувати вашу контактну інформацію в Живому Журналі?
+
+/editinfo.bml.allowshowinfo.about=Увімкніть цей перемикач, якщо ви бажаєте, щоб усі могли бачити ваше місто/штат/країну та день народження.
+
+/editinfo.bml.allowshowinfo.title=Показувати місцезнаходження та день народження?
+
+/editinfo.bml.autotranslate.about<<
+Використовуйте цей параметр, щоб вказати нам, яким кодуванням ви користувалися до переходу ЖЖ на Юнікод.
+Якщо ви писали англійською, вкажіть "Western European".
+.
+
+/editinfo.bml.autotranslate.header=Автоматичне перекодування старих записів з кодування:
+
+/editinfo.bml.bday.title=День народження
+
+/editinfo.bml.bday.year.opt=вказувати рік не обов'язково
+
+/editinfo.bml.bdayreminders.about=Якщо ви бажаєте отримувати e-mail з нагадуванням про дні народження ваших друзів, натисніть тут.
+
+/editinfo.bml.bdayreminders.header=Нагадувати мені про дні народження (тимчасово відключено)
+
+/editinfo.bml.bio.about=Тут ви можете ввести міні-біографію. Вона буде показана у вашій інформації про користувача.
+
+/editinfo.bml.bio.header=Про вас
+
+/editinfo.bml.blockrobots.about<<
+Якщо ви ввімкнете цей перемикач, роботам скажуть забиратися геть.
+Але не всі роботи поважають правила.
+.
+
+/editinfo.bml.blockrobots.header=Блокувати індексування вашого журналу роботами
+
+/editinfo.bml.chat.icquin.title=Номер ICQ
+
+/editinfo.bml.chat.msnusername.title=Користувач MSN
+
+/editinfo.bml.chat.yahooid.title=Yahoo! ID
+
+/editinfo.bml.city.title=Місто
+
+/editinfo.bml.country.choose=Оберіть країну
+
+/editinfo.bml.country.title=Країна
+
+/editinfo.bml.donotlog=Ні
+
+/editinfo.bml.email.title=E-mail
+
+/editinfo.bml.enableboards.about=Поставте тут позначку, щоб інші користувачі могли відповідати на записи у вашому журналі.
+
+/editinfo.bml.enableboards.header=Дозволити коментарі
+
+/editinfo.bml.encoding.about=Якщо ви пишете англійською, залиште наступні опції без змін. В іншому випадку встановіть відповідні опції.
+
+/editinfo.bml.encoding.header=Опції перекодування
+
+/editinfo.bml.error.day.notinmonth=Невірний день для цього місяця.
+
+/editinfo.bml.error.day.outofrange=Невірний день. Уведіть число від 1 до 31.
+
+/editinfo.bml.error.email.lj_domain|staleness=1
+/editinfo.bml.error.email.lj_domain<<
+Не можна уводити адресу @[[domain]] .
+Введіть вашу справжню адресу у тому полі.
+Якщо ви платний користувач, усі листи на адресу [[user]]@[[domain]] будутть пересилатися на ваш справжній адрес.
+Для того, щоб вибрати, яку e-mail адреса (або обидві) показувати, подивіться опцію "Показувати контактну інформацію".
+.
+
+/editinfo.bml.error.email.none=Ви повинні вказати адресу вашої електронної скриньки
+
+/editinfo.bml.error.email.no_space<<
+У електронній адресі пробіли заборонені.
+Якщо ви є користувачем AOL, пам'ятайте, що вашою e-mail адесою є ваше ім'я AOL без пробілів, за яким слідує <b>@aol.com</b>
+.
+
+/editinfo.bml.error.excessive_int=Вибачте, але ви вказали занадто багато захоплень. Границею є 150, а ви вказали [[intcount]]. Зміни, які ви зробили, не збережено. Повертайтесь та зкоротіть ваш список, а потім збережіть знову.
+
+/editinfo.bml.error.invalidbio=Ваша біографія містить невірні символи. Відвідайте <a href='/utf8convert.bml'><b>сторінку конвертації</b></a>  щоб перетворити це в Юнікод.
+
+/editinfo.bml.error.invalidints=Ваш поточний список захоплень містить невірні символи. Відвідайте <a href='/utf8convert.bml'><b>сторінку конвертації</b></a>  щоб перетворити це в Юнікод.
+
+/editinfo.bml.error.invalidname=Ваше і'мя містить невірні символи. Відвідайте <a href='/utf8convert.bml'><b>сторінку конвертації</b></a>  щоб перетворити це в Юнікод.
+
+/editinfo.bml.error.locale.country_ne_state=Ви вказали Сполучені Штати як країну свого перебування, але вказали в розділі "інший штат" штат якого в США нема.
+
+/editinfo.bml.error.locale.invalid_country=Невірно вибрали країну.
+
+/editinfo.bml.error.locale.state_ne_country=Ви обрали країну не-США, але вибрали штат що належить Сполученим Штатам.
+
+/editinfo.bml.error.locale.zip_ne_state=Поштовий індекс та регіон вказані вами не відповідають одне одному. Введіть вірну інформацію, або витріть індекст або\і регіон.
+
+/editinfo.bml.error.locale.zip_requires_us=Ви вказали поштовий індекс, але не вказали США як вашу країну. В нас зібрані тільки індекси регіонів США. Поверніться та видаліть поштовий індекс або вкажуть США як вашу країну.
+
+/editinfo.bml.error.month.outofrange=Невірний місяць народження. Введіть місяць з 1-12 (Січ.-Грд.)
+
+/editinfo.bml.error.noname=Ваше ім'я - обовязкова інформація. Вкажіть ваше ім'я або прізвисько си псевдонім.
+
+/editinfo.bml.error.tm.require.number=Якщо ви використовуєте текстові повідомлення, то повинні вказати номер вашого мобільника.
+
+/editinfo.bml.error.tm.require_provider=Якщо ви використовуєте текстові повідомлення, то повинні вказати свого оператора. Якщо його нема в списку, звіжіться з їх інформцентром та з'ясуйте особливості надання цієї послуги, потім повідомте до нашого сервіс-центру.
+
+/editinfo.bml.error.year.notenoughdigits=Невірний рік народження. Вкажіть 4-х значний рік
+
+/editinfo.bml.error.year.outofrange=Невірний рік народження. 
+
+/editinfo.bml.finished.about=Добре; тепер натисніть кнопку "Зберегти зміни".
+
+/editinfo.bml.finished.header=Готово?
+
+/editinfo.bml.finished.save_button=Зберегти зміни
+
+/editinfo.bml.gender.title=Стать
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=Поставте позначку тут, якщо ви бажаєте отримувати e-mail, коли інші користувачі відповідають на ваші записи.
+
+/editinfo.bml.getreplies.header=Отримувати коментарі поштою.
+
+/editinfo.bml.hidefriendof.about=Якщо ви поставите позначку тут, то список користувачів, які додали вас до списку друзів, не буде відображатися на вашій сторінці "Про користувача".
+
+/editinfo.bml.hidefriendof.header=Сховати список друзів.
+
+/editinfo.bml.howhear.about<<
+Нам цікаво, де ви почули про [[sitename]]?
+Якщо це був хтось із користувачів, вкажіть його ім'я, якщо це було інше джерело (стаття, посилання, веб-сайт), то уведіть відповідну інформацію.
+.
+
+/editinfo.bml.howhear.header=Цікаво
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about<<
+Поставте тут позначку, якщо ваша поштова програма повністю підтримує HTML у листах.
+Багато програм намагаються підтримувати, але роблять це жахливо.
+Якщо ви знімете позначку, то Живий Журнал буде відправляти вам тільки текстові листи.
+.
+
+/editinfo.bml.htmlemail.header=Відправляти листи у форматі HTML.
+
+/editinfo.bml.int.about=Якщо ви бажаєте, щоб інші користувачі могли знайти вас у каталозі за вашими інтересами, вкажіть унизу все, чим ви цікавитесь, через кому. Краще використовувати визначення в одним словом. <b>Просте правило:</b> ваш інтерес повинен добре підходити до речення "Мені подобається ___________". Іменники пишіть у називному відмінку множини ("фільми", а не "фільм" чи "фільмів"). Дієслова пишіть у невизначеній формі ("подорожувати").
+
+/editinfo.bml.int.ex.bad=<FONT COLOR=#FF0000><B>Поганий</B></FONT> приклад: <B>Мені подобається слухати музику, дивитись кіно, базікати з друзями та ходити по клубах.</B> Це можна вказати у біографії (див. вище).
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>Гарний</B></FONT> приклад: <B>їздити на велосипеді, лижі, комп'ютери, музику, сир, дівчат</B>
+
+/editinfo.bml.int.header=Інтереси
+
+/editinfo.bml.login.enterinfo=Введіть ваші ім'я користувача та пароль, щоб змінити персональну інформацію.
+
+/editinfo.bml.login.forgot.header=Щось забули?
+
+/editinfo.bml.login.forgot.recover=Якщо ви забули ім'я або пароль, <a href='lostinfo.bml'>відновіть їх тут!</a>.
+
+/editinfo.bml.logip.always=Завжди
+
+/editinfo.bml.logip.anon_only=Тільки анонімних користувачів
+
+/editinfo.bml.logip.header=Записувати IP-адреси користувачів, що відповідають?
+
+/editinfo.bml.mangleaddress.about|staleness=1
+/editinfo.bml.mangleaddress.about=Якщо ви боїтеся, що spam-роботи зайдуть вашу e-mail адресу в Живому Журналі, виберіть цю опцію. Вашу адресу буде змінено таким чином, що її не буде знайдено.
+
+/editinfo.bml.mangleaddress.header=Зпотворити відображення адреси
+
+/editinfo.bml.name.title=Ім'я
+
+/editinfo.bml.newemail.subject=E-mail адресу змінено.
+
+/editinfo.bml.numcomments.about=Поставте відмітку тут, якщо ви бажаєте додавати кількість коментарів до URL. У цьому разі, якщо кількість коментарів змінилася, ваш браузер, можливо, відобразить посилання іншим кольором.
+
+/editinfo.bml.numcomments.header=Додати &amp;nc=xx  до URL коментарів
+
+/editinfo.bml.optional=Необов'язково
+
+/editinfo.bml.opt_in.about<<
+Якщо ви хочете знати, коли ми додамо нові гарні можливості до Живого Журналу, увімкніть цей перемикач.
+На даний момент ми не використовуємо цю можливість, але, може, будемо в майбутньому.
+Ваш e-mail не буде видно для інших користувачів, та ви можете вимкнути цю можливість будь-коли.
+.
+
+/editinfo.bml.opt_in.header=Надсилайте мені новини Живого Журналу.
+
+/editinfo.bml.persinfo.disclaimer<<
+Введіть якусь коротку інформацію про себе, щоб задовольнити нашу цікавість та для статистичних даних.
+Ми не збираємося завдавати вам шкоди, користуючись цією інформацією. Ми тільки хочемо знати хто і звідки наші користувачі. Якщо ви вагаєтесь, прочитайте нашу <a href="/legal/privacy.bml">політику приватності</a>.
+.
+
+/editinfo.bml.persinfo.header=Особиста інформація
+
+/editinfo.bml.screen.all=Усе
+
+/editinfo.bml.screen.anon=Анонімні
+
+/editinfo.bml.screen.header=Які коментарі ховати за замовчуванням?
+
+/editinfo.bml.screen.none=Жодні
+
+/editinfo.bml.screen.nonfriends=Написані не друзями
+
+/editinfo.bml.screen.nonmembers=Написані не учасниками
+
+/editinfo.bml.security.header=Хто може бачити вашу контактну інформацію?
+
+/editinfo.bml.security.visibility.anybody=Усі
+
+/editinfo.bml.security.visibility.everybody=Усі
+
+/editinfo.bml.security.visibility.friends=Тільки друзі
+
+/editinfo.bml.security.visibility.regusers=Зареєстровані користувачі
+
+/editinfo.bml.settings.friendspage.title=Заголовок стрічки друзів:
+
+/editinfo.bml.settings.friendspage.title.optional=<i>Додатково</i>, вкажіть заголовок стрічки друзів. (без HTML)
+
+/editinfo.bml.settings.header=Опції Живого Журналу
+
+/editinfo.bml.settings.journal.subtitle=Підзаголовок журналу:
+
+/editinfo.bml.settings.journal.subtitle.optional=<i>Додатково</i>, вкажіть заголовок та підзаголовок для вашого журналу. (без HTML)
+
+/editinfo.bml.settings.journal.title=Заголовок журналу:
+
+/editinfo.bml.settings.privacy.about=Оберіть нижче опції та параметри щодо приватності.
+
+/editinfo.bml.settings.privacy.header=Опції приватності
+
+/editinfo.bml.state.other=Або, уведіть штат/провінцію/область іншої країни.
+
+/editinfo.bml.state.title=Штат
+
+/editinfo.bml.state.us=Штати США
+
+/editinfo.bml.stylemine.about=Поставте тут відмітку, щоб дивитися сторінку коментарів у стилі вашого журналу при переході за посиланнями з вашої стрічки друзів.
+
+/editinfo.bml.stylemine.header=Показувати сторінку коментарів у стилі вашого журналу?
+
+/editinfo.bml.success.header=Успішно!
+
+/editinfo.bml.success.message=Ваша інформація та налаштування <a href="/users/[[user]]/">журналу</a>, а також <a href="/userinfo.bml?user=[[user]]">профіль</a> були змінені.
+
+/editinfo.bml.switch.button=Вибрати
+
+/editinfo.bml.switch.header=Вибрати інший журнал
+
+/editinfo.bml.switch.workwith=З яким журналом працювати
+
+/editinfo.bml.title=Редагувати особисту інформацію
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">детальніше</a>
+
+/editinfo.bml.tm.phonenum=Повний номер телефона:
+
+/editinfo.bml.tm.sec.about=Дозволити текстові повідомлення від інших користувачів.
+
+/editinfo.bml.tm.sec.title=Рівень безпеки:
+
+/editinfo.bml.tm.servprov=Сервіс-провайдер
+
+/editinfo.bml.tm.title=Текстові повідомленні
+
+/editinfo.bml.translatemailto.about=Якщо ви вибрали отримувати коментарі електронною поштою та ваш поштовий клієнт погано підтримує Unicode (UTF-8), оберіть інше кодування, в яке Живий Журнал автоматично перетворить текст коментарю.
+
+/editinfo.bml.translatemailto.header=Перекодувати повідомлення у:
+
+/editinfo.bml.unbanusers.about=Цим користувачам заборонено коментувати записи у вашому журналі. Поставте позначку навпроти імені користувача, щоб виключити його з цього списку.
+
+/editinfo.bml.unbanusers.header=Разблокувати користувачів
+
+/editinfo.bml.userpic.about=Нижче розташовано зображення, що ви завантажили і яке стоїть поруч з вашим ім'ям у вашому журналі та в журналі ваших друзів.
+
+/editinfo.bml.userpic.edit|staleness=1
+/editinfo.bml.userpic.edit=Видалити це зображення або завантажити нове можна <a href="/uploadpic.bml" target="_blank">тут</a>.
+
+/editinfo.bml.userpic.header=Ваше зображення
+
+/editinfo.bml.userpic.none=зображення не завантажено
+
+/editinfo.bml.weblogscom.about=Оберіть цю опцію, якщо вам подобається мати список  Weblogs.com в журналі коли ви пишете до нього.
+
+/editinfo.bml.weblogscom.header=Повідомляти Weblogs.com про обнову
+
+/editinfo.bml.webpagename.title=Назва веб-сайту
+
+/editinfo.bml.webpageurl.title=URL сайту
+
+/editinfo.bml.whoreply.header=Хто може коментувати?
+
+/editinfo.bml.zip.title=Поштовий індекс
+
+/editinfo.bml.zip.usonly=5-ти значний поштовий індекс; тільки для тих, хто знаходиться у США
+
+/editjournal.bml.btn.proceed=Продовжити...
+
+/editjournal.bml.certainday=За певний день:
+
+/editjournal.bml.recententries=найсвіжіші записи
+
+/editjournal.bml.recententry=Останній запис
+
+/editjournal.bml.title=Редагувати запис у журналі
+
+/editjournal.bml.viewwhat=Показати записи:
+
+/editjournal_do.bml.body=Відредагуйте поля вашого запису та натисніть кнопку "Зберегти" унизу сторінки. Або натисніть кнопку "Вилучити" щоб вилучити цей запис з вашого журналу.
+
+/editjournal_do.bml.btn.delete=Вилучити запис
+
+/editjournal_do.bml.btn.edit=Редагувати обраний запис
+
+/editjournal_do.bml.btn.save=Зберегти запис
+
+/editjournal_do.bml.continue.head=Натисніть для продовження...
+
+/editjournal_do.bml.continue.text=Коли оберете який запис редагувати чи вилучити, натисніть кнопку "Редагувати" унизу.
+
+/editjournal_do.bml.currmood=<a href="/moodlist.bml">Настрій</a>:
+
+/editjournal_do.bml.currmusic=Музика:
+
+/editjournal_do.bml.date=Дата:
+
+/editjournal_do.bml.default=за замовчуванням
+
+/editjournal_do.bml.delete.confirm=Ви впенені, що хочете видалити цей запис?
+
+/editjournal_do.bml.edit.text=Це запис, який ви вибрали для редагування. Внесіть зміни та натисніть кнопку "Зберегти запис" нижче.<br /><br />Для видалення запису, видаліть весь текст та натисніть кнопку "Зберегти запис" нижче.
+
+/editjournal_do.bml.error.getting=Помилка при виборі записів для редагування:
+
+/editjournal_do.bml.error.modify=Помилка при редагуванні журналу:
+
+/editjournal_do.bml.error.nofind=Неможливо знайти вказаний запис.
+
+/editjournal_do.bml.event=Текст запису:
+
+/editjournal_do.bml.localtime=Місцевий час:
+
+/editjournal_do.bml.noneother=Інший
+
+/editjournal_do.bml.opt.backdate=Запис заднім числом:
+
+/editjournal_do.bml.opt.backdate.about=не з'явиться у стрічках друзів
+
+/editjournal_do.bml.opt.nocomments=Заборонити коментувати
+
+/editjournal_do.bml.opt.noemail=Не відправляти коментарі по e-mail
+
+/editjournal_do.bml.opt.noformat=Не автоформатувати:
+
+/editjournal_do.bml.other=Інше:
+
+/editjournal_do.bml.pickentry.head=Оберіть запис для редагування
+
+/editjournal_do.bml.pickentry.text=Оберіть елемент для редагування та натисніть кнопку "Редагувати" унизу сторінки.
+
+/editjournal_do.bml.picture=Ваше <a href="[[url]]">зображення</a>
+
+/editjournal_do.bml.save.head=Нитисніть для збереження...
+
+/editjournal_do.bml.save.text=Після редагування запису, натисніть "Зберегти".
+
+/editjournal_do.bml.subject=<b>Тема:</b> <i>(не обов'язково)</i>
+
+/editjournal_do.bml.success.delete=Запис було видалено.
+
+/editjournal_do.bml.success.edit=Запис було змінено. Ви можете його побачити <a href="[[url]]">тут</a>.
+
+/editjournal_do.bml.success.head=Успішно
+
+/editjournal_do.bml.timeformat=Час у 24-годинному форматі
+
+/editjournal_do.bml.title=Редагувати записи
+
+/editpics.bml.btn.proceed=Продовжити
+
+/editpics.bml.error.badurl=Адреса за якою треба завантажити зображення не виглядає коректною. Вона повинна починатись з <b>http://</b>
+
+/editpics.bml.error.filetoolarge=Завантажене зображеня надто велике. Розмір файла не може перевищувати [[maxsize]].
+
+/editpics.bml.error.imagetoolarge=Розмір вашого зображення ([[imagesize]]) перевищує максимальний розмір. Ваше зображення може бути максимум 100x100 пікселів. Візьміть програму для редагування фото або картинок та за її допомогою зменшіть розмір зображення.
+
+/editpics.bml.error.invalidimage=Невірний файл зображення.
+
+/editpics.bml.error.toomanypics2=Ви досягли обмеження у [[maxpics]] зображення. Ви не можете завантажити нове зображення доти, доки не вилучите одне з існуючих.
+
+/editpics.bml.error.unsupportedtype=Файли типу [[filetype]] не підтримуються. Ви можете завантажити тільки файли типу GIF, PNG або JPG. Майже всі фото-редактори можуть виконати конвертацію форматів.
+
+/editpics.bml.error.urlerror=Виникла помилка при спробі завантажити ваше зображення.
+
+/editpics.bml.fromfile=З <u>ф</u>айлу:
+
+/editpics.bml.fromfile.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".fromfile". This is the shortcut key for the fromfile option.
+/editpics.bml.fromfile.key=ф
+
+/editpics.bml.fromurl=З <u>а</u>дреси:
+
+/editpics.bml.fromurl.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".fromurl". This is the shortcut key for the fromurl option.
+/editpics.bml.fromurl.key=а
+
+/editpics.bml.kilobytes=КБ
+
+/editpics.bml.makedefault=Зробити зображенням за <u>з</u>амовчуванням
+
+/editpics.bml.makedefault.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".makedefault". This is the shortcut key for the makedefault option.
+/editpics.bml.makedefault.key=з
+
+/editpics.bml.restriction.fileformat=Формат файла зображення повинен бути PNG, GIF або JPG
+
+/editpics.bml.restriction.filesize=Розмір файла зображення не повинен перевищувати 40k
+
+/editpics.bml.restriction.imagesize=Розміри зображення не повинні перевищувати 100x100 пікселів
+
+/editpics.bml.uploadheader=Завантажити нове зображення
+
+/export.bml.btn.proceed=Виконується...
+
+/export.bml.description=Ця можливість дозволяє завантажити ваші записи в бажаному форматі для резервування. Для більшої інформації про резервування вашого журналу зазирніть <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=8">сюди</a>. 
+
+/export.bml.fields=Поля:
+
+/export.bml.format.csv=CSV (розділяючи комами)
+
+/export.bml.label.encoding=Кодування:
+
+/export.bml.label.field.allowmask=Дозволити маскування
+
+/export.bml.label.field.currents=Поточний настрій &amp; музика
+
+/export.bml.label.field.event=<b>Подія</b>
+
+/export.bml.label.field.eventtime=Час події (за годинником користувача)
+
+/export.bml.label.field.itemid=ID Номер
+
+/export.bml.label.field.logtime=Час запису (за системним годинником)
+
+/export.bml.label.field.security=Рівень безпеки
+
+/export.bml.label.field.subject=Тема:
+
+/export.bml.label.format=Формат:
+
+/export.bml.label.header=Заголовок:
+
+/export.bml.label.month=Виберіть місяць:
+
+/export.bml.label.month.month=мм:
+
+/export.bml.label.month.year=рррр:
+
+/export.bml.label.notranslation=Не перекодовувати 
+
+/export.bml.label.what=Що експортувати:
+
+/export.bml.title=Експорт журналу
+
+/export.bml.what.entries=записи журналу
+
+/friends/add.bml.add.header=Успішно
+
+/friends/add.bml.add.text|staleness=2
+/friends/add.bml.add.text=Користувач <?ljuser [[user]] ljuser?> був доданий до вашої стрічки друзів. Ви можете побачити вашу стрічку друзів <a href="[[url]]">тут</a>.
+
+/friends/add.bml.add.title=Друга додано!
+
+/friends/add.bml.btn.add=Додати [[user]]
+
+/friends/add.bml.btn.modify=Змінити
+
+/friends/add.bml.btn.remove=Видалити
+
+/friends/add.bml.colors.bg=Задній фон
+
+/friends/add.bml.colors.fg=Передній фон
+
+/friends/add.bml.colors.header=Кольори
+
+/friends/add.bml.colors.hover=(Наведіть мишу на колір, щоб побачити його назву)
+
+/friends/add.bml.colors.text=Також ви маєте змогу вибрати колір котрим [[user]] буде виділено в вашій стрічці друзів.
+
+/friends/add.bml.confirm.header=Додати <b>[[user]]</b>  до друзів?
+
+/friends/add.bml.confirm.text=Щоб додати <b>[[user]]</b>  до вашого списку друзів натисніть кнопарик нижче.
+
+/friends/add.bml.confirm.title=Додати друга
+
+/friends/add.bml.error1.header=Спершу увійти
+
+/friends/add.bml.error1.text=Щоб додати користувача до списку друзів ви спершу повинні <A HREF="/login.bml?ret=1">увійти</A>. Якщо ви не маєте досі свого акаунту, то можете <a href="/create.bml">створити його</a>.  
+
+/friends/add.bml.error1.title=Додати друга
+
+/friends/add.bml.error2.text=Ви надали невірне ім'я користувача. Щоб додати друга зазерніть на <a href="/friends/edit.bml">сторінку друзів.</a>
+
+/friends/add.bml.error3.text=Ви вже додали <b>[[user]]</b> до списку друзів . Зараз можете вказати котрим кольором він буде відображатись у вашій стрічці.
+
+/friends/add.bml.error3.title=редагувати друга
+
+/friends/add.bml.groups.header=Групи друзів
+
+/friends/add.bml.groups.nogroup=Групи друзів не задано.
+
+/friends/add.bml.groups.text=До якої групи друзів хочете додати користувача? Групи друзів потрібні, щоб буза змога фільтрувати відображення стрічки друзів. А також для групового обробітку списку друзів.
+
+/friends/add.bml.remove.header=Успішно
+
+/friends/add.bml.remove.text=Користувач <?ljuser [[user]] ljuser?> був видалений з вашого списку друзів. Ви можете побачити вашу стрічку друзів <a href="[[url]]">тут</a>.
+
+/friends/add.bml.remove.title=Друг Видалений!
+
+/friends/edit.bml.title=Редагувати друзів
+
+/friends/editgroups.bml.btn.ge.del=Вилучити
+
+/friends/editgroups.bml.btn.ge.new=Нова
+
+/friends/editgroups.bml.btn.ge.ren=Перейменувати
+
+/friends/editgroups.bml.btn.gs.private=Приватна
+
+/friends/editgroups.bml.btn.gs.public=Публічна
+
+/friends/editgroups.bml.btn.mv.down=Перемістити вниз
+
+/friends/editgroups.bml.btn.mv.up=Перемістити вверх
+
+/friends/editgroups.bml.confirm.delete=Ви впевнені що хочете вилучити цю групу друзів?
+
+/friends/editgroups.bml.done.btn=Зберегти зміни
+
+/friends/editgroups.bml.done.header=Готово?
+
+/friends/editgroups.bml.done.text=Коли все зробите, натисніть кнопку внизу щоб зберегти зміни.
+
+/friends/editgroups.bml.error.max30|notes=It is important for the JavaScript on this page to work that this string remains a single line without linebreaks. Additionally, it must not contain any quotation marks.
+/friends/editgroups.bml.error.max30=Ви досягли межі кількості груп (30). Якщо ви вилучли якусь групу але не зберегли зміни, зробіть це зараз, а потім поверніться на ці сторінку та поновіть її. Тоді ви матимете змогу створювати нові групи друзів.
+
+/friends/editgroups.bml.error.text=Сервер видав таке повідомлення про помилку:
+
+/friends/editgroups.bml.group.public=(публічний)
+
+/friends/editgroups.bml.ingroup=В групі:
+
+/friends/editgroups.bml.ingroup.not=Не в групі:
+
+/friends/editgroups.bml.prompt.newname=Введіть ім'я нової групи друзів:
+
+/friends/editgroups.bml.prompt.rename=Перейменувати цю групу у:
+
+/friends/editgroups.bml.saved.header=Збережено
+
+/friends/editgroups.bml.saved.text=Ваші групи друзів збережені.
+
+/friends/editgroups.bml.text=На цій сторінці ви можете редагувати групи друзів. Групи друзів потрібні для встановлення рівня безпеки на ваші записи та для фільтрування стрічки друзів. Якщо потрібна допомога, дивіться <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">Що таке групи друзів? Як мені їх використовувати?</a>
+
+/friends/editgroups.bml.text.sec=<strong>Щодо безпеки:</strong> Якщо ви хочете вилучити одну групу а потім створити іншу, <strong>не треба</strong> перейменовувати одну групу в іншу. Якщо ви так зробите, то всі записи, які були видимі для друзів старої групи, будуть видимі для друзів з нової групи.
+
+/friends/editgroups.bml.title=Редагування груп друзів
+
+/friends/editgroups.bml.yourgroups=Ваші групи друзів:
+
+/friends/edit_do.bml.addfriends.head=Додавання Друзів
+
+/friends/edit_do.bml.addfriends.text=Введіть ім'я користувача ваших друзів по Живому Журналу, та оберіть колір відображення їх у стрічці.
+
+/friends/edit_do.bml.background=Задній фон
+
+/friends/edit_do.bml.bgcolor=Колір фону:
+
+/friends/edit_do.bml.btn.close=Закрити
+
+/friends/edit_do.bml.btn.save=Зберегти зміни
+
+/friends/edit_do.bml.btn.toggle=Перейти до вікна преперегляду
+
+/friends/edit_do.bml.done.head=Готово?
+
+/friends/edit_do.bml.done.text=Коли закінчите, натисніть "Зберегти зміни" нижче...
+
+/friends/edit_do.bml.error.updating=Сталась помилка обновлення вашої стрічки друзів:
+
+/friends/edit_do.bml.fellowfriends.head=Наступні друзі
+
+/friends/edit_do.bml.fellowfriends.text=Наступні особи помітили вас як свого друга. Можливо ви також бажаєте внести їх до списку своїх друзів. Ці посилання для того вказані, щоб ви знали їх імена. Ви не зобов"язані додавати їх до свого списку друзів.
+
+/friends/edit_do.bml.foreground=Передній фон
+
+/friends/edit_do.bml.friend=Друг
+
+/friends/edit_do.bml.hover=Голи ваша миша наведена на колір, побачите його назву
+
+/friends/edit_do.bml.mrcolor=Перегляд кольорів
+
+/friends/edit_do.bml.name=Ім'я
+
+/friends/edit_do.bml.needmore=Якщо бажаєте додати друзів більше ніж дозволяє форма вводу, то введіть скільки можете, збережіть їх, потім поверніться сюди і продовжіть додавання.
+
+/friends/edit_do.bml.nofriends.head=Нема друзів?
+
+/friends/edit_do.bml.nofriends.text=Наразі у вас не визначено жодного друга. Однак ми впевнені, що ви повинні мати кілька друзів! <tt>:)</tt> Введіть но їх імена в Живому Журналі... 
+
+/friends/edit_do.bml.opt.delete=Видалити?
+
+/friends/edit_do.bml.success.head=Успішно
+
+/friends/edit_do.bml.success.text=Список друзів було змінено. Ви можете побачити вашу оновлену стрічку друзів <a href="[[url]]">тут</a>.
+
+/friends/edit_do.bml.textcolor=Колір тексту:
+
+/friends/edit_do.bml.title=Редагування друзів
+
+/friends/edit_do.bml.user=Користувач
+
+/friends/edit_do.bml.viewer=Переглядач кольорів
+
+/friends/edit_do.bml.yourfriends.head=Ваші друзі
+
+/friends/edit_do.bml.yourfriends.text=Наразі визначеними є такі ваші друзі:
+
+/friends/filter.bml.editgroups=Якщо ви бажаєте відредагувати групи ваших друзів, ідіть на сторінку [[link]].
+
+/friends/filter.bml.error.nogroups|staleness=1
+/friends/filter.bml.error.nogroups=Ви не можете фільтрувати вашу стрічку друзів оскільки ви повинні спочатку <a href="/friends/editgroups.bml">відредагувати групи друзів</a>.
+
+/friends/filter.bml.error.nogroups.header=Немає груп
+
+/friends/filter.bml.reset=Очистити
+
+/friends/filter.bml.select=Оберіть групу(-и) друзів, які ви хотіли б бачити у стрічці друзів.
+
+/friends/filter.bml.select.header=Обрати групи друзів
+
+/friends/filter.bml.submit=Переглянути!
+
+/friends/filter.bml.title=Фільтр друзів
+
+/friends/index.bml.about=Ця сторінка дозволяє вам керувати списком друзів. Додаючи інших користувачів до списку друзів, ми можете легко бачити їх записи в своїй стрічці друзів. Також ви маєте змогу додавати спільноти до вашого списку друзів і також бачити повідомлення що писатимуться туди іншими користувачами.
+
+/friends/index.bml.edit.about=Додати або видалити користувачів з вашого списку друзів, або змінити колір їх представлення.
+
+/friends/index.bml.editgroups.about=Створення, редагування або видалення підгруп ваших друзів.
+
+/friends/index.bml.filter=Для цих груп друзів можуть використовуватись фільтри перегляду: ви можете бачити тільки записи означених груп. Також це можна використовувати ждя групових засобів безпеки (дивись нижче).
+
+/friends/index.bml.filter.about=Фільтруйте список друзів згідно з визначеними підгрупами.
+
+/friends/index.bml.groups=Окрім того, підгрупи друзів можуть бути визначеними.
+
+/friends/index.bml.security=Ваш список друзів також використовується для для повідомлень з обмеженням доступу. Ви можете більше довідатись про безпеку в вашому списку друзів в розділі <cite><a href="/support/faqbrowse.bml?faqcat=security">Друзі &amp; рівні доступу</a></cite>.
+
+/friends/index.bml.security.custom=Повідомлення з "Custom", ви маєте змогу вказувати для яких груп друзів воно буде видимим. Однак, не всі <a href="/download/">клієнти</a> підтримують таку можливість.
+
+/friends/index.bml.security.header=Безпека
+
+/friends/index.bml.security.only=Повідомлення "Тільки друзям" будуть бачити тільки користувачі з вашого списку друзів.
+
+/friends/index.bml.title=Інструменти для друзів
+
+/friends/index.bml.tools=Інструменти 
+
+/friends/popwithfriends.bml.account_type=Вибачте, тип вашого акаунту не підтримує ці засоби.
+
+/friends/popwithfriends.bml.count=Підрахунок
+
+/friends/popwithfriends.bml.exclude_own=Додатково, ви можете <a href='popwithfriends.bml'>виключити ваших друзів</a>.
+
+/friends/popwithfriends.bml.include_own=Додатково, ви можете <a href='popwithfriends.bml?own=1'>включити ваших друзів</a>.
+
+/friends/popwithfriends.bml.intro=Наступні друзі внесли вас до своїх списків друзів, але не ви їх.
+
+/friends/popwithfriends.bml.intro_own=Наступні друзі внесли вас до своїх списків друзів. Список також включає ваших власних друзів.
+
+/friends/popwithfriends.bml.no_users=Нема користувачів.
+
+/friends/popwithfriends.bml.title=Популярні користувачі серед ваших друзів
+
+/friends/popwithfriends.bml.user=Користуач
+
+/index.bml.boldcreate=Створіть власний Живий Журнал!
+
+/index.bml.frank.image.alt=Козел Франк - талісман Живого Журналу.
+
+/index.bml.frank.logo=<b><i>"Беееее",</i> сказав <a href="/site/goat.bml">Франк</a>.</b>
+
+/index.bml.meta.desc=Живий Журнал це місце де ви маєте змогу поділитись вашими думками зі всім світом.
+
+/index.bml.meta.keywords=щоденник, журнал, онлайн журнал, щоденники, писати, онлайн щоденник, веб щоденник
+
+/interests.bml.add.added.head=Додано!
+
+/interests.bml.add.added.text=Захоплення було додано до списку.
+
+/interests.bml.add.btn.text=Додати [[interest]]
+
+/interests.bml.add.confirm.head=Підтвердження
+
+/interests.bml.add.confirm.text=Щоб додати <b>[[interest]]</b> як захоплення, натисніть кнопку нижче.
+
+/interests.bml.add.toomany.head=Вибачте...
+
+/interests.bml.add.toomany.text=Ви  вже внесли [[maxinterests]] до списку.
+
+/interests.bml.addint=Якщо ви зацікавлені в цьому та хочете бути доданими до цього списку, <a href="/interests.bml?mode=add&amp;intid=[[qintid]]">вам сюди</A>.
+
+/interests.bml.btn.switch=Перемикач
+
+/interests.bml.communities.head=Особливі спільноти
+
+/interests.bml.communities.text=наступні спільноти також цікавлять <b>"[[interest]]"</b>.
+
+/interests.bml.count=Рахунок
+
+/interests.bml.enmasse.body.other=Нижче захоплення користувача [[user]]. Відмітьте захоплення, що цікаві вам, та зніміть помітки з тих, що вас не цікавлять. Потім натисніть "Зберегти зміни".
+
+/interests.bml.enmasse.body.other_authas=Нижче захоплення користувача [[user]]. Помітьте захоплення, що хочете додати до [[target]], та зніміть помітки з тих, що хочете видалити. Потім натисніть "Зберегти зміни".
+
+/interests.bml.enmasse.body.you=зніміть помітки з захоплень, котрі хочете видалити. Потім натисніть "Зберегти зміни".
+
+/interests.bml.enmasse.btn=Показати список
+
+/interests.bml.enmasse.header=Дод\видалити  захоплення
+
+/interests.bml.enmasse.intro=Змінити ваші захоплення на основі цих:
+
+/interests.bml.error.add.mustlogin=Щоб додати захоплення потрібно зарееструватись.
+
+/interests.bml.error.enmasse.mustlogin=Ви повинні <a href='/login.bml?ret=1'>увійти до журналу</a>, щоб мати змогу скористатися цією можливістю.
+
+/interests.bml.error.enmasse.noaccess=Вам не доступний журнал [[user]].
+
+/interests.bml.error.findsim_do.intnotfound=Захоплення не знайдено.
+
+/interests.bml.error.nointerests=Вибраний користувач не існує або не визначив жодного захоплення.
+
+/interests.bml.findsim.searchwait=<b>Зауважте:</b> Пошук триватиме декілька секунд. Зачекайте.
+
+/interests.bml.findsim_do.account.notallowed=Перепрошуєм, тип вашого акаунту не дозволяє цей використати засіб.
+
+/interests.bml.findsim_do.magic=Чарівний<br /> індекс
+
+/interests.bml.findsim_do.magic.head=Чарівний індекс?
+
+/interests.bml.findsim_do.magic.text=Кожному користувачу приведений у відповідність чарівний індекс, утворений з двох параметрів: номеру захоплення та деякої кількості унікальних захоплень.
+
+/interests.bml.findsim_do.nomatch.head=Не відповідає
+
+/interests.bml.findsim_do.nomatch.text=Жоден користувач не схожий на [[user]].
+
+/interests.bml.findsim_do.notdefined=Користувач [[user]] не визначив інтереси.
+
+/interests.bml.findsim_do.similar.head=Схожі користувачі.
+
+/interests.bml.findsim_do.similar.text=Наступні користувачі повязані з [[user]]
+
+/interests.bml.finished.about=Якщо завершили то натисніть нижче кнопку "Зберегти зміни":
+
+/interests.bml.finished.header=Готово?
+
+/interests.bml.finished.save_button=Зберегти зміни
+
+/interests.bml.interest=Захоплення
+
+/interests.bml.interested.btn.find=Пошук
+
+/interests.bml.interested.in=Пошук людей та спільнот зацікавлених в:
+
+/interests.bml.interests.findsim=Пошук користувачів у котрих захоплення подібні до:
+
+/interests.bml.interests.head=Захоплення
+
+/interests.bml.interests.text=Ось деякі речі, що ви можете зробити з захопленнями: 
+
+/interests.bml.interests.viewpop=Переглянути популярні захоплення
+
+/interests.bml.login.enterinfo=Введіть ваші ім'я користувача та пароль щоб редагувати інтереси.
+
+/interests.bml.login.proceed=Продовжити...
+
+/interests.bml.match=[[count]] відповідає:
+
+/interests.bml.matches=[[count]] відповідають:
+
+/interests.bml.morestuff=Юільше цікавих матеріалів можна знайти на <a href="/interests.bml">сторінці захоплень</a>.
+
+/interests.bml.nointerests.text=Не маєте жодних захоплень зі списку? Добавте зайшовши на сторінку <A HREF="/editinfo.bml">Персональна інформація та налаштування</A> 
+
+/interests.bml.popular.head=Популярні захоплення
+
+/interests.bml.popular.text=Наступні захоплення є вельми популярними.
+
+/interests.bml.results.added=Захоплення, що ви відмітили, успішно додано до вашого списку.
+
+/interests.bml.results.both=Захоплення, що ви відмітили, успішно додано до вашого списку, а не вибрані було видалено.
+
+/interests.bml.results.deleted=Захоплення, що ви не відмітили успішно видалені з вашого списку.
+
+/interests.bml.results.del_and_toomany<<
+Захоплення, що були не відмічені, успішно видалені з вашого списку. Але ви відмітили надто багато захоплень для додавання до списку. Ви можете мати тільки [[intcount]]
+захоплень. Жодне з вибраних вами захоплень не було додано. Ви можете повернутись та обрати меншу кількість.
+.
+
+/interests.bml.results.goback=Ви маєте змогу повернутись до [[user]]-ного <a href='[[url]]'>профілю</a> котрий ви тільки-но переглядали.
+
+/interests.bml.results.header=Результати
+
+/interests.bml.results.message=Подивитись вашу оновлену <a href='[[url]]'>сторінку-профіль</a>.
+
+/interests.bml.results.nothing=Ви не зробили жодної зміни.
+
+/interests.bml.results.toomany=Ви вказали надто багато захоплень. Ви можете мати тільки [[intcount]] їх загалом. Жодне з вибаних не було додано до вашого списку. Ви можете повернутись та вибрати меншу кількість та спробувати знов їх додати.
+
+/interests.bml.title=Захоплення
+
+/interests.bml.toomany.body=Всього [[intcount]] осіб та\або спільнот вказало це захоплення.Список не буде показано. 
+
+/interests.bml.toomany.head=Багато значень
+
+/interests.bml.users.head=Зацікавлені користувачі
+
+/interests.bml.users.text=Наступні користувачі цікавляться <b>[[interest]]</b>.
+
+/invite/index.bml.code=Код
+
+/invite/index.bml.error=Помилка
+
+/invite/index.bml.genmore=Генерувати код(и)
+
+/invite/index.bml.how_detail=В залежності від <a href="[[factors_url]]">деяких факторів</a>, користувачі можуть запросити певну кількість людей для участі у Живому Журналі. Для того щоб запросити когось, вам потрібно згенерувати код-запрошення та віддати його майбутьному користувачу.
+
+/invite/index.bml.how_header=Як це працює?
+
+/invite/index.bml.invite_header=Запрошення?
+
+/invite/index.bml.none=Немає
+
+/invite/index.bml.redeemed=Використав
+
+/invite/index.bml.title=Запроси друзів приєднатись до Живого Журналу
+
+/invite/index.bml.unused=Не використан
+
+/invite/index.bml.use=використати
+
+/invite/index.bml.why_codes=Щоб підтримувати Живий Журнал, контролювати його розвиток та контролювати його невірне використання, на даний момент для створення акаунту вам потрібно отримати запрошення від існуючого користувача або заплатити за реєстрацію. Це правило введено для того, щоб покращити умови для існуючих авторів за рахунок незручності яку відчувають нові користувачі.
+
+/legal/index.bml.about<<
+Живий Журнал використовується в багатьох країнах, багатьма народами. Тому для утримання сервіса в належному порядку, у нас є декілька правил. Ось деякі з них, які потрібно памятати:
+<ul> 
+<li>Не турбуйте, не ображайте та не погрожуйте іншим.</li> 
+<li>Не наносіть шкоду молодшим.</li> 
+<li>Не створюйте спам.</li> 
+<li>Не порушуйте авторського права.</li> 
+<li>Не втручайтесь в чужу приватність.</li> 
+<li>Не порушуйте  закон Сполучених Штатів та ваші масцеві закони.</li> 
+</ul> 
+Повний список правил можна знайти нижче:
+.
+
+/legal/index.bml.about.header=Переглянути
+
+/legal/index.bml.docs.coppa.about=Акт про Захист дитячої приватності в онлайні (COPPA)регулює збір та використання приватної інформації про дітей молодших 13 років. Наша  COPPA-сторінка пояснює наше ставлення до закону і вказує як ми дотримуємось Акту COPPA.
+
+/legal/index.bml.docs.header=Документи
+
+/legal/index.bml.docs.privacy.about=Політика Приватності показує, яку інформацію ми збираємо про наших користувачів і пояснює, як ми ту інформацію використовуємо.
+
+/legal/index.bml.title=Правова інформація
+
+/legal/privacy.bml.title=Політика приватності
+
+/legal/tos.bml.title=Умови використання
+
+/login.bml.bindip.label=Прив'язати до IP-адресси
+
+/login.bml.bindip.no=Ні (працює зі всіма інет-провайдерами)
+
+/login.bml.bindip.yes=Так (зберігати)
+
+/login.bml.error.mustenterusername=Ви повинні <a href='/login.bml'>ввести ім'я.</a>.
+
+/login.bml.expire.btn.neverexpire=Встановити режим "НІКОЛИ"
+
+/login.bml.expire.btn.sessiononly=Встановити режим "НА ОДНУ СЕСІЮ"
+
+/login.bml.expire.neverexpire.text=Ви увійшли "не забувати ідентифікаційні дані". Якщо це публічгий ПК (школа, бібліотека, інше) і до нього маєть доступ багато осіб, то вам необхідно по завершенню роботи з Живим Журналом розреєстровуватись! Або ж змініть налаштування режиму входу на "НА ОДНУ СЕСІЮ", тоді ваші дані комп'ютер забуватиме після закриття оглядача.
+
+/login.bml.expire.sessiononly.text=Ваша реестрація буде дійсна до закриття оглядача. Якщо це ваш власний комп'ютер чи ви його єдиний користувач, ми маєте змогу вказати зберігати реєстраційні данні завжди:
+
+/login.bml.links.head=Посилання
+
+/login.bml.links.link1=Ваша <a href='/users/[[username]]/friends'>стрічка друзів</a>.
+
+/login.bml.links.link2=Ваш <a href='/todo/'>"що зробити"</a> листок.
+
+/login.bml.links.text=В майбутньому ця сторінка міститиме всі короткі посилання та пов'язану інформацію, але вже зараз є кілька місць що ви захочете відвідати:
+
+/login.bml.loggedin.head=Вхід зроблено!
+
+/login.bml.loggedin.text=Ви увійшли до журналу.
+
+/login.bml.login.btn.changeopts=Змінити опції
+
+/login.bml.login.btn.login=Увійти...
+
+/login.bml.login.expiration=Завершення:
+
+/login.bml.login.forget=Забули?
+
+/login.bml.login.head=Увійти
+
+/login.bml.login.never=Ніколи
+
+/login.bml.login.otheropts=Інші опції
+
+/login.bml.login.password=Пароль:
+
+/login.bml.login.text1=Для того, щоб увійти до [[sitename]], уведіть нижче ваше ім'я та пароль. <b>Новим користувачам:</b> Для того, щоб творити акаунт, <a href='/create.bml'>йдіть сюди</a>.
+
+/login.bml.login.text2=Ви також можете встановити, коли вхід (логін) в систему закінчується. За замовчуванням логін закінчиться як тільки ви закриєте браузер, що є накращим для публічних комп'ютерів. Однак, якщо ви єдиний користувач вашого комп'ютера та більш ніхто не має доступу до нього, ви можете бути зареєстровані весь час. За інформацією щодо цих параметрів звертайтеся <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=135">Що за опції Коли я увійшов в систему?</a>
+
+/login.bml.login.username=Ім'я користувача:
+
+/login.bml.login.whenbrowsercloses=Коли огладач буду закрито
+
+/login.bml.logout.btn=Вийти
+
+/login.bml.title=Увійти
+
+/login.bml.whylogin.benefit1=Вам більше не треба вводити ім'я/пароль десь на сайті.
+
+/login.bml.whylogin.benefit2=Ви матимете змогу бачити "захищені" записи журналу ваших друзів, котрі дадуть вам дозвіл читати їх. 
+
+/login.bml.whylogin.benefit3=багато з можливостей є видимими тільки коли ви увійдете.
+
+/login.bml.whylogin.head=Чому увійти?
+
+/login.bml.whylogin.text=Тут є деякі основні переваги реестрації:
+
+/logout.bml.already.head=Успішно вийшли
+
+/logout.bml.already.text=Ви успішно вийшли.
+
+/logout.bml.killall.btn=Завершити всі мої сесії
+
+/logout.bml.killall.head=Інші сесії
+
+/logout.bml.killall.text=Ви маєте інші активні сесії. Ви хочете завершити їх всі, чи тільки цю? (Перегляньте <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=159">ці часті запитання</a> для більшої інформованості.)
+
+/logout.bml.loggedout.already=Успішно вийшли.
+
+/logout.bml.loggedout.head=Вийшли
+
+/logout.bml.loggedout.killedall=Всі ваші сесії було завершено.
+
+/logout.bml.loggedout.success=Вийшли
+
+/logout.bml.loggedout.text=Ви вийшли.
+
+/logout.bml.logout.btn=Вийти
+
+/logout.bml.logout.head=Вийти?
+
+/logout.bml.logout.text=Натисніть кнопку, щоб вийти.
+
+/logout.bml.title=Вихід
+
+/lostinfo.bml.btn.proceed=Виконано
+
+/lostinfo.bml.enter_email=Введіть вашу електронну адресу:
+
+/lostinfo.bml.enter_email_optional=електронна адреса (необов'язково)
+
+/lostinfo.bml.enter_username=Введіть своє ім'я користувача:
+
+/lostinfo.bml.error.no_email=Ви повинні ввести свій email, щоб ви могли відновити ваше ім'я користувача.
+
+/lostinfo.bml.lostpassword.text=Якщо ви втратили свій пароль, введіть ваше ім'я користувача і додатково електронну адресу куди хочете його надіслати. Вказана адреса буде перевірена на те, чи вона існує, перед надсиланням паролю. Якщо зилишите поле адреси пустим, відправлено буде на поточну адресу.
+
+/lostinfo.bml.lostpassword.title=Забули свій пароль?
+
+/lostinfo.bml.lostusername.text=Якщо ви забудете ваше ім'я користувача, вам потрібно ввести ваш email та ми вишлемо вам ваше ім'я.
+
+/lostinfo.bml.lostusername.title=Забули ім'я користувача?
+
+/lostinfo.bml.title=Втрачена інформація
+
+/lostinfo_do.bml.error.no_usernames_for_email=Нема користувача з такою адресою: [[address]] .
+
+/lostinfo_do.bml.error1.text=Ви ніколи не використовували цю адресу з цим акаунтом, або ніколи її не підтверджували.
+
+/lostinfo_do.bml.lostpasswordmail.part1|staleness=1
+/lostinfo_do.bml.lostpasswordmail.part1<<
+*** Це повідомлення згенероване автоматично. Не потрібно на нього відповідати ***
+
+Це замовлений вами пароль для [[sitename]].
+Нижче ваші ім'я користувача, пароль, та електронна адреса, котрі ви вказали при реестрації.
+
+          Ім'я    : [[username]]
+          Пароль  : [[password]]
+          Адреса  : [[emailadr]]
+
+
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=Для підтвердження паролю ходіть сюди:
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Корисні посилання:
+
+  Ваш Живий Журнал:
+    [[journalurl]]
+
+  Написати до вашого журналу:
+    [[updateurl]]
+
+З повагою,
+Команда Живого Журналу
+
+[[rooturl]]
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Втрачено пароль
+
+/lostinfo_do.bml.password_mailed.text=Завершено. Ваш пароль надіслано вам.
+
+/lostinfo_do.bml.password_mailed.title=Пароль надіслано!
+
+/lostinfo_do.bml.title=Втрачено інформацію
+
+/lostinfo_do.bml.username_mailed.text=Завершено. Ваше ім'я користувача надіслано вам.
+
+/lostinfo_do.bml.username_mailed.title=Ім'я користувача надіслано!
+
+/manage/index.bml.about=Управління вашим акаунтом зовсім просте. Виберіть один з нижчеприведених пунктів:
+
+/manage/index.bml.communities=Створити та керувати власною спільнотою
+
+/manage/index.bml.communities.create.about=Створити нову спільноту
+
+/manage/index.bml.communities.header=Спільноти
+
+/manage/index.bml.customization.advanced.about=Переглянути, створити та відредагувати ваші S2 схеми та стилі
+
+/manage/index.bml.customization.customize=Налаштувати журнал
+
+/manage/index.bml.customization.customize.about=Змінити вигляд вашого журналу та переключитися між системами стилів S1 та  S2
+
+/manage/index.bml.customization.header=Налаштування
+
+/manage/index.bml.entries.memories.about=Дивитися та працювати зі своїми вибраними записами
+
+/manage/index.bml.information.editinfo.about=Редагувати інформацію про акаунт та інші параметри
+
+/manage/index.bml.information.siteopts.about=Оберіть улюблений вигляд сайту &amp; мову
+
+/manage/links.bml.about=Використовуйте нижченаведену форму щоб створити список посилань наявних в вашому журналі. Посилання з'явиться тільки в тому випадку, якщо ця функція підтримується вашим стилем системи S2.
+
+/manage/links.bml.about.blank=Щоб створити порожній рядок, введіть "-" в якості заголовку
+
+/manage/links.bml.about.heading=Щоб створити заголовок введіть заголовок без URL.
+
+/manage/links.bml.about.reorder=Щоб змінити порядок розташування посилань у списк змініть число зліва (можна вживати десяткові числа)
+
+/manage/links.bml.error.s2required=Список посилань наявний тільки для стилів, котрі підтримуються системою стилів S2. Щоб переключитися до системи S2, дивіться сторінку [[link]].
+
+/manage/links.bml.error.s2required.header=Потрібен S2
+
+/manage/links.bml.success=Успіх! Ваше посилання було збережене.
+
+/manage/links.bml.title=Список посилань
+
+/manage/phonepost.bml.error.phone.length=Ваш телефонний номер повинен складатися не менше ніж з однієї цифри. 
+
+/manage/phonepost.bml.error.pin=Ваш PIN повинен бути чисельним.
+
+/manage/siteopts.bml.btn.lang=Переключити мову
+
+/manage/siteopts.bml.btn.scheme=Переключити схему
+
+/manage/siteopts.bml.head.lang=Оберіть мову
+
+/manage/siteopts.bml.head.scheme=Оберіть схему
+
+/manage/siteopts.bml.title=Налаштування сайту
+
+/modify.bml.title=Вигляд Журналу
+
+/modify_do.bml.availablestyles.head=Доступні стилі
+
+/modify_do.bml.availablestyles.userstyles=Стилі користувача:
+
+/modify_do.bml.colortheme.about=Тут ви можете обрати кольорову схему, яка буде додана до параметрів зовнішнього вигляду обраних вами вище. А якщо вам не подобаються надані, оберіть свої!
+
+/modify_do.bml.colortheme.area.head=Елемент
+
+/modify_do.bml.colortheme.color.head1=Колір
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb або назва)
+
+/modify_do.bml.colortheme.customcolors=Вказати кольори:
+
+/modify_do.bml.colortheme.defaulttheme=Готові схеми
+
+/modify_do.bml.colortheme.head=Схема кольорів
+
+/modify_do.bml.domainalias.about=Якщо у вас є зареєстровани доменне ім'я (або ви плануєте його зареєструвати) та ви бажаєте щоб воно вказувало на ваш журнал, введіть його тут:
+
+/modify_do.bml.domainalias.domainname=Доменне ім'я:
+
+/modify_do.bml.domainalias.example=Наприклад: <i>my-journal.com</i>
+
+/modify_do.bml.domainalias.head=Псевдоніми доменів
+
+/modify_do.bml.domainalias.helptext=Для того щоб це спрацювало, вам потрібно щоб DNS запис вашого домену вказував на ту ж IP адресу, що і [[sitename]]. Для більшої інформації передивіться <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=129">цю сторінку</a>.
+
+/modify_do.bml.done.btn.savechanges=Зберегти зміни
+
+/modify_do.bml.done.head=Готово?
+
+/modify_do.bml.done.text=Коли все буде готово, натисніть  кнопку "Зберегти зміни" унизу...
+
+/modify_do.bml.error.dupdomainalias=Інший користувач вже зареєструвався використовуючи ваш домений псевдонім.
+
+/modify_do.bml.error.stylenotavailable=Один з вибраних вами стилів не доступний. Це, можливо, через те, що хтось вилучає цей стиль, або ви обрали стиль, до якого у вас немає доступу.
+
+/modify_do.bml.friends.about=Тут параметри щодо зовнішнього вигляду стрічки друзів.
+
+/modify_do.bml.friends.head=Вигляд стрічки друзів
+
+/modify_do.bml.friends.opt.usesharedpic.about=Ця опція контролює яке зображення ви будете бачити у стрічці друзів, коли хто-небудь напише у спільноті. Якщо ви оберете цю опцію, ви бачитемете зображення спільноти замість зображення користувача.
+
+/modify_do.bml.friends.opt.usesharedpic.head=Заміняти зображення користувача на зображення спільноти.
+
+/modify_do.bml.journaloptions.about=Звідси ви можете редагувати, як виглядають ваші сторінки Живого Журналу. Якщо ви дійсно зацікавлені, як все працює, читайте <a href="/developer/" target="_blank">інформацію для розробників</a>. Інакше ми вважатимемо, що ви задоволені з типовими параметрами, наведеними нижче:
+
+/modify_do.bml.journaloptions.head=Параметри журналу
+
+/modify_do.bml.journalstatus.about=Якщо ви бажаєте вилучити або відмінити вилучення вашого журнал, це саме те місце, де це робиться. Як тільки ви вилучите свій журнал, ви матимете 30 днів щоб відмінити це, якщо змінете думку. Після 30 днів журнал буде назавжди вилучено та не буде способів його відновити.
+
+/modify_do.bml.journalstatus.head=Статус активації журналу
+
+/modify_do.bml.journalstatus.select.activated=Активований
+
+/modify_do.bml.journalstatus.select.deleted=Вилучений.
+
+/modify_do.bml.journalstatus.select.head=Статус:
+
+/modify_do.bml.journalstatus.select.suspended=Припинено
+
+/modify_do.bml.moodicons.about=Коли ви пишете у журнал, ви можетие вказати ваш настрій на той момент. Є схеми зображень настроїв, які ви можете використовувати. Або оберіть "None", якщо не бажаєте бачити якесь зображення біля вашого настрою.
+
+/modify_do.bml.moodicons.head=Зображення-настрої
+
+/modify_do.bml.moodicons.opt.forcefriends.about=Використовувати цю схему для всіх записів у стрічці друзів
+
+/modify_do.bml.moodicons.personal=Персональні схеми:
+
+/modify_do.bml.moodicons.preview=передивитись
+
+/modify_do.bml.moodicons.select=Оберіть схему малюнків-настроїв:
+
+/modify_do.bml.overrides.about=Якщо ви задоволенні виглядом вашого журналу, ви можете не користуватись цим розділом. Цей розділ потрібен для того, щоб змінювати особливі (специфічні) настройки зовнішнього вигляду журналу. Передивіться <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=124">Що таке перекриття? Як воно працює?</a>, для огляду та <A HREF="/developer/" TARGET=_blank>розділ розробників</A> для детальної інформації. Зазначте, що перекриття потрібні для зміни одного або двух елементів стилю. Якщо ви хочете змінити все, вам потрібно <A HREF="/styles/create.bml" TARGET=_blank>створити свій стиль</A>. Для огляду як створити стиль, передивіться <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=128">Як мені створити стиль?</a>
+
+/modify_do.bml.overrides.box.head=Перекриття:
+
+/modify_do.bml.overrides.head=Перекриття стилів
+
+/modify_do.bml.overrides.note=Зазначте, що не всі змінні стилю можуть бути підмінені. Передивіться <a href="/developer/varlist.bml">документацію</a> для більшої інформації.<br />Зверніть увагу, що, наприклад, якщо при редагуванні перекриваючих кодів ви використали у HTML-заголовку недозволені теги, такі як &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt;, ці теги будуть вирізані. У перекриваючих кодах типу *_HEAD можуть використовуватись теги, які дозволено використовувати в HTML заголовках. Ці теги: &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, and &lt;meta&gt;.
+
+/modify_do.bml.overrides.warning=ЦЕ <U>НЕ ТЕ</U> МІСЦЕ, ДЕ ВИ ПИШЕТЕ ДО ЖУРНАЛУ!!!
+
+/modify_do.bml.pagelayoutstyle.about=Ці налаштування контролюють, як виглядатиме ваш журнал на екрані.
+
+/modify_do.bml.pagelayoutstyle.head=Стиль журналу
+
+/modify_do.bml.pagelayoutstyle.warning=Ваш тип акаунту дозволяє вам обирати з маленької кількості готових стилів.
+
+/modify_do.bml.success.head=Успішно
+
+/modify_do.bml.success.text=Настройки вашого журналу було змінено. Ви можете побачити ваш оновлений журнал <A HREF="[[url]]">тут</A>.
+
+/register.bml.new.header=Успішно
+
+/register.bml.sent.header=Успішно
+
+/register.bml.trans.header=Успішно
+
+/support/append_request.bml.back.support=Повернутись до <a href="/support/">центру підтримки</a>.
+
+/support/append_request.bml.invalid.noid=Ця дія потребує надання коду запиту до центру підтримки.
+
+/support/append_request.bml.successlinks<<
+<ul> 
+   <li>Повернутись до <a href='[[back]]'>запиту №[[number]]</a></li>
+<li>Повернутись до <a href='[[open]]'>відкритих запитів підтримки</a></li>
+<li>Повернутись до <a href='[[opencat]]'>відкритих запитів підтримки у цій категорії</a></li>
+<li>Перейти до<a href='[[prevopen]]'>попереднього</a> / 
+             <a href='[[nextopen]]'>наступного</a> відкритого запиту</li>
+<li>Перейти до <a href='[[cprevopen]]'>попереднього</a> / 
+             <a href='[[cnextopen]]'>наступного</a> запиту у цій категорії</li> 
+</ul>
+.
+
+/support/append_request.bml.unknown.request=Невідомий запит підтримки
+
+/support/faqbrowse.bml.lastupdated=Останнє оновлення:
+
+/syn/index.bml.loginrequired.title=Вам потрібно увійти до журналу
+
+/talkmulti.bml.error.login=Ви не увійшли до журналу.
+
+/talkpost.bml.allowedhtml=HTML дозволено
+
+/talkpost.bml.error.cannotreplynopost=Ви не можете відповісти на неіснуючий запис.
+
+/talkpost.bml.error.nocommentsjournal=Користувач вимкнув можливість коментування записів у його журналі.
+
+/talkpost.bml.error.nocommentspost=Користувач вимкнув можливість коментування цього запису.
+
+/talkpost.bml.error.noreply_deleted=Цей коментар вилучено. Ви не можете відповісти на нього.
+
+/talkpost.bml.error.noreply_screened=Це прихований коментар і ви не можете його побачити чи відповісти на нього.
+
+/talkpost.bml.label.picturetouse=Використати <a href='/allpics.bml?user=[[username]]'>зображення</a>:
+
+/talkpost.bml.loganonip=<b>Увага!</b> Цей користувач ввімкнув запис IP адрес анонімних користувачів.
+
+/talkpost.bml.loginq=Увійти?
+
+/talkpost.bml.logyourip=<b>Увага!</b> Цей користувач ввімкнув запис IP адрес всіх користувачів.
+
+/talkpost.bml.nosubjecthtml=HTML не дозволено у темі.
+
+/talkpost.bml.opt.anonymous=Анонімно
+
+/talkpost.bml.opt.defpic=(за замовчуванням)
+
+/talkpost.bml.opt.friendsonly=- цей користувач вимкнув можливість коментування записів анонімам та не-друзям. Ви можете коментувати цей запис якщо ви в друзях у [[username]].
+
+/talkpost.bml.opt.from=Від:
+
+/talkpost.bml.opt.ljuser=Користувач ЖЖ:
+
+/talkpost.bml.opt.loggedin=<b>Користувач:</b> [[username]]
+
+/talkpost.bml.opt.message=Коментар:
+
+/talkpost.bml.opt.noanonpost=- цей користувач вимкнув можливість анонімного коментування.
+
+/talkpost.bml.opt.noautoformat=Не автоформатувати:
+
+/talkpost.bml.opt.noimage=Немає зображень
+
+/talkpost.bml.opt.preview=Переглянути
+
+/talkpost.bml.opt.spellcheck=Перевірити правопис перед відправкою (англійська).
+
+/talkpost.bml.opt.subject=Тема:
+
+/talkpost.bml.opt.submit=Відправити коментар
+
+/talkpost.bml.opt.willscreen=(буде приховано)
+
+/talkpost.bml.opt.willscreenfriend=(буде приховано, якщо не в друзях)
+
+/talkpost.bml.paraformat=Абзаци будуть автоматично форматовані за замовчуванням.
+
+/talkpost.bml.postresponse=Додати коментар:
+
+/talkpost.bml.title=Коментувати
+
+/talkpost.bml.usermismatch<<
+Ви ввели ім'я користувача, але не вибрали опцію "Користувач ЖЖ".
+
+Будь ласка оберіть вірний тип відпраки коментаря, або звільніть поле "Ім'я користувача"
+.
+
+/talkpost.bml.warnscreened=<b>Увага:</b> Це прихований коментар. Якщо ви на нього відповісте, він автоматично стане відкритим і він стане видими для всіх.
+
+/talkpost_do.bml.error.badpassword=Ви ввели невірний пароль. Якщо ви забули свій пароль, ви можете поновити його <a href='/lostinfo.bml'>тут</a>
+
+/talkpost_do.bml.error.badusername=Введеного імені не існує. Якщо ви забули ваше ім'я користувача, ви можете поновити його <a href='/lostinfo.bml'>тут</a>, або писати анонімно.
+
+/talkpost_do.bml.error.banned=Вам не дозволено писати в цьому журналі.
+
+/talkpost_do.bml.error.blankmessage=Ваш коментар пустий. Будь ласка напишіть що-небудь у полі коментара.
+
+/talkpost_do.bml.error.confused_identity=Ви ввели ім'я користувача, але обрали писати анонімно, або від імені користувача, що вже увійшов у журнал. Будь ласка поверніться назад та вирішите що дійсно ви хочете зробити.
+
+/talkpost_do.bml.error.deleted=Ваш журнал було знищено. Ви не можете писати повідомлення.
+
+/talkpost_do.bml.error.friendsonly=Тільки друзі [[user]] можуть писати в цьому журналі.
+
+/talkpost_do.bml.error.lostcookie=Здається, ваш cookie для входу в Живий Журнал зник.
+
+/talkpost_do.bml.error.manybytes=Вибачте, але розмір вашого коментара ([[current]]) більше дозволеного розміру ([[limit]]) в байтах. Будь ласка поверніться назад, скоротіть його та спробуйте ще раз.
+
+/talkpost_do.bml.error.manychars=Вибачте, але розмір вашого коментара ([[current]]) більше дозволеного розміру ([[limit]]) в символах. Будь ласка поверніться назад, скоротіть його та спробуйте ще раз.
+
+/talkpost_do.bml.error.mustlogin=Ви повинні увійти до журналу використовуючи ваше ім'я користувача та пароль щоб коментувати захищений запис.
+
+/talkpost_do.bml.error.noanon=В цьому журналі ви не можете писати анонімно.
+
+/talkpost_do.bml.error.noauth=Ви не авторізовані щоб відповідати на цей захищений запис.
+
+/talkpost_do.bml.error.nocomments=Користувач заборонив коментування цього запису.
+
+/talkpost_do.bml.error.noparent=Не можна віповідати на неіснуючі записи.
+
+/talkpost_do.bml.error.notafriend=Вибачте, але ви не є другом користувача <b>[[user]]</b>, а він встановив опцію "тільки для друзів", для тих хто хоче відповісти.
+
+/talkpost_do.bml.error.nousername=Ви не ввели ваше ім'я користувача. Ви можете написати анонімно, якщо у вас немає акаунту у Живому Журналі.
+
+/talkpost_do.bml.error.noverify|staleness=1
+/talkpost_do.bml.error.noverify=Вибачте, але вам не можна коментувати будь-які записи в чужих журналах, доки ви не підтвердете ваш email. Якщо ви загубили листа-підтвердження, ми можемо вислати його знову <a href='/lostinfo.bml'>тут</a>.
+
+/talkpost_do.bml.error.postshared=Ви не можете писати як спільнота. Такі акаунти репрезентують групу людей, а не особистість.
+
+/talkpost_do.bml.error.screened=У вас немає дозволу на коментування цього запису.
+
+/talkpost_do.bml.error.suspended=Дію вашого журналу припинили. Ви не можете писати повідомлення.
+
+/talkpost_do.bml.error.testacct=Тестові акаунти можуть використовуватись тільки в тестових журналах.
+
+/talkpost_do.bml.opt.preview=Preview
+
+/talkpost_do.bml.preview=Так виглядатиме ваш коментар після відправки. Використовуючи форму нижче ви можете відредагувати його, або відправити таким, який він є.
+
+/talkpost_do.bml.preview.subject=<b>Тема: </b>
+
+/talkpost_do.bml.preview.submit=Відправити
+
+/talkpost_do.bml.preview.title=Перегляд коментаря
+
+/talkpost_do.bml.success.loggedin=Тепер ви ввійшли до журналу.
+
+/talkpost_do.bml.success.message=Ваш коментар відправлено. Ви зможете побачити його <a href="[[link]]">тут</a>.
+
+/talkpost_do.bml.success.screened.comm=Ваш коментар відправлено. Згідно з настройками цієй спільноти, ваш коментар буде прихований, та бачитимете його лише ви та наглядачі спільноти. Він буде прихованим доти, доки наглядачі не вирішать відкрити його. Ви можете побачити ваш коментар <a href="[[link]]">тут</a>.
+
+/talkpost_do.bml.success.screened.comm.anon=Ваш анонімний коментар відправлено. Згідно з настройками цієй спільноти, ваш коментар буде прихований, його бачитимуть лише наглядачі спільноти. Він буде прихованим доти, доки наглядачі не вирішать відкрити його. Ви можете побачити тред <a href="[[link]]">тут</a>.
+
+/talkpost_do.bml.success.screened.user=Ваш коментар відправлено. Згідно з настройками цього журналу, ваш коментар буде прихований, та бачитимете його лише ви та власник журналу. Він буде прихованим доти, доки власник не вирішать відкрити його. Ви можете побачити ваш коментар <a href="[[link]]">тут</a>.
+
+/talkpost_do.bml.success.screened.user.anon=Ваш анонімний коментар відправлено. Згідно з настройками цього журналу, ваш коментар буде прихований, його бачитиме лише власник журналу. Він буде прихованим доти, доки власник не вирішить відкрити його. Ви можете побачити тред <a href="[[link]]">тут</a>.
+
+/talkpost_do.bml.success.title=Відправлено
+
+/talkpost_do.bml.success.unscreened=Доречі, прихований коментар, на який ви відповідаєте вже не є прихованим.
+
+/talkpost_do.bml.title|staleness=2
+/talkpost_do.bml.title=Відправка коментаря
+
+/talkpost_do.bml.title.preview=Попередній перегляд
+
+/talkread.bml.anonuser=<i>(Анонімно)</i>
+
+/talkread.bml.confirm.action=Ви впевнені, що хочете вилучити обрані коментарі?
+
+/talkread.bml.deletedpost=<b>(Вилучений запис)</b>
+
+/talkread.bml.deleteduser=<i>(Видалений користувач: [[username]])</i>
+
+/talkread.bml.fromip=(з [[ip]])
+
+/talkread.bml.noreplies=Немає выдповідей
+
+/talkread.bml.nosubject=(без теми)
+
+/talkread.bml.screenedpost=<b>(Прихований запис)</b>
+
+/talkread.bml.select=Вибрати
+
+/talkread.bml.subjectdeleted=[вилучений]
+
+/talkread.bml.talkmulti.delete=Вилучити
+
+/talkread.bml.talkmulti.des=<b>Групова дія</b> над обраними коментарями:
+
+/talkread.bml.talkmulti.screen=Приховати
+
+/talkread.bml.talkmulti.submit=Зробити
+
+/talkread.bml.talkmulti.unscreen=Відкрити
+
+/talkread.bml.title=Читати коментарі
+
+/talkscreen.bml.screened.title=Успішно
+
+/talkscreen.bml.unscreened.title=Успішно
+
+/tools/memadd.bml.add_previous<<
+<?h1 Додати до вибраних записів... h1?> 
+<?p Для того, щоб додати запис, який ви щойно дивилися, до вибраного, заповніть форму нижче. p?>
+
+.
+
+/tools/memadd.bml.body.added.body=Список ваших вибраних записів було оновлено.
+
+/tools/memadd.bml.body.added.header=Успішно
+
+/tools/memadd.bml.description=Опис:
+
+/tools/memadd.bml.description.text=Дайте опис цьому записові. Для видалення цього запису з вибраного, уведіть порожню строку.
+
+/tools/memadd.bml.error.deleted.body=Запис з описом "[[desc]]" було вилучено зі списку вибраних записів.
+
+/tools/memadd.bml.error.deleted.title=Вибраний запис видалено
+
+/tools/memadd.bml.error.entry_deleted=Такого запису більше не існує. Вибраний запис видалено.
+
+/tools/memadd.bml.error.fivekeywords=Дозволяється вказати тільки 5 ключових слів/категорій для вибраного запису.
+
+/tools/memadd.bml.error.invalid_security=Невірно вказаний або відсутній рівень безпеки.
+
+/tools/memadd.bml.error.login=Для того, щоб користуватися цією можливістю, ви повинні <a href="/login.bml?ret=1">увійти до журналу</a>.
+
+/tools/memadd.bml.error.maxsize=Це ключове слово перевищує максимально можливий розмір: "[[keyword]]"
+
+/tools/memadd.bml.error.nodescription.body=Для того, щоб додати цей запис у вибране, вам потрібно вказати короткий опис. Для того, щоб видалити запис з обраного, ви можете відредагувати та видалити опис, але цього запису в обраному ще не має.
+
+/tools/memadd.bml.error.nodescription.title=Без опису
+
+/tools/memadd.bml.form.submit=Додати
+
+/tools/memadd.bml.keywords=Ключові слова:
+
+/tools/memadd.bml.keywords.example=Приклад: <B>смішне, тупе, романтичне</B>
+
+/tools/memadd.bml.keywords.select=Або виберіть із ключових слів, що було використано раніше:
+
+/tools/memadd.bml.keywords.text=Чому ви додаєтет цей запис вибране? Уведіть не більш, ніж 5 ключовихї слів або категорій, розділених комами.
+
+/tools/memadd.bml.login.enterinfo=Уведіть ім’я
+
+/tools/memadd.bml.login.forgot.header=Щось забули?
+
+/tools/memadd.bml.login.forgot.recover=Якщо ви забули ім'я або пароль, <a href='lostinfo.bml'>відновіть їх тут!</a>.
+
+/tools/memadd.bml.multiple_selections=Щоб вибрати кілька ключових слів, натисніть та утримуйте 'Control'
+
+/tools/memadd.bml.security=Рівень безпеки:
+
+/tools/memadd.bml.security.friendsonly=Тільки друзі
+
+/tools/memadd.bml.security.private=Тільки я
+
+/tools/memadd.bml.security.public=Усі
+
+/tools/memadd.bml.title=Додати у вибране
+
+/tools/memadd.bml.title.added=Додано
+
+/tools/memadd.bml.title.add_memory=Додати у вибране
+
+/tools/memadd.bml.title.deleted=Видалено
+
+/tools/memadd.bml.title.edit_memory=Редагувати вибране
+
+/tools/memadd.bml.whocansee<<
+Хто може бачити, що ви додали цей запис до вибраного?
+Усі, тільки ваші друзі чи тільки ви?
+.
+
+/tools/memories.bml.back=Назад
+
+/tools/memories.bml.body.keyword<<
+<?h1 [[keyword]] h1?> 
+<?p Нижче вказано вибрані записи користувача <B>[[user]]</B> в категорії "[[keyword]]". p?>
+
+.
+
+/tools/memories.bml.body.list_categories<<
+<?h1 Вибрані записи h1?> 
+<?p Нижче вказано список категорій, на які користувач <b>[[user]]</b> розділив свої вибрані записи. p?>
+
+.
+
+/tools/memories.bml.body.memorable=Нижче наведено список вибраних записів користувача <B>[[user]]</B>, які не потрапили до жодної категорії.
+
+/tools/memories.bml.edit=редагувати
+
+/tools/memories.bml.error.noentries.body<<
+Це могло статися тому, що <ol> 
+<li>користувач не має жодного вибраного запису,</li>
+<li>вибрані записи користувача захищені та ви не маєте доступу до них, або</li> 
+<li>користувач не має жодного вибраного запису, що відповідає критеріям вашого пошуку.</li></ol>
+
+.
+
+/tools/memories.bml.error.noentries.title=Немає вибраних записів
+
+/tools/memories.bml.filter.all=Усі вибрані записи
+
+/tools/memories.bml.filter.other=Тільки інші записи
+
+/tools/memories.bml.filter.own=Тільки записи користувача '[[user]]'
+
+/tools/memories.bml.form.filter=Які записи відображати:
+
+/tools/memories.bml.form.sort=Порядок сортування:
+
+/tools/memories.bml.form.switch=Вибрати
+
+/tools/memories.bml.sort.description=За описом
+
+/tools/memories.bml.sort.journal=За журналом
+
+/tools/memories.bml.sort.orderadded=За порядком додавання
+
+/tools/memories.bml.title.keyword=Вибране в категорії [[keyword]]
+
+/tools/memories.bml.title.memorable=Вибране
+
+/tools/memories.bml.uncategorized=Без категорії
+
+/update.bml.altpost=Додати запис до журналу:
+
+/update.bml.btn.update=Додати запис...
+
+/update.bml.currmood=<a href="/moodlist.bml">Настрій</a>:
+
+/update.bml.currmusic=Музика:
+
+/update.bml.date=Дата:
+
+/update.bml.default=за замовчуванням
+
+/update.bml.defaultjournal=([[user]]) -- за замовчуванням
+
+/update.bml.error.login=Помилка входу до журналу:
+
+/update.bml.error.update=Помилка оновлення журналу:
+
+/update.bml.event=Текст запису:
+
+/update.bml.full=Сторінка повного оновлення
+
+/update.bml.htmlokay.norich=(HTML дозволено; за замовчуванням, перед новими рядками автоматично буде додано <tt>&lt;br /&gt;</tt>)
+
+/update.bml.htmlokay.rich=(HTML дозволено; за замовчуванням, перед новими рядками автоматично буде додано <tt>&lt;br /&gt;</tt> - або викорисовуйте <a [[opts]]>rich text</a>)
+
+/update.bml.localtime=Місцевий час:
+
+/update.bml.loggingin=Входжу до журналу...
+
+/update.bml.noneother=Немає, або інший:
+
+/update.bml.note=<b>Увага:</b> Час та дата взяті з нашого сервера. Відредагуйте їх відносно вашої часової зони перед написанням.
+
+/update.bml.opt.backdate=Запис заднім числом:
+
+/update.bml.opt.defpic=(за замовчуванням)
+
+/update.bml.opt.nocomments=Заборонити коментарі:
+
+/update.bml.opt.noemail=Не висилати коментарі на email:
+
+/update.bml.opt.noformat=Не автоформатувати:
+
+/update.bml.opt.spellcheck=Перевірити правопис (лише англійською)
+
+/update.bml.options=Додаткові параметри
+
+/update.bml.other=Інший:
+
+/update.bml.picture=<a href="[[url]]">Картинка</a>:
+
+/update.bml.security.custom=Вибірково...
+
+/update.bml.security.friends=Для друзів
+
+/update.bml.security.head=Рівень безпеки:
+
+/update.bml.security.private=Лише для мене
+
+/update.bml.security.public=Для всіх
+
+/update.bml.servermsg=На сервері є повідомлення для вас:
+
+/update.bml.simple=Ви дивитесь на спрощену сторінку. Для додаткових настройок, <a href="[[url]]">зайдіть сюди</a>.
+
+/update.bml.spellchecked=Ваш запис, з перевіреною орфографією:
+
+/update.bml.subject=<b>Тема:</b> <i>(не обов'язково)</i>
+
+/update.bml.timeformat=24-годинний час
+
+/update.bml.title=Написати
+
+/update.bml.title.readonly=Режим тільки для читання
+
+/update.bml.update.head=Додати запис до журналу...
+
+/update.bml.update.success=Ваш журнал оновлено. Ви можете подивитись ваш оновлений журнал <a href="[[uri]]">тут</a>.
+
+/update.bml.updating=Оновлення журналу...
+
+/userinfo.bml.about.user=Біографія:
+
+/userinfo.bml.body.leave=Ви можете <a href="/community/leave.bml?comm=[[commname]]">залишити спільноту</a> у будь-який час.
+
+/userinfo.bml.comminfo.body=Нижче ви знайдете інформацію про спільноту "[[commname]]".
+
+/userinfo.bml.comminfo.name=Інформація про спільноту
+
+/userinfo.bml.date.never=<i>Ніколи.</i>
+
+/userinfo.bml.error.notloggedin=Якщо ви бажаєте побачити ваш профіль, вам потрібно <a href='/login.bml?ret=1'> ввійти в систему</a>.
+
+/userinfo.bml.friendof.comm|staleness=2
+/userinfo.bml.friendof.comm=Дивляться:
+
+/userinfo.bml.friendof.hidden=(приховано)
+
+/userinfo.bml.friendof.user|staleness=2
+/userinfo.bml.friendof.user=В друзях:
+
+/userinfo.bml.friends.comm=Учасники
+
+/userinfo.bml.friends.user|staleness=2
+/userinfo.bml.friends.user=Друзі
+
+/userinfo.bml.label.adduser=Додати користувача
+
+/userinfo.bml.label.aolim=AOL IM:
+
+/userinfo.bml.label.birthdate=День народження:
+
+/userinfo.bml.label.clientsused=Використані <a href="[[siteroot]]/download/">клієнти</a>:
+
+/userinfo.bml.label.comments=Коментарі:
+
+/userinfo.bml.label.composted=<b>Залишено:</b> [[num]] - 
+
+/userinfo.bml.label.comreceived=<b>Отримано:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Дата створення:
+
+/userinfo.bml.label.dateupdated=Дата оновлення:
+
+/userinfo.bml.label.email|staleness=1
+/userinfo.bml.label.email=Email:
+
+/userinfo.bml.label.icquin=Номер ICQ:
+
+/userinfo.bml.label.interests=Інтереси
+
+/userinfo.bml.label.interests.modifyyours=Редагувати&nbsp;ваші
+
+/userinfo.bml.label.interests.removesome=Видалити
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] інтересів не показано</b>
+
+/userinfo.bml.label.journalentrs=Записів у журналі:
+
+/userinfo.bml.label.location=Місцезнаходження:
+
+/userinfo.bml.label.memberof=Учасник
+
+/userinfo.bml.label.memories=Вибране:
+
+/userinfo.bml.label.moredetails=(детальніше...)
+
+/userinfo.bml.label.msnusername=Ім'я в MSN
+
+/userinfo.bml.label.name=Ім'я:
+
+/userinfo.bml.label.nofriends=<i>Немає.</i>
+
+/userinfo.bml.label.reqfinduser=Тільки користувачі з привілеєю 'finduser' можуть шукати користувачів за їх кодом.
+
+/userinfo.bml.label.shared=Може писати:
+
+/userinfo.bml.label.user=Користувач:
+
+/userinfo.bml.label.viewfriends=Дивитися друзів
+
+/userinfo.bml.label.viewmembers=Дивитися учасників
+
+/userinfo.bml.label.website=Вебсайт:
+
+/userinfo.bml.label.yahooid=Yahoo! ID:
+
+/userinfo.bml.membership.body=Щоб приєднатись до цієї спільноти, <a href="/community/join.bml?comm=[[commname]]">натисніть тут</a>. 
+
+/userinfo.bml.memories.entries=[[count]] записів
+
+/userinfo.bml.memories.entry=[[count]] запис
+
+/userinfo.bml.nonexist.name=Невідомий користувач
+
+/userinfo.bml.syn.last.never=Ніколи
+
+/userinfo.bml.syn.parseerror=Помилка:
+
+/userinfo.bml.timeupdate.dayago=1 день тому
+
+/userinfo.bml.timeupdate.daysago=[[num]] днів тому
+
+/userinfo.bml.timeupdate.hourago=1 годину тому
+
+/userinfo.bml.timeupdate.hoursago=[[num]] годин тому
+
+/userinfo.bml.timeupdate.minuteago=1 хвилину тому
+
+/userinfo.bml.timeupdate.minutesago=[[num]] хвилин тому
+
+/userinfo.bml.timeupdate.secondago=1 сукунду тому
+
+/userinfo.bml.timeupdate.secondsago=[[num]] секунд
+
+/userinfo.bml.timeupdate.weekago=1 тиждень тому
+
+/userinfo.bml.timeupdate.weeksago=[[num]] тижнів тому
+
+/userinfo.bml.title=Інформація
+
+/userinfo.bml.title.communityinfo=Інформація
+
+/userinfo.bml.userinfo.body=Нижче ви бачите інформацію про користувача [[username]]. Якщо цей користувач - ви, ви можете відредагувати цю інформацію (або обрати яка інформація є публічною) на сторінці <a href="[[siteroot]]/editinfo.bml">редагування інформації</a>.
+
+/userinfo.bml.userinfo.name=Інформація про користувача
+
+btn.search=Пошук
+
+dystopia.btn.login=Увійти
+
+dystopia.hello_anonymous=Вітаємо у Живому Журналі!
+
+dystopia.hello_loggedin=Привіт, [[username]]!
+
+dystopia.nav.createjournal=Створити журнал
+
+dystopia.nav.developer=Для розробників
+
+dystopia.nav.download=Загрузити
+
+dystopia.nav.editentries=Редагувати записи
+
+dystopia.nav.editfriends=Ваші друзі
+
+dystopia.nav.editpassword=Ваш пароль
+
+dystopia.nav.editpics=Ваші зображення
+
+dystopia.nav.editstyle=Стиль
+
+dystopia.nav.faq=Поміч ЖЖ
+
+dystopia.nav.findcomm=За спільнотою
+
+dystopia.nav.finddir=Шукати у каталозі
+
+dystopia.nav.findint=За інтересами
+
+dystopia.nav.findrandom=Випадково
+
+dystopia.nav.findregion=За регіоном
+
+dystopia.nav.home=Початок
+
+dystopia.nav.journalcalendar=Календар
+
+dystopia.nav.journalfriends=Друзі
+
+dystopia.nav.journalinfo=Особиста інформація
+
+dystopia.nav.journalrecent=Свіжі записи
+
+dystopia.nav.legalprivacy=Приватність
+
+dystopia.nav.legaltos=Умови користування
+
+dystopia.nav.login=Увійти
+
+dystopia.nav.logout=Вийти
+
+dystopia.nav.lostinfo=Нагадати пароль
+
+dystopia.nav.memories=Вибране
+
+dystopia.nav.modifyjournal=Змінити журнал
+
+dystopia.nav.news=Новини
+
+dystopia.nav.paidaccts=Платні акаунти
+
+dystopia.nav.paymentarea=Платежи
+
+dystopia.nav.personalinfo=Персональна інформація
+
+dystopia.nav.sitemap=Карта сайту
+
+dystopia.nav.siteopts=Налаштування сайту
+
+dystopia.nav.support=Є питання?
+
+dystopia.nav.updatejournal=Написати
+
+dystopia.nav.width|notes=Some languages require the bar on the left to be wider.  Feel free to keep the default value.
+dystopia.nav.width=150
+
+dystopia.navhead.findusers=Шукати користувачів
+
+dystopia.navhead.help=Допомога та підтримка
+
+dystopia.navhead.journal=Ваш журнал
+
+dystopia.navhead.legal=Правова інформація
+
+dystopia.navhead.settings=Настройки
+
+dystopia.navhead.welcome=Вітаємо!
+
+dystopia.search.icq=Номер ICQ
+
+dystopia.search.int=Інтереси
+
+dystopia.search.msn=Ім'я в MSN
+
+dystopia.search.region=Регіон
+
+dystopia.searchlj=Шукати в ЖЖ:
+
+Error|notes=typically used inside an H1 tag to announce an error.
+Error=Помилка
+
+error.badpassword=Невірний пароль.
+
+error.dberror=Помилка бази даних:
+
+error.deleted.name=Вилучений
+
+error.deleted.text=Цей журнал вилучено. Якщо ви [[user]], ви маєте 30 днів з дня вилучення щоб відмінити вилучення вашого журналу. Після 30 днів ми вилучимо все пов'язане з вашим журналом з серверів.
+
+error.deleted.title=Вилучений акаунт
+
+error.invalidauth=Ви не можете бути ауте
+
+error.ipbanned=Ваша IP-адреса тимчасово заблокована через перевищення кількості помилок при вході в журнал.
+
+error.malformeduser=Погане ім'я.
+
+error.nobutton=Не натиснули на кнопку?
+
+error.nodb=База даних тимчасово недоступна.
+
+error.nodbmaintenance=Ця частина бази даних тимчасово зачинена на обслуговування. Спробуйте ще раз за декілька хвилин.
+
+error.noentry=Такого запису не існує.
+
+error.nojournal=Невідомий Журнал
+
+error.noremote=Вам потрібно <a href="/login.bml?ret=1">увійти до журналу</a> щоб користуватися цією сторінкою.
+
+error.procrequest=Під час виконання вашого запиту виникла помилка:
+
+error.purged.name=Вилучений
+
+error.purged.text=Цей журнал очищено та вилучено.
+
+error.purged.title=Очищений акаунт.
+
+error.suspended.name=Припинений
+
+error.suspended.title=Припинений акаунт
+
+error.tempdisabled=Тимчасово відключений.
+
+error.unknownmode=Невідомий режим
+
+error.usernameinvalid=Ім'я включає не дозвоені символи.
+
+error.usernamelong=Ім'я задовге, 15 символів максимум.
+
+error.username_notfound=Ім'я користувача не знайдено.
+
+Help=Допомога
+
+label.security.custom=Вибірково...
+
+label.security.friends=Для друзів
+
+label.security.head=Рівень безпеки:
+
+label.security.private=Лише для мене
+
+label.security.public=Для всіх
+
+label.switch.button=Переключити
+
+label.switch.header=Переключити журнал
+
+label.switch.workwith=Працювати з журналом:
+
+langname.be=Білоруська
+
+langname.da=Датська
+
+langname.de=Німецька
+
+langname.en=Англійська
+
+langname.en_GB=Англійська (Великобританія)
+
+langname.en_LJ=Англійська
+
+langname.eo=Есперанто
+
+langname.es=Іспанська
+
+langname.et=Естонська
+
+langname.fi=Фінська
+
+langname.fr=Французька
+
+langname.ga=Ірландська
+
+langname.he=Іврит
+
+langname.hu=Угорська
+
+langname.is=Ісландська
+
+langname.it=Італійська
+
+langname.ja=Японська
+
+langname.la=Латинська
+
+langname.lv=Латвійська
+
+langname.ms=Малайська
+
+langname.nb=Норвезька - Bokmål
+
+langname.nl=Голандська
+
+langname.pl=Польська
+
+langname.pt=Португальська
+
+langname.ru=Російська
+
+langname.sv=Шведська
+
+langname.tr=Турецька
+
+langname.uk=Українська
+
+langname.zh=Китайська спрощена
+
+ljcom.badpass.email=Ваш пароль не може базуватись на адресі email.
+
+ljcom.badpass.realname=Ваш пароль не може базуватись на реальному імені.
+
+ljcom.badpass.username=Ваш пароль не може базуватись на імені.
+
+ljcom.userinfo.accounttype=Тип акаунту
+
+ljcom.userinfo.paiduser=Платний користувач
+
+ljcom.userinfo.types.early=Ранній користувач
+
+ljcom.userinfo.types.free=Безкоштовний акаунт
+
+ljcom.userinfo.types.paid=Платний Акаунт
+
+ljcom.userinfo.types.paid_early=Платний акаунт, попередньо Ранній Користувач
+
+ljcom.userinfo.types.paid_early_expiring=Платний акаунт, закінчується [[paiduntil]], в минулому Ранній Акаунт
+
+ljcom.userinfo.types.paid_expiring=Платний акаунт, закінчується [[paiduntil]]
+
+ljcom.userinfo.types.permanent=Безстроковий акаунт 
+
+ljcom.userinfo.types.permanent_early=Безстроковий акаунт, в минулому Ранній користувач
+
+portal.memories.entriesnoun=записи
+
+portal.memories.entrynoun=запис
+
+portal.memories.portalname=Вибране
+
+portal.memories.portaltitle=Вибране
+
+portal.ministats.active=Пишуть:
+
+portal.ministats.title=Користувачі
+
+portal.ministats.total=Всього:
+
+portal.stats.portalname=Статистика сайту
+
+portal.update.portalname=Написати
+
+portal.update.portaltitle=Написати в журнал
+
+protocol.must_revalidate=Ви повинні підтвердити ваш e-mail. Ваш старий e-mail був правильним, але оскільки ви змінили його, ви повинні ще раз підтвердити новий e-mail. Якщо ви не зробите цього, ви не отримаєте доступ до всіх функцій [[sitename]]. Додаткову інформацію можна знайти за адресою [[siteroot]]/support/faqbrowse.bml?faqid=11
+
+protocol.not_validated=Ваш новий e-mail не був підтверджений. Ви може продовжувати користуватися [[sitename]], але якщо ви не підтвердите вашу адресу, ви не отримаєте доступу до всіх функцій сайту. Інструкції ви можете знайти в листі, котрий був відісланий вам, коли ви створили ваш журнал. Також додаткову інформацію можна знайти за адресою [[siteroot]]/support/faqbrowse.bml?faqid=11
+
+talk.anonwrote=Хтось написав,
+
+talk.anonwrote_comm=Хтось написав у [[commlink]],
+
+talk.btn.preview=Переглянути
+
+talk.commentpermlink=посилання
+
+talk.commentpost=Написати коментар
+
+talk.commentsread=Читати коментарі
+
+talk.curname_Mood=<b>Настрій:</b>
+
+talk.curname_Music=<b>Музика:</b>
+
+talk.error.comm_deleted=Коментар вилучено.
+
+talk.error.deleted=Цей журнал вилучено.
+
+talk.error.deleted.title=Вилучено
+
+talk.error.mustlogin=Ви повинні увійти до журналу щоб побачити цей захищений запис.
+
+talk.error.nocomment=Коментарю не існує.
+
+talk.error.noentry=Такого запису не існує.
+
+talk.error.nosuchjournal=Такого журналу не існує.
+
+talk.error.notauthorised=Ва не авторизовані щоб дивитись цей захищений запис.
+
+talk.error.suspended=Дія цього журналу припинена.
+
+talk.error.suspended.title=Припинено
+
+talk.parentlink=Рівнем вище
+
+talk.replytothis=Відповісти
+
+talk.somebodywrote=[[realname]] ([[userlink]]) пише,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) пише у [[commlink]],
+
+talk.spellcheck=Перевіряти орфографію (англійська)
+
+talk.threadlink=Тред
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_ukrainian
+
+Username=Ім'я користувача
+
+xcolibur.greeting.anon=Вітаємо вас у Живому Журналі!
+
+xcolibur.greeting.logged_in=Привіт, [[name]]! [[logout]]
+
+xcolibur.login=Увійти?
+
+xcolibur.logout=Вийти?
+
+xcolibur.nav.about=Про нас
+
+xcolibur.nav.about.download=Загрузка
+
+xcolibur.nav.about.general=Основна інформація
+
+xcolibur.nav.about.paidaccounts=Платні акаунти
+
+xcolibur.nav.about.press=Преса
+
+xcolibur.nav.about.sitenews=Новини сайту
+
+xcolibur.nav.about.stats=Статистика
+
+xcolibur.nav.footer.sitemap=Карта сайту
+
+xcolibur.nav.help=Допомога
+
+xcolibur.nav.help.ask=Задати питання
+
+xcolibur.nav.help.contact=Контактна&nbsp;інформація
+
+xcolibur.nav.help.faq=<abbr title="Найчастіше запитувані питання">FAQ</abbr>
+
+xcolibur.nav.help.lostpassword=Загубили пароль?
+
+xcolibur.nav.home=Початок
+
+xcolibur.nav.journal=Журнал
+
+xcolibur.nav.journal.archive=Архів
+
+xcolibur.nav.journal.edit.entries=Редагувати записи
+
+xcolibur.nav.journal.friends=Друзі
+
+xcolibur.nav.journal.info=Про користувача
+
+xcolibur.nav.journal.memories=Вибране
+
+xcolibur.nav.journal.recent=Свіжі записи
+
+xcolibur.nav.journal.update=Написати
+
+xcolibur.nav.manage=Редагувати
+
+xcolibur.nav.manage.community=Спільноти
+
+xcolibur.nav.manage.customize=Вигляд
+
+xcolibur.nav.manage.entries=Записи
+
+xcolibur.nav.manage.friends=Друзі
+
+xcolibur.nav.manage.info=Особиста інформація
+
+xcolibur.nav.manage.password=Пароль
+
+xcolibur.nav.manage.pics=Зображення
+
+xcolibur.nav.manage.styles=Стилі
+
+xcolibur.nav.search=Пошук
+
+xcolibur.nav.search.directory=За регіоном
+
+xcolibur.nav.search.directory.search=Розширений
+
+xcolibur.nav.search.interests=За інтересами
+
+xcolibur.nav.search.random=Випадково
+
+xcolibur.nav.siteopts=Налаштування сайту
+
+xcolibur.nav.title=Навігація:
+
+xcolibur.nav.welcome=Ласкаво просимо
+
+xcolibur.nav.welcome.create=Створити акаунт
+
+xcolibur.nav.welcome.login=Увійти
+
+xcolibur.nav.welcome.update=Написати в журнал
+
+xcolibur.search=Пошук:
+
+xcolibur.search.aolim=AOL IM
+
+xcolibur.search.category=Категорія:
+
+xcolibur.search.icq=Номер ICQ
+
+xcolibur.search.int=Інтереси
+
+xcolibur.search.jabber=Jabber
+
+xcolibur.search.msn=Ім'я в MSN 
+
+xcolibur.search.region=Регіон
+
+xcolibur.search.yahoo=Yahoo! ID
+
+xcolibur.upgrade=Зроби свій акаунт платним!
+

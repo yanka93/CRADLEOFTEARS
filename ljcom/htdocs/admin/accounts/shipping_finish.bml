@@ -1,0 +1,82 @@
+<html>
+<head>
+<style>
+    strong { font-weight: bold; color: red; font-size: 14pt; }
+</style>
+</head>
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    my $remote = LJ::get_remote();
+        return "<?needlogin?>" unless $remote;
+
+    return "You don't have access to finish payments"
+        unless LJ::remote_has_priv($remote, "moneyenter") || LJ::remote_has_priv($remote, "shipping");
+
+    my $ret;
+
+    unless (LJ::did_post() && $POST{'ids'}) {
+        $ret .= "<form method='post'>Enter order numbers that have been shipped:<br />";
+        $ret .= "<textarea name='ids' rows='40' cols='20' /></textarea>\n";
+        $ret .= "<br /><input type='submit' value='Shipped' /></form>";
+        return $ret;
+    }
+
+    my $dbh = LJ::get_db_writer();
+
+    my $ids = $POST{'ids'};
+    $ids =~ s/\r//g;
+    my @ids = split(/\n/, $ids);
+    foreach my $id (@ids) {
+        next unless $id =~ /\S/;
+        $id =~ s/\s+//g;
+        unless ($id =~ /^(\d+)-(\d+)$/) {
+            $ret .="<strong>Error!</strong> -- invalid order number: $id<br />";
+            next;
+        }
+        my ($payid, $anum) = ($1, $2);
+        my $pay = $dbh->selectrow_hashref("SELECT * FROM payments WHERE payid=? AND anum=?",
+                                          undef, $payid, $anum);
+        unless ($pay) {
+            $ret .="<strong>Error!</strong> -- invalid order number: $id<br />";
+            next;
+        }
+
+        my ($status, $date) = $dbh->selectrow_array("SELECT status, dateshipped FROM shipping ".
+                                                    "WHERE payid=?", undef, $payid);
+        unless ($status eq "needs") {
+            if ($status eq "shipped") {
+                $ret .="<strong>Error!</strong> -- Order already shipped on $date<br />";
+            } else {
+                $ret .="<strong>Error!</strong> -- Order is valid, but has no physical items<br />";
+            }
+            next;
+        }
+
+        my $rv = $dbh->do("UPDATE shipping SET status='shipped', dateshipped=NOW() WHERE payid=?", undef,
+                          $payid);
+        if ($rv > 0) {
+            $ret .= "Order $payid-$anum marked as shipped.<br />\n";
+            
+            # decrement inventory
+            my $sth = $dbh->prepare("SELECT item, subitem FROM payitems ".
+                                    "WHERE payid=? AND item IN ('clothes')");
+            $sth->execute($payid);
+            while (my ($item, $subitem) = $sth->fetchrow_array) {
+                $dbh->do("UPDATE inventory SET qty=qty-1 WHERE item=? AND subitem=?",
+                         undef, $item, $subitem);
+            }
+
+        } else {
+            $ret .="<strong>Error!</strong> -- some db error updating $payid-$anum<br />\n";
+        }
+    }
+    return $ret;
+
+}
+_code?>
+</body>
+</html>

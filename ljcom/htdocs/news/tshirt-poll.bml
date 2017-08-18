@@ -1,0 +1,82 @@
+<?page
+title=>T-shirt poll
+body<=
+<?_code
+{
+    my $dbh = LJ::get_db_writer();
+    my $remote = LJ::get_remote();
+
+    unless ($remote) {
+        return "You must first <a href='/login.bml?ret=1'>login</a>.";
+    }
+
+    my %pro = ('short' => 'Short-sleeved',
+               'long' => 'Long-sleeved',
+               'baby' => 'Baby Doll',
+               'polo' => 'Embroidered Polo');
+    my %col = ('black' => "Black",
+               'gray' => "Gray",
+               'blue' => "Royal Blue");
+    my @sizes = qw(S M L XL XXL XXXL);  # no /XX+/ for baby doll 
+
+    if (LJ::did_post()) {
+        $dbh->do("DELETE FROM tshirtpoll WHERE userid=?", undef, $remote->{'userid'});
+        my @values;
+        foreach my $style (keys %pro) {
+            foreach my $col (keys %col) {
+                foreach my $size (@sizes) {
+                    my $k = "${style}_${col}_${size}";
+                    if ($POST{$k} =~ /^\d+$/) {
+                        push @values, "($remote->{'userid'}, '$style', '$col', '$size', $POST{$k})";
+                    }
+                }
+            }
+        }
+        if (@values) {
+            $dbh->do("REPLACE INTO tshirtpoll (userid,style,color,size,qty) ".
+                     "VALUES " . join(',', @values));
+            return $dbh->errstr if $dbh->err;
+        }
+        return "<?h1 Success h1?><?p Thanks for your input! p?>";
+    }
+
+    my %prefill;
+    my $sth = $dbh->prepare("SELECT style, color, size, qty FROM tshirtpoll WHERE userid=?");
+    $sth->execute($remote->{'userid'});
+    while (my ($st, $c, $si, $qt) = $sth->fetchrow_array) {
+        $prefill{"${st}_${c}_${si}"} = $qt;
+    }
+    
+    my $ret;
+    $ret .= "<?h1 Poll h1?><?p We're going to be selling LiveJournal T-shirts in the near future.  Please complete this poll, letting us know how many of which style/color/size you'd want to buy, so we have an idea how many of each to pre-order.  Filling out this poll does not require you to purchase the indicated items... it's only for our information.  Also:  not all colors will be available for each style.  We're giving you the choice between three now, but we'll likely only have the most popular two for each type actually available.  Make your purchase prediction assuming the prices are good. p?>";
+
+
+    $ret .= "<p><form method='post'><table cellpadding='2' border='1'>";
+    $ret .= "<tr><td><b>Type / Color</b></td>";
+    foreach (@sizes) {
+        $ret .= "<td><b>$_</b></td>";
+    }
+    $ret .= "</tr>\n";
+    
+    foreach my $style (qw(short long baby polo)) {
+        foreach my $color (qw(black gray blue)) {
+            $ret .= "<tr><td>$pro{$style} ($col{$color})</td>";
+            foreach my $size (@sizes) {
+                $ret .= "<td>";
+                unless ($style eq "baby" && $size =~ /XX+/) {
+                    my $k = "${style}_${color}_${size}";
+                    $ret .= "<input name='$k' size='2' value='$prefill{$k}'>";
+                } else {
+                    $ret .= "--";
+                }
+                $ret .= "</td>";
+            }
+            $ret .= "</tr>\n";
+        }
+    }
+    $ret .= "</table><input type='submit' value='Submit Poll'></form>";
+    return $ret;
+}
+_code?>
+<=body
+page?>

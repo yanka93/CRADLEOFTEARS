@@ -1,0 +1,111 @@
+<?_code
+{
+    use strict;
+
+    BML::set_content_type("text/xml");
+
+    my $recent = LJ::MemCache::get("blob:ljcom_latestposts2") || [];
+
+    my $ret = "<?xml version='1.0'?>\n";
+    $ret .= <<"EOT";
+<!--You can poll this feed as often as you like, but please don't spider the links.
+Mail dev\@livejournal.com if you have any questions/interesting research ideas.-->
+EOT
+    $ret .= "<rdf:RDF ".
+              "xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' ".
+              "xmlns:dc='http://purl.org/dc/elements/1.1/' ".
+              "xmlns:lj='http://livejournal.org/rss/lj/1.0/' ".
+              "xmlns='http://purl.org/rss/1.0/'>\n";
+
+    $ret .= "<channel rdf:about='$LJ::SITEROOT/stats/latest-rss.bml'><title>Latest $LJ::SITENAME Posts</title><link>$LJ::SITEROOT/stats/latest.bml</link><description>Latest public posts at $LJ::SITENAME.</description>\n";
+
+    # setup for security logging
+    my %securities = (
+        public => 0,
+        private => 0,
+        friends => 0,
+        custom => 0,
+    );
+
+    # retrieve posts.
+    my @postids;
+    foreach my $p (@$recent) {
+        $securities{$p->{security}}++;
+        next unless $p->{security} eq 'public';
+        $p->{ditemid} = $p->{itemid}*256 + $p->{anum};
+        $p->{urn} = "urn:$LJ::DOMAIN:entry:$p->{journalu}{user}:$p->{ditemid}";
+
+        push @postids, [ $p->{clusterid}, $p->{journalu}{userid}, $p->{itemid} ];
+    }
+    my $rawposts = LJ::get_posts_raw({memcache_only=>1}, @postids);
+
+    my $rdftoc = "<items><rdf:Seq>\n";
+    my $rdfitems = "";
+
+    foreach my $p (@$recent) {
+        next unless $p->{security} eq 'public';
+        my $uj = $p->{'journalu'};
+        my $up = $p->{'journalp'};
+        my $id = "$uj->{userid}:$p->{itemid}";
+        my $props = $rawposts->{prop}{$id};
+
+        # we shouldn't expect every post to be in the memcache.
+        next unless $rawposts->{text}{$id};
+
+        # skipping unknown8bit users sucks, but we can't load users here.
+        next if $props->{unknown8bit};
+
+        $rdftoc .= "  <rdf:li resource='$p->{urn}' />\n";
+
+        my $url = LJ::journal_base($uj) . "/$p->{ditemid}.html";
+        my ($subject, $body) = @{$rawposts->{text}{$id}};
+
+        $rdfitems .= "<item rdf:about='$p->{urn}'>\n";
+
+        # first, the required RDF elements.
+        # we use title to represent all the metadata in one string,
+        # then dublin core for the data in pieces.
+        $rdfitems .= "<title>$up->{'user'}";
+        $rdfitems .= " (in $uj->{'user'})" if $uj->{userid} != $up->{userid};
+        $rdfitems .= ": " . LJ::exml($subject) if $subject;
+        $rdfitems .= "</title>\n";
+        $rdfitems .= "<description>" . LJ::exml($body) . "</description>\n";
+        $rdfitems .= "<category>$_</category>\n" foreach map { LJ::exml($_) } @{$p->{tags} || []};
+        $rdfitems .= "<link>$url</link>\n";
+
+        # use dc for the rest.
+        $rdfitems .= "<dc:title>" . LJ::exml($subject) . "</dc:title>\n" if $subject;
+        $rdfitems .= "<dc:creator>" . LJ::exml($up->{name}) . " ($up->{user})</dc:creator>\n";
+        $rdfitems .= "<dc:publisher>" . LJ::exml($uj->{user}) . "</dc:publisher>\n"
+            if $uj->{userid} != $up->{userid};
+        $rdfitems .= "<dc:date>" . LJ::time_to_w3c($p->{timepost}) . "Z</dc:date>\n";
+
+        # and lj for the lj-specific data.
+        my $mood = $props->{current_mood};
+        $mood ||= LJ::mood_name($props->{current_moodid}) if $props->{current_moodid};
+        
+        my $moodid = " id='$props->{current_moodid}'" if $props->{current_moodid};
+        $rdfitems .= "<lj:mood$moodid>" . LJ::exml($mood) . "</lj:mood>\n"
+            if $mood or $moodid;
+        $rdfitems .= "<lj:music>" . LJ::exml($props->{current_music}) . "</lj:music>\n"
+            if $props->{current_music};
+        $rdfitems .= "<lj:pickeyword>" . LJ::exml($props->{picture_keyword}) . "</lj:pickeyword>\n"
+            if $props->{picture_keyword};
+
+        $rdfitems .= "</item>\n";
+    }
+    $rdftoc .= "</rdf:Seq></items></channel>\n";
+
+    $ret .= $rdftoc . $rdfitems;
+    $ret .= "</rdf:RDF>\n";
+
+    $ret .= <<"EOT";
+<!-- Security breakdown:
+     public:  $securities{public} (shown above)
+     private: $securities{private}
+     friends: $securities{friends}
+     custom:  $securities{custom} -->
+EOT
+    return BML::noparse($ret);
+}
+_code?>

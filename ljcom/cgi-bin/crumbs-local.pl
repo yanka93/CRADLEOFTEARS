@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+#
+# Stores all local crumbs and adds to the crumbs hash
+
+
+%LJ::CRUMBS_LOCAL = (
+                     'about' => ['About LiveJournal', '/site/about.bml', 'home'],
+                     'abusereport' => ['Report Abuse', '/abuse/report.bml', 'support'],
+                     'acctfeatures' => ['Features By Account Type', '/site/accounts.bml', 'about'],
+                     'advsearch' => ['Advanced', '/directorysearch.bml', 'search'],
+                     'banners' => ['Advertising Banners', '/banners.bml', 'home'],
+                     'code' => ['LiveJournal Code', '/code/index.bml', 'about'],
+                     'contributors' => ['Contributors', '/site/contributors.bml', 'press'],
+                     'coppa' => ['COPPA', '/legal/coppa.bml', 'legal'],
+                     'dmca' => ['DMCA Information', '/legal/dmca.bml', 'legal'],
+                     'download' => ['Download a Client', '/download/index.bml', 'about'],
+                     'filemanager' => ['File Manager', '/manage/files.bml', 'manage'],
+                     'goat' => ['About Frank', '/site/goat.bml', 'home'],
+                     'guidingprinciples' => ['Our Guiding Principles', '/legal/principles.bml', 'about'],
+                     'itsfree' => ['It\'s Free?', '/site/free.bml', 'paidaccounts'],
+                     'legal' => ['Legal Information', '/legal/index.bml', 'home'],
+                     'ljhome' => ['Home', 'http://www.livejournal.com/', ''],
+                     'paidaccounts' => ['Paid Accounts', '/paidaccounts/index.bml', 'about'],
+                     'paidacctstatus' => ['Paid Account Status', '/paidaccounts/status.bml', 'paidaccounts'],
+                     'press' => ['LiveJournal Press Area', '/press/index.bml', 'about'],
+                     'pressarticles' => ['LiveJournal in the Press', '/press/articles.bml', 'press'],
+                     'privacy' => ['Privacy Policy', '/legal/privacy.bml', 'legal'],
+                     'search' => ['Search', '/site/search.bml', 'home'],
+                     'searchinterests' => ['By Interest', '/interests.bml', 'search'],
+                     'searchregion' => ['By Region', '/directory.bml', 'search'],
+                     'securechangepass' => ['Change Password', '/changepassword.bml', 'securemanage'],
+                     'securecreatejournal' => ['Create Journal', '/create.bml', 'ljhome'],
+                     'securelogin' => ['Login', '/login.bml', 'ljhome'],
+                     'securemanage' => ['Manage Accounts', 'http://www.livejournal.com/manage/', 'ljhome'],
+                     'singles' => ['LiveJournal Singles', '/singles/', 'home'],
+                     'singlesopts' => ['Modify Availability', '/singles/mod.bml', 'singles'],
+                     'singlessearch' => ['Search for Singles', '/singles/search.bml', 'singles'],
+                     'sitemap' => ['Site Map', '/site/index.bml', 'home'],
+                     'sizechart' => ['Sizing Chart', '/store/sizechart.bml', 'store'],
+                     'staff' => ['Senior Staff', '/press/staff.bml', 'press'],
+                     'stats' => ['Statistics', '/stats.bml', 'press'],
+                     'store' => ['LiveJournal Store', '/store/', 'home'],
+                     'storeitem' => ['View Item Detail', '', 'store'],
+                     'suggestions' => ['Suggestions Generator', '/suggestions/generator.bml', 'suggview'],
+                     'suggview' => ['Suggestions', '/suggestions/index.bml', 'home'],
+                     'tos' => ['Terms of Service', '/legal/tos.bml', 'legal'],
+           );
+1;

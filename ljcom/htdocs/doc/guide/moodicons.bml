@@ -1,0 +1,98 @@
+<?page
+title=>Mood Icons
+body<=
+<?h1 Table of Contents h1?>
+<ul>
+<li><a href="#display">How mood icons are displayed</a></li>
+<li><a href="#choosetheme">Choosing a mood theme</a></li>
+<li><a href="#createicons">Creating mood icons</a></li>
+<li><a href="#newthemes">Turning your icons into a mood theme</a></li>
+</ul>
+
+<?hr?>
+
+<?h1 <a name="display" id="display">How mood icons are displayed</a> h1?>
+<?p You can indicate your mood in any of your journal entries.  The mood you enter will normally be displayed with your entry, and if it's one of the <a href="http://www.livejournal.com/moodlist.bml">server-supported moods</a>, a matching picture (a <i>mood icon</i>) will usually appear too. p?>
+
+<?p To indicate a mood when you post a journal entry from your Web browser, use the &#8220;Current Mood&#8221; box on the <a href="http://www.livejournal.com/update.bml?mode=full">full</a> version of the Update Journal page.  You can choose a server-supported mood by scrolling through the list.  Alternatively, you can leave the selection set to &#8220;None, or other&#8221;; then your mood will be whatever you type in the box labelled &#8220;Other&#8221; (which you can leave empty if you don't wish to indicate your mood).  Later, you can edit your mood selection, the same way you would edit any other part of your journal entry. p?>
+
+<?p Exactly how your mood is displayed depends on the style of the page where it appears.  When your entry is viewed as part of your journal, you control the style and the set of icons used to represent moods.  When your entry is viewed on someone else's Friends page, its appearance is determined by the style of their page, and by whether they decided to impose their own choice of mood icons or let each Friend choose their own. p?>
+
+<?p The rest of this Guide explains how to choose a set of mood icons (called a <i>mood theme</i>), and how to create your own if you want to. p?>
+
+<?h1 <a name="choosetheme" id="choosetheme">Choosing a mood theme</a> h1?>
+<?p LiveJournal provides a number of public mood themes, which are available to all users. You can preview any of them on the <a href="http://www.livejournal.com/moodlist.bml">LiveJournal Moods</a> page.  p?>
+<?p To choose the mood theme you want to use for your journal, go to the <a href="http://www.livejournal.com/modify.bml">Modify Journal</a> page.  Make sure you're logged in under the correct user name, click &#8220;Proceed...&#8221;, and on the next page scroll down to &#8220;Mood Icons&#8221;.  Select a mood icon set.  After you click &#8220;Save Changes&#8221;, icons from the set you selected should appear on your Recent Entries page, your Day view, and your message boards, wherever one of the server-supported moods is indicated.  Optionally, you can also force the same icons to appear on your Friends page, in place of the icons selected by your Friends. p?>
+
+<?p If the mood icons don't appear where they should, the problem could be that you're using a custom style which doesn't support mood icons, or that you've chosen single-color mood icons which are the same color as the background. p?>
+<?p If you've created a personal (non-public) mood theme, as described below, you'll be able to select it from the <a href="http://www.livejournal.com/modify.bml">Modify Journal</a> page, the same way you would select a public theme. However, personal themes aren't listed on the <a href="http://www.livejournal.com/moodlist.bml">LiveJournal Moods</a> page, so they can't be previewed. p?>
+<?h1 <a name="createicons" id="createicons">Creating mood icons</a> h1?>
+<?p You're reading this (hopefully) because you want to create your own mood theme.  Please read the whole document through before beginning! p?>
+<?h2 The images you need to create h2?>
+
+<?p Each icon must be stored in an image file.  The server currently supports over 130 moods for which you can create icons, and it is possible that more moods will be added in the future. p?>
+<?p That doesn't mean you need to create 130 images!  Instead, the moods are sorted in a hierarchical structure, and as long as the basic (top level) moods are defined, there will be an image for each mood.  Look at the <a href="http://www.livejournal.com/moodlist.bml">LiveJournal Moods</a> page to see the relationships. p?>
+<?p For example, because &#8220;aggravated&#8221; is below &#8220;angry&#8221;, the icon you specify for &#8220;angry&#8221; will automatically be used for &#8220;aggravated&#8221; unless you explicitly pick another icon for &#8220;aggravated&#8221;. p?>
+
+<?p Also, each mood has an associated mood ID (in parentheses on the <a href="http://www.livejournal.com/moodlist.bml">LiveJournal Moods</a> page).  Later in this process, you'll need to know the ID of the mood to which each of your images should be assigned. p?>
+<?h2 Considerations for your images h2?>
+<ul>
+<li>GIFs are a popular format, because they allow both transparency and animation.</li>
+<li>The images can be any size, though large images are both visually obtrusive and time-consuming to load.</li>
+<li>They don't all need to be the same size.</li>
+<li>Remember that your images can be used on a variety of backgrounds!  Don't assume that everyone has their text over white (or black). Or, you can decide that your icons will only work against a certain background, and design accordingly... but this will restrict your user base.</li>
+<li>Remember that these images will be imported into the LiveJournal database by name, either by you or by someone else.  Give descriptive names to your image files (the mood name will suffice: for example, &#8216;aggravated.gif&#8217; for the &#8220;aggravated&#8221; mood).</li>
+
+</ul>
+<?p Also, read the next section before beginning. p?>
+
+<?h1 <a name="newthemes" id="newthemes">Turning your icons into a mood theme</a> h1?>
+<?p One of the features of <a href="http://www.livejournal.com/paidaccounts/">paid LiveJournal accounts</a> is the ability to make <i>personal</i> mood themes, special to your journal, by entering data about the images yourself.  If you don't want your theme to be a public theme, or if you want to see how your theme will look before it becomes a public theme, then you'll need to create it yourself. p?>
+<?p First of all, your pictures must be available on a separate server. (You can't upload your mood images directly to LiveJournal's site; see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=6">FAQ #6</a> for more information).  Also, you must know the dimensions (width and height, in pixels) of each image. p?>
+
+<?p When you're ready to continue, make sure you're logged in, and go to LiveJournal's <a href="http://www.livejournal.com/admin/console">command console</a>, where you can enter the commands to define your mood theme. (There is a <a href="http://www.livejournal.com/admin/console/reference.bml">reference</a>, in case you need it, which describes all of the console commands, and explains how to escape double-quote and backslash characters.) p?>
+<?p The first thing you're going to do is create the theme. Execute the command: p?>
+
+<blockquote><pre>
+moodtheme_create <i>name</i> <i>des</i>
+</pre></blockquote>
+
+<?p where p?>
+
+<blockquote>
+<i>name</i> = the name of your new theme, which will be displayed in the lists from which users select.<br>
+<i>des</i> = a short description for your theme, which will be accessible through the console's <kbd>moodtheme_list</kbd> command.<br>
+</blockquote>
+
+<?p For example: p?>
+<blockquote><pre>
+moodtheme_create "Munch's Screamers" "You've seen 'distressed'. Now see the rest."
+</pre></blockquote>
+
+<?p If you're successful, you'll see a page which tells you so and gives you a number (the theme ID) identifying your new mood theme. Remember this number, as it will be used every time you enter information for a mood. (If you forget it, you can execute the <kbd>moodtheme_list</kbd> command to find out the IDs of all the themes available to you.) p?>
+<?p Now it's time for the tedious part. You'll assign each of your image files to a mood, by executing a command of the form: p?>
+<blockquote><pre>
+moodtheme_setpic <i>themeID</i> <i>moodID</i> <i>picURL</i> <i>width</i> <i>height</i>
+</pre></blockquote>
+
+<?p where p?>
+
+<blockquote>
+<i>themeID</i> = the number given to you after you created the mood theme.<br>
+    <i>moodID</i> = the number of a mood for which you created an icon; you can find these numbers in parentheses on the <a href="http://www.livejournal.com/moodlist.bml">LiveJournal Moods</a> page (example: <kbd>15</kbd> for &#8220;happy&#8221;).<br>
+
+<i>picURL</i> = the full URL (Web address) of your mood icon.<br>
+<i>width</i> = width of the image, in pixels.<br>
+<i>height</i> = height of the image, in pixels.<br>
+</blockquote>
+
+<?p For the assignment to take effect, you must provide all of the information listed. For example: p?>
+<blockquote><pre>
+moodtheme_setpic 180 15 http://www.yoursite.com/happy.gif 20 20
+</pre></blockquote>
+
+<?p It might be daunting to think of specifying over 100 images this way, but remember that the images are nested. It's possible to represent all of the moods by specifying only 15 images. p?>
+<?p When you've finished creating your theme, you can go to the <a href="http://www.livejournal.com/modify.bml">Modify Journal</a> page, and select the new theme as the mood icon set for your journal. p?>
+
+<=body
+page?>

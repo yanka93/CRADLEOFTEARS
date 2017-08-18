@@ -1,0 +1,9 @@
+LookRoot $testlookroot
+DefaultScheme scheme
+DefaultLanguage en
+
+AllowOldSyntax 0
+AllowCode 1
+AllowTemplateCode 1
+
+

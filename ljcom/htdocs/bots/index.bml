@@ -1,0 +1,28 @@
+<?page
+title=>LiveJournal Bot Policy
+body<=
+<?p All automated bots, spiders, crawlers, data-miners, etc that access information on <?sitename?> are subject to the following policy. If you have been redirected to this page it is because we believe you to be in control of an automated bot. If that is not the case, please contact us at <tt>webmaster@livejournal.com</tt>.  p?>
+<?h1 Data Formats h1?>
+<?p We provide a variety of user data in standard XML formats, namely: p?>
+<dl>
+  <dt><a href="http://blogs.law.harvard.edu/tech/rss">RSS:</a></dt><dd>A user's recent entries syndicated using the <em>Real Simple Syndication</em> XML format. Available at the URL http://www.livejournal.com/users/<var>username</var>/data/rss</dd>
+  <dt><a href="http://www.atomenabled.org/developers/syndication/atom-format-spec.php">Atom:</a></dt><dd>A user's recent entries syndicated using the <em>Atom</em> XML format. Available at the URL http://www.livejournal.com/users/<var>username</var>/data/atom</dd>
+  <dt><a href="http://xmlns.com/foaf/0.1/">FOAF:</a></dt><dd>A user's information page using the <em>Friend of a Friend</em> XML format. Available at the URL http://www.livejournal.com/users/<var>username</var>/data/foaf</dd>
+  <dt>Friend-Data</dt><dd>A line separated list of usernames which are friends or friends-of a user. Available at the URL http://www.livejournal.com/misc/fdata.bml?user=<var>username</var></dd>
+  <dt>Interest-Data</dt><dd>Interests in a line separated format.  Available at the URL http://www.livejournal.com/misc/interestdata.bml?user=<var>username</var></dd>
+</dl>
+<?p You are encouraged to use these resources instead of "screen-scraping" user pages. p?>
+<?h1 Rates &amp; Limits h1?>
+<?p You are encouraged to cache the results of your bot's requests, which saves us bandwidth and CPU time. Bots making repeated requests on the same resource (URL) in a short amount of time will be blocked. Please do not multithread your bot to access multiple resources at the same time. p?>
+<?h1 Well-Formed User Agents h1?>
+<?p All bots are required to have a well-formed user agent which includes a contact email address for the bot maintainer, 
+and preferrably a URL to the organization running the bot. Bots without this information have a higher chance of being blocked. An example of a well-formed user agent is: p?><blockquote><tt>http://example.com/ljtoy.html; bob@example.com</tt></blockquote>
+<?h1 Contact Information h1?>
+<?p If you need specific information for research or data-collection purposes, feel free to contact us at <tt>webmaster@livejournal.com</tt>. If we've blocked your bot and you'd like to contact us about it, please email us at <tt>webmaster@livejournal.com</tt>. p?>
+<=body
+head<=
+<style type="text/css">
+    dt { font-weight: bold; }
+</style>
+<=head
+page?>

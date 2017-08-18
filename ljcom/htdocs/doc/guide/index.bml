@@ -1,0 +1,11 @@
+<?page
+title=>LiveJournal Guides
+body<=
+<dl>
+<dt><a href="./support.bml">So You Want to be a Support Volunteer</a></dt>
+<dd>LiveJournal can always use more volunteers, and helping out in Support is a great way to learn more about how LiveJournal works. However, it is a time-consuming task that requires patience and professionalism. Don't expect to just jump in answering questions and get a bunch of points. For many volunteers it will take weeks to earn their first support point.</dd>
+<dt><a href="./moodicons.bml">Mood Icons</a></dt>
+<dd>You can indicate your mood in any of your journal entries. The mood you enter will normally be displayed with your entry, and if it's one of the server-supported moods, a matching picture (a mood icon) will usually appear too.</dd>
+</dl>
+<=body
+page?>

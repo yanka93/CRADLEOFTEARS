@@ -1,0 +1,13 @@
+<?_code
+{
+    use strict;
+
+    $title = "Template BML page!";
+    $body = "";
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

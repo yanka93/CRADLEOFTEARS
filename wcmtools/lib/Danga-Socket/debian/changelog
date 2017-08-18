@@ -1,0 +1,17 @@
+libdanga-socket-perl (1.40-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Jay Bonci <jaybonci@debian.org>  Tue,  5 Apr 2005 15:33:34 -0400
+
+libdanga-socket-perl (1.38-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Jay Bonci <jaybonci@debian.org>  Wed,  9 Feb 2005 02:32:07 -0500
+
+libdanga-socket-perl (1.25-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Jay Bonci <jaybonci@debian.org>  Thu, 13 Jan 2005 23:13:18 -0500

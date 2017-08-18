@@ -1,0 +1,615 @@
+#NEWLAYER: flexiblesquares/autumn
+layerinfo "redist_uniq" = "flexiblesquares/autumn";
+layerinfo "type" = "theme";
+layerinfo "name" = "Autumn";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#351805";
+    set page_fgcolor = "#000000";
+    
+    set content_bgcolor = "#6a3106";
+    
+    set entry_bgcolor = "#eee293";
+    set entry_fgcolor = "#661f0c";
+    
+    set border_color  = "#000000";
+    
+    set entrytitle_bgcolor = "#8b4e1d";
+
+    set outer_table_bgcolor = "#c47b51";
+
+    set sidebar_header_bgcolor = "#8b4e1d";
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#eee293";
+    set header_footer_fgcolor = "#661f0c";
+    
+    set link_color = "#608729";
+    set link_hover_color = "#661f0c";
+    
+    set comments_link_color = "#FFFFFF";
+    set comments_link_hover = "#c47b51";
+    
+    set sidebar_link_color = "#608729";
+    set sidebar_link_hover = "#eee293";
+    
+    set header_footer_link_color = "#608729";
+    set header_footer_link_hover = "#661f0c";
+
+#NEWLAYER: flexiblesquares/blackwhite
+layerinfo "redist_uniq" = "flexiblesquares/blackwhite";
+layerinfo "type" = "theme";
+layerinfo "name" = "Black and White and Red All Over";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#cccccc";
+    set page_fgcolor = "#ff0000";
+    
+    set content_bgcolor = "#000000";
+    
+    set entry_bgcolor = "#ffffff";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#ffffff";
+    
+    set entrytitle_bgcolor = "#cc0000";
+    
+    set outer_table_bgcolor = "#666666";
+    
+    set sidebar_header_bgcolor = "#cc0000";
+    set sidebar_fgcolor = "#ffffff";
+    
+    set header_footer_bgcolor = "#000000";
+    set header_footer_fgcolor = "#cc0000";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#999999";
+    set link_hover_color = "#000000";
+    
+    set comments_link_color = "#FFFFFF";
+    set comments_link_hover = "#000000";
+    
+    set sidebar_link_color = "#999999";
+    set sidebar_link_hover = "#ffffff";
+    
+    set header_footer_link_color = "#ffffff";
+    set header_footer_link_hover = "#999999";
+
+#NEWLAYER: flexiblesquares/freshpaint
+layerinfo "redist_uniq" = "flexiblesquares/freshpaint";
+layerinfo "type" = "theme";
+layerinfo "name" = "Fresh Paint";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#993366";
+    set page_fgcolor = "#006633";
+    
+    set content_bgcolor = "#ff9933";
+    
+    set entry_bgcolor = "#ffff99";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#6699cc";
+    
+    set entrytitle_bgcolor = "#ccff66";
+    
+    set outer_table_bgcolor = "#330033";
+ 
+    set sidebar_header_bgcolor = "#ccff66";   
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#ffff99";
+    set header_footer_fgcolor = "#006633";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#993333";
+    set link_hover_color = "#330033";
+    
+    set comments_link_color = "#993333";
+    set comments_link_hover = "#330033";
+    
+    set sidebar_link_color = "#993333";
+    set sidebar_link_hover = "#330033";
+    
+    set header_footer_link_color = "#993333";
+    set header_footer_link_hover = "#330033";
+
+#NEWLAYER: flexiblesquares/nautical
+layerinfo "redist_uniq" = "flexiblesquares/nautical";
+layerinfo "type" = "theme";
+layerinfo "name" = "Nautical";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#bad2f6";
+    set page_fgcolor = "#000000";
+    
+    set content_bgcolor = "#213659";
+    
+    set entry_bgcolor = "#ffffff";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#d4e2f8";
+    
+    set entrytitle_bgcolor = "#f0ef8e";
+    
+    set outer_table_bgcolor = "#335288";
+
+    set sidebar_header_bgcolor = "#f0ef8e";   
+    set sidebar_fgcolor = "#7fa1d5";
+    
+    set header_footer_bgcolor = "#213659";
+    set header_footer_fgcolor = "#f0ef8e";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#7fa1d5";
+    set link_hover_color = "#000000";
+    
+    set comments_link_color = "#335288";
+    set comments_link_hover = "#7fa1d5";
+    
+    set sidebar_link_color = "#f0ef8e";
+    set sidebar_link_hover = "#000000";
+    
+    set header_footer_link_color = "#7fa1d5";
+    set header_footer_link_hover = "#ffffff";
+
+#NEWLAYER: flexiblesquares/machine
+layerinfo "redist_uniq" = "flexiblesquares/machine";
+layerinfo "type" = "theme";
+layerinfo "name" = "Machine";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#000000";
+    set page_fgcolor = "#C1C1C1";
+    
+    set content_bgcolor = "#000000";
+    
+    set entry_bgcolor = "#000000";
+    set entry_fgcolor = "#cbd3d8";
+    
+    set border_color  = "#7e8997";
+    
+    set entrytitle_bgcolor = "#555a60";
+    
+    set outer_table_bgcolor = "#000000";
+    
+    set sidebar_header_bgcolor = "#555a60";   
+    set sidebar_fgcolor = "#C1C1C1";
+    
+    set header_footer_bgcolor = "#000000";
+    set header_footer_fgcolor = "#C1C1C1";
+    
+    set date_fgcolor = "#C1C1C1";
+    set subject_fgcolor = "#C1C1C1";
+    
+    set link_color = "#8797a0";
+    set link_hover_color = "#ffffff";
+    
+    set comments_link_color = "#8797a0";
+    set comments_link_hover = "#ffffff";
+    
+    set sidebar_link_color = "#8797a0";
+    set sidebar_link_hover = "#ffffff";
+    
+    set header_footer_link_color = "#8797a0";
+    set header_footer_link_hover = "#ffffff";
+
+#NEWLAYER: flexiblesquares/pastelspring
+layerinfo "redist_uniq" = "flexiblesquares/pastelspring";
+layerinfo "type" = "theme";
+layerinfo "name" = "Pastel Spring";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#ffffff";
+    set page_fgcolor = "#993333";
+    
+    set content_bgcolor = "#ffffcc";
+    
+    set entry_bgcolor = "#ffffff";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#ebccb1";
+    
+    set entrytitle_bgcolor = "#ebccb1";
+    
+    set outer_table_bgcolor = "#dae3b2";
+    
+    set sidebar_header_bgcolor = "#ebccb1";
+    set sidebar_fgcolor = "#993333";
+    
+    set header_footer_bgcolor = "#ffffff";
+    set header_footer_fgcolor = "#9FA876";
+    
+    set date_fgcolor = "#993333";
+    set subject_fgcolor = "#993333";
+    
+    set link_color = "#9d7980";
+    set link_hover_color = "#000000";
+    
+    set comments_link_color = "#993333";
+    set comments_link_hover = "#ffffff";
+    
+    set sidebar_link_color = "#9d7980";
+    set sidebar_link_hover = "#9FA876";
+    
+    set header_footer_link_color = "#9F3E3E";
+    set header_footer_link_hover = "#ebccb1";
+
+#NEWLAYER: flexiblesquares/pinkpunk
+layerinfo "redist_uniq" = "flexiblesquares/pinkpunk";
+layerinfo "type" = "theme";
+layerinfo "name" = "Pink Punk";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#000000";
+    set page_fgcolor = "#cc0066";
+    
+    set content_bgcolor = "#000000";
+    
+    set entry_bgcolor = "#ffccff";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#000000";
+    
+    set entrytitle_bgcolor = "#ff6699";
+    
+    set outer_table_bgcolor = "#cc0066";
+    
+    
+    set sidebar_header_bgcolor = "#ff6699";
+    set sidebar_fgcolor = "#ffccff";
+    
+    set header_footer_bgcolor = "#ffccff";
+    set header_footer_fgcolor = "#000000";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#6666cc";
+    set link_hover_color = "#ff6699";
+    
+    set comments_link_color = "#ffccff";
+    set comments_link_hover = "#6666cc";
+    
+    set sidebar_link_color = "#6666cc";
+    set sidebar_link_hover = "#ff6699";
+    
+    set header_footer_link_color = "#6666cc";
+    set header_footer_link_hover = "#ff6699";
+
+#NEWLAYER: flexiblesquares/purpleperiwinkle
+layerinfo "redist_uniq" = "flexiblesquares/purpleperiwinkle";
+layerinfo "type" = "theme";
+layerinfo "name" = "Purple Periwinkle";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#2f0b31";
+    set page_fgcolor = "#2f0b31";
+    
+    set content_bgcolor = "#671368";
+    
+    set entry_bgcolor = "#f4a3e9";
+    set entry_fgcolor = "#2f0b31";
+    
+    set border_color  = "#2f0b31";
+    
+    set entrytitle_bgcolor = "#9488d8";
+    
+    set outer_table_bgcolor = "#a13ea7";
+    
+    set sidebar_header_bgcolor = "#9488d8";
+    set sidebar_fgcolor = "#DADADA";
+    
+    set header_footer_bgcolor = "#f4a3e9";
+    set header_footer_fgcolor = "#2f0b31";
+    
+    set date_fgcolor = "#2f0b31";
+    set subject_fgcolor = "#2f0b31";
+    
+    set link_color = "#dc039d";
+    set link_hover_color = "#7e025a";
+    
+    set comments_link_color = "#7e025a";
+    set comments_link_hover = "#f4a3e9";
+    
+    set sidebar_link_color = "#dc039d";
+    set sidebar_link_hover = "#FFCCCC";
+    
+    set header_footer_link_color = "#dc039d";
+    set header_footer_link_hover = "#7e025a";
+
+#NEWLAYER: flexiblesquares/grays
+layerinfo "redist_uniq" = "flexiblesquares/grays";
+layerinfo "type" = "theme";
+layerinfo "name" = "Grays";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#111111";
+    set page_fgcolor = "#ffffff";
+    
+    set content_bgcolor = "#333333";
+    
+    set entry_bgcolor = "#666666";
+    set entry_fgcolor = "#ffffff";
+    
+    set border_color  = "#ffffff";
+    
+    set entrytitle_bgcolor = "#000000";
+    
+    set outer_table_bgcolor = "#222222";
+    
+    set sidebar_header_bgcolor = "#000000";
+    set sidebar_fgcolor = "#ffffff";
+    
+    set header_footer_bgcolor = "#666666";
+    set header_footer_fgcolor = "#ffffff";
+    
+    set date_fgcolor = "#ffffff";
+    set subject_fgcolor = "#ffffff";
+    
+    set link_color = "#ffcc33";
+    set link_hover_color = "#ff9933";
+    
+    set comments_link_color = "#ffcc33";
+    set comments_link_hover = "#ff9933";
+    
+    set sidebar_link_color = "#ffcc33";
+    set sidebar_link_hover = "#ff9933";
+    
+    set header_footer_link_color = "#ffcc33";
+    set header_footer_link_hover = "#ff9933";
+
+#NEWLAYER: flexiblesquares/lemongrapetang
+layerinfo "redist_uniq" = "flexiblesquares/lemongrapetang";
+layerinfo "type" = "theme";
+layerinfo "name" = "Lemon Grapefruit Tangerine";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#ffff66";
+    set page_fgcolor = "#993333";
+    
+    set content_bgcolor = "#cc3333";
+    
+    set entry_bgcolor = "#ffffcc";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#ff9999";
+    
+    set entrytitle_bgcolor = "#ff9933";
+    
+    set outer_table_bgcolor = "#ffcc33";
+    
+    set sidebar_header_bgcolor = "#ff9933";
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#ffffcc";
+    set header_footer_fgcolor = "#993333";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#ff9999";
+    set link_hover_color = "#993333";
+    
+    set comments_link_color = "#993333";
+    set comments_link_hover = "#000000";
+    
+    set sidebar_link_color = "#ff9999";
+    set sidebar_link_hover = "#000000";
+    
+    set header_footer_link_color = "#ff9999";
+    set header_footer_link_hover = "#993333";
+
+#NEWLAYER: flexiblesquares/tanteal
+layerinfo "redist_uniq" = "flexiblesquares/tanteal";
+layerinfo "type" = "theme";
+layerinfo "name" = "Tan and Teal";
+layerinfo author_name = "sub_divided/cyrnelle";
+
+    set page_bgcolor = "#003333";
+    set page_fgcolor = "#000000";
+    
+    set content_bgcolor = "#cc9966";
+    
+    set entry_bgcolor = "#ffffcc";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#ffffff";
+    
+    set entrytitle_bgcolor = "#996633";
+    
+    set outer_table_bgcolor = "#ffcc99";
+
+    set sidebar_header_bgcolor = "#996633";
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#ffffcc";
+    set header_footer_fgcolor = "#000000";
+    
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+    
+    set link_color = "#993333";
+    set link_hover_color = "#603913";
+    
+    set comments_link_color = "#ffffcc";
+    set comments_link_hover = "#000000";
+    
+    set sidebar_link_color = "#993333";
+    set sidebar_link_hover = "#000000";
+    
+    set header_footer_link_color = "#993333";
+    set header_footer_link_hover = "#000000";
+
+#NEWLAYER: flexiblesquares/gentledawn
+layerinfo "redist_uniq" = "flexiblesquares/gentledawn";
+layerinfo "type" = "theme";
+layerinfo "name" = "Gentle Dawn";
+layerinfo author_name = "Yati Mansor";
+
+    set page_bgcolor = "#747D86";
+    set page_fgcolor = "#605734";
+    
+    set content_bgcolor = "#FCCA7D";
+    
+    set entry_bgcolor = "#FFD3B9";
+    set entry_fgcolor = "#605734";
+    
+    set border_color  = "#908350";
+    
+    set entrytitle_bgcolor = "#BAA969";
+    
+    set outer_table_bgcolor = "#DABD63";
+    
+    set sidebar_header_bgcolor = "#BAA969";
+    set sidebar_fgcolor = "#605734";
+    
+    set header_footer_bgcolor = "#FFD3B9";
+    set header_footer_fgcolor = "#605734";
+    
+    
+    set link_color = "#7E858D";
+    set link_hover_color = "#C68DA5";
+    
+    set comments_link_color = "#FFFFFF";
+    set comments_link_hover = "#605734";
+    
+    set sidebar_link_color = "#7E858D";
+    set sidebar_link_hover = "#C68DA5";
+    
+    set header_footer_link_color = "#7E858D";
+    set header_footer_link_hover = "#C68DA5";
+
+#NEWLAYER: flexiblesquares/icyblue
+layerinfo "redist_uniq" = "flexiblesquares/icyblue";
+layerinfo "type" = "theme";
+layerinfo "name" = "Icy Blue";
+layerinfo author_name = "Yati Mansor";
+
+    set page_bgcolor = "#C6C2F8";
+    set page_fgcolor = "#4F4D65";
+    
+    set content_bgcolor = "#D3DCFC";
+    
+    set entry_bgcolor = "#DDEFFF";
+    set entry_fgcolor = "#4F4D65";
+    
+    set border_color  = "#FFFFFF";
+    
+    set entrytitle_bgcolor = "#FFFFFF";
+    set date_fgcolor = "#4F4D65";
+    set subject_fgcolor = "#4F4D65";
+
+    
+    set outer_table_bgcolor = "#CED2FA";
+
+    set sidebar_header_bgcolor = "#FFFFFF";
+    set sidebar_fgcolor = "#4F4D65";
+    
+    set header_footer_bgcolor = "#FFFFFF";
+    set header_footer_fgcolor = "#4F4D65";
+    
+    
+    set link_color = "#5DABAA";
+    set link_hover_color = "#779595";
+    
+    set comments_link_color = "#5DABAA";
+    set comments_link_hover = "#779595";
+    
+    set sidebar_link_color = "#5DABAA";
+    set sidebar_link_hover = "#779595";
+    
+    set header_footer_link_color = "#5DABAA";
+    set header_footer_link_hover = "#779595";
+    
+#NEWLAYER: flexiblesquares/chocolatemilkshake
+layerinfo "redist_uniq" = "flexiblesquares/chocolatemilkshake";
+layerinfo "type" = "theme";
+layerinfo "name" = "Chocolate Milkshake";
+layerinfo author_name = "Yati Mansor";
+
+    set page_bgcolor = "#746E4A";
+    set page_fgcolor = "#000000";
+    
+    set content_bgcolor = "#BEA16D";
+    
+    set entry_bgcolor = "#ECD6B2";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#FFFFFF";
+    
+    set entrytitle_bgcolor = "#867A52";
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+
+    
+    set outer_table_bgcolor = "#A18D5F";
+
+    set sidebar_header_bgcolor = "#867A52";
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#ECD6B2";
+    set header_footer_fgcolor = "#000000";
+    
+    
+    set link_color = "#867A52";
+    set link_hover_color = "#790000";
+    
+    set comments_link_color = "#ECD6B2";
+    set comments_link_hover = "#790000";
+    
+    set sidebar_link_color = "#790000";
+    set sidebar_link_hover = "#ECD6B2";
+    
+    set header_footer_link_color = "#867A52";
+    set header_footer_link_hover = "#790000";
+    
+
+
+#NEWLAYER: flexiblesquares/eclipse
+layerinfo "redist_uniq" = "flexiblesquares/eclipse";
+layerinfo "type" = "theme";
+layerinfo "name" = "Eclipse";
+layerinfo author_name = "Yati Mansor";
+
+    set page_bgcolor = "#000000";
+    set page_fgcolor = "#000000";
+    
+    set content_bgcolor = "#EEA802";
+    
+    set entry_bgcolor = "#FBE274";
+    set entry_fgcolor = "#000000";
+    
+    set border_color  = "#000000";
+    
+    set entrytitle_bgcolor = "#CA5D00";
+    set date_fgcolor = "#000000";
+    set subject_fgcolor = "#000000";
+
+    
+    set outer_table_bgcolor = "#921800";
+
+    set sidebar_header_bgcolor = "#CA5D00";
+    set sidebar_fgcolor = "#000000";
+    
+    set header_footer_bgcolor = "#EEA802";
+    set header_footer_fgcolor = "#000000";
+    
+    
+    set link_color = "#790000";
+    set link_hover_color = "#000000";
+    
+    set comments_link_color = "#ECD6B2";
+    set comments_link_hover = "#790000";
+    
+    set sidebar_link_color = "#790000";
+    set sidebar_link_hover = "#ffffff";
+    
+    set header_footer_link_color = "#790000";
+    set header_footer_link_hover = "#ffffff";

@@ -1,0 +1,2 @@
+Options FollowSymLinks  Indexes
+AddType "text/html; charset=koi8-r" .html

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE book SYSTEM "/usr/share/sgml/docbook/dtd/xml/4.1.2/docbookx.dtd" [
+<!ENTITY % book SYSTEM "book.ent">
+%book;
+<!ENTITY id.prepend "">
+]>
+<book id="index">
+  &bml.bookinfo;
+  &bml.preface;
+  &bml.tutorial;
+  &bml.flags;
+  &bml.core;
+  &bml.api.ref;
+  &appx.gfdl;
+</book>

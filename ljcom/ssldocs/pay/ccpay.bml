@@ -1,0 +1,660 @@
+<?page
+title=>Pay with Credit Card
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+    use LWP;
+    use LWP::UserAgent;
+
+    my $req = shift;
+    my $r = $req->{r};
+    my $uniq = $r->notes('uniq');
+
+    my $dbh = LJ::get_db_writer();
+    my $cart = $POST{'cart'};
+    my $remote = LJ::get_remote();
+    my $remote_ip = LJ::get_remote_ip();
+
+    return BML::redirect("$LJ::SITEROOT/pay") unless LJ::did_post();
+
+    my $no_charge = "As a result of this error, your credit card has <i>not</i> been charged.";
+
+    my $error = sub {
+        return LJ::bad_input($_[0], $no_charge);
+    };
+
+    # is merchant gateway down?
+    return "<?h1 Payment Gateway Down h1?>" .
+        "<?p We're sorry, but our credit card transaction gateway is currently down. " .
+        "Please try back in a few minutes. $no_charge p?>"
+            if $LJ::AUTHNET_DOWN;
+
+    unless ($POST{'bill_country'} =~ /^\w+$/) {
+        return $error->("Please Go back and enter your country.");
+    }
+
+    if ($POST{'bill_country'} eq "US") {
+        return $error->("Zip code required for credit card verification. Please go back and enter your zip code.")
+            unless $POST{'bill_zip'} =~ /\d+/;
+    }
+
+    my $lockname = "authnet-$cart";
+    my $gotlock = $dbh->selectrow_array("SELECT GET_LOCK(?,5)", undef, $lockname);
+    unless ($gotlock) {
+        return $error->("Error getting lock.");
+    }
+    my $unlock = sub {
+        $dbh->do("SELECT RELEASE_LOCK(?)", undef, $lockname);
+    };
+
+    # make $error unlock now
+    $error = sub {
+        $unlock->();
+        return LJ::bad_input($_[0], $no_charge);
+    };
+
+    my $cartobj = LJ::Pay::load_cart($cart)
+        or return $error->("Order not found.");
+
+    # do time-based rate-limiting
+    if (@LJ::MEMCACHE_SERVERS) {
+
+        # start by checking rate keys for this cart
+        my @memkeys = ([$cartobj->{payid}, "cctry_payid:$cartobj->{payid}"]);
+        push @memkeys, [$cartobj->{userid}, "cctry_uid:$cartobj->{userid}"]
+            if $cartobj->{userid};
+        push @memkeys, [$uniq, "cctry_uniq:$uniq"]
+            if $uniq;
+
+        # now check rate keys for all of the items, but don't note duplicate
+        # email addresses/uids
+        my %emails = ();
+        my %userids = ();
+        foreach my $it (@{$cartobj->{items}}) {
+            if (my $uid = $it->{rcptid}) {
+                next if $userids{$uid} || $uid == $cartobj->{userid};
+                $userids{$uid}++;
+                push @memkeys, [$uid, "cctry_uid:$uid"];
+            } elsif (my $email = $it->{rcptemail}) {
+                next if $emails{$email};
+                $emails{$email}++;
+                push @memkeys, [$email, "cctry_email:$email"];
+            }
+        }
+
+        my $now = time();
+        my $cctry = LJ::MemCache::get_multi(@memkeys) || {};
+
+        my $exceeded = 0; # is the rate exceeded based on one of the time queues?
+        my $sendmail = 0; # was the 10 try threshold passed?  eg: send an email
+        foreach my $memkey (@memkeys) {
+
+            my $val = $cctry->{$memkey->[1]} || [];
+            my @try = grep { $_ >= $now - 3600*6 } @$val;
+            my $tries = scalar @try;
+            my $lasttry = $try[-1];
+
+            my $toofast = LJ::run_hook("ccpay_rate_check", $tries, $lasttry);
+            $exceeded = 1 if $toofast;
+            $sendmail = 1 if $tries == 10; # passed into "probably bot" territory
+
+            # save this try
+            push @try, $now;
+            @try = @try[-20..-1] if @try > 20;
+            LJ::MemCache::set($memkey, \@try);
+        }
+
+        # send an email if it's a moderately severe violation
+        # we send an email when they go over the 10 try mark,
+        # then not again since if they got this far they'll try
+        # multiple times and we don't want a flood of emails
+        if ($sendmail) {
+            my $passtxt;
+            $passtxt = "NOTE: Although this user has made 10+ tries to process their credit card, " .
+                "the most recent attempt (which triggered this email) has passed rate-limit " .
+                "checks.  The behavior is still fishy and may require further investigation.\n\n"
+                unless $exceeded;
+
+            LJ::send_mail({
+                'to' => $LJ::ACCOUNTS_EMAIL,
+                'from' => $LJ::ACCOUNTS_EMAIL,
+                'wrap' => 1,
+                'subject' => "CC rate limiting: payid: $cartobj->{payid}",
+                'body' => "This warning has been sent because there have been at least 10 " .
+                    "attempts to pay for order \#$cartobj->{payid} via credit card. " .
+                    "No further emails will be sent about this incident since they are likely " .
+                    "to continue trying, but here is relevant sysban information: \n\n" .
+                    "        Payid: $cartobj->{payid}\n" .
+                    "  Remote User: " . ($remote ? $remote->{user} : 'unknown') . "\n" .
+                    "    Remote IP: " . ($remote_ip || 'unknown') . "\n" .
+                    "  Uniq Cookie: " . ($uniq || 'unknown') . "\n\n" .
+                    "Email addresses and userids have also been included in the rate checking. " .
+                    "See $LJ::SITEROOT/admin/accounts/paiddetails.bml?payid=$cartobj->{payid} " .
+                    "for more information.\n\n" .
+                    $passtxt,
+                });
+        }
+
+        # see if they're voilating rate limits
+        if ($exceeded) {
+            return $error->("You are attempting to process credit card transactions too frequently. " .
+                            "Your credit card has not been charged. Please wait a while then try again " .
+                            "later.  If the problem persists, please contact $LJ::ACCOUNTS_EMAIL.");
+        }
+    }
+
+    # verify cart (check for items that have been invalidated since adding)
+    unless (LJ::Pay::is_valid_cart($cartobj)) {
+        return $error->("The given cart contains items that are no longer valid.  This could be caused by conflicts with other " .
+                        "carts created during the same time.  Please try again with a new cart.");
+    }
+
+    # now we have a cart object
+    if ($cartobj->{'userid'}) {
+
+        return $error->("You must be logged in as this cart's owner to proceed with checkout.")
+            unless $remote;
+
+        return $error->("You do not own this cart.")
+            unless $cartobj->{'userid'} == $remote->{'userid'};
+
+        if (LJ::sysban_check('pay_email', $remote->{'email'})) {
+            LJ::sysban_note($remote->{'userid'},
+                            "Payment blocked based on email",
+                            { 'email' => $remote->{'email'},
+                              'user' => $remote->{'user'},
+                              'cart' => $cart });
+
+            return $error->("Sorry, we were unable to process your request.");
+        }
+
+        if (LJ::sysban_check('pay_user', $remote->{'user'})) {
+            LJ::sysban_note($remote->{'userid'},
+                             "Payment blocked based on user",
+                            { 'user' => $remote->{'user'}, 'cart' => $cart });
+
+            return $error->("Sorry, we were unable to process your request.");
+        }
+    }
+
+    if ($uniq && LJ::sysban_check('pay_uniq', $uniq)) {
+        LJ::sysban_note($remote ? $remote->{'userid'} : 0,
+                        "Payment blocked based on uniq",
+                        { 'user' => $remote ? $remote->{'user'} : "(anon)",
+                          'uniq' => $uniq,
+                          'cart' => $cart });
+        return $error->("Sorry, we were unable to process your request.");
+    }
+
+    # if there is no userid, then we know it's clean because we checked
+    # each individual item for email blocks when they were added to the cart
+
+    my $has_coppa      = LJ::Pay::cart_contains_coppa($cartobj);
+    my $needs_shipping = LJ::Pay::cart_needs_shipping($cartobj);
+
+    # coppa requires remote
+    if ($has_coppa && ! $remote) {
+        return $error->("You must be logged in as the account being verified (the child's account) in order to process an order containing an Age Verification item.");
+    }
+
+    my $amt_total = $cartobj->{amount};
+    my $coppa_only = 0;
+    if ($amt_total <= 0 && $has_coppa) {
+        $amt_total = '0.01';
+        $coppa_only = 1;
+    }
+
+    return $error->("Order amount is zero.")
+        unless $amt_total > 0;
+
+    my $u;
+    if ($cartobj->{'userid'}) {
+        $u = LJ::load_userid($cartobj->{'userid'});
+        LJ::load_user_props($u, 'allow_pay', 'fraud_watch');
+    }
+
+    my $country = LJ::LJcom::country_of_ip($remote_ip);
+    my $now = LJ::mysql_time(time());
+    LJ::Pay::payvar_add($cartobj->{'payid'}, "geoip-country", "$now: country=$country ($remote_ip)");
+
+    # attempt to gather and store user's country/state
+    if ($POST{bill_country}) {
+        my $err;
+        my ($ctry, $st) = LJ::Pay::check_country_state($POST{bill_country}, $POST{bill_state}, \$err);
+        return $error->($err) if $err;
+
+        # now save country and state in database
+        LJ::Pay::payid_set_state($cartobj->{payid}, $ctry, $st);
+    }
+
+    my $from = sub { return lc($country) eq $_[0] || lc($POST{'bill_country'}) eq $_[0] };
+
+    # stop Russian/Ukrainian credit card theft
+    if ($from->('ru') || $from->('ua')) {
+
+        # see if we should force the user to be allowed to pay
+        unless ($u && $u->{'allow_pay'} eq 'Y') {
+
+            # if cart needs shipping, don't accept any card or address from Russia/Ukraine
+            return $error->("We do not currently accept credit card payments from Russia or the Ukraine on shipped goods.")
+                if $needs_shipping;
+
+            # if cart doesn't need shipping, bill country and country must match if either is Russia/Ukraine
+            return $error->("The country of your Internet address does not match the country of your credit card.  From here you can:<ul>" .
+                            "<li>Use a different payment method or credit card.</li><li>Pay using an Internet connection in your credit card's country.</li>" .
+                            "<li>Contact <a href='$LJ::SITEROOT/support/'>$LJ::SITENAME support</a> and explain your situation.  We may be able to help.</li></ul>")
+                unless lc($country) eq lc($POST{'bill_country'});
+        }
+
+        # otherwise we've decided to allow this user, log
+        LJ::Pay::payvar_add($cartobj->{'payid'}, "allow_pay", 
+                            "$now: cc=$POST{'bill_country'}, actual=$country, user=$u->{'user'} (allowed)");
+    }
+
+    # throw an error if they didn't provide a parent's email
+    my $paremail;
+    if ($has_coppa) {
+        $paremail = $POST{paremail};
+
+        my @email_errors;
+        push @email_errors, "You must enter a parent email address to proceed with <a href='$LJ::SITEROOT/legal/coppa.bml'>COPPA</a> Age Verification."
+            unless $paremail;
+        push @email_errors, "The parental email address must not match your account's email address."
+            if lc $remote->{email} eq lc $paremail; # ignore case changes
+
+         LJ::check_email($paremail, \@email_errors);
+
+        # throw message if necessary
+        return $error->(@email_errors) if @email_errors;
+    }
+
+    my $setup_coppa_email_validation = sub {
+        # register an auth action
+        my $aa = LJ::register_authaction($remote->{userid}, "parentemail", $paremail)
+            or return $error->("Unable to register authaction.");
+
+        # now send the verification email
+        LJ::send_mail({
+            to => $paremail,
+            from => $LJ::SUPPORT_EMAIL,
+            subject => "$LJ::SITENAME Parent Email Verification",
+            wrap => 1,
+            body => qq{
+Welcome, you have attempted to create a $LJ::SITENAME account for your child.
+
+By activating this account you certify that you have read our Children's
+Online Privacy Protection Act disclosure, Terms of Service and Privacy
+Policy and that you agree to them.
+
+    COPPA Disclosure
+    $LJ::SITEROOT/legal/coppa.bml
+
+    Terms of Service
+    $LJ::SITEROOT/legal/tos.bml
+
+    Privacy Policy
+    $LJ::SITEROOT/legal/privacy.bml
+
+To complete your child's journal creation and verify your email address,
+you must click on the link below.
+
+$LJ::SITEROOT/agecheck/consent.bml?c=$aa->{aaid}.$aa->{authcode}
+
+(If you are unable to click on the link, copy it into your browser.)
+
+Your child may access his or her journal at the following two URLs:
+
+   $LJ::SITEROOT/users/$remote->{user}/
+   $LJ::SITEROOT/~$remote->{user}/
+
+Below is the $LJ::SITENAME username that was registered:
+
+   Username: $remote->{user}
+
+If your child needs to retrieve his or her password, they can do so at any
+time by visiting the following URL:
+
+   $LJ::SITEROOT/lostinfo.bml
+
+Enjoy!
+
+$LJ::SITENAME Team
+$LJ::SITEROOT/
+},
+        });
+
+    };
+
+    my $success = sub {
+        my $ret;
+
+        if ($coppa_only) {
+            $ret .= "<?h1 Successful Authorization h1?>";
+            $ret .= "<?p You have completed the first step of the <a href='$LJ::SITEROOT/legal/coppa.bml'>COPPA</a> Age Verification.  Parents, please check your email: you should shortly receive a verification message.  As soon as you get the email and click the link inside, your child's account will be fully active. p?>";
+            $setup_coppa_email_validation->();
+
+        } else {
+            $ret .= "<?h1 Paid h1?>";
+            $ret .= "<?p This order has been successfully paid for. p?>";
+
+            if ($has_coppa) {
+                $ret .= "<?p Additionally, you have completed the first step of the <a href='$LJ::SITEROOT/legal/coppa.bml'>COPPA</a> Age Verification.  Parents, please check your email: you should shortly receive a verification email.  As soon as you get the email and click the link inside, your child's account will be fully active. p?>";
+                $setup_coppa_email_validation->();
+            }
+        }
+
+        if ($needs_shipping) {
+            $ret .= "<?p <b>Notice:</b> Your email receipt from Authorize.net (our credit card processor) won't contain shipping information.  Don't worry... that information is stored in our database. p?>";
+        }
+
+        $ret .= "<?h1 Order ($cart) h1?><?p ";
+        LJ::Pay::render_cart($cartobj, \$ret, { 'secureimg' => 1 });
+        $ret .= " p?>";
+
+        $unlock->();
+        return $ret;
+    };
+
+    if ($cartobj->{'mailed'} ne "C") {
+        # not in cart state anymore.
+        # double-clicked?  tell them it's all good.
+        return $success->();
+    }
+
+    my $amt_charge = sprintf("%0.02f", $amt_total);
+    if ($amt_charge ne $POST{'amt_charge'}) {
+        return $error->("Unexpected error: order amount changed from time you entered card info until now.");
+    }
+
+    my $cardnum = $POST{'cardnum'};
+    $cardnum =~ s![^\d]!!g;  # remove non-numbers
+    my $expdate = sprintf("%02d%02d", $POST{'expdate_mm'}, $POST{'expdate_yy'} % 100);
+
+    my $cardcode = $POST{'cardcode'};
+    $cardcode =~ s!\s+!!g;  # remove non-numbers
+    if ($LJ::USE_CARD_CODE) {
+        return $error->("You must provide your full <a href='cvv2.bml' target='_blank'>card verification number</a> for this transaction.")
+            unless $cardcode =~ /^\d{3,}$/;
+    }
+
+    # blocked credit card?
+    $cardnum =~ /^(\d\d\d\d).*(\d\d\d\d)$/;
+    if (LJ::sysban_check('pay_cc', "$1-$2")) {
+
+        my $vars = { 'cart' => $cart };
+
+        # no remote, there's not much useful information
+        # so we'll see who they were buying for
+        unless ($remote) {
+            # get usernames of people they're trying to buy for
+            my %rcpt_users = ();
+            my $ct = 0;
+            LJ::load_userids_multiple([ map { $_->{'rcptid'} => \$rcpt_users{"rcpt_user_" . ++$ct} } @{$cartobj->{'items'}} ]);
+
+            # fill in vars to log
+            $ct = 0;
+            map { $ct++, $vars->{"rcpt_email_$ct"} = $_->{'rcptemail'}
+                      if $_->{'rcptemail'} } @{$cartobj->{'items'}};
+            $ct = 0;
+            map { $ct++, $vars->{"rcpt_user_$ct"} = $rcpt_users{$_}->{'user'}
+                      if $rcpt_users{$_}->{'user'} } keys %rcpt_users;
+        } else {
+            $vars->{'email'} => $remote->{'email'};
+            $vars->{'user'} => $remote->{'user'};
+        }
+
+        LJ::sysban_note($remote ? $remote->{'userid'} : 0,
+                        "Payment blocked based on credit card", $vars);
+
+        return $error->("We are unable to process the card given.");
+    }
+
+    # send fraud watch emails if necessary
+    LJ::Pay::send_fraud_email($cartobj, $u);
+
+    # AUTHORIZE: see if the AVS information is accurate the the account is in good standing
+    my $ua = new LWP::UserAgent;
+    $ua->agent("LJ-AuthNet/1.0");
+    my $vars = {
+        'x_Version' => '3.1',
+        'x_Delim_Data' => 'True',
+        'x_Login' => $LJ::AUTHNET_USER,
+        'x_Password' => $LJ::AUTHNET_PASS,
+        'x_Card_Num' => $cardnum,
+        'x_Exp_Date' => $expdate,
+        'x_Amount' => $amt_charge,
+        'x_Email' => $POST{'email'},
+        'x_Email_Customer' => ($coppa_only ? 'FALSE' : 'TRUE'), # don't email receipts for coppa verifications
+        'x_Customer_IP' => $remote_ip,
+        'x_Cust_ID' => $cartobj->{'userid'},
+        'x_Type' => 'AUTH_ONLY',
+        'x_Invoice_Num' => $cart, # max 20, big enough
+        'x_Address' => $POST{'bill_addr'},
+        'x_City' => $POST{'bill_city'},
+        'x_State' => $POST{'bill_state'},
+        'x_Zip' => $POST{'bill_zip'},
+        'x_Country' => $POST{'bill_country'},
+        'x_Merchant_Email' => $LJ::AUTHNET_MERCHANT,
+    };
+    $vars->{'x_Card_Code'} = $cardcode if $LJ::USE_CARD_CODE;
+    $vars->{'x_Test_Request'} = 'TRUE' if $LJ::AUTHNET_TEST;
+
+    my $req = new HTTP::Request POST => 'https://secure.authorize.net/gateway/transact.dll';
+    $req->content_type('application/x-www-form-urlencoded');
+    $req->content(join("&", map { LJ::eurl($_) . "=" . LJ::eurl($vars->{$_}) } keys %$vars));
+    # Pass request to the user agent and get a response back
+    my $res = $ua->request($req);
+
+    my ($ct, $auth_pass, $err);
+    my @fields;
+    if ($res->is_success) {
+        $ct = $res->content;
+
+        # did authorization pass?
+        @fields = split(/,/, $ct);
+        $auth_pass = $fields[0] == 1;
+        $err = $fields[3] unless $auth_pass;
+        
+    } else {
+        $err = "Could not contact payment gateway.";
+    }
+
+    my $txn_id = $fields[6];
+    
+    $dbh->do("INSERT INTO authnetlog (payid, cmd, datesent, ip, amt, result, response) ".
+             "VALUES (?,'authonly',NOW(),?,?,?,?)", undef,
+             $cartobj->{'payid'}, $remote_ip, $amt_charge, $auth_pass ? "pass" : "fail", $ct);
+
+    my %payvars = (
+                   'an-ip' => $remote_ip,
+                   'an-email' => $POST{'email'},
+                   'an-cardname' => $POST{'cardname'},
+                   );
+
+    $payvars{'an-avs'} = join('|', map { $POST{"bill_$_"} } qw(addr city state zip country));
+
+    my $cap_pass;
+    my $cap_txn_id;
+
+    # CAPTURE: now it's time to get the money, if there were no AVS errors
+    if ($auth_pass && ! $coppa_only) {
+        my $vars = {
+            'x_Version' => '3.1',
+            'x_Delim_Data' => 'True',
+            'x_Login' => $LJ::AUTHNET_USER,
+            'x_Password' => $LJ::AUTHNET_PASS,
+            'x_Trans_ID' => $txn_id,
+            'x_Type' => 'PRIOR_AUTH_CAPTURE',
+        };
+        $vars->{'x_Test_Request'} = 'TRUE' if $LJ::AUTHNET_TEST;
+        my $req = new HTTP::Request POST => 'https://secure.authorize.net/gateway/transact.dll';
+        $req->content_type('application/x-www-form-urlencoded');
+        $req->content(join("&", map { LJ::eurl($_) . "=" . LJ::eurl($vars->{$_}) } keys %$vars));
+        my $res = $ua->request($req);
+        my $ct;
+        my @fields;
+        if ($res->is_success) {
+            $ct = $res->content;
+
+            # did capture pass?
+            @fields = split(/,/, $ct);
+            $cap_pass = $fields[0] == 1;
+            $err = $fields[3] unless $cap_pass;
+
+        } else {
+            $err = "Could not contact payment gateway.";
+        }
+
+        $cap_txn_id = $fields[6];
+        
+        $dbh->do("INSERT INTO authnetlog (payid, cmd, datesent, ip, amt, result, response) ".
+                 "VALUES (?,'priorcap',NOW(),?,?,?,?)", undef,
+                 $cartobj->{'payid'}, $remote_ip, $amt_charge, $cap_pass ? "pass" : "fail", $ct);
+
+        # keep track of trans ID & card fingerprint to enable refunds if necessary
+        if ($cap_pass) {
+            $cardnum =~ /^(\d\d\d\d).*(\d\d\d\d)$/;
+            $payvars{'an-refund'} = join(",", $cap_txn_id, $expdate, $1, $2);
+            $dbh->do("UPDATE payments SET used='N', mailed='N', ".
+                     "method='cc', daterecv=NOW() WHERE payid=?", undef,
+                     $cartobj->{'payid'});
+        }
+
+        # VOID: if capture failed, uncapture their fund
+        #   0: 2 means declined
+        #   1: 2 means declined
+        #   3: 27 means AVS mismat
+        if ($fields[0] == 2 && $fields[1] == 2 && $fields[2] == 27 && $txn_id) {
+            my $vars = {
+                'x_Version' => '3.1',
+                'x_Delim_Data' => 'True',
+                'x_Login' => $LJ::AUTHNET_USER,
+                'x_Password' => $LJ::AUTHNET_PASS,
+                'x_Trans_ID' => $txn_id,
+                'x_Type' => 'VOID',
+            };
+            $vars->{'x_Test_Request'} = 'TRUE' if $LJ::AUTHNET_TEST;
+            my $req = new HTTP::Request POST => 'https://secure.authorize.net/gateway/transact.dll';
+            $req->content_type('application/x-www-form-urlencoded');
+            $req->content(join("&", map { LJ::eurl($_) . "=" . LJ::eurl($vars->{$_}) } keys %$vars));
+            my $res = $ua->request($req);
+            my $ct;
+            if ($res->is_success) {
+                $ct = $res->content;
+            } 
+            my @fields = split(/,/, $ct);
+            my $pass = $fields[0] == 1;
+        
+            $dbh->do("INSERT INTO authnetlog (payid, cmd, datesent, ip, amt, result, response) ".
+                     "VALUES (?,'void',NOW(),?,?,?,?)", undef,
+                     $cartobj->{'payid'}, $remote_ip, 0.00, $pass ? "pass" : "fail", $ct);
+        }
+    }
+
+    # save payvars in db now
+    foreach (keys %payvars) {
+        next unless $payvars{$_};
+        LJ::Pay::payvar_add($cartobj->{'payid'}, $_, $payvars{$_});
+    }
+
+    # if a failure, note in ccfail table and possibly notify admins
+    unless ($auth_pass && ($coppa_only || $cap_pass)) {
+
+        # note that we've failed once again
+        my %done;
+        my $emailtxt;
+        foreach my $it ([$cartobj->{'userid'}, $cartobj->{'rcptemail'}],
+                        map { [ $_->{'rcptid'}, $_->{'rcptemail'} ] } @{$cartobj->{'items'}}) {
+
+            my $userid = $it->[0];
+            my $email = $it->[1];
+            my $user = $email;
+            if ($userid) {
+                my $u = LJ::load_userid($userid);
+                $email = $u->{'email'};
+                $user = $u->{'user'};
+            }
+
+            next if $done{$email};
+            $done{$email}++;
+
+            # get failures within the last 30 days
+            my $failct = $dbh->selectrow_array("SELECT COUNT(*) FROM ccfail " .
+                                               "WHERE email=? AND time>UNIX_TIMESTAMP()-3600*24*30",
+                                               undef, $email);
+
+            # see if we've passed the threshold
+            $failct++;
+            if ($LJ::CCFAIL_NOTIFY && $failct % $LJ::CCFAIL_NOTIFY == 0) {
+                my $now = LJ::mysql_time();
+
+                my $lastmailct = $failct - $LJ::CCFAIL_NOTIFY; # pretty good guess
+                $emailtxt .=
+                    "        User: " . ($user || $email) . "\n" .
+                    "    Failures: $failct\n" .
+                    "   Last Mail: $lastmailct failures\n" .
+                    "       Payid: $cartobj->{'payid'}\n" .
+                    "        Time: $now\n\n";
+
+            }
+                
+            # now update table in db
+            $dbh->do("REPLACE INTO ccfail (email, time, userid) " .
+                     "VALUES (?, UNIX_TIMESTAMP(), ?)",
+                     undef, $email, $userid);
+        }
+
+        # send out the combined email now
+        LJ::send_mail({
+            'to' => $LJ::ACCOUNTS_EMAIL,
+            'from' => $LJ::ACCOUNTS_EMAIL,
+            'wrap' => 1,
+            'subject' => "CC Payment Failure Notification: Payment #$cartobj->{'payid'}",
+            'body' => "This warning has been sent because the following AVS failure " .
+                      "has occurred on $LJ::SITENAMESHORT.\n\n" .
+
+                      "       Payid: $cartobj->{'payid'}\n" .
+                      "        Time: " . LJ::mysql_time() . "\n\n" .
+
+                      "Below are failure stats for each user listed on this cart.\n\n" .
+
+                      $emailtxt,
+
+        }) if $emailtxt;
+
+    }
+
+    if ($err) {
+        $unlock->();
+        return "<b>Error processing payment:</b> $err" .
+            "<p>It is possible that your bank has placed a temporary hold on the funds ".
+            "for this authorization, but they should be released after a short ".
+            "period of time.  Your card has <i>not</i> been charged.</p>" .
+
+            "<p>For more information on AVS and credit card transactions, " .
+            "<a href='$LJ::SITEROOT/support/faqbrowse.bml?faqid=190'>" .
+            "please see the FAQ</a>.</p>";
+    }
+
+    # if the order amount is 0, mark this cart as free.  this catches
+    # coppa-only orders and orders containing coppa which needed to 
+    # continue to the cc.bml page
+    if ($cartobj->{amount} <= 0) {
+        $dbh->do("UPDATE payments SET used='N', mailed='N', ".
+                 "method='free', daterecv=NOW() WHERE payid=?", undef,
+                 $cartobj->{'payid'});
+    }
+
+    # if the order was processed successfully, we'll mark the user with allow_pay
+    LJ::Pay::note_payment_from_user($u);
+
+    # $success->() will call $unlock->() for us
+    return $success->();
+}
+_code?>
+<=body
+page?>
+
+

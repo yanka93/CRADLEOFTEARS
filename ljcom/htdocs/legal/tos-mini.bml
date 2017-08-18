@@ -1,0 +1,25 @@
+<html>
+<head>
+<base target="_blank">
+<style type='text/css'>
+    a, a:visited, a:hover { text-decoration: none; color: black; }
+
+body {
+   font-family: sans-serif;
+    font-size: 8pt;
+ margin: 3px;
+}
+    ol.ljtos li { margin-top: 0.7em; }
+    ol.ljtos b+p { margin-top: 0; }
+    ol.ljtos p { margin-top: 0.5em; margin-bottom: 0.5em; }
+
+</style>
+</head>
+<body>
+<?_include
+bml=>0
+code=>0
+file=>legal-tos
+_include?>
+</body>
+</html>

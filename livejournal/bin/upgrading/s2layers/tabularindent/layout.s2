@@ -1,0 +1,741 @@
+# -*-s2-*-
+
+layerinfo type = "layout";
+layerinfo name = "Tabular Indent";
+layerinfo redist_uniq = "tabularindent/layout";
+layerinfo previews = "tabularindent/tabularindent.jpg";
+
+propgroup colors {
+  property Color body_bgcolor { 
+      des = "Body background color";
+      s1color = "page_back";
+  }
+  property Color main_bgcolor { 
+      des = "Background of main text areas";
+      s1color = "page_back";
+  }
+  property Color main_fgcolor { 
+      des = "Main text color"; 
+      s1color = "page_text";
+  }
+  property Color border_color { 
+      des = "Color of borders";
+      # No s1color equivalent
+  }
+  property Color headerbar_bgcolor { 
+      des = "Background color of header bar(s)";
+      s1color = "stronger_back";
+  }
+  property Color headerbar_fgcolor { 
+      des = "Header bar text color";
+      s1color = "stronger_text";
+  }
+  property Color captionbar_mainbox_bgcolor { 
+      des = "Main background color of caption bar";
+      s1color = "page_back";
+  }
+  property Color captionbar_mainbox_fgcolor { 
+      des = "Text color of caption bar";
+      s1color = "page_text";
+  }
+  property Color captionbar_userpicbox_color { 
+      des = "User picture background color of caption bar";
+      s1color = "strong_back";
+  }
+  property Color accent_bgcolor { 
+      des = "Background color of accented areas";
+      s1color = "weak_back";
+  }
+  property Color accent_fgcolor { 
+      des = "Accented area text color";
+      s1color = "weak_text";
+  }
+  property Color link_color { 
+      des = "Link color";
+      s1color = "page_link";
+  }
+  property Color vlink_color {
+      des = "Visited link color";
+      s1color = "page_vlink";
+  }
+  property Color alink_color {
+      des = "Active link color";
+      s1color = "page_alink";
+  }
+  property Color comment_bar_one_bgcolor {
+      des = "Alternating background color for comment bars (one)";
+  }
+  property Color comment_bar_two_fgcolor {
+      des = "Text color on alternating comment bars (one)";
+  }
+  property Color comment_bar_two_bgcolor {
+      des = "Alternating background color for comment bars (two)";
+  }
+  property Color comment_bar_one_fgcolor {
+      des = "Text color on alternating comment bars (two)";
+  }
+  property Color comment_bar_screened_bgcolor {
+      des = "Background bar color for screened comments";
+  }
+  property Color comment_bar_screened_fgcolor {
+      des = "Text color on background bar for screened comments";
+  }
+}
+set body_bgcolor = "#ffffff";
+set main_bgcolor = "#ffffff";
+set main_fgcolor = "#000000";
+set border_color = "#000000";
+set headerbar_bgcolor = "#6666cc";
+set headerbar_fgcolor = "#ffffff";
+set captionbar_mainbox_bgcolor = "#ffffff";
+set captionbar_mainbox_fgcolor = "#000000";
+set captionbar_userpicbox_color = "#c0c0ff";
+set accent_bgcolor = "#eeeeff";
+set accent_fgcolor = "#000000";
+set link_color = "#000050";
+set vlink_color = "#500050";
+set alink_color = "#ff00c0";
+set comment_bar_one_bgcolor = "#c0c0ff";
+set comment_bar_one_fgcolor = "#000000";
+set comment_bar_two_bgcolor = "#eeeeff";
+set comment_bar_two_fgcolor = "#000000";
+set comment_bar_screened_bgcolor = "#dddddd";
+set comment_bar_screened_fgcolor = "#000000";
+
+propgroup presentation {
+  property bool show_entry_userpic { 
+      des = "Show the userpic on the journal entries?";
+  }
+  property use page_recent_items;
+  property use page_friends_items;
+  property use use_shared_pic;
+  property use view_entry_disabled;
+  property string page_background_image {
+      des = "URL to an image to be used for the page background";
+  }
+  property use external_stylesheet;
+}
+set show_entry_userpic = true;
+set page_recent_items = 20;
+set page_friends_items = 20;
+set view_entry_disabled = false;
+set page_background_image = "";
+
+propgroup text {
+  property use text_post_comment;
+  property use text_read_comments;
+  property use text_post_comment_friends;
+  property use text_read_comments_friends;
+}
+
+set tags_aware = true;
+
+function Page::lay_captionbar_navigation () { }
+
+function captionbar (Page p) {
+    var string title = $p->title();
+
+    var string userpic;
+    var Image up_img = $p.journal.default_pic;
+    if (defined $up_img) {
+        $userpic = """<img src="$up_img.url" height="$up_img.height" width="$up_img.width" alt="[icon]" />""";
+    }
+
+    var string website_name = $p.journal.website_name ? $p.journal.website_name : $*text_website_default_name;
+    var string website;
+    if ($p.journal.website_url != "") {
+        $website = """<tr><td>View:</td><td><a href="$p.journal.website_url">Website ($website_name)</a>.</td></tr>""";
+    }
+
+    var string links;
+    foreach var string v ($p.views_order) {
+        $links = "$links<tr><td>View:</td><td>" + ($p.view == $v ?
+                           lang_viewname($v) :
+                           "<a href='$p.view_url{$v}'>"+lang_viewname($v)+"</a>") + ".</td></tr>\n";
+    }
+
+    var string captionbar_userpicbox_style = "background-color: $*captionbar_userpicbox_color";
+    """
+<table height='100' class='captionbar' cellpadding='5' cellspacing='1'><tr>
+  <td class="captionbar-userpicbox" align='center' valign='center' width='100' style='$captionbar_userpicbox_style'>$userpic</td>
+  <td><b>$title</b><br />
+    <table border='0'>
+      $links
+      $website
+      <tr>
+        <td colspan='2'>""";
+
+    $p->lay_captionbar_navigation(); 
+    "
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr></table>";
+}
+
+function print_stylesheet ()
+{
+    var string backgroundurl = clean_url($*page_background_image) != "" ? "background-image: url($*page_background_image);" : "";
+    """/* Tabular Indent Stylesheet */
+body {
+    $backgroundurl
+    background-color:  $*body_bgcolor;
+}
+.captionbar {
+    width:             100%;
+    border:            1px solid $*border_color;
+}
+.captionbar, .captionbar td {
+    background-color:  $*captionbar_mainbox_bgcolor;
+    color:             $*captionbar_mainbox_fgcolor;
+}
+.captionbar-userpicbox {
+    border-right:      1px solid $*border_color;
+    background-color:  $*captionbar_userpicbox_color;
+    color:             $*captionbar_mainbox_fgcolor;
+}
+body,td,p {
+    font-family:       verdana, arial, helvetica, sans-serif; 
+    font-size:         8pt;
+}
+a {
+    color:             $*link_color;
+    font-family:       verdana, arial, helvetica, sans-serif; 
+    font-size:         8pt;
+    text-decoration:   none;
+}
+a:visited {
+    color:             $*vlink_color;
+    font-family:       verdana, arial, helvetica, sans-serif;
+    font-size:         8pt;
+    text-decoration:   none; 
+}
+a:active {
+    color:             $*alink_color;
+    font-family:       verdana, arial, helvetica, sans-serif;
+    font-size:         8pt;
+    text-decoration:   none;
+}
+a:hover {
+    color:             $*alink_color;
+    font-family:       verdana, arial, helvetica, sans-serif; 
+    font-size:         8pt;
+    text-decoration:   underline;
+}
+h3.page-header {
+    font-size:         8pt;
+    font-family:       verdana, arial, helvetica, sans-serif;
+    font-weight:       normal;
+    background-color:  $*headerbar_bgcolor;
+    color:             $*headerbar_fgcolor;
+    padding: 6px;
+    border:            1px solid $*border_color;
+}
+""";
+}
+
+function Page::print () 
+{
+    var string title = $this->title();
+    println "<html>\n<head>\n";
+
+    if ($*external_stylesheet) {
+        println """<link rel="stylesheet" href="$.stylesheet_url" type="text/css" />""";
+    } else {
+        println """<style type="text/css">"""; print_stylesheet(); "</style>";
+    }
+    $this->print_head();
+
+    """<title>$title</title>
+ </head>
+ <body>
+    """;
+    "<p>"; captionbar($this); "</p>";
+
+    "<p>"; $this->print_body(); "</p>";
+
+    "<p>"; captionbar($this); "</p>";
+
+    """
+  </body>
+</html>
+    """;
+}
+
+function print_box (string{} colors, string metapic, string{} meta, string content, string footer, string domid) {
+    var string bgcolor = $colors{"bgcolor"};
+    var string fgcolor = $colors{"fgcolor"};
+    if ($domid != "") { $domid = "id='$domid'"; }
+
+    var string style = "background-color: $bgcolor; color: $fgcolor";
+    "<div align='right'><table $domid border='0' width='95%' cellpadding='5' cellspacing='1' style='$style'>";
+    "<tr><td><table border='0' width='100%'><tr>";
+
+    if ($metapic) {
+        "<td width='100' valign='top' align='center'>$metapic</td>";
+    }
+
+    "<td valign='top'><table border='0'>";
+
+    foreach var string k ($meta) {
+        var string key = $k;
+        var string val = $meta{$k};
+        "<tr><td align='right'>$key</td><td>$val</td></tr>";
+    }
+
+    "</table></td></tr></table></td></tr>";
+    "<tr><td style='background-color: $*main_bgcolor; color: $*main_fgcolor'>";
+
+    print $content;
+
+    "</td></tr>";
+
+    if ($footer) {
+        "<tr><td style='white-space: nowrap'>$footer</td></tr>";
+    }
+
+    "</table></div><br />";
+}
+
+function print_header (string header)
+{
+    print "<h3 class='page-header'>$header</h3>";
+}
+
+function print_genericbox_open () {
+    "<div align='right'><table border='0' width='95%' cellpadding='5' cellspacing='1' bgcolor='$*accent_bgcolor'>";
+    "<tr><td style='background-color: $*main_bgcolor; color: $*main_fgcolor'>";
+}
+
+function print_genericbox_close ()
+{
+    "</font></td></tr></table></div><br />";
+}
+
+function print_entry (Page p, Entry e, Color bgcolor, Color fgcolor, bool hide_text)
+{
+    var string{} colors; var string{} meta; var string content = ""; var string footer = "";
+    $colors{"bgcolor"} = "$*accent_bgcolor";
+    $colors{"fgcolor"} = "$*accent_fgcolor";
+    if ($p.view == "recent") {
+        if ($e.new_day) {
+            print_header($e.time->date_format("%%month%% %%dayord%%, %%yyyy%%"));
+        }
+    } else {
+        print_header($e.time->date_format("%%month%% %%dayord%%, %%yyyy%%"));
+    }
+    # Userpic
+    var string metapic = "";
+    if ($p.view == "friends" or
+        $*show_entry_userpic == true or
+        $e.journal.username != $e.poster.username)
+    {
+        var string userpic = defined $e.userpic ? "<img src='$e.userpic.url' style='border: 0' />" : "";
+        var string url = $e.journal->base_url() + "/";
+        $metapic = "<div style='background-color: $bgcolor'>";
+        $metapic = "$metapic <a href='$url'>$userpic</a>";
+        if ($e.journal.username != $e.poster.username) { 
+            var string purl = $e.poster->base_url() + "/";
+            $metapic = "$metapic<br /><font color='$fgcolor'>[<a href='$purl'>$e.poster.username</a>]</font>"; 
+        } 
+        if ($p.view == "friends") { $metapic = "$metapic<br /><font color='$fgcolor'><a href='$url'>$e.journal.username</a></font>"; }
+        $metapic = "$metapic</div>";
+    }
+    # Security Icon
+    if ($e.security) {
+        $meta{"Security:"} = "$e.security_icon $e.security";
+    }
+    # Subject
+    if ($e.subject) {
+        $meta{"Subject:"} = $e.subject;
+    }
+    # Time posted
+    var string time = $e.time->time_format();
+    $meta{"Time:"} = $time;
+    # Current
+    if (size $e.metadata) {
+        foreach var string k ($e.metadata) {
+            var string key = $k; var string val = $e.metadata{$k};
+            if ($k == "mood") {
+                $key = $*text_meta_mood;
+            } elseif ($k == "music") {
+                $key = $*text_meta_music;
+            }
+            if ($k == "mood" and defined $e.mood_icon) {
+                var Image i = $e.mood_icon;
+                $val = "<img src='$i.url' width='$i.width' height='$i.height' align='absmiddle' alt='[mood icon]' /> $val";
+            }
+            $meta{"$key:"} = $val;
+        }
+    }
+    # Tags
+    if ($e.tags) {
+        var int tcount = 0;
+        var string tag;
+        foreach var Tag t ($e.tags) {
+            $tag = $tag + """<a rel="tag" href="$t.url">$t.name</a>""";
+            $tcount++;
+            if ($tcount != size $e.tags) { $tag = $tag + ", "; }
+        }
+        $meta{"Tags:"} = $tag;
+    }
+
+
+    if (not $hide_text) { $content = $e.text; }
+
+    if ($e.comments.enabled) {
+        $footer = "comments:";
+        if (($e.comments.count > 0 or $e.comments.screened) and ($p.view != "entry")) {
+           $footer = "$footer <a href=\"$e.comments.read_url\">"
+                   + get_plural_phrase($e.comments.count, $p.view == "friends" ? 
+                     "text_read_comments_friends" : "text_read_comments")
+                   + "</a> or";
+        }
+        $footer = "$footer <a href=\"$e.comments.post_url\">"
+                + ($p.view == "friends" ? $*text_post_comment_friends : $*text_post_comment)
+                + "</a>";
+    }
+
+    # Misc Links
+    var Link link;
+    if ($p.view == "entry")
+    {
+        $link = $e->get_link("nav_prev"); $footer = "$footer $link";
+    }
+    $link = $e->get_link("edit_entry");   $footer = "$footer $link";
+    $link = $e->get_link("edit_tags");    $footer = "$footer $link";
+    $link = $e->get_link("tell_friend");  $footer = "$footer $link";
+    $link = $e->get_link("mem_add");      $footer = "$footer $link";
+    if ($p.view == "entry")
+    {
+        $link = $e->get_link("nav_next"); $footer = "$footer $link";
+    }
+
+    # Print
+    print_box($colors, $metapic, $meta, $content, $footer, "");
+}
+
+function Page::print_entry (Entry e) 
+{
+    print_entry($this, $e, null Color, null Color, false);
+}
+
+function FriendsPage::print_entry (Entry e) {
+    var Friend f = $.friends{$e.journal.username};
+    print_entry($this, $e, $f.bgcolor, $f.fgcolor, false);
+}
+
+function RecentPage::lay_captionbar_navigation() 
+{
+    var int total = size $.entries;
+    var string nav = "";
+    if ($.nav.backward_url != "") {
+        $nav = """<a href="$.nav.backward_url">back $total entries</a>""";
+    }
+    if ($.nav.forward_url != "" and $.nav.backward_url != "") {
+        $nav = "$nav or ";
+    }
+    if ($.nav.forward_url != "") {
+        $nav = """$nav<a href="$.nav.forward_url">forward $total entries</a>""";
+    }
+    print "You're looking at the latest ";
+    print size $.entries;
+    print ($.nav.skip > 0) ? " entries, after skipping $.nav.skip newer ones." :" entries.";
+    if ($nav != "") { print "<br />Missed some entries?  Then simply jump $nav"; }
+}
+
+function RecentPage::print_body {
+    foreach var Entry e ($.entries) {
+        $this->print_entry($e);
+    }
+}
+
+function FriendsPage::print_body {
+    foreach var Entry e ($.entries) {
+        $this->print_entry($e);
+    }
+}
+
+function CommentInfo::print()
+{
+    if (not $.enabled) { return; }
+    "<tr><td bgcolor='$*accent_bgcolor'><font color='$*accent_fgcolor'>";
+    "<nobr>comments: ";
+    if ($.count > 0 or $.screened) {
+        $this->print_readlink(); " or ";
+    }
+    $this->print_postlink();
+    "</nobr></font></td></tr>";
+}
+
+function YearPage::print_body {
+    print_header(string($.year));
+    print_genericbox_open();
+    foreach var YearMonth m ($.months) {
+        $this->print_month($m);
+    }
+    print_genericbox_close();
+}
+
+function YearPage::lay_captionbar_navigation()
+{
+    $this->print_year_links();
+}
+
+function YearPage::print_year_links ()
+{
+    foreach var YearYear y ($.years) {
+        if ($y.displayed) {
+            "$y.year&nbsp;";
+        } else {
+            "<a href=\"$y.url\">$y.year</a>&nbsp;";
+        }
+    }
+}
+
+function YearPage::print_month(YearMonth m)
+{
+    if (not $m.has_entries) { return; }
+    "<center><table border='1' cellpadding='4' width='80%'>";
+    # Month header
+    "<tr align='center'><td colspan='7' bgcolor='$*headerbar_bgcolor'>";
+    "<font color='$*headerbar_fgcolor'><b>"; print $m->month_format(); "</b></font></td></tr>";
+    # Weekdays
+    "<tr align='center' bgcolor='$*accent_bgcolor'>";
+    foreach var int d (weekdays()) {
+        "<td><font color='$*accent_fgcolor'>"+$*lang_dayname_short[$d]+"</font></td>\n";
+    }
+    "</tr>";
+    foreach var YearWeek w ($m.weeks) {
+        $w->print();
+    }
+    "<tr align='center'><td colspan='7'><a href='$m.url'>View Subjects</a>";
+    "</td></tr></table></center>";
+}
+
+function YearWeek::print () {
+    "<tr>";
+    if ($.pre_empty) { "<td colspan='$.pre_empty' bgcolor='$*accent_bgcolor'>&nbsp;</td>"; }
+    foreach var YearDay d ($.days) {
+        "<td valign='top'><b>$d.day</b>";
+        "<div align='center'>";
+        if ($d.num_entries) {
+            """<a href="$d.url">$d.num_entries</a>""";
+        } else {
+            "&nbsp;";
+        }
+        "</div></td>";
+    }
+    if ($.post_empty) { "<td colspan='$.post_empty' bgcolor='$*accent_bgcolor'>&nbsp;</td>"; }
+    "</tr>";
+}
+
+function DayPage::lay_captionbar_navigation()
+{
+    print "Missed some entries? Then simply jump to the <a href='$.prev_url'>previous day</a> or the <a href='$.next_url'>next day</a>.";
+}
+
+function DayPage::print_body () 
+{
+    if (not $.has_entries) {
+        "<table border='0' width='100%' cellpadding='5' cellspacing='1' bgcolor='$*border_color'>";
+        "<tr><td bgcolor='$*headerbar_bgcolor'><font color='$*headerbar_fgcolor'>";
+        print $.date->date_format("%%month%% %%dayord%%, %%yyyy%%");
+        "</font></td></tr></table><br />";
+        print "No journal entries for this day.";
+    } else {
+        foreach var Entry e ($.entries) {
+            $this->print_entry($e);
+        }
+    }
+}
+
+function MonthPage::print_body {
+    print_header($.date->date_format("%%month%% %%yyyy%%"));
+    print_genericbox_open();
+    "<form method='post' action='$.redir.url'><center>";
+    $.redir->print_hiddens();
+    if ($.prev_url != "") { "[<a href='$.prev_url'>&lt;&lt;&lt;</a>]\n"; }
+    if (size $.months > 1) {
+        "<select name='redir_key'>\n";
+        foreach var MonthEntryInfo mei ($.months) {
+            var string sel;
+            if ($mei.date.year == $.date.year and $mei.date.month == $.date.month) {
+                $sel = " selected='selected'";
+            }
+            "<option value='$mei.redir_key'$sel>" + $mei.date->date_format($*lang_fmt_month_long) + "</option>";
+        }
+        "</select>\n<input type='submit' value='View' />";
+    }
+    if ($.next_url != "") { "\n[<a href='$.next_url'>&gt;&gt;&gt;</a>]\n"; }
+    "</center></form>\n<dl>";
+    foreach var MonthDay d ($.days) {
+        if ($d.has_entries) {
+            "<dt><a href=\"$d.url\"><b>";
+            print lang_ordinal($d.day);
+            "</b></a></dt>\n<dd>";
+            $d->print_subjectlist();
+            "</dd>\n";
+        }
+    }
+    "</dl>\n";
+    print_genericbox_close();
+}
+
+function EntryPage::print_body () {
+        set_handler("unscreen_comment_#", [
+                                           [ "style_bgcolor", "cmtbar#", "$*comment_bar_one_bgcolor", ],
+                                           [ "style_color", "cmtbar#", "$*comment_bar_one_fgcolor", ],
+                                           ]);
+        set_handler("screen_comment_#", [
+                                         [ "style_bgcolor", "cmtbar#", "$*comment_bar_screened_bgcolor", ],
+                                         [ "style_color", "cmtbar#", "$*comment_bar_screened_fgcolor", ],
+                                         ]);
+
+    print_entry($this, $.entry, null Color, null Color, $.viewing_thread);
+    if ($.entry.comments.enabled and $.comment_pages.total_subitems > 0)
+    {
+        $this->print_multiform_start();
+
+        print_header("Comments:");
+        if ($.comment_pages.total_subitems > 0) {
+            $.comment_pages->print();
+            $this->print_comments($.comments);
+        }
+        if ($this.multiform_on) {
+            print_header("Mass Action:");
+
+            print_genericbox_open();
+            $this->print_multiform_actionline();
+            print_genericbox_close();
+
+            $this->print_multiform_end();
+        }
+    }
+}
+
+function EntryPage::print_comment_partial (Comment c) {
+    var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+    var string subj = $c.subject != "" ? $c.subject : $*text_nosubject;
+    print_genericbox_open();
+    print "<a href='$c.permalink_url'>$subj</a> - $poster";
+    print_genericbox_close();
+}
+
+function EntryPage::print_comment (Comment c) {
+    var string{} colors; var string{} meta; var string content = ""; var string footer = "";
+
+    if ($c.screened) {
+        $colors{"bgcolor"} = "$*comment_bar_screened_bgcolor";
+        $colors{"fgcolor"} = "$*comment_bar_screened_fgcolor";
+    } elseif ($c.depth % 2) {
+        $colors{"bgcolor"} = "$*comment_bar_one_bgcolor";
+        $colors{"fgcolor"} = "$*comment_bar_one_fgcolor";
+    } else {
+        $colors{"bgcolor"} = "$*comment_bar_two_bgcolor";
+        $colors{"fgcolor"} = "$*comment_bar_two_fgcolor";
+    }
+
+    # Userpic
+    var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+    var string metapic = "";
+    if (defined $c.userpic and $*comment_userpic_style != "off")
+    {
+        var string userpic = defined $c.userpic ? "<img src='$c.userpic.url' style='border: 0' />" : "";
+        $metapic = "$userpic<br />$poster";
+    } else {
+        $metapic = $poster;
+    }
+
+    # Subject
+    var string sub_icon;
+    if (defined $c.subject_icon) {
+        $sub_icon = $c.subject_icon->as_string();
+    }
+    if ($c.subject or $sub_icon) {
+        $meta{"Subject:"} = "$c.subject $sub_icon";
+    }
+
+    # Time posted
+    $meta{"Time:"} = $c.time->time_format();
+
+    # Link
+    $meta{"Link:"} = "(<a href='$c.permalink_url'>Link</a>)";
+
+    # IP Address:
+    if ($c.metadata{"poster_ip"}) {
+        $meta{"IP Address:"} = $c.metadata{"poster_ip"};
+    }
+
+    if ($c.frozen) {
+        $footer = "(Replies frozen) ";
+    } else {
+        $footer = "(<a href='$c.reply_url'>Reply to this</a>) ";
+    }
+    if ($c.parent_url != "") { $footer = "$footer (<a href='$c.parent_url'>Parent</a>) "; }
+    if ($c.thread_url != "") { $footer = "$footer (<a href='$c.thread_url'>Thread</a>) "; }
+
+    var Link link = new Link;
+    foreach var string k ($c.link_keyseq) {
+        $link = $c->get_link($k); $footer = "$footer $link";
+    }
+    println "<a name='$c.anchor'></a>";
+    print_box($colors, $metapic, $meta, $c.text, $footer, "cmtbar$c.talkid");
+}
+
+function ReplyPage::print_body () {
+    if (not $.entry.comments.enabled)
+    {
+        print_header($*text_reply_nocomments_header);
+        print "<p>$*text_reply_nocomments</p>";
+        return;
+    }
+
+    var string{} meta; var string metapic;
+
+    # Userpic
+    if (defined $.replyto.userpic and $*comment_userpic_style != "off")
+    {
+        $metapic = "<img src='$.replyto.userpic.url' />";
+    }
+
+    # Subject
+    if ($.replyto.subject) {
+        $meta{"Subject:"} = $.replyto.subject;
+    }
+
+    # Time posted
+    $meta{"Time:"} = $.replyto.time->time_format();
+
+    print_box({ "bgcolor" => "$*accent_bgcolor", "fgcolor" => "$*accent_fgcolor" },
+              $metapic, $meta, $.replyto.text, "", "");
+
+    print_header("Reply:");
+
+    print_genericbox_open();
+    $.form->print();
+    print_genericbox_close();
+
+}
+
+function print_theme_preview()
+{
+    "<table width='100%' bgcolor='$*body_bgcolor' cellpadding=10><tr><td>";
+    "<table border='0' width='100%' cellpadding='5' cellspacing='1' bgcolor='$*border_color'>";
+    "<tr><td bgcolor='$*headerbar_bgcolor'><font color='$*headerbar_fgcolor'>October 29th, 2003";
+    "</font></td></tr></table><br />";
+    "<div align='right'><table border='0' width='95%' cellpadding='5' cellspacing='1' bgcolor='$*accent_bgcolor'>";
+    "<tr><td align='left' bgcolor='$*accent_bgcolor'>";
+    "<table border='0' width='100%'><tr>";
+    "<td valign='top'><table border='0'>";
+    "<tr><td align='right'><font color='$*accent_fgcolor'>Subject:</font>";
+    "</td><td><font color='$*accent_fgcolor'>Words Words Words</font></td></tr>";
+    "<tr><td align='right'><font color='$*accent_fgcolor'>Time:</font></td>";
+    "<td><font color='$*accent_fgcolor'>1:37 pm</font></td></tr>";
+    "</table></td></tr></table></td></tr>";
+    "<tr><td align='left' bgcolor='$*main_bgcolor'><font color='$*main_fgcolor'>Preview text, preview text, etc, etc..... words, words and more words.</font></td></tr>";
+    """<tr><td align='left' bgcolor='$*accent_bgcolor'><font color='$*accent_fgcolor'><nobr>comments: <a href="#">20 comments</a> or <a href="#">Leave a comment</a></nobr></font></td></tr>""";
+    "</table></div><br />";
+    "</td></tr></table>";
+}

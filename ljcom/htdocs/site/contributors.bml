@@ -1,0 +1,436 @@
+<?_code
+{ 
+    use strict;
+    use vars qw($title $body %FORM);
+
+    LJ::set_active_crumb('contributors');
+
+    $title = "";
+    $body = "";
+
+    if ($LJ::SERVER_DOWN) {
+	$title = "Sorry";
+	$body = LJ::server_down_html();
+	return;
+    }
+
+    my $mode = $FORM{'mode'};
+    my $remote = LJ::get_remote();
+    
+    my $sth;
+    
+    my %cats = ('code' => 'Code/Programming',
+		'doc' => 'Documentation',
+		'creative' => 'Creative (Styles/Art/Presentation)',
+		'biz' => 'Business Issues & Leadership',
+		'other' => 'Other');
+    my @cats = qw(code doc creative biz other);
+    
+    my $user = LJ::canonical_username($FORM{'user'}); 
+    if (!$mode && $user) { $mode = "user"; }
+    if (!$mode && $FORM{'cat'}) { $mode = "cat"; }
+    
+    my $table = sub {
+	my ($list, $title, $des) = @_;
+	$body .= "<?h1 $title h1?>" if $title;
+	$body .= "<?p $des p?>" if $des;
+	$body .= "<p><table border='1' cellpadding='3'>";
+	my $inccat = $list->[0]->{'cat'} ? "<td><b>Category</b></td>" : "";
+	$body .= "<tr>$inccat<td><b>Item</b></td><td><b>Date</b></td></tr>\n";
+	foreach my $it (@$list) {
+	    my $item = LJ::eall($it->{'des'});
+	    if ($it->{'url'} =~ m!^https?://!) {
+		$item = "<a href=\"$it->{'url'}\">$item</a>";
+	    }
+	    my $date = substr($it->{'dateadd'}, 0, 10);
+	    my $user = $it->{'user'} ? LJ::ljuser($it->{'user'}) . ": " : "";
+	    my $cat = exists $it->{'cat'} ? "<td>$it->{'cat'}</td>" : "";
+	    $body .= "<tr>$cat<td>$user$item [<a href=\"contributors.bml?mode=detail&coid=$it->{'coid'}\">detail</a>]</td><td><nobr>$date</nobr></td></tr>";
+	}
+	$body .= "</table>";
+    };
+    
+    if ($mode eq "")
+    {
+	$title = "Contributors";
+	$body = "<?h1 Who runs LiveJournal.com? h1?><?p LiveJournal.com started in 1999 as a project of Brad Fitzpatrick, ".
+                "and during the first two years of its life, was sustained by a large and loyal group of volunteers. ".
+                "While a lot of LiveJournal.com is still run by teams of volunteers, we now employ a small <a href='/press/staff.bml'>senior staff</a> who oversee all operations. p?>".
+                "<?p The people in the lists below are some of the volunteers who have contributed to LiveJournal.com and the LiveJournal server project. p?>";
+	
+	$body .= "<?h1 Select view mode: h1?><?p <ul>";
+	$body .= "<li><b>Category:</b><ul>";
+	foreach my $cat (@cats) {
+	    $body .= "<li><a href=\"contributors.bml?cat=$cat\">$cats{$cat}</a></li>\n";
+	}
+	$body .= "</ul></li>";
+	
+	$body .= "<li><b>Last 60 Days</b><ul>";
+	$body .= "<li><a href=\"contributors.bml?mode=recent\">Recent contributions</a></li>\n";
+	$body .= "<li><a href=\"contributors.bml?mode=recent&unack=1\">Recent contributions, including unacknowledged</a></li>\n";
+	$body .= "</ul></li>";
+	
+	$body .= "<li><b>By user</b><ul>";
+	$body .= "<form style='display:inline' method='get'>Enter username: <input name='user' size='15'> <input type='submit' value='View'></form></ul></li>";
+	
+	$body .= "</ul> p?>";
+	
+	$body .= "<?h1 Add yourself! h1?><?p If you've helped out and aren't on the ".
+	    "list, <a href=\"contributors.bml?mode=add\">add yourself</a>. p?>";
+	
+	return;
+    }
+
+    if ($mode eq "user")
+    {
+	my $u = LJ::load_user($user);
+	unless ($u) {
+	    $title = "Error";
+	    $body = "Invalid username.";
+	    return;
+	}
+	
+	$title = "Contributions from $user";
+	$body .= "<p>[&lt;&lt; <a href=\"contributors.bml\">Back</a>]</p>";
+
+        my $dbr = LJ::get_db_reader();
+	$sth = $dbr->prepare("SELECT coid, cat, des, url, dateadd, acks ".
+			     "FROM contributed WHERE userid=?");
+	$sth->execute($u->{'userid'});
+	my (@ack, @unack);
+	while ($_ = $sth->fetchrow_hashref) {
+	    push @ack, $_ if $_->{'acks'};
+	    push @unack, $_ unless $_->{'acks'};
+	}
+
+	unless (@ack || @unack) {
+	    $body .= "<?ljuser $user ljuser?> has not <a href=\"contributors.bml?mode=add\">declared</a> any contributions.";
+	}
+
+	$table->(\@ack, "Acknowledged Contributions", 
+		 "These contributions have been acknowledged by others in the community:") if @ack;
+	$table->(\@unack, "Unacknowledged Contributions", 
+		 "These contributions have been declared, but not yet acknowledged by anyone:") if @unack;
+	
+	return;
+    }
+
+    if ($mode eq "recent")
+    {
+	$title = "Recent Contributions";
+
+	$body .= "<p>[&lt;&lt; <a href=\"contributors.bml\">Back</a>]</p>";
+	
+	my $extra = $FORM{'unack'} ? "" : "AND c.acks > 0";
+        my $dbr = LJ::get_db_reader();
+	$sth = $dbr->prepare("SELECT u.user, c.coid, c.cat, c.des, c.url, c.dateadd, c.acks ".
+			     "FROM contributed c, useridmap u ".
+			     "WHERE u.userid=c.userid ".
+			     "AND c.dateadd > DATE_SUB(NOW(), INTERVAL 60 DAY) $extra ".
+			     "ORDER BY c.dateadd DESC");
+	$sth->execute();
+	my (@ack, @unack);
+	while ($_ = $sth->fetchrow_hashref) {
+	    push @ack, $_ if $_->{'acks'};
+	    push @unack, $_ unless $_->{'acks'};
+	}
+
+	unless (@ack || @unack) {
+	    $body .= "No contributions filed in last 60 days.";
+	}
+
+	$table->(\@ack, "Acknowledged Contributions", 
+		 "These recent contributions have been acknowledged by others in the community:") if @ack;
+	$table->(\@unack, "Unacknowledged Contributions", 
+		 "These recent contributions have been declared, but not yet acknowledged by anyone:") if @unack;
+	
+	return;
+    }
+
+    if ($mode eq "cat")
+    {
+	my $cat = $FORM{'cat'};
+	$body .= "<p>[&lt;&lt; <a href=\"contributors.bml\">Back</a>]</p>";
+
+	unless ($cats{$cat}) {
+	    $body .= "Invalid category";
+	    return;
+	}
+
+	$title = $cats{$cat};
+        my $dbr = LJ::get_db_reader();
+	$sth = $dbr->prepare("SELECT u.user, c.coid, c.des, c.url, c.dateadd ".
+			     "FROM contributed c, useridmap u ".
+			     "WHERE u.userid=c.userid ".
+			     "AND c.cat=? AND c.acks>0 ".
+			     "ORDER BY c.dateadd");
+	$sth->execute($cat);
+	my (@con);
+	while ($_ = $sth->fetchrow_hashref) {
+	    push @con, $_;
+	}
+
+	unless (@con) {
+	    $body .= "No contributions in this category";
+	    return;
+	}
+
+	$table->(\@con);
+
+	$body .= "<p>[&lt;&lt; <a href=\"contributors.bml\">Back</a>]</p>";
+	return;
+    }
+
+
+ 
+ if ($mode eq "delete")
+ {
+     my $coid = $FORM{'coid'}+0;
+
+     unless ($remote) {
+         $title = "Delete Contribution - Error";
+         $body .= "<?h1 Login First h1?><?p To delete a contribution " .
+                  "you must first <a href=\"/login.bml?ret=1\">login</a>. p?>";
+         return;
+     }
+
+     my $admin = LJ::check_priv($remote, "contrib_delete");
+     unless ($admin) {
+         $title = "Delete Contribution - Error";
+         $body .= "<?h1 Error h1?><?p You are not authorized to delete this contribution. p?>";
+         return;
+     }
+     
+     unless ($coid) {
+         $title = "Delete Contribution - Error";
+         $body .= "<?h1 Error h1?><?p Must Supply a contrib id. p?>";
+         return;
+     }
+
+     my $dbh = LJ::get_db_writer();
+     $dbh->do("DELETE FROM contributed WHERE coid=$coid");
+     $dbh->do("DELETE FROM contributedack WHERE coid=$coid");
+
+     $title = "Delete Contribution - Success";
+     $body .= "<?h1 Success h1?><?p Contribution deleted. p?>";
+     return;
+ }
+
+ if ($mode eq "add")
+ {
+     $title = "Add Contribution(s)";
+     
+     unless ($remote) {
+         $body .= "<?h1 Login First h1?><?p To add a contribution to the list, ".
+             "you must first <a href=\"/login.bml?ret=1\">login</a>. p?>";
+         return;
+     }
+     $body .= "<form method=post>\n";
+     $body .= "<input type=hidden name=mode value=add_do>\n";
+     for (my $i = 0; $i < 5; $i++) {
+        $body .= "<p><table>";
+        $body .= "<tr><td align=right>Add who?</td><td><input name=\"user_$i\" maxlength=15 size=15 value=\"$remote->{'user'}\"></td></tr>\n";
+        $body .= "<tr><td align=right>Category:</td>";
+        $body .= "<td><select name=\"cat_$i\"><option value=\"\"></option>";
+        foreach (@cats) {
+             $body .= "<option value=\"$_\">$cats{$_}</option>";
+         }
+         $body .= "</select></td></tr>";
+         $body .= "<tr><td align=right>Description:</td><td><input name=\"des_$i\" size=40 maxlength=255></td></tr>\n";
+         $body .= "<tr><td align=right>Optional URL:</td><td><input name=\"url_$i\" size=40 maxlength=100></td></tr>\n";
+         $body .= "</table></p>";
+     }
+     $body .= "<?standout <input type=submit value=\"Add\"> standout?>\n";
+     $body .= "</form>";
+     $body .= "Back to the <a href=\"contributors.bml\">contributions list</a>.";
+     return;
+ }
+
+ if ($mode eq "add_do")
+ {
+     $title = "Add Contribution";
+     
+     unless ($remote) {
+         $body .= "<?h1 Login First h1?><?p You were logged in a moment ago, but ".
+             "not now.  Weird.  Go <a href=\"/login.bml?ret=1\">login</a>. p?>";
+         return;
+     }
+     unless (LJ::did_post()) {
+         $body .= "<?h1 Error h1?><?p Requires post. p?>";
+         return;
+     }
+     for (my $i = 0; $i < 5; $i++)
+     {
+         my $des = $FORM{"des_${i}"};
+         my $user = $FORM{"user_${i}"};
+         my $cat = $FORM{"cat_${i}"};
+         my $url = $FORM{"url_${i}"};
+
+         $des = LJ::trim($des);
+         next if $des eq "";
+
+         my $userid = LJ::get_userid($user);
+         unless ($userid) {
+             $body .= "<dl><dt>$user - $des</dt><dd>Can not find user <b>$user</b></dd></dl>";
+             next;
+         }
+     
+         # must be ack'ed to add somebody other than yourself.
+         my $acks = 0;
+         if ($userid != $remote->{'userid'}) {
+             unless (LJ::Contrib::is_acked($remote->{'userid'})) {
+                 $body .= "<dl><dt><?ljuser $user ljuser?> - $des</dt><dd>You have to be an acknowledged contributor before you can add someone else.</dd></dl>";
+                 next;
+             }
+             $acks = 1;
+         }
+
+         my $dbh = LJ::get_db_writer();
+
+         $dbh->do("INSERT INTO contributed (userid, cat, des, url, dateadd, acks) VALUES ".
+                  "($userid, ?, ?, ?, NOW(), $acks)", undef, $cat, $des, $url);
+         my $coid = $dbh->{'mysql_insertid'};
+         if ($coid) {
+             if ($acks) {
+                 $dbh->do("REPLACE INTO contributedack (coid, ackuserid) VALUES ($coid, $remote->{'userid'})");
+             }
+            
+            $body .= "<dl><dt><?ljuser $user ljuser?> - " . LJ::ehtml($des) . "</dt><dd>Added. You can view it <a href=\"contributors.bml?mode=detail&coid=$coid\">here</a></dd></dl>";
+         } else {
+            $body .= "<dl><dt><?ljuser $user ljuser?> - " . LJ::ehtml($des) . "</dt><dd>Error... not added.</dd></dl>";
+        }
+    }
+    $body .= "<?hr?>";
+    $body .= "Back to the <a href=\"contributors.bml\">contributions list</a>.";
+    return;
+ }
+
+ if ($mode eq "detail") 
+ {
+     $title = "Contribution Detail";
+     my $coid = $FORM{'coid'}+0;
+
+     my $dbr = LJ::get_db_reader();
+     my $sth = $dbr->prepare("SELECT userid, cat, des, url, dateadd, acks FROM contributed WHERE coid=$coid");
+     $sth->execute;
+     my $co = $sth->fetchrow_hashref;
+
+     unless ($co) {
+         $body = "Contribution not found.";
+         return;
+     }
+     
+     my $admin = LJ::check_priv($remote, "contrib_delete");
+     my $u = LJ::load_userid($co->{'userid'});
+     my $url = $co->{'url'} ? "<a href=\"$co->{'url'}\">$co->{'url'}</a>" : "-";
+     my $edes = LJ::ehtml($co->{'des'});
+
+     $body .= <<TABLE;
+<table>
+<tr><td align=right><b>User:</b></td><td><?ljuser $u->{'user'} ljuser?> - $u->{'name'}</td></tr>
+<tr><td align=right><b>Category:</b></td><td>$cats{$co->{'cat'}} (<a href=\"contributors.bml?user=$u->{'user'}\">view all</a>)</td></tr>
+<tr><td align=right><b>Description:</b></td><td>$edes</td></tr>
+<tr><td align=right><b>URL:</b></td><td>$url</td></tr>
+<tr><td align=right><nobr><b>Date Added:</nobr></b></td><td>$co->{'dateadd'}</td></tr>
+<tr><td align=right><nobr><b># Acks:</nobr></b></td><td>$co->{'acks'}</td></tr>
+
+</table>
+TABLE
+
+     $body .= "<?h1 Acknowlegements h1?>";
+     $body .= "<?p This contribution has been acknowledged by the following other contributors: <ul>";
+
+     $sth = $dbr->prepare("SELECT u.user FROM contributedack c, useridmap u WHERE u.userid=c.ackuserid AND c.coid=$coid ORDER BY u.user");
+     $sth->execute;
+     my $a_ct = 0;
+     while (my ($userack) = $sth->fetchrow_array) {
+         $body .= "<li><?ljuser $userack ljuser?>\n";
+         $a_ct++;
+     }
+     unless ($a_ct) {
+         $body .= "<i>(None)</i>";
+     }
+     $body .= "</ul>";
+
+     $body .= "A contribution isn't shown on the main page unless it's acknowledged by other contributors.  To acknowledge this item, click the button below.  Only acknowledge it if you know for a fact it was done and if you were related to the item.  For instance, if you were a leader of a group and gave somebody the project, then you should acknowledge it.  Another reason to acknowledge a contribution is if that contribution was very notable and you just want to give them props.  Just don't acknowledge a contribution you weren't involved with and didn't even know about. p?>";
+
+     $body .= "<center>";
+     $body .= "<form method='post'>\n";
+     $body .= "<input type='hidden' name='mode' value='ack'>\n";
+     $body .= "<input type='hidden' name=coid value='$coid'>\n";
+     $body .= "<input type='submit' value='Acknowledge this contribution'>";
+     $body .= "</form>";
+     if ($admin) {
+         $body .= "<form method='post'>\n";
+         $body .= "<input type='hidden' name='mode' value='delete'>\n";
+         $body .= "<input type='hidden' name='coid' value='$coid'>\n";
+         $body .= "<input type='submit' value='Delete this contribution'>";
+         $body .= "</form>";
+     }
+     $body .= "</center>";
+
+     $body .= "<?hr?>";
+     $body .= "Back to the <a href=\"contributors.bml\">contributions list</a>.";
+     
+     return;
+ }
+
+ if ($mode eq "ack")
+ {
+     $title = "Acknowledge";
+     
+     unless ($remote) {
+         $body .= "<?h1 Login First h1?><?p You must <a href=\"/login.bml\">login</a> before acknowledging contributions. p?>";
+         return;
+     }
+     unless (LJ::did_post()) {
+         $body .= "<?h1 Error h1?><?p Requires post. p?>";
+         return;
+     }
+
+     my $dbr = LJ::get_db_reader();
+     my $coid = $FORM{'coid'}+0;
+     my $sth = $dbr->prepare("SELECT userid, cat, des, url, dateadd, acks FROM contributed WHERE coid=$coid");
+     $sth->execute;
+     my $co = $sth->fetchrow_hashref;
+
+     unless ($co) {
+         $body = "Contribution not found.";
+         return;
+     }
+
+     if ($co->{'userid'} == $remote->{'userid'}) {
+         $body .= "<?h1 Error h1?><?p You can't acknowledge your own contributions. p?>";
+         return;
+     }
+
+     unless (LJ::Contrib::is_acked($remote->{'userid'})) {
+         $body .= "<?h1 Error h1?><?p You don't have any contributions approved yet, so you can't acknowledge other people's contributions. p?>";
+         return;
+     }
+
+     LJ::Contrib::ack($coid, $remote->{'userid'});
+     
+     $body = "<?h1 Done h1?><?p You've acknowledged <a href=\"contributors.bml?mode=detail&coid=$coid\">this contribution</a>. p?>";
+
+     $body .= "<?hr?>";
+     $body .= "Back to the <a href=\"contributors.bml\">contributions list</a>.";
+     
+     return;
+ }
+
+ $title = "Unknown mode";
+ $body = "Unknown mode.";
+
+ return;
+
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c
+<LJDEP>
+lib: cgi-bin/ljlib.pl
+link: htdocs/login.bml
+</LJDEP>
+_c?>

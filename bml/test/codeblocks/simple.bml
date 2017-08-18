@@ -1,0 +1,12 @@
+Immediate value/Simple string:
+<?_code "Foo" _code?>
+
+Immediate value/List:
+<?_code qw{this is some data in a list} _code?>
+
+Returned string:
+<?_code return "Bar" _code?>
+
+Returned List:
+<?_code return ("some", "stuff", "in", "a", "list") _code?>
+

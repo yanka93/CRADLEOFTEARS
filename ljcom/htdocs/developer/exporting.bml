@@ -1,0 +1,155 @@
+<?page
+title=>Exporting Comments
+body<=
+<?p LiveJournal provides an interface for exporting comments using an XML format that makes it easy
+for people to write utilities to use the information.  A user is allowed to download comments for
+any journal they administrate. p?>
+
+<?p Please read the <a href="/bots/">LiveJournal Bot Policy</a> page, which discusses more general
+rules on how to download information from our servers without getting yourself banned.  Also please
+follow the directions contained in this guide. p?>
+
+<?p In order to use the comment exporter, you will need to have a valid session cookie.  This can
+be obtained with the <tt>sessiongenerate</tt> protocol mode or by posting login information to the
+login.bml page. p?>
+
+<?h2 Comment Data Summary h2?>
+<table border="1">
+<tr><th>Element</th><th>Attribute</th><th>Mode</th><th>Mutable</th><th>Description</th></tr>
+
+<?_code
+{
+    my @elements = (
+        [ 'maxid', '', 'meta', 'yes', 'This element gives you an integer value of the maximum comment id currently available in the user\'s journal.  This is the endpoint, inclusive.' ],
+        [ 'comment', 'id', 'meta, body', 'no', 'The id of this particular comment.' ],
+        [ 'comment', 'posterid', 'meta, body', 'yes', 'The id of the poster of this comment.  This can only change from 0 (anonymous) to some non-zero number.  It will never go the other way, nor will it change from some non-zero number to another non-zero number.  Anonymous (0) is the default if no posterid is supplied.' ],
+        [ 'comment', 'state', 'meta, body', 'yes', 'S = screened comment, D = deleted comment, A = active (visible) comment.  If the state is not explicitly defined, it is assumed to be A.' ],
+        [ 'comment', 'jitemid', 'body', 'no', 'Journal itemid this comment was posted in.' ],
+        [ 'comment', 'parentid', 'body', 'no', '0 if this comment is top-level, else, it is the id of the comment this one was posted in response to.  Top-level (0) is the default if no parentid is supplied.' ],
+        [ 'usermap', 'id', 'meta', 'no', 'Poster id part of pair.' ],
+        [ 'usermap', 'user', 'meta', 'yes', 'Username part of poster id + user pair.  This can change if a user renames.' ],
+        [ 'body', '', 'body', 'no', 'The text of the comment.' ],
+        [ 'subject', '', 'body', 'no', 'The subject of the comment.  This may not be present with every comment.' ],
+        [ 'date', '', 'body', 'no', 'The time this comment was posted at.  This is in the <a href="http://www.w3.org/TR/NOTE-datetime">W3C Date and Time</a> format.' ],
+        [ 'property', '', 'body', 'no', 'The property tag has one attribute, name, that indicates the name of this property.  The content of the tag is the value of that property.' ],
+    );
+
+    my $ret = '';
+    foreach my $r (@elements) {
+        $ret .= "<tr>\n";
+        $ret .= "<td>$_</td>\n" foreach @$r;
+        $ret .= "</tr>\n";
+    }
+    return $ret;
+}
+_code?>
+
+</table>
+
+<?h2 Fetching Metadata h2?>
+<?standout 
+    <span style="color: red;">NOTE:</span> Please cache metadata, but note that it does contain things that
+    can change about a comment.  You should follow these instructions to update your cache once in a while.
+standout?>
+
+<?p Comment metadata includes only information that is subject to change on a comment.  It
+is a lightweight call that returns a small XML file that provides basic information on each comment
+posted in a journal.  Step 1 of any export should look like this: p?>
+
+<?p <pre>    GET /export_comments.bml?get=comment_meta&startid=0</pre> p?> 
+
+<?p After you have made the above request, you will get back a response that looks something like this: p?>
+
+<?p <pre>
+    &lt;?xml version="1.0" encoding='utf-8'?&gt;
+    &lt;livejournal&gt;
+        &lt;maxid&gt;100&lt;/maxid&gt;
+        &lt;comments&gt;
+            &lt;comment id='71' posterid='3' state='D' /&gt;
+            &lt;comment id='70' state='D' /&gt;
+            &lt;comment id='99' /&gt;
+            &lt;comment id='100' posterid='3' /&gt;
+            &lt;comment id='92' state='D' /&gt;
+            &lt;comment id='69' posterid='3' state='S' /&gt;
+            &lt;comment id='98' posterid='3' /&gt;
+            &lt;comment id='73' state='D' /&gt;
+            &lt;comment id='86' state='S' /&gt;
+        &lt;/comments&gt;
+        &lt;usermaps&gt;
+            &lt;usermap id='6' user='test2' /&gt;
+            &lt;usermap id='3' user='test' /&gt;
+            &lt;usermap id='2' user='xb95' /&gt;
+        &lt;/usermaps&gt;
+    &lt;/livejournal&gt;</pre>
+p?>
+
+<?p The first part is the actual comment metadata.  Each row will contain the mutable information
+about a single comment.  After this data is the list of users and their ids.  These mappings will never change,
+so feel free to completely cache these. p?>
+
+<?p You should also notice the maxid line.  This shows you the maximum comment id that is in this user's
+journal.  You should use this number to determine if you are done downloading or not.  So, in pseudocode,
+you should use something like this to get metadata: p?>
+
+<?p <pre>
+    sub gather_metadata
+        get largest comment id known about from my cache
+        GET /export_comments.bml?get=comment_meta&startid=<i>maxid+1</i>
+        add results to metadata cache
+        if maximum id returned is less than maxid returned, call gather_metadata again
+    end sub
+</pre> p?>
+
+<?h2 Downloading the Comments h2?>
+<?standout
+    <span style="color: red;">WARNING:</span> Comment body data is to be <b>heavily cached</b>.  None of
+    this data can change.  Once you have downloaded a comment, you do not need to do so again.
+standout?>
+
+<?p Once you have the entire list of metadata, you can begin downloading comments.  The steps you will
+use are much the same as for getting metadata.  Again, here is some pseudocode: p?>
+
+<?p <pre>
+    sub download_comments
+        get largest comment id we have fully downloaded
+        GET /export_comments.bml?get=comment_body&startid=<i>maxid+1</i>
+        add results to comment cache
+        if maximum id returned is less than maxid in metadata cache, call download_comments again
+        if nothing was returned, and startid+1000 < maxid from metadata, call download_comments again
+    end sub
+</pre> p?>
+
+<?p The resulting format each time you hit export_comments.bml will look like this: p?>
+
+<?p <pre>
+    &lt;?xml version="1.0" encoding='utf-8'?&gt;
+    &lt;livejournal&gt;
+        &lt;comments&gt;
+            &lt;comment id='68' posterid='3' state='S' jitemid='34'&gt;
+            &lt;body&gt;we should all comment all day&lt;/body&gt;
+            &lt;date&gt;2004-03-02T18:14:06Z&lt;/date&gt;
+        &lt;/comment&gt;
+        &lt;comment id='69' posterid='3' state='S' jitemid='34'&gt;
+            &lt;body&gt;commenting is fun&lt;/body&gt;
+            &lt;date&gt;2004-03-02T18:16:08Z&lt;/date&gt;
+        &lt;/comment&gt;
+        &lt;comment id='99' jitemid='43' parentid='98'&gt;
+            &lt;body&gt;anonynote!&lt;/body&gt;
+            &lt;date&gt;2004-03-16T19:06:31Z&lt;/date&gt;
+            &lt;property name='poster_ip'&gt;127.0.0.1&lt;/property&gt;
+        &lt;/comment&gt;
+        &lt;comment id='100' posterid='3' jitemid='43' parentid='98'&gt;
+            &lt;subject&gt;subject!#@?&lt;/subject&gt;
+            &lt;body&gt;&amp;lt;b&amp;gt;BOLD!&amp;lt;/b&amp;gt;&lt;/body&gt;
+            &lt;date&gt;2004-03-16T19:19:16Z&lt;/date&gt;
+        &lt;/comment&gt;
+    &lt;/comments&gt;
+    &lt;/livejournal&gt;
+</pre> p?>
+
+<?p That concludes this brief tutorial on exporting comment data in an appropriate manner
+so as not to be overly hard on the LiveJournal servers.  Thanks for your cooperation, and
+don't forget to read the <a href="/bots/">Bot Policy</a> page. p?>
+
+<=body
+page?>

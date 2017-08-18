@@ -1,0 +1,7 @@
+Escape old-style syntax:
+Tags in BML used to be like (= this =), but that format has since been
+deprecated.
+
+Escape new-style syntax:
+Now tags in BML look like: &lt;?foo?&gt;.
+

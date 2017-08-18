@@ -1,0 +1,973 @@
+<?_code
+{
+    use strict;
+    use vars qw(%POST %COOKIE $title $body);
+
+    # require POST
+    return BML::redirect("./")
+        unless LJ::did_post();
+
+    my $req = shift;
+    my $r = $req->{'r'};
+
+    ($title, $body) = ("", "");
+    my $err = sub {
+        my @err = @_;
+        $title = $ML{'Error'};
+        $body = LJ::bad_input(@err);
+        return;
+    };
+
+    my $dbh = LJ::get_db_writer();
+    my $remote = LJ::get_remote();
+    my $cart = $POST{'cart'};
+
+    LJ::load_user_props($remote, 'allow_pay') if $remote;
+
+    # if coming from the /store/ area, pick up their cart cookie for 'em,
+    # save the /store/ code a bit of work (and redundancy)
+    if ($POST{'action:addinventory'}) {
+        $cart ||= $COOKIE{'cart'};
+    }
+
+    my $cartobj = LJ::Pay::load_cart($cart);
+
+    # make sure they own this cart
+    if ($cartobj && $cartobj->{'userid'}) {
+        return "You must be logged in as this cart's owner to proceed with checkout."
+            unless $remote;
+        return "You do not own this cart.  If you'd like to start a new cart, please click " .
+            "<a href='./?c=new'>here</a>." 
+            unless $cartobj->{'userid'} == $remote->{'userid'};
+    }
+
+    my $ensurecart = sub {
+        return if $cartobj;
+        $cartobj = LJ::Pay::new_cart($remote);
+        $cart = "$cartobj->{'payid'}-$cartobj->{'anum'}";
+    };
+
+    # don't let them modify the cart if they've already started
+    # any sort of checkout process
+    my $can_mod = ! $cartobj || ! $cartobj->{'method'};
+    
+    # new order
+    if ($POST{'action:neworder'}) {
+        delete $BML::COOKIE{'cart'};
+        return BML::redirect("/pay/?c=new&old=$cart");
+    }
+
+    # no cart... senseless action
+    if (($POST{'action:checkout'} || $POST{'action:removesel'}) 
+        && ! $cartobj) { return BML::redirect("/pay/"); }
+
+    # remove item(s) from cart
+    if ($POST{'action:removesel'}) {
+        return $err->("Can't modify checked-out cart.") unless $can_mod;
+
+        my @remove;          # piids to be removed, based on %POST submission
+        my %extra_remove;    # piid => userid
+
+        my %paid_in_cart;    # userid => unixtime when earliest paid account will apply 
+        my %bonus_in_cart;   # userid => unixtime when earliest bonus feature will apply
+        my %userids_in_cart; # userid => 1, hash for fast lookups
+        foreach my $it (@{$cartobj->{'items'}}) {
+
+            # the item they are trying to remove
+            if ($POST{"del_$it->{'piid'}"}) {
+                push @remove, $it;
+                next;
+            }
+
+            my $ga = $it->{'giveafter'} || 0;
+            my $uid = $it->{'rcptid'};
+            $userids_in_cart{$uid} = 1;
+
+            # bonus feature
+            if (LJ::Pay::is_bonus($it)) {
+
+                # find which instance of this bonus feature takes effect first
+                if (! defined $bonus_in_cart{$uid} ||
+                    $ga < $bonus_in_cart{$uid}) {
+                    
+                    $bonus_in_cart{$uid} = $ga;
+                }
+
+            # paid account
+            } elsif ($it->{'item'} eq "paidacct") {
+                
+                # find which paid account takes effect sooner
+                if (! defined $paid_in_cart{$uid} ||
+                    $ga < $paid_in_cart{$uid}) {
+                    
+                    $paid_in_cart{$uid} = $ga;
+                }
+            }
+        }
+
+        if (%bonus_in_cart) {
+
+            # get expiration dates of paid accounts for users who have bonus in this cart
+            my %paid_in_db;
+            my $in = join(",", map { $dbh->quote($_) } keys %userids_in_cart);
+            my $sth = $dbh->prepare("SELECT userid, UNIX_TIMESTAMP(paiduntil) AS 'paiduntil' " .
+                                    "FROM paiduser WHERE userid IN ($in)");
+            $sth->execute();
+            $paid_in_db{$_->{'userid'}} = $_->{'paiduntil'} while $_ = $sth->fetchrow_hashref;
+
+            # remove free users with no paid time in their cart
+            foreach my $it (@{$cartobj->{'items'}}) {
+                next if $POST{"del_$it->{'piid'}"}; # skip item if being deleted
+                next unless LJ::Pay::is_bonus($it);
+
+                my $ga = $it->{'giveafter'} || 0;
+                my $uid = $it->{'rcptid'};
+
+                if ((! defined $paid_in_cart{$uid} || 
+                     ($paid_in_cart{$uid} > 0 && $ga < $paid_in_cart{$uid})) &&
+                    (! defined $paid_in_db{$uid} || $ga > $paid_in_db{$uid})) {
+
+                    $extra_remove{$it->{'piid'}} = $uid;
+                }
+            }
+
+            # extra items were removed, notify the user why
+            if (%extra_remove) {
+                $body .= "<?h1 Notice h1?>";
+                $body .= "<?p Extra features cannot be bought for free accounts. The following items ";
+                $body .= "were removed from your cart because their recipients are not paid ";
+                $body .= "accounts and you are not currently buying a paid account for them. p?>";
+
+                $body .= "<ul>";
+
+                # load usernames so we can report them below
+                my %users;
+                LJ::load_userids_multiple([ map { $_, \$users{$_} } values %extra_remove ],
+                                          [$remote]);
+
+                foreach my $it (@{$cartobj->{'items'}}) {
+                    next unless $extra_remove{$it->{'piid'}} && LJ::Pay::is_bonus($it);
+
+                    $body .= "<li>" . LJ::ljuser($users{$it->{'rcptid'}}) . " - ";
+                    $body .= LJ::Pay::product_name($it, "short") . "</li>";
+                }
+                $body .= "</ul>";
+
+                $body .= "<form method='get' action='/pay/'>";
+                $body .= LJ::html_hidden('c', $cart);
+                $body .= "<p align='center'>" . LJ::html_submit("Acknowledged") . "</p>";
+                $body .= "</form>";
+            }
+        }
+
+        LJ::Pay::remove_cart_items($cartobj, @remove, keys %extra_remove);
+
+        if (%extra_remove) {
+            # body was filled in above
+            return;
+        } else {
+            return BML::redirect("/pay/?c=$cart");
+        }
+    }
+
+    # checkout
+    if ($POST{'action:checkout'}) {
+        return $err->("invalid payment method") unless
+            $POST{'paymeth'} =~ /^check|moneyorder|cash|cc|paypal$/ || $cartobj->{'amount'} == 0;
+        return $err->("invalid payment method for age verification") if 
+            $POST{'paymeth'} ne 'cc' && LJ::Pay::cart_contains_coppa($cartobj);
+        $POST{'paymeth'} = "free" if $cartobj->{'amount'} == 0 && ! LJ::Pay::cart_needs_shipping($cartobj) && ! LJ::Pay::cart_contains_coppa($cartobj);
+
+        if ($cartobj->{userid} && $remote && $remote->underage && 
+            ! scalar grep { $_->{item} eq 'coppa' } @{$cartobj->{items}}) {
+
+            return $err->("Your account is marked as underage (see <a href='$LJ::SITEROOT/legal/coppa.bml'>COPPA</a> requirements). " .
+                          "You must go back and add a COPPA verification item to your account before continuing.");
+        }
+
+
+        # mark all coupons as used - though we've changed to updating payids on coupons when they are added
+        # to the cart rather than when the cart is checked out, we still need to catch coupons that were
+        # already in carts at the time the change was made... we'll just do that fixup here
+        foreach my $it (@{$cartobj->{'items'}}) {
+            next unless $it->{'item'} eq "coupon" && $it->{'amt'} < 0;
+            $dbh->do("UPDATE coupon SET payid=? WHERE cpid=? AND payid=0", undef, $cartobj->{'payid'}, $it->{'tokenid'});
+        }
+
+        # open proxy check (disabled if remote has allow_pay set)
+        unless ($remote && $remote->{allow_pay} eq 'Y') {
+            my $remote_ip = LJ::get_remote_ip();
+            if (LJ::is_open_proxy($remote_ip)) {
+                $title = "Open Proxy Detected";
+                $body = "Your IP address ($remote_ip) is detected as an open proxy (a common source of fraud) so access to placing orders is denied.  If you do not believe you're accessing the net through an open proxy, please contact your ISP or this site's tech support to help resolve the problem.";
+                return;
+            }
+        }
+
+        # verify cart (check for items that have been invalidated since adding)
+        unless (LJ::Pay::is_valid_cart($cartobj)) {
+            $title = $ML{'Sorry'};
+            $body .= "The given cart contains items that are no longer valid.  This could be caused by conflicts with other carts " .
+                "created during the same time.  Please try again with a <a href='/pay/?c=new'>new cart</a>";
+            $body .= " or <a href='/pay/history.bml'>continue one of your existing carts</a>" if $remote;
+            $body .= ".";
+            return;
+        }
+
+        my $needs_shipping = LJ::Pay::cart_needs_shipping($cartobj);
+
+        if ($POST{'paymeth'} eq "paypal" && $needs_shipping) {
+            $title = $ML{'Sorry'};
+            $body .= "Paying for clothing items with PayPal is not supported.  Please go back and choose an alternate means of payment.";
+            return;
+        }
+
+        my @out_of_stock;
+        if ($needs_shipping && ! LJ::Pay::reserve_items($cartobj, \@out_of_stock)) {
+            $title = "Out of Stock";
+            $body .= "<?h1 Items out of stock... h1?><?p We've run out of the following items between the time you made your order and the time you checked out, so we're unable to reserve them for you: p?>";
+            $body .= "<ul>";
+            foreach (@out_of_stock) { $body .= "<li>$_</li>"; }
+            $body .= "</ul>";
+            if (@out_of_stock > 1) {
+                $body .= "<?p If you'd like to continue with this order, go back and remove the items listed above. p?>";
+            } else {
+                $body .= "<?p Depending on the popularity of the item, we may or may not be ordering more.  You can check the availability in the future at the <a href='/store/'>LiveJournal Store</a> -- out of stock items are indicated there. p?>";
+            }
+            return;
+        }
+
+        $dbh->do("UPDATE payments SET method=? WHERE payid=? AND used='C'",
+                 undef, $POST{'paymeth'}, $cartobj->{'payid'});
+
+        # if they've logged in since making the cart, update the cart's ownership
+        if ($cartobj->{'userid'} == 0 && $remote) {
+            $dbh->do("UPDATE payments SET userid=? WHERE payid=? AND used='C'",
+                     undef, $remote->{'userid'}, $cartobj->{'payid'});
+        }
+
+        if ($needs_shipping) {
+            my %payvar;
+            my $sth = $dbh->prepare("SELECT pkey, pval FROM payvars WHERE payid=? AND pkey LIKE 'ship%'");
+            $sth->execute($cartobj->{'payid'});
+            while (my ($k, $v)= $sth->fetchrow_array) { $payvar{$k} = $v; }
+
+            if ($POST{'save_shipping'}) {
+                foreach my $v (qw(name addr1 addr2 city state zip country)) {
+                    my $k = "ship_$v";
+                    if ($POST{$k} ne $payvar{$k}) {
+                        LJ::Pay::payvar_set($cartobj->{'payid'}, $k, $POST{$k});
+                    }
+                }
+                return $err->("Shipping address needed") unless $POST{'ship_addr1'};
+                return $err->("City needed") unless $POST{'ship_city'};
+                if ($POST{'ship_country'} eq "us") {
+                    return $err->("5 digit zip code required") unless $POST{'ship_zip'} =~ /^\d\d\d\d\d/;
+                    return $err->("State needed") unless $POST{'ship_state'};
+                }
+                
+                LJ::Pay::update_shipping_cost($cartobj, $POST{'ship_country'});
+
+            } else {
+
+                my %countries;
+                LJ::load_codes({ "country" => \%countries });
+                
+                $title = "Shipping Address";
+                $body .= "<?h1 Enter your shipping address... h1?>";
+                $body .= "<form method='post' action='modify.bml'>";
+                $body .= "<table>";
+                $body .= "<tr><td>Name:</td><td>" . LJ::html_text({ name => 'ship_name', 
+                                                                    size => 30, 
+                                                                    value => $payvar{'ship_name'} }) . "</td></tr>\n";
+                $body .= "<tr><td>Address:</td><td>" . LJ::html_text({ name => 'ship_addr1', 
+                                                                       size => 30, 
+                                                                       value => $payvar{'ship_addr1'} }) . "</td></tr>\n";
+                $body .= "<tr><td></td><td>" . LJ::html_text({ name => 'ship_addr2', 
+                                                               size => 30, 
+                                                               value => $payvar{'ship_addr2'} }) . "</td></tr>\n";
+                $body .= "<tr><td>City</td><td>" . LJ::html_text({ name => 'ship_city', 
+                                                               size => 30, 
+                                                               value => $payvar{'ship_city'} }) . "</td></tr>\n";
+                $body .= "<tr><td>State</td><td>" . LJ::html_text({ name => 'ship_state', 
+                                                               size => 30, 
+                                                                    value => $payvar{'ship_state'} }) . "</td></tr>\n";
+                $body .= "<tr><td>Zip</td><td>" . LJ::html_text({ name => 'ship_zip', 
+                                                                  size => 30, 
+                                                                  value => $payvar{'ship_zip'} }) . "</td></tr>\n";
+                $body .= "<tr><td>Country:</td><td>";
+                $body .= LJ::html_select({ 'name' => 'ship_country',
+                                           'selected' => $payvar{'ship_country'}, },
+                                         map { $_, $countries{$_} }
+                                         ("US", sort { $countries{$a} cmp $countries{$b} }
+                                          keys %countries));
+                $body .= "<br />(extra shipping cost outside US &amp; Canada)"
+                    unless $cartobj->{'amount'} == 0;
+                $body .= "</td></tr>";
+                $body .= "<tr><td></td><td><input type='submit' value='Continue --&gt;' /></td></tr>\n";
+                $body .= "</table>\n";
+
+                $body .= LJ::html_hidden('save_shipping', 1);
+                foreach (keys %POST) {
+                    $body .= LJ::html_hidden($_, $POST{$_});
+                }
+                $body .= "</form>";
+
+                $body .= "<?h1 Customs Notice h1?>";
+                $body .= "<?p Buyers outside the United States may be subject to additional import duties and taxes.  Contact your local customs office for further information.  When ordering from Livejournal, you are considered the importer of record and must comply with all laws and regulations of the country in which you are receiving the goods. p?>";
+                $body .= "<?p Customs forms for all international packages list the value of your order's contents by product type.  For instance, orders containing T-shirts, will be listed in a way similar to the following example: p?><div style='margin-left: 50px'><tt>T-shirt value: \$14.00</tt></div>";
+                return;
+            }
+        }
+
+        # for debugging, log the browser
+        my $ua = BML::get_client_header("User-Agent");
+        LJ::Pay::payvar_add($cartobj->{'payid'}, "browser", $ua) if $ua;
+
+        # log uniq
+        my $uniq = $r->notes('uniq');
+        LJ::Pay::payvar_add($cartobj->{'payid'}, "uniq", LJ::mysql_time() . " - $uniq") if $uniq;
+
+        if ($POST{'paymeth'} eq "cash") {
+            $title = "Cash Warning";
+            $body = "<?h1 Cash Payments h1?><?p We do not recommend sending cash through the mail.  If you have no other option, we will accept it, but we won't take any responsibility should it be lost in the mail. p?>";
+            $body .= "<form method='get' action='/pay/checkout.bml'>";
+            $body .= LJ::html_hidden("c", $cart);
+            $body .= LJ::html_hidden("meth", "cash");
+            $body .= "<blockquote><input type='submit' value='Acknowledged'></blockquote></form>";
+            return;
+        }
+
+        if ($POST{'paymeth'} eq "check" ||
+            $POST{'paymeth'} eq "moneyorder") {
+            return BML::redirect("/pay/checkout.bml?c=$cart&meth=$POST{'paymeth'}");
+        }
+
+	my $pp_url;
+	{     
+            my $count = scalar(@{$cartobj->{'items'}});
+            my $amount = $cartobj->{'amount'};
+	    $pp_url = "https://www.paypal.com/cgi-bin/webscr?amount=$amount&return=http%3A//www.livejournal.com/paidaccounts/thankyou.bml&item_name=" . LJ::eurl("Cart ID $cart ($count item(s))") . "&custom=" . LJ::eurl("cart=$cart") . "&business=paypal%40livejournal.com&cmd=_xclick&cmd=_xclick&no_shipping=1&no_note=1&notify_url=http%3A//www.livejournal.com/paidaccounts/pp_notify.bml";
+	}
+
+        if ($POST{'paymeth'} eq "paypal") {
+
+            # is paypal gateway down?
+            if ($LJ::PAYPAL_DOWN) {
+                $title = "PayPal Temporarily Unavailable";
+                $body .= "<?h1 Payment Gateway Down h1?>" .
+                    "<?p We're sorry, but due to problems with PayPal's transaction gateway, we are temporarily not " .
+                    "accepting PayPal payments. Please try back in a few minutes. p?>";
+                return;
+            }
+
+            return BML::redirect($pp_url);
+        }
+
+        if ($POST{'paymeth'} eq "cc") {
+	    if ($LJ::AUTHNET_DOWN) {
+		$title = "Primary Credit Card Processor Unavailable";
+		$body = "<?h1 Gateway unavailable h1?><?p Our primary credit card processing gateway is temporarily unavailable for reasons outside our control. p?>";
+
+                unless ($LJ::PAYPAL_DOWN) {
+                    $body .= "<?p However, you can also pay with credit card using the PayPal service: p?><blockquote><b><a href='" . LJ::ehtml($pp_url) . "'>Pay with PayPal</a></b></blockquote>";
+                }
+
+		return;
+	    }
+
+            return BML::redirect("$LJ::SSLROOT/pay/cc.bml?c=$cart");
+        }
+
+        if ($POST{'paymeth'} eq "free") {
+            $dbh->do("UPDATE payments SET mailed='N', used='N', method='free', daterecv=NOW() ".
+                     "WHERE payid=? AND mailed='C' AND used='C'",
+                     undef, $cartobj->{'payid'});
+            $title = "Success";
+            $body = "Order placed.  For reference, your order number is <b>$cart</b>.";
+            return;
+        }
+    }
+    
+    my $msg_already_out = "Your <a href='/pay/?c=$cart'>currently active order</a> has already been checked out.  To add items you must first start a <a href='/pay/?c=new&amp;old=$cart'>new order</a>.";
+
+    # add coupon to cart
+    if ($POST{'action:coupon'}) {
+        return $err->($msg_already_out) unless $can_mod;
+        return $err->("Can't add a coupon to an empty order.  Add items first, then apply your coupon.")
+            unless $cartobj;
+
+        my $coupon = $POST{'coupon'};
+        return $err->("Invalid coupon format") unless $coupon =~ /^(\d+)-(.+)$/;
+        my ($cpid, $auth) = ($1, $2);
+        my $cp = $dbh->selectrow_hashref("SELECT * FROM coupon WHERE cpid=? AND auth=?", undef,
+                                         $cpid, $auth);
+        return $err->("Invalid coupon") unless $cp;
+        return $err->("Coupon belongs to somebody else") if $cp->{'locked'} && (! $remote || $remote->{'userid'} != $cp->{'rcptid'});
+
+        # see if coupon is already in this cart
+        if (grep { $_->{'item'} eq "coupon" && $_->{'tokenid'} == $cp->{'cpid'} }
+            @{$cartobj->{'items'}}) {
+            return BML::redirect("/pay/?c=$cart");
+        }
+
+        # can only add freeclothingitem coupons to carts with clothes in them
+        if ($cp->{'type'} eq "freeclothingitem") {
+            return $err->("There does not exist a clothing item for which this coupon can be used.") unless
+                grep { $_->{'item'} eq "clothes"} @{$cartobj->{'items'}};
+        }
+
+        # coupon is already attached to a cart
+        if ($cp->{'payid'}) {
+
+            # error generically if they're not logged in
+            return $err->("Coupon has already been used") unless $remote;
+
+            # see who owns the cart the coupon is attached to
+            my $oldcart = $dbh->selectrow_hashref("SELECT userid, used, method, anum " .
+                                                  "FROM payments WHERE payid=?",
+                                                  undef, $cp->{'payid'});
+
+            # can't give a link to a cart they don't own
+            return $err->("Coupon has already been used by another user")
+                unless $remote->{'userid'} == $oldcart->{'userid'};
+
+            # now we know they own the cart, so we'll give them a link to view/modify it.
+            # modify is only possible if 'used' = 'C' and 'method' = ''
+            my $cart = "$cp->{'payid'}-$oldcart->{'anum'}";
+            my $verb = ($oldcart->{'used'} eq 'C' && ! $oldcart->{'method'})
+                ? "modify" : "view";
+
+            return $err->("The coupon you have entered has already been used on another one of your carts. " .
+                          "If you'd like, you can <a href='/pay/?c=$cart'>$verb the existing cart</a> or " .
+                          "go back and enter a new coupon for the current cart.");
+        }
+
+        my $item = {
+            'item' => 'coupon',
+            'subitem' => $cp->{'type'},
+            'tokenid' => $cpid,
+            'token' => $coupon,
+            'amt' => -$cp->{'arg'},
+            'rcptid' => 0,
+        };
+        $item = LJ::Pay::add_cart_item($cartobj, $item);
+
+        return $err->("Error adding coupon to order: " . LJ::last_error()) unless $item;
+
+        # mark coupon as used by this cart
+        $dbh->do("UPDATE coupon SET payid=? WHERE cpid=?", undef, $cartobj->{'payid'}, $cp->{'cpid'});
+
+        return BML::redirect("/pay/?c=$cart");
+    }
+
+    # add item to cart
+    if ($POST{'action:additem'}) {
+        return $err->($msg_already_out) unless $can_mod;
+        $ensurecart->();
+
+	# itemname-subitem?-qty, subitem is optional
+        my ($itemname, $subitem, $qty) = split(/\-/, $POST{'item'});
+	unless ($qty) {
+	    $qty = $subitem;
+	    undef $subitem;
+	}
+
+        my $good_bonus = sub {
+            return 0 unless LJ::Pay::is_bonus($itemname);
+
+            my $brec = $LJ::Pay::bonus{$itemname};
+            if (LJ::Pay::is_bonus($itemname, 'sized')) {
+                return exists $brec->{items}->{$subitem} &&
+                       exists $brec->{items}->{$subitem}->{qty}->{$qty};
+            }
+
+            return exists $brec->{items}->{$qty};
+        };
+
+        # valid item?
+        my $bad_item = 1;
+        $bad_item = 0 if $good_bonus->(); # bonus features
+        $bad_item = 0 if $itemname eq "paidacct" && defined $LJ::Pay::account{$qty};
+        $bad_item = 0 if $itemname eq "coupon" && grep { $_ eq $qty } @LJ::Pay::coupon;
+        $bad_item = 0 if $itemname eq "perm" && $LJ::PERM_SALE;
+        $bad_item = 0 if $itemname eq "coppa";
+        $bad_item = 0 if $itemname eq "rename";
+        return BML::redirect("/pay/?c=$cart") if $bad_item;
+
+        my $item = { 
+            'item' => $itemname,
+            'rcptid' => 0,
+        };
+
+        ### Decide pricing/qty information depending on item type
+
+        # paid account
+        if ($itemname eq "paidacct") {
+            $item->{'qty'} = $qty;
+            $item->{'amt'} = $LJ::Pay::account{$qty}->{'amount'};
+        }
+        
+        # sized bonus feature
+        elsif (LJ::Pay::is_bonus($itemname, 'sized')) {
+
+            # essentially the subitem for sized bonus features is the 'size', but to make sure that
+            # multiple orders don't get comp'd time, we'll store the previous size/qty as well, so
+            # the actual stored subitem will be:
+            #     new_size-prev_exp-prev_size
+
+            my ($prev_exp, $prev_size) = LJ::Pay::get_bonus_dim($remote, $itemname);
+            $item->{'subitem'} = "$subitem-$prev_exp-$prev_size";
+            $item->{'amt'} = LJ::Pay::get_sized_bonus_price($remote, $cartobj, $itemname, $subitem, $qty);
+            $item->{'qty'} = $qty;
+        }
+
+        # bool bonus feature
+        elsif (LJ::Pay::is_bonus($itemname, 'bool')) {
+            $item->{'qty'} = $qty;
+            $item->{'amt'} = LJ::Pay::get_bool_bonus_price($itemname, $qty);
+        }
+
+        # coupons
+        elsif ($itemname eq "coupon") {
+            $item->{'amt'} = $qty;
+            $item->{'subitem'} = "dollaroff";
+        }
+
+        # rename token
+        elsif ($itemname eq "rename") {
+            $item->{'amt'} = 15;
+        }
+
+        # permanent account
+        elsif ($itemname eq "perm") {
+            $item->{'amt'} = 150;
+        }
+
+        # coppa verification
+        elsif ($itemname eq "coppa") {
+            $item->{'amt'} = 0;
+        }
+
+        ### Decide recipient
+
+        if ($POST{'redemail'} && $POST{'for'} ne "email") {
+            return $err->("Redemption email entered, but not selected.  Not sure what you meant.");
+        }
+
+        my $rcptuser = {};
+        if ($POST{'for'} eq "remote") {
+            return $err->("No longer logged in, but paying for logged in account") unless $remote;
+            return $err->("Can't buy a coupon for yourself") if $itemname eq 'coupon';
+            $item->{'rcptid'} = $remote->{'userid'};
+            $rcptuser = $remote;
+        } elsif ($POST{'for'} eq "other") {
+            my $ou = LJ::load_user($POST{'otheruser'});
+            return $err->("Invalid gift recipient username") unless $ou;
+            return $err->("Cannot buy paid features for syndicated accounts")
+                if $ou->{'journaltype'} eq 'Y';
+            return $err->("Cannot buy paid features for renamed accounts")
+                if $ou->{'journaltype'} eq 'R';
+            return $err->("Cannot buy paid features for " . LJ::ljuser($ou) . " due to account status")
+                unless $ou->{'statusvis'} eq 'V' || $ou->{'statusvis'} eq 'M';                
+
+            $item->{'rcptid'} = $ou->{'userid'};
+            $rcptuser = $ou;
+
+            # don't let them easily check to see if they're blocked
+            unless ($remote && $remote->{'user'} eq $ou->{'user'}) {
+                my $pay_user = $remote ? $remote->{'user'} : 'anonymous';
+                my $pay_userid = $remote ? $remote->{'userid'} : undef;
+                if (LJ::sysban_check('pay_user', $ou->{'user'})) {
+                    LJ::sysban_note($pay_userid, 
+                                    "Gift blocked based on user",
+                                    { 'item' => $itemname,
+                                      'pay_user' => $pay_user,
+                                      'rcpt_user' => $ou->{'user'},
+                                      'cart' => $cart });
+                      return $err->("You are not allowed to buy gifts for " . LJ::ljuser($ou->{'user'}));
+                  }
+            }
+        } elsif ($POST{'for'} eq "email") {
+
+            # can't buy bonus features for an email address
+            return $err->("Extra features can only be purchased for existing users.")
+                if LJ::Pay::is_bonus($itemname);
+
+            my @email_errors;
+            LJ::check_email($POST{'redemail'}, \@email_errors);
+            return $err->(@email_errors) if @email_errors;
+            $item->{'rcptemail'} = $POST{'redemail'};
+
+            # don't let them easily check to see if they're blocked
+            unless ($remote && $remote->{'email'} eq $item->{'rcptemail'}) {
+                my $pay_user = $remote ? $remote->{'user'} : 'anonymous';
+                my $pay_userid = $remote ? $remote->{'userid'} : undef;
+                if (LJ::sysban_check('pay_email', $item->{'rcptemail'})) {
+                    LJ::sysban_note($pay_userid,
+                                    "Gift blocked based on email",
+                                    { 'item' => $itemname,
+                                      'pay_user' => $pay_user,
+                                      'rcpt_email' => $item->{'rcptemail'},
+                                      'cart' => $cart });
+                      return $err->("You are not allowed to buy gifts for '$item->{'rcptemail'}'");
+                  }
+            }
+        }
+
+        unless ($item->{'rcptid'} || $item->{'rcptemail'}) {
+            return $err->("No specified recipient for item");
+        }
+
+        # must be logged in and purchasing 'sized' bonus features for self
+        if (LJ::Pay::is_bonus($itemname, 'sized')) {
+            my $dispname = LJ::Pay::product_name($item, "short");
+
+            # must be logged in
+            return $err->("Must be <a href='$LJ::SITEROOT/login.bml?ret=1'>logged in</a> to buy <b>$dispname</b>.")
+                unless $remote;
+
+            # can't buy as a gift
+            return $err->("Can't buy <b>$dispname</b> as a gift.")
+                unless $remote->{'userid'} == $item->{'rcptid'};
+
+            # shouldn't get this far, did they spoof the form values?
+            return $err->("Cannot buy <b>$dispname</b>.")
+                unless LJ::Pay::can_apply_sized_bonus($rcptuser, $cartobj, $item->{'item'}, $item->{'subitem'}, $item->{'qty'});
+        }
+
+        # can't buy paid time for permanent accounts
+        if ($item->{'rcptid'} && ($itemname eq 'paidacct' || $itemname eq 'perm')) {
+            return $err->("Cannot buy paid time for permanent accounts")
+                if $rcptuser->{'caps'} & 1 << $LJ::Pay::capinf{'perm'}->{'bit'};
+        }
+
+        # can't have more than one permanent account per recipient
+        if ($itemname eq 'perm') {
+            foreach (@{$cartobj->{items}}) {
+                return $err->("Cannot purchase more than one permanent account for a given recipient.")
+                    if $item->{rcptid} && $item->{rcptid} == $_->{rcptid} ||
+                       $item->{rcptemail} && $item->{rcptemail} eq $_->{rcptemail};
+            }
+        }
+
+        # can't do coppa verifications except on $remote
+        if ($itemname eq 'coppa') {
+            return $err->("Cannot perform age verification on non-logged-in users")
+                if ! $remote || $remote->{userid} != $item->{rcptid};
+
+            return $err->("Age verification not required for " . LJ::ljuser($remote))
+                unless $remote->underage;
+        }
+
+        $item->{'anon'} = $POST{'anongift'} ? 1 : 0;
+        
+        # delayed gift
+        if ($POST{'giveafter'}) {
+            return $err->("Cannot specify a Delivery Date on orders for yourself.")
+                if $item->{'rcptid'} && $remote && $item->{'rcptid'} == $remote->{'userid'};
+
+            return $err->($ML{'/paidaccounts/usepaypal.bml.delivery.badformat'})
+                unless ($POST{'giveafter'} =~ /^(\d\d\d\d)\-(\d\d)\-(\d\d)(?: (\d\d):(\d\d))?/);
+     
+            my $dtime = 0;
+            eval { $dtime = Time::Local::timegm(0, $5, $4, $3, $2-1, $1); };
+            return $err->($ML{'/paidaccounts/usepaypal.bml.delivery.badformat'}) if @$;
+
+            my $delay = $dtime - time();
+            return $err->($ML{'/paidaccounts/usepaypal.bml.delivery.past'}) if $delay < 0;
+            return $err->($ML{'/paidaccounts/usepaypal.bml.delivery.toofuture'})
+                if $delay > 60*60*24*31;
+
+            $item->{'giveafter'} = $dtime;
+        } else {
+            $item->{'giveafter'} = undef;
+        }
+
+        # buying bonus-feature, lots of extra checks
+        if (LJ::Pay::is_bonus($itemname) && ! $POST{'action:additem:confirm'}) {
+
+            # check to see if the user is trying to buy bonus features that extend
+            # past the expiration of their paid account... factor in any paid time
+            # currently in the cart as well.  if so, ask for confirmation
+
+            my $cart_bonus_months = $item->{'qty'};      # months of bonus feat. in cart
+            my $cart_paid_months = 0;                    # months of paidacct in cart
+            my $cart_bonus_start = $item->{'giveafter'}; # start of bonus feature in cart
+            my $cart_paid_start  = undef;                # start of paid account in cart
+            my $cart_perm_acct = 0;                      # can't buy bool bonus features for perms
+
+            foreach my $it (@{$cartobj->{'items'}}) {
+                next unless $it->{'rcptid'} == $item->{'rcptid'};
+                
+                my $ga = $it->{'giveafter'} || 0;
+
+                # bonus item
+                if ($it->{'item'} eq $itemname) {
+                    $cart_bonus_months += $it->{'qty'};
+
+                    # find which instance of this bonus feature takes effect first
+                    if (! defined $cart_bonus_start ||
+                        $ga < $cart_bonus_start) {
+
+                        $cart_bonus_start = $ga;
+                    }
+
+                # paid account
+                } elsif ($it->{'item'} eq "paidacct") {
+                    $cart_paid_months += $it->{'qty'};
+
+                    # find which paid account takes effect sooner
+                    if (! defined $cart_paid_start ||
+                        $ga < $cart_paid_start) {
+
+                        $cart_paid_start = $ga;
+                    }
+                    
+                } elsif ($it->{'item'} eq 'perm') {
+                    $cart_perm_acct = 1;
+                }
+            }
+            $cart_paid_start ||= 0;
+
+            my $is_perm = ($cart_perm_acct || $rcptuser->{'caps'} & 1 << $LJ::Pay::capinf{'perm'}->{'bit'});
+
+            # give error if trying to buy bonus feature for permanent account
+	    # -- but we do allow buying disk quota for permanent accounts
+            if (LJ::Pay::is_bonus($itemname, 'bool') &&  $is_perm) {
+
+                my $dispname = LJ::Pay::product_name($item, "short");
+                return $err->("You cannot buy <b>$dispname</b> for permanent accounts.");
+            }
+
+            # return max of arguments, undef if none
+            my $max = sub { @_ ? (sort { $b <=> $a } @_)[0] : undef; };
+
+            
+            my $db_paid_time = $is_perm ? $LJ::EndOfTime : 
+                $dbh->selectrow_array("SELECT UNIX_TIMESTAMP(paiduntil) " . 
+                                      "FROM paiduser WHERE userid=?",
+                                      undef, $item->{'rcptid'}) || 0;
+
+            # used in messages, $rcptuser is always defined here
+            my $utag = LJ::ljuser($rcptuser);
+
+            # no paid account at all
+            my $dispname = LJ::Pay::product_name($item, "short");
+            unless ($db_paid_time || $cart_paid_months) {
+                return $err->("You can only buy extra features for an existing " .
+                              "paid account.  If you would like to buy <b>$dispname</b> for " .
+                              "$utag, put a paid account for them to your cart and try again.");
+            }
+            
+            my $ga = $item->{'giveafter'} || 0;
+
+            # fix bonus giveafter to coincide with earliest paid account
+            if ($cart_paid_start > 0 && 
+                (! $ga && ! $db_paid_time || $ga > $db_paid_time && $ga < $cart_paid_start)) {
+
+                # can't adjust giveafter if recipient == remote
+                if ($remote && $remote->{'userid'} == $item->{'rcptid'}) {
+                    return $err->("You are attempting to buy <b>$dispname</b>, but your paid " .
+                                  "account  will expire before the first paid account " .
+                                  "currently in your cart will take effect. Since <b>$dispname</b> " .
+                                  "cannot be applied to a free account, it cannot be added to your cart.");
+                }
+
+                # cart_paid_start is a localtime, convert it to gmtime in mysql format
+                # to post back to ourselves
+                $item->{'giveafter'} = LJ::mysql_time(Time::Local::timelocal(gmtime($cart_paid_start)));
+
+                $POST{'giveafter'} = $item->{'giveafter'};
+
+                # pass on post variables
+                $body .= "<form method='post' action='modify.bml'>";
+                $body .= LJ::html_hidden( map { $_ => $POST{$_} }
+                                          qw(redemail otheruser paymeth action:additem
+                                             for item giveafter cart anongift) );
+
+                # explain expiration
+                my $utag = LJ::ljuser(LJ::load_userid($item->{'rcptid'}));
+                $body .= "<?h1 Notice h1?>" .
+                    "<?p You are attempting to buy <b>$dispname</b>, but ${utag}'s paid " .
+                    "account (if they have one) will expire before the first paid account " .
+                    "currently in your cart will take effect. Since <b>$dispname</b> " .
+                    "cannot be applied to a free account, this is a problem. p?>" .
+                    "<?p To resolve this, we have set the delivery time of <b>$dispname</b> " .
+                    "to be the same as the delivery time of the first paid account in your " .
+                    "cart: <i>$item->{'giveafter'} GMT</i>. p?>";
+
+                $body .= "<p align='center'>" . LJ::html_submit('action:additem:confirm',
+                                                                'Acknowledged') . "</p>";
+                $body .= "</form>";
+
+                return;
+            }
+
+            # remove giveafter if no paid account in cart and it is after the
+            # expiration of their current paid account
+            if ($db_paid_time > 0 && $ga > $db_paid_time && 
+                (! $cart_paid_months || $ga < $cart_paid_start)) {
+
+                # get rid of giveafter date in memory, to be clean
+                delete $item->{'giveafter'};
+                delete $POST{'giveafter'};
+
+                # pass on post variables
+                $body .= "<form method='post' action='modify.bml'>";
+                $body .= LJ::html_hidden( map { $_ => $POST{$_} }
+                                          qw(redemail otheruser paymeth action:additem
+                                             for item cart anongift) );
+
+                # explain expiration
+                my $utag = LJ::ljuser(LJ::load_userid($item->{'rcptid'}));
+                $body .= "<?h1 Notice h1?>" .
+                    "<?p You are attempting to buy <b>$dispname</b>, but ${utag}'s paid " .
+                    "account will expire after the specified delivery date. Since you do " .
+                    "not have a paid account in your cart for ${utag} and " .
+                    "<b>$dispname</b> cannot be applied to a free account, this is a" .
+                    "problem. p?>" .
+                    "<?p To resolve this, we have set the delivery time of <b>$dispname</b> " .
+                    "to be immediately. p?>";
+
+                $body .= "<p align='center'>" . LJ::html_submit('action:additem:confirm',
+                                                                'Acknowledged') . "</p>";
+                $body .= "</form>";
+
+                return;
+            }
+
+            my $db_bonus_time =
+                $max->($dbh->selectrow_array("SELECT UNIX_TIMESTAMP(), " .
+                                             "UNIX_TIMESTAMP(expdate), " .
+                                             "UNIX_TIMESTAMP(NOW() + INTERVAL daysleft DAY) " .
+                                             "FROM paidexp WHERE userid=? AND item=?",
+                                             undef, $item->{'rcptid'}, $itemname));
+            $db_bonus_time ||= 0;
+
+            # the following check doesn't produce a warning in the case that there
+            # is paid time set to be applied at a later date, but the bonus feature
+            # being added is starting during the small amount of paid time still in
+            # the db which will expire before the delayed paid time will be applied.
+
+            #                    |--- won't catch if 2 months of bonus applied here
+            #                    V
+            # [DBTIME...[NOW] 2 DAYS] ... [NON-P-TIME] ... [2 MONTHS CART-P-TIME DELAYED]
+
+            # since this is just a warning mechanism, we won't kill ourselves trying
+            # to catch this situation
+
+
+            # we add $cart_paid_months to the $paid_base to determine if it is after
+            # when the bonus features will expire.  if so, no error.
+
+            my $paid_base  = $db_paid_time  || "NOW()";
+
+            # paid time in cart
+            if ($cart_paid_start && $cart_paid_months) {
+
+                # paid base is the max of when the cart paid time starts
+                # and when the db paid time ends, since cart paid time
+                # only applies once db paid time ends.
+
+                $paid_base = $max->($cart_paid_start, $db_paid_time);
+            }
+
+            # we add $cart_bonus_months to the $bonus_base to determine if it is after
+            # when the paid account will expire.  if so, error.
+            my $bonus_base = $db_bonus_time || "NOW()";
+
+            # bonus time in cart
+            if ($cart_bonus_start && $cart_bonus_months) {
+
+                # bonus base is the max of when the cart bonus time starts,
+                # and when the db bonus time ends, since the delivery date
+                # of the item currently being added is already figured in.
+                
+                $bonus_base = $max->($cart_bonus_start, $db_bonus_time);
+            }
+
+            my $bonus_base_stamp = LJ::mysql_time($bonus_base);
+            my $paid_base_stamp  = LJ::mysql_time($paid_base);
+
+            # is bonus expiration before or on the same day as paid expiration?
+            my $allow = $dbh->selectrow_array
+                ("SELECT TO_DAYS(? + INTERVAL ? MONTH) <= TO_DAYS(? + INTERVAL ? MONTH)",
+                 undef, $bonus_base_stamp, $cart_bonus_months, $paid_base_stamp, $cart_paid_months);
+
+            unless ($allow) {
+
+                # pass on post variables
+                $body .= "<form method='post' action='modify.bml'>";
+                $body .= LJ::html_hidden( map { $_ => $POST{$_} }
+                                          qw(redemail otheruser paymeth action:additem
+                                             for item giveafter cart anongift) );
+
+                # explain expiration
+                my $utag = LJ::ljuser(LJ::load_userid($item->{'rcptid'}));
+                $body .= "<?h1 Notice h1?>";
+                $body .= "<?p You are attempting to buy <b>$dispname</b>, but the subscription ";
+                $body .= "time extends past the expiration date of ${utag}'s paid account. p?>";
+
+                my $currently;
+                if ($db_paid_time && $item->{'rcptid'} == $remote->{'rcptid'}) {
+                    $currently = " (currently on <i>" . LJ::time_to_http($db_paid_time) . "</i>, " .
+                                 "not including additional time currently in your shopping cart)";
+                }
+
+                $body .= "<p>You can continue, but the new feature will be deactivated when ";
+                $body .= "${utag}'s paid account expires$currently.  However, if $utag gets ";
+                $body .= "additional paid account time later, then the remaining <b>$dispname</b> ";
+                $body .= "time will be applied to their account.</p>";
+
+                $body .= "<p align='center'>" . LJ::html_submit('action:additem:confirm',
+                                                                'Acknowledged') . "</p>";
+                $body .= "</form>";
+
+                return;
+            }
+        }
+
+        # add the item
+        LJ::Pay::add_cart_item($cartobj, $item);
+        
+        return BML::redirect("/pay/?c=$cart");
+    }
+
+    # add a physical item
+    if ($POST{'action:addinventory'}) {
+        my $prod = $POST{'product'};
+        return $err->("Invalid product.") unless $prod =~ /^(\w+?)-(.+)$/;
+        return $err->($msg_already_out) unless $can_mod;
+        my ($item_type, $subitem) = ($1, $2);
+
+        # they need to be logged in (no gift products for now at least)
+        return $err->("You need to <a href='/login.bml'>log in</a> before adding items to your cart.")
+            unless $remote;
+
+        # see if it's available, and its price
+        my $inv = $dbh->selectrow_hashref("SELECT qty, avail, price FROM inventory WHERE ".
+                                          "item=? AND subitem=?", undef, $item_type, $subitem);
+        return $err->("Invalid product.") unless $inv;
+        return $err->("Sorry, selected product is out of stock.") unless $inv->{'avail'};
+        
+        my $item = {
+            'item' => $item_type,
+            'subitem' => $subitem,
+            'qty' => 1,
+            'amt' => $inv->{'price'},
+            'rcptid' => $remote->{'userid'},
+        };
+
+        $ensurecart->();
+        my $rt = LJ::Pay::add_cart_item($cartobj, $item);
+        return "Failed to add item to cart: " . $dbh->errstr unless $rt;
+
+        return BML::redirect("/pay/?c=$cart");
+    }
+
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

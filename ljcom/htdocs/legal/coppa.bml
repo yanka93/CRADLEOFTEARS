@@ -1,0 +1,3 @@
+<?_code
+    return BML::redirect("$LJ::SITEROOT/legal/privacy.bml");
+_code?>

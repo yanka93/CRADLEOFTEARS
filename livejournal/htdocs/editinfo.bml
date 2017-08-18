@@ -1,0 +1,886 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+    LJ::set_active_crumb('editinfo');
+    return;
+_code?>
+
+<?_code
+{
+    use strict;
+    use vars qw(%POST %GET);
+    
+    return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input("You must be logged in to edit your info.")
+        unless $remote;
+
+    if ($remote->underage) {
+        return BML::redirect("$LJ::SITEROOT/agecheck/?s=1");
+    }
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input("You could not be authenticated as the specified user.")
+        unless $u;
+
+    return $LJ::MSG_READONLY_USER if $u->readonly;
+
+    # extra arguments for get requests
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+
+    ### user is now authenticated ###
+
+    my $dbr = LJ::get_db_reader();
+    my $sth;
+
+    # load user props
+    LJ::load_user_props($u, { use_master => 1 }, "opt_whatemailshow",
+                        "country", "state", "city",
+                        "zip", "icq", "aolim", "yahoo", "msn", "url",
+                        "urlname", "gender", "jabber", "opt_blockrobots",
+                        "opt_logcommentips",
+                        "howhear", "opt_bdaymail", "opt_hidefriendofs",
+                        "sidx_bdate", "sidx_loc", "mailencoding", "opt_nctalklinks",
+                        "opt_whoscreened", "journaltitle", "journalsubtitle", 
+                        "friendspagetitle", "opt_weblogscom", "opt_stylemine",
+                        "opt_imagelinks", "opt_getselfemail", "external_foaf_url",
+                        "opt_showmutualfriends",
+                        );
+
+    # to store values before they undergo normalisation
+    my %saved = ();
+    $saved{'name'} = $u->{'name'};
+
+    # clean userprops
+    foreach (values %$u) { LJ::text_out(\$_); }
+
+    # load and clean bio
+    $u->{'bio'} = LJ::get_bio($u);
+    $saved{'bio'} = $u->{'bio'};
+    LJ::text_out(\$u->{'bio'}, "force");
+
+    # load interests
+    my $uints = LJ::get_interests($u, { forceids => 1 });
+    my %interests = ();
+    foreach (@$uints) {
+        $interests{$_->[1]} = $_->[0];  # $interests{name} = intid
+    }
+
+    # load state and country codes
+    my %countries;
+    my %states;
+    LJ::load_codes({ "country" => \%countries, "state" => \%states });
+
+
+    ###
+    ### no post, show edit form
+    ###
+
+    unless (LJ::did_post()) {
+
+        my $ret;
+
+        # user switcher
+        $ret .= "<form method='get' action='editinfo.bml'>\n";
+        $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} });
+        $ret .= "</form>\n\n";
+
+        $ret .= "<form method='post' action='editinfo.bml$getextra'>\n";
+        $ret .= LJ::form_auth();
+
+        # personal information
+        $ret .= "<?h1 $ML{'.persinfo.header'} h1?><?p $ML{'.persinfo.disclaimer'} p?>\n";
+
+        $ret .= "<table width='100%'>\n";
+        
+        # name
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.name.title'}</td>";
+        if (LJ::text_in($saved{'name'})) {
+            $ret .= "<td>" . LJ::html_text({ 'name' => 'name', 'value' => $u->{'name'},
+                                             'maxlength' => '50' }) . "</td></tr>\n";
+        } else {
+            $ret .= "<td>" . LJ::html_hidden('name_absent', 'yes');
+            $ret .= "<?inerr $ML{'.error.invalidname'} inerr?></td></tr>\n";
+        }
+        
+        # birthday
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.bday.title'}</td><td>";
+        my %bdpart;
+        if ($u->{'bdate'} =~ /^(\d\d\d\d)-(\d\d)-(\d\d)$/) {
+            ($bdpart{'year'}, $bdpart{'month'}, $bdpart{'day'}) = ($1, $2, $3);
+            if ($bdpart{'year'} eq "0000") { $bdpart{'year'} = ""; }
+            if ($bdpart{'day'} eq "00") { $bdpart{'day'} = ""; }
+        }
+        $ret .= LJ::html_select({ 'name' => 'month', 'selected' => int($bdpart{'month'}) },
+                                '', '', map { $_, $ML{LJ::Lang::month_long_langcode($_)} } (1..12)) . " ";
+
+        $ret .= LJ::html_text({ 'name' => 'day', 'value' => $bdpart{'day'}, 'size' => '3', 'maxlength' => '2' }) . " ";
+        $ret .= LJ::html_text({ 'name' => 'year', 'value' => $bdpart{'year'}, 'size' => '5', 'maxlength' => '4' });
+        $ret .= " ($ML{'.bday.year.opt'})";
+        
+        $ret .= "</td></tr>\n";
+        
+        # gender
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.gender.title'}</td><td>";
+        $ret .= LJ::html_select({ 'name' => 'gender', 'selected' => $u->{'gender'} },
+                                  'U' => "(Unspecified)", 'M' => "Male", 'F' => "Female" );
+        $ret .= "</td></tr>\n";
+
+        # email
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.email.title'}</td><td>";
+        $ret .= LJ::html_text({ 'name' => 'email', 'value' => $u->{'email'}, 'size' => '40', 'maxlength' => '50' });
+        $ret .= "</td></tr>\n";
+        
+        # url
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.webpageurl.title'}</td><td>";
+        $ret .= LJ::html_text({ 'name' => 'url', 'value' => $u->{'url'}, 'size' => '40', 'maxlength' => '255' });
+        $ret .= " ($ML{'.optional'})</td></tr>\n";
+        
+        # urlname
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.webpagename.title'}</td><td>";
+        $ret .= LJ::html_text({ 'name' => 'urlname', 'value' => $u->{'urlname'}, 'size' => '40', 'maxlength' => '255' });
+        $ret .= " ($ML{'.optional'})</td></tr>\n";
+        
+        # chat thingies
+        foreach my $p (["aolim", $ML{'.chat.aolim.title'}, 28], ["icq", $ML{'.chat.icquin.title'}, 12], 
+                       ["yahoo", $ML{'.chat.yahooid.title'}, 33], ["msn", $ML{'.chat.msnusername.title'}, 60],
+                       ["jabber", $ML{'.chat.jabber.title'}, 60])
+        {
+            $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$p->[1]</td><td>";
+            $ret .= LJ::html_text({ 'name' => $p->[0], 'value' => $u->{$p->[0]}, 'size' => '20', 'maxlength' => $p->[2] });
+            $ret .= " ($ML{'.optional'})</td></tr>\n";
+        }
+        
+        # country
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.country.title'}</td><td>";
+        $ret .= LJ::html_select({ 'name' => 'country', 'selected' => $u->{'country'} },
+                                  '', $ML{'.country.choose'},
+                                  'US', 'United States',
+                                  map { $_, $countries{$_} } sort { $countries{$a} cmp $countries{$b} } keys %countries );
+        $ret .= "</td></tr>\n";
+        
+        # city
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.city.title'}</td><td>";
+        $ret .= LJ::html_text({ 'name' => 'city', 'value' => $u->{'city'}, 'size' => '20', 'maxlength' => '255' });
+        $ret .= "</td></tr>\n";
+        
+        # state
+        $ret .= "<tr valign='top'><td align='right' bgcolor='<?emcolor?>'>$ML{'.state.title'}</td><td>";
+        $ret .= LJ::html_select({ 'name' => 'statedrop', 'selected' => $u->{'state'} },
+                                  '', "($ML{'.state.us'})",
+                                  map { $_, $states{$_} } sort { $states{$a} cmp $states{$b} } keys %states );
+
+        # other state?
+        $ret .= "<br />$ML{'.state.other'}: ";
+        $ret .= LJ::html_text({ 'name' => 'stateother', 'size' => '20', 'maxlength' => '50',
+                                'value' => defined $states{$u->{'state'}} ? '' : $u->{'state'} });
+        $ret .= "</td></tr>\n";
+
+        # zip
+        $ret .= "<tr><td align='right' bgcolor='<?emcolor?>'>$ML{'.zip.title'}</td><td>";
+        $ret .= LJ::html_text({ 'name' => 'zip', 'value' => $u->{'zip'}, 'size' => '6', 'maxlength' => '5' });
+        $ret .= " ($ML{'.zip.usonly'})</td></tr>\n";
+        
+        # text messaging
+        if (LJ::get_cap($u, "textmessaging"))
+        {
+            $sth = $dbr->prepare("SELECT provider, number, security FROM txtmsg WHERE userid=?");
+            $sth->execute($u->{'userid'});
+            my $tminfo = $sth->fetchrow_hashref;
+            foreach (values %$tminfo) { LJ::text_out(\$_); }
+            
+            # text messaging
+            $ret .= "<tr valign='top'><td align='right' bgcolor='<?emcolor?>'>";
+            $ret .= LJ::help_icon('textmessage', "", " ");
+            $ret .= "$ML{'.tm.title'}</td><td>\n<table>\n<tr><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'use_txtmsg', 'id' => 'use_txtmsg',
+                                     'selected' => $u->{'txtmsg_status'} eq 'on' });
+
+            $ret .= "</td><td colspan='2'><b><label for='use_txtmsg'>$ML{'.tm.sec.about'}</label></b></td></tr>\n";
+            $ret .= "<tr><td rowspan='3'>&nbsp;</td><td>$ML{'.tm.sec.title'}</td><td>";
+
+            $ret .= LJ::html_select({ 'name' => 'txtmsg_security', 'selected' => $tminfo->{'security'} },
+                                      "all" => BML::ml(".security.visibility.anybody"),
+                                      "reg" => BML::ml(".security.visibility.regusers"),
+                                      "friends" => BML::ml(".security.visibility.friends") );
+            $ret .= "</td></tr>\n";
+            $ret .= "<tr><td>$ML{'.tm.servprov'}</td><td>";
+            {
+                my @opts = ("", "");
+                foreach my $p (LJ::TextMessage::providers()) {
+                    my $info = LJ::TextMessage::provider_info($p);
+                    push @opts, ($p, $info->{'name'});
+                }
+                $ret .= LJ::html_select({ 'name' => 'txtmsg_provider',
+                                          'selected' => $tminfo->{'provider'}, },
+                                          @opts);
+            }
+            
+            $ret .= " ($ML{'.tm.details'})</td></tr>\n";
+            $ret .= "<tr><td>$ML{'.tm.phonenum'}</td><td>";
+            $ret .= LJ::html_text({ 'name' => 'txtmsg_number',  'value' => $tminfo->{'number'}, 
+                                    'size' => '15', 'maxlength' => '40' });
+            $ret .= "</td></tr>\n";
+            $ret .= "</table>\n</td></tr>\n";
+        }
+        
+        # end personal info
+        $ret .= "</table>\n\n";
+        
+        ### User bio
+        $ret .= "<?h1 $ML{'.bio.header'} h1?><?p $ML{'.bio.about'} p?>";
+        if (LJ::text_in($saved{'bio'})) {
+            $ret .= "<div style='margin-left: 30px; margin-bottom: 20px'>";
+            $ret .= LJ::html_textarea({ 'name' => 'bio', 'rows' => '10', 'cols' => '50',
+                                        'wrap' => 'soft', 'value' => $u->{'bio'}, 'style' => "width: 90%", }) . "</div>\n";
+        } else {
+            $ret .= LJ::html_hidden('bio_absent', 'yes');
+            $ret .= "<?p <?inerr $ML{'.error.invalidbio'} inerr?> p?>\n";
+        }
+        
+        ### How heard Settings
+        unless ($u->{'howhear'}) {
+            $ret .= "<?h1 $ML{'.howhear.header'} h1?>\n";
+            $ret .= "<?p " . BML::ml(".howhear.about", { 'sitename' => $LJ::SITENAME }) . " p?>\n";
+            $ret .= "<div style='margin-left: 30px; margin-bottom: 20px;'>";
+            $ret .= LJ::html_text({ 'name' => 'howhear', 'size' => '60', 'maxlength' => '100' });
+            $ret .= "</div>\n\n";
+        }
+        
+        {
+            ### Interests
+            $ret .= "<?h1 $ML{'.int.header'} h1?>\n";
+            my @eintsl;
+            foreach (sort keys %interests) {
+                push @eintsl, $_ if LJ::text_in($_);
+            }
+
+            $ret .= "<?p $ML{'.int.about'} p?>";
+            $ret .= "<?p $ML{'.int.ex.good'} p?>";
+            $ret .= "<?p $ML{'.int.ex.bad'} p?>";
+            $ret .= "<div style='margin-left: 30px; margin-bottom: 20px;'>";
+            $ret .= LJ::html_textarea({ 'name' => 'interests', 'value' => join(", ", @eintsl),
+                                        'rows' => '10', 'cols' => '50', 'wrap' => 'soft' });
+            $ret .= "</div>\n\n";
+        }
+        
+        ### Picture Settings
+        $ret .= "<?h1 $ML{'.userpic.header'} h1?>\n<?p $ML{'.userpic.about'} p?>\n";
+        $ret .= "<p align='center'>";
+        if ($u->{'defaultpicid'})
+        {
+            my $picid = $u->{'defaultpicid'};
+            my %userpics = ();
+            LJ::load_userpics(\%userpics, [ $u, $picid ]);
+            $ret .= "<a href='editpics.bml$getextra'><img src=\"$LJ::USERPIC_ROOT/$picid/$u->{'userid'}\" width='$userpics{$picid}->{'width'}' height='$userpics{$picid}->{'height'} alt='$u->{'user'}' border='0'></a>";
+        } else
+        {
+            $ret .= "<i>($ML{'.userpic.none'})</i>";
+        }
+        $ret .= "</p><p>$ML{'.userpic.edit'}</p>\n\n";
+        
+
+        ###
+        ### Journal Options
+        ###
+
+        $ret .= "<?h1 $ML{'.settings.header'} h1?>\n";
+        
+
+        ### display options
+        $ret .= "<?p $ML{'.settings.about'} p?>\n";
+        $ret .= "<table style='margin-left: 30px; margin-bottom: 20px'>\n";
+        
+        # journaltitle
+        $ret .= "<tr><td><b>$ML{'.settings.journal.title'} </b></td>";
+        $ret .= "<td>" . LJ::html_text({ 'name' => 'journaltitle', 'value' => $u->{'journaltitle'}, 'size' => '30', 'maxlength' => '80' }) . " </td></tr>\n";
+
+        # journalsubtitle
+        $ret .= "<tr><td><b>$ML{'.settings.journal.subtitle'} </b></td>";
+        $ret .= "<td>" . LJ::html_text({ 'name' => 'journalsubtitle', 'value' => $u->{'journalsubtitle'}, 'size' => '30', 'maxlength' => '80' }) . " </td></tr>\n";
+        $ret .= "<tr><td colspan='2'>$ML{'.settings.journal.subtitle.optional'}</td></tr>\n";
+
+        # friendspagetitle
+        $ret .= "<tr><td><b>$ML{'.settings.friendspage.title'} </b></td>";
+        $ret .= "<td>" .  LJ::html_text({ 'name' => 'friendspagetitle', 'value' => $u->{'friendspagetitle'}, 'size' => '30', 'maxlength' => '80' }) . "</td></tr>\n";
+        $ret .= "<tr><td colspan='2'>$ML{'.settings.friendspage.title.optional'}</td></tr>\n";
+        $ret .= "</table>\n\n";
+        
+        ### privacy options
+        $ret .= "<?h2 $ML{'.settings.privacy.header'} h2?><?p $ML{'.settings.privacy.about'} p?>\n";
+        $ret .= "<table style='margin: 10px 0 20px 30px'>\n";
+
+        # allow_contactshow
+        $ret .= "<tr valign=middle><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'allow_contactshow', 'id' => 'allow_contactshow',
+                                 'selected' => $u->{'allow_contactshow'} ne 'N' });
+        $ret .= "</td><td><b><label for='allow_contactshow'>$ML{'.allowshowcontact.title'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.allowshowcontact.about'}";
+        
+        {
+            # contactshow_sec
+            $ret .= "\n<p><b>$ML{'.security.header'}</b> ";
+            $ret .= LJ::html_select({ 'name' => 'contactshow_sec',
+                                      'selected' => $u->{'allow_contactshow'} }, 
+                                      "Y" => BML::ml(".security.visibility.everybody"),
+                                      "F" => BML::ml(".security.visibility.friends") );
+            $ret .= "</p>\n";
+
+            # opt_whatemailshow
+            $ret .= "<p><b>$ML{'.allowshowcontact.email'}</b>\n";
+            $ret .= "<div style='margin-left: 30px; margin-bottom: 20px;'>";
+            my $cur = $u->{'opt_whatemailshow'} || "N";
+            my @vals = ( ($LJ::USER_EMAIL && LJ::get_cap($u, "useremail"))
+                         ? ("B" => BML::ml(".allowshowcontact.email.both", { 'domain' => $LJ::USER_DOMAIN}),
+                            "A" => BML::ml(".allowshowcontact.email.actual_only"),
+                            "L" => BML::ml(".allowshowcontact.email.lj_only"),
+                            "N" => BML::ml(".allowshowcontact.email.neither"))
+                         : ("A" => BML::ml(".allowshowcontact.email.show"),
+                            "N" => BML::ml(".allowshowcontact.email.no_show")));
+            $ret .= LJ::html_select({ 'name' => 'opt_whatemailshow', 'selected' => $cur }, @vals) . "\n";
+            
+            $ret .= "<p>" . ($LJ::USER_EMAIL
+                             ? $ML{'.allowshowcontact.email.withdomainaddr'}
+                             : $ML{'.allowshowcontact.email.withoutdomainaddr'}) . "</p>\n</div>\n";
+
+            # opt_mangleemail
+            $ret .= "<table style='margin-bottom: 20px;'>\n<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_mangleemail', 'id' => 'opt_mangleemail',
+                                     'selected' => $u->{'opt_mangleemail'} eq 'Y' });
+            $ret .= "</td><td><b><label for='opt_mangleemail'>$ML{'.mangleaddress.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.mangleaddress.about'}</td></tr>\n</table>\n";
+
+        }
+        $ret .= "</td></tr>\n";
+
+        # allow_infoshow
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'allow_infoshow', 'id' => 'allow_infoshow',
+                                 'selected' => $u->{'allow_infoshow'} eq 'Y' });
+        $ret .= "</td><td><b><label for='allow_infoshow'>$ML{'.allowshowinfo.title'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.allowshowinfo.about'}</td></tr>\n";
+
+        # opt_blockrobots
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_blockrobots', 'id' => 'opt_blockrobots',
+                                 'selected' => $u->{'opt_blockrobots'} });
+        $ret .= "</td><td><b><label for='opt_blockrobots'>$ML{'.blockrobots.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.blockrobots.about'}</td></tr>\n";
+        
+        # opt_weblogscom
+        if (LJ::get_cap($u, "weblogscom")) {
+            $ret .= "<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_weblogscom', 'id' => 'opt_weblogscom',
+                                     'selected' => $u->{'opt_weblogscom'} });
+            $ret .= "</td><td><b><label for='opt_weblogscom'>$ML{'.weblogscom.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.weblogscom.about'}</td></tr>\n";
+        }
+
+        # opt_showmutualfriends
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_showmutualfriends', 'id' => 'opt_showmutualfriends',
+                                 'selected' => $u->{'opt_showmutualfriends'} });
+        $ret .= "</td><td><b><label for='opt_showmutualfriends'>$ML{'.mutualfriends.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.mutualfriends.about'}</td></tr>\n";
+
+        # opt_hidefriendofs
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_hidefriendofs', 'id' => 'opt_hidefriendofs',
+                                 'selected' => $u->{'opt_hidefriendofs'} });
+        $ret .= "</td><td><b><label for='opt_hidefriendofs'>$ML{'.hidefriendof.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.hidefriendof.about'}</td></tr>\n";
+
+
+        # allow_getljnews
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'allow_getljnews', 'id' => 'allow_getljnews',
+                                 'selected' => $u->{'allow_getljnews'} eq 'Y' });
+        $ret .= "</td><td><b><label for='allow_getljnews'>$ML{'.opt_in.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.opt_in.about'}</td></tr>\n";
+
+        # opt_bdaymail
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_bdaymail', 'id' => 'opt_bdaymail',
+                                 'selected' => $u->{'opt_bdaymail'} });
+        $ret .= "</td><td><b><label for='opt_bdaymail'>$ML{'.bdayreminders.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.bdayreminders.about'}</td></tr>\n";
+
+        # opt_imagelinks
+        my ($maxwidth, $maxheight) = (0, 0);
+        ($maxwidth, $maxheight) = ($1, $2)
+            if ($u->{'opt_imagelinks'} =~ m/^(\d+)\|(\d+)$/);
+        my $is_stock = {'320|240' => 1, '640|480' => 1, '0|0' => 1, '' => 1}->{$u->{'opt_imagelinks'}};
+        my $extra = $is_stock ? '' : BML::ml('.imagelinks.size.custom',
+                                             {'width' => $maxwidth, 'height' => $maxheight});
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_imagelinks_on', 'id' => 'opt_imagelinks_on',
+                                 'selected' => $u->{'opt_imagelinks'} });
+        $ret .= "</td><td><b><label for='opt_imagelinks_on'>$ML{'.imagelinks.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.imagelinks.about'}</td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>";
+        $ret .= LJ::html_select({'name' => 'opt_imagelinks', 'selected' => $u->{'opt_imagelinks'}},
+                                '0|0', BML::ml('.imagelinks.size.all'),
+                                '320|240', BML::ml('.imagelinks.size.small', {'width' => 320, 'height' => 240}),
+                                '640|480', BML::ml('.imagelinks.size.medium', {'width' => 640, 'height' => 480}),
+                                $extra ? ("$maxwidth|$maxheight", $extra) : ());
+        $ret .= "</td></tr>\n";
+
+        # opt_getselfemail
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_getselfemail', 'id' => 'opt_getselfemail',
+                                 'selected' => $u->{'opt_getselfemail'}, 
+                                 'disabled' => !LJ::get_cap($u, 'getselfemail') });
+        $ret .= "</td><td><b><label for='opt_getselfemail'>$ML{'.getselfemails.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.getselfemails.about'}</td></tr>\n";
+
+        # opt_showtalklinks
+        $ret .= "<tr valign='middle'><td>";
+        $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_showtalklinks', 'id' => 'opt_showtalklinks',
+                                 'selected' => $u->{'opt_showtalklinks'} eq 'Y' });
+        $ret .= "</td><td><b><label for='opt_showtalklinks'>$ML{'.enableboards.header'}</label></b></td></tr>\n";
+        $ret .= "<tr><td>&nbsp;</td><td>$ML{'.enableboards.about'}";
+
+        {
+            # opt_whocanreply
+            $ret .= "\n<p><b>$ML{'.whoreply.header'}</b> ";
+            $ret .= LJ::html_select({ 'name' => 'opt_whocanreply', 'selected' => $u->{'opt_whocanreply'} },
+                                      "all" => BML::ml(".security.visibility.anybody"),
+                                      "reg" => BML::ml(".security.visibility.regusers"),
+                                      "friends" => BML::ml(".security.visibility.friends"));
+            $ret .= "</p>\n";
+
+            # opt_logcommentips
+            $ret .= "<p><b>$ML{'.logip.header'}</b> ";
+            $ret .= LJ::html_select({ 'name' => 'opt_logcommentips', 'selected' => $u->{'opt_logcommentips'} },
+                                      "N" => BML::ml(".donotlog"),
+                                      "S" => BML::ml(".logip.anon_only"),
+                                      "A" => BML::ml(".logip.always") );
+            $ret .= "</p>\n";
+
+            # opt_whoscreened
+            $ret .= "<p><b>$ML{'.screen.header'}</b> ";
+            $ret .= LJ::html_select({ 'name' => 'opt_whoscreened', 'selected' => $u->{'opt_whoscreened'} },
+                                      "N" => $ML{'.screen.none'},
+                                      "R" => $ML{'.screen.anon'},
+                                      "F" => ($u->{'journaltype'} eq 'C' ? $ML{'.screen.nonmembers'} : $ML{'.screen.nonfriends'}),
+                                      "A" => $ML{'.screen.all'} );
+            $ret .= "</p>\n";
+        
+            $ret .= "<table>\n";
+        
+            # opt_nctalklinks
+            $ret .= "<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_nctalklinks', 'id' => 'opt_nctalklinks',
+                                     'selected' => $u->{'opt_nctalklinks'} });
+            $ret .= "</td><td><b><label for='opt_nctalklinks'>$ML{'.numcomments.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.numcomments.about'}</td></tr>\n";
+
+            # stylemine
+            $ret .= "<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_stylemine', 'id' => 'opt_stylemine',
+                                     'value' => 1, 'selected' => $u->{'opt_stylemine'} });
+            $ret .= "</td><td><b><label for='opt_stylemine'>$ML{'.stylemine.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.stylemine.about'}</td></tr>\n";
+
+            # opt_gettalkemail
+            $ret .= "<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_gettalkemail', 'id' => 'opt_gettalkemail',
+                                     'selected' => $u->{'opt_gettalkemail'} eq 'Y' });
+            $ret .= "</td><td><b><label for='opt_gettalkemail'>$ML{'.getreplies.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.getreplies.about'}</td></tr>\n";
+        
+            # opt_htmlemail
+            $ret .= "<tr valign='middle'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'opt_htmlemail', 'id' => 'opt_htmlemail',
+                                     'selected' => $u->{'opt_htmlemail'} eq 'Y' });
+            $ret .= "</td><td><b><label for='opt_htmlemail'>$ML{'.htmlemail.header'}</label></b></td></tr>\n";
+            $ret .= "<tr><td>&nbsp;</td><td>$ML{'.htmlemail.about'}</td></tr>\n";
+        
+            $ret .= "</table>\n";
+
+        }
+        $ret .= "</td></tr>\n";
+        $ret .= "</table>\n\n";
+
+        ### advanced options
+        $ret .= "<?h1 $ML{'.advanced.title'} h1?><?p $ML{'.advanced.about'} p?>\n";
+        $ret .= "<table style='margin: 10px 0 20px 30px;'>\n";
+
+        # external foaf link
+        $ret .= "<tr><td><b>$ML{'.foafurl.title'}</b></td><td>";
+        $ret .= LJ::html_text({ 'name' => 'external_foaf_url', 
+            'value' => $u->{'external_foaf_url'}, 'size' => '40', 'maxlength' => '255' });
+        $ret .= "</td></tr><tr><td colspan='2'>$ML{'.foafurl.about'}</td></tr>";
+
+        # done
+        $ret .= "</table>\n";
+
+        ### unicode options
+        if ($LJ::UNICODE) {
+            my (%old_encnames, %mail_encnames, %encodings);
+            LJ::load_codes({ "encoding" => \%encodings } );
+            LJ::load_codes({ "encname" => \%old_encnames } );
+            %mail_encnames = %old_encnames;
+
+            # which encodings to show? For now, we just delete utf-8 from the old encodings
+            # list because it doesn't make sense there.
+            foreach my $id (keys %encodings) {
+                delete $old_encnames{$id} if lc($encodings{$id}) eq 'utf-8';
+            }
+            
+            $ret .= "<?h2 $ML{'.encoding.header'} h2?><?p $ML{'.encoding.about'} p?>\n";
+            $ret .= "<table style='margin: 10px 0 20px 30px;'>\n";
+            $ret .= "<tr><td><b>$ML{'.autotranslate.header'}</b></td>";
+            $ret .= "<td>" . LJ::html_select({ 'name' => 'oldenc', 'selected' => $u->{'oldenc'}},
+                                             map { $_, $old_encnames{$_} } sort keys %old_encnames ) . "</td></tr>\n";
+            $ret .= "<tr><td colspan='2'>" . $ML{'.autotranslate.about'} . "</td></tr>";
+
+            if ($u->{journaltype} eq 'P') {
+                $ret .= "<tr><td><b>$ML{'.translatemailto.header'}</b></td>";
+                $ret .= "<td>" . LJ::html_select({ 'name' => 'mailencoding', 'selected' => $u->{'mailencoding'}},
+                                                 map { $_, $mail_encnames{$_} } sort keys %mail_encnames ) . "</td></tr>\n";
+                $ret .= "<tr><td colspan='2'>$ML{'.translatemailto.about'}</td></tr>";
+            }
+
+            $ret .= "</table>\n";
+        }
+        
+        ### let them un-ban users if they've banned users
+        my $banned = LJ::load_rel_user($u, 'B');
+        if ($banned && @$banned) {
+	    my $us = LJ::load_userids(@$banned);
+
+            $ret .= "<?h1 $ML{'.unbanusers.header'} h1?><?p $ML{'.unbanusers.about'} p?>\n";
+            $ret .= "<div style='margin: 10px 0 20px 30px'>\n";
+            foreach (@$banned) {
+		my $bu = $us->{$_};
+		next unless $bu;
+                $ret .= LJ::html_check({ 'type' => 'check', 'name' => 'unban', 'id' => "unban-$bu->{'user'}",
+                                         'value' => $bu->{'userid'} });
+                $ret .= " <label for='unban-$bu->{'user'}'>$bu->{'user'}</label><br />\n";
+            }
+            $ret .= "</div>\n";
+        }
+        
+        # ending submit block
+        $ret .= "<?h1 $ML{'.finished.header'} h1?><?p $ML{'.finished.about'} p?>\n";
+        $ret .= "<?standout " . LJ::html_submit(undef, $ML{'.finished.save_button'}) . " standout?>\n";
+        $ret .= "</form>\n";
+        
+        return $ret;
+    }
+
+
+    ###
+    ### we have a post, process edits
+    ###
+
+    if (LJ::did_post()) {
+        return "<?h1 $ML{'Error'} h1?><?p $ML{'error.invalidform'} p?>" unless LJ::check_form_auth();
+
+        $POST{'unban'} =~ s/\0/,/g;
+        return "<?badinput?>" unless LJ::text_in(\%POST);
+
+        my @errors = ();
+
+        # name
+        unless ($POST{'name'} || defined($POST{'name_absent'})) {
+            push @errors, $ML{'.error.noname'};
+        }
+
+        # state and zip
+        my ($zipcity, $zipstate);
+        if ($POST{'country'} eq "US") {
+            $sth = $dbr->prepare("SELECT city, state FROM zip WHERE zip=?");
+            $sth->execute($POST{'zip'});
+            ($zipcity, $zipstate) = $sth->fetchrow_array;
+        }
+
+        # country
+        if ($POST{'country'} ne "US" && $POST{'zip'}) {
+            push @errors, $ML{'.error.locale.zip_requires_us'};
+        }
+
+        if ($POST{'country'} eq "US" && $POST{'stateother'}) {
+            push @errors, $ML{'.error.locale.country_ne_state'};
+        } elsif ($POST{'country'} && $POST{'country'} ne "US" && $POST{'statedrop'}) {
+            push @errors, $ML{'.error.locale.state_ne_country'};
+        }
+        
+        # zip-code validation stuff
+        if ($POST{'country'} eq "US") {
+            if ($POST{'statedrop'} && $zipstate && $POST{'statedrop'} ne $zipstate) {
+                push @errors, $ML{'.error.locale.zip_ne_state'};
+            }
+            if ($zipcity) {
+                $POST{'statedrop'} = $zipstate;
+                $POST{'city'} = $zipcity;
+            }
+        }
+        
+        if ($POST{'country'} && !defined($countries{$POST{'country'}})) {
+            push @errors, $ML{'.error.locale.invalid_country'};
+        }
+
+        # birthday
+        my $this_year = (localtime())[5]+1900;
+        
+        if ($POST{'year'} && $POST{'year'} < 100) {
+            push @errors, $ML{'.error.year.notenoughdigits'};
+        }
+
+        if ($POST{'year'} && $POST{'year'} >= 100 && ($POST{'year'} < 1890 || $POST{'year'} > $this_year)) {
+            push @errors, $ML{'.error.year.outofrange'};
+        }
+
+        if ($POST{'month'} && ($POST{'month'} < 1 || $POST{'month'} > 12)) {
+            push @errors, $ML{'.error.month.outofrange'};
+        }
+
+        if ($POST{'day'} && ($POST{'day'} < 1 || $POST{'day'} > 31)) {
+            push @errors, $ML{'.error.day.outofrange'};
+        }
+
+        if (@errors == 0 && $POST{'day'} > LJ::days_in_month($POST{'month'}, $POST{'year'})) {
+            push @errors, $ML{'.error.day.notinmonth'};
+        }
+
+        # email
+        unless ($POST{'email'}) {
+            push @errors, $ML{'.error.email.none'};
+        }
+
+        if ($LJ::USER_EMAIL and $POST{'email'} =~ /\@\Q$LJ::USER_DOMAIN\E$/i) {
+            push @errors, BML::ml(".error.email.lj_domain", { 'user' => $u->{'user'}, 'domain' => $LJ::USER_DOMAIN, });
+        }
+
+        if ($POST{'email'} =~ /\s/) {
+            push @errors, $ML{'.error.email.no_space'};
+        }
+
+        unless (@errors) {
+            LJ::check_email($POST{'email'}, \@errors);
+        }
+
+        # text messaging
+        if ($POST{'use_txtmsg'}) {
+            unless ($POST{'txtmsg_provider'}) {
+                push @errors, $ML{'.error.tm.require_provider'};
+            }
+            unless ($POST{'txtmsg_number'}) {
+                push @errors, $ML{'.error.tm.require.number'};
+            }
+        }
+
+        return LJ::bad_input(@errors) if @errors;
+
+        ### no errors
+
+        my $dbh = LJ::get_db_writer();
+       
+        my $email_changed = ($u->{'email'} ne $POST{'email'});
+        if ($email_changed) {
+            # record old email address;
+            LJ::infohistory_add($u, 'email', $u->{email}, $u->{status});
+        }
+        
+        $POST{'url'} =~ s/\s+$//; $POST{'url'} =~ s/^\s+//;
+        if ($POST{'url'} && $POST{'url'} !~ /^https?:\/\//) {
+            $POST{'url'} =~ s/^http\W*//;
+            $POST{'url'} = "http://$POST{'url'}";
+        }
+
+        my $newname = defined $POST{'name_absent'} ? $saved{'name'} : $POST{'name'};
+        $newname =~ s/[\n\r]//g;
+        $newname = LJ::text_trim($newname, LJ::BMAX_NAME, LJ::CMAX_NAME);
+
+        my $newbio = defined($POST{'bio_absent'}) ? $saved{'bio'} : $POST{'bio'};
+        my $has_bio = ($newbio =~ /\S/) ? "Y" : "N";
+        my $txtmsg_status = $POST{'use_txtmsg'} ? "on" : "off";
+        # setup what we're gonna update in the user table:
+        my %update = (
+                      'name' => $newname,
+                      'bdate' => sprintf("%04d-%02d-%02d", $POST{'year'}, $POST{'month'}, $POST{'day'}),
+                      'email' => $POST{'email'},
+                      'status' => ($email_changed && $u->{'status'} eq "A") ? "T" : $u->{'status'},
+                      'has_bio' => $has_bio,
+                      'allow_infoshow' => $POST{'allow_infoshow'} ? "Y" : "N",
+                      'allow_getljnews' => $POST{'allow_getljnews'} ? "Y" : "N",
+                      'opt_showtalklinks' => $POST{'opt_showtalklinks'} ? "Y" : "N",
+                      'opt_gettalkemail' => $POST{'opt_gettalkemail'} ? "Y" : "N",
+                      'opt_htmlemail' => $POST{'opt_htmlemail'} ? "Y" : "N",
+                      'opt_mangleemail' => $POST{'opt_mangleemail'} ? "Y" : "N",
+                      'opt_whocanreply' => $POST{'opt_whocanreply'},
+                      'txtmsg_status' => $txtmsg_status,
+                      );
+
+        if ($POST{'allow_contactshow'}) {
+            $update{'allow_contactshow'} = "Y";
+            $update{'allow_contactshow'} = "F" if $POST{'contactshow_sec'} eq "F";
+        } else {
+            $update{'allow_contactshow'} = "N";
+        }
+
+        if (defined $POST{'oldenc'}) {
+            $update{'oldenc'} = $POST{'oldenc'};
+        }
+
+        LJ::update_user($u, \%update);
+
+        ### change any of the userprops ?
+        {
+            # journal / friends titles
+            $POST{'journaltitle'} = LJ::text_trim($POST{'journaltitle'}, 0, 80) if $POST{'journaltitle'};
+            $POST{'journalsubtitle'} = LJ::text_trim($POST{'journalsubtitle'}, 0, 80) if $POST{'journalsubtitle'};
+            $POST{'friendspagetitle'} = LJ::text_trim($POST{'friendspagetitle'}, 0, 80) if $POST{'friendspagetitle'};
+
+            # opts
+            $POST{'opt_showmutualfriends'} = $POST{'opt_showmutualfriends'} ? 1 : 0;
+            $POST{'opt_getselfemail'} = $POST{'opt_getselfemail'} ? 1 : 0;
+            $POST{'opt_stylemine'} = $POST{'opt_stylemine'} ? 1 : 0;
+            $POST{'opt_blockrobots'} = $POST{'opt_blockrobots'} ? 1 : 0;
+            $POST{'opt_bdaymail'} = $POST{'opt_bdaymail'} ? 1 : 0;
+            $POST{'opt_hidefriendofs'} = $POST{'opt_hidefriendofs'} ? 1 : 0;
+            $POST{'opt_nctalklinks'} = $POST{'opt_nctalklinks'} ? 1 : 0;
+            $POST{'opt_weblogscom'} = $POST{'opt_weblogscom'} ? 1 : 0;
+            if ($POST{'opt_logcommentips'} ne "N" &&
+                $POST{'opt_logcommentips'} ne "S" &&
+                $POST{'opt_logcommentips'} ne "A") { $POST{'opt_logcommentips'} = "N"; }
+            $POST{'opt_whoscreened'} = "N" unless $POST{'opt_whoscreened'} =~ m/^(N|R|F|A)$/;
+            $POST{'opt_imagelinks'} = 0 unless $POST{'opt_imagelinks_on'} &&
+                                               $POST{'opt_imagelinks'} =~ m/^(\d+)\|(\d+)$/;
+
+            # for the directory.
+            $POST{'sidx_bdate'} = "";
+            $POST{'sidx_loc'} = "";	 
+            $POST{'state'} = $POST{'statedrop'} || $POST{'stateother'};
+            if ($update{'allow_infoshow'} eq 'Y') {
+                if ($POST{'year'}) {
+                    $POST{'sidx_bdate'} = sprintf("%04d-%02d-%02d", map { $POST{$_} }
+                                                  qw(year month day));
+                }
+
+                if ($POST{'country'}) {
+                    my $state;
+                    if ($POST{'country'} eq "US") {
+                        $state = $POST{'statedrop'};
+                    } else {
+                        $state = $POST{'stateother'};
+                    }
+                    $POST{'sidx_loc'} = sprintf("%2s-%s-%s",
+                                                $POST{'country'},
+                                                $state,
+                                                $POST{'city'});
+                }
+            }
+
+            my @uprops = (
+                          "opt_whatemailshow", 
+                          "country", "state", "city", "zip", "icq",
+                          "aolim", "yahoo", "msn", "url", "urlname",
+                          "gender", "jabber", "opt_blockrobots",
+                          "opt_logcommentips",
+                          "opt_bdaymail", "opt_hidefriendofs",
+                          "sidx_bdate", "sidx_loc", "mailencoding", "opt_nctalklinks",
+                          "opt_whoscreened", "journaltitle", "journalsubtitle", "friendspagetitle",
+                          "opt_stylemine", "opt_imagelinks", "opt_getselfemail",
+                          "external_foaf_url", "opt_showmutualfriends",
+                          );
+
+            # weblogs.com requires a special cap
+            push @uprops, 'opt_weblogscom' if LJ::get_cap($u, 'weblogscom');
+
+            # this is only done once, then never appears again.
+            push @uprops, 'howhear' if $POST{'howhear'};
+
+            # set userprops
+            foreach my $uprop (@uprops) {
+                my $eff_val = $POST{$uprop};   # effective value, since 0 isn't stored
+                $eff_val = "" unless $eff_val;
+                my $mem_only = $eff_val eq $u->{$uprop};
+                LJ::set_userprop($u, $uprop, $eff_val, $mem_only);
+            }
+        }
+
+        # update their bio text
+        if (($u->{'bio'} ne $POST{'bio'}) && !defined($POST{'bio_absent'})) {
+            if ($has_bio eq "N") {
+                $u->do("DELETE FROM userbio WHERE userid=?", undef, $u->{'userid'});
+                $u->dudata_set('B', 0, 0);
+            } else {
+                $u->do("REPLACE INTO userbio (userid, bio) VALUES (?, ?)",
+                       undef, $u->{'userid'}, $POST{'bio'});
+                $u->dudata_set('B', 0, length($POST{'bio'}));
+            }
+            LJ::MemCache::set([$u->{'userid'}, "bio:$u->{'userid'}"], $POST{'bio'});
+        }
+
+        # update their text messaging info
+        if ($txtmsg_status eq "off" && $u->{'txtmsg_status'} eq "on") {
+            $dbh->do("DELETE FROM txtmsg WHERE userid=?", undef, $u->{'userid'});
+        } elsif ($txtmsg_status eq "on") {
+            $dbh->do("REPLACE INTO txtmsg (userid, provider, number, security) VALUES (?, ?, ?, ?)",
+                     undef, $u->{'userid'}, $POST{'txtmsg_provider'}, $POST{'txtmsg_number'}, $POST{'txtmsg_security'});
+        }
+
+        # update interests
+        unless ($POST{'interests_absent'}) {
+            $POST{'interests'} =~ s/^\s+//;
+            $POST{'interests'} =~ s/\s+$//;
+            $POST{'interests'} =~ s/\n/,/g;
+            $POST{'interests'} =~ s/\s+/ /g; #Strip duplicate spaces from the interest
+            my @ints = split (/\s*,\s*/, $POST{'interests'});
+            my $intcount = scalar(@ints);
+            if ($intcount > 150) {
+                return LJ::bad_input(BML::ml(".error.excessive_int", {'intcount' => $intcount}));
+            }
+            LJ::set_interests($u, \%interests, \@ints);
+        }
+
+        # now unban users they selected to be unbanned
+        if ($POST{'unban'}) {
+            my $bannedin = join(",", map { $dbh->quote($_); } split(/,/, $POST{'unban'}));
+            $dbh->do("DELETE FROM reluser WHERE userid=? AND type='B' AND targetid IN ($bannedin)", undef, $u->{'userid'});
+        }
+
+        # actions if email changed
+        if ($email_changed) {
+            my $aa = {};
+            $aa = LJ::register_authaction($u->{'userid'}, 
+                                          "validateemail", $POST{'email'});
+
+            LJ::send_mail({
+                'to' => $POST{'email'},
+                'from' => $LJ::ADMIN_EMAIL,
+                'charset' => 'utf-8',
+                'subject' => $ML{'.newemail.subject'},
+                'body' => BML::ml('.newemail.body2',
+                                  { username => $u->{user},
+                                    sitename => $LJ::SITENAME,
+                                    sitelink => $LJ::SITEROOT,
+                                    conflink => "$LJ::SITEROOT/confirm/$aa->{'aaid'}.$aa->{'authcode'}" }),
+            });
+        }
+
+        # tell the user all is well
+        return "<?h1 $ML{'.success.header'} h1?>\n" .
+               "<?p " . BML::ml(".success.message", { 'user' => $u->{'user'}, }) . " p?>";
+    }
+
+    # should never happen
+    return "<?h1 $ML{'Error'} h1?><?p $ML{'error.unknownmode'} p?>";
+
+}
+_code?>
+
+<=body
+page?><?_c <LJDEP>
+lib: LJ::TextMessage, cgi-bin/ljlib.pl, cgi-bin/ljlang.pl
+link: htdocs/legal/privacy.bml, htdocs/support/faqbrowse.bml, htdocs/tools/textmessage.bml, htdocs/uploadpic.bml
+link: htdocs/paidaccounts/index.bml, htdocs/users, htdocs/userinfo.bml
+post: htdocs/editinfo.bml
+img: htdocs/userpic
+</LJDEP> _c?>

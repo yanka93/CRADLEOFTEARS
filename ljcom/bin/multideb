@@ -1,0 +1,250 @@
+#!/usr/bin/perl
+#
+# multideb - compare package installation differences over
+#            many machines remotely.
+#
+# example ~/.multideb.conf file:
+#
+#    servera port=2210 user=bob classes=web,db
+#    serverb user=root classes=web
+#    serverc user=root classes=web
+#    serverd user=mysql classes=db
+#    localhost classes=web
+#
+# Port 22 is the default.  User required unless servername is localhost.
+#
+
+use strict;
+use Getopt::Long;
+use Data::Dumper;
+
+my $MD_DIR = ensure_dir("$ENV{'HOME'}/.multideb");
+
+my %host;     # hostname -> {..., classes => { classname => 1 } }
+my %classes;  # classname -> { hostname => 1 }
+my %core;     # classname -> [ packagename, ... ]
+
+my $opt_full = 0;
+my $opt_core = 0;
+help() unless GetOptions(
+			 "full" => \$opt_full,
+			 "core" => \$opt_core,
+			 );
+
+my $mode = shift @ARGV;
+
+if ($mode eq "check")
+{
+    load_conf();
+    my @pkgs =  @ARGV;
+    my @hosts = sort keys %host;
+
+    foreach my $host (@hosts) {
+	my $h = $host{$host};
+	parse_status($h);
+    }
+
+    foreach my $pkg (@pkgs) 
+    {
+	my %whowhat;
+	foreach my $host (@hosts) {
+	    my $h = $host{$host};
+	    my $p = $h->{'pkg'}->{$pkg};
+	    
+	    my $status = status_of_package($p);
+	    push @{$whowhat{$status}}, $host;
+	}
+
+	print "$pkg\n";
+	foreach my $stat (sort keys %whowhat) {
+	    print "  $stat: @{$whowhat{$stat}}\n";
+	}
+    }
+    
+    exit 0;
+}
+
+if ($mode eq "compare") 
+{
+    load_conf();
+    my $class = shift @ARGV;
+    my @hosts = sort keys %{$classes{$class}};
+
+    unless (@hosts) {
+	die "No matching '$class' hosts.\n";
+    }
+
+    my @comp_list;
+
+    my %epkg;  # existing packages:  { name => 1 }
+    foreach my $host (@hosts)
+    {
+	my $h = $host{$host};
+	parse_status($h);
+	foreach (keys %{$h->{'pkg'}}) {
+	    $epkg{$_} = 1;
+	}
+    }
+    
+    if ($opt_core) {
+	unless (defined $core{$class}) {
+	    die "No core packages defined for class '$class'\n";
+	}
+	@comp_list = @{$core{$class}};
+    } else {
+	@comp_list = sort keys %epkg;
+    }
+
+    # iterate through all packages, showing differences:
+    foreach my $pkg (@comp_list)
+    {
+	my %whowhat;
+	my $installed = 0;
+	foreach my $host (@hosts) {
+	    my $h = $host{$host};
+	    my $p = $h->{'pkg'}->{$pkg};
+
+	    my $status = status_of_package($p);
+	    push @{$whowhat{$status}}, $host;
+	    
+	    my ($sa, $sb, $sc) = split(/ /, $p->{'Status'});
+	    if ($sc eq "installed") { $installed = 1; }
+	}
+	if ($installed && 
+	    ($opt_full || scalar(keys %whowhat) > 1)) 
+	{
+	    print "$pkg\n";
+	    foreach my $stat (sort keys %whowhat) {
+		print "  $stat: @{$whowhat{$stat}}\n";
+	    }
+	}
+    }
+
+    exit 0;    
+}
+
+if ($mode eq "update") 
+{
+    load_conf();
+    foreach my $host (sort keys %host)
+    {
+	my $h = $host{$host};
+	my $user = $h->{'user'};
+	my $port = $h->{'port'};
+
+	print "$host...\n";
+	if ($host eq "localhost") {
+	    system("rsync", "/var/lib/dpkg/status",
+		   "$MD_DIR/$host.status");
+	} else {
+	    system("rsync", "-e", "ssh -p $port", "-az", 
+		   "$user\@$host:/var/lib/dpkg/status",
+		   "$MD_DIR/$host.status");
+	}
+    }
+
+    print "Done.\n";
+    exit 0;
+}
+
+help();
+
+sub status_of_package 
+{
+    my $p = shift;
+
+    my $status = $p->{'Version'};
+    if ($p->{'Status'} ne "install ok installed") {
+	$status .= "/" if $status;
+	$status .= "$p->{'Status'}";
+    }
+    $status ||= "(unknown)";
+
+    return $status;
+}
+
+sub parse_status
+{
+    my $h = shift;
+    my $fname = "$MD_DIR/$h->{'host'}.status";
+    unless (-e $fname) {
+	die "$fname doesn't exist.  Run update.\n";
+    }
+    open (F, $fname);
+    while (<F>) {
+	unless (/^Package: (.+)/) {
+	    die "Corrupt $h->{'host'} status file?\n";
+	}
+	my $pkg = $1;
+	my $p = $h->{'pkg'}->{$pkg} = {
+	    'Package' => $pkg,
+	};
+	my $lastkey = 'Package';
+	while (<F>) {
+	    chomp;
+	    unless ($_) { last; }
+	    if (/^(\w+):\s*(.+)/i) {
+		$p->{$1} = $2;
+	    }
+	}
+    }
+    close F;
+}
+
+sub help 
+{
+    die("Usage:\n".
+	"    multideb update\n".
+	"    multideb compare <classname>\n".
+	"    multideb check <packagename> ...\n");
+}
+
+sub load_conf {
+    open (C, "$ENV{'HOME'}/.multideb.conf");
+    while (<C>)
+    {
+	s/^\s+//; s/\s+$//;
+	next if (/^\#/);
+	next unless $_;
+	chomp;
+	my ($p1, @opts) = split(/\s+/, $_);
+
+	if ($p1 =~ /^core:(\w+)/) {
+	    $core{$1} = [ @opts ];
+	    next;
+	}
+	
+	my $host = $p1;
+	my $h = $host{$host} = { 
+	    'host' => $host,
+	    'port' => 22,
+	};
+	foreach (@opts) {
+	    my ($k, $v) = split(/=/, $_);
+	    if ($k eq "classes") {
+		foreach (split(/,/, $v)) {
+		    $h->{'classes'}->{$_} = 1;
+		    $classes{$_}->{$host} = 1;
+		}
+	    } else {
+		$h->{$k} = $v;
+	    }
+	}
+    }
+    close C;
+}
+
+sub ensure_dir {
+    my $dir = shift;
+    unless (-e $dir) {
+	if (mkdir $dir) {
+	    return $dir;
+	} else {
+	    die "Can't create $dir directory\n";
+	}
+    }
+    unless (-w $dir) {
+	die "Can't write to $dir directory\n";
+    }
+    return $dir;
+}

@@ -1,0 +1,36 @@
+<?page
+title=><?_ml .title _ml?>
+head<=
+<style type="text/css">
+<!--
+    dt {
+        margin-top: 10px;
+    }
+-->
+</style>
+<=head
+body<=
+<?_code
+    LJ::set_active_crumb('legal');
+_code?>
+<?h1 <?_ml .about.header _ml?> h1?>
+<?p <?_ml .about _ml?> p?>
+
+<?h1 <?_ml .docs.header _ml?> h1?>
+
+<dh>
+<dt><a href="/legal/tos.bml"><strong><?_ml /legal/tos.bml.title _ml?></strong></a></dt>
+<dd><?_ml .docs.tos.about _ml?></dd>
+<dt><a href="/legal/dmca.bml"><strong><?_ml /legal/dmca.bml.title _ml?></strong></a></dt>
+<dd><?_ml .docs.dmca.about _ml?></dd>
+<dt><a href="/legal/privacy.bml"><strong><?_ml /legal/privacy.bml.title _ml?></strong></a></dt>
+<dd><?_ml .docs.privacy.about2 _ml?></dd>
+</dh>
+
+<=body
+page?><?_c
+<LJDEP>
+link: htdocs/legal/tos.bml, htdocs/legal/privacy.bml
+link: htdocs/legal/coppa.bml
+</LJDEP>
+_c?>

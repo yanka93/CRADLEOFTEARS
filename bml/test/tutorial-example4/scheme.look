@@ -1,0 +1,11 @@
+smallcaps=>{D}<span style="font-variant: small-caps">%%DATA%%</span>
+
+topiclink=>{F}<a href="/topic.pl?name=%%name%%">%%linktext%%</a>
+
+section<=
+{F}
+<div id="section-%%id%%" class="section">
+  <h3>%%heading%%</h3>
+  <p>%%body%%</p>
+</div>
+<=section

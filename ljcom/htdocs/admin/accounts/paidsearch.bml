@@ -1,0 +1,161 @@
+<html>
+<head><title>Paid Search</title></head>
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $remote = LJ::get_remote();
+    return "You must first <a href=\"/login.bml?ret=1\">login</a>."
+        unless $remote;
+    
+    unless (LJ::remote_has_priv($remote, "moneysearch") ||
+            LJ::remote_has_priv($remote, "moneyview"))
+    {
+        return "You don't have access to see this.";
+    }
+
+    my $ret;
+
+    my $user = $GET{'user'};
+    $ret .= "<h1>Search for payments.</h1>\n";
+    $ret .= "<form method='get'>";
+    $ret .= "Search method: ";
+    $ret .= LJ::html_select({ 'name' => 'method', 'selected' => $GET{'method'} },
+                            'user' => "Username",
+                            'email' => "Email",
+                            'lastname' => "Last Name",
+                            'pptxnid' => "PayPal - transaction ID",
+                            'cpid' => "Coupon",
+#                         'ppemail' => "Email",
+#                         'pplastname' => "PayPal - last name",
+#                         'handemail' => "Manually entered email",
+                            );
+    $ret .= " Search value: ";
+    $ret .= LJ::html_text({ 'name' => 'value', 
+                            'value' => $GET{'value'},
+                            'size' => 30 });
+    $ret .= "<input type=\"submit\" value=\"Search\"></form><hr>";
+    
+    return $ret unless $GET{'method'};
+
+    my $dbh = LJ::get_db_writer();
+    my $sth;
+    
+    my %matched;
+    my @ps_vars;  # payment search vars;
+
+    # by-user search
+    if ($GET{'method'} eq "user") {
+        my $user = $GET{'value'};
+        my $userid = LJ::get_userid($user);
+        unless ($userid) {
+            $ret .= "<p><b>Error:</b> Username not found.";
+            return $ret;
+        }
+
+        # include payments created by the user
+        $sth = $dbh->prepare("SELECT payid FROM payments WHERE userid=?");
+        $sth->execute($userid);
+        $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+
+        # include payments with payment items for that user
+        $sth = $dbh->prepare("SELECT payid FROM payitems WHERE rcptid=?");
+        $sth->execute($userid);
+        $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+
+        # HACK: mysql doesn't optimize these queries properly, so we'll do it by hand: much faster
+        {
+            my @acid = (
+                        @{ $dbh->selectcol_arrayref
+                               ("SELECT acid FROM acctcode WHERE userid=? LIMIT 5000", undef, $userid)||[] },
+                        @{ $dbh->selectcol_arrayref
+                               ("SELECT acid FROM acctcode WHERE rcptid=? LIMIT 5000", undef, $userid)||[] },
+                        );
+            my $bind = join(",", map { "?" } @acid);
+
+            # include payments tied to account codes either purchased by or used by the user (new payment system)
+            $sth = $dbh->prepare("SELECT pi.payid FROM acctpayitem p, payitems pi " .
+                                 "WHERE pi.piid=p.piid AND p.acid IN ($bind) LIMIT 5000");
+            $sth->execute(@acid);
+            $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+            
+            # include payments tied to account codes either purchased by or used by the user (new payment system)
+            $sth = $dbh->prepare("SELECT payid FROM acctpay WHERE acid IN ($bind) LIMIT 5000");
+            $sth->execute(@acid);
+            $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+        }
+    }
+    
+    # by-email search
+    if ($GET{'method'} eq "email") {
+        my $email = $GET{'value'};
+
+        # payment search vars:  ppemail (from a paypal payment notification)
+        # and 'handemail' (manually entered (before cart system))
+        push @ps_vars, qw(ppemail handemail);
+            
+        # from rcptemail
+        $sth = $dbh->prepare("SELECT payid FROM payitems WHERE ".
+                             "rcptemail=?");
+        $sth->execute($email);
+        $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+    }
+
+    # coupon search
+    if ($GET{'method'} eq "cpid") {
+        my $cpid = $GET{'value'};
+
+        # accept $cpid-$auth, but only care about $cpid
+        $cpid =~ s/^(\d+).*/$1/;
+
+        # get the payid that used/bought this coupon
+        my ($payid, $ppayid) =
+            $dbh->selectrow_array("SELECT payid, ppayid FROM coupon " .
+                                  "WHERE cpid=?", undef, $1);
+
+        $matched{$payid} = 1 if $payid;   # transaction coupon was used on
+        $matched{$ppayid} = 1 if $ppayid; # transaction where coupon was purchased        
+    }
+
+    # paypal transaction ID or last name
+    push @ps_vars, "pplastname" if $GET{'method'} eq "lastname";
+    push @ps_vars, "pptxnid" if $GET{'method'} eq "pptxnid";
+    
+    # include any paymentsearch vars the above modes might want
+    for my $var (@ps_vars) {
+        $sth = $dbh->prepare("SELECT payid FROM paymentsearch WHERE ".
+                             "ikey=? AND ival=?");
+        $sth->execute($var, $GET{'value'});
+        $matched{$_} = 1 while $_ = $sth->fetchrow_array;
+    }
+    
+    return $ret. "<i>No matches</i>" unless %matched;
+    
+    my $in = join(',', keys %matched);
+    $sth = $dbh->prepare("SELECT p.*, u.user ".
+                         "FROM payments p LEFT JOIN useridmap u ".
+                         "ON p.userid=u.userid ".
+                         "WHERE p.payid IN ($in) ORDER BY p.payid");
+    $sth->execute;
+    
+    $ret .= "<table cellpadding=4 cellspacing=1 border=1><tr><td><b>Pay ID#</b></td><td><b>User</b></td><td><b>Date Sent/Recv</b><td><b>Amount</b></td><td><b>Months</b></td><td><b>Used/Mailed</b></td><td><b>Method</b></td></tr>\n";
+    while (my $row = $sth->fetchrow_hashref) 
+    {
+        my $amount = sprintf("\$%.02f", $row->{'amount'});
+        my $usedmailed = "$row->{'used'}/$row->{'mailed'}";
+        
+        if ($row->{'mailed'} eq "C") {
+            $usedmailed = "Unpaid! Still in cart!";
+        }
+        
+        $ret .= "<TR VALIGN=TOP><TD ALIGN=CENTER><A HREF=\"paiddetails.bml?payid=$row->{'payid'}&userid=$row->{'userid'}\">#$row->{'payid'}</A></TD><TD><B><A HREF=\"/userinfo.bml?user=$row->{'user'}\">$row->{'user'}</A></B></TD><TD>$row->{'datesent'}<BR>$row->{'daterecv'}</TD><TD ALIGN=RIGHT>$amount</TD><TD ALIGN=RIGHT>$row->{'months'}</TD><TD ALIGN=CENTER>$usedmailed</TD><TD>$row->{'method'}</TD></TR>";
+    }
+    $ret .= "</table>\n";
+
+    return $ret;
+}
+_code?>
+</body>
+</html>

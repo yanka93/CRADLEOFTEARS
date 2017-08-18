@@ -1,0 +1,126 @@
+<?_info
+nocache=>1
+_info?><?page
+title=><?_ml .title _ml?>
+
+body<=
+
+<?_code
+
+ use strict;
+ use vars qw(%POST %GET);
+
+ LJ::set_active_crumb('register');
+
+ my $ret;
+ my $qs = BML::get_query_string();
+
+ my $remote = LJ::get_remote();
+ return BML::redirect("$LJ::SITEROOT/agecheck/?s=1")
+     if $remote && $remote->underage;
+
+ my $foruser = $GET{foruser};
+ my $foru;
+ if ($foruser) {
+    $foru = LJ::load_user($foruser)
+        or return "<?p User does not exist. p?>";
+    return "<?p You do not have access to send email validation requests to other people. p?>"
+        if $foru && !(LJ::check_priv($remote, "siteadmin", "users") ||
+                      LJ::check_priv($remote, "siteadmin", "*"));
+ }
+
+ my $show_validate = sub {
+    my $user = shift;
+    return "<?p " . BML::ml('.ask.body', {'email'=>$user->{'email'}, 'user'=>LJ::ljuser($user)}) . " p?>" .
+           "<form action='register.bml' method='post'>" .
+           LJ::html_hidden('authas', $user->{'user'}) .
+           LJ::html_submit("action:send", "$ML{'.ask.button'}") .
+           "</form>";
+ };
+ if ($POST{'action:send'} || $foru) {
+     my $u = $foru ? $foru : LJ::get_authas_user($POST{'authas'});
+     return "<?h1 $ML{'Error'} h1?><?p $ML{'error.invalidauth'} p?>" unless $u;
+     my $aa = {};
+     $aa = LJ::register_authaction($u->{'userid'},
+                                  "validateemail", $u->{'email'});
+     LJ::send_mail({
+         'to' => $u->{'email'},
+         'bcc' => $foru ? $remote->{'email'} : undef,
+         'from' => $LJ::ADMIN_EMAIL,
+         'charset' => 'utf-8',
+         'subject' => $ML{'.email.subject'},
+         'body' => BML::ml('.email.body',
+                           { 'sitename' => $LJ::SITENAME,
+                             'sitelink' => $LJ::SITEROOT,
+                             'conflink' => "$LJ::SITEROOT/confirm/$aa->{'aaid'}.$aa->{'authcode'}" }),
+    });
+     $ret .= "<?h1 $ML{'.sent.header'} h1?><?p " . BML::ml('.sent.body',{'email'=>$u->{'email'}}) . " p?>";
+
+ } elsif ($qs =~ /^(\d+)[;\.](.+)$/) {
+     my ($aaid, $auth) = ($1, $2);
+     my $aa = LJ::is_valid_authaction($aaid, $auth);
+     if (!$aa) { return "<?h1 $ML{'Error'} h1?><?p $ML{'.error.invalidcode'} p?>"; }
+     my $u = LJ::load_userid($aa->{'userid'});
+
+     # verify their email hasn't subsequently changed
+     unless ($u->{email} eq $aa->{arg1}) {
+         return "<?h1 $ML{'Error'} h1?><?p " .
+                BML::ml('.error.emailchanged', { aopts => "href='$LJ::SITEROOT/register.bml'" }) .
+                " p?>";
+     }
+
+     LJ::update_user($u, { status => 'A' });
+     LJ::run_hooks("emailconfirmed", $u);
+     if ($u->{'status'} eq "T") {
+         $ret .= "<?h1 $ML{'.trans.header'} h1?><?p $ML{'.trans.body'} p?>";
+     } else {
+         $ret .= "<?h1 $ML{'.new.header'} h1?><?p " . BML::ml('.new.bodyuser', {'user'=>LJ::ljuser($u)}) . " p?>";
+         $ret .= "<ul>";
+         $ret .= "<li>$ML{'.new.login'}</li>";
+         $ret .= "<li>$ML{'.new.editinfo'}</li>";
+         $ret .= "<li>$ML{'.new.modify'}</li>";
+         $ret .= "<li>$ML{'.new.update'}</li>";
+         $ret .= "</ul>";
+     }
+ } else {
+     return LJ::bad_input("You must be logged in to view this page.") unless $remote;
+     my @authas = LJ::get_authas_list($remote);
+     my @list;
+     foreach (@authas) {
+         my $user = LJ::load_user($_);
+         push @list, $_;
+         if ($user->{'status'} eq "A") {
+             push @list, $_;
+         }  else {
+             push @list, BML::ml('.asterisk.name', {'journal'=>$_});
+         }
+     }
+     $ret .= "<?h1 $ML{'.ask.header'} h1?>";
+     $ret .= "<form method='get' action='register.bml'>\n";
+     $ret .= 'Select user:' . " ";
+     $ret .= LJ::html_select({ 'name' => 'authas' }, @list) . " ";
+     $ret .= LJ::html_submit(undef, 'Validate');
+     $ret .= ' ' . $ML{'.asterisk.comment'};
+     $ret .= "</form>\n\n";
+     if ($GET{'authas'}) {
+         my $user =  LJ::get_authas_user($GET{'authas'});
+         return "<?h1 $ML{'Error'} h1?><?p $ML{'error.invalidauth'} p?>" unless $user;
+         if ($user->{'status'} eq "A") {
+             $ret .= "<?p " . BML::ml('.error.useralreadyvalidated', {'user'=>LJ::ljuser($user)}) . " p?>";
+         } else {
+             $ret .= $show_validate->($user);
+         }
+     } else {
+         $ret .= $show_validate->($remote) unless $remote->{'status'} eq "A";
+     }
+ }
+
+ return $ret;
+
+_code?>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/login.bml, htdocs/editinfo.bml
+link: htdocs/modify.bml, htdocs/update.bml
+</LJDEP> _c?>

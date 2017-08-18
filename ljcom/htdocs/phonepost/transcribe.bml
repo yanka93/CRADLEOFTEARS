@@ -1,0 +1,146 @@
+<?page
+title=>PhonePost transcription
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%POST %GET $ret);
+
+    my $MAX_REVS = 10;
+    my $dppid = $GET{'ppid'} + 0;
+
+    my $remote = LJ::get_remote();
+    my $u = LJ::load_user($GET{user});
+    return "Invalid user." unless $u;
+    my $is_owner = $remote && $remote->{userid} == $u->{userid};
+
+    my $bid = $dppid >> 8;
+    my $ppe = LJ::PhonePost::get_phonepost_entry($u, $bid);
+    return "Invalid phone post entry." unless $ppe && $ppe->{jitemid} && $ppe->{anum} == $dppid % 256;
+
+    # check security of item
+    my $logrow = LJ::get_log2_row($u, $ppe->{jitemid});
+    return "Invalid phone post entry. (Phone post exists, entry has been deleted.)" unless $logrow;
+    unless ($logrow->{security} eq "public") {
+        my $remote = LJ::get_remote();
+        return "Access denied." unless LJ::can_view($remote, $logrow);
+    }
+
+    my $jlink = LJ::item_link($u, $logrow->{jitemid}, $logrow->{anum});
+    my $may_trans = LJ::PhonePost::may_transcribe($u, $remote);
+
+    return "Database unavailable." unless $u->writer;
+
+    my @trans_log;
+    my $max_revid = 0;
+    my $sth = $u->prepare("SELECT revid,posterid,posttime,subject,body " .
+                          "FROM phoneposttrans WHERE journalid=? AND blobid=?");
+    $sth->execute($u->{userid}, $bid);
+    while (my $r = $sth->fetchrow_hashref) {
+        push @trans_log, $r;
+        
+        # Once the owner has transcribed, no one else is allowed to.
+        $may_trans = 0 if $r->{posterid} == $u->{userid} && !$is_owner;
+
+        # Everyone but the owner can only transcribe once.
+        $may_trans = 0 if $remote &&
+                $remote->{userid} != $u->{userid} &&
+                $r->{posterid} == $remote->{userid};
+        $max_revid = $r->{revid} > $max_revid ? $r->{revid} : $max_revid;
+    }
+    @trans_log = sort { $b->{revid} <=> $a->{revid} } @trans_log;
+
+    # The last revision 'slot' is reserved for the owner.
+    $may_trans = 0 if $max_revid >= $MAX_REVS - 1 && !$is_owner;
+
+    # Save new revision.
+    my $midair;
+    if (LJ::did_post() && $may_trans) {
+
+        # Sanity check the rev id, make sure someone isn't faking it.
+        my $revid = $POST{revid} + 0;
+        my $new_revid = $max_revid + 1;
+        return "Invalid revision ID." unless $revid >= 1 && $revid <= $new_revid && $revid <= $MAX_REVS;
+        return "Last revision reserved for owner." if $revid == $MAX_REVS && !$is_owner;
+
+        my $body = LJ::trim($POST{body});
+        my $subject = LJ::trim($POST{subj});
+        return LJ::bad_input('Empty transcription') unless $body =~ /\S/;
+        return LJ::bad_input('Invalid encoding') unless LJ::is_utf8($body) && LJ::is_utf8($subject);
+        return LJ::bad_input('Subject too long.') if length($subject) > 200;
+        return LJ::bad_input('Body too long.') if length($body) > 4096;
+
+        my $verb = 'INSERT';
+        $verb = 'REPLACE' if $revid == $MAX_REVS && $is_owner;
+        my $rv = $u->do("$verb IGNORE INTO phoneposttrans SET " .
+                        "revid=?, posterid=?, posttime=UNIX_TIMESTAMP(), subject=?, body=?, " .
+                        "journalid=?, blobid=?", undef,
+                        $new_revid, $remote->{userid}, $subject,
+                        $body, $u->{userid}, $bid);
+
+        # Duplicate revision numbers.  Force user to review.
+        $midair = $new_revid unless $rv > 0;
+
+        my $newr = { 'revid'=>$new_revid, 'posterid'=>$remote->{userid}, 
+            'subject'=>$subject, 'body'=>$body };
+
+        unless ($midair) {
+            # Add post to display.
+            unshift @trans_log, $newr;
+            $may_trans = 0 unless $is_owner;
+
+            # Modify journal subject.
+            $u->do("UPDATE logtext2 SET subject=? WHERE journalid=? AND jitemid=?", undef,
+                   LJ::ehtml("Phone Post: $subject"), $u->{userid}, $logrow->{jitemid});
+            my $memkey = [ $u->{userid}, "logtext:$u->{clusterid}:$u->{userid}:$logrow->{jitemid}" ];
+            LJ::MemCache::delete($memkey);
+
+            # and delete the latest info
+            $memkey = [$u->{userid},"ppelt:$u->{userid}:$bid"];
+            LJ::MemCache::delete($memkey);
+            $memkey = [$u->{userid},"ppetu:$u->{userid}:$bid"];
+            LJ::MemCache::delete($memkey);
+        }
+    }
+
+
+    $ret .= "<div>[&lt;&lt; Back to <a href='$jlink'>this entry</a> from " . LJ::ljuser($u) . ']</div>';
+    # Purty icon
+    $ret .= '<div style="margin:30px;">' . LJ::PhonePost::make_link($remote, $u->{userid}, $bid, 'notrans') . '</div>';
+
+    if ($midair) {
+        $ret .= "<?p Whoops! Someone added a transcription while you were making yours.  Please compare with revision #$midair before re-posting. p?>";
+        $ret .= "<div style='margin-left:40px;margin-bottom:40px'><i>";
+        $ret .= "<b>" . LJ::ehtml($POST{subj}) . '</b><br />' if $POST{subj};
+        $ret .= LJ::ehtml($POST{body}) . '</i></div>';
+    }
+
+    # Display form.
+    if ($may_trans) {
+        $ret .= "<form method='post' action='transcribe.bml?user=$u->{user}&amp;ppid=$dppid'>";
+        $ret .= LJ::html_hidden('revid', $max_revid + 1);
+        $ret .= "<?h2 Update transcription for this phonepost: h2?>";
+        $ret .= "<div>";
+        $ret .= '<b>Subject: &nbsp;</b>' . LJ::html_text({ name=>'subj', size=>50 }) . '<br />';
+        $ret .= LJ::html_textarea({ name=>'body', cols=>70, rows=>5 }) . '<br />';
+        $ret .= "<?standout ";
+        $ret .= LJ::html_submit('save');
+        $ret .= ' standout?></div></form>';
+    }
+
+    # Display previous translations.
+    foreach my $r (@trans_log) {
+        $ret .= "<?h2 Revision #<b>$r->{revid}</b> by " . LJ::ljuser(LJ::get_username($r->{posterid})) . ' h2?>';
+        $ret .= "<div style='margin-left:40px; margin-bottom:20px'>";
+        $ret .= '<b>' . LJ::ehtml($r->{subject}) . '</b><br />' if $r->{subject};
+        my $body = LJ::ehtml($r->{body});
+        $body =~ s/\n/<br \/>/g;
+        $ret .= $body;
+        $ret .= "</div>";
+    }
+
+    return $ret;
+}
+_code?>
+<=body
+page?>

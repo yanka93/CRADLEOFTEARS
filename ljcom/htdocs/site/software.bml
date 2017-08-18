@@ -1,0 +1,15 @@
+<?page
+title=>Software
+body<=
+
+This page wasn't updated in many years, so is now devoid of information to be more accurate.  In summary:
+<ul>
+<li>Linux (Debian)</li>
+<li>MySQL</li>
+<li>Perl</li>
+<li>Apache (mod_perl)</li>
+<li>memcached</li>
+</ul>
+
+<=body
+page?>

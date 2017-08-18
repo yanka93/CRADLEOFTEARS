@@ -1,0 +1,33 @@
+Sound files needed (script negotiable):
+
+ welcome:  "Welome to the LiveJournal phone gateway."
+ welgoat:  "Welome to the LiveJournal phone goatway."
+           [make it subtle, so most people don't notice, and we can
+            use it randomly]
+
+ phone:    "Enter your phone number, followed by pound."
+ phonecid: "To log in using your caller id, press pound.
+            Otherwise enter your phone number, followed by pound."
+ pin:      "Enter your PIN, followed by pound."
+ badlogin: "Invalid login."
+ quota:    "We're sorry, you have reached your phone post limit."
+ space:    "We're sorry, you have reached your disk space limit."
+ error:    "We're sorry, there was an error processing your request."
+ support:  "For more information, visit LiveJournal dot com slash phonepost."
+ queued:   "Your entry has been saved.  It will be posted soon."
+
+ record:   "Record your entry after the beep.  Hanging up will
+            cancel your post.  Press pound when you're done recording."
+ menu:     "Press 1 to replay your message, 2 to re-record it, 3 to post
+            it public, 4 to post it friends-only, and 5 to post it private.
+            To hear your options again, press 9."
+
+ unknown:  "You have entered an unknown menu option."
+ posted:   "Your entry has been posted."
+
+ goat:     "Frank the goat appreciates your call."
+ 
+ goodbye:  "Goodbye!"
+
+
+vim: set tw=72 :

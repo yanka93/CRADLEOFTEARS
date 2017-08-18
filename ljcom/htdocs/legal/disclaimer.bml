@@ -1,0 +1,45 @@
+<?page
+title=>Disclaimer
+body<=
+
+<?h1 Disclaimer h1?>
+<?p
+Okay, here are a list of rules/disclaimers....
+p?>
+
+<?standout
+
+<B>Notice:</B>  This page is old, and was never too official.  The new <A HREF="tos.bml">terms of service document</A> is what you should read.
+
+standout?>
+
+<UL>
+<LI>LiveJournal.com is not responsible for the content found on user journals on this server.  Notify us if you find inapproriate content.
+<LI>LiveJournal.com will not tolerate inproper use of the LiveJournal service.  Improper use includes anything illegal, or anything extremely offensive.  Use your best judgement, and ask us if you have questions.
+<LI>Although we do have extensive backups, LiveJournal.com is not responsible for lost data.  <B>Note: </B> we are also developing a personal backup system, so you can download your entire journal to your local machine for your own backup purposes.
+</UL>
+
+<?h1 Who owns what you write? h1?>
+<?p
+You do!  You retain the copyright on all writings you submit to LiveJournal.com.
+p?>
+
+<?h1 LiveJournal.com's rights h1?>
+<UL>
+<LI>LiveJournal.com reserves the right to publish on the web any public entries the journal owners post.  (if we didn't, it'd be hard to run a journal website)
+<LI>For private entries, only the authenticated author will have access to them either on the web.
+<LI>For protected entries, only the authenticated author or users authorized by the author will have access to them on the web.
+</UL>
+
+<?h2 Your Rights h2?>
+<UL>
+<LI>Journal owners may republish <B>their</B> journals without restrictions.  You can even sell your journal and make profit off of it.  (You just can't go into the business of republishing or selling other users' journals, without their permission.)
+</UL>
+
+<?h1 Subject to Change h1?>
+<?p
+This page and the terms set forth above are subject to change at any time.  (most likely only wording changes will take place, but check back periodically if you're worried)
+p?>
+
+<=body
+page?>

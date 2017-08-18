@@ -1,0 +1,2285 @@
+layerinfo type = "layout";
+layerinfo name = "Smooth Sailing";
+layerinfo author_name = "Michael Raffoul";
+layerinfo author_email = "masterslacker@livejournal.com";
+layerinfo redist_uniq  = "smoothsailing/layout";
+
+set tags_aware = true;
+propgroup colors = "Colors";
+propgroup colors{
+    property Color color_header_title_background {
+        des = "Headerbar Title and Subtitle Background";
+    }
+    property Color color_header_title_text {
+        des = "Headerbar Title Text";
+    }
+    property Color color_header_subtitle_text {
+        des = "Headerbar Subtitle Text";
+    }
+    property Color color_header_menubar_background {
+        des = "Headerbar Menu Background";
+    }
+    property Color color_header_menubar_text {
+        des = "Headerbar Menu Text";
+    }
+    property Color color_header_menubar_background_hover {
+        des = "Headerbar Menu Background (when hovering)";
+    }
+    property Color color_header_menubar_text_hover {
+        des = "Headerbar Menu Text (when hovering)";
+    }
+    property Color color_header_borders {
+        des = "Headerbar Borders";
+    }
+    property Color color_body_titlebar_background {
+        des = "Body Titlebar Background";
+        note = "The body titlebar is just below the main header, and gives a title for the page (eg. Recent Entries, February 2005, etc)";
+    }
+    property Color color_body_titlebar_text {
+        des = "Body Titlebar Text";
+    }
+    property Color color_body_footer_background {
+        des = "Body Footer Background";
+        note = "The body footer is the bar at the bottom of the page with the last loaded time.";
+    }
+    property Color color_body_footer_text {
+        des = "Body Footer Text";
+    }
+    property Color color_body_background {
+        des = "Body Background";
+    }
+    property Color color_body_text {
+        des = "Body Text";
+        note = "This is text that appears directly on the main background, eg Reply Form text";
+    }
+    property Color color_body_entrytitle_background {
+        des = "Entry Title Background";
+        note = "An 'Entry' is any individual element that could be on a page (eg, a post, a comment, a month on the archive pages, a day listing on the month pages, etc)";
+    }
+    property Color color_body_entrytitle_background_alternate {
+        des = "Entry Title Background (Alternate)";
+        note = "The alternate background is for screened comment titlebars";
+    }
+    property Color color_body_entrytitle_border {
+        des = "Entry Title Border";
+        note = "The color of the upper border of the Entry Title";
+    }
+    property Color color_body_entrytitle_text {
+        des = "Entry Title Text";
+        note = "The color of the text in the Entry Title";
+    }
+    property Color color_body_entrytitle_links {
+        des = "Entry Title Links";
+        note = "The color of the links in the Entry Title";
+    }
+    property Color color_body_entry_userinfo_background {
+        des = "Entry Userinfo Background";
+    }
+    property Color color_body_entry_background {
+        des = "Entry Background";
+    }
+    property Color color_body_entry_text {
+        des = "Entry Text";
+    }
+    property Color color_body_links {
+        des = "Entry Links color";
+    }
+    property Color color_body_links_visited {
+        des = "Entry Links (visited) color";
+    }
+    property Color color_month_borders {
+        des = "Month View Line Color";
+        note = "The color of the lines that construct the calendar-like months on the archive page";
+    }
+    property Color color_month_title_background {
+        des = "Month Title Background";
+        note = "The color of the background where the day names appear in the calendar";
+    }
+    property Color color_month_title_text {
+        des = "Month Title Text";
+        note = "The color of the text where the day name appears in the calendar";
+    }
+    property Color color_month_dates {
+        des = "Month Date Text";
+        note = "The color of the text that indicates the dates in the calendar";
+    }
+    property Color color_month_postcount {
+        des = "Month Date Postcount Text";
+        note = "The color of the text that indicates the post count for a specific day";
+    }
+    set color_header_title_background = "#6b7da6";
+    set color_header_title_text = "#ffffff";
+    set color_header_subtitle_text = "#d4ddee";   
+    set color_header_menubar_background = "#aabbdd";
+    set color_header_menubar_text = "#000000";
+    set color_header_menubar_background_hover = "#6b7da6";
+    set color_header_menubar_text_hover = "#000000";
+    set color_header_borders = "#ffffff";
+    set color_body_links = "#000000";
+    set color_body_links_visited = "#314667";
+    set color_body_titlebar_background = "#d4ddee";
+    set color_body_titlebar_text = "#000000";
+    set color_body_footer_background = "#aabbdd";
+    set color_body_footer_text = "#000000";
+    set color_body_background = "#f8f8f8";
+    set color_body_text = "#000000";
+    set color_body_entrytitle_background = "#dddddd";
+    set color_body_entrytitle_background_alternate = "#cccccc";
+    set color_body_entrytitle_border = "#ffffff";
+    set color_body_entrytitle_text = "#000000";
+    set color_body_entrytitle_links = "#000000";
+    set color_body_entry_userinfo_background = "#f8f8f8";
+    set color_body_entry_background = "#f8f8f8";
+    set color_body_entry_text = "#000000";
+    set color_month_borders = "#dddddd";
+    set color_month_title_background = "#eeeeee";
+    set color_month_title_text = "#000000";
+    set color_month_dates = "#000000";
+    set color_month_postcount = "#000000";
+}
+
+propgroup fonts = "Fonts";
+propgroup fonts {
+    property string font_base {
+        des = "Default Font for the page";
+        note = "This font will apply to the entire page as the base font. If you set any of the other font properties below, they will override this setting for that specific part of the page.";
+    }
+    property int font_base_size {
+        des = "Default Font Size for the page.";        
+    }
+    property string font_header_title {
+        des = "Font for the Header Title";
+    }
+    property int font_header_title_size {
+        des = "Font Size for the Header Title";
+    }
+    property string font_header_subtitle {
+        des = "Font for the Header Subtitle";
+    }
+    property int font_header_subtitle_size {
+        des = "Font Size for the Header Subtitle";
+    }
+    property string font_header_menu {
+        des = "Font for the Header Menu";
+    }
+    property int font_header_menu_size {
+        des = "Font Size for the Header Menu";
+    }
+    property string font_body_title {
+        des = "Font for Body Title";
+    }
+    property int font_body_title_size {
+        des = "Font Size for Body Title";
+    }
+    property string font_sidebar_title {
+        des = "Font for Sidebar Titles";
+    }
+    property int font_sidebar_title_size {
+        des = "Font Size for Sidebar Titles";
+    }
+    property string font_sidebar_text {
+        des = "Font for Sidebar Text";
+    }
+    property int font_sidebar_text_size {
+        des = "Font Size for Sidebar Text";
+    }
+    property string font_entry_title {
+        des = "Font for Entry Title";
+    }
+    property int font_entry_title_size {
+        des = "Font Size for Entry Title";
+    }
+    property string font_entry_text {
+        des = "Font for Entry Text";
+    }
+    property int font_entry_text_size {
+        des = "Font Size for Entry Text";
+    }
+    property string font_entry_linkbar {
+        des = "Font for Entry Linkbar";
+    }
+    property int font_entry_linkbar_size {
+        des = "Font Size for Entry Linkbar";
+    }
+    property int font_archive_daycount_size {
+        des = "Font Size for the Day Counts on the Archive Page";
+    }
+    set font_base = "Arial";
+    set font_base_size = 12;
+    set font_header_title = "";
+    set font_header_title_size = 30;
+    set font_header_subtitle = "";
+    set font_header_subtitle_size = 24;
+    set font_header_menu = "";
+    set font_header_menu_size = 12;
+    set font_sidebar_title = "";
+    set font_sidebar_title_size = 12;
+    set font_sidebar_text = "";
+    set font_sidebar_text_size = 11;
+    set font_body_title = "";
+    set font_body_title_size = 18;
+    set font_entry_title = "";
+    set font_entry_title_size = 12;
+    set font_entry_text = "";
+    set font_entry_text_size = 12;
+    set font_entry_linkbar = "";
+    set font_entry_linkbar_size = 11;   
+    set font_archive_daycount_size = 20;
+}
+
+propgroup layout = "Layout";
+propgroup layout{
+    property use page_recent_items;
+    property use page_friends_items;
+    property use use_shared_pic;
+    property string layout_background {
+        des = "Background Image";
+        note = "You can specify a URL for an image to appear as the background on the body of the journal. If you would like to see the background through the entry background (ie. to achieve a transparent effect), go to the Colours section and set the Entry Background BLANK.";
+    }
+    property string layout_header_usericon {
+        des = "Header Journal Icon";
+        note = "The users icon will display in the very upper right corner of the page if this is set to \"show\". This is set to hide by default because the sidebar is turned on by default which contains a Profile box with the icon.";
+        values = "show|Show User's icon in header|hide|Hide User's icon";
+    }
+    property string layout_header_alignment {
+        des = "Header Text Alignment";
+        note = "This will affect the alignment of the title, subtitle, the menu links, and the page title below the menu.";
+        values = "left|Left Alignment|center|Center Alignment|right|Right Alignment";
+    }
+    property string layout_show_usericons {
+        des = "Usericon Visibility";
+        values = "all|Show on all pages|nonrecent|Show icons on all pages except the recent entries page|friends|Only show usericons on the friends page|none|Do not show any usericons";
+    }
+    property string layout_position_userinfo_entry {
+        des = "Userinfo Position in Entries";
+        note = "The Userinfo consists of the user's icon and user's LJ name";
+        values = "left|Left side of the entry text|right|Right side of the entry text";
+    }
+    property string layout_position_usernames_entry {
+        des = "Username Position in Entries";
+        values = "above|Above usericons|below|Below usericons";
+    }
+    property bool layout_wrapping_userinfo_entry {
+        des = "Wrap Entry text under userinfo";
+    }
+    property use view_entry_disabled;
+    property string layout_position_userinfo_comment {
+        des = "Userinfo Position in Comments";
+        note = "The Userinfo consists of the user's icon and user's LJ name";
+        values = "left|Left side of the entry text|right|Right side of the entry text";
+    }
+    property string layout_position_usernames_comment {
+        des = "Username Position in Comments";
+        values = "above|Above usericons|below|Below usericons";
+    }
+    property bool layout_wrapping_userinfo_comment {
+        des = "Wrap Comment text under userinfo";
+    }
+    property string layout_position_metadata {
+        des = "MetaData Position";
+        values = "above|Above entry text|below|Below entry text";
+    }
+    property string layout_position_entrytags {
+        des = "Entry Tags Position";
+        values = "subject|After subject text in subjectbar|metadata|With Metadata (mood, music)";
+    }
+    property string layout_linkbar_alignment_entry {
+        des = "Linkbar Alignment in Entries";
+        values = "left|Align Left|center|Align Center|right|Align Right";
+    }
+    property string layout_linkbar_alignment_comment {
+        des = "Linkbar Alignment in Comments";
+        values = "left|Align Left|center|Align Center|right|Align Right";
+    }
+    property int layout_margin_left {
+        des = "The width (in pixels) of the margin for left side of journal (under Header)";
+    }
+    property int layout_margin_right {
+        des = "The width (in pixels) of the margin for right side of journal (under Header)";
+    }
+    property string layout_stylesheet { 
+        des = "Replacement Sytlesheet URL";
+        note = "If you want layout changes that require stylesheet modifications, and you can not use the advanced customisations page, then you may give the full url for a replacement stylesheet which will replace the default stylesheet.";
+    }
+    property string layout_custom_css {
+    	des = "Custom Stylesheet Information";
+    	note = "If you know CSS and would like to override any stylesheet information that currently exists, enter it here and it will be appended at the END of the stylesheet.";
+    	cols = 25;
+    	rows = 10;
+    }    
+    property string layout_friends_sortorder {
+        des = "Order of entries shown on a Friends page";
+        note = "\"Most recent first\" means the newest entry is at the top of the page, \"Least Recent First\" means the newest entry is at the bottom of the page.";
+        values = "newest|Most Recent first|oldest|Least Recent First";
+    }
+    property string layout_day_sortorder {
+        des = "Order of days shown on a Day page";
+        values = "newest|Most Recent first|oldest|Least Recent First";
+    }
+    property string layout_year_sortorder {
+        des = "Order of months shown on a Year page";
+        values = "newest|Most Recent first|oldest|Least Recent First";
+    }
+    property string layout_guestbook_entryid {
+        des = "EntryID of the Guestbook";
+        note = "If you have an entry which you'd like to act as a Guestbook, then set this to be its ID number. The Entry's ID can be taken from the Page's URL, eg. if the page was at www.livejournal.com/users/username/12345.html, then the ID number is 12345. Text on the Entry's page body will be formatted differently (as defined by settings in the \"Page Text\" section), and other pages will treat it like a private entry (ie. it will not be seen on a Month page, Day page, etc).";
+    }
+    property bool layout_menubar_memories {
+        des = "Show Memories link on Menubar";
+    }
+    property bool layout_menubar_scrapbook {
+        des = "Show Scrapbook link on Menubar";
+        note = "If you have a Scrapbook and would like to show it in your menu bar, turn this option on";
+        noui = 1;
+    }
+    property bool layout_menubar_website {
+        des = "Show Website link from Userinfo page on Menubar";
+    }
+    property int layout_replyform_textarea_width {
+        des = "Width of Message Area on Reply Form";
+        note = "The message area on the reply form on reply pages can often be very wide, causing the layout to stretch horizontally. If you would like to keep your journal from stretching specifically because of this message area, set a width here. A value of 0 will be translated into an unfixed width. For a browser maximised on a screen resolution of 800x600, a message area width of 450 (pixels) works well.";
+    }
+    set layout_background = "";
+    set layout_header_usericon = "hide";
+    set layout_header_alignment = "left";
+    set layout_show_usericons = "all";
+    set layout_position_usernames_entry = "below";
+    set layout_position_userinfo_entry = "left";
+    set layout_wrapping_userinfo_entry = false;
+    set layout_position_usernames_comment = "below";
+    set layout_position_userinfo_comment = "left";
+    set layout_wrapping_userinfo_comment = false;
+    set layout_position_metadata = "below";
+    set layout_position_entrytags = "metadata";
+    set layout_linkbar_alignment_entry = "right";
+    set layout_linkbar_alignment_comment = "right";
+    set layout_margin_left = 20;
+    set layout_margin_right = 20;
+    set page_recent_items = 10;
+    set page_friends_items = 25;
+    set layout_stylesheet = "";
+    set layout_custom_css = "";
+    set layout_friends_sortorder = "newest";
+    set layout_day_sortorder = "oldest";
+    set layout_year_sortorder = "newest";
+    set layout_guestbook_entryid = "0";
+    set layout_menubar_scrapbook = false;
+    set layout_menubar_website = true;
+    set layout_menubar_memories = true;
+    set layout_replyform_textarea_width = 0;
+}
+
+propgroup text_header = "Menu";
+propgroup text_header{
+    property string text_view_recent {
+        des = "Text used to link to the Recent Entries page";
+    }
+    property string text_view_archive{
+        des = "Text used to link to the Archive page";
+    }
+    property string text_view_userinfo {
+        des = "Text used to link to the Userinfo page";
+    }
+    property string text_view_friends {
+        des = "Text used to link to the Friends page";
+    }
+    property string text_view_memories {
+        des = "Text used to link to the Memories page";
+    }
+    property string text_view_guestbook {
+    	des = "Text used to link to the Guestbook Entry (if it exists)";
+    }
+    property string text_view_scrapbook{
+        des = "Text used to link to your Scrapbook Gallery (if you have one)";
+        noui = 1;
+    }
+    property string text_nav_prev_page {
+        des = "Text used to link to the Previous page (Default)";
+    }
+    property string text_nav_next_page {
+        des = "Text used to link to the Next page (Default)";
+    }
+    property string text_nav_prev_recentpage {
+        des = "Text used to link to the Previous Recent/Friends page";
+    }
+    property string text_nav_next_recentpage {
+        des = "Text used to link to the Next Recent/Friends page";
+    }
+    property string text_nav_prev_entrypage {
+        des = "Text used to link to the Previous Entry page";
+    }
+    property string text_nav_next_entrypage {
+        des = "Text used to link to the Next Entry page";
+    }
+    property string text_nav_format_monthpage {
+        des = "Format used for Month Pages (Previous/Next links and Page Title)";
+        note = "The Custom Date Formats section of the S2 Documentation at http://www.livejournal.com/doc/s2/siteapi.core1.html#siteapi.core1.dateformats will list the pieces that you can use to construct your format. You must wrap each piece in two percent signs (%%) in your format. For example, the default value of \"%%month%% %%yyyy%%\" will give you something like \"January 2005\".";
+    }
+    property string text_nav_format_daypage {
+        des = "Format used for Day Pages (Previous/Next links and Page Title)";
+        note = "Please see the note above on how to construct the format. The default value for this setting of \"%%month%% %%dayord%%, %%yyyy%%\" will give you something like \"January 1st, 2005\".";
+    }
+    set text_view_memories = "Memories";
+    set text_view_friends = "Friends Entries";
+    set text_view_archive = "Archive";
+    set text_view_recent = "Recent Entries";
+    set text_view_userinfo = "User Info";
+    set text_view_guestbook = "Guestbook";
+    set text_view_scrapbook = "Galleries";
+    set text_nav_prev_page = "Previous";
+    set text_nav_next_page = "Next";
+    set text_nav_prev_recentpage = "Previous Entry // Previous # Entries";
+    set text_nav_next_recentpage = "Next Entry // Next # Entries";
+    set text_nav_prev_entrypage = "Previous Entry";
+    set text_nav_next_entrypage = "Next Entry";
+    set text_nav_format_monthpage = "%%month%% %%yyyy%%";
+    set text_nav_format_daypage = "%%month%% %%dayord%%, %%yyyy%%";
+}
+
+propgroup text_page = "Page Text";
+propgroup text_page{
+    property string text_comment_to{
+        des = "Text for titlebar above Entry when commenting to an Entry";
+    }
+    property string text_signing_guestbook{
+        des = "Text for titlebar above Guestbook Entry when signing the Guestbook";
+    }
+    property string text_reply_to{
+        des = "Text for titlebar above Comment when replying to a Comment";
+    }
+    property string text_comment_form {
+        des = "Text for titlebar above Form when commenting to an Entry";
+    }
+    property string text_signing_form {
+        des = "Text for titlebar above Form when signing the Guestbook";
+    }
+    property string text_reply_form {
+        des = "Text for titlebar above Form when replying to a Comment";
+    }
+    property string text_comment_seperator {
+        des = "Text for titlebar between and Entry and its Comments";
+    }
+    property string text_signature_seperator {
+        des = "Text for titlebar between the Guestbook entry and its Signatures";
+    }
+    property string text_replypage_warning {
+        des = "Text for Warning above Reply Form";
+        note = "This text will appear above the reply form on the reply page if a guestbook is active. It can be used to advise the poster that there is a Guestbook for guest comments. ";
+    }    
+    property string text_post_comment_entrypage {
+        des = "Text for make-a-comment link beneath all existing comments";
+    }
+    property string text_top_of_page {
+        des = "Text for lower navigation bar to link to the Top of the Page";
+    }
+    property string text_footer_signature {
+        des = "Text for the footer at the bottom of the page";
+        note = "You can use this setting to construct a message that will appear at the bottom of the page. You can specify a format for the date and time that the page was loaded, which will be in GMT. The Custom Date Formats section of the S2 Documentation at http://www.livejournal.com/doc/s2/siteapi.core1.html#siteapi.core1.dateformats will list the pieces that you can use to construct the format of the date. You must wrap each piece in two percent signs (%%) in your format. For example, the format \"%%month%% %%yyyy%%\" will give you something like \"January 2005\".";
+    }
+    set text_reply_form = "Reply Form";
+    set text_reply_to = "Replying To";
+    set text_comment_to = "Commenting To";
+
+    set text_comment_form = "Comment Form";
+    set text_signing_form = "Signing Form";
+    set text_signing_guestbook= "Signing Guestbook";
+    set text_comment_seperator = "Comments";
+    set text_signature_seperator = "Signatures";
+    set text_replypage_warning = "";
+    set text_post_comment_entrypage = "Leave a Comment to the Entry";
+    set text_top_of_page = "Top of Page";
+    set text_footer_signature = "This page was loaded %%mon%% %%dayord%% %%yyyy%%, %%h%%:%%min%% %%a%%m GMT.";
+}
+
+propgroup text_sidebar = "Sidebar";
+propgroup text_sidebar{
+    property string layout_sidebar_position { 
+        des = "Sidebar Position";
+        values = "left|Left Side|right|Right Side|none|Do not show";
+    }
+    property int layout_sidebar_width {
+        des = "Sidebar Width";
+        note = "The width (in pixels) for the sidebar";
+    }
+    property string layout_sidebox_title_alignment {
+        des = "Sidebox Title Alignment";
+        values = "left|Align Left|center|Align Center|right|Align Right";
+    }
+    property string layout_sidebox_profile_visibility {
+        des = "Profile Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_profile_title {
+        d11es = "Profile Title";
+    }
+    property string text_sidebox_profile_userlabel {
+        des = "Profile Username Label";
+    }
+    property string text_sidebox_profile_namelabel {
+        des = "Profile Name Label";
+    }
+    property string text_sidebox_profile_info {
+        des = "Profile Extra Text";
+        note = "If you would like extra information in your profile, then place it here. It will appear after the Name is printed.";
+    }
+    property string layout_sidebox_summary_visibility {
+        des = "Summary Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_summary_title {
+        des = "Summary Sidebox Title";
+    }
+    property string text_sidebox_summary_bullet { 
+        des = "Summary Bullet";
+        note = "If you would like to change the summary bullet from a dot, then you can enter new characters here, including html-ized special characters.";
+    }
+    property bool text_sidebox_summary_bullet_bold { 
+        des = "Summary Bullet Bolded";
+        note = "If you would like your bullets bolded, then choose yes. This will be for a purely cosmetic change to the bullets.";
+    }
+    property string text_sidebox_summary_username_seperator {
+        des = "Summary Username Separator";
+        note = "This is to place between the poster username and journal username if different in the Summary. That is, for community posts, it will be {poster}{separator}{journal}.";
+    }
+    property string layout_sidebox_latestmonth_visibility {
+        des = "Latest Month Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_latestmonth_title{
+        des = "Latest Month Sidebox Title";
+    }
+    property string layout_sidebox_links_visibility {
+        des = "Links Visibility";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_links_title{
+        des = "Links Sidebox Title";
+    }
+    property string layout_sidebox_links_alignment {
+        des = "Links Sidebox Alignment";
+        values = "left|Align links left|center|Align links center|right|Align links right";
+    }
+    property string layout_sidebox_tags_visibility {
+        des = "Tags Sidebox Visibility";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_tags_title{
+        des = "Tags Sidebox Title";
+    }
+    property string layout_sidebox_tags_alignment {
+        des = "Tags Sidebox Alignment";
+        values = "left|Align links left|center|Align links center|right|Align links right";
+    }
+    property string layout_sidebox_multisearch_visibility {
+        des = "Multisearch Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_multisearch_title{
+        des = "Multisearch Sidebox Title";
+    }
+    property string layout_sidebox_freetext_visibility {
+        des = "Free Text Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_title{
+        des = "Free Text Sidebox Title";
+    }
+    property string text_sidebox_freetext_text{
+        des = "Free Text Sidebox Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_2_visibility {
+        des = "Free Text #2 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_2_title{
+        des = "Free Text Sidebox #2 Title";
+    }
+    property string text_sidebox_freetext_2_text{
+        des = "Free Text Sidebox #2 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_3_visibility {
+        des = "Free Text #3 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_3_title{
+        des = "Free Text Sidebox #3 Title";
+    }
+    property string text_sidebox_freetext_3_text{
+        des = "Free Text Sidebox #3 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_4_visibility {
+        des = "Free Text #4 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_4_title{
+        des = "Free Text Sidebox #4 Title";
+    }
+    property string text_sidebox_freetext_4_text{
+        des = "Free Text Sidebox #4 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_5_visibility {
+        des = "Free Text #5 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_5_title{
+        des = "Free Text Sidebox #5 Title";
+    }
+    property string text_sidebox_freetext_5_text{
+        des = "Free Text Sidebox #5 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_6_visibility {
+        des = "Free Text #6 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_6_title{
+        des = "Free Text Sidebox #6 Title";
+    }
+    property string text_sidebox_freetext_6_text{
+        des = "Free Text Sidebox #6 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_7_visibility {
+        des = "Free Text #7 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_7_title{
+        des = "Free Text Sidebox #7 Title";
+    }
+    property string text_sidebox_freetext_7_text{
+        des = "Free Text Sidebox #7 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_8_visibility {
+        des = "Free Text #8 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_8_title{
+        des = "Free Text Sidebox #8 Title";
+    }
+    property string text_sidebox_freetext_8_text{
+        des = "Free Text Sidebox #8 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_9_visibility {
+        des = "Free Text #9 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_9_title{
+        des = "Free Text Sidebox #9 Title";
+    }
+    property string text_sidebox_freetext_9_text{
+        des = "Free Text Sidebox #9 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_10_visibility {
+        des = "Free Text #10 Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_10_title{
+        des = "Free Text Sidebox #10 Title";
+    }
+    property string text_sidebox_freetext_10_text{
+        des = "Free Text Sidebox #10 Text";
+        note = "You are allowed to put anything you want here. ";
+        rows = 10;
+        cols = 25;
+    }
+    property string layout_sidebox_freetext_private_visibility {
+        des = "Private Free Text Position";
+        values = "1|1|2|2|3|3|4|4|5|5|6|6|7|7|8|8|9|9|10|10|11|11|12|12|13|13|14|14|15|15|16|16|17|17|hide|hide";
+    }
+    property string text_sidebox_freetext_private_title{
+        des = "Private Free Text Sidebox Title";
+    }
+    property string text_sidebox_freetext_private_text{
+        des = "Private Free Text Sidebox Text";
+        note = "You are allowed to put anything you want here. Only you will be able to see this sidebox when logged in.";
+        rows = 10;
+        cols = 25;
+    }
+    set layout_sidebar_position = "left";
+    set layout_sidebar_width = 200;
+    set text_sidebox_summary_bullet = "&middot;&nbsp;";
+    set text_sidebox_summary_bullet_bold = true;
+    set text_sidebox_profile_info = "";
+    set text_sidebox_profile_userlabel = "User:";
+    set text_sidebox_profile_namelabel = "Name:";
+    set text_sidebox_summary_username_seperator = " in ";
+    set text_sidebox_profile_title = "Profile";
+    set text_sidebox_links_title = "Links";
+    set text_sidebox_tags_title = "Entry Tags";
+    set text_sidebox_summary_title = "Page Summary";
+    set text_sidebox_latestmonth_title = "Latest Month";
+    set text_sidebox_multisearch_title = "Search";
+    set layout_sidebox_profile_visibility = "1";
+    set layout_sidebox_summary_visibility = "2";
+    set layout_sidebox_latestmonth_visibility = "3";
+    set layout_sidebox_links_visibility = "4";
+    set layout_sidebox_tags_visibility = "17";
+    set layout_sidebox_multisearch_visibility = "5";
+    set layout_sidebox_freetext_visibility = "hide";
+    set text_sidebox_freetext_title = "Note";
+    set text_sidebox_freetext_text = "";
+    set layout_sidebox_freetext_2_visibility = "hide";
+    set text_sidebox_freetext_2_title = "Note 2";
+    set text_sidebox_freetext_2_text = "";
+    set layout_sidebox_freetext_3_visibility = "hide";
+    set text_sidebox_freetext_3_title = "Note 3";
+    set text_sidebox_freetext_3_text = "";
+    set layout_sidebox_freetext_4_visibility = "hide";
+    set text_sidebox_freetext_4_title = "Note 4";
+    set text_sidebox_freetext_4_text = "";
+    set layout_sidebox_freetext_5_visibility = "hide";
+    set text_sidebox_freetext_5_title = "Note 5";
+    set text_sidebox_freetext_5_text = "";
+    set layout_sidebox_freetext_6_visibility = "hide";
+    set text_sidebox_freetext_6_title = "Note 6";
+    set text_sidebox_freetext_6_text = "";
+    set layout_sidebox_freetext_7_visibility = "hide";
+    set text_sidebox_freetext_7_title = "Note 7";
+    set text_sidebox_freetext_7_text = "";
+    set layout_sidebox_freetext_8_visibility = "hide";
+    set text_sidebox_freetext_8_title = "Note 8";
+    set text_sidebox_freetext_8_text = "";
+    set layout_sidebox_freetext_9_visibility = "hide";
+    set text_sidebox_freetext_9_title = "Note 9";
+    set text_sidebox_freetext_9_text = "";
+    set layout_sidebox_freetext_10_visibility = "hide";
+    set text_sidebox_freetext_10_title = "Note 10";
+    set text_sidebox_freetext_10_text = "";    
+    set layout_sidebox_freetext_private_visibility = "hide";
+    set text_sidebox_freetext_private_title = "Private";
+    set text_sidebox_freetext_private_text = "";
+    set layout_sidebox_links_alignment = "center";
+    set layout_sidebox_tags_alignment = "center";
+}
+
+propgroup text_entry = "Entry Text";
+propgroup text_entry{
+    property use text_nosubject;
+    property use text_poster_anonymous;
+    property string text_entry_username_seperator {
+        des = "Entry Username Separator";
+        note = "This is to place between the poster username and journal username if different on the Friends page. That is, for community posts, it will be {poster}{separator}{journal}.";
+        noui = 1;
+    }
+    property use text_meta_music;
+    property use text_meta_mood;
+    property string text_meta_tags {
+        des = "Text for Tag list in Entries";
+    }
+    property use text_read_comments;
+    property use text_post_comment;
+    property string text_post_comment_guestbook {
+        des = "Text to sign the guestbook";
+    }
+    property string text_permalink {
+        des = "Text to link to an entry";
+    }
+    property string text_edit{
+        des = "Text to edit an entry";
+    }
+    property string text_edittag{
+        des = "Text to edit tags for an entry";
+    }
+    property string text_add_to_memories{
+        des = "Text to add an entry into memories";
+    }
+    property use text_comment_parent;
+    property use text_comment_reply;
+    property use text_comment_thread;
+    property string text_comment_permalink { 
+        des = "Text to link to a comment"; 
+    }
+    property use text_multiform_opt_delete;
+    property use text_multiform_opt_screen;
+    property use text_multiform_opt_unscreen;
+    property use text_multiform_opt_freeze;
+    property use text_multiform_opt_unfreeze;
+    property string text_multiform_check { 
+        des = "Text for the comment select action"; 
+    }
+    property string text_format_entry_date_and_time {
+        des = "Format for Date and Time (Recent/Friends/Entry/Reply page)";
+        note = "This will describe the format to print the date and time on the subject line for the mentioned pages. The subject line will be printed as \"<date/time format> - <subject>\". The Custom Date Formats section of the S2 Documentation at http://www.livejournal.com/doc/s2/siteapi.core1.html#siteapi.core1.dateformats will list the pieces that you can use to construct your format. You must wrap each piece in two percent signs (%%) in your format.";
+    }
+    property string text_format_entry_time {
+        des = "Format for Date and Time (Day page only)";
+        note = "This is provided as a separate customisation from the previous because users may want to supress the printing of the Date part of the subject line on Day pages. On these pages, only entries from that certain Date will be printed and the Page's header will reflect that under the menu. Putting the date on the subject line is unnecessary and is left out by default. If you would like it to appear just as on other pages, use the same format as the previous setting.";
+    }
+    set text_nosubject = "(no subject)";
+    set text_entry_username_seperator = "";
+    set text_meta_music = "Music";
+    set text_meta_mood = "Mood";
+    set text_meta_tags = "Tags";
+    set text_read_comments = "Read 1 // Read #";
+    set text_post_comment = "Speak";
+    set text_post_comment_guestbook = "Sign Guestbook";
+    set text_permalink = "Link";
+    set text_edit = "Edit";
+    set text_edittag = "Edit Tags";
+    set text_add_to_memories = "Remember";
+    set text_comment_thread = "Thread";
+    set text_comment_parent = "Parent";
+    set text_comment_reply = "Reply";
+    set text_comment_permalink = "Link";
+    set text_multiform_opt_delete = "Delete";
+    set text_multiform_opt_screen = "Screen";
+    set text_multiform_opt_unscreen = "Unscreen";
+    set text_multiform_opt_freeze= "Freeze";
+    set text_multiform_opt_unfreeze = "Unfreeze";
+    set text_multiform_check = "Select";
+    set text_poster_anonymous = "Anonymous";
+    set text_format_entry_date_and_time = "%%dayord%%-%%mon%%-%%yyyy%% %%hh%%:%%min%% %%a%%m";
+    set text_format_entry_time = "%%hh%%:%%min%% %%a%%m";
+}
+
+
+function print_stylesheet() "Prints the CSS that goes into the stylesheet for the layout" {
+  """
+  body {
+     font-family: $*font_base, sans-serif;
+     font-size: """; print $*font_base_size; """px;
+     margin: 0px;
+     background-color: $*color_body_background;
+     color: $*color_body_text;
+     background-image: url('$*layout_background');
+     }
+  a {
+     color: $*color_body_links;
+     }
+  a:visited {
+     color: $*color_body_links_visited;
+     }
+  .entryHeaderDate a {
+     color : $*color_body_entrytitle_links;
+     text-decoration : none;
+     }
+  .entryHeaderDate a:hover {
+     color : $*color_body_entrytitle_links;
+     text-decoration : underline;
+     }
+  .header-title {
+     background-color: $*color_header_title_background;
+     font-family: $*font_header_title;
+     font-size: """; print $*font_header_title_size; """px;
+     color: $*color_header_title_text;
+     padding: 0px 20px 0px 20px;
+     }
+  .header-subtitle {
+     background-color: $*color_header_title_background;
+     color: $*color_header_subtitle_text;
+     font-family: $*font_header_subtitle;
+     font-size: """; print $*font_header_subtitle_size; """px;
+     padding: 0px 24px 0px 24px;
+     }
+  .header-icon {
+     top: 0px;
+     right: 0px;
+     position: absolute;
+     z-index: 1;
+     border-left: 2px solid $*color_header_borders;
+     border-bottom: 2px solid $*color_header_borders;
+     }
+  .pageheaderblock {
+     text-align: $*layout_header_alignment;
+     }
+  .pagefooterblock {
+     border-top: 2px solid $*color_body_entrytitle_border;
+     background-color: $*color_body_footer_background;
+     color: $*color_body_footer_text;
+     padding: 4px 4px 4px 24px;
+     margin-top: 4px;
+     }
+  .pagefooterblock a, .pagefooterblock a:visited {
+     color: $*color_body_footer_text;
+     }
+  .bodyblock {
+     padding: 10px """;print $*layout_margin_right;"""px 0px """;print $*layout_margin_left;"""px;
+     }
+  .bodyheaderblock {
+     border-top: 2px solid $*color_header_borders;
+     background-color: $*color_body_titlebar_background;
+     padding: 4px 0px 4px 0px;
+     }
+  .bodynavblock {
+     border-top: 2px solid $*color_header_borders;
+     background-color: $*color_body_titlebar_background;
+     color: $*color_body_titlebar_text;
+     margin: 10px 0px 4px 0px;
+     padding: 8px;
+     }
+  .bodynavblock a, .bodynavblock a:visited {
+     color: $*color_body_titlebar_text;
+     }
+  .body-title {
+     font-family: $*font_body_title;
+     font-size: """; print $*font_body_title_size; """px;
+     color: $*color_body_titlebar_text;
+     text-align: $*layout_header_alignment;
+     padding-left: 24px;
+     }
+  .body-midtitle {
+     font-family: $*font_body_title;
+     font-size: """; print $*font_body_title_size; """px;
+     color: $*color_body_titlebar_text;
+     text-align: left;
+     padding-left: 8px;
+     }
+  .entryHolder {
+     color: $*color_body_entry_text;
+     background-color: $*color_body_entry_background;
+     font-family: $*font_entry_text;
+     font-size: """; print $*font_entry_text_size; """px;
+     border-top: 2px solid $*color_body_entrytitle_border;
+     margin: 4px 0px 4px 0px;
+     }
+  .entryUserinfo {
+     text-align: center;""";
+     if ($*layout_position_userinfo_entry=="left") { """
+       margin: 0px 8px 8px 0px;
+     """;}elseif($*layout_position_userinfo_entry=="right") { """
+       margin: 0px 0px 8px 8px;
+     """;}"""
+     background-color: $*color_body_entry_userinfo_background;
+     }
+  .entryUserinfo-usericon img { 
+     border: 0; 
+     } 
+  .entryText {
+     padding: 6px;
+     }
+  .entryHeader {
+     background-color: $*color_body_entrytitle_background;
+     color: $*color_body_entrytitle_text;
+     font-family: $*font_entry_title;
+     font-size: """; print $*font_entry_title_size; """px;
+     padding: 4px 0px 4px 8px;
+     }
+  .entryHeader a{
+     color: $*color_body_entrytitle_links;
+     }
+  .entryHeaderSubject {
+     font-weight: bold;
+     }
+  .entryMetadata {
+     padding-left: 6px;
+     }
+  .entryMetadata ul {
+     margin: 0px;
+     padding: 0px;
+     }
+  .entryMetadata li {
+     list-style: none;
+     display: inline;
+     padding-right: 10px;
+     }
+  .entryMetadata-label {
+     font-weight: bold;
+     padding-right: 4px;
+     }
+  .entryLinkbar {
+     font-family: $*font_entry_linkbar;
+     font-size: """; print $*font_entry_linkbar_size; """px;
+     color: $*color_body_entry_text;
+     text-align: $*layout_linkbar_alignment_entry;
+     padding: 4px 0px 4px 0px;
+     }
+  .entryLinkbar ul {
+     margin: 0px;
+     padding: 0px;
+     }
+  .entryLinkbar li {
+     padding: 0px 5px 0px 5px;
+     margin: 0px;     
+     display: inline;
+     }
+  .commentHolder {
+     color: $*color_body_entry_text;
+     background-color: $*color_body_entry_background;
+     border-top: 2px solid $*color_body_entrytitle_border;
+     font-family: $*font_entry_text;
+     font-size: """; print $*font_entry_text_size; """px;
+     margin: 4px 0px 4px 0px;
+     }
+  .commentUserinfo {
+     text-align: center; """;
+     if ($*layout_position_userinfo_comment=="left") { """
+       margin: 0px 8px 8px 0px;
+     """;}elseif($*layout_position_userinfo_comment=="right") { """
+       margin: 0px 0px 8px 8px;
+     """;}"""
+     background-color: $*color_body_entry_userinfo_background;
+     }
+  .commentUserinfo-usericon img { 
+     border: 0; 
+     } 
+  .commentText {
+     padding: 6px;
+     }
+  .commentHeader {
+     background-color: $*color_body_entrytitle_background;
+     color: $*color_body_entrytitle_text;
+     font-family: $*font_entry_title;
+     font-size: """; print $*font_entry_title_size; """px;
+     padding: 4px 0px 4px 8px;
+     }
+  .commentHeader a{
+     color: $*color_body_entrytitle_links;
+     }
+  .commentHeaderScreened {
+     font-family: $*font_entry_title;
+     font-size: """; print $*font_entry_title_size; """px;
+     background-color: $*color_body_entrytitle_background_alternate;
+     padding: 4px 0px 4px 8px;
+     }
+  .commentHeaderSubject {
+     font-weight: bold;
+     }
+  .commentLinkbar {
+     font-family: $*font_entry_linkbar;
+     font-size: """; print $*font_entry_linkbar_size; """px;
+     color: $*color_body_entry_text;
+     text-align: $*layout_linkbar_alignment_comment;
+     padding-top: 4px;
+     padding-bottom: 4px;
+     }
+  .commentLinkbar ul {
+     margin: 0px;
+     padding: 0px;
+     }
+  .commentLinkbar li {
+     padding: 0px 5px 0px 5px;
+     margin: 0px;
+     display: inline;
+     }
+  .replyform {
+     padding-left: 10px;
+     }
+  .yearlinks{
+     text-align: right;
+     }
+  .yearlink{
+     padding-left:4px;
+     padding-right: 4px;
+     }
+  .month {
+     width: 500px;
+     border: 1px solid $*color_month_borders;
+     margin: 8px 8px 8px 40px;
+     }
+  .daysubjects {
+     color: $*color_body_entry_text;
+     padding: 8px 8px 8px 40px;
+     }
+  .daytitles {
+     text-align: center;
+     border: 1px solid $*color_month_borders;
+     background: $*color_month_title_background;
+     color: $*color_month_title_text;
+     }
+  .day-blank {
+     border: 1px solid $*color_month_borders;
+    }
+  .day {
+     border: 1px solid $*color_month_borders;
+     }
+  .day-date {
+     border-right: 1px solid $*color_month_borders;
+     border-bottom: 1px solid $*color_month_borders;
+     color: $*color_month_dates;
+     width: 50%;
+     text-align: center;
+     }
+  .day-count {
+     width: 50%;
+     text-align: center;
+     float: right;
+     font-size: """; print $*font_archive_daycount_size; """px;
+     }
+  .day-count a {
+     text-decoration: none;
+     color: $*color_month_postcount;
+     }
+  """;
+
+  # print sidebar css only if we need to
+  if ($*layout_sidebar_position!="none") { """
+  .sidebar {
+     font-family: $*font_sidebar_text;
+     font-size: """; print $*font_sidebar_text_size; """px;
+     margin-"""; if($*layout_sidebar_position=="left"){print "right";}else{print "left";}""": 20px;
+     width: """; print $*layout_sidebar_width; """px;
+     }
+  .sidebox {
+     color: $*color_body_entry_text;
+     background-color: $*color_body_entry_background;
+     margin: 4px 0px 4px 0px;
+     }
+  .sideboxTitle {
+     background-color: $*color_body_entrytitle_background;
+     color: $*color_body_entrytitle_text;
+     border-top: 2px solid $*color_body_entrytitle_border;
+     font-family: $*font_sidebar_title;
+     font-size: """; print $*font_sidebar_title_size; """px;
+     padding: 4px 0px 4px 8px;     
+     text-align: $*layout_sidebox_title_alignment;
+     }
+  .sideboxContent {
+     text-align: left;
+     padding: 2px 4px 2px 4px;
+     }
+  .sidebox #profile, sidebox #latestmonth, .sidebox #search, .sidebox #tags_sidebox {
+     text-align: center;
+     }
+  .sidebox #systemlinks {
+     text-align: $*layout_sidebox_links_alignment;
+     }
+  .sidebox #latestmonth table{
+     width: 90%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 4px;
+     }
+  .listtitle {
+     font-weight: bold;
+     }
+  .profile-label {
+     font-weight: bold;
+     }
+  """;}
+
+  """
+  .header-menu {
+     padding: 0px;
+     background-color: $*color_header_menubar_background;
+     border-top: 2px solid $*color_header_borders;
+     padding-left: 19px;
+     font-family: $*font_header_menu;
+     font-size: """; print $*font_header_menu_size; """px;
+     line-height: """; print ($*font_header_menu_size+8); """px;
+     }
+  .header-menu a, .header-menu a:visited { 
+     white-space: nowrap;
+     text-align: left;
+     padding: 2px 6px 2px 6px;
+     color: $*color_header_menubar_text;
+     text-decoration: none;
+     }
+  .header-menu a:hover {
+     background-color: $*color_header_menubar_background_hover;
+     color: $*color_header_menubar_text_hover;
+     }
+  #footer-menu {
+     font-size: 11px;
+     }
+  #footer-menu a, .footer-menu a:visited {
+     color: $*color_body_titlebar_text;
+     white-space: nowrap;
+     padding: 6px;
+     text-align: left;
+     }     
+  .header-menu ul, #footer-menu ul {
+     margin: 0px;
+     padding: 0px;
+     }
+  .header-menu li, #footer-menu li {
+     display: inline;
+     }
+  """; 
+
+  if ($*layout_replyform_textarea_width>0) { """
+  .replyform textarea {
+     width: """; print $*layout_replyform_textarea_width; """px;
+     }
+  """; }
+
+  print $*layout_custom_css;
+}  
+
+function Page::lay_get_previous_url():string { return ""; }
+function Page::lay_get_next_url():string { return ""; }
+function Page::lay_get_previous_title():string { return $*text_nav_prev_page; }
+function Page::lay_get_next_title():string { return $*text_nav_next_page; }
+
+function RecentPage::lay_get_previous_url():string { return $.nav.backward_url; }
+function RecentPage::lay_get_next_url():string { return $.nav.forward_url; } 
+function RecentPage::lay_get_previous_title():string {
+   return get_plural_phrase($.nav.backward_count,"text_nav_prev_recentpage");
+}
+function RecentPage::lay_get_next_title():string {
+   return get_plural_phrase($.nav.forward_count,"text_nav_next_recentpage");
+}
+
+
+function DayPage::lay_get_previous_url():string { return $.prev_url; }
+function DayPage::lay_get_next_url():string { return $.next_url; }
+function DayPage::lay_get_previous_title():string { 
+  if (defined $.prev_date) { return $.prev_date->date_format($*text_nav_format_daypage); } else { return ""; }
+}
+function DayPage::lay_get_next_title():string { 
+  if (defined $.next_date) { return $.next_date->date_format($*text_nav_format_daypage); } else { return ""; }
+}
+
+function MonthPage::lay_get_previous_url():string { return $.prev_url; }
+function MonthPage::lay_get_next_url():string { return $.next_url; }
+function MonthPage::lay_get_previous_title():string { 
+  if (defined $.prev_date) { 
+    return $.prev_date->date_format($*text_nav_format_monthpage); 
+  } else { 
+    return ""; 
+  }
+}
+function MonthPage::lay_get_next_title():string { 
+  if (defined $.next_date) { 
+    return $.next_date->date_format($*text_nav_format_monthpage); 
+  } else { 
+    return ""; 
+  }
+}
+
+function EntryPage::lay_get_previous_url():string { 
+  var Link prev = $.entry->get_link("nav_prev");
+  if (defined $prev and $.entry.itemid!=int($*layout_guestbook_entryid)) { return $prev.url; } else { return ""; }
+}
+function EntryPage::lay_get_next_url():string { 
+  var Link next= $.entry->get_link("nav_next");
+  if (defined $next and $.entry.itemid!=int($*layout_guestbook_entryid)) { return $next.url; } else { return ""; }
+}
+function EntryPage::lay_get_previous_title():string { return "$*text_nav_prev_entrypage"; }
+function EntryPage::lay_get_next_title():string { return "$*text_nav_next_entrypage"; }
+
+function YearPage::lay_get_previous_url():string {
+  var int i = size $.years - 1;
+  foreach var int pos (0..$i) {
+    var YearYear year = $.years[$pos];
+    if ($year.displayed) {
+      if ($pos==0) {
+        return "";
+      }else{
+        var YearYear prevyear = $.years[$pos-1];
+        return $prevyear.url;
+      }
+    }   
+  }
+  return "";
+}
+function YearPage::lay_get_next_url():string {
+  var int i = size $.years - 1;
+  foreach var int pos (0..$i) {
+    var YearYear year = $.years[$pos];
+    if ($year.displayed) {
+      if ($pos==$i) {
+        return "";
+      }else{
+        var YearYear nextyear = $.years[$pos+1];
+        return $nextyear.url;
+      }
+    }   
+  }
+  return "";
+}
+
+function YearPage::lay_get_previous_title():string { 
+  var int i = size $.years - 1;
+  foreach var int pos (0..$i) {
+    var YearYear year = $.years[$pos];
+    if ($year.displayed) {
+      if ($pos==0) {
+        return "";
+      }else{
+        var YearYear prevyear = $.years[$pos-1];
+        return ""+$prevyear.year;
+      }
+    }   
+  }
+  return "";
+}
+function YearPage::lay_get_next_title():string { 
+  var int i = size $.years - 1;
+  foreach var int pos (0..$i) {
+    var YearYear year = $.years[$pos];
+    if ($year.displayed) {
+      if ($pos==$i) {
+        return "";
+      }else{
+        var YearYear nextyear = $.years[$pos+1];
+        return ""+$nextyear.year;
+      }
+    }   
+  }
+  return "";
+}
+
+function Page::lay_print_header_links() {
+    # Menu start
+    """<DIV class="header-menu"><ul>""";
+
+    # Journal Navigation (Previous page, Next Page)
+    var string prev_link = $this->lay_get_previous_url();
+    var string prev_title = $this->lay_get_previous_title();
+    var string next_link = $this->lay_get_next_url();
+    var string next_title = $this->lay_get_next_title();
+    print ($prev_link==""?"":"<li><a href=\"$prev_link\">$prev_title</a></li>");
+    print ($next_link==""?"":"<li><a href=\"$next_link\">$next_title</a></li>");
+
+    # Standard Journal Pages (Recent, Archive, Friends, Userinfo)
+    foreach var string v ($.views_order) {
+        if (lang_viewname($v)!="") {
+            print "<li><a href=\""+$.view_url{$v}+"\">"+lang_viewname($v)+"</a></li>";
+        }
+    }
+
+    # Memories
+    if ($*layout_menubar_memories) {
+      """<li><a href="$*SITEROOT/tools/memories.bml?user=$.journal.username">$*text_view_memories</a></li>""";
+    }
+
+    # Need to add a link to scrapbook account in user links, not do this manually
+    # Scrapbook (picture Galleries)
+    #if ($*layout_menubar_scrapbook) {
+    #  """<li><a href="http://pics.livejournal.com/$.journal.username">$*text_view_scrapbook</a></li>""";
+    #
+    #}
+
+    # Guestbook
+    if (int($*layout_guestbook_entryid)!=0) {
+      var string guestbook_url = "$*SITEROOT/users/$.journal.username/"+$*layout_guestbook_entryid+".html";
+      """<li><a href="$guestbook_url">$*text_view_guestbook</a></li>""";
+    }
+
+    # Website from Userinfo page
+    if ($*layout_menubar_website) {
+      """<li><a href="$.journal.website_url">$.journal.website_name</a></li>""";
+    }
+
+    # Menu end
+    """</ul></div>""";
+}
+
+function Page::lay_print_header() {
+
+  var string title = $.global_title;
+  var string subtitle = $.global_subtitle;
+  """
+  <div class="pageheaderblock">
+      """; 
+      if ($*layout_header_usericon=="show") {"""<div class="header-icon">$this.journal.default_pic</div>"""; } 
+      """<div class="header-title">$title</div>""";
+      if ($.global_subtitle!="") { """<div class="header-subtitle">$subtitle</div>"""; }
+      $this->lay_print_header_links();
+      """
+  </div> <!--pageheaderblock-->
+  """;
+}
+
+function EntryLite::lay_show_usericon():bool { return true; }
+
+function EntryLite::lay_print_subjectline() { #will only ever be used for a comment, so we can use comment settings.
+          """<div class="commentHeader">"""; 
+          # print $.time->date_format("%%dayord%%-%%mon%%-%%yyyy%%")+"&nbsp;"+$.time->time_format();
+          print $.time->time_format($*text_format_entry_date_and_time);
+          print ($.subject==""?"":" - <span class=\"commentHeaderSubject\">$.subject</span>"); 
+          """</div>""";
+}
+
+function EntryLite::lay_print_userinfo() { #will only ever be used for a comment, so we can use comment settings.
+          """
+          <table border=0 cellspacing=0 cellpadding=0 align="$*layout_position_userinfo_comment" class="commentUserinfo"><tr><td>
+          """;
+              if (defined $.userpic and $*layout_position_usernames_comment=="below") {"""<div class="commentUserinfo-usericon"><a href="c/allpics.bml?user=$.poster.username">$.userpic</a></div>""";}
+              """<div class="commentUserinfo-username">""";
+              if (defined $.poster) { 
+                """<span class="ljuser" style="white-space:nowrap;">$.poster</span>""";
+              }else{
+                """<i>$*text_poster_anonymous</i>""";
+              }
+              if (viewer_is_owner() and $.metadata{"poster_ip"}!="") {
+                """<br/>($.metadata{"poster_ip"})""";
+              }
+              """</div>""";
+              if (defined $.userpic and $*layout_position_usernames_comment=="above") {"""<div class="commentUserinfo-usericon"> $.userpic </div>""";}
+          """
+          </td></tr></table>
+          """;
+}
+
+function EntryLite::print_linkbar() {
+          """
+          <div class="commentLinkbar"><ul>
+          """;
+          """<li><a href="$.permalink_url">$*text_comment_permalink</a></li>""";
+          foreach var string key ($.link_keyseq) {
+            var Link l = $this->get_link($key);
+            if ($l.url!="") { """<li><a href="$l.url">$l.caption</a></li>"""; }
+          }
+          """
+          </ul></div>
+          """;
+}
+
+function EntryLite::lay_print() { #will only ever be used for a comment, so we can use comment settings.
+    """ 
+    <div class="commentHolder">
+          """;
+          $this->lay_print_subjectline();
+          """<table width=100% cellpadding=0 cellspacing=0 border=0><tr valign=top><td>""";
+          if ($*layout_position_userinfo_comment=="left" or $*layout_wrapping_userinfo_comment ) {
+              $this->lay_print_userinfo();
+              if (not $*layout_wrapping_userinfo_comment) {"""</td><td width=100%>""";}
+          }
+          """<div class="commentText">$.text</div>""";
+          if ($*layout_position_userinfo_comment=="right" and not $*layout_wrapping_userinfo_comment) {
+              """</td><td>""";
+              $this->lay_print_userinfo();
+          }
+          
+          """</td></tr><tr><td colspan=2>""";
+          $this->print_linkbar();
+          """</td></tr></table>
+    </div>
+    """;
+}
+
+function Entry::lay_show_usericon():bool {
+  var Page p = get_page();
+  return $*layout_show_usericons=="all" or ($*layout_show_usericons=="nonrecent" and $p.view!="recent") or ($*layout_show_usericons=="friends" and $p.view=="friends");
+}
+
+function Entry::lay_print_userinfo() {
+        var Page p = get_page();
+        if ($p.view=="friends" or $p.journal_type=="C" or ($this->lay_show_usericon() and defined $.userpic)) { 
+          """<table border=0 cellspacing=0 cellpadding=0 align="$*layout_position_userinfo_entry" class="entryUserinfo"><tr><td>""";
+          if (defined $.userpic and $this->lay_show_usericon() and $*layout_position_usernames_entry=="below") { 
+            """<div class="entryUserinfo-usericon"><a href="$*SITEROOT/allpics.bml?user=$.poster.username">$.userpic</a></div>"""; 
+          }
+          if ($p.view=="friends" or $p.journal_type=="C") {
+            """<div class="entryUserinfo-username">""";
+            """<span class="ljuser" style="white-space:nowrap;">$.poster</span>"""; 
+            if ($.journal->as_string()!=$.poster->as_string() and $p.view=="friends") { 
+                print "<br />";
+                if ($*text_entry_username_seperator != "") {
+                    print $*text_entry_username_seperator + "<br />";
+                }
+                """<span class="ljuser" style="white-space:nowrap;">$.journal</span>""";
+            }
+            """</div>""";
+          }
+          if (defined $.userpic and $this->lay_show_usericon() and $*layout_position_usernames_entry=="above") { """<div class="entryUserinfo-usericon">$.userpic</div>"""; }
+          """</td></tr></table>""";
+        }
+}
+
+function Entry::lay_print_subjectline() {
+        var Page p = get_page();
+        if ($.itemid!=int($*layout_guestbook_entryid)) {
+          """<div class="entryHeader"><span class="entryHeaderDate">""";
+          if ($p.view!="day") { 
+            # print "<a href=\""+$.journal->base_url()+"/calendar/$.time.year/"+zeropad($.time.month,2)+"/"+zeropad($.time.day,2)+"/\">"+$.time->date_format("%%dayord%%")+"</a>-";
+            # print "<a href=\""+$.journal->base_url()+"/calendar/$.time.year/"+zeropad($.time.month,2)+"/\">"+$.time->date_format("%%mon%%")+"</a>-";
+            # print "<a href=\""+$.journal->base_url()+"/calendar/$.time.year/\">"+$.time->date_format("%%yyyy%%")+"</a> ";
+            # print $.time->time_format();
+            print $.time->time_format($*text_format_entry_date_and_time);
+          }else{
+            # print $.time->time_format();
+            print $.time->time_format($*text_format_entry_time);
+          }
+          """</span><span class="entryHeaderSubject">""";
+          if ($p.view=="entry") { 
+            print (defined $.security_icon?" - $.security_icon":""); 
+          }else{ 
+            print (defined $.security_icon or $.subject!=""?" - ":"")+(defined $.security_icon?"$.security_icon ":"")+($.subject==""?"":"$.subject"); 
+          }
+          """</span>""";
+          if ((size $.tags>0)and($*layout_position_entrytags=="subject")) { 
+              """<span class="entryHeaderTags"> [<a href="$.tags[0].url">$.tags[0].name</a>""";
+              foreach var int i (1 .. (size $.tags - 1)) {
+                  """, <a href="$.tags[$i].url">$.tags[$i].name</a>""";
+              }
+              """]</span>""";
+          }
+          """</div>""";
+        }else{
+          """<div class="entryHeader">""";
+          print (defined $.security_icon?""+$.security_icon:"&nbsp;");
+          """</div>""";
+        }
+}
+
+function Entry::print_metadata() {
+          if (($.metadata{"mood"}!="" or $.metadata{"music"}!="" or ((size $.tags>0)and($*layout_position_entrytags=="metadata"))) and ($.itemid!=int($*layout_guestbook_entryid))) { 
+            """<div class="entryMetadata"><ul>""";
+            if ((size $.tags>0)and($*layout_position_entrytags=="metadata")) { 
+                """<li><span class="entryMetadata-label">$*text_meta_tags:</span>
+                <span class="entryMetadata-content"><a href="$.tags[0].url">$.tags[0].name</a>""";
+                foreach var int i (1 .. (size $.tags - 1)) {
+                    """, <a href="$.tags[$i].url">$.tags[$i].name</a>""";
+                }
+                """</span></li>""";
+            }
+            if ($.metadata{"mood"}!="") { """<li><span class="entryMetadata-label">$*text_meta_mood:</span><span class="entryMetadata-content">"""; print $.metadata{"mood"}+$.mood_icon; """</span></li>"""; }
+            if ($.metadata{"music"}!="") { """<li><span class="entryMetadata-label">$*text_meta_music:</span><span class="entryMetadata-content">"""; print $.metadata{"music"}; """</span></li>"""; }            
+            """</ul></div>""";
+          }
+}
+
+function Entry::print_linkbar() {
+          """
+          <div class="entryLinkbar"><ul>
+          """;
+          if ($.comments.enabled) {
+            if ($.itemid==int($*layout_guestbook_entryid)) {"""<li><a href="$.comments.post_url">$*text_post_comment_guestbook</a></li>""";
+            }else{
+              if ($.comments.count > 0 or $.comments.screened) {
+                """<li><a href="$.comments.read_url">"""; print get_plural_phrase($.comments.count,"text_read_comments"); """</a></li>""";
+              }
+              """<li><a href="$.comments.post_url">$*text_post_comment</a></li>""";
+            }
+          }
+          """<li><a href="$.permalink_url">$*text_permalink</a></li>""";
+          var Link editlink = $this->get_link("edit_entry");
+          if (defined $editlink and $editlink.url!="") { """<li><a href="$editlink.url">$*text_edit</a></li>"""; }
+          var Link edittaglink = $this->get_link("edit_tags");
+          if (defined $edittaglink and $edittaglink.url!="") { """<li><a href="$edittaglink.url">$*text_edittag</a></li>"""; }
+          var Link memlink = $this->get_link("mem_add");
+          if (defined $memlink and $memlink.url!="") { """<li><a href="$memlink.url">$*text_add_to_memories</a></li>"""; }
+          """
+          </ul></div> <!-- entryLinkbar -->
+          """;
+}
+
+function Page::print_entry(Entry e) {
+    if ( $e.itemid==int($*layout_guestbook_entryid) and ($.view=="recent" or $.view=="day" )) { return; }
+    if ( $.args{"noshow"}==$e.journal.username ) { return; }
+    """ 
+    <a name="$e.journal.username$e.itemid"></a>    
+    <div class="entryHolder">
+        """;
+        $e->lay_print_subjectline();
+        """<table width=100% cellpadding=0 cellspacing=0 border=0><tr valign=top><td>""";
+        if ($*layout_position_userinfo_entry=="left" or $*layout_wrapping_userinfo_entry ) {
+            $e->lay_print_userinfo();
+            if (not $*layout_wrapping_userinfo_entry) {"""</td><td width=100%>""";}
+        }
+        if ($*layout_position_metadata=="above") { $e->print_metadata(); }
+        """<div class="entryText">"""; print $e.text; """</div>""";
+        if ($*layout_position_metadata=="below") { $e->print_metadata(); }
+        if ($*layout_position_userinfo_entry=="right" and not $*layout_wrapping_userinfo_entry) {
+            """</td><td>""";
+            $e->lay_print_userinfo();
+        }
+        """</td></tr><tr><td colspan=2>""";
+        $e->print_linkbar();
+        """</td></tr></table>
+    </div> <!-- entryHolder -->
+    """;
+}
+
+function Comment::lay_print_subjectline() { 
+          """<div class=""";
+          print "\"commentHeader"+($.screened?"Screened":"")+"\">"; 
+          #print $.time->date_format("%%dayord%%-%%mon%%-%%yyyy%%")+"&nbsp;"+$.time->time_format(); 
+          print $.time->time_format($*text_format_entry_date_and_time);
+          print (defined $.subject_icon?""+$.subject_icon:"")+($.subject==""?"":" - <span class=\"commentHeaderSubject\">$.subject</span>");
+
+          """</div>""";
+}
+
+function Comment::print_linkbar() {
+          """
+          <div class="commentLinkbar"><ul>
+          """;
+          # reply to, parent, thread links.
+          """<li><a href="$.reply_url">$*text_comment_reply</a></li>""";
+          if ($.parent_url!="") { """<li><a href="$.parent_url">$*text_comment_parent</a></li>"""; }
+          if ($.thread_url!="") { """<li><a href="$.thread_url">$*text_comment_thread</a></li>"""; }
+          """<li><a href="$.permalink_url">$*text_comment_permalink</a></li>""";
+          foreach var string key ($.link_keyseq) {
+            var Link l = $this->get_link($key);
+            if ($l.url!="") { """<li><a href="$l.url">$l.caption</a></li>"""; }
+          }
+          if (viewer_is_owner()) {
+            """<li>$*text_multiform_check"""; $this->print_multiform_check(); """</li>""";
+          }
+
+          """
+          </ul></div>
+          """;
+}
+
+function EntryPage::print_comments (Comment[] cs) {
+    if (size $cs == 0) { return; }
+    foreach var Comment c ($cs) {
+        var int indent = ($c.depth - 1) * 25;
+        "<div style='margin-left: ${indent}px;'>\n";
+        if ($c.full) {
+            $this->print_comment($c);
+        } else {
+            $this->print_comment_partial($c);
+        }
+        "</div>";
+        $this->print_comments($c.replies);
+    }
+}
+
+function EntryPage::print_comment(Comment comment) {
+    """<a name="$comment.anchor"></a>
+    <div class="commentHolder">""";
+          $comment->lay_print_subjectline();
+          """<table width=100% cellpadding=0 cellspacing=0 border=0><tr valign=top><td>""";
+          if ($*layout_position_userinfo_comment=="left" or $*layout_wrapping_userinfo_comment) { 
+              $comment->lay_print_userinfo();
+              if (not $*layout_wrapping_userinfo_comment) {"""</td><td width=100%>""";}
+          }
+          """<div class="commentText">$comment.text</div>""";
+          if ($*layout_position_userinfo_comment=="right" and not $*layout_wrapping_userinfo_comment) {
+              """</td><td>""";
+              $comment->lay_print_userinfo();              
+          }
+          """</td></tr><tr><td colspan=2>""";
+          $comment->print_linkbar();
+          """</td></tr></table>
+    </div>
+    """;
+}
+
+
+function EntryPage::print_comment_partial(Comment comment) {
+    """<a name="$comment.anchor"></a>
+    <div class="commentHolder"><div class="commentText">""";
+    print "<a href=\"$comment.permalink_url\">"+($comment.subject==""?"<i>(no subject)</i>":"$comment.subject")+"</a> - ";
+    print (defined $comment.poster?"<span class=\"ljuser\" style=\"white-space:nowrap;\">$comment.poster</span>":"<i>Anonymous</i>");
+    """</div></div>""";
+}
+
+function Page::lay_print_bodytitlebox(string title, string titletype) {
+  """
+    <div class="bodyheaderblock">
+        <div class="body-$titletype">$title&nbsp;</div>
+    </div>
+  """;
+}
+
+function MonthPage::view_title : string {
+    return $.date->date_format($*text_nav_format_monthpage);
+}
+
+function DayPage::view_title : string {
+    return $.date->date_format($*text_nav_format_daypage);
+}
+
+function Page::lay_print_bodytop() {
+  $this->lay_print_bodytitlebox($this->view_title(),"title");
+}
+
+function ReplyPage::lay_print_bodytop() {
+  if ($.entry.itemid==int($*layout_guestbook_entryid) and $.replyto.depth==0) {
+     $this->lay_print_bodytitlebox($*text_signing_guestbook,"title"); 
+  }elseif ($.replyto.depth==0) {
+     $this->lay_print_bodytitlebox($*text_comment_to,"title"); 
+  }else {
+     $this->lay_print_bodytitlebox($*text_reply_to,"title"); 
+  }
+}
+
+function MonthPage::lay_print_bodytop_monthselector() {
+    """<div class="bodyheaderblock"><center><form method='post' action='$.redir.url'>""";
+    $.redir->print_hiddens();
+    if (size $.months > 1) {
+        """<select name='redir_key'>""";
+        foreach var MonthEntryInfo mei ($.months) {
+            var string sel;
+            if ($mei.date.year == $.date.year and $mei.date.month == $.date.month) {
+                $sel = "selected='selected'";
+            }
+            print "<option value='$mei.redir_key'$sel>" + $mei.date->date_format($*lang_fmt_month_long) + "</option>";
+        }
+        """</select><input type='submit' value='View' />""";
+    }
+    """</form></center></div>""";
+}
+
+function Page::lay_print_sidebox_top(string title) {
+    """
+    <div class="sidebox">
+    """;
+    if ($title!="") { 
+      """
+      <div class="sideboxTitle">$title</div>
+      """;
+    }
+}
+
+function Page::lay_print_sidebox_bottom() {
+    """
+    </div> <!-- sidebox -->
+    """;
+}
+
+function Page::lay_print_sidebar_profile() {
+    $this->lay_print_sidebox_top($*text_sidebox_profile_title);
+    """
+      <div class="sideboxContent" id="profile">
+        """;
+        if ($.journal.default_pic.url!="") {
+          """<div><a href="$*SITEROOT/allpics.bml?user=$.journal.username"><img src="$.journal.default_pic.url" alt="" border="0" class="profile-userpic" /></a></div>""";
+        } 
+        """
+        <div><span class="profile-label">$*text_sidebox_profile_userlabel</span><span class="profile-content">$.journal</span></div>
+        <div><span class="profile-label">$*text_sidebox_profile_namelabel</span><span class="profile-content">$.journal.name</span></div>
+        """; 
+        if ($*text_sidebox_profile_info!="") { """<div>"""; print $*text_sidebox_profile_info; """</div>"""; }
+        """
+       </div> <!--sidebox-profile-->
+    """;
+    $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_systemlinks() {
+    var int num_links = size $.linklist - 1;
+    if ($num_links<0) { return; }
+    $this->lay_print_sidebox_top($*text_sidebox_links_title);
+    """
+    <div class="sideboxContent" id="systemlinks">
+    """;
+    foreach var int i (0 .. $num_links) {
+       if ($.linklist[$i].title=="") {
+           """<div class="listspacer">&nbsp;</div>""";
+       }elseif ($.linklist[$i].url=="") {
+           """<div class="listtitle">$.linklist[$i].title</div>""";
+       }else {
+           """<div class="listitem"><a href="$.linklist[$i].url">$.linklist[$i].title</a></div>""";
+       }
+    }
+    """
+    </div> <!--sidebox-systemlinks-->
+    """;
+    $this->lay_print_sidebox_bottom();
+}
+
+function Entry::lay_print_summaryline(Page p) {
+      """<div class="summaryList">""";
+      print ($*text_sidebox_summary_bullet_bold?"<b>$*text_sidebox_summary_bullet</b>":$*text_sidebox_summary_bullet);
+      if ($p.view=="friends") {
+         """$.poster""";
+         if ($.journal.username!=$.poster.username) { print $*text_sidebox_summary_username_seperator; """$.journal"""; }
+         """ - """;
+      }elseif ($p.view=="day") {
+         print $.time->time_format(); """ - """;
+      }else{
+         #nothing
+      }
+
+      if (defined $.security_icon) { """$.security_icon """; }
+      """<a href="#$.journal.username$.itemid">""";
+      if ($.subject!="") { print $this->plain_subject(); } else { """<i>$*text_nosubject</i>"""; }
+      """</a>""";
+      if ($.comments.count>0 or $.comments.screened) { """ <a href="$.comments.read_url">[+$.comments.count]</a>"""; }
+      """</div>
+      """;
+
+}
+
+function Comment::lay_count_replies() : int {
+  var int total = 0;
+  foreach var Comment reply ($.replies) {
+    $total = $total + 1 + $reply->lay_count_replies();
+  }
+  return $total;
+}
+
+function Comment::lay_print_summaryline(Page p) {
+   """<div class="summaryList">""";
+   print ($*text_sidebox_summary_bullet_bold?"<b>$*text_sidebox_summary_bullet</b>":$*text_sidebox_summary_bullet);
+   print (defined $.poster?""+$.poster:"<i>$*text_poster_anonymous</i>");
+   """ - <a href="#$.anchor">""";
+   if ($.subject!="") { """$.subject"""; } else { """<i>$*text_nosubject</i>"""; }
+   """</a>""";
+   var int count = $this->lay_count_replies();
+   if ($count>0) { """ [+$count]"""; }
+   """</div>""";
+}
+
+function Page::lay_print_sidebar_summary() {}
+
+function RecentPage::lay_print_sidebar_summary() {
+  $this->lay_print_sidebox_top($*text_sidebox_summary_title);
+  """<div class="sideboxContent" id="summary">""";
+  var int i = size $.entries - 1;
+  if ($i<0) { """</div> <!--sidebox-summary -->"""; return; }
+  foreach var int pos (0..$i) {
+      var Entry e = $.entries[$pos];
+      if ($e.itemid!=int($*layout_guestbook_entryid)) {$e->lay_print_summaryline($this);}
+  }
+  """</div> <!--sidebox-summary -->""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function FriendsPage::lay_print_sidebar_summary() {
+  $this->lay_print_sidebox_top($*text_sidebox_summary_title);
+  """<div class="sideboxContent" id="summary">""";
+  var int i = size $.entries - 1;
+  if ($i<0) { """</div> <!--sidebox-summary -->"""; return; }
+  foreach var int pos (0..$i) {
+      var Entry e = $.entries[($*layout_friends_sortorder=="newest"?$pos:$i-$pos)];
+      $e->lay_print_summaryline($this);
+  }
+  """</div> <!--sidebox-summary -->""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function DayPage::lay_print_sidebar_summary() {
+  $this->lay_print_sidebox_top($*text_sidebox_summary_title);
+  """<div class="sideboxContent" id="summary">""";
+  var int i = size $.entries - 1;
+  if ($i<0) { """</div> <!--sidebox-summary -->"""; return; }
+  foreach var int pos (0..$i) {
+      var Entry e = $.entries[($*layout_day_sortorder=="newest"?$i-$pos:$pos)];
+      if ($e.itemid!=int($*layout_guestbook_entryid)) {$e->lay_print_summaryline($this);}
+  }
+  """</div> <!--sidebox-summary -->""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function EntryPage::lay_print_sidebar_summary() {
+  $this->lay_print_sidebox_top($*text_sidebox_summary_title);
+  """<div class="sideboxContent" id="summary">""";
+  $.entry->lay_print_summaryline($this);
+  foreach var Comment c ($.comments) {
+    $c->lay_print_summaryline($this);
+  }
+  """</div> <!--sidebox-summary -->""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_tags() {
+    var Tag[] pagetags = $this->visible_tag_list();
+    if (size $pagetags==0) { return; }
+    $this->lay_print_sidebox_top($*text_sidebox_tags_title);
+    """<div class="sideboxContent" id="tags_sidebox">""";
+    """<a href="$pagetags[0].url">$pagetags[0].name</a>""";
+    foreach var int i (1 .. (size $pagetags - 1)) {
+        """, <a href="$pagetags[$i].url">$pagetags[$i].name</a>""";
+    }
+    """</div>"""; 
+    $this->lay_print_sidebox_bottom();
+}
+
+# TODO: Interesting, maybe add as a builtin function later?
+function Page::lay_print_sidebar_multisearch() {
+    $this->lay_print_sidebox_top($*text_sidebox_multisearch_title);
+    """ 
+    <div class="sideboxContent" id="search">
+    <form id='Search' action='/multisearch.bml' method='post' style='display: inline'>
+      <label for='SearchTerm'>Search:</label>    
+      <input id='SearchTerm' type='text' name='q' size='15' value='' />
+      <br/>
+      <label for='SearchType'>Category:</label> 
+      <select id='SearchType' name='type'>
+        <option value='user'  selected='selected'>Username</option>
+        <option value='email' >Email</option>
+        <option value='region' >Region</option>
+        <option value='int' >Interest</option>
+        <option value='aolim' >AOL IM</option>
+        <option value='icq' >ICQ Number</option>
+        <option value='yahoo' >Yahoo! ID</option>
+        <option value='msn' >MSN Username</option>
+        <option value='jabber' >Jabber</option>
+      </select>
+      <br/>
+      <input type='submit' value='Search' />
+    </form>
+    </div> <!-- sidebox-search-->
+    """;
+    $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_latestmonth() {
+    $this->lay_print_sidebox_top($*text_sidebox_latestmonth_title);
+    var YearMonth month = $this->get_latest_month();
+      """<div class="sideboxContent" id="latestmonth">
+          <table cellspacing="0" cellpadding="0">
+              <tr><td colspan="7" align="center"><a href="$month.url">$*lang_monthname_long[$month.month] $month.year</a></td></tr>
+              """;
+              foreach var YearWeek week ($month.weeks) {
+                """<tr>""";
+                if ($week.pre_empty>0) { """<td colspan="$week.pre_empty"></td>"""; }
+                foreach var YearDay day ($week.days) {
+                  if ($day.num_entries==0) {
+                     """<td width="14.28%"><div class="latestmonth-inactive">$day.day</div></td>""";
+                  }else{
+                     """<td width="14.28%"><div class="latestmonth-active"><a href="$day.url">$day.day</a></div></td>""";
+                  }
+                }
+                if ($week.post_empty>0) { """<td colspan="$week.post_empty"></td>"""; }
+                """</tr>""";
+              }
+              """
+          </table>
+      </div>""";
+    $this->lay_print_sidebox_bottom();
+}
+
+
+function Page::lay_print_sidebar_freetextbox() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_title);
+  """<div class="sideboxContent" id="freetext">"""; print $*text_sidebox_freetext_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_2() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_2_title);
+  """<div class="sideboxContent" id="freetext2">"""; print $*text_sidebox_freetext_2_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_3() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_3_title);
+  """<div class="sideboxContent" id="freetext3">"""; print $*text_sidebox_freetext_3_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_4() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_4_title);
+  """<div class="sideboxContent" id="freetext4">"""; print $*text_sidebox_freetext_4_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_5() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_5_title);
+  """<div class="sideboxContent" id="freetext5">"""; print $*text_sidebox_freetext_5_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_6() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_6_title);
+  """<div class="sideboxContent" id="freetext6">"""; print $*text_sidebox_freetext_6_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+
+function Page::lay_print_sidebar_freetextbox_7() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_7_title);
+  """<div class="sideboxContent" id="freetext7">"""; print $*text_sidebox_freetext_7_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_8() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_8_title);
+  """<div class="sideboxContent" id="freetext8">"""; print $*text_sidebox_freetext_8_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_9() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_9_title);
+  """<div class="sideboxContent" id="freetext9">"""; print $*text_sidebox_freetext_9_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_10() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_10_title);
+  """<div class="sideboxContent" id="freetext10">"""; print $*text_sidebox_freetext_10_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar_freetextbox_private() {
+  $this->lay_print_sidebox_top($*text_sidebox_freetext_private_title);
+  """<div class="sideboxContent" id="freetext_private">"""; $*text_sidebox_freetext_private_text; """</div>""";
+  $this->lay_print_sidebox_bottom();
+}
+
+function Page::lay_print_sidebar() {
+  """<div class="sidebar">""";
+  foreach var int position (1..17) {
+    var string pos = ""+$position;
+    if ($*layout_sidebox_profile_visibility==$pos) { $this->lay_print_sidebar_profile(); }
+    elseif ($*layout_sidebox_summary_visibility==$pos) { $this->lay_print_sidebar_summary(); }
+    elseif ($*layout_sidebox_latestmonth_visibility==$pos) { $this->lay_print_sidebar_latestmonth(); }
+    elseif ($*layout_sidebox_links_visibility==$pos) { $this->lay_print_sidebar_systemlinks(); }
+    elseif ($*layout_sidebox_tags_visibility==$pos) { $this->lay_print_sidebar_tags(); }
+    elseif ($*layout_sidebox_multisearch_visibility==$pos) { $this->lay_print_sidebar_multisearch(); }
+    elseif ($*layout_sidebox_freetext_visibility==$pos) { $this->lay_print_sidebar_freetextbox(); }
+    elseif ($*layout_sidebox_freetext_2_visibility==$pos) { $this->lay_print_sidebar_freetextbox_2(); }
+    elseif ($*layout_sidebox_freetext_3_visibility==$pos) { $this->lay_print_sidebar_freetextbox_3(); }
+    elseif ($*layout_sidebox_freetext_4_visibility==$pos) { $this->lay_print_sidebar_freetextbox_4(); }
+    elseif ($*layout_sidebox_freetext_5_visibility==$pos) { $this->lay_print_sidebar_freetextbox_5(); }
+    elseif ($*layout_sidebox_freetext_6_visibility==$pos) { $this->lay_print_sidebar_freetextbox_6(); }
+    elseif ($*layout_sidebox_freetext_7_visibility==$pos) { $this->lay_print_sidebar_freetextbox_7(); }
+    elseif ($*layout_sidebox_freetext_8_visibility==$pos) { $this->lay_print_sidebar_freetextbox_8(); }
+    elseif ($*layout_sidebox_freetext_9_visibility==$pos) { $this->lay_print_sidebar_freetextbox_9(); }
+    elseif ($*layout_sidebox_freetext_10_visibility==$pos) { $this->lay_print_sidebar_freetextbox_10(); }
+    elseif ($*layout_sidebox_freetext_private_visibility==$pos and viewer_is_owner()) { $this->lay_print_sidebar_freetextbox_private(); }
+  }
+  """</div> <!--sidebar-->""";
+}
+
+function Page::lay_print_bodymiddle() {
+  """
+    <div class="entryHolder"><center>This page does not have an implementation.<center></div>
+  """;
+}
+
+function RecentPage::lay_print_bodymiddle() {
+  var int i = size $.entries - 1;
+  if ($i<0) {
+      """<div class="entryHolder"><center>$*text_noentries_recent<center></div>""";    
+  }else{
+    foreach var int pos (0..$i) {
+      var Entry e = $.entries[$pos];
+      $this->print_entry($e);
+    }  
+  }
+}
+
+function FriendsPage::lay_print_bodymiddle() {
+
+  var int i = size $.entries - 1;
+  if ($i<0) {
+      """<div class="entryHolder"><div class="entryText"><center>$*text_noentries_recent<center></div></div>""";    
+  }else{
+    foreach var int pos (0..$i) {
+      var Entry e = $.entries[($*layout_friends_sortorder=="newest"?$pos:$i-$pos)];
+      $this->print_entry($e);
+    }
+  }
+}
+
+function DayPage::lay_print_bodymiddle() {
+  var int i = size $.entries - 1;
+  if ($i<0) {
+      """<div class="entryHolder"><div class="entryText"><center>$*text_noentries_day</center></div></div>""";    
+  }else{
+    foreach var int pos (0..$i) {
+      var Entry e = $.entries[($*layout_day_sortorder=="newest"?$i-$pos:$pos)];
+      $this->print_entry($e);
+    }  
+  }
+}
+
+function ReplyPage::lay_print_bodymiddle() {
+    if ($.replyto.depth==0) {
+      $this->print_entry($.entry);
+    }else{
+      $.replyto->lay_print();
+    }
+    if ($.entry.itemid==int($*layout_guestbook_entryid) and $.replyto.depth==0) {
+      $this->lay_print_bodytitlebox($*text_signing_form,"midtitle");
+    }elseif ($.replyto.depth==0) {
+      $this->lay_print_bodytitlebox($*text_comment_form,"midtitle");
+    }else{
+      $this->lay_print_bodytitlebox($*text_reply_form,"midtitle");
+    }
+    """
+    <a name="replyform"></a>""";
+    if ($.replyto.depth==0 and int($*layout_guestbook_entryid)!=0 and $.entry.itemid!=int($*layout_guestbook_entryid) and $*text_replypage_warning!="") {
+
+        print $*text_replypage_warning;
+    }
+    """
+    <div class="replyform">""";
+      $.form->print();
+    """</div>""";
+}
+
+function EntryPage::lay_print_bodymiddle() {
+   $this->print_entry($.entry);
+   if (size $.comments >0) {
+      if ($.entry.itemid!=int($*layout_guestbook_entryid)) { 
+         $this->lay_print_bodytitlebox($*text_comment_seperator,"midtitle"); 
+      }else { 
+         $this->lay_print_bodytitlebox($*text_signature_seperator,"midtitle"); 
+      }
+      if (viewer_is_owner()) { $this->print_multiform_start(); }
+      $this->print_comments($.comments);
+      if (not $.comment_pages.all_subitems_displayed) {
+        """<div class="bodynavblock">""";
+        $.comment_pages->print();
+        """</div>""";
+      }
+      """<div class="bodynavblock">""";
+      if (viewer_is_owner()) {
+        $this->print_multiform_actionline();
+        $this->print_multiform_end();
+      }else{
+        if ($.entry.itemid!=int($*layout_guestbook_entryid)) { 
+          """<b><a href="$.entry.comments.post_url">$*text_post_comment_entrypage</a></b>"""; 
+        }else{
+          """<b><a href="$.entry.comments.post_url">$*text_post_comment_guestbook</a></b>""";
+        }
+      }
+      """</div>""";
+   }
+}
+
+function MonthDay::print_subjectlist() {
+    foreach var Entry e ($.entries) {
+       if ($e.itemid!=int($*layout_guestbook_entryid)) {
+           print $e.time->time_format(); 
+           print " - "+(defined $e.security_icon?"$e.security_icon ":"");
+           """<a href="$e.permalink_url">""";
+           print ($e.subject==""?"<i>(no subject)</i>":$e->plain_subject());
+           """</a>""";
+           if ($e.comments.count>0) { """ &nbsp;&nbsp;[ $e.comments.count Comments ]"""; }
+           """<br/>""";
+       }
+    }
+}
+
+function MonthPage::lay_print_bodymiddle() {
+  foreach var MonthDay day ($.days) {
+    if ($day.has_entries) {
+       """<a name="$day.day"></a>
+       <div class="entryHolder">
+         <div class="entryHeader"><a href="$day.url">"""; print $day.date->date_format("%%dayord%%"); """</a></div>
+         <div class="daysubjects">""";
+         $day->print_subjectlist();
+         """</div>
+       </div>""";
+    }
+  }
+}
+
+function YearPage::print_month(YearMonth month) {
+      """
+      <a name="$month.month"></a> 
+      <div class="entryHolder">
+          <div class="entryHeader"><a href="$month.url">"""; print $month->month_format("%%month%%"); """</a></div>
+          <table cellspacing="0" cellpadding="0" class="month">
+              <tr>"""; foreach var int i (1..7) { """<td class="daytitles" width="14.29%">$*lang_dayname_short[$i]</td>"""; } """</tr> 
+              """;
+              foreach var YearWeek week ($month.weeks) {
+              """<tr>""";
+              if ($week.pre_empty>0) { """<td class="day-blank" colspan="$week.pre_empty"></td>"""; }
+              foreach var YearDay day ($week.days) {
+                  """<td class="day" >
+                  <div class="day-date">$day.day</div>
+                  <div class="day-count">"""; 
+                  print ($day.num_entries==0?"&nbsp;":"<a href=\"$day.url\">"+$day.num_entries+"<a/>"); 
+                  """</div>                       
+                  </td>""";
+              }
+              if ($week.post_empty>0) { """<td class="day-blank" colspan="$week.post_empty"></td>"""; }
+                 """<tr/>""";
+              }
+              """
+          </table>
+      </div>
+      """;
+}
+
+function YearPage::lay_print_bodymiddle() {
+  var int i = size $.months - 1;
+  if ($i<0) { return; }
+
+  foreach var int pos (0..$i) {
+    var YearMonth month = $.months[($*layout_year_sortorder=="newest"?$i-$pos:$pos)];
+    if ($month.has_entries) {
+      $this->print_month($month);
+    }
+  }
+}
+
+function Page::lay_print_bodybottom() {
+  var string prev_link = $this->lay_get_previous_url();
+  var string prev_title = $this->lay_get_previous_title();
+  var string next_link = $this->lay_get_next_url();
+  var string next_title = $this->lay_get_next_title();
+  """<div class="bodynavblock" id="footer-menu"><ul>"""; 
+  print ($prev_link==""?"":"<li><a href=\"$prev_link\">$prev_title</a></li>"); 
+  print ($next_link==""?"":"<li><a href=\"$next_link\">$next_title</a></li>"); 
+  """<li><a href="#top">$*text_top_of_page</a></li>"""; 
+  """</ul></div><!--bodynavblock-->""";
+}
+
+function EntryPage::lay_print_bodybottom() {}
+function ReplyPage::lay_print_bodybottom() {}
+
+function Page::lay_print_body() {
+  $this->lay_print_bodytop();
+  """<div class="bodyblock">""";
+  """<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>""";
+  if ($*layout_sidebar_position=="left") {
+     """<td valign="top"  width=\"$*layout_sidebar_width"""; """px\">""";
+     $this->lay_print_sidebar();
+     """</td>""";
+  }
+  """<td valign="top"  width=100%>""";
+  $this->lay_print_bodymiddle();
+  $this->lay_print_bodybottom();
+  """</td>""";
+  if ($*layout_sidebar_position=="right") {
+     """<td valign="top"  width=\"$*layout_sidebar_width"""; """px\">""";
+     $this->lay_print_sidebar();
+     """</td>""";
+  }
+  """</tr></table>""";
+  """</div> <!--bodyblock-->""";
+}
+
+function Page::lay_print_footer() {
+  if ($*text_footer_signature!="") {
+      var string footer_signature = $*text_footer_signature;
+      $footer_signature = $.time->time_format($footer_signature);
+      """<div class="pagefooterblock">"""; print $footer_signature; """</div>""";
+  }
+}
+
+function Page::print_body() {
+  """<div class="pageblock">"""; 
+  $this->lay_print_header();
+  $this->lay_print_body(); 
+  $this->lay_print_footer(); 
+  """</div> <!--pageblock-->""";
+}
+
+function Page::print() {
+  var string title = $this->title();
+  """<!DOCTYPE html
+    	 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>$title</title>
+""";
+if ($*layout_stylesheet=="") { 
+  """  <link title="Smooth Sailing Default" rel="stylesheet" href="$.stylesheet_url" type="text/css" />"""; 
+}else{
+  """  <link title="External" rel="stylesheet" href="$*layout_stylesheet" type="text/css" />"""; 
+}
+$this->print_head();
+"""
+</head>
+<body>
+<a name="top"></a>
+"""; $this->print_body(); """
+</body>
+</html>
+""";
+}
+
+
+
+

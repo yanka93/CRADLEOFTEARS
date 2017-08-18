@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>LJ::Cache - LRU Cache</TITLE>
+<LINK REV="made" HREF="mailto:hackers@FreeBSD.org">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+	<LI><A HREF="#SEE_ALSO">SEE ALSO</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+LJ::Cache - LRU Cache
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<PRE>  use LJ::Cache;
+  my $cache = new LJ::Cache { 'maxsize' =&gt; 20 };
+  my $value = $cache-&gt;get($key);
+  unless (defined $value) {
+      $val = &quot;load some value&quot;;
+      $cache-&gt;set($key, $value);
+  }
+</PRE>
+<P>
+<HR>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+This class implements an LRU dictionary cache. The two operations on it are
+<CODE>get()</CODE> and <CODE>set(),</CODE> both of which promote the key
+being referenced to the ``top'' of the cache, so it will stay alive
+longest.
+
+<P>
+When the cache is full and and a new item needs to be added, the oldest one
+is thrown away.
+
+<P>
+You should be able to regenerate the data at any time, if
+<CODE>get()</CODE> returns undef.
+
+<P>
+This class is useful for caching information from a slower data source
+while also keeping a bound on memory usage.
+
+<P>
+<HR>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+Brad Fitzpatrick, <A
+HREF="mailto:bradfitz@bradfitz.com">bradfitz@bradfitz.com</A>
+
+<P>
+<HR>
+<H1><A NAME="SEE_ALSO">SEE ALSO</A></H1>
+<P>
+<CODE>perl(1).</CODE>
+
+</BODY>
+
+</HTML>

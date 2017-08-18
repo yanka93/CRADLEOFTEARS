@@ -1,0 +1,8 @@
+<html>
+  <head><title><?project project?></title>
+  <body>
+	<h1><?project project?></h1>
+
+	<?greeting greeting?>
+  </body>
+</html>

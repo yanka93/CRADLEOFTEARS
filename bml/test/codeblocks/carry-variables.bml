@@ -1,0 +1,6 @@
+<?_code $content = "This should show up twice"; _code?>
+<?_code $content _code?>
+
+<?_code my $other = "This should only show up once."; _code?>
+<?_code $other _code?>
+

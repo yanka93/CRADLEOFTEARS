@@ -1,0 +1,160 @@
+replace into moodthemedata values (3, 2, "/img/mood/sam/angry.gif", 50, 50);
+
+replace into moodthemedata values (3, 1, "/img/mood/sam/aggravated.gif", 50, 50);
+
+replace into moodthemedata values (3, 3, "/img/mood/sam/annoyed.gif", 50, 50);
+
+replace into moodthemedata values (3, 8, "/img/mood/sam/cranky.gif", 50, 50);
+
+replace into moodthemedata values (3, 12, "/img/mood/sam/enraged.gif", 50, 50);
+
+replace into moodthemedata values (3, 47, "/img/mood/sam/frustrated.gif", 50, 50);
+
+replace into moodthemedata values (3, 19, "/img/mood/sam/infuriated.gif", 50, 50);
+
+replace into moodthemedata values (3, 20, "/img/mood/sam/irate.gif", 50, 50);
+
+replace into moodthemedata values (3, 23, "/img/mood/sam/moody.gif", 50, 50);
+
+replace into moodthemedata values (3, 24, "/img/mood/sam/pissed.gif", 50, 50);
+
+replace into moodthemedata values (3, 28, "/img/mood/sam/stressed.gif", 50, 50);
+
+replace into moodthemedata values (3, 6, "/img/mood/sam/confused.gif", 50, 50);
+
+replace into moodthemedata values (3, 56, "/img/mood/sam/curious.gif", 50, 50);
+
+replace into moodthemedata values (3, 45, "/img/mood/sam/determined.gif", 50, 50);
+
+replace into moodthemedata values (3, 11, "/img/mood/sam/energetic.gif", 50, 50);
+
+replace into moodthemedata values (3, 59, "/img/mood/sam/bouncy.gif", 50, 50);
+
+replace into moodthemedata values (3, 52, "/img/mood/sam/hyper.gif", 50, 50);
+
+replace into moodthemedata values (3, 13, "/img/mood/sam/enthralled.gif", 50, 50);
+
+replace into moodthemedata values (3, 15, "/img/mood/sam/happy.gif", 50, 50);
+
+replace into moodthemedata values (3, 44, "/img/mood/sam/amused.gif", 50, 50);
+
+replace into moodthemedata values (3, 41, "/img/mood/sam/excited.gif", 50, 50);
+
+replace into moodthemedata values (3, 16, "/img/mood/sam/high.gif", 50, 50);
+
+replace into moodthemedata values (3, 17, "/img/mood/sam/horny.gif", 50, 50);
+
+replace into moodthemedata values (3, 21, "/img/mood/sam/jubilant.gif", 50, 50);
+
+replace into moodthemedata values (3, 70, "/img/mood/sam/optimistic.gif", 50, 50);
+
+replace into moodthemedata values (3, 43, "/img/mood/sam/hopeful.gif", 50, 50);
+
+replace into moodthemedata values (3, 69, "/img/mood/sam/refreshed.gif", 50, 50);
+
+replace into moodthemedata values (3, 62, "/img/mood/sam/rejuvenated.gif", 50, 50);
+
+
+replace into moodthemedata values (3, 53, "/img/mood/sam/relaxed.gif", 50, 50);
+
+replace into moodthemedata values (3, 68, "/img/mood/sam/calm.gif", 50, 50);
+
+replace into moodthemedata values (3, 57, "/img/mood/sam/mellow.gif", 50, 50);
+
+replace into moodthemedata values (3, 58, "/img/mood/sam/peaceful.gif", 50, 50);
+
+replace into moodthemedata values (3, 77, "/img/mood/sam/recumbant.gif", 50, 50);
+
+replace into moodthemedata values (3, 26, "/img/mood/sam/satisfied.gif", 50, 50);
+
+replace into moodthemedata values (3, 64, "/img/mood/sam/content.gif", 50, 50);
+
+replace into moodthemedata values (3, 63, "/img/mood/sam/complacent.gif", 50, 50);
+
+replace into moodthemedata values (3, 65, "/img/mood/sam/indifferent.gif", 50, 50);
+
+replace into moodthemedata values (3, 42, "/img/mood/sam/relieved.gif", 50, 50);
+
+replace into moodthemedata values (3, 66, "/img/mood/sam/silly.gif", 50, 50);
+
+
+replace into moodthemedata values (3, 35, "/img/mood/sam/ditzy.gif", 50, 50);
+
+replace into moodthemedata values (3, 67, "/img/mood/sam/flirty.gif", 50, 50);
+
+replace into moodthemedata values (3, 72, "/img/mood/sam/giggly.gif", 50, 50);
+
+replace into moodthemedata values (3, 36, "/img/mood/sam/mischievous.gif", 50, 50);
+
+replace into moodthemedata values (3, 48, "/img/mood/sam/indescribable.gif", 50, 50);
+
+replace into moodthemedata values (3, 61, "/img/mood/sam/okay.gif", 50, 50);
+
+replace into moodthemedata values (3, 33, "/img/mood/sam/lazy.gif", 50, 50);
+
+replace into moodthemedata values (3, 78, "/img/mood/sam/exanimate.gif", 50, 50);
+
+replace into moodthemedata values (3, 75, "/img/mood/sam/lethargic.gif", 50, 50);
+
+replace into moodthemedata values (3, 76, "/img/mood/sam/listless.gif", 50, 50);
+
+replace into moodthemedata values (3, 25, "/img/mood/sam/sad.gif", 50, 50);
+
+replace into moodthemedata values (3, 5, "/img/mood/sam/bored.gif", 50, 50);
+
+replace into moodthemedata values (3, 7, "/img/mood/sam/crappy.gif", 50, 50);
+
+replace into moodthemedata values (3, 9, "/img/mood/sam/depressed.gif", 50, 50);
+
+replace into moodthemedata values (3, 55, "/img/mood/sam/disappointed.gif", 50, 50);
+
+replace into moodthemedata values (3, 10, "/img/mood/sam/discontent.gif", 50, 50);
+
+replace into moodthemedata values (3, 80, "/img/mood/sam/envious.gif", 50, 50);
+
+replace into moodthemedata values (3, 38, "/img/mood/sam/gloomy.gif", 50, 50);
+
+replace into moodthemedata values (3, 71, "/img/mood/sam/pessimistic.gif", 50, 50);
+
+replace into moodthemedata values (3, 22, "/img/mood/sam/lonely.gif", 50, 50);
+
+replace into moodthemedata values (3, 39, "/img/mood/sam/melancholy.gif", 50, 50);
+
+replace into moodthemedata values (3, 37, "/img/mood/sam/morose.gif", 50, 50);
+
+replace into moodthemedata values (3, 74, "/img/mood/sam/uncomfortable.gif", 50, 50);
+
+replace into moodthemedata values (3, 34, "/img/mood/sam/drunk.gif", 50, 50);
+
+replace into moodthemedata values (3, 14, "/img/mood/sam/exhausted.gif", 50, 50);
+
+replace into moodthemedata values (3, 40, "/img/mood/sam/drained.gif", 50, 50);
+
+replace into moodthemedata values (3, 31, "/img/mood/sam/tired.gif", 50, 50);
+
+replace into moodthemedata values (3, 51, "/img/mood/sam/groggy.gif", 50, 50);
+
+replace into moodthemedata values (3, 49, "/img/mood/sam/sleepy.gif", 50, 50);
+
+replace into moodthemedata values (3, 18, "/img/mood/sam/hungry.gif", 50, 50);
+
+replace into moodthemedata values (3, 54, "/img/mood/sam/restless.gif", 50, 50);
+
+replace into moodthemedata values (3, 27, "/img/mood/sam/sore.gif", 50, 50);
+
+replace into moodthemedata values (3, 29, "/img/mood/sam/thirsty.gif", 50, 50);
+
+
+replace into moodthemedata values (3, 46, "/img/mood/sam/scared.gif", 50, 50);
+
+replace into moodthemedata values (3, 4, "/img/mood/sam/anxious.gif", 50, 50);
+
+replace into moodthemedata values (3, 79, "/img/mood/sam/embarrassed.gif", 50, 50);
+
+replace into moodthemedata values (3, 30, "/img/mood/sam/thoughtful.gif", 50, 50);
+
+replace into moodthemedata values (3, 60, "/img/mood/sam/nostalgic.gif", 50, 50);
+
+replace into moodthemedata values (3, 73, "/img/mood/sam/pensive.gif", 50, 50);
+
+replace into moodthemedata values (3, 32, "/img/mood/sam/touched.gif", 50, 50);

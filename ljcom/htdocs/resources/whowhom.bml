@@ -1,0 +1,11 @@
+<?page
+title=>Who and Whom
+body<=
+
+<?_include
+bml=>1
+file=>resources-whowhom
+_include?>
+
+<=body
+page?>

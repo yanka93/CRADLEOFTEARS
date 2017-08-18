@@ -1,0 +1,225 @@
+#NEWLAYER: boxer/lipstick
+layerinfo "type" = "theme";
+layerinfo "name" = "Lipstick";
+layerinfo redist_uniq = "boxer/lipstick";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#B46F60";
+set entry_link = "#ffeae5";
+set entry_bg = "#eebbaf";
+set nav_scale = "darker";
+set info_font = "#A55745";
+set bg_color = "#fac7bb";
+set entry_font = "#A55745";
+set info_link_visited = "#ffeae5";
+set page_background_pattern = "background-hearts.gif";
+set entry_link_visited = "#ffffff";
+set info_bg = "#e5a799";
+set info_link = "#FFF9F8";
+
+
+#NEWLAYER: boxer/greyskies
+layerinfo "type" = "theme";
+layerinfo "name" = "Grey Skies";
+layerinfo redist_uniq = "boxer/greyskies";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#9aaeb6";
+set entry_link = "#997D63";
+set entry_bg = "#f2eae2";
+set nav_scale = "lighter";
+set info_font = "#627a84";
+set bg_color = "#dde1e3";
+set entry_font = "#7f97a0";
+set info_link_visited = "#CEDBDF";
+set page_background_pattern = "background-vert-stripes.gif";
+set entry_link_visited = "#b4a18f";
+set info_bg = "#8c9ca2";
+set info_link = "#b9c7cc";
+
+#NEWLAYER: boxer/eggplant
+layerinfo "type" = "theme";
+layerinfo "name" = "Eggplant";
+layerinfo redist_uniq = "boxer/eggplant";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#4e6559";
+set entry_link = "#9FAE8D";
+set entry_bg = "#635A48";
+set nav_scale = "lighter";
+set info_font = "#899BA3";
+set bg_color = "#9fae8d";
+set entry_font = "#E7DFCF";
+set info_link_visited = "#b9c7cc";
+set entry_link_visited = "#A6B2AC";
+set info_bg = "#464640";
+set info_link = "#b9c7cc";
+
+
+#NEWLAYER: boxer/lonelyturquoise
+layerinfo "type" = "theme";
+layerinfo "name" = "Lonely Turquoise";
+layerinfo redist_uniq = "boxer/lonelyturquoise";
+layerinfo "source_viewable" = 0;
+set page_background_pattern = "background-lg-boxes.gif";
+set color_nav_bg = "#7f7f7f";
+set entry_link_visited = "#ededed";
+set entry_link = "#ffffff";
+set entry_bg = "#ABABAB";
+set info_font = "#000000";
+set info_bg = "#00b1ae";
+set bg_color = "#ffffff";
+set entry_font = "#363636";
+set info_link = "#006260";
+
+
+#NEWLAYER: boxer/legallypink
+layerinfo "type" = "theme";
+layerinfo "name" = "Legally Pink";
+layerinfo redist_uniq = "boxer/legallypink";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#ff089b";
+set entry_link_visited = "#70086F";
+set entry_link = "#4D0870";
+set entry_bg = "#ec008c";
+set nav_scale = "lighter";
+set info_font = "#ec008c";
+set bg_color = "#f49ac1";
+set entry_font = "#fbdbee";
+set info_link_visited = "#CE1182";
+set page_background_pattern = "background-hearts.gif";
+set info_bg = "#ffadde";
+set info_link = "#E3026A";
+
+#NEWLAYER: boxer/greybrowngreen
+layerinfo "type" = "theme";
+layerinfo "name" = "Grey Brown Green";
+layerinfo redist_uniq = "boxer/greybrowngreen";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#2f372e";
+set entry_link = "#212919";
+set entry_bg = "#586C44";
+set nav_scale = "lighter";
+set info_font = "#A1926C";
+set bg_color = "#000000";
+set entry_font = "#D9E1D2";
+set info_link_visited = "#B1AD9B";
+set entry_link_visited = "#2C3F28";
+set info_bg = "#433a1e";
+set info_link = "#B1AD9B";
+
+#NEWLAYER: boxer/precious
+layerinfo "type" = "theme";
+layerinfo "name" = "Precious";
+layerinfo redist_uniq = "boxer/precious";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#A17682";
+set entry_link = "#0F486E";
+set entry_bg = "#c6cfd5";
+set nav_scale = "lighter";
+set info_font = "#F7FDFC";
+set bg_color = "#d9e1d9";
+set entry_font = "#6C7982";
+set info_link_visited = "#E4ECEB";
+set entry_link_visited = "#3F6A86";
+set info_bg = "#a2b2b1";
+set info_link = "#E4ECEB";
+
+#NEWLAYER: boxer/purple
+layerinfo "type" = "theme";
+layerinfo "name" = "Purple";
+layerinfo redist_uniq = "boxer/purple";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#78629C";
+set entry_link = "#F9F5FC";
+set entry_bg = "#62536C";
+set nav_scale = "lighter";
+set info_font = "#A38FA3";
+set bg_color = "#8B77A9";
+set entry_font = "#DCD3E2";
+set info_link_visited = "#A799BF";
+set entry_link_visited = "#ffffff";
+set info_bg = "#472B47";
+set info_link = "#A799BF";
+
+#NEWLAYER: boxer/green
+layerinfo "type" = "theme";
+layerinfo "name" = "Green";
+layerinfo redist_uniq = "boxer/green";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#748A25";
+set entry_link = "#EAF9D4";
+set entry_bg = "#748A25";
+set nav_scale = "lighter";
+set info_font = "#004C3C";
+set bg_color = "#254634";
+set entry_font = "#E2EED0";
+set info_link_visited = "#00EEBC";
+set entry_link_visited = "#EAF9D4";
+set info_bg = "#0E9B7D";
+set info_link = "#61EFD1";
+
+#NEWLAYER: boxer/purpange
+layerinfo "type" = "theme";
+layerinfo "name" = "Purpange";
+layerinfo redist_uniq = "boxer/purpange";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#151e1a";
+set nav_scale = "lighter";
+set entry_link = "#ffffff";
+set entry_bg = "#E7513E";
+set info_font = "#f6cab7";
+set bg_color = "#ffffff";
+set entry_font = "#FDE9E6";
+set info_link_visited = "#afe900";
+set page_background_pattern = "background-stitched.gif";
+set entry_link_visited = "#ffffff";
+set info_bg = "#91125f";
+set info_link = "#afe900";
+
+#NEWLAYER: boxer/purplesalmon
+layerinfo "type" = "theme";
+layerinfo "name" = "Purple Salmon";
+layerinfo redist_uniq = "boxer/purplesalmon";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#AA6B90";
+set entry_link = "#633F4B";
+set entry_bg = "#CEADB8";
+set nav_scale = "same";
+set info_font = "#F0B4AA";
+set bg_color = "#151E1A";
+set entry_font = "#6D5B61";
+set info_link_visited = "#7E3D33";
+set entry_link_visited = "#633F4B";
+set info_bg = "#D26E5E";
+set info_link = "#7E3D33";
+
+#NEWLAYER: boxer/refriedtribute
+layerinfo "type" = "theme";
+layerinfo "name" = "Refried Tribute";
+layerinfo redist_uniq = "boxer/refriedtribute";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#666666";
+set entry_link = "#336699";
+set entry_bg = "#e6e6e6";
+set info_font = "#999966";
+set bg_color = "#ffffff";
+set entry_font = "#656565";
+set info_link_visited = "#4d4d4d";
+set page_background_pattern = "none";
+set entry_link_visited = "#336699";
+set info_bg = "#cccc99";
+set info_link = "#666666";
+
+#NEWLAYER: boxer/blue
+layerinfo "type" = "theme";
+layerinfo "name" = "Blue";
+layerinfo redist_uniq = "boxer/blue";
+layerinfo "source_viewable" = 0;
+set color_nav_bg = "#3A6A74";
+set entry_link = "#E0DFCE";
+set entry_bg = "#4F7B8A";
+set info_font = "#908F78";
+set bg_color = "#435754";
+set entry_font = "#E7EEF0";
+set info_link_visited = "#5D5C50";
+set entry_link_visited = "#E0DFCE";
+set info_bg = "#E0DFCE";
+set info_link = "#4E5964";

@@ -1,0 +1,209 @@
+﻿<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+  LJ::set_active_crumb('import');
+  return;
+_code?>
+
+<?_code
+{
+
+  my $err = sub {
+    my $txt = shift;
+
+    return "<?inerr " . $txt . " inerr?><br/>";
+  };
+  
+  use strict;
+  use LJR::Distributed;
+  use vars qw(%POST %GET);
+  
+  return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+  my $remote = LJ::get_remote();
+  return LJ::bad_input("You must be logged in to access import page.")
+    unless $remote;
+
+  my $authas = $GET{'authas'} || $remote->{'user'};
+  my $u = LJ::get_authas_user($authas);
+  return LJ::bad_input("You could not be authenticated as the specified user.")
+      unless $u;
+
+  my $iremote = $remote->{'user'};
+
+  return $LJ::MSG_READONLY_USER if $u->readonly;
+
+  my $ret;
+  my $e = 0;
+  my $dbr;
+
+  $ret = "<?h1 ﻿Импорт пользователя " . $remote->{'user'}  . " h1?>\n<br>";
+
+  my $iremote_is_protected = 0;
+  foreach (@LJ::PROTECTED_USERNAMES) {
+    if ($iremote =~ $_) {
+      $iremote_is_protected = 1;
+    }
+  }
+  if ($iremote_is_protected) {
+    $ret .= $err->("Invalid local user: import not allowed!");
+    return $ret;
+  }
+
+  if (LJ::did_post()) {
+    my $dbh = LJ::get_db_writer();
+    if (!$dbh) {
+      $ret .= $err->("Can't get database writer!");
+      $e = 1;
+    }
+    $dbr = LJ::get_db_reader();
+    if (!$dbr) {
+      $ret .= $err->("Can't get database reader!");
+      $e = 1;
+    }
+    
+    my $iserver;
+    if ($POST{'server'} eq "lj") {
+      $iserver = "www.livejournal.com";
+    }
+#    elsif ($POST{'server'} eq "gj") {
+#      $iserver = "www.greatestjournal.com";
+#    }
+    else {
+      $ret .= $err->("Invalid server specified!");
+      $e = 1;
+    }
+
+    my $iuser = LJ::canonical_username($POST{'username'});
+
+    if (!$iuser) {
+      $ret .= $err->("Invalid user name!");
+      $e = 1;
+    }
+    $iuser =~ s/\-/\_/;
+
+    my $ipassword = $POST{'password'};
+    unless (LJ::is_ascii($ipassword) && $ipassword ne "") {
+      $ret .= $err->("Invalid password!");
+      $e = 1;
+    }
+
+    my $iprotocol = $POST{'protocol'};
+    if ($iprotocol ne "flat" && $iprotocol ne "xml") {
+      $ret .= $err->("Invalid protocol specified!");
+      $e = 1;
+    }
+
+#    my $is_gated = LJR::Distributed::is_gated_remote ($iserver, $iuser);
+#    if ($is_gated) {
+#      $ret .= $err->("LJR::Gated users are currently not allowed to be imported. Sorry.");
+#      $e = 1;
+#    }
+
+#    $sth1 = $dbr->prepare("SELECT * FROM ljgate.alien WHERE alien=?");
+#    $sth1->execute($iuser);
+#    if ($sth1->fetchrow_hashref) {
+#      $ret .= $err->("Gated users are currently not allowed to be imported. Sorry.");
+#      $e = 1;
+#    }
+#    $sth1->finish;
+
+    my $sth1;
+    if (!$e) {
+      $sth1 = $dbr->prepare("SELECT * FROM ljr_iqueue WHERE local_user=?");
+      $sth1->execute($iremote);
+
+      if ($sth1->fetchrow_hashref) {
+        $dbh->do(
+          "update ljr_iqueue set remote_site=?, remote_user=?, remote_pass=?, remote_protocol=? " .
+          "where local_user=?;", undef, $iserver, $iuser, $ipassword, $iprotocol, $iremote);
+        return $err->($dbh->errstr) if $dbh->err;
+      }
+      else {
+        $sth1 = $dbr->prepare(
+          "SELECT * FROM ljr_ihistory WHERE local_user=?" .
+          " and idate > DATE_SUB(CURDATE(), INTERVAL 1 DAY);");
+        $sth1->execute($iremote);
+
+        my $num_actions = 0;
+        my $num_incorrect_logins = 0;
+
+        while (my $r = $sth1->fetchrow_hashref) {
+          if ($r->{istatus} =~ /Invalid password/) {
+            $num_incorrect_logins = $num_incorrect_logins + 1;
+          }
+          else {
+            $num_actions = $num_actions + 1;
+          }
+        }
+
+        if ($num_actions > 10 or $num_incorrect_logins > 5) {
+          $ret .= "<br/>Извините, вы ввели слишком много <a href=import-queue.bml>заявок</a>.<br/> ";
+          $ret .= "Возможность вводить новые заявки у вас появится завтра.";
+          return $ret;
+        }
+        else {
+          $dbh->do(
+            "insert into ljr_iqueue " .
+            "(remote_site, remote_user, remote_pass, remote_protocol, local_user, " .
+            "opt_overwrite, opt_comments, qdate) VALUES " .
+            "(?, ?, ?, ?, ?, '0', '1', now());",
+            undef, $iserver, $iuser, $ipassword, $iprotocol, $iremote);
+          return $err->($dbh->errstr) if $dbh->err;
+        }
+      }
+
+      $ret .= "<br/><br/>Ваша заявка успешно добавлена.";
+      $ret .= "<br/>Вы можете просмотреть статус ваших заявок <a href=import-queue.bml>здесь</a>.";
+      return $ret;
+    }
+  }
+
+  $ret .= "<form action='import-enqueue.bml' method='post'>";
+  $ret .= "<table border=0><tr valign='top'><td>Импортировать журнал с сервера:</td><td>";
+  $ret .= "<select name='server' id='server'>";
+  $ret .= "<option value='lj' id='lj'>http://www.livejournal.com</option>";
+#  $ret .= "<option value='gj' id='gj'>http://www.greatestjournal.com</option>";
+  $ret .= "</select>";
+  $ret .= "<br/><font size=2>Если вы хотите импортировать свой журнал с какого-то не указанного здесь сервера, работающего на движке LiveJournal.org, &#151; напишите в <a href=http://lj.rossia.org/~ljr_todo>ljr_todo</a></font>";  $ret .= "<br/><br/></td></tr>";
+
+  $ret .= "<tr valign='top'><td>Имя пользователя:</td><td>";
+  $ret .= LJ::html_text({
+    'name' => 'username',
+    'value' => $POST{'username'},
+    'size' => '15',
+    'maxlength' => '15',
+    });
+  $ret .= "<br/><br/></td></tr>";
+
+  $ret .= "<tr valign='top'><td>Пароль:</td><td>";
+  $ret .= LJ::html_text({
+    'name' => 'password',
+    'value' => $POST{'password'},
+    'size' => '31',
+    'maxlength' => '31',
+    'type' => 'password',
+    });
+  $ret .= "<br/><br/></td></tr>";
+
+  $ret .= "<tr valign='top'><td>Интерфейс:</td><td>";
+  $ret .= "<select name='protocol' id='protocol'>";
+  $ret .= "<option value='xml' id='xml'>/export.bml</option>";
+  $ret .= "<option value='flat' id='flat'>/interface/flat/</option>";
+  $ret .= "</select>";
+  $ret .= "<br/><font size=2>Если ваш журнал удален или заморожен на выбранном сервере, либо вы когда-нибудь делали более 50 записей в день, то вы должны использовать /export.bml. В остальных случаях вы можете использовать /interface/flat, но мы рекомендуем использовать /export.bml. <a href=import.bml>Другие отличия</a></font>";
+  $ret .= "</td></tr>";
+
+  $ret .= "</table>";
+
+  $ret .= "<br/><br/><input type=submit value='&nbsp;Добавить заявку&nbsp;'>";
+  $ret .= "</form>";
+
+  return $ret;
+}
+_code?>
+
+
+<=body
+page?>

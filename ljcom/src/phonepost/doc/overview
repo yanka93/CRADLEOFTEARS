@@ -1,0 +1,35 @@
+
+steps that happen when a phone call comes in
+--------------------------------------------
+
+ - Phone call goes to the VoicePulse number.
+   
+ - They do some magic and pass the communication via IAX (Inter-AsteriSK
+   protocol) to our Asterisk.
+   
+ - iax.conf specifies that the VoicePulse IAX goes to the "livejournal"
+   extension.
+   
+ - extensions.conf specifies that the "livejournal" extension answers the
+   phone, waits a second, and then runs the AGI (Asterisk Gateway
+   Interface) script called "livejournal".
+   
+ - The livejournal script lives in agi-bin/.  It does these steps:
+
+    - First, it runs through the appropriate menus and eventually spits
+      out a wav file in
+      PHONESPOOL/in/$userid-$currentunixtime.wav.
+      (PHONESPOOL is hard-coded into the livejournal script; it
+       probably ought to be on whichever machine does the mp3 encoding.)
+
+    - Next, it runs the MP3 encoder, which encodes the file
+      into PHONESPOOL/out/$userid-$currentunixtime.mp3, and
+      deletes the wav file out of the in/ directory.
+
+    - Then we pass that file to the blob server to store, and finally
+      post to LJ with the blobid.
+
+ - When the interface script returns, we hang up.
+
+
+vim: tw=72

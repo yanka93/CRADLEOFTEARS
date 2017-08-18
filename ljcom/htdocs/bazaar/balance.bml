@@ -1,0 +1,110 @@
+<?page
+title=>Your Balance
+body<=
+
+<p>[&lt;&lt; <a href="./">Back</a>]</p>
+<?_code
+{
+    use strict;
+    my $dbh = LJ::get_db_writer();
+    my $remote = LJ::get_remote();
+    unless ($remote) { return $ML{'error.noremote'}; }
+    LJ::load_user_props($dbh, $remote, "legal_assignagree");
+
+    my ($ret, $sth);
+
+    LJ::Pay::bazaar_do_expirations($remote->{'userid'});
+
+    $sth = $dbh->prepare("SELECT date, amt, method, note FROM bzrpayout WHERE userid=?");
+    $sth->execute($remote->{'userid'});
+    my $hist;
+    while (my $po = $sth->fetchrow_hashref) {
+        unless ($hist) {
+            $hist .= "<?h1 Payment History h1?>";
+            $hist .= "<table cellpadding='3' border='1'><tr><th>Date</th><th>Amount</th><th>Method</th><th>Note</th></tr>\n";
+        }
+        $hist .= "<tr><td>$po->{'date'}</td><td>\$" . sprintf("%0.02f", $po->{'amt'}) . "</td><td>$po->{'method'}</td><td>$po->{'note'}</td></tr>\n";
+    }
+    if ($hist) {
+        $ret .= $hist;
+        $ret .= "</table>\n";
+    }
+
+
+    $sth = $dbh->prepare("SELECT bzid, date, amt, owed, expired ".
+                         "FROM bzrbalance WHERE userid=? ORDER BY bzid");
+    $sth->execute($remote->{'userid'});
+    $ret .= "<?h1 Amount owed h1?>";
+    $ret .= "<table cellpadding='3' border='1'>";
+    $ret .= "<tr><th>Date</th><th>Amount</th><th>Balance</th><th>Note</th></tr>\n";
+    my $owed;
+    my $rows = 0;
+    my $now = time();
+    while (my $r = $sth->fetchrow_hashref) {
+        $rows++;
+        $ret .= "<tr><td>$r->{'date'}</td>";
+        $owed += $r->{'owed'};
+        $ret .= sprintf("<td align='right'>\$%0.02f</td>", $r->{'amt'});
+        $ret .= sprintf("<td align='right'>\$%0.02f</td>", $r->{'owed'});
+        my $extra;
+        if ($r->{'expired'} > 0) {
+            $extra .= sprintf(" (\$%0.02f expired after 3 months unclaimed)", $r->{'expired'});
+        }
+        my $time = LJ::mysqldate_to_time($r->{'date'});
+        my $exptime = $time + 86400*93;
+        if ($r->{'owed'} > 0 && $now < $exptime) {
+            $extra .= ", balance will expire in " . int(($exptime - $now) / 86400) . " days";
+        }
+        $ret .= "<td><a href='status.bml?bzid=$r->{'bzid'}'>Bazaar \#$r->{'bzid'}</a>$extra</td>";
+        $ret .= "</tr>\n";
+    }
+    unless ($rows) {
+        return "No balance or history.";
+    }
+    $ret .= "<tr><td colspan='2' align='right'><b>Amount owed:</b></td><td align='right'>" .
+        sprintf("\$%0.02f", $owed) . "</td><td></td></tr>";
+    $ret .= "</table>";
+
+    return $ret unless $owed;
+
+    unless ($remote->{'legal_assignagree'}) {
+        $ret .= "<?h1 Paperwork h1?>";
+        $ret .= "<?p The following paperwork needs to be completed and mailed to LiveJournal to get paid: p?><ul>";
+
+        $ret .= "<li><a href='$LJ::STATPREFIX/misc/assignment_agreement.doc'>Assignment Agreement</a> -- to assign copyright to Danga Interactive</li>\n";
+
+        $ret .= "<li>If in the United States:<ul><li><a href='http://www.irs.gov/pub/irs-pdf/fw9.pdf'>W-9</a> -- tax form</li></ul></li>";
+
+        $ret .= "<li>If outside the United States:<ul>";
+        $ret .= "<li><a href='http://www.irs.gov/pub/irs-fill/fw8ben.pdf'>W-8BEN</a> -- Certificate of Foreign Status of Beneficial Owner for United States Tax Withholding.</li>";
+        $ret .= "<li><a href='http://www.irs.gov/pub/irs-pdf/iw8ben.pdf'>Instructions for above form</a></li>\n";
+        $ret .= "<li><a href='http://www.irs.gov/businesses/small/international/article/0,,id=96696,00.html'>Obtaining an ITIN from Abroad</a></li>\n";
+        $ret .= "<li><a href='http://www.irs.gov/businesses/corporations/article/0,,id=96739,00.html'>Tax treaty list</a> -- the list of who the US has tax treaties with</li>";
+        $ret .= "</ul></li>";
+
+        $ret .= "</ul>";
+        $ret .= "Mailing address:<blockquote><pre>" . LJ::Pay::postal_address_text() . "</pre></blockquote>";
+        $ret .= "Include your LiveJournal username, as well as a mailing address to send your check if your balance is over \$50.  If you'd prefer to not get paid (and instead generate coupons later at this URL), indicate as such in your letter.";
+
+        $ret .= "<?h1 Coupon Generation h1?>";
+        $ret .= "<?p Until we have your paperwork on file, you cannot generate coupons. p?>";
+        return $ret;
+    }
+
+    if ($owed >= 50) {
+        $ret .= "<?h1 Request payment h1?><?p To get paid, email sandy\@livejournal.com requesting a check.  Include your LiveJournal username and mailing address. p?>";
+    } else {
+        $ret .= "<?h1 Balance under \$50 h1?><?p Your balance is under \$50.  We can send out checks once your balance is \$50 or higher.  For now, you can generate LiveJournal coupons instead. p?>";
+    }
+
+    $ret .= "<?h1 Generate coupon h1?><?p  This form will let you generate a LiveJournal coupon which can be used by anybody, not just your account.  <b>Important note:</b>  coupons are either used or unused... they don't maintain a balance.  As such, only generate a coupon for the amount you intend to use.  For your protection, we only allow coupons to be generated for the amounts \$5.00 - \$25.00.  You may use multiple coupons in an order, if your order will be more than \$25.00. p?>";
+    $ret .= "<form method='post' action='gencoupon.bml' style='margin-left: 40px'>\n";
+    $ret .= "Amount: \$<input type='text' size='6' name='amt' value='' /> <input type='submit' value='Generate' />";
+    $ret .= "</form>";
+
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

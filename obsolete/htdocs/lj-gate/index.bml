@@ -1,0 +1,14 @@
+<?page
+title=>Live LJR to LJ export.
+body<=
+<?h1 Welcome! h1?>
+<?p
+Here you can <a href="rlj2lj.bml">create or change</a> lj-gate or <a href="rlj_delete.bml">delete the gate</a>.
+p?>
+
+<?p
+<a href="lj-gate-faq.html">LJ-gate FAQ</a>
+p?>
+
+<=body
+page?>

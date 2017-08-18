@@ -1,0 +1,50 @@
+<?_info
+localblocks<=
+feed<=
+{P}<tr align='left'><td>
+<?ljuser %%data1%% ljuser?>
+</td><td>
+%%data2%%
+</td><td>
+<a href='<?siteroot?>/users/%%data1%%/data/rss'><img src='<?imgprefix?>/xml.gif' width='36' height='14' border='0' alt='RSS Feed' /></a>
+</td></tr>
+<=feed
+<=localblocks
+_info?><?page
+title=>News
+body<=
+
+Welcome to LiveJournal news.  If you crave more frequent and detailed news, check out the following journals:
+
+<p><center>
+<table cellspacing=4>
+
+<?feed news|Infrequent, basic, overall news. (this page) feed?>
+<?_c <?feed comm_news|Weekly meta-summary of everything! feed?> _c?>
+<?feed lj_maintenance|Server status and planned downtime announcements. feed?>
+<?feed lj_dev|LiveJournal technical development & planning. feed?>
+<?feed changelog|Every little change, as it happens. feed?>
+<?feed lj_test|The testing community, for testing the above changes. feed?>
+<?feed featureannounce|A weekly digest of changelog events and new features. feed?>
+<?feed lj_biz|LiveJournal business-related community. feed?>
+
+</table>
+</center>
+
+<p><hr /><p>
+
+<?_code
+{
+    LJ::set_active_crumb('news');
+
+    return LJ::make_journal("news", "", undef, {
+        'vhost' => 'customview',
+        'styleid' => 5624,
+    });
+}
+_code?>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/customview.cgi
+</LJDEP> _c?>

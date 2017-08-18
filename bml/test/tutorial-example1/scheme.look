@@ -1,0 +1,6 @@
+project=>The Alabaster Project
+
+greeting<=
+<p>Welcome to <?project project?>, a joint effort between the citizens of earth
+and Spumco, Inc.</p>
+<=greeting

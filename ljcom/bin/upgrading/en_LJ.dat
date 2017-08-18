@@ -1,0 +1,2103 @@
+;; -*- coding: utf-8 -*-
+/changepassword.bml.changepassword.instructions=Fill out the form below to change your password. For help with choosing a good password and keeping your account secure, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">this FAQ</a>.
+
+/changepassword.bml.email.body<<
+Your password has been changed at [[sitename]].
+
+To retrieve it in the future, visit:
+
+  [[siteroot]]/lostinfo.bml
+
+Regards,
+[[sitename]] Team
+[[siteroot]]
+.
+
+/changepassword.bml.error.badnewpassword=Your new password confirmation does not match your new password.  You may have made a mistake in typing. Please type and confirm your new password again.
+
+/changepassword.bml.error.notvalidated=You cannot change your password if your current e-mail address has not been validated. Please see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=11">the FAQ</a> for instructions on doing this.
+
+/changepassword.bml.proceed.instructions=Press the button below and your password will be changed. You will receive an e-mail noting the password change.
+
+/changepassword.bml.success.text=Your password has been changed and an e-mail has been sent to you with a reminder message.
+
+/community/index.bml.main<<
+<?h1 Welcome! h1?>
+<?p
+Welcome to the LiveJournal Community Center. This is the place to find out how and where to interact with your fellow LiveJournal addicts! LiveJournal isn't only a a great place for keeping a journal . it's a place where people meet, interact, share common interests, and have a good time. Here are some of our community features to keep you informed and in touch. 
+p?>
+
+<?h1 New? h1?>
+<?p
+Are you new to LiveJournal and don't know quite what to do yet? Then you'll want to head over to <a href="/community/newbies"><strong>The 'Newbies' Lounge</strong></a>, where you'll find answers to many of the questions you may have. Visit <?ljcomm newbies ljcomm?>, explore a bit, and you'll be a pro in no time at all! 
+p?>
+
+<?h1 Stay informed! h1?>
+<?p
+Stay informed of what's going on in LiveJournal. There are a number of official LiveJournal communities you may wish to browse. The following two are particularly useful.
+<br /><br />
+Add <?ljuser news ljuser?> to your friends page to keep up with events and issues that are relevant to the entire LiveJournal community.<br />
+Add <?ljcomm lj_maintenance ljcomm?> to your friends page to be informed when downtime is planned, and reports on unplanned interruptions of service. 
+p?>
+
+<?h1 Chat! h1?>
+<?p
+LiveJournal users chat up a storm. Many of them use popular instant messengers, including <a href="http://www.aim.com/index.adp"><strong>AIM</strong></a>, <a href="http://web.icq.com/"><strong>ICQ</strong></a>, <a href="http://messenger.yahoo.com/"><strong>Yahoo!</strong></a>, <a href="http://messenger.msn.com/"><strong>MSN</strong></a>, or <a href="http://www.jabber.org/"><strong>Jabber</strong></a> instant messengers. If you do, be sure to list it in your <a href="/editinfo.bml"><strong>personal info settings</strong></a>. If you have a <a href="/paidaccounts/"><strong>Paid Account</strong></a>, you can also enable your cell phone or pager to <a href="/support/faqbrowse.bml?faqid=30"><strong>receive text messages</strong></a>. 
+p?>
+
+<?h1 Volunteer! h1?>
+<?p
+Don't be shy! Help out! The best way to help out is by purchasing a <a href="/paidaccounts/"><strong>Paid Account</strong></a>. There are, of course, loads of other ways you help out.
+<br /><br />
+LiveJournal is an Open Source project; if you have experience with programming languages or server side applications you can check out the <strong>LiveJournal Development Community</strong>, <?ljcomm lj_dev ljcomm?>. If you have ideas about how LiveJournal could be better, check out the <strong>LiveJournal Suggestions Area</strong>, <?ljcomm suggestions ljcomm?>. If you would like to help with just about anything, visit the <strong>LiveJournal Business Community</strong>, <?ljcomm lj_biz ljcomm?>. If you like helping people, visit our technical support center and help someone out. If you are savy with graphic design, check out the <strong>LiveJournal Art Community</strong>, <?ljcomm lj_art ljcomm?>. 
+p?>
+
+<?h1 What is a Community? h1?>
+<?p
+A community is basically a journal run by a member of LiveJournal for people with common interests. Communities are free to use and create... anyone can have them, and they're easy to set up, too! LiveJournal Communities cover topics from <a href="/community/anime/"><strong>Anime</strong></a> to <a href="/community/zen_within/"><strong>Zen Buddhism</strong></a>, from <a href="/community/astronomy/"><strong>Astronomy</strong></a> to <a href="/community/invader_zim/"><strong>Zim</strong></a>.  You'll also find regional communities for places all around the world. There's probably a LiveJournal community for where you live too! 
+p?>
+
+<?h1 How do I create my own Community? h1?>
+<?p
+There is a <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>FAQ</strong></a> that will explain how to create your very own community.  There are also two FAQ Categories (<a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>General Community FAQs</strong></a> and <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong>Community Management FAQs</strong></a>) covering just about everything you'll ever need to know about communities.  If you still need more information, feel free to <a href="http://www.livejournal.com/support/submit.bml"><strong>submit a support request</strong></a>.
+p?>
+
+<?h1 How do I find other Communities? h1?>
+<?p
+At this time there are two official LiveJournal Communities specifically created to help you find the community you're looking for. 
+p?>
+
+<ul>
+<li><strong><a href="./search.bml">Community Search</a></strong></li>
+<li><strong>Check out the Promotions Community (<?ljcomm community_promo ljcomm?>)</strong></li>
+<li><strong>Check out the Search Community (<?ljcomm community_quest ljcomm?>)</strong></li>
+</ul>
+
+<?p
+Notice something you think is missing?<br />
+E-mail <a href="mailto:jproulx-(a)-livejournal-dot-com">Jesse Proulx</a>, (<?ljuser jproulx ljuser?>) the Community Director.
+p?>
+.
+
+/community/join.bml.label.allowposting=This community allows posting by all members, so you now have access to post in it.  If you already have a LiveJournal client open on your computer, you'll have to log out and log back in for this journal to show up in your list of journals you can post to.
+
+/community/members.bml.error.alreadysent=[[user]] could not be added because they were already sent a confirmation e-mail on <i>[[datetime]]</i>.  Please wait for them to respond.
+
+/community/members.bml.key.admin=<b>Maintainer</b>
+
+/community/members.bml.key.moderate=<b>Moderator</b>
+
+/community/members.bml.key.post=<b>Posting Access</b>
+
+/community/moderate.bml.reject.reason=You can also explain to the poster your reasons for rejecting their entry. The reasons will be sent to the poster by e-mail.
+
+/community/search.bml.label.city=City:
+
+/community/settings.bml.label.anybodycan=<b>All Members</b><br />Anybody can post immediately once a member.
+
+/community/settings.bml.label.commcreate=This is the account that you want to turn into a community.  It must <a href="/create.bml">already be created</a>, but should not already be in use by an individual, because after this, many different people will potentially be able to post in it.
+
+/community/settings.bml.label.createtext=From here you can create a community account.  A community is a special type of account that other users can join and post in.  For an example of a community, check out the <a href="/userinfo.bml?user=seattle">Seattle Party Community</a>.
+
+/community/settings.bml.label.maintainer.login=If this is not the maintainer account, <a href='/login.bml?ret=1'>log in</a> as somebody else.
+
+/community/settings.bml.label.nmheader=Non-Member Posting
+
+/community/settings.bml.label.selcan=<b>Select Members</b><br />Only some members are able to post, once they've been given access by the maintainer account.
+
+/create.bml.email.head=Your e-mail address
+
+/create.bml.email.input.head=E-mail Address:
+
+/create.bml.email.text2=For verification and security purposes, we need your e-mail address.  It will never ever, under any circumstances, be sold or given away to spammers.  We hate that more than anything.  Read our <a [[aopts]]>privacy policy</a> for more information.
+
+/create.bml.error.email.blank=You must provide your e-mail address.
+
+/create.bml.error.email.lj_domain=You cannot use a [[domain]] alias when creating an account.  Please enter a different e-mail address.
+
+/create.bml.error.email.nospaces=No spaces allowed in e-mail address.  If you're on AOL, remember that your Internet E-mail address is your screen name with all spaces removed, followed by <b>@aol.com</b>.
+
+/create.bml.error.username.purged=The username you entered is that of an account which has been deleted and purged. If you wish to use this username you must first purchase a <a [[aopts]]>rename token</a> for an existing account.
+
+/create.bml.initial.friend.lj_maintenance=Reports of both planned &amp; unplanned downtimes and maintenance
+
+/create.bml.initial.friend.news=LiveJournal news and events
+
+/create.bml.password.input.head2=Confirm password:
+
+/create.bml.password.secure=You must choose a <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">secure password</a> that is not based on a dictionary word, your username, or your email address.
+
+/create.bml.success.text1=Your journal has been created.  Important registration information has been e-mailed to <font size="+1"><b>[[email]]</b></font> containing further instructions.  Be sure to confirm your journal creation by clicking on the link sent to you in e-mail.
+
+/create.bml.useacctcodes.entercode=To create a new account, enter an account creation code. For more information, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">How do I create an account?</a>
+
+/create.bml.username.charsallowed=Your username may contain only lower-case letters (a-z), digits (0-9) and the underscore character (_). <br />Additionally, it must not be longer than 15 characters.
+
+/customize/index.bml.s2.advanced.denied=Only paid, permanent, and early adopter account holders may use the advanced customization area. <a href="/paidaccounts/">Find out the benefits of getting a paid account</a>.
+
+/customize/index.bml.s2.customize.language=The following languages are fully or partially supported by this layout.
+
+/developer/index.bml.clients<<
+So you want to create or improve a LiveJournal client on your platform?  Wonderful! 
+Below are some necessary resources to let you know how LiveJournal works.
+.
+
+/developer/index.bml.clients.header=Writing LiveJournal Clients
+
+/developer/index.bml.clients.links<<
+<dl>
+  <dt><a href="/doc/server/ljp.csp.guide.html"><b>LiveJournal Server&lt;-&gt;Client Protocol</b></a></dt>
+  <dd>Learn how the LiveJournal client on your desktop talks to the LiveJournal server and vice versa.
+  Understanding this is the primary thing you need to understand before developing or improving
+  a client for your platform.</dd>
+  <dt><a href="/doc/server/ljp.csp.protocol.html"><b>Complete Protocol Docs</b></a></dt>
+  <dd>All the different protocol modes &amp; methods.</dd>
+  <dt><a href="/download/"><b>List of Clients</b></a></dt>
+  <dd>A list of most clients used to connect to LiveJournal. The majority of these clients are
+  open source, and all of them are free to use. This is a great place to get examples for your
+  client.</dd>
+</dl>
+.
+
+/developer/index.bml.code<<
+To see the backend that makes LiveJournal tick, and to see the innards of a few
+of the available clients, go to the <a href="/code/">Code</a> page.
+.
+
+/developer/index.bml.code.header=LiveJournal Code Repository
+
+/developer/index.bml.dbschema<<
+Curious about the <a href="/doc/server/ljp.dbschema.ref.html">database schema</a>? 
+The SQL to create all the tables and populate them is included with the server code.
+.
+
+/developer/index.bml.dbschema.header=Database Schema
+
+/developer/index.bml.embedding<<
+Want to embed your journal right into your homepage?  There are 
+<a href="./embedding.bml">several ways</a> to do it, depending on what sort of control 
+you have over your server. You only have to worry about this if you don't like having 
+<tt>www.livejournal.com</tt> appear in your journal URL.
+.
+
+/developer/index.bml.embedding.header=Embedding LiveJournal
+
+/developer/index.bml.notice.header=Notice
+
+/developer/index.bml.notice1<<
+The following information is intended for programmers and advanced users only. 
+If you just want to use LiveJournal to keep your journal, great!  Normal users 
+do not have to worry about this stuff.
+.
+
+/developer/index.bml.notice2<<
+That said, the content below is split up into two sections: information on how 
+to customize the look of LiveJournal pages, and information on writing 
+LiveJournal clients to the LiveJournal server.
+.
+
+/developer/index.bml.styles<<
+Don't like the way your journal pages look?  Never you fear... everything is 
+flexible and if you read the documentation below you'll know all you need to make 
+your pages look any which way you want.
+.
+
+/developer/index.bml.styles.header=Customizing the look of a LiveJournal
+
+/developer/index.bml.styles.s1.header=Style System 1
+
+/developer/index.bml.styles.s1.system=Style System
+
+/developer/index.bml.styles.s1.system.about=General overview of how the first style system is setup.
+
+/developer/index.bml.styles.s1.varlist=Variable List
+
+/developer/index.bml.styles.s1.varlist.about=Straight alphabetical list of all variables that you can customize.
+
+/developer/index.bml.styles.s1.views=View Types
+
+/developer/index.bml.styles.s1.views.about=A list of the different types of ways you can view your journal, and details on each.
+
+/developer/index.bml.styles.s2.header=Style System 2
+
+/developer/index.bml.styles.s2.layerbrowse=S2 Layer Browser
+
+/developer/index.bml.styles.s2.layerbrowse.about<<
+A full list of public S2 layers that comprise the S2 system styles. Of importance here
+are the core layers, that define the base variables, functions, and classes that make
+S2 the powerful design language that it is.
+.
+
+/developer/index.bml.styles.s2.manual=The S2 Manual
+
+/developer/index.bml.styles.s2.manual.about=Comprehensive information about using S2 on LiveJournal.
+
+/developer/index.bml.title=Developer Information
+
+/doc/index.bml.about<<
+Welcome to LiveJournal's documentation repository, where you can find information
+on most topics regarding LiveJournal's service or server software. Please select 
+a topic from below:
+.
+
+/doc/index.bml.about.header=Welcome
+
+/doc/index.bml.docs.faq.about=Frequently Asked Questions about LiveJournal.com
+
+/doc/index.bml.docs.faq.title=FAQ
+
+/doc/index.bml.docs.guides.about=Supplemental FAQ information
+
+/doc/index.bml.docs.guides.title=Guides
+
+/doc/index.bml.docs.header=Documents
+
+/doc/index.bml.docs.howto.about=Tips and tricks to help customize your LiveJournal account
+
+/doc/index.bml.docs.server.about=All you need to know to install, administrate, and hack a LiveJournal setup
+
+/doc/index.bml.docs.server.title=LiveJournal Server Manual
+
+/doc/index.bml.docs.tour.about=Designed for new visitors to become familiar with the site
+
+/doc/index.bml.docs.tour.title=Tour
+
+/doc/index.bml.title=Documentation
+
+/doc/index.bml.volunteering.about=If you'd like to help out with LiveJournal's documentation, check out the following forums:
+
+/doc/index.bml.volunteering.header=Volunteering
+
+/doc/index.bml.volunteering.ljsysdoc=Discussions regarding the LiveJournal documentation system
+
+/doc/index.bml.volunteering.ljuserdoc=End user documentation discussions
+
+/doc/tour/index.bml.clients.caption<<
+LiveJournal clients are small programs that run on your computer, allowing you to update your journal
+whenever you're online, without having to open a browser window.
+Clients are available for just about any platform, and many are easily customizable.
+.
+
+/doc/tour/index.bml.clients.title=Clients
+
+/doc/tour/index.bml.comms.caption<<
+LiveJournal is a large interactive community, so it shouldn't be a surprise that there are many members
+with similar interests. To this end, we offer the ability to create communities, or journals that many 
+people can post to.
+.
+
+/doc/tour/index.bml.comms.title=Communities
+
+/doc/tour/index.bml.create.caption<<
+LiveJournal is a membership-based journaling community. This page explains what membership entails,
+why membership is important, and the benefits of membership. It also includes a form to create
+your own account.
+.
+
+/doc/tour/index.bml.create.title=Creating an Account
+
+/doc/tour/index.bml.friends.caption<<
+You can keep track of your friends through LiveJournal as well, by using the built&ndash;in "friends" feature.
+If you find a journal you think is interesting, add it to your friends list, which will let you read all of
+your friends' entries from the same page.
+.
+
+/doc/tour/index.bml.friends.title=Friends
+
+/doc/tour/index.bml.intro.caption<<
+This tour is designed for new visitors to become familiar with the site.
+It will show you where the most important sections are located, as well
+as some of the more interesting features.
+.
+
+/doc/tour/index.bml.intro.title=Welcome
+
+/doc/tour/index.bml.modify.caption<<
+It is also possible to format your journal in a number of different ways, by making use
+of predefined styles and color schemes. Make your journal as unique as you want!
+.
+
+/doc/tour/index.bml.modify.title=Personalizing
+
+/doc/tour/index.bml.nav.next=Next --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- Prev
+
+/doc/tour/index.bml.profile.caption<<
+LiveJournal members are encouraged to add information about themselves into their profiles, so that
+we can get an idea of who uses the site and how we can best serve them. However, none of this is required 
+&mdash; the only information that is required to start using LiveJournal is a name, an e-mail address, and a password.
+.
+
+/doc/tour/index.bml.profile.title=Profiles
+
+/doc/tour/index.bml.sitemap.caption<<
+Hopefully this tour gave you some helpful starting information about the LiveJournal site and service.
+If you need help with anything LiveJournal related, feel free to contact 
+<a href="/support/">our support department</a>. If you want to explore further, please
+refer to <a href="/site/">the site map</a> to see a list of all the pages on this site.
+.
+
+/doc/tour/index.bml.sitemap.title=Site Map
+
+/doc/tour/index.bml.support.caption<<
+The support page lists areas that help explain what LiveJournal is, 
+frequently asked questions about the site, and other helpful information
+about the service, the company, and the community at large.
+.
+
+/doc/tour/index.bml.support.title=Getting Help
+
+/doc/tour/index.bml.title=Tour - [[title]]
+
+/doc/tour/index.bml.update.caption<<
+Updating a LiveJournal is the core of the LiveJournal service; here is where we offer members a chance to share their
+lives and say what's on their minds. Updating a journal is simple. Simply write an entry in the supplied
+box and press the "Update Journal" button. Of course, we also offer advanced features on our update page, like
+the ability to check for spelling mistakes, and the ability to supply extra information about your
+entries, such as your current music or current mood.
+.
+
+/doc/tour/index.bml.update.title=Updating
+
+/editinfo.bml.allowshowcontact.about<<
+You should keep this option enabled.  This lets other people be able to contact 
+you by showing your e-mail address, ICQ number, and AOL Instant Messenger screenname 
+all on your LiveJournal.
+.
+
+/editinfo.bml.allowshowcontact.email=If visible, e-mail address to be displayed:
+
+/editinfo.bml.allowshowcontact.email.neither=Neither. Don't show any e-mail address.
+
+/editinfo.bml.allowshowcontact.email.no_show=Don't show e-mail address
+
+/editinfo.bml.allowshowcontact.email.show=Show e-mail address
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr<<
+With the option above, you may also choose to hide your e-mail address
+(while still showing other contact information), only show your
+LiveJournal e-mail address (<a href="/paidaccounts/">paid accounts</a>
+only), only show your real address, or show them both.
+.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr<<
+With the option above, you may also choose to hide your e-mail address
+(while still showing other contact information).
+.
+
+/editinfo.bml.autotranslate.header=Auto-convert older entries from:
+
+/editinfo.bml.bdayreminders.about=If you want to get e-mail reminding you of birthdays for your friends on LiveJournal, click this box.
+
+/editinfo.bml.bdayreminders.header=Send me birthday reminders (currently disabled)
+
+/editinfo.bml.bio.about=Here you can enter a little mini-biography about yourself. This will show up on your User Info page.
+
+/editinfo.bml.blockrobots.about<<
+If you check this option, robots will be told to go away.  
+Not all robots respect the rules.
+.
+
+/editinfo.bml.email.title=E-mail
+
+/editinfo.bml.enableboards.about=Check this if you want people to be able to reply to journal entries you post.
+
+/editinfo.bml.error.email.lj_domain<<
+You cannot enter an @[[domain]] e-mail address.  
+Enter your real address in that field.  
+If you're a paid user, your [[user]]@[[domain]] address will forward to your real address.  
+To choose which e-mail address(es) are displayed publicly, see the option below the "Show your contact information" option.
+.
+
+/editinfo.bml.error.email.none=You must provide your e-mail address.
+
+/editinfo.bml.error.email.no_space<<
+No spaces are allowed in an e-mail address.  
+If you're on AOL, remember that your Internet E-mail address is your screen name with all spaces removed, followed by <b>@aol.com</b>
+.
+
+/editinfo.bml.error.locale.zip_requires_us<<
+You entered a zip code but you did not select United States as your country.  
+We only collect zip code information about people in the US.  
+Please go back and remove the zip code or select United States as your country.
+.
+
+/editinfo.bml.error.tm.require_provider<<
+If you're going to use text messaging, you must select your service provider.
+
+If yours is not listed, please contact us with information about how your service's text messaging feature so we can add support for it.
+.
+
+/editinfo.bml.getreplies.about=Check this if you want to get e-mail updates when people reply to your journal entries using the message boards (comments).
+
+/editinfo.bml.getselfemails.about=Check this if you wish to get an e-mail every time you post a comment in a journal or community.  You will not get e-mail for anonymous comments.
+
+/editinfo.bml.getselfemails.header=Get comments you post e-mailed to you
+
+/editinfo.bml.howhear.about<<
+Just for curiosity's sake, where did you hear about [[sitename]] from?  
+If it was a specific person, enter their username; if it 
+was from another source/article/link/website, enter the appropriate information.
+.
+
+/editinfo.bml.htmlemail.about<<
+Check this if your e-mail program fully supports HTML in your e-mail.  
+Some clients try to support it, but fail to display it properly.
+If you uncheck it, LiveJournal will only send text e-mails.
+.
+
+/editinfo.bml.htmlemail.header=Send HTML E-mails
+
+/editinfo.bml.mangleaddress.about<<
+If you are afraid spam-robots will find your e-mail 
+address on LiveJournal, select this option. Your e-mail address will be modified 
+so it won't be found by address-collecting robots.
+.
+
+/editinfo.bml.mangleaddress.header=Mangle your displayed e-mail address
+
+/editinfo.bml.newemail.body2<<
+You have just changed the e-mail address for your [[sitename]] account "[[username]]".  To validate the change, please go to this address:
+
+[[conflink]]
+
+Regards,
+[[sitename]] Team
+[[sitelink]]
+.
+
+/editinfo.bml.newemail.subject=E-mail Address Changed
+
+/editinfo.bml.opt_in.about<<
+If you want to know when we add some cool new feature to LiveJournal, check this box.  
+We aren't currently using this feature, but we might in the future.  
+Your e-mail address will not be visible to other users, and you can turn this off at anytime.
+.
+
+/editinfo.bml.security.header=Who can view your contact info?
+
+/editinfo.bml.translatemailto.about<<
+In case you chose to receive message board replies by e-mail, and your e-mail client doesn't handle Unicode (UTF-8) 
+messages very well, use this option to specify a different encoding into which LiveJournal will automatically translate the text of comments sent to you.
+.
+
+/editinfo.bml.translatemailto.header=Translate e-mail notifications into: 
+
+/editinfo.bml.userpic.about<<
+Below is the miniature picture you have uploaded to represent you 
+throughout the LiveJournal site, in your journal, and in your friends' journals:
+.
+
+/editinfo.bml.userpic.edit=To delete this picture, or upload a new one, <a href="/editpics.bml#upload" target="_blank">go here</a>.
+
+/editjournal_do.bml.btn.delete=Delete Journal Entry 
+
+/editjournal_do.bml.currmood=Current <a href="/moodlist.bml">Mood</a>:
+
+/editjournal_do.bml.edit.text=This is the journal entry you selected to be edited. Change all the information you would like to modify, then click the "Save Journal Entry" button at the bottom.<br /><br />To delete the entry, delete all the text in the text box and click the "Save Journal Entry" button at the bottom.
+
+/editjournal_do.bml.error.modify=An error occurred modifying your journal:
+
+/editjournal_do.bml.opt.noemail=Don't e-mail comments:
+
+/editjournal_do.bml.subject=<b>Subject:</b> <i>(optional)</i>
+
+/export.bml.description=This feature lets you download your entire journal to a custom format for backup purposes. For more information about backing up your journal, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=8">this FAQ</a>.
+
+/friends/add.bml.add.text=User [[ljuser]] was added to your friend list. You can view your friends page <a href="[[url]]">here</a>.
+
+/friends/add.bml.error1.header=Log In First
+
+/friends/add.bml.error1.text<<
+To add a user to your friends list you must first go and <A HREF="/login.bml?ret=1">log in</A>.  If you don't
+already have an account you can <a href="/create.bml">create one</a> to track your friend's journals. 
+.
+
+/friends/add.bml.error2.text=Invalid or missing username given.  To add a friend, go to the <a href="/friends/edit.bml">edit friends</a> page.
+
+/friends/add.bml.groups.nogroup=No friend groups set up.
+
+/friends/add.bml.remove.text=User <?ljuser [[user]] ljuser?> was removed from your friend list. You can view your friends page <a href="[[url]]">here</a>.
+
+/friends/editgroups.bml.text<<
+This page allows you to edit your custom friends groups.  Custom friends groups are used for setting security on items and for filtering your friends page. For help, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">What are custom friends groups? How do I use them?</a>
+
+This page requires JavaScript to work.
+.
+
+/friends/edit_do.bml.fellowfriends.text=The following people have listed you as a friend. You may want to list them as your friend too.  This is provided as a reference, so that you know their LiveJournal usernames.  You are under no obligation to add them to your list.
+
+/friends/edit_do.bml.success.text=Your friends have been updated.  You can view your newly updated friends page <a href="[[url]]">here</a>.
+
+/friends/filter.bml.error.nogroups=You cannot filter your friends list because you must first <a href="/friends/editgroups.bml">set up your friend groups</a>.
+
+/friends/index.bml.about<<
+This page allows you to manage your friends list.
+By adding other users to your friends list, you can easily see their entries from your friends page. You can also add communities and syndicated feeds to your friends list so that you see their entries on your friends page.
+.
+
+/friends/index.bml.edit.about=Add or remove users from your friends list, or edit the colors used to represent them.
+
+/friends/index.bml.editgroups.about=Create, edit, or delete subgroups of your friends.
+
+/friends/index.bml.filter=These friend groups can be used to filter your friends view: you can view only the entries of a certain group. They can also be used for group-based security (see below).
+
+/friends/index.bml.filter.about=Filter your friends list according to specific subgroups.
+
+/friends/index.bml.security=Your friends list is also used for entries with restricted access. You can find out more about friends list security at <cite><a href="/support/faqbrowse.bml?faqcat=security">Friends &amp; Security Levels</a></cite>.
+
+/friends/index.bml.security.custom=With "Custom" entries, you can specify which friend groups can view your entry. However, not all <a href="/download/">clients</a> currently support custom security.
+
+/friends/index.bml.security.only=With "Friends-Only" entries, any user on your friends list can view your entries.
+
+/friends/popwithfriends.bml.account_type=Sorry, your account type doesn't permit you to use this tool.
+
+/friends/popwithfriends.bml.count=Count
+
+/friends/popwithfriends.bml.exclude_own=Optionally, you may <a href='popwithfriends.bml'>exclude your friends</a>.
+
+/friends/popwithfriends.bml.include_own=Optionally, you may <a href='popwithfriends.bml?own=1'>include your friends</a>.
+
+/friends/popwithfriends.bml.intro=The following friends are listed often by your friends, but not by you.
+
+/friends/popwithfriends.bml.intro_own=The following friends are listed often by your friends. The list also includes your own friends.
+
+/friends/popwithfriends.bml.no_users=No users
+
+/friends/popwithfriends.bml.title=Popular Users Amongst Your Friends
+
+/friends/popwithfriends.bml.user=User
+
+/index.bml.about.header=About LiveJournal
+
+/index.bml.about.joining=Joining the site is free.  Users can choose to <a [[aopts1]]>upgrade</a> their accounts for <a [[aopts2]]>extra features</a>.
+
+/index.bml.about.us=LiveJournal is a simple-to-use (but extremely powerful and customizable) personal publishing ("blogging") tool, built on <a [[aopts]]>open source software</a>.
+
+/index.bml.boldcreate=Create your own LiveJournal!
+
+/index.bml.frank.image.alt=Frank, the LiveJournal mascot goat.
+
+/index.bml.frank.logo=<b><i>"Baaaaah",</i> says <a href="/site/goat.bml">Frank</a>.</b>
+
+/index.bml.learnmore.header= Want to learn more?
+
+/index.bml.learnmore.text=Please read our <a [[aopts1]]>feature overview</a>.  Convinced?  <b><a [[aopts2]]>Create</a></b> your own LiveJournal!
+
+/index.bml.meta.desc=LiveJournal.com is a place where you can share your thoughts with the world.
+
+/index.bml.meta.keywords=diary, journal, online journal, diaries, writing, online diary, web diary
+
+/index.bml.news.text=The latest <a [[aopts]]>site news</a>:
+
+/index.bml.news.title=Latest News
+
+/index.bml.post=Live Post Stats
+
+/index.bml.post.hour=Per Hour: 
+
+/index.bml.post.latest=Latest Posts
+
+/index.bml.post.min=Per Minute: 
+
+/interests.bml.add.btn.text=Add [[interest]]
+
+/interests.bml.interested.in=Find people and communities interested in:
+
+/interests.bml.interests.text=Here are some fun things you can do with interests.
+
+/interests.bml.morestuff=More fun stuff can be found on the <a href="/interests.bml">interests page</a>.
+
+/interests.bml.users.text=The following users are interested in <b>[[interest]]</b>.
+
+/invite/index.bml.code=Code
+
+/invite/index.bml.error=Error
+
+/invite/index.bml.genmore=Generate more codes
+
+/invite/index.bml.how_detail=Depending on a <a href="[[factors_url]]">number of factors</a>, existing users are allowed to invite a certain number of other users to join the site.  To invite somebody you need to generate an invitation code and then give it to them.
+
+/invite/index.bml.how_header=How does it work?
+
+/invite/index.bml.invite_header=Invitations?
+
+/invite/index.bml.none=None
+
+/invite/index.bml.redeemed=Redeemed by
+
+/invite/index.bml.title=Invite others to LiveJournal...
+
+/invite/index.bml.unused=Unused
+
+/invite/index.bml.use=use
+
+/invite/index.bml.why_codes=As a means to keep the community tight, control growth, and prevent abuse, creating an account now requires either buying an account or getting invited by an existing user.  The point of this is to make this community a better place for the people that use it, at the added cost of a little inconvenience for new users.
+
+/legal/dmca.bml.title=Copyright Information (DMCA)
+
+/legal/index.bml.about<<
+LiveJournal is dedicated to offering a stable and meaningful experience for members from all 
+backgrounds and nations, so we have a few rules we've laid out to provide this. 
+Our documents here contain reasonable terms and information regarding how we will do our best to serve you, 
+and how we expect members to behave to us and others.  LiveJournal works best when people 
+follow these rules. Here are some important ones to remember: 
+<ul>
+<li>Do not harass, abuse, or threaten others.</li>
+<li>Do not harm minors in any way.</li>
+<li>Do not spam the site or any account on the site.</li>
+<li>Do not post copyrighted content without permission.</li>
+<li>Do not invade the privacy of others.</li>
+<li>Do not violate U.S. law or your local laws in any way.</li>
+</ul>
+The complete list of rules and policies can be found below:
+.
+
+/legal/index.bml.about.header=Overview
+
+/legal/index.bml.docs.dmca.about<<
+The Digital Millenium Copyright Act (DMCA) describes the manner in which
+service providers must react to copyright infringement.  Our DMCA page
+describes how you may notify us that a user on our service is infringing
+upon your copyright.
+.
+
+/legal/index.bml.docs.header=Documents
+
+/legal/index.bml.docs.privacy.about2<<
+The Privacy Policy outlines what information we gather from our members 
+and explains how we use that information.  This page also describes how
+we handle the Children's Online Privacy Protection Act (COPPA) and our
+policies about children on our site.
+.
+
+/legal/index.bml.docs.tos.about<<
+The Terms of Service outlines our usage policies, as well as the general terms and conditions 
+of membership. Membership and/or use of the system constitutes an agreement to abide by these 
+and all other agreed-upon terms.
+.
+
+/legal/index.bml.title=Legal Information
+
+/legal/privacy.bml.title=Privacy Policy
+
+/legal/tos.bml.title=Terms of Service
+
+/login.bml.expire.sessiononly.text=Your login will expire after you close your browser.  If this is your own computer and you're the only user, you may want to set your login expiration such that it never expires:
+
+/login.bml.login.btn.login=Log in...
+
+/login.bml.login.head=Log in
+
+/login.bml.login.text1=To log in to [[sitename]], enter your username and password below.  <b>New Users:</b> To create an account, <a href='/create.bml'>go here</a>.
+
+/login.bml.login.text2=You may also specify when your login expires.  By default your login will expire when you close your browser, which is best on public computers.  However, if you're the only user of your computer and nobody else has access to it, you may choose to remain logged in forever. For more information on this and other options, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=135">What are the options when I log in?</a>
+
+/login.bml.login.text3=[[username]], you are now logged in to [[sitename]]. Feel free to browse the site by using our <a href="/site/">Site Map</a>.
+
+/login.bml.title=Log in
+
+/login.bml.whylogin.head=Why log in?
+
+/logout.bml.killall.text=You have other active sessions. Do you want to expire all your sessions, and not just this one? (See <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=159">this FAQ</a> for more information.)
+
+/logout.bml.logout.btn=Log out
+
+/lostinfo.bml.enter_email=Enter your e-mail address:
+
+/lostinfo.bml.enter_email_optional=E-mail address:  (optional)
+
+/lostinfo.bml.error.no_email=You must enter an e-mail address in order to recover your username.
+
+/lostinfo.bml.lostpassword.text=If you've lost your password, enter your username and optionally the e-mail address you'd like the password sent to.  In order to have your password sent to a previously listed e-mail address, that address must have been validated.  If you leave the e-mail field blank, it will be mailed to your current address.
+
+/lostinfo.bml.lostpassword.title=Lost your password?
+
+/lostinfo.bml.lostusername.text=If you've lost your username, enter your e-mail address and we'll send you your username.
+
+/lostinfo.bml.lostusername.title=Lost your username?
+
+/lostinfo_do.bml.error.no_usernames_for_email=No username(s) for this e-mail address: [[address]] .
+
+/lostinfo_do.bml.error1.text=You never used that e-mail address with this account or it was never validated.
+
+/lostinfo_do.bml.lostpasswordmail.part1<<
+*** This is an automated e-mail.  You do not need to respond to it. ***
+
+This is your requested password reminder from [[sitename]].
+Below are the username, password, and e-mail address your journal is registered under.
+
+          Username: [[username]]
+          Password: [[password]]
+    E-mail Address: [[emailadr]]
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=To validate your e-mail address, go here:
+
+/lostinfo_do.bml.lostpasswordmail.part3<<
+This information was requested on the website from [[remoteip]].
+
+If you didn't request to have this password e-mailed to you, don't panic.
+After all, you're the one who's seeing this e-mail, and not the other person.
+It's possible that the user who made the request is mistaken and
+believes that he or she controls this username. It's also possible that
+someone made a typo in a username or e-mail address.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part4|notes=Site-local text.  For 'en', it's blank.
+/lostinfo_do.bml.lostpasswordmail.part4<<
+If you truly believe that your account isn't secure, read
+    http://www.livejournal.com/support/faqbrowse.bml?faqid=117
+for some information on how to re-secure it.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Useful links:
+
+  Your LiveJournal:
+    [[journalurl]]
+
+  Update your journal online:
+    [[updateurl]]
+
+Regards,
+LiveJournal Team
+
+[[rooturl]]
+.
+
+/manage/index.bml.customization.customize.about=Change the appearance of your journal and switch between S1 and S2 style systems
+
+/manage/index.bml.customization.moodtheme.editor=Create and edit your custom mood themes
+
+/manage/index.bml.customization.moodtheme.editor.header=Mood Theme Editor
+
+/manage/index.bml.customization.moodtheme.header=Mood Themes
+
+/manage/index.bml.customization.moodtheme.set=Select which mood theme set your journal will use
+
+/manage/index.bml.customization.moodtheme.set.header=Set Your Mood Theme
+
+/manage/index.bml.entries.memories.about=View and work with your memorable entries
+
+/manage/index.bml.entries.tags.about=Organize your journal entry categories
+
+/manage/index.bml.entries.tags.header=Manage Entry Tags
+
+/manage/index.bml.friends.edit.about=Add or remove users from your friends list, or change the colors used to represent them.
+
+/manage/index.bml.information.emailpost=E-mail Gateway Settings
+
+/manage/index.bml.information.emailpost.about=Manage your e-mail addresses and PIN for post-by-email support
+
+/manage/index.bml.information.phonepost=Phonepost Settings
+
+/manage/index.bml.information.phonepost.about=Manage your post-by-phone phone number and PIN.
+
+/manage/index.bml.information.siteopts.about=Select your preferred site layout and language
+
+/manage/index.bml.information.status.about=Set your account's activation status (delete or undelete your account)
+
+/manage/phonepost.bml.delete=Delete Settings
+
+/manage/phonepost.bml.deleted=Your phone post settings have been deleted.
+
+/manage/phonepost.bml.deleted.header=Deleted
+
+/manage/phonepost.bml.error.inuse=Invalid PIN, please try another
+
+/manage/phonepost.bml.error.phone.length=Your phone number must be at least ten digits long.
+
+/manage/phonepost.bml.error.pin=Your PIN must be numeric.
+
+/manage/phonepost.bml.error.transcription=Invalid friend group for transcription
+
+/manage/phonepost.bml.format=Recorded Post Format:
+
+/manage/phonepost.bml.format.help='Ogg Vorbis' is less supported, but creates a higher quality file.  'Wav' is smaller and doesn't sound as nice, but plays natively nearly everywhere.
+
+/manage/phonepost.bml.intro.loggedin<<
+<?p If you'd like to be able to <a href='/phonepost/'>Post by Phone</a>, fill out your phone number and PIN below. p?>
+<?p We won't use your phone number for anything but authenticating incoming calls (see our <a href='/legal/privacy.bml'>Privacy Policy</a> for more information)
+Calls made from numbers other than your authorized phone number will still be accepted, but you'll have to enter your authorized phone number before you can record your post. p?>
+<?p We accept any phone number, national or international, so long as it's at least 10 digits long. Spaces, punctuation, and letters are automatically stripped from the phone number text field when you save. p?>
+.
+
+/manage/phonepost.bml.intro.loggedout=Members of <?sitename?> can <a href='/login.bml?ret=1'>log in</a> and change their <a href='/phonepost/'>Post by Phone</a> settings here:
+
+/manage/phonepost.bml.phone=Authorized Phone Number:
+
+/manage/phonepost.bml.phone.help=(515) 555-5555
+
+/manage/phonepost.bml.pin=Personal Identification Number:
+
+/manage/phonepost.bml.pin.help=4-6 digits recommended
+
+/manage/phonepost.bml.save=Save Settings
+
+/manage/phonepost.bml.saved=Saved
+
+/manage/phonepost.bml.success.moreinfo=For more information on recording a <a href='/phonepost/'>Post by Phone</a> entry, see <cite><a href='/support/faqbrowse.bml?faqid=183'>How do I record an audio post to my journal?</a></cite>.
+
+/manage/phonepost.bml.success.text=Your phone settings have been saved.
+
+/manage/phonepost.bml.title=Post by Phone Settings
+
+/manage/phonepost.bml.transcribers=Allowed Transcribers:
+
+/manage/phonepost.bml.transcribers.help=<a href="/friends/editgroups.bml">Edit Friend Groups</a>
+
+/manage/pubkey.bml.info=Publishing your public key allows others to view it via your <a [[aoptsinfo]]>userinfo</a> page, and you can post to the e-mail gateway with signed messages.  See instructions <a [[aoptshelp]]>here</a>.
+
+/modify_do.bml.colortheme.about=Here you can select what color theme will be applied to the layout options you pick above.  Or, if you don't like the provided colors, specify your own!
+
+/modify_do.bml.domainalias.helptext=For this to work, you'll need to arrange to have your domain name's DNS point to the same IP address as [[sitename]]. For more information, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=129">this FAQ</a>.
+
+/modify_do.bml.friends.opt.usesharedpic.about=This option controls what picture you see on your friends page when a user posts in a shared or community journal.  If you check it, then you'll see the community's icon.  If you leave it unchecked, then you'll see the user icon of the person who's actually posting.
+
+/modify_do.bml.journaloptions.about=From here you can customize the look of your LiveJournal pages.  If you're really curious how everything works, read the <a href="/developer/" target="_blank">developer information</a>.  Otherwise, we'll assume you're satisfied with the basic options below:
+
+/modify_do.bml.moodicons.about=When posting journal entries you can also specify your current mood.  Different users have submitted different sets of mood icons that you can use.  Or, select "None" if you don't want any pictures beside your moods.  (or, you don't even have to use the Current Mood feature at all.)
+
+/modify_do.bml.overrides.about=If you are happy with the journal layout options above, you can ignore this section. This is for tweaking very specific things about your page layout. See <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=124">What are overrides? How do they work?</a> for an overview, and visit the <A HREF="/developer/" TARGET=_blank>developer section</A> for details.  Also note that overrides are for overriding only one or two things about a style.  If you'd like to override everything, you need to <A HREF="/styles/create.bml" TARGET=_blank>create your own style</A>. For an overview of how to create a style, see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=128">How do I make a custom style?</a>
+
+/modify_do.bml.overrides.note=Please note that not all style variables can be overridden. See the <a href="/developer/varlist.bml">documentation</a> for more details.<br />Also, be aware that if you attempt to edit your overrides and you have used a tag that is not allowed in the head of the document &ndash; such as &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt;, and many other tags &ndash; that tag will be stripped. The only HTML elements that can be used in the *_HEAD overrides are those elements that are valid in the head of a HTML document. This is limited to &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, and &lt;meta&gt;.
+
+/multisearch.bml.noaddress.text=You did not enter an e-mail address.
+
+/paidaccounts/index.bml.costs.header=Well, how much does it cost?
+
+/paidaccounts/index.bml.costs.rates=The rates are as follows:
+
+/paidaccounts/index.bml.costs.rates.amount.header=Amount
+
+/paidaccounts/index.bml.costs.rates.inexpensive<<
+That works out to a little over <b>$2/month</b> for the year plan.
+That'll hardly break your pocketbook.
+The most annoying part will likely be pulling out your wallet, finding your credit card, and typing in your information.
+.
+
+/paidaccounts/index.bml.costs.rates.time.header=Time
+
+/paidaccounts/index.bml.features<<
+<dd>To show appreciation for users who have made contributions, there are a number of features that are only available to paid accounts. These features include, but aren't limited to:</dd>
+
+<dt>New! Post by E-mail</dt> 
+<dd>Paid accounts can post to their journals and communities quickly and securely through our e-mail gateway.</dd>
+
+<dt>Customizing your Journal</dt>
+<dd>In addition to just being able to pick the style of your journal and the colors, you'll also be able to create your own style using whatever HTML you like. This will also let you be able to make new styles that match your website that you can then easily embed, never revealing that you're using LiveJournal.com as your journal mechanism.</dd>
+
+<dt>Polls</dt>
+<dd>Paid accounts have the ability to create polls in their own journals and in any communities they are a part of and can post to.</dd>
+
+<dt>More User Picture Icons</dt>
+<dd>Paid accounts are allowed 15 user picture icons, rather than the 3 allotted to free users.</dd>
+
+<dt>LiveJournal.com E-mail Alias</dt>
+<dd>Paid accounts are given a LiveJournal.com e-mail address ([[username]]@livejournal.com) that can be turned on or off.</dd>
+
+<dt>Directory Searches</dt>
+<dd>Paid accounts are given access to use the directory to search for other users.</dd>
+
+<dt>LiveJournal.com Subdomain</dt>
+<dd>Instead of having your journal at 
+http://www.livejournal.com/users/[[username]]/, it'll also be available at http://[[username]].livejournal.com/, much shorter and more personal.</dd>
+
+<dt>Syndication</dt>
+<dd>Paid accounts have the ability to create new syndicated accounts, which are RSS feeds that are incarnated on LiveJournal.</dd>
+
+<dt>Text Messaging Interface</dt>
+<dd>Paid accounts are given access to the text messaging feature, which will allow them to receive text messages on their phone or pager through LiveJournal's custom interface.</dd>
+
+<dt>More To-Do Items</dt>
+<dd>Paid accounts can set up to 150 to-do list items in their to-do lists, and can set differing security levels on each item.</dd>
+
+<dt>Embedding</dt>
+<dd>Paid accounts have access to the complete range of options for embedding your journal into your home page, as explained on the "Embedding" page.</dd>
+
+<dt>Domain Forwarding</dt>
+<dd>Paid users can set up domain forwarding, so that their internet domain points to their LiveJournal.</dd>
+
+<dt>More...</dt>
+<dd>For a complete list of Paid Account benefits, please read <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=131">What are the Paid Account benefits</a>?</dd>
+.
+
+/paidaccounts/index.bml.features.header=So what cool features will I get?
+
+/paidaccounts/index.bml.title=About Paid Accounts
+
+/paidaccounts/index.bml.whypay.argument<<
+No, of course not. Paying for web services is annoying, we agree.
+That's why nearly all of LiveJournal's functionality is available free of charge.
+However, if you're happy with the service you're being provided, show your support and get a paid account.
+.
+
+/paidaccounts/index.bml.whypay.header=I have to pay to use LiveJournal?
+
+/paidaccounts/index.bml.whypay.no_ads<<
+It takes money to run websites (for servers, colocation, and bandwidth), and this seems like a
+better way to pay for it than blasting you with pop-up banner ads and spamming you with advertisements.
+.
+
+/paidaccounts/index.bml.your_username=your_username
+
+/paidaccounts/usepaypal.bml.delivery.badformat=Invalid delivery date format.  Must be of form <i>yyyy-mm-dd</i> or <i>yyyy-mm-dd hh:mm</i>.
+
+/paidaccounts/usepaypal.bml.delivery.past=Delivery date cannot be in the past.  To send immediately, leave the delivery date box blank.
+
+/paidaccounts/usepaypal.bml.delivery.toofuture=Delivery date cannot be more than a month in the future.
+
+/pay/index.bml.deliverydate.details=Format: <i>yyyy-mm-dd hh:mm</i> (GMT time)<br>(enter nothing for no delayed delivery)
+
+/pay/index.bml.deliverydate.label=Delivery Date:
+
+/pay/index.bml.gift.anonymous=Anonymous gift
+
+/press/staff.bml.accountserv=Account Services
+
+/press/staff.bml.administration=Administration
+
+/press/staff.bml.administration.about<<
+LiveJournal.com started in 1999 as a project of Brad Fitzpatrick, and during the first two years of its life,
+was sustained by a <a href="/site/contributors.bml">large and loyal group of volunteers</a>. While a lot of 
+LiveJournal.com is still run by teams of volunteers, we now have a small senior staff who oversee all 
+operations: 
+.
+
+/press/staff.bml.avva.title=Senior Developer
+
+/press/staff.bml.back2=Back to the Press area
+
+/press/staff.bml.bleything.title=Senior Support Monkey
+
+/press/staff.bml.bradfitz.quip=Focus on your product and not just on making money.
+
+/press/staff.bml.bradfitz.title=President / Lead Developer
+
+/press/staff.bml.contact=If you need to get in touch with any of us, please e-mail <a href="mailto:webmaster@livejournal.com">webmaster@livejournal.com</a>.
+
+/press/staff.bml.custserv=Customer Service / Usability Research
+
+/press/staff.bml.david.title=The Intern
+
+/press/staff.bml.denisep.quip=I'll have that to you next Thursday
+
+/press/staff.bml.denisep.title=Volunteer Relations / Usability Specialist
+
+/press/staff.bml.deveiant.title=Remote Developer
+
+/press/staff.bml.developers=Developers
+
+/press/staff.bml.ferrell.title=Customer Service Manager
+
+/press/staff.bml.jproulx.quip=Geek to User Liaison
+
+/press/staff.bml.jproulx.title=Community Site Supervisor / Press Relations
+
+/press/staff.bml.lisa.title=Lead Systems Administrator
+
+/press/staff.bml.mahlon.quip=Eek eek!
+
+/press/staff.bml.mahlon.title=Code Monkey
+
+/press/staff.bml.matthew.title=Systems Administrator
+
+/press/staff.bml.ryanfitz.title=Payment Services
+
+/press/staff.bml.sandy.title=Accounting and Administration 
+
+/press/staff.bml.smithy.title=Apprentice Hacker
+
+/press/staff.bml.sysadmin=Systems Administrators
+
+/press/staff.bml.title=Senior Staff
+
+/press/staff.bml.whitaker.quip=What next?
+
+/press/staff.bml.whitaker.title=Remote Developer
+
+/register.bml.ask.body=Click the button below to have <?sitename?> send a validation e-mail to <b>[[email]]</b>.
+
+/register.bml.ask.header=Validate E-mail
+
+/register.bml.email.body<<
+This is the validation e-mail you have requested.
+To complete validation of your account, please visit this URL:
+
+    [[conflink]]
+
+You may have to copy and paste this link into your browser's window.
+
+Regards,
+[[sitename]]
+[[sitelink]]
+.
+
+/register.bml.email.subject=Validate E-mail
+
+/register.bml.error.useralreadyvalidated=The e-mail address for [[user]] has already been validated.
+
+/register.bml.sent.body=A validation e-mail has been sent to <b>[[email]]</b>. In order to complete validation, you need to click the link in that e-mail.
+
+/register.bml.title=Validate E-mail
+
+/register.bml.trans.body=Your new e-mail address has been validated.
+
+/rename/index.bml.does=Renaming the account only changes the username.  Everything else - paid or permanent account status, user privileges, personal info, friends, and other account-related data - remains the same, and will be associated with the new username.  All existing comments in other journals and entries in communities will display the new username.
+
+/rename/index.bml.faqurl=For more details on the rename process, see <a [[aopts]]>the rename FAQ</a>.
+
+/rename/index.bml.fee=There is a fee of <b>[[fee]]</b> to change your LiveJournal username.
+
+/rename/index.bml.heading.cost=Cost
+
+/rename/index.bml.heading.details=Details
+
+/rename/index.bml.heading.how=How To Buy
+
+/rename/index.bml.option=You have the option to either redirect the old username to the new username or mark it as deleted.  You may also choose to either have people who list you as a friend continue to list your new username as a friend, or be removed from the friends lists of all other users.
+
+/rename/index.bml.options.buy=Buy Token
+
+/rename/index.bml.options.buy.desc=Buy a rename token.
+
+/rename/index.bml.options.use=Use Token
+
+/rename/index.bml.options.use.desc=Use a rename token.
+
+/rename/index.bml.redeem=You first buy a rename token, which is e-mailed to you, then use that token to do the actual rename when you receive it.  Rename tokens are non-refundable, but are transferrable.  That is, you can buy a rename token for another user.
+
+/rename/index.bml.reserve=You do not have to create an account with your new username in order to be renamed to it.  However, if you are worried that someone might take the name before you have a chance to buy and use your token, you should create an account with the new username.  Be sure to use the same e-mail address and password that you use for your current account for the new one.
+
+/rename/index.bml.title=Account Renaming Service
+
+/rename/index.bml.whatrename=You may only rename your personal account, not a community you run.
+
+/rename/use.bml.changes=The following changes will be made once the rename is completed:
+
+/rename/use.bml.changes.move="[[newuser]]" will be moved out of the way to "[[exname]]"
+
+/rename/use.bml.changes.rename="[[oldname]]" will be renamed to "[[newuser]]"
+
+/rename/use.bml.confirm2=After you click 'Rename' below, there is no way to undo the change.  As a means of confirmation, type the word "[[confirmword]]" in the box below in uppercase.
+
+/rename/use.bml.confirm.click=And then, click 'Rename':
+
+/rename/use.bml.error.allocating=Error allocating name to move away destination account.
+
+/rename/use.bml.error.badpass=The passwords for the old and new usernames do not match.
+
+/rename/use.bml.error.differentusername=This isn't the username you were logged in as when you loaded this form.
+
+/rename/use.bml.error.login=But first, you have to <a [[aopts]]>login</a>.
+
+/rename/use.bml.error.notvalidated=The email address on one or more of the accounts involved has not been validated.  Before you rename your journal, you must first validate your email address.  Please see <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=11">How do I validate my email address?</a> for information on how to validate your email address.
+
+/rename/use.bml.error.readit=Read the paragraph above.
+
+/rename/use.bml.error.reserved=Error moving away reserved account name.
+
+/rename/use.bml.error.same=This is the same as your old username.
+
+/rename/use.bml.error.token=Invalid rename token.
+
+/rename/use.bml.error.type=Only normal accounts can be renamed, not community accounts.
+
+/rename/use.bml.error.unknown=Unknown error renaming.
+
+/rename/use.bml.error.usedtoken=This token has already been used.
+
+/rename/use.bml.error.username=Invalid username.
+
+/rename/use.bml.error.usernametaken=That username is already taken.
+
+/rename/use.bml.heading.changes=Changes
+
+/rename/use.bml.heading.success=Success
+
+/rename/use.bml.heading.sure=Are you sure?
+
+/rename/use.bml.intent=This page is for renaming an account after you've <a [[aopts0]]>read the introduction</a> and <a [[aopts1]]>bought a rename token</a>.
+
+/rename/use.bml.label.desired=Desired username:
+
+/rename/use.bml.label.proceed=Proceed ...
+
+/rename/use.bml.label.rename=Rename
+
+/rename/use.bml.label.token=Rename token:
+
+/rename/use.bml.label.username=Current username:
+
+/rename/use.bml.options=Rename options:
+
+/rename/use.bml.options.delfriends=Remove all users from your Friends list and leave all communities.
+
+/rename/use.bml.options.forward=Automatically forward users from [[oldname]] to new username.
+
+/rename/use.bml.options.keepfriends=Keep all users and communities on your Friends list.
+
+/rename/use.bml.options.keepself=Keep everyone on your Friend Of list.
+
+/rename/use.bml.options.removeself=Remove everyone from your Friend Of list.
+
+/rename/use.bml.options.unlink=Do not keep a connection between [[oldname]] and the new journal.
+
+/rename/use.bml.success.login=You'll need to <a [[aopts]]>login</a> again now.
+
+/rename/use.bml.success.moved="[[newuser]]" has been moved out of the way to "[[exname]]"
+
+/rename/use.bml.success.renamed="[[olduser]]" has been renamed to "[[newuser]]"
+
+/rename/use.bml.success.usernamerenamed=Username renamed.
+
+/rename/use.bml.title=Use A Rename Token
+
+/site/contract.bml.promise=We stand firm in saying that we will:
+
+/site/contract.bml.promise.account=Honor the status of every account
+
+/site/contract.bml.promise.account.about<<
+Permanent accounts will be honored for the life of the site. Paid accounts will remain as 
+paid accounts until they expire, unless they are renewed in advance. Early adopters will be granted access to the paid 
+features that were freely available in the early history of the site. (Account status valid 
+with the exception of account termination by means of <a href="/legal/tos.bml">Terms of Service</a> 
+violation.)
+.
+
+/site/contract.bml.promise.ads=Stay advertisement free
+
+/site/contract.bml.promise.ads.about<<
+It may be because it's one of our biggest pet peeves, or it may be because they don't 
+garner a lot of money, but nonetheless, we promise to never offer advertising space in our 
+service or on our pages.
+.
+
+/site/contract.bml.promise.community=Work with the community, for the community
+
+/site/contract.bml.promise.community.about<<
+We promise to keep you informed of changes to the best of our abilities without being intrusive. 
+We promise to run our business based on feedback from the LiveJournal community, and with the 
+LiveJournal community's best interests in mind.
+.
+
+/site/contract.bml.promise.opensource=Support the Free Software movement
+
+/site/contract.bml.promise.opensource.about<<
+All of the code that is used to run a complete, highly-customizable LiveJournal installation 
+is available to the public. We promise to keep this source free and open so that we can give 
+something back to the Free Software community.
+.
+
+/site/contract.bml.promise.spam=Never send you unsolicited e-mail
+
+/site/contract.bml.promise.spam.about<<
+We strongly believe that spam has no place on the internet, and we promise never to send you 
+any e-mail without your implied or explicit consent. We promise to never sell lists of users' e-mail 
+addresses or personal information, and we promise never to spam on the behalf of an interested 
+third party.
+.
+
+/site/contract.bml.promise.uptime=Maintain reliable uptime within the limits of technical considerations
+
+/site/contract.bml.promise.uptime.about<<
+We try to keep things running smoothly for everyone, especially since we use the system just 
+as much as anyone else. Unfortunately server hangups do occur, but we will plan ahead as best 
+as possible to avoid them.
+.
+
+/site/contract.bml.promisetoyou<<
+We at LiveJournal try to ensure that our service is as pleasant as possible for each user, 
+so we've assembled a list of promises we will keep.
+.
+
+/site/contract.bml.promisetoyou.header=Our Promise to You
+
+/site/contract.bml.title=Social Contract
+
+/site/goat.bml.image.alt=Frank, the LiveJournal mascot goat.
+
+/site/goat.bml.image.caption=<i>"Baaaah,"</i> says Frank.
+
+/site/goat.bml.meet.body<<
+This is Frank.  Frank is the LiveJournal.com mascot.  He helps us with random <a href="/code/">programming</a>
+when we get behind, and occasionally he answers <a href="/support/">tech support</a> requests.  Frank's really quite versatile.... he even does the yardwork sometimes.  When the lawn gets overgrown we go, <i>"Hey Frank!  It's lunch time.... go eat the lawn!"</i>.  It's really a win-win situation.
+.
+
+/site/goat.bml.meet.header=Meet Frank
+
+/site/goat.bml.title=Frank the Goat
+
+/styles/create.bml.createstyle.text=From here you can create a new personal-style, useful if you're going to either <a href='/developer/embedding.bml'>embed your journal in your homepage</a> or you want to make a public style that everybody can use and you need to work on it here first, rather than in your overrides section. Note that only users with <a href='/paidaccounts/'>paid accounts</a> can create their own styles.
+
+/styles/index.bml.about<<
+<p>This section of the site allows you to create, edit, and delete customized S1 styles. This 
+allows you to control the look of your account to a great extent, whether you want to make it look
+like your website, or just feel like being different.</p>
+
+<p>You can also create <em>embedded</em> styles which, rather than
+creating a full page, include only the Journal entries and leave
+you to <a href="/developer/embedding.bml">embed your journal in another site</a>.</p>
+
+<p>You can read more about the style system in the
+<a href="/developer/styles.bml">style
+documentation</a> in the
+<a href="/developer/">developer area</a>.</p>
+
+<p>Please note that only <a href="/paidaccounts/">paid accounts</a>
+may create and use custom styles. Free Accounts have a selection of predefined
+LiveJournal styles which you can select from the
+<a href="/modify.bml">Modify Your Journal</a> page.</p>
+.
+
+/styles/index.bml.nav.edit=Edit or delete an existing style
+
+/suggestions/index.bml.howto.text<<
+<dl>
+<dt><span style='font-size: 1.2em'><strong><a href="/tools/memories.bml?user=suggestions">Check prior suggestions</a></strong></span></dt><dd>
+First, read over past suggestions to make sure that something similar hasn't already been brought up. If it has, you can read the comments on the entry. Sometimes, things might look as though they've been ignored, but they might be in development. Sometimes, ideas are rejected or delayed due to other concerns.
+</dd>
+<dt><span style='font-size: 1.2em'><strong>Couldn't find your idea? <a href="/suggestions/generator.bml">Share it with us!</a></strong></span></dt><dd>
+The template must be used for all suggestions. Be sure to fill out all areas of the template, and make sure your suggestion is correct and complete before you post it. Also, the suggestion generator does not add in line breaks, so you can use the &lt;br&gt; tag to produce whitespace. This makes your suggestion easier to read.
+</dd>
+<dt><span style='font-size: 1.2em'><strong>Submit It!</strong></span></dt><dd>
+You can add the <lj comm=suggestions> community to your Friends list <a href="http://www.livejournal.com/friends/add.bml?user=suggestions">here</a>. Once a suggestion is posted, people will discuss it. If we think it's a good idea, it will be added to the list of developer projects, and will be worked on as time permits. Not all suggestions can be implemented immediately, so please be patient with the process.
+</dd></dl>
+.
+
+/suggestions/index.bml.howto.title=How do I make a suggestion?
+
+/suggestions/index.bml.info.text<<
+Feel that you can contribute to the implementation of your suggestions? Feel free to 'watch' or join the communities below:
+<dl>
+<dt><strong><a href="/community/lj_dev/">LiveJournal Developer's Forum</a></strong> -- talking about technical things.</dt>
+<dd><ul>
+  <li><a href="/community/lj_dev/info">Community Info</a></li>
+  <li><a href="/todo/?user=lj_dev">To-Do List</a></li>
+</ul></dd>
+<dt><strong><a href="/community/lj_biz/">LiveJournal Business Forum</a></strong> -- talking about general LiveJournal business opportunities and related areas.</dt>
+<dd><ul>
+  <li><a href="/community/lj_biz/info">Community Info</a></li>
+  <li><a href="/todo/?user=lj_biz">To-Do List</a></li>
+</ul></dd>
+<dt><strong><a href="/community/lj_userdoc/">LiveJournal User Documentation Forum</a></strong> -- discussing and editing most forms of end user documentation.</dt>
+<dd><ul>
+  <li><a href="/community/lj_userdoc/info">Community Info</a></li>
+  <li><a href="/todo/?user=lj_userdoc">To-Do List</a></li>
+</ul></dd>
+<dt><strong><a href="/community/lj_art/">LiveJournal Art Forum</a></strong> -- discussing and sharing icons, mood themes, color themes and userpics.</dt>
+<dd><ul>
+  <li><a href="/community/lj_art/info">Community Info</a></li>
+  <li><a href="/todo/?user=lj_art">To-Do List</a></li>
+</ul></dd>
+</dl>
+<i>Please remember that the people who implement LiveJournal changes and additions are fellow users like yourself.  These things can take time and the more you can help with implementing, the more that can be achieved.</i> 
+.
+
+/suggestions/index.bml.info.title=Other Information
+
+/suggestions/index.bml.rules<<
+There are a few things to keep in mind:
+<ul>
+<li>Many suggestions have already been proposed and discussed, but simply not implemented yet. Be sure that you're not submitting a duplicate.</li>
+<li>Flaming will not be tolerated. Everyone has different ideas about how LiveJournal should work; remember that promoting your opinion is all right, but flaming someone else's opinion is not.</li>
+<li>Be as thorough as possible with your suggestion. A suggestion that contains detailed implementation notes is more likely to be accepted than one that doesn't. You don't need to know how to program; just try to think about what else your idea would affect, and bring up any problems you can see with it.</li>
+<li>Be sure to read the <a href="/support/faq.bml">FAQs</a> first, to see if your idea already exists, or if an existing aspect of the site can be used to do what you want.</li>
+<li>If you want to ask a question about how LiveJournal works,  aren't certain if something exists or not, or are having a problem, don't submit a suggestion. Ask <a href="/support/">Support</a> instead.</li>
+</ul>
+.
+
+/suggestions/index.bml.title=Suggestion Area
+
+/suggestions/index.bml.welcome.text=User suggestions are an important part of LiveJournal. If you have something that you think would be a cool idea, you can follow these procedures to bring it to the attention of the people who run the site.
+
+/suggestions/index.bml.welcome.title=Welcome!
+
+/support/append_request.bml.bounce.noemail=No e-mail address specified for bounce.
+
+/support/append_request.bml.bounce.toomany=You can only send to up to five e-mail addresses.  You have specified more than five.
+
+/support/append_request.bml.internal.touch=To change a request's status, you must select "Internal Comment / Action" and explain why you're changing it.
+
+/support/append_request.bml.successlinks<<
+<ul>
+   <li>Go back to <a href='[[back]]'>Request #[[number]]</a></li>
+   <li>Go back to the <a href='[[open]]'>open support requests</a></li>
+   <li>Go back to the <a href='[[opencat]]'>open support requests in the same category</a></li>
+   <li>Go to <a href='[[prevopen]]'>previous</a> /
+             <a href='[[nextopen]]'>next</a> open request</li>
+   <li>Go to <a href='[[cprevopen]]'>previous</a> /
+             <a href='[[cnextopen]]'>next</a> open request in the same category</li>
+</ul>
+.
+
+/support/encodings.bml.edit.text<<
+<?p <b>Short answer:</b> <i>(applicable if you write your journal in English)</i>: Go to your 
+<a href="/editinfo.bml">personal settings page</a>. Find an option
+near the bottom of the page that is called <b>Auto-convert older entries from:</b>. Choose
+"Western European (Windows)" from the pull-down menu and save your settings. Your entries should
+now be editable. p?>
+
+<?p <b>Long answer</b>: In order to allow you to edit a non-Unicode entry, LiveJournal code needs to 
+know which encoding that entry has been posted in. For users of English and other West European 
+languages, this will normally be "Western European (Windows)", although if that doesn't work well
+for quote characters and other similar meta-characters, try "Western European (ISO)". Users
+writing in other languages should select their encoding; if it isn't in the supplied list, 
+contact <a href="/support/">Support</a> and explain the problem.  p?>
+
+<?p Note that "non-Unicode entry" may mean either a journal entry posted before LiveJournal underwent
+the conversion to Unicode, or a new journal entry posted recently with a client program that 
+is not Unicode-compatible.  p?>
+.
+
+/support/encodings.bml.overview.text<<
+<?p LiveJournal uses Unicode to store and display everything: 
+text of journal entries, comments, names and personal information... everything. 
+Unicode is a very powerful standard for working with text. 
+For example, it allows users to store and input information in many languages at once. 
+It supports the infrastructure of translating and maintaining the user interface in 
+languages other than English. p?>
+
+<?p Journal entries and comments which had been stored before LiveJournal switched
+to Unicode need to be converted to Unicode on-the-fly in order for the user to be able 
+to view or edit them. This page explains how to deal with some of the common problems in
+that area. p?>
+.
+
+/support/help.bml.interim<<
+<?p Every LiveJournal user is welcome to volunteer in 
+Support. There are many resources that you may find helpful. 
+The most important for new volunteers are listed here. p?>
+
+<ul><li><a href="/doc/guide/support.bml">The Support Guide</a></li>
+<li><?ljcomm lj_support ljcomm?></li> 
+<li><?ljcomm helpscreening ljcomm?></li></ul>
+
+<?p Both of the above communities have particularly helpful posts 
+listed as memories. The <cite><a href="/tools/memories.bml?user=helpscreening&keyword=Getting+Started&filter=all">Getting 
+Started</a></cite> category in <a href="/tools/memories.bml?user=helpscreening">HelpScreening's memories</a> 
+is an especially good place for new 
+volunteers to get information. p?>
+
+<?p New volunteers should keep the following basic rules of  
+Support in mind: p?>
+
+<ul><li>Be professional and courteous.</li>
+<li>Don't contact people submitting requests outside the Support 
+board to discuss their request or give them information.</li>
+<li>Keep information in Support requests private.</li>
+<li>Don't copy other people's answers.</li></ul>
+
+<?hr?>
+
+<?p When you first start answering requests in Support, your 
+answers will be screened. You won't be able to see other 
+screened answers. Experienced Support volunteers will approve 
+the first answer that fully answers the request and follows 
+Support's guidelines. If your answer isn't approved, it either 
+wasn't first or had some problem with it. You can learn why 
+answers are or aren't approved by asking in <?ljcomm helpscreening ljcomm?>, but 
+please wait until there is an approved answer in the request. p?>
+
+<?p Points are awarded when a request is closed. They are given 
+only to an approved answer. People who submit requests also 
+have the option of closing without credit. Because of this, 
+many requests will close with no points awarded. It generally 
+takes about a week for a request to close, but this time can vary
+based on the type of request. p?>
+
+<?p Support points can be difficult to earn, but if you have patience 
+and persistence, you can learn how to write approvable answers 
+and both earn Support points and help people. p?>
+
+<?p Support requests can be found on the <a 
+href="/support/help.bml">Support 
+board</a>. p?>
+.
+
+/support/see_overrides.bml.error.noprivs=Only users with the supportviewscreened or supporthelp privilege can view another user's overrides.
+
+/syn/index.bml.loginrequired.text=To manage your syndicated accounts, first <a href="/login.bml?ret=1">log in</a>.
+
+/syn/index.bml.promo.text=If you would like to see a list of the syndicated feeds that <?sitename?> users have advertised in the past, you may wish to visit <?ljcomm syn_promo ljcomm?>, where users post announcements of feeds they create and watch.
+
+/talkmulti.bml.error.comms_deleted=One of the comments has been deleted since you selected it. For security reasons, please go back and try again.
+
+/talkpost.bml.error.noreply_deleted=This comment has been deleted. You cannot reply to it.
+
+/talkpost.bml.loginq=Log in?
+
+/talkpost.bml.opt.friendsonly=- this user has disabled anonymous and non-friend posting.  You may post here if [[username]] lists you as a friend.
+
+/talkpost_do.bml.error.noverify=Sorry, you aren't allowed to post comments in other people's journals until your e-mail address has been verified. If you've lost the confirmation e-mail to do this, you can <a href='/register.bml'>have it re-sent</a>.
+
+/talkpost_do.bml.preview=This is how your comment will look when posted. Using the form below, you can edit your comment further, or you can submit it as is.
+
+/talkpost_do.bml.title=Comment Posted
+
+/talkscreen.bml.screened.body=The comment has been screened. You can view it <a href="[[link]]">here</a>.
+
+/talkscreen.bml.unscreened.body=The comment has been unscreened. You can view it <a href="[[link]]">here</a>.
+
+/tools/emailmanage.bml.address.old.text<<
+The following is a list of e-mail addresses that were used with your account,
+and the time they were deactivated as the primary e-mail address. Check the ones
+you wish to delete.
+.
+
+/tools/emailmanage.bml.desc.notfirst<<
+This page only lets you remove e-mail addresses that were used after the first time 
+you used the e-mail address your account is currently validated with. In particular, 
+this means an attacker isn't able to remove your original e-mail address.
+.
+
+/tools/emailmanage.bml.desc.text<<
+This page lets you remove past e-mail addresses that were used with your account.
+If you remove an address, it will no longer be possible to have your password mailed to that address.
+This is useful if somebody discovered your password and hijacked your journal. Simply
+have the new password mailed to your old address, change the password, and remove the
+attacker's e-mail address.
+.
+
+/tools/emailmanage.bml.notvalidated.text=To use this tool, your current e-mail address, [[email]] , must be validated. If you've lost the confirmation e-mail to do this, you can <a href='/register.bml'>have it re-sent</a>. After you validate your email, come back here.
+
+/tools/emailmanage.bml.notvalidated.title=E-mail not validated
+
+/tools/emailmanage.bml.title=E-mail Management
+
+/tools/memadd.bml.add_previous<<
+<?h1 Add to memories... h1?> 
+<?p To add the journal entry you were just viewing to your list of memorable entries, fill out the form below. p?>
+.
+
+/tools/memadd.bml.description.text<<
+  Give this journal entry a description that you can remember it by.  
+  To delete this entry from your list of memorable entries, enter a blank description.
+.
+
+/tools/memadd.bml.error.deleted.body=The journal entry previously described as "[[desc]]" has been removed from your list of memorable entries.
+
+/tools/memadd.bml.error.fivekeywords=Only 5 keywords/categories are allowed per memorable entry.
+
+/tools/memadd.bml.error.login=You must be <a href="/login.bml?ret=1">logged in</a> to use this feature.  Go log in and you'll be brought back here.
+
+/tools/memadd.bml.keywords.select=You can also select keywords you've used in the past:
+
+/tools/memadd.bml.keywords.text=Why is this entry memorable? Enter up to five comma-separated keywords or categories so you can find it later. 
+
+/tools/memadd.bml.whocansee<<
+  Who can see that you've marked this entry as memorable?
+  Everybody, only people you list as a friend, or just you?
+.
+
+/tools/memories.bml.body.keyword<<
+<?h1 [[keyword]] h1?> 
+<?p The following is a list of "[[keyword]]" journal entries that user <B>[[user]]</B> found memorable. p?>
+.
+
+/tools/memories.bml.body.list_categories<<
+<?h1 Memorable Entries h1?> 
+<?p The following is a list of categories that user <b>[[user]]</b> has placed memorable journal entries in. p?>
+.
+
+/tools/memories.bml.error.noentries.body<<
+This could be because: <ol>
+<li>the user hasn't defined any memorable events,</li>
+<li>the user's memorable events are protected and you don't have access to view them, or</li>
+<li>the user doesn't have any memories that match your filter criteria.</li></ol>
+.
+
+/tools/memories.bml.title.keyword=Memorable [[keyword]] Entries
+
+/tools/memories.bml.title.memorable=Memorable Entries
+
+/tools/recent_comments.bml.maxnotshown=Upgrade to a <a href="/paidaccounts/">Paid Account</a> to see [[max]] recent comments, instead of [[current]].
+
+/update.bml.note=<b>Note:</b> The time and date above are from our server.  Correct them for your timezone before posting.
+
+/update.bml.opt.noemail=Don't e-mail comments:
+
+/update.bml.subject=<b>Subject:</b> <i>(optional)</i>
+
+/update.bml.update.alternate=If you don't want to <a href="/download/">download a client</a> for your computer, or if one doesn't exist for your computer, you may use this page to update your LiveJournal.  This is also useful if you're on vacation or away from your primary computer.  If you have a <a href="/support/faqbrowse.bml?faqid=21">paid account</a>, you may update your journal <a href="/support/faqbrowse.bml?faqid=187">via e-mail</a>, <a href="/support/faqbrowse.bml?faqid=183">record phone posts</a> when away from a computer, or <a href="/support/faqbrowse.bml?faqid=69">create polls</a> for your entries.
+
+/update.bml.update.success=Update successful.  You can view your updated journal <a href="[[uri]]">here</a>.
+
+/userinfo.bml.about.comm=About:
+
+/userinfo.bml.about.user=Bio:
+
+/userinfo.bml.error.malfname=Malformed username: too long, or contains invalid characters.
+
+/userinfo.bml.error.notloggedin=If you wish to view your own user profile, you need to <a href='/login.bml?ret=1'>log in</a>.
+
+/userinfo.bml.friendof.comm=Watched by:
+
+/userinfo.bml.friendof.user=Friend of:
+
+/userinfo.bml.friends.user=Friends
+
+/userinfo.bml.label.email=E-mail:
+
+/userinfo.bml.label.interests.modifyyours=Modify&nbsp;yours
+
+/userinfo.bml.label.interests.removesome=Remove&nbsp;some
+
+/userinfo.bml.label.shared= Posting Access:
+
+/userinfo.bml.membership.paidmembers=After your <a href="/paidaccounts/">paid account</a> is set up, you may <a href="/paidaccounts/joincommunity.bml">join the paidmembers community</a>.
+
+/userinfo.bml.nonexist.body=The username <b>[[user]]</b> is not currently registered.
+
+/userinfo.bml.syn.parseerror=Error Message:
+
+crumb.about=About LiveJournal
+
+crumb.abusereport=Report Abuse
+
+crumb.acctfeatures=Features By Account Type
+
+crumb.advsearch=Advanced
+
+crumb.banners=Advertising Banners
+
+crumb.code=LiveJournal Code
+
+crumb.contract=Our Social Contract
+
+crumb.contributors=Contributors
+
+crumb.coppa=COPPA
+
+crumb.dmca=DMCA Information
+
+crumb.download=Download a Client
+
+crumb.emailgateway=E-mail Gateway
+
+crumb.emailmanage=E-mail Management
+
+crumb.filemanager=File Manager
+
+crumb.goat=About Frank
+
+crumb.guidingprinciples=Our Guiding Principles
+
+crumb.itsfree=It's Free?
+
+crumb.legal=Legal Information
+
+crumb.ljhome=Home
+
+crumb.memories=Memorable Entries
+
+crumb.paidaccounts=Paid Accounts
+
+crumb.paidacctstatus=Paid Account Status
+
+crumb.press=LiveJournal Press Area
+
+crumb.pressarticles=LiveJournal in the Press
+
+crumb.privacy=Privacy Policy
+
+crumb.register=Validate E-mail
+
+crumb.search=Search
+
+crumb.searchinterests=By Interest
+
+crumb.searchregion=By Region
+
+crumb.securechangepass=Change Password
+
+crumb.securecreatejournal=Create Journal
+
+crumb.securelogin=Login
+
+crumb.securemanage=Manage Accounts
+
+crumb.singles=LiveJournal Singles
+
+crumb.singlesopts=Modify Availability
+
+crumb.singlessearch=Search for Singles
+
+crumb.sitemap=Site Map
+
+crumb.sizechart=Sizing Chart
+
+crumb.staff=Senior Staff
+
+crumb.stats=Statistics
+
+crumb.store=LiveJournal Store
+
+crumb.storeitem=View Item Detail
+
+crumb.suggestions=Suggestions Generator
+
+crumb.suggview=Suggestions
+
+crumb.tos=Terms of Service
+
+dystopia.btn.login=LOGIN
+
+dystopia.hello_anonymous=Welcome to LiveJournal!
+
+dystopia.hello_loggedin=Hello, [[username]]!
+
+dystopia.nav.contact=Contact Info
+
+dystopia.nav.createjournal=Create a Journal
+
+dystopia.nav.developer=Developer Area
+
+dystopia.nav.download=Download
+
+dystopia.nav.editentries=Edit Entries
+
+dystopia.nav.editfriends=Your Friends
+
+dystopia.nav.editpassword=Your Password
+
+dystopia.nav.editpics=Your Pictures
+
+dystopia.nav.editstyle=Edit Style
+
+dystopia.nav.faq=LiveJournal FAQ
+
+dystopia.nav.findcomm=By Community
+
+dystopia.nav.finddir=Directory Search
+
+dystopia.nav.findint=By Interest
+
+dystopia.nav.findrandom=Random
+
+dystopia.nav.findregion=By Region
+
+dystopia.nav.home=Home
+
+dystopia.nav.journalcalendar=Calendar
+
+dystopia.nav.journalfriends=Friends
+
+dystopia.nav.journalinfo=User Info
+
+dystopia.nav.journalrecent=Recent
+
+dystopia.nav.legaldmca=DMCA
+
+dystopia.nav.legalprivacy=Privacy
+
+dystopia.nav.legaltos=Terms of Service
+
+dystopia.nav.login=Login
+
+dystopia.nav.logout=Logout
+
+dystopia.nav.lostinfo=Lost Password
+
+dystopia.nav.manage=Manage Accounts
+
+dystopia.nav.memories=Memories
+
+dystopia.nav.modifyjournal=Modify Journal
+
+dystopia.nav.news=News
+
+dystopia.nav.paidaccts=Paid Accounts
+
+dystopia.nav.paymentarea=Payment Area
+
+dystopia.nav.personalinfo=Personal Info
+
+dystopia.nav.sitemap=Site Map
+
+dystopia.nav.siteopts=Browse Options
+
+dystopia.nav.support=Have a question?
+
+dystopia.nav.updatejournal=Update Journal
+
+dystopia.nav.width|notes=Some languages require the bar on the left to be wider.  Feel free to keep the default value.
+dystopia.nav.width=122
+
+dystopia.navhead.findusers=Find Users
+
+dystopia.navhead.help=Help & Support
+
+dystopia.navhead.journal=Your Journal
+
+dystopia.navhead.legal=Legal
+
+dystopia.navhead.settings=Your Settings
+
+dystopia.navhead.welcome=Welcome!
+
+dystopia.search.aolim=AOL IM
+
+dystopia.search.icq=ICQ Number
+
+dystopia.search.int=Interest
+
+dystopia.search.jabber=Jabber
+
+dystopia.search.msn=MSN Username
+
+dystopia.search.region=Region
+
+dystopia.search.yahoo=Yahoo! ID
+
+dystopia.searchlj=Search LiveJournal:
+
+Email=E-mail
+
+email.newacct.body<<
+Congratulations, you have a new LiveJournal account!
+
+To complete your journal creation and verify your e-mail address, go
+here:
+
+   [[regurl]]
+
+The URL that your new journal is located at is:
+
+   [[siteroot]]/users/[[username]]/
+
+and also:
+
+   [[siteroot]]/~[[username]]/
+
+Below is your LiveJournal username and password:
+
+   Username: [[username]]
+   Password: [[password]]
+
+You can go to [[siteroot]]/ to access your account, create
+new journal entries, and modify your journal options, but we recommend 
+downloading a LiveJournal client. It's the easiest way to update your 
+journal, and there are clients available for many platforms! Get one at:
+
+   [[siteroot]]/download/
+
+Getting started on LiveJournal can be difficult when you don't know
+anyone. Visit http://newbies.livejournal.com for smart, helpful advice...
+with a little luck, you'll be a LiveJournal pro in no time!
+
+We hope you appreciate LiveJournal as much as we appreciate bringing it to
+you.  If you have any questions regarding how to use LiveJournal, please
+visit the support area at:
+
+   [[siteroot]]/support/ 
+
+There you'll find answers to almost any question you could ask about 
+LiveJournal.
+
+Our goal is to make LiveJournal totally rock... if we can do anything to
+make it easier, more powerful, more customizable, whatever... let us know.
+We're not running the site to make money.  We're not a dot-com company
+funded by venture-capital hoping to go IPO ... this site is run by all the
+people that use it.  Let us know what you want out of it.
+
+If you have questions, the support team will get you an answer usually
+in less than 24 hours.
+
+Enjoy!
+
+[[sitename]] Team
+[[siteroot]]/
+.
+
+email.newacct.subject=Welcome to LiveJournal
+
+error.nodb=Database temporarily unavailable.
+
+error.noremote=You have to <a href="/login.bml?ret=1">log in</a> in order to use this page.
+
+error.purged.text=This journal has been deleted and purged.
+
+error.suspended.text=This account has been either temporarily or permanently suspended. If you are [[user]], please refer to the FAQ entitled <cite><a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=106">My account has been suspended! How can I get it back?</a></cite> for more information. Please note that in order to maintain our users' privacy, [[sitename]] cannot discuss the reasons for any suspension with anyone except the account's owner.
+
+langname.be=Belarusian
+
+langname.da=Danish
+
+langname.de=German
+
+langname.en_GB=English (UK)
+
+langname.en_LJ=English
+
+langname.eo=Esperanto
+
+langname.es=Spanish
+
+langname.et=Estonian
+
+langname.fi=Finnish
+
+langname.fr=French
+
+langname.ga=Irish
+
+langname.gd=Gaelic
+
+langname.gr=Greek
+
+langname.he=Hebrew
+
+langname.hi=Hindi
+
+langname.hu=Hungarian
+
+langname.is=Icelandic
+
+langname.it=Italian
+
+langname.ja=Japanese
+
+langname.la=Latin
+
+langname.lv=Latvian
+
+langname.ms=Malay
+
+langname.nb=Norwegian Bokmål
+
+langname.nl=Dutch
+
+langname.nn=Norwegian Nynorsk
+
+langname.pl=Polish
+
+langname.pt=Portuguese
+
+langname.ru=Russian
+
+langname.sv=Swedish
+
+langname.tr=Turkish
+
+langname.uk=Ukrainian
+
+langname.zh=Chinese Simplified
+
+ljcom.account.feature=Feature
+
+ljcom.account.feature.email=LiveJournal e-mail address
+
+ljcom.account.feature.full2=For the full table, <a [[aopts]]>see this page</a>.
+
+ljcom.account.feature.limit=limited
+
+ljcom.account.feature.ownblog=Your own journal/weblog
+
+ljcom.account.feature.photo=100MiB Integrated photo hosting
+
+ljcom.account.feature.pp=Phone Posting
+
+ljcom.account.feature.search=Directory search
+
+ljcom.account.feature.styles=Create/customize styles
+
+ljcom.account.feature.syn=Friends and syndicated feeds aggregator
+
+ljcom.account.free=Free Account
+
+ljcom.account.paid=Paid Account
+
+ljcom.account.paid12=Paid for 12 Months ($25 USD)
+
+ljcom.account.paid2=Paid for 2 Months ($5 USD)
+
+ljcom.account.paid6=Paid for 6 Months ($15 USD)
+
+ljcom.accounttype=Account Type
+
+ljcom.badpass.email=Your password cannot be based on your e-mail address.
+
+ljcom.badpass.realname=Your password cannot be based on your real name.
+
+ljcom.badpass.username=Your password cannot be based on your username.
+
+ljcom.meetup.head=Meetup!
+
+ljcom.meetup.link|notes=This string will be inserted into the [[link]] variable in ljcom.meetup.text.
+ljcom.meetup.link=International [[name]] Meetup Day
+
+ljcom.meetup.moreinfo=(<a href="[[link]]">more info</a>)
+
+ljcom.meetup.text|notes=[[link]] will be replaced with the contents of ljcom.meetup.link.
+ljcom.meetup.text=Want to meet people in real life from around your area to discuss this interest? Check out the [[link]]!
+
+ljcom.menu.upgrade=Upgrade your account
+
+ljcom.userinfo.accounttype=Account type
+
+ljcom.userinfo.paiduser=Paid User
+
+ljcom.userinfo.types.early=Early Adopter
+
+ljcom.userinfo.types.free=Free Account
+
+ljcom.userinfo.types.paid=Paid Account
+
+ljcom.userinfo.types.paid_early=Paid Account, previously an Early Adopter
+
+ljcom.userinfo.types.paid_early_expiring=Paid Account, expiring [[paiduntil]], previously an Early Adopter
+
+ljcom.userinfo.types.paid_expiring=Paid Account, expiring [[paiduntil]]
+
+ljcom.userinfo.types.permanent=Permanent Account
+
+ljcom.userinfo.types.permanent_early=Permanent Account, previously an Early Adopter
+
+portal.goat.name=Site Mascot
+
+portal.goattext.des=What do you want your goat to say?  The only true thing goats can say is 'Baaaaah', but you can pretend your goat can say something else if you really want.
+
+portal.goattext.name=Goat Text
+
+portal.memories.portalname=Memorable Entries
+
+portal.memories.portaltitle=Memorable Entries
+
+portal.misbehaved.des=You really wanted to leave this unchecked.  Goats that aren't housetrained are nothing but trouble.
+
+portal.misbehaved.name=Mishaved Goat
+
+portal.newtolj.name=Site Links
+
+portal.recent.items.description=By default, only the most recent entry is shown.
+
+portal.recent.showtext.description=By default only subjects will be shown.
+
+protocol.mail_bouncing=You are currently using a bad e-mail address.  All mail we try to send you is bouncing.  [[sitename]] requires a valid e-mail address for continued use.  Visit [[siteroot]]/support/faqbrowse.bml?faqid=19 for how to change your e-mail address.
+
+protocol.must_revalidate=You need to validate your new e-mail address.  Your old one was good, but since you've changed it, you need to revalidate the new one.  If you don't validate your address, you will not have access to all of the functions of [[sitename]].  Visit [[siteroot]]/support/faqbrowse.bml?faqid=11 for more information.
+
+protocol.not_validated=Your e-mail address has not been validated.  You may continue to use [[sitename]], but if you do not validate your address, you will not have access to all functions of the site.  See the instructions that were mailed to you when you created your journal, or visit [[siteroot]]/support/faqbrowse.bml?faqid=11 for more information.
+
+talk.spellcheck=Check spelling during preview
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_english
+
+xcolibur.greeting.anon=Welcome to LiveJournal!
+
+xcolibur.greeting.logged_in=Welcome, [[name]]! [[logout]]
+
+xcolibur.login=Login?
+
+xcolibur.logout=Log&nbsp;out?
+
+xcolibur.nav.about=About
+
+xcolibur.nav.about.download=Download
+
+xcolibur.nav.about.general=General Info
+
+xcolibur.nav.about.paidaccounts=Paid Accounts
+
+xcolibur.nav.about.press=Press
+
+xcolibur.nav.about.sitenews=Site News
+
+xcolibur.nav.about.stats=Statistics
+
+xcolibur.nav.footer.sitemap=Site Map
+
+xcolibur.nav.help=Help
+
+xcolibur.nav.help.ask=Ask a Question
+
+xcolibur.nav.help.contact=Contact&nbsp;Info
+
+xcolibur.nav.help.faq=<abbr title="Frequently Asked Questions">FAQ</abbr>
+
+xcolibur.nav.help.lostpassword=Lost Password
+
+xcolibur.nav.home=Home
+
+xcolibur.nav.journal=Journal
+
+xcolibur.nav.journal.archive=Archive
+
+xcolibur.nav.journal.edit.entries=Edit Entries
+
+xcolibur.nav.journal.friends=Friends
+
+xcolibur.nav.journal.info=Info
+
+xcolibur.nav.journal.memories=Memories
+
+xcolibur.nav.journal.recent=Recent
+
+xcolibur.nav.journal.update=Update
+
+xcolibur.nav.manage=Manage
+
+xcolibur.nav.manage.community=Communities
+
+xcolibur.nav.manage.customize=Customize
+
+xcolibur.nav.manage.entries=Entries
+
+xcolibur.nav.manage.friends=Friends
+
+xcolibur.nav.manage.info=Info
+
+xcolibur.nav.manage.password=Password
+
+xcolibur.nav.manage.pics=User Pictures
+
+xcolibur.nav.manage.styles=Styles
+
+xcolibur.nav.manage.tags=Tags
+
+xcolibur.nav.search=Search
+
+xcolibur.nav.search.directory=Region
+
+xcolibur.nav.search.directory.search=Advanced
+
+xcolibur.nav.search.interests=Interests
+
+xcolibur.nav.search.random=Random
+
+xcolibur.nav.siteopts=Browse Options
+
+xcolibur.nav.title=Navigate:
+
+xcolibur.nav.welcome=Welcome
+
+xcolibur.nav.welcome.create=Create an Account
+
+xcolibur.nav.welcome.login=Login
+
+xcolibur.nav.welcome.update=Update Your Journal
+
+xcolibur.search=Search:
+
+xcolibur.search.aolim=AOL IM
+
+xcolibur.search.category=Category:
+
+xcolibur.search.icq=ICQ Number
+
+xcolibur.search.int=Interest
+
+xcolibur.search.jabber=Jabber
+
+xcolibur.search.msn=MSN Username
+
+xcolibur.search.region=Region
+
+xcolibur.search.yahoo=Yahoo! ID
+
+xcolibur.upgrade=Upgrade Your Account
+

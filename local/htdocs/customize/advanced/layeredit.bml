@@ -1,0 +1,139 @@
+<style>
+    em.error { font-weight: bold; color: red; font-style: normal; }
+    textarea.s2code { width: 100%; display: block; clear: both; padding: 2px; }
+</style>
+<?_code # -*-bml-*-
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    # for error reporting
+    my $err = sub {
+        return "<title>Error</title>\n<h2>Error</h2>" . shift;
+    };
+
+    # we need a valid id
+    my $id = $GET{'id'} if $GET{'id'} =~ /^\d+$/;
+    return $err->("You have not specified a layer to edit.")
+        unless $id;
+
+    # authenticate user;
+    my $remote = LJ::get_remote();
+    return $err->("You must be logged in to edit layers.")
+        unless $remote;
+
+    # load layer
+    my $lay = LJ::S2::load_layer($id);
+    return $err->("The specified layer does not exist.")
+        unless $lay;
+
+    # if the b2lid of this layer has been remapped to a new layerid
+    # then update the b2lid mapping for this layer
+    my $b2lid = $lay->{b2lid};
+    if ($b2lid && $LJ::S2LID_REMAP{$b2lid}) {
+        LJ::S2::b2lid_remap($remote, $id, $b2lid);
+        $lay->{b2lid} = $LJ::S2LID_REMAP{$b2lid};
+    }
+
+    # is authorized admin for this layer?
+    return $err->('You are not authorized to edit this layer.')
+        unless LJ::can_manage($remote, $lay->{'userid'});
+
+    # get u of user they are acting as
+    my $u = $lay->{'userid'} == $remote->{'userid'} ? $remote : LJ::load_userid($lay->{'userid'});
+
+    # check priv and ownership
+    return $err->("You are not authorized to edit styles.")
+        unless LJ::get_cap($u, "s2styles");
+
+    # at this point, they are authorized, allow viewing & editing
+    my $ret;
+    $ret .= "<form method='post' action='layeredit.bml?id=$id'>\n";
+    $ret .= BML::ml('Backlink', { 'text' => 'Your Layers', 'link' => "layers.bml?authas=$u->{'user'}" }) . "\n";
+
+    # get s2 code from db - use writer so we know it's up-to-date
+    my $dbh = LJ::get_db_writer();
+    my $s2code = $POST{'s2code'};
+    $s2code = $dbh->selectrow_array("SELECT s2code FROM s2source WHERE s2lid=?",
+                                    undef, $lay->{'s2lid'}) unless $s2code;
+
+    # we tried to compile something
+    if ($POST{'action'} eq "compile") {
+        $ret .= "<div style='margin: 20px 0 20px 40px'>\n";
+        $ret .= "<b>S2 Compiler Output</b> <em>at " . scalar(localtime) . "</em><br />\n";
+
+        my $error;
+        $POST{'s2code'} =~ s/\r//g;  # just in case
+        unless (LJ::S2::layer_compile($lay, \$error, { 's2ref' => \$POST{'s2code'} })) {
+
+            $error =~ s/LJ::S2,.+//s;
+            $error =~ s!, .+?(src/s2|cgi-bin)/!, !g;
+
+            $ret .= "Error compiling layer:\n<pre style=\"border-left: 1px red solid\">$error</pre>";
+
+            # display error with helpful context
+            if ($error =~ /^compile error: line (\d+)/i) {
+                my $errline = $1;
+                my $kill = $errline - 5 < 0 ? 0 : $errline - 5;
+                my $prehilite = $errline - 1 > 4 ? 4: $errline - 1;
+                my $snippet = $s2code;
+
+                # make sure there's a newlilne at the end
+                chomp $snippet;
+                $snippet .= "\n";
+
+                # and now, fun with regular expressions
+                my $ct = 0;
+                $snippet =~ s!(.*?)\n!sprintf("%3d", ++$ct) . ": " . 
+                    $1 . "\n"!ge;                      # add line breaks and numbering
+                $snippet = LJ::ehtml($snippet);
+                $snippet =~ s!^((?:.*?\n){$kill,$kill})           # kill before relevant lines
+                               ((?:.*?\n){$prehilite,$prehilite}) # capture context before error
+                               (.*?\n){0,1}                       # capture error
+                               ((?:.*?\n){0,4})                   # capture context after error
+                               .*                                 # kill after relevant lines
+                             !$2<em class='error'>$3</em>$4!sx;
+
+                $ret .= "<b>Context</b><br /><pre>$snippet</pre>\n";
+            }
+
+        } else {
+            $ret .= "No errors\n";
+        }
+        $ret .= "</div>\n\n";
+    }
+
+    $ret .= LJ::html_hidden("action", "compile") . "\n";
+    $ret .= "<p>" . LJ::html_submit('submit', 'Compile', {
+        'style' => 'float: right; margin-bottom: 2px',
+        'accesskey' => 'c', 
+        'title' => 'alt-C: compile',
+      } ) . "\n";
+    $ret .= "<b>Edit layer source</b>\n";
+    $ret .= LJ::html_textarea({ 'name' => 's2code', 'class' => 's2code', 'wrap' => 'off',
+                                'cols' => '50', 'rows' => '40', 'value' => $s2code }) . "\n";
+    $ret .= LJ::html_submit('submit', 'Compile') . "\n";
+    $ret .= "</p></form>\n";
+
+    # load layer info
+    my $layinf = {};
+    LJ::S2::load_layer_info($layinf, [ $id ]);
+
+    # find a title to display on this page
+    my $type = $layinf->{$id}->{'type'};
+    my $name = $layinf->{$id}->{'name'};
+
+    # find name of parent layer if this is a child layer
+    if (! $name && $type =~ /^(user|theme|i18n)$/) {
+        my $par = $lay->{'b2lid'} + 0;
+        LJ::S2::load_layer_info($layinf, [$par]);
+        $name =  $layinf->{$par}->{'name'};
+    }
+    
+    # Only use the layer name if there is one and it's more than just whitespace
+    my $title = "[$type] ";
+    $title .= $name && $name =~ /[^\s]/ ? "$name [\#$id]" : "Layer \#$id";
+
+    return "<title>" . LJ::ehtml($title) . " - Edit</title>\n" . $ret;
+}
+_code?>

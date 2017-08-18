@@ -1,0 +1,209 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $remote = LJ::get_remote();
+    return "You must first <a href=\"/login.bml?ret=1\">log in</a>."
+        unless $remote;
+    
+    return "You don't have access to see this."
+        unless LJ::remote_has_priv($remote, "moneyview");
+
+    my $dbh = LJ::get_dbh("slow", "slave", "master")
+        or return "database unavailable";
+
+    my ($ret, $sth);
+
+    my $wholemonth = 0;
+    if ($GET{'day'} eq "*") { $wholemonth = 1; }
+    
+    my $year = $GET{'year'}+0;
+    my $month = $GET{'month'}+0;
+    my $day = $GET{'day'}+0;
+    
+    unless ($year && $month) {
+        my @time = localtime();
+        $year = $time[5]+1900;
+        $month = $time[4]+1;
+        $day = $time[3];
+    }
+    
+    if ($wholemonth) { $day = "*"; }
+    $ret .= "<form method='GET'>";
+    $ret .= "Year: " . LJ::html_text({ 'name' => 'year', 'size' => 4, 'value' => $year }) . " ";
+    $ret .= "Month: " . LJ::html_text({ 'name' => 'month', 'size' => 2, 'value' => $month }) . " ";
+    $ret .= "Day: " . LJ::html_text({ 'name' => 'day', 'size' => 2, 'value' => $day }) . " ";
+    $ret .= LJ::html_submit('View') . "</form> (enter * for day to get month report)";
+
+    my ($date_low, $date_high);
+
+    # whole month
+    my $fmt = sub { $dbh->quote(sprintf("%02d-%02d-%02d 00:00:00", @_)) };
+    if ($day eq '*') {
+        $date_low  = $fmt->($year, $month,   '01');
+        if ($month+1 > 12) {
+            $date_high = $fmt->($year+1, 1, '01');
+        } else {
+            $date_high = $fmt->($year, $month+1, '01');
+        }
+    } else {
+        $date_low  = $fmt->($year, $month, $day);
+        if ($day+1 > LJ::days_in_month($month, $year)) {
+            if ($month+1 > 12) {
+                $date_high = $fmt->($year+1, 1, '01');
+            } else {
+                $date_high = $fmt->($year, $month+1, '01');
+            }
+        } else {
+            $date_high = $fmt->($year, $month, $day+1);
+        }
+    }
+
+    $sth = $dbh->prepare("SELECT * FROM payments WHERE mailed<>'C' AND daterecv>$date_low AND daterecv<$date_high");
+    $sth->execute;
+    my @rows = ();
+    push @rows, $_ while $_ = $sth->fetchrow_hashref;
+
+    my $u = LJ::load_userids( map { $_->{userid} } @rows );
+    
+    $ret .= "<table style='margin-top: 10px;' cellpadding='4' cellspacing='1' border='1'><tr><td><b>Pay ID#</b></td><td><b>User</b></td><td><b>Date Sent/Recv</b><td><b>Amount</b></td><td><b>Used/Mailed</b></td><td><b>Method</b></td></tr>\n";
+    
+    my $totalmoney = 0;
+    my %methodcount = ();
+    my %methodtotal = ();
+    my %daycount = ();
+    my %daytotal = ();
+    
+    my $row_ct = 0;
+    my $row_show = 0;
+    my $row_skip = 0;
+    my $row_html;
+
+    foreach my $row (@rows)
+    {
+        my $amount = sprintf("\$%.02f", $row->{'amount'});
+        $totalmoney += $row->{'amount'};
+        $methodcount{$row->{'method'}}++;
+        $methodtotal{$row->{'method'}} += $row->{'amount'};
+        
+        if ($row->{'daterecv'} =~ /^(\d\d\d\d-\d\d-\d\d)/) {
+            my $day = $1;
+            $daycount{$day}++;
+            $daytotal{$day} += $row->{'amount'};
+        }
+
+        $row_ct++;
+        next if $GET{'skip'} && ++$row_skip <= $GET{'skip'};
+        
+        if ($row_show < 500) {
+            my $user = $u->{$row->{userid}}->{user};
+
+	    $row_show++;
+            $row_html .= "<tr valign='top'><td align='center'><a href=\"paiddetails.bml?payid=$row->{'payid'}\">#$row->{'payid'}</a></td><td><b><a href=\"/userinfo.bml?user=$user\">$user</a></b></td><td>$row->{'datesent'}<br />$row->{'daterecv'}</td><td align='right'>$amount</td><td align='center'>$row->{'used'}/$row->{'mailed'}</td><td>$row->{'method'}</td></tr>";
+        }
+    }
+    
+    my $slinks;
+    if ($GET{'skip'}) {
+        $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} - 500}) . "\">&lt;&lt; Back</a> ";
+    }
+    if ($row_show != $row_ct) {
+        my $from = $GET{'skip'}+1;
+        my $to = $row_show+$GET{'skip'};
+        $slinks .= "(Records $from-$to of $row_ct) ";
+    }
+    if ($GET{'skip'} + $row_show < $row_ct) {
+        $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} + 500}) . "\">Forward &gt;&gt;</a> ";
+    }
+
+    my $bar_html;
+    $bar_html .= "<tr><td colspan='7' align='center' bgcolor='#c0c0c0'><i>$slinks</i></td></tr>\n"
+	if $slinks;
+
+    $ret .= $bar_html;
+    $ret .= $row_html;
+    $ret .= $bar_html;
+
+    $ret .= "</table>\n";
+
+    return $ret unless @rows;
+
+    $ret .= "<p><b>Statistics:</b><ul>";
+    $ret .= "<li>Total money: <b>" . sprintf("\$%.02f", $totalmoney) . "</b></li>\n";
+
+    $ret .= "<li>Break-down by payment method:<ul>";
+    foreach my $method (sort keys %methodcount) {
+        $ret .= "<li>$method: <b>$methodcount{$method} = " . sprintf("\$%.02f", $methodtotal{$method}) . "</b></li>\n";
+    }
+    $ret .= "</ul></li>";
+
+    $ret .= "<li>Break-down by day:<ul>";
+    foreach my $day (sort keys %daycount) {
+        $ret .= "<li>$day: <b>$daycount{$day} = " . sprintf("\$%.02f", $daytotal{$day}) . "</b></li>\n";
+    }
+    $ret .= "</ul></li>";
+    
+    $ret .= "<li>Break-down by item type:<ul>";
+
+    my @payid_in = map { $_->{payid} } @rows;
+    my $payid_bind = join(",", map { '?' } @rows);
+    $sth = $dbh->prepare("SELECT * FROM payitems WHERE status='done' AND payid IN ($payid_bind)");
+    $sth->execute(@payid_in);
+    die $dbh->errstr if $dbh->err;
+
+    my %idata = ();
+    while (my $it = $sth->fetchrow_hashref) {
+
+        my $item = $it->{item};
+        my $subkey = $item . (LJ::Pay::is_bonus($it, 'sized') ? ('-' . (split('-', $it->{subitem}))[0]) : '') . ($it->{qty} ? "-$it->{qty}" : '');
+
+        foreach my $ref ($idata{$item}, $idata{$item}->{sub}->{$subkey}) {
+            $ref->{ct}++;
+            $ref->{sum_pos} += $it->{amt} if $it->{amt} > 0;
+            $ref->{sum_neg} += $it->{amt} if $it->{amt} < 0;
+        }
+        delete $idata{$item}->{sub} if $item eq $subkey;
+    }
+
+    # sorts with proper string/integer comparisons on key parts
+    my $sort_sub = sub {
+        my ($aname, $asize, $aqty) = split('-', $a);
+        if ($asize && ! $aqty) { $aqty = $asize; $asize = 0; }
+        
+        my ($bname, $bsize, $bqty) = split('-', $b);
+        if ($bsize && ! $bqty) { $bqty = $bsize; $bsize = 0; }
+
+        return $bname cmp $aname || $bsize <=> $asize || $bqty <=> $aqty;
+    };
+
+    # recursive closure to display items, counts, totals
+    my $show_item;
+    $show_item = sub {
+        my ($itemname, $ref) = @_;
+        return '' unless $ref;
+
+        my $r = "<li>$itemname: <b>$ref->{ct}</b> = " . sprintf("\$%.02f", $ref->{sum_pos});
+        $r .= ", " . sprintf("\$%.02f", $ref->{sum_neg}) if $ref->{sum_neg};
+        if (%{$ref->{sub}||{}}) {
+            $r .= "<ul>";
+            $r .= $show_item->($_, $ref->{sub}->{$_})
+                foreach sort $sort_sub keys %{$ref->{sub}};
+            $r .= "</ul>";
+        }
+        $r .= "</li>";
+
+        return $r;
+    };
+
+    # build tree of items
+    foreach my $item (sort $sort_sub keys %idata) {
+        $ret .= $show_item->($item, $idata{$item});
+    }
+    $ret .= "</ul></li>\n";
+    
+    $ret .= "</ul></p>";
+    
+    return $ret;
+} 
+_code?>

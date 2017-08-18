@@ -1,0 +1,1564 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=Jei norite ištrinti žurnalą arba atšaukti jo trynimą, galite padaryti tai čia. Ištrynus žurnalą jūs turėsite 30 dienų atšaukti trynimą, jei apsigalvotumėte. Po 30-ties dienų žurnalas bus visiškai ištrintas be galimybės jį susigražinti.
+
+/accountstatus.bml.journalstatus.head=Žurnalo Aktyvavimo Būsena
+
+/accountstatus.bml.journalstatus.select.activated=Aktyvuotas
+
+/accountstatus.bml.journalstatus.select.deleted=Ištrintas
+
+/accountstatus.bml.journalstatus.select.head=Būsena:
+
+/accountstatus.bml.journalstatus.select.suspended=Sustabdytas
+
+/allpics.bml.current=Dabartiniai Paveikslėliai
+
+/allpics.bml.default=<u>Pagrindinis</u>
+
+/allpics.bml.edit2=Jūs galite norėti <a href='[[editlink]]'>redaguoti paveikslėlių raktinius žodžius</a> arba <a href='[[uploadlink]]'>įkelti naują paveikslėlį</a>.
+
+/allpics.bml.error.noparam=Reikia nurodyti vartotojo parametrą.
+
+/allpics.bml.keywords=Raktiniai žodžiai:
+
+/allpics.bml.nopics.text.other=Vartotojas nėra įkėlęs jokių paveikslėlių.
+
+/allpics.bml.nopics.text2=Jūs nesate įkėlęs jokių paveikslėlių. Tai padaryti galite <a href='[[link]]'>čia</a>.
+
+/allpics.bml.nopics.title=Paveikslėlių nėra
+
+/allpics.bml.pics=Štai čia yra [[user]] paveikslėliai.
+
+/allpics.bml.title=Paveikslėliai
+
+/changepassword.bml.btn.proceed=Vykdyti
+
+/changepassword.bml.changepassword.header=Pakeisti Slaptažodį
+
+/changepassword.bml.changepassword.instructions=Slaptažodžiui pakeisti, užpildykite šią formą. Jei reikia pagalbos išsirenkant gerą slaptažodį ir prižiūrint savo prisijungimo parametrų saugumą, siūlome paskaityti <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">šiuos DUK</a>.
+
+/changepassword.bml.email.body<<
+Jūsų slaptažodis [[sitename]] puslapyje pakeistas.
+
+Ateityje, pamiršus jį, apsilankykite čia:
+
+  [[siteroot]]/lostinfo.bml
+
+Su pagarba,
+[[sitename]] Komanda
+
+[[siteroot]]
+
+.
+
+/changepassword.bml.email.subject=Slaptažodžio Keitimas
+
+/changepassword.bml.error.badcheck=Naujasis slaptažodis blogas: [[error]]
+
+/changepassword.bml.error.badnewpassword=Pakartoję naujajį slaptažodį įvedėte jį ne tokį patį, kaip pirmą kartą - greičiausiai tai buvo teksto rinkimo klaida. Prašome įvesti ir patvirtinti jūsų naują slaptažodį dar kartą.
+
+/changepassword.bml.error.badoldpassword=Nurodytas negeras senasis slaptažodis.
+
+/changepassword.bml.error.blankpassword=Jūsų naujas slaptažodis negali būti tuščias.
+
+/changepassword.bml.error.changetestaccount=Negalima pakeisti testinio vartotojo slaptažodžio.
+
+/changepassword.bml.error.characterlimit=Slaptažodžiai negali būti ilgesni nei  simbolių.
+
+/changepassword.bml.error.invaliduser=Vartotojas <B>[[user]]</B> neegzistuoja. Jūs tikri, kad vardą įvedėte teisingai?
+
+/changepassword.bml.error.mustenterusername=Privalote įvesti vartotojo vardą.
+
+/changepassword.bml.error.nonascii=Slaptažodžiuose leidžiama naudoti tik ASCII simbolius. Prašome nurodyti slaptažodį, kuris sudarytas tik iš ASCII simbolių.
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=Negalite pakeisti savo slaptažodžio, kol jūsų dabartinis pašto adresas nėra patikrintas.
+
+/changepassword.bml.newpassword=Naujas Slaptažodis:
+
+/changepassword.bml.newpasswordagain=Naujas Slaptažodis (dar kartą):
+
+/changepassword.bml.oldpassword=Senasis Slaptažodis:
+
+/changepassword.bml.proceed.instructions=Spauskite mygtuką apačioje ir jūsų slaptaždis bus pakeistas. Apie tai jums taip pat bus pranešta el. paštu.
+
+/changepassword.bml.success.text=Slaptažodis pakeistas ir el.paštu nusiųsta apie tai primenanti žinutė.
+
+/changepassword.bml.title=Slaptažodžio Keitimas
+
+/community/index.bml.title=Bendruomenių Centras
+
+/community/join.bml.button.join=Prisijungti prie bendruomenės
+
+/community/join.bml.label.addtofriends=Įtraukti "[[maintainer]]" į draugų sąrašą.<br>
+
+/community/join.bml.label.allowposting=Šioje bendruomenėje rašyti gali visi nariai, taigi šią teisę dabar turite ir jūs. Jei jūs jau esate atsidaręs LiveJournal programinę įrangą savo kompiuteryje, jums gali tekti atsijungti ir vėl prisijungti, kad šis žurnalas atsirastų žurnalų, į kuriuos galite rašyti, sąraše.
+
+/community/join.bml.label.banned=Bendruomenės prižiūrėtojas uždraudė jūsų prisijungimą.
+
+/community/join.bml.label.commlogged=Jūs prisijungėte su dalinamuoju/bendruomenės vartotoju, o ne su asmeniniu vardu ir slaptažodžiu.
+
+/community/join.bml.label.errorcomminfo=Nurodyta bendruomenės informacija yra neteisinga.
+
+/community/join.bml.label.expls=Paspaudę mygtuką apačioje prisijungsite prie "[[maintainer]]" bendruomenės. Nužymėkite nustatymą apačioje jei norite prisijungti prie bendruomenės, bet nenorite matyti bendruomenės įrašų savo draugų sąrašo puslapyje.
+
+/community/join.bml.label.loginfirst=Tam, kad tapti bendruomenės nariu, visų pirma reikia <a href="/login.bml?ret=1">prisijungti</a> su vardu ir slaptažodžiu.
+
+/community/join.bml.label.membernow=Dabar jūs esate <a href="/userinfo.bml?user=[[username]]">[[commname]] bendruomenės</a> narys.
+
+/community/join.bml.label.sure=Jūs įsitikinęs?
+
+/community/join.bml.success=Pavyko
+
+/community/join.bml.title=Prisijungti prie Bendruomenės
+
+/community/leave.bml.button.leave=Palikti Bendruomenę
+
+/community/leave.bml.label.buttontoleave=Tam, kad palikti "[[commname]]" bendruomenę, spauskite mygtuką apačioje.
+
+/community/leave.bml.label.infoerror=Nurodyta bendruomenės informacija yra neteisinga.
+
+/community/leave.bml.label.logoutfirst=Tam, kad palikti bendruomenę, visų pirma reikia <a href="/login.bml?ret=1">prisijungti</a> su savo vartotojo vardu ir slaptažodžiu.
+
+/community/leave.bml.label.removed=Jūs ką tik palikote <a href="/userinfo.bml?user=[[commuser]]">[[commname]] bendruomenę</a>
+
+/community/leave.bml.success=Pavyko
+
+/community/leave.bml.sure=Jūs įsitikinęs?
+
+/community/search.bml.button.clear=Išvalyti
+
+/community/search.bml.button.search=Ieškoti!
+
+/community/search.bml.checkbox.onlywithpics=Tik tar bendruomenių su paveikslėliais
+
+/community/search.bml.label.byinterest=Pagal Pomėgius
+
+/community/search.bml.label.bylocation=Pagal Vietą
+
+/community/search.bml.sel.username=Vartotojo Vardas
+
+/community/search.bml.sel.week=savaitė
+
+/community/search.bml.title=Bendruomenių paieška
+
+/create.bml.age.check.question=Ar Jums mažiau nei 13 metų?
+
+/create.bml.age.check.yes=Taip, man dar nėra 13 metų
+
+/create.bml.age.check2.question=Ar Jums daugiau nei 13 metų?
+
+/create.bml.age.check2.yes=Taip, man daugiau nei 13 metų.
+
+/create.bml.age.head=Amžius
+
+/create.bml.btn.proceed=Tęsti
+
+/create.bml.clusterselect.cluster=Klasteris
+
+/create.bml.clusterselect.clusternum=Klasteris [[number]]
+
+/create.bml.clusterselect.head=Klasterio pasirinkimas
+
+/create.bml.clusterselect.nocluster=Be klasterio
+
+/create.bml.clusterselect.text=Prašau pasirinkti klasterį, kurį norite sukurti šioje paskyroje. <b>Pastaba:</b> Tai skirta klaidų taisymo/testavimo tikslams. Galutiniame rezultate, vartotojas negalės pasirinkti, arba išvis nežinos apie tai.
+
+/create.bml.create.head=Kuriamas naujas žurnalas
+
+/create.bml.create.text=Norėdami sukurti naują žurnalą yra paprasta, tiesiog sekite instrukciją!
+
+/create.bml.email.head=Jūsų el. pašto adresas
+
+/create.bml.email.input.head=El. pašto adresas
+
+/create.bml.error.coppa.under13=Atsiprašome, tačiau dėl galiojančių įstatymų, jūs neturite teisės naudotis LiveJournal'o paslaugomis, kol Jums nesukako 13 metų. Prašome grįžti savo 13-to gimtadienio proga.
+
+/create.bml.error.email.blank=Turite įvesti Jūsų el. pašto adresą.
+
+/create.bml.error.email.lj_domain=Negalite naudoti [[domain]] pavadinimo kuriant vartotoją. Prašome įvesti kitą e. pašto adresą.
+
+/create.bml.error.email.nospaces=Tarpai neleidžiami el. pašto adrese. Jei naudojate AOL, prisiminkite, kad Jūsų internetinis el. pašto adresas yra Jūsų vardas be tarpų, esantis prieš <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=Galite naudoti tik ASCII simbolius slaptažodyje.
+
+/create.bml.error.password.blank=Turite įvesti slaptažodį.
+
+/create.bml.error.password.nomatch=Slaptažodis netinka.
+
+/create.bml.error.postrequired=Reikalingas įrašas.
+
+/create.bml.error.username.blank=Prašau įvesti vardą arba slapyvardį.
+
+/create.bml.error.username.inuse=Vartotojo vardas jau naudojamas; prašome pasirinkti kitą.
+
+/create.bml.error.username.iscode=Vartotojo vardas panašus į kvietimo kodą, o ne vartotojo vardą.
+
+/create.bml.error.username.mustenter=Privalote įvesti vartotojo vardą.
+
+/create.bml.error.username.reserved=Atsiprašome, šis vartotojo vardas rezervuotas.
+
+/create.bml.initial.friend.lj_maintenance=Ataskaitos apie planuotus &amp; neplanuotus neveikimus ir techninius darbus.
+
+/create.bml.initial.friend.news=LiveJournal'o naujienos ir įvykiai
+
+/create.bml.initialfriends=Įtraukite šiuos žurnalus į Jūsų draugų sąrašą, norėdami būti laiku informuoti apie puslapio naujienas ir įvykius.
+
+/create.bml.initialfriends.heading=Draugų pradžia
+
+/create.bml.name.head=Jūsų vardas
+
+/create.bml.name.input.head=Vardas/pavadinimas:
+
+/create.bml.name.text=Jūsų vardas arba slapyvardis? Jis bus pateiktas Jūsų žurnalo viršuje, ir vartotojų direktorijoje turite pasirinkti, kad būtumete sąraše. Neprivalote įvesti viso arba tikro vardo.
+
+/create.bml.password.head=Slaptažodis
+
+/create.bml.password.input.head1=Slaptažodis:
+
+/create.bml.password.input.head2=Patvirtinti slaptažodį:
+
+/create.bml.password.text=Pasirinkti slaptažodį.
+
+/create.bml.proceed.btn.proceed=Tęsti...
+
+/create.bml.proceed.warning=Paspauskite <b>Tęsti</b> <i>tik vienąkart</i>!!
+
+/create.bml.success.btn.enterinfo=Įveskite asmeninę informaciją
+
+/create.bml.success.head=Pavyko!
+
+/create.bml.success.text1=Jūsų žurnalas sukurtas. Svarbi registracijos informacija išsiųsta elektroniniu laišku į <font size="+1"><b>[[email]]</b></font>, kuriame yra tolesnės instrukcijos. Įsitikinkite ar Jūsų žurnalas sukurtas, spausdami nuorodą, esančią laiške.
+
+/create.bml.success.text2=Jūsų LiveJournal bus pasiekiamas: 
+
+/create.bml.success.text3=Dabar, prašome surasti laiko pateikti šiek tiek asmeninės informacijos. Tai nėra būtina, tačiau tai padėtų mums suprasti kas naudojasi LiveJournal'u.
+
+/create.bml.title=Sukurti naują žurnalą
+
+/create.bml.tos.error=Privalote susipažinti ir sutikti su vartotojo taisyklėmis prieš sukurdami vartotoją.
+
+/create.bml.tos.haveread=Susipažinau ir sutinku su Vartotojo taisyklėmis.
+
+/create.bml.tos.heading=Vartotojo taisyklės
+
+/create.bml.useacctcodes.entercode=Norint sukurti naują vartotoją, įveskite aktyvavimo kodą. Norėdami sužinoti daugiau, žiūrėkite <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">Kaip sukurti vartotoją?</a>
+
+/create.bml.useacctcodes.welcome=Sveiki atvykę
+
+/create.bml.username.box.head=Vartotojo vardas:
+
+/create.bml.username.charsallowed=Vartotojo vardas gali būti sudarytas tik iš mažųjų lotyniškos abėcėlės raidžių (a-z), skaičių (0-9) ir pabraktų simbolių (_). <br />Taip pat neturi būti ilgesnis nei 16 simbolių.
+
+/create.bml.username.forpaidaccts=Arba, mokamiems vartotojams:
+
+/create.bml.username.head=Vartotojo vardas
+
+/create.bml.username.ljaddress=Jūsų žurnalas bus pasiekiamas šiais adresais:
+
+/create.bml.username.text=Kiekvienas [[sitename]] vartotojas privalo turėti savo unikalų vartotojo vardą. Jūsų vartotojo vardas bus rodomas adrese į Jūsų žurnalą ir kurį Jųs naudosite prisijungiant prie [[sitename]] serverio. Taip pat jis bus rodomas, jei komentuosite kitų žmonių žurnaluose.
+
+/create.bml.username.username=vartotojo vardas
+
+/editinfo.bml.allowshowcontact.about=Patartina įjungti šitą galimybę, nes ji leidžia kitiems žmonėms matyti jūsų elektroninio pašto adresą, ICQ numerį ar AOL Instant Messenger vardą jūsų LiveJournal, ir esant reikalui susisiekti su jumis.
+
+/editinfo.bml.allowshowcontact.email=Elektroninio pašto adreso rodymas:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Tik tikrasis adresas
+
+/editinfo.bml.allowshowcontact.email.both=Abu (tikrasis ir [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Tik LiveJournal adresas
+
+/editinfo.bml.allowshowcontact.email.neither=Nerodomas joks el.pašto adresas 
+
+/editinfo.bml.allowshowcontact.email.no_show=Nerodyti elektroninio pašto adreso
+
+/editinfo.bml.allowshowcontact.email.show=Rodyti elektroninio pašto adresą
+
+/editinfo.bml.allowshowcontact.title=Rodyti kontaktinę informaciją jūsų LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Įjunkite šitą galimybę, jeigu norite, kad kiti vartotojai matytų jūsų gimimo datą ir gyvenamąją vietą (miestą, regioną ir šalį)
+
+/editinfo.bml.allowshowinfo.title=Rodyti gyvenamąją vietą ir gimimo datą?
+
+/editinfo.bml.autotranslate.about<<
+Naudokite šį nustatymą tam, kad nurodyti LiveJournal, kurį kodavimą priskirti jūsų įrašams ir jų komentarams prieš tai, kai tinklapis buvo konvertuotas į Unicode.
+Jeigu rašote lietuviškai, pasirinkite "none".
+.
+
+/editinfo.bml.autotranslate.header=Automatiškai konvertuoti senus įrašus iš kodavimo:
+
+/editinfo.bml.bday.title=Gimimo data
+
+/editinfo.bml.bday.year.opt=metų nurodyti nebūtina
+
+/editinfo.bml.bdayreminders.about=Įjunkite nustatymą, jeigu norite gauti priminimą elektroniniu paštu apie jūsų LiveJournal draugų gimtadienius.
+
+/editinfo.bml.bdayreminders.header=Siųsti gimtadienių priminimus (šiuo metu išjungta)
+
+/editinfo.bml.bio.about=Čia galite parašyti savo trumpą biografiją. Ji bus rodoma jųsų Vartotojo Informacijos puslapyje.
+
+/editinfo.bml.bio.header=Apie Jus
+
+/editinfo.bml.blockrobots.about=Įjungus šitą galimybę, paieškos robotams bus nurodyta nesikišti į jūsų LiveJournal. Ne visi robotai laikosi šių taisyklių.
+
+/editinfo.bml.blockrobots.header=Neleisti paieškos sistemoms indeksuoti jūsų LiveJournal
+
+/editinfo.bml.city.title=Miestas
+
+/editinfo.bml.country.choose=Pasirinkite šalį
+
+/editinfo.bml.country.title=Šalis
+
+/editinfo.bml.donotlog=Ne
+
+/editinfo.bml.email.title=El. paštas
+
+/editinfo.bml.enableboards.about=Pažymėkite, jeigu norite, kad žmonės galėtų komentuoti jūsų įrašus.
+
+/editinfo.bml.enableboards.header=Įjungti komentarus
+
+/editinfo.bml.encoding.about=Nėra būtina keisti šituos nustatymus. Tik vartotojams, rašantiems skirtingomis kalbomis gali jų prireikti.
+
+/editinfo.bml.encoding.header=Kodavimo nustatymai
+
+/friends/add.bml.add.header=Pavyko
+
+/friends/add.bml.add.text|staleness=2
+/friends/add.bml.add.text=Vartotojas <?ljuser [[user]] ljuser?> buvo pridėtas į jūsų draugų sąrašą. Galite peržiūrėti atnaujintą <a href="[[url]]">savo draugų puslapį</a>.
+
+/friends/add.bml.add.title=Draugas Pridėtas!
+
+/friends/add.bml.btn.add=Pridėti [[user]]
+
+/friends/add.bml.btn.modify=Redaguoti
+
+/friends/add.bml.btn.remove=Išmesti
+
+/friends/add.bml.colors.bg=Fonas
+
+/friends/add.bml.colors.fg=Teksto spalva
+
+/friends/add.bml.colors.header=Spalvos
+
+/friends/add.bml.colors.hover=(Nutaikykite su pele į spalvą, jei norite pamatyti jos pavadinimą)
+
+/friends/add.bml.colors.text=Jūs taip pat, jei norite, galite pasirinkti spalvą, kuri atstovaus [[user]] jūsų draugų sąraše.
+
+/friends/add.bml.confirm.header=Pridėti <b>[[user]]</b> prie draugų?
+
+/friends/add.bml.confirm.text=Tam, kad pridėti <b>[[user]]</b> į draugų sąrašą, spauskite mygtuką žemiau.
+
+/friends/add.bml.confirm.title=Pridėti Draugą
+
+/friends/add.bml.error1.header=Iš pradžių prisijunkite
+
+/friends/add.bml.error1.text=Tam, kad pridėti vartotoją į draugų sąrašą, visų pirma turite <A HREF="/login.bml?ret=1">prisijungti</A>. Jei jūs dar neturite livejournal vartotojo, jūs galite jį <a href="/create.bml">susikurti</a>, kad galėtumėte sekti draugų žurnalus.
+
+/friends/add.bml.error1.title=Pridėti Draugą
+
+/friends/add.bml.error2.text=Buvo pateiktas neteisingas arba trūkstamas vartotojo vardas. Kad pridėti draugą, eikite į <a href="/friends/edit.bml">draugų sąrašo redagavimo</a> puslapį.
+
+/friends/add.bml.error3.text=Vartotojas <b>[[user]]</b> jau yra jūsų draugų sąraše. Tačiau, galite redaguoti spalvas, kurias esate priskyrę šiam vartotojui.
+
+/friends/editgroups.bml.btn.ge.del=Trinti
+
+/friends/editgroups.bml.btn.ge.new=Nauja
+
+/friends/editgroups.bml.btn.ge.ren=Pervadinti
+
+/friends/editgroups.bml.btn.gs.private=Privati
+
+/friends/editgroups.bml.btn.gs.public=Vieša
+
+/friends/editgroups.bml.btn.mv.down=Žemyn
+
+/friends/editgroups.bml.btn.mv.up=Aukštyn
+
+/friends/editgroups.bml.confirm.delete=Ar esate tikri, kad norite ištrinti šią draugų grupę?
+
+/friends/editgroups.bml.done.btn=Išsaugoti Pakeitimus
+
+/friends/editgroups.bml.done.header=Baigėte?
+
+/friends/editgroups.bml.done.text=Kai baigsite, išsaugokite pakeitimus spausdami mygtuką apačioje.
+
+/friends/editgroups.bml.error.max30|notes=It is important for the JavaScript on this page to work that this string remains a single line without linebreaks. Additionally, it must not contain any quotation marks.
+/friends/editgroups.bml.error.max30=Jūs pasiekėte leistiną 30-ties draugų grupių limitą. Jei jau ištrynėte vieną ar daugiau grupių bet dar neišsaugojote pakeitimų, padarykite taip dabar, grįžkite į šį puslapį ir perkraukite jį. Taip vėl galėsite kurti naujas draugų grupes.
+
+/friends/editgroups.bml.error.text=Serverio gražintas klaidos pranešimas:
+
+/friends/editgroups.bml.group.public=(viešas)
+
+/friends/editgroups.bml.ingroup=Grupėje:
+
+/friends/editgroups.bml.ingroup.not=Ne grupėje:
+
+/friends/editgroups.bml.prompt.newname=Įveskite naujos grupės pavadinimą:
+
+/friends/editgroups.bml.prompt.rename=Pervadinti grupę į:
+
+/friends/editgroups.bml.saved.header=Išsaugota
+
+/friends/editgroups.bml.saved.text=Jūsų draugų grupės išsaugotos.
+
+/friends/editgroups.bml.text<<
+Šis puslapis leidžia redaguoti draugų grupes. Draugų grupės naudojamos nustatant įrašų saugumo lygį ar filtruojant draugų puslapio įrašus. Dėl daugiau pagalbos, žvilgtelkite į <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">Kas yra draugų grupės? Kaip jas naudoti?</a>
+
+JavaScript turi būti įjungtas, kad būtų galima naudotis šiuo puslapiu.
+.
+
+/friends/editgroups.bml.text.sec=<strong>Pastaba dėl saugumo</strong>: jei norite ištrinti grupę ir sukurti naują, <strong>nedarykite</strong> to pervadindami kokią nors grupę ir tada ją redaguodami. Jei taip elgsitės, visi jūsų senesni įrašai, kurie buvo prieinami senąjai grupei, tada bus matomi naująjai grupei.
+
+/friends/editgroups.bml.title=Draugų Grupių Redagavimas
+
+/friends/editgroups.bml.yourgroups=Jūsų draugų grupės:
+
+/friends/edit_do.bml.background=Fonas
+
+/friends/edit_do.bml.bgcolor=Fono spalva:
+
+/friends/edit_do.bml.btn.close=Uždaryti
+
+/friends/edit_do.bml.btn.save=Išsaugoti Pakeitimus
+
+/friends/edit_do.bml.btn.toggle=Įjungti/Išjungti Peržiūros Langą
+
+/friends/edit_do.bml.done.head=Baigėte?
+
+/friends/edit_do.bml.done.text=Baigę spauskite "Išsaugoti Pakeitimus" mygtuką apačioje...
+
+/friends/edit_do.bml.error.updating=Atnaujinant draugų sąrašą įvyko klaida:
+
+/friends/edit_do.bml.fellowfriends.head=Draugaujantys
+
+/friends/edit_do.bml.fellowfriends.text=Jūs esate šių žmonių draugų sąraše. Jūs taip pat galite įtraukti juos į savo draugų sąrašą, tačiau nesate įpareigoti tai padaryti - ši informacija pateikta tik tam, kad žinotumėt jų LiveJournal vardus.
+
+/friends/edit_do.bml.foreground=Tekstas
+
+/friends/edit_do.bml.friend=Draugas
+
+/friends/edit_do.bml.hover=Kad pamatyti spalvos pavadinimą, nutaikykite virš jos pelės kursorių
+
+/friends/edit_do.bml.mrcolor=Spalvų Peržiūra
+
+/friends/edit_do.bml.name=Vardas
+
+/friends/edit_do.bml.needmore=Jei norite pridėti daugiau draugų nei yra vietos šioje formoje, išsaugokite pakeitimus ir grįžkite čia ir vėl, kad pridėti likusius.
+
+/friends/edit_do.bml.nofriends.head=Jokių Draugų?
+
+/friends/edit_do.bml.nofriends.text=Šiuo metu jūs neturite pridėję jokių draugų. Šiaip ar taip, mes esame tikri kad jūs privalote turėti šiek tiek draugų! <tt>:)</tt> Tiesiog įveskite jų LiveJournal vardus žemiau...
+
+/friends/edit_do.bml.opt.delete=Ištrinti?
+
+/friends/edit_do.bml.success.head=Įvykdyta Sėkmingai
+
+/friends/edit_do.bml.success.text=Jūsų draugų sąrašas pasikeitė, atnaujintą jų įrašų puslapį galite pamatyti <a href="[[url]]">čia</a>.
+
+/friends/edit_do.bml.textcolor=Teksto Spalva
+
+/friends/edit_do.bml.title=Draugų Sąrašo Redagavimas
+
+/friends/edit_do.bml.user=Vartotojas
+
+/friends/edit_do.bml.viewer=Spalvų Peržiūra
+
+/friends/edit_do.bml.yourfriends.head=Jūsų Draugai
+
+/friends/edit_do.bml.yourfriends.text=Jūsų draugų sąrašas šiuo metu atrodo taip:
+
+/friends/filter.bml.editgroups=Jei norite redaguoti draugų grupes, eikite į  [[link]] puslapį.
+
+/friends/filter.bml.error.nogroups|staleness=1
+/friends/filter.bml.error.nogroups=Jūs negalite filtruoti draugų sąrašo, nes visų pirma turite <a href="/friends/editgroups.bml">sukurti draugų grupes</a>.
+
+/friends/filter.bml.error.nogroups.header=Neapibrėžtos Grupės
+
+/friends/filter.bml.reset=Išvalyti
+
+/friends/filter.bml.select=Pažymėkite draugų grupę(-es), kurią (-iais) norite matyti draugų sąraše.
+
+/friends/filter.bml.select.header=Pasirinkite Grupes
+
+/friends/filter.bml.submit=Rodyti!
+
+/friends/filter.bml.title=Draugų Filtras
+
+/friends/index.bml.about|staleness=1
+/friends/index.bml.about<<
+"Draugų sąrašo" sąvokos trumpas aprašymas būtų toks.
+Pridėdami kitus vartotojus į jūsų draugų sąrašą, jūs galite lengvai sekti, kas vyksta jų gyvenimuose, tiesiai iš savo draugų puslapio.
+Draugai šiame puslapyje gali būti ne vien individualūs žmonės, bet taip pat ir bendruomenės bei "syndicated feeds".
+.
+
+/friends/index.bml.edit.about|staleness=1
+/friends/index.bml.edit.about=Pridėti, redaguoti ar išmesti vartotojus iš draugų sąrašo.
+
+/friends/index.bml.editgroups.about=Sukurti, redaguoti ar trinti draugų sub-grupes.
+
+/friends/index.bml.filter|staleness=1
+/friends/index.bml.filter=Šios draugų grupės gali būti naudojamos filtruoti draugų sąrašą: jūs galite pasirinkti būtent norimą žiūrėti grupę.
+
+/friends/index.bml.filter.about|staleness=1
+/friends/index.bml.filter.about=Filtruoti draugų sąrašą pagal tam tikras draugų grupes.
+
+/friends/index.bml.groups=Taip pat galite apibrėžti naujas draugų sub-grupes.
+
+/friends/index.bml.security=Jūsų draugų sąrašas taip pat naudojamas įrašams su apribota skaitymo galimybe. Daugiau apie draugų sąrašu apribotą privatumą galite paskaityti straipsnyje <cite><a href="/support/faqbrowse.bml?faqcat=security">Draugai &amp; Saugumo Lygiai</a></cite>.
+
+/friends/index.bml.security.header=Privatumas
+
+/friends/index.bml.security.only|staleness=1
+/friends/index.bml.security.only="Tik Draugams" įrašus gali matyti tik jūsų draugų sąraše esantys vartotojai.
+
+/friends/index.bml.title=Įrankiai
+
+/friends/index.bml.tools=Įrankiai
+
+/friends/popwithfriends.bml.account_type=Atsiprašome, bet jūsų profilio tipas neleidžia naudotis šiuo įrankiu.
+
+/friends/popwithfriends.bml.count=Kiekis
+
+/friends/popwithfriends.bml.exclude_own=Pasirinktinai, galite <a href='popwithfriends.bml'>išskirti draugus iš grupės</a>.
+
+/friends/popwithfriends.bml.include_own=Pasirinktinai, galite <a href='popwithfriends.bml'>įtraukti draugus į grupę</a>.
+
+/friends/popwithfriends.bml.intro=Jūsų draugų, bet ne jūsų, draugų sąrašuose dažni šie vartotojai.
+
+/friends/popwithfriends.bml.intro_own=Šie vartotojai dažni jūsų draugų draugų sąrašuose. Šiame sąraše taip pat įtraukti ir Jūsų draugai.
+
+/friends/popwithfriends.bml.no_users=Vartotojų nėra.
+
+/friends/popwithfriends.bml.title=Populiarūs Vartotojai Tarp Jūsų Draugų
+
+/friends/popwithfriends.bml.user=Vartotojas
+
+/interests.bml.findsim.searchwait=<b>Atkreipkite dėmesį:</b> paieška užims kelias sekundes. Kantrybės.
+
+/legal/index.bml.title=Juridinė Informacija
+
+/legal/privacy.bml.title=Privatumas
+
+/legal/tos.bml.title=Paslaugos Nuostatos
+
+/login.bml.bindip.label=Susieti su IP adresu:
+
+/login.bml.bindip.no=Ne (tinka visi IPT)
+
+/login.bml.bindip.yes=Taip (saugiau)
+
+/login.bml.error.mustenterusername=Turite <a href='/login.bml'>įvesti vartotojo vardą</a>
+
+/login.bml.expire.btn.neverexpire=Pakeisti galiojimo laiką į NIEKADA
+
+/login.bml.expire.btn.sessiononly=Pakeisti galiojimo laiką į VIENAM PRISIJUNGIMUI
+
+/login.bml.expire.neverexpire.text=Jūsų prisijungimas <b>niekada nesibaigs</b>, taigi jei esate prie viešo interneto terminalo, mokykloje, bibliotekoje, ar kitoje vietoje kur žmonės naudojasi kompiuteriu trumpą laiką, įsitikinkite, kad pabaigęs darbą atsijungėte! Arba, nustatykite, kad atsijungtumėte, kai uždarote naršyklės langą.
+
+/login.bml.expire.sessiononly.text=Jūs atsijungsite po to, kai uždarysite naršyklės langą. Jei tai yra Jūsų kompiuteris ir Jūs esate vienintelis vartotojas, galite nustatyti neribotą prisijungimo laiką.
+
+/login.bml.links.head=Nuorodos
+
+/login.bml.links.link1=Jūsų <a href='/users/[[username]]/friends'>draugų puslapis</a>.
+
+/login.bml.links.link2=Jūsų <a href='/todo/'>reikalų sąrašas</a>.
+
+/login.bml.links.text=Ateityje šiame puslapyje bus įvairių rūšių nuorodų, bet šiuo metu yra keletas vietų, kurias norėtumėte aplankyti:
+
+/login.bml.loggedin.head=Prisijungęs!
+
+/login.bml.loggedin.text=Dabar Jūs prisijungęs.
+
+/login.bml.login.btn.changeopts=Pakeisti pasirinkimus
+
+/login.bml.login.btn.login=Prisijungti...
+
+/login.bml.login.expiration=Galiojimas:
+
+/login.bml.login.forget=Pamiršote?
+
+/login.bml.login.head=Prisijungti
+
+/login.bml.login.never=Niekada
+
+/login.bml.login.otheropts=Kitos galimybės:
+
+/login.bml.login.password=Slaptažodis:
+
+/login.bml.login.text1=Norint prisijungti prie [[sitename]], įveskite apačioje savo vartotojo vardą ir slaptažodį. <b>Naujiems vartotojams:</b> Norint sukurti naują vartotoją, <a href='/create.bml'>eikite čia</a>.
+
+/login.bml.login.text2<<
+Galite nustatyti kada baigsis Jūsų prisijungimas. Pagal nutylėjimą, Jūs atsijungiate kai uždarote naršyklę, kas geriausiai tinka viešo naudojimo kompiuteriams. Tačiau, jei esate vienintelis kompiuterio savininkas ir daugiau niekas juo nesinaudoja, galite pasirinkti, kad prisijungimas niekada nesibaigtų. Norėdami sužinoti daugiau, o taip pat ir kitus pasirinkimus, apsilankykite <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=135">Kokie yra pasirinkimai man prisijungus?</a>
+
+.
+
+/login.bml.login.username=Vartotojo vardas:
+
+/login.bml.login.whenbrowsercloses=Užsidarius naršyklei
+
+/login.bml.logout.btn=Atsijungti
+
+/login.bml.title=Prisijungti
+
+/login.bml.whylogin.benefit1=Nereikės daugiau niekada įvesti vartotojo vardo/slaptažodžio bet kurioje šio puslapio vietoje.
+
+/login.bml.whylogin.benefit2=Galėsite matyti Jūsų draugų "apsaugotas" žinutes, kurie suteikė Jums teisę jas skaityti.
+
+/login.bml.whylogin.benefit3=Dauguma funkcijų yra matomos arba aktyvios tik Jums prisijungus.
+
+/login.bml.whylogin.head=Kodėl prisijungti?
+
+/login.bml.whylogin.text=Štai čia yra keletas naudingų dalykų Jums prisijungus:
+
+/logout.bml.already.head=Jau atsijungęs
+
+/logout.bml.already.text=Jūs jau atsijungėte.
+
+/logout.bml.killall.btn=Užbaigti visus mano prisijungimus
+
+/logout.bml.killall.head=Kiti prisijungimai
+
+/logout.bml.killall.text=Turite kitą aktyvų prisijungimą. Norite užbaigti visus aktyvius prisijungimus, ir ne tik šį? (Žiūrėkite <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=159">this FAQ</a> daugiau informacijos.)
+
+/logout.bml.loggedout.already=Jau atsijungęs.
+
+/logout.bml.loggedout.head=Atsijungęs
+
+/logout.bml.loggedout.killedall=Visi Jūsų prisijungimai baigti.
+
+/logout.bml.loggedout.success=Atsijungęs.
+
+/logout.bml.loggedout.text=Dabar Jūs atsijungęs.
+
+/logout.bml.logout.btn=Atsijungti
+
+/logout.bml.logout.head=Atsijungti?
+
+/logout.bml.logout.text=Paspauskite mygtuką apačioje norėdami atsijungti.
+
+/logout.bml.title=Atsijungti
+
+/lostinfo.bml.btn.proceed=Tęsti
+
+/lostinfo.bml.enter_email=Įveskite savo el. pašto adresą:
+
+/lostinfo.bml.enter_email_optional=El. pašto adresas: (pasirinktinai)
+
+/lostinfo.bml.enter_username=Įveskite vartotojo vardą:
+
+/lostinfo.bml.error.no_email=Norint atstatyti vartotoją, turite įvesti el. pašto adresą.
+
+/lostinfo.bml.error.purged=Nepavyksta gauti slaptažodžio ištrintam vartotojui po to, kai jis buvo sunaikintas.
+
+/lostinfo.bml.error.renamed=Nepavyksta gauti slaptažodžio pervardintam vartotojui.
+
+/lostinfo.bml.error.sysbanned=Neturite teisų siųsti slaptažodžio el. paštu.
+
+/lostinfo.bml.lostpassword.text=Jei praradote slaptažodį, įveskite savo vartotojo vardą ir pasirinktinai, el. pašto adresą, kuriuo norėtumėte gauti slaptažodį. Norint gauti slaptažodį prieš tai nurodytu el. pašto adresu, pastarasis turi būti veikiantis. Jei paliksite el. pašto laukelį tuščią, slaptažodis bus nusiųstas dbartiniu adresu.
+
+/lostinfo.bml.lostpassword.title=Praradote savo slaptažodį?
+
+/lostinfo.bml.lostusername.text=Jei praradote savo vartotojo vardą, įveskite savo el. pašto adresą ir mes išsiųsime Jums jūsų vartotojo vardą.
+
+/lostinfo.bml.lostusername.title=Praradote savo vartotojo vardą?
+
+/lostinfo.bml.title=Prarasta informacija
+
+/lostinfo_do.bml.error.no_usernames_for_email=Nėra vartotjo vardo šiam el. pašto adresui: [[address]] 
+
+/lostinfo_do.bml.error1.text=Niekada nenaudojote šio el. pašto adreso šiam varotojui arba jis nebuvo veikiantis.
+
+/lostinfo_do.bml.lostpasswordmail.part1|staleness=1
+/lostinfo_do.bml.lostpasswordmail.part1<<
+***Tai automatizuotas laiškas. Neprivalote į jį atsakyti.***
+
+Tai yra užklaustas slaptažodžio priminimas iš [[sitename]].
+Apačioje yra jūsų žurnalo registruotas vartotojo vardas, slaptažodis, ir el. pašto adresas.
+
+Vartotojo vardas: [[username]]
+Slaptažodis: [[password]]
+El. pašto adresas: [[emailadr]]
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=El. pašto patikrinimui, eikite čia:
+
+/lostinfo_do.bml.lostpasswordmail.part3<<
+Ši informacija buvo užklausta interneto puslapyje iš [[remoteip]].
+
+Jei neužklausėte šio slaptažodžio, atsiųsto Jums, nepanikuokite. Jųs esate vienintelis, kuris skaito šį laišką, o ne kitas asmuo. Gabūt, kad vartotojas, kuris atliko šią užklausą, suklydo ir mano, kad jis kontroliuoja šį varotojo vardą. Arba galbūt, kažkas suklydo spaudinant vartotojo vardą ar el. pašto adresą.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part4|notes=Site-local text.  For 'en', it's blank.
+/lostinfo_do.bml.lostpasswordmail.part4<<
+Jei niekaip negalite patikėti, kad Jūsų paskyra yra saugi, skaitykite http://www.livejournal.com/support/faqbrowse.bml?faqid=117 noredami suzinoti kaip dar labiau ji apsaugoti.
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Naudingos nuorodos:
+
+Jūsų LiveJournal:
+[[journal]]
+
+Pakeisti žurnalą online režimu:
+[[updateurl]]
+
+Linkėjimai,
+LiveJournal komanda
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Prarastas slaptažodis
+
+/lostinfo_do.bml.password_mailed.text=Pavyko. Jūsų slaptažodis išsiųstas.
+
+/lostinfo_do.bml.password_mailed.title=Slaptaždis išsiųstas!
+
+/lostinfo_do.bml.title=Prarasta informacija
+
+/lostinfo_do.bml.username_mailed.text=Pavyko. Jūsų vartotojo vardas išsiųstas.
+
+/lostinfo_do.bml.username_mailed.title=Varotojo vardas išsiųstas!
+
+/manage/index.bml.information.siteopts.about=Pasirinkite savo norimą svietainės išvaizdą ir kalbą
+
+/manage/siteopts.bml.btn.lang=Pakeisti Kalbą
+
+/manage/siteopts.bml.btn.scheme=Pakeisti Schemą
+
+/manage/siteopts.bml.head.lang=Išsirinkite kalbą
+
+/manage/siteopts.bml.head.scheme=Išsirinkite norimą schemą
+
+/manage/siteopts.bml.title=Naršymo Nustatymai
+
+/modify_do.bml.availablestyles.head=Galimi stiliai
+
+/modify_do.bml.availablestyles.userstyles=Vartotojo stiliai
+
+/modify_do.bml.colortheme.about=Čia galite pasirinkti spalvų paletę išdėstymo pasirinkimams, pateiktą viršuje. Arba, jei jums nepatinka pateiktos spalvos, nurodykite savo!
+
+/modify_do.bml.colortheme.area.head=Veiklos sritis
+
+/modify_do.bml.colortheme.color.head1=Spalva
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb arba pavadinimas)
+
+/modify_do.bml.colortheme.customcolors=Pasirenkamos spalvos
+
+/modify_do.bml.colortheme.defaulttheme=Pagrindinė tema
+
+/modify_do.bml.colortheme.head=Spalvos tema
+
+/modify_do.bml.domainalias.about=Jei esate jau užregistravęs domeino pavadinimą (arba planuojate tai atlikti) ir pageidaujate automatiškai patalpinti savo LiveJournal'ą, eikite čia:
+
+/modify_do.bml.domainalias.domainname=Domeino pavadinimas
+
+/modify_do.bml.domainalias.example=Pavyzdys: <i>mano-zurnalas.com</i>
+
+/modify_do.bml.domainalias.head=Domeino sritys
+
+/modify_do.bml.domainalias.helptext<<
+Šiam darbui Jums reikia užtikrinti, kad domeino pavadinimo DNS atitinka tą patį IP adresą kaip ir [[sitename]]. Daugiau informacijos žiūrėkite <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=129">this FAQ</a>.
+
+.
+
+/modify_do.bml.done.btn.savechanges=Išsaugoti pakeitimus
+
+/modify_do.bml.done.head=Atlikta?
+
+/modify_do.bml.done.text=Pabaigus, paspauskite "Išsaugoti pakeitimus" mygtuką apačioje...
+
+/modify_do.bml.error.dupdomainalias=Kitas vartotojas jau užsiregistravęs pasirinktą domeino sritį.
+
+/modify_do.bml.error.stylenotavailable=Vienas iš stilių, kurį pasirinkote, yra nepasiekiamas. Taip yra todėl, kad kažkas ištrynė stilių arba bandote pasirinkti stilių, kuriam neturite teisių.
+
+/modify_do.bml.friends.about=Čia yra pasirinkimai, leidžiantys kontroliuoti kaip atrodo Jūsų draugų puslapis.
+
+/modify_do.bml.friends.head=Draugų peržiūra
+
+/modify_do.bml.friends.opt.usesharedpic.about=Šis pasirinkimas kontroliuoja kokį paveikslėlį matote draugų puslapyje, kai vartotojas rašo bendrame arba bendruomenės žurnale. Jei pažymėsite jį, matysite bendruomenės paveikslėlį. Jei paliksite nepažymėtą, matysite to asmens, kuris parašė, paveikslėlį.
+
+/modify_do.bml.friends.opt.usesharedpic.head=Naudoti bendrus žurnalo paveikslėlius vietoj vartotojo paveikslėlių
+
+/modify_do.bml.journaloptions.about=Iš čia galite tinkinti savo LiveJournal'o puslapių išvaizdą.Jei Jums iš tikrųjų smalsu, kaip viskas veikia, skaitykite <a href="/developer/" target="_blank">informacija kūrėjams</a>. Kitu atveju, mes užtikriname, kad liksite patenkinti baziniais pasirinkimais, pateiktais žemiau.
+
+/modify_do.bml.journaloptions.head=Žurnalo pasirinkimai
+
+/modify_do.bml.journalstatus.about=Jei norite ištrinti ar atstatyti savo žurnalą, tai galite atlikti čia. Jei ištrynėte savo žurnalą, turite 30 dienų atstatyti jį, jei apsigalvotumėte. Po 30 dienų, žurnalas bus ištrintas viesiems laikams ir neturėsite galimybės jį atstatyti.
+
+/modify_do.bml.journalstatus.head=Žurnalo aktyvavimo būsena
+
+/modify_do.bml.journalstatus.select.activated=Aktyvuotas
+
+/modify_do.bml.journalstatus.select.deleted=Ištrintas
+
+/modify_do.bml.journalstatus.select.head=Būsena
+
+/modify_do.bml.journalstatus.select.suspended=Sustabdytas
+
+/modify_do.bml.moodicons.about=Rašydami į žurnalą, galite nurodyti dabartinę nuotaiką. Skirtingi vartotojai yra nustatę skirtingus nuotaikų piešinių rinkinius, kuriuos galite naudoti. Arba, pasirinkite "Nėra", jei nenorite jokio piešinėlio šalia savo nuotaikos. (arba galite išvis nenaudoti Dabartinės Nuotaikos funkcijos.)
+
+/modify_do.bml.moodicons.head=Nuotaikos piešinėliai
+
+/modify_do.bml.moodicons.opt.forcefriends.about=Primesti šia nuotaikos temą visiems vartotojams Jūsų draugų puslapyje
+
+/modify_do.bml.moodicons.personal=Asmeninės temos:
+
+/modify_do.bml.moodicons.preview=peržiūra
+
+/modify_do.bml.moodicons.select=Pasirinkite nuotaikos piešinėlių rinkinį:
+
+/modify_do.bml.overrides.about<<
+Jei esate patenkintas žurnalo schemos pasirinkimu viršuje, galite praleisti šį skirsnį. Jis skirtas patobulinti specifinius žurnalo schemos dalykus. Žiūrėkite apžvalgą <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=124">Kas yra rankinis reguliavimas? Kaip jis veikia?a>, ir aplankykite <A HREF="/developer/" TARGET=_blank>kūrėjų skirsnis</A>. Taip pat, įsidėmėkite, kad rankiniu reguliavimu galima valdyti tik vieną ar dvi stiliaus funkcijas. Jei norite pakeisti viską, eikite <A HREF="/styles/create.bml" TARGET=_blank>sukurti savo stilių</A>. Norint sukurti savo stilių, žiūrėkite <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=128">Kaip sukurti savo nuosavą stilių?<a>
+
+.
+
+/modify_do.bml.overrides.box.head=Rankiniai reguliavimai:
+
+/modify_do.bml.overrides.head=Stiliaus rankiniai reguliavimai
+
+/modify_do.bml.overrides.note=Prašome įsidėmėti, kad ne visi stiliai gali būti reguliuojami rankiniu būdu. Daugiau informacijos žiūrėkite <a href="/developer/varlist.bml">dokumentacija</a>. .<br /> Taip pat, žinokite, kad jei naudosite žymas, keičiant rankinius nustatymus, kurių negalima naudoti dokumento antraštėje &ndash; tokias kaip &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt;, ir daugelį kitų žymų &ndash; šios žymos bus pašalintos. Tik tie HTML elementai, kuriuos galima naudoti  *_HEAD rankiniame reguliavime yra veikiantys HTML dokumento antraštėje. Tai yra apribota &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, and &lt;meta&gt; žymoms.
+
+/modify_do.bml.overrides.warning=TAI <U>NE</U> TA VIETA KUR RAŠOTE SAVO ŽURNALĄ!!
+
+/modify_do.bml.pagelayoutstyle.about=Pasirinkę šią funkciją, matysite kaip atrodo Jūsų žurnalas ekrane.
+
+/modify_do.bml.pagelayoutstyle.head=Puslapio Schemos Stilius
+
+/modify_do.bml.pagelayoutstyle.warning=Jums suteiktos teisės pasirinkti tik keletą pagrindinių stilių.
+
+/modify_do.bml.success.head=Pavyko
+
+/modify_do.bml.success.text=Jūsų žurnalo nustatymai pakeisti. Galite peržiūrėti savo žurnalą <A HREF="[[url]]">čia</A>.
+
+/register.bml.new.update=<a href="/update.bml">Pakeisti žurnalą</a> -- Rašyti į Jūsų žurnalą
+
+/styles/index.bml.nav.browse=Stilių Peržiūra
+
+/talkmulti.bml.deleted.body=Kometarai ištrinti. Likusį pokalbį galite skaityti <a href="[[link]]">čia</a>.
+
+/talkmulti.bml.deleted.title=Komentarai ištrinti
+
+/talkmulti.bml.error.comms_deleted=Vienas iš komentarų buvo ištrintas po to, kai jį pasirinkote. Atsargumo sumetimais, prašome sugrįžti atgal ir pabandyti dar kartą. 
+
+/talkmulti.bml.error.inconsistent_data=Pateikti duomenis yra nepilni.
+
+/talkmulti.bml.error.invalid=Nurodytas blogas parametras.
+
+/talkmulti.bml.error.invalid_mode=Jus nepasirinkote jokios operacijos. Prašome sugrįžti ir pasirinkti - ar norite paslėpti, rodyti, ar ištrinti komentarus.
+
+/talkmulti.bml.error.login=Jūs nesate prisijungęs. 
+
+/talkmulti.bml.error.none_selected=Jūs nepasirinkote jokių komentarų.
+
+/talkmulti.bml.error.privs.delete=Jūs neturite teisių ištrinti šiuos komentarus. 
+
+/talkmulti.bml.error.privs.screen=Jūs neturite teisių paslėpti šiuos komentarus. 
+
+/talkmulti.bml.error.privs.unscreen=Jūs neturite teisių parodyti šiuos komentarus.
+
+/talkmulti.bml.screened.body=Komentarai paslėpti. Galite juos peržiūrėti <a href="[[link]]">čia</a>.
+
+/talkmulti.bml.screened.title=Komentarai paslėpti.
+
+/talkmulti.bml.title.delete=Ištrinti komentarų grupę 
+
+/talkmulti.bml.title.screen=Paslėpti komentarų grupę
+
+/talkmulti.bml.title.unscreen=Rodyti komenratų grupę
+
+/talkmulti.bml.unscreened.body=Komentarai bus rodomi. Pažiūrėti juos galite <a href="[[link]]">čia</a>.
+
+/talkmulti.bml.unscreened.title=Komentarai bus rodomi
+
+/talkpost.bml.allowedhtml=Leistini HTML kodai
+
+/talkpost.bml.error.cannotreplynopost=Jūs negalite atsakyti į neegzistuojantį pranešimą
+
+/talkpost.bml.error.nocommentsjournal=Vartotojas išjungė galimybę komentuotį savo įrašus.
+
+/talkpost.bml.error.nocommentspost=Vartotojas išjungė galimybę komentuotį šį įrašą.
+
+/talkpost.bml.error.noreplypost=Pranešimas, į kurį atsakote, nerastas (ištrintas?)
+
+/talkpost.bml.error.noreply_deleted=Šis komentaras ištrintas. Jūs negalite į jį atsakyti. 
+
+/talkpost.bml.error.noreply_screened=Šis komentaras yra paslėptas, ir Jūs neturite teisių jį matyti arba į jį atsakyti.
+
+/talkpost.bml.label.picturetouse=Naudoti <a href='/allpics.bml?user=[[username]]'>paveikslėlį</a>: 
+
+/talkpost.bml.loganonip=<b>Atkreipkite dėmesį!</b> Šis vartotojas įjungė nustatymą, kuris išsaugoja anoniminių atsakovų IP adresus.
+
+/talkpost.bml.loginq=Prisijungti?
+
+/talkpost.bml.logyourip=<b>Atkreipkite dėmesį!</b> Šis vartotojas įjungė nustatymą, kuris išsaugoja IP adresą iš kurio atsakote.
+
+/talkpost.bml.nosubjecthtml=Negalima naudoti HTML pranešimo temoje
+
+/talkpost.bml.opt.anonymous=Anonimas
+
+/talkpost.bml.opt.defpic=(pagal nutylėjimą)
+
+/talkpost.bml.opt.friendsonly=- šis vartotojas išjungė galimybę atsakinėti anonimams ir ne-draugams. Jūs galėtumėt rašyti čia, jei [[username]] įtrauktų Jus į draugų sąrašą.
+
+/talkpost.bml.opt.from=Nuo:
+
+/talkpost.bml.opt.ljuser=LiveJournal vartotojas: 
+
+/talkpost.bml.opt.loggedin=<b>Prisijungęs vartotojas:</b> [[username]]
+
+/talkpost.bml.opt.message=Pranešimas:
+
+/talkpost.bml.opt.noanonpost=- šis vartotojas išjungė galimybę atsakinėti anonimiškai.
+
+/talkpost.bml.opt.noautoformat=Neformatuoti automatiškai:
+
+/talkpost.bml.opt.noimage=Be paveiksliuko
+
+/talkpost.bml.opt.preview=Peržiūra
+
+/talkpost.bml.opt.spellcheck=Prieš išsaugant patikrinti rašybą 
+
+/talkpost.bml.opt.subject=Tema:
+
+/talkpost.bml.opt.submit=Išsaugoti komentarą
+
+/talkpost.bml.opt.willscreen=(bus paslėptas)
+
+/talkpost.bml.opt.willscreenfriend=(bus pasleptas, jei nesate draugas)
+
+/talkpost.bml.paraformat=Pagal nutylėjimą paragrafai bus formatuojami automatiškai
+
+/talkpost.bml.title=Palikti komentarą
+
+/talkpost.bml.usermismatch<<
+Jūs įvedėte vartotojo vardą, bet nepasirinkote "LJ vartotojas" atsakymo būdo. 
+
+Prašome arba išvalyti lauką su vartotojo vardu, arba pasirinkti kitą išsaugojimo būdą.
+.
+
+/talkpost.bml.warnscreened=<b>Atkreipkite dėmesį!</b> Šis komentaras yra paslėptas. Atsakinėdami į jį, Jūs automatiškai darote jį matomu.
+
+/talkpost_do.bml.error.badpassword=Neteisingas slaptažodis nurodytam vartotojo vardui. Jei Jūs pamiršote savo slaptažodį, galite atstatyti jį <a href='/lostinfo.bml'>čia</a>.
+
+/talkpost_do.bml.error.badusername=Jūsų nurodytas LJ vartotojo vardas neegzistuoja.Jei Jūs pamiršote savo vartotojo vardą, galite atstatyti jį <a href='/lostinfo.bml'>čia</a>, arba galite rašyti kaip "Anonimas".
+
+/talkpost_do.bml.error.banned=Jūs negalite rašyti į šio vartotojo žurnalą. 
+
+/talkpost_do.bml.error.blankmessage=Jūsų pranešimas buvo tuščias. Parašykite ką nors bent jau temos lauke.
+
+/talkpost_do.bml.error.confused_identity=Jūs įvedėte vartotojo vardą, bet pasirinkote parašyti anonimiškai arba kaip šiuo metu įsijungęs vartotojas. Sugrįžkite ir apsispręskite, ką iš tikrųjų norite padaryti. 
+
+/talkpost_do.bml.error.deleted=Jūsų žurnalas ištrintas. Jūs negalite rašyti pranešimų. 
+
+/talkpost_do.bml.error.friendsonly=Tik vartotojo [[user]] draugai gali rašyti į šį žurnalą.
+
+/talkpost_do.bml.error.lostcookie=Atrodo, kad Jūsų prisijungimo slapukas dingo?
+
+/talkpost_do.bml.error.manybytes=Atsiprašome, bet Jūsų komentaras yra [[current]] ilgio ir viršyja maksimalų leistiną ilgį ( [[limit]] baitų). Prašome sugrįžti, sutrumpinti jį, ir pabandyti išsaugoti dar kartą.
+
+/talkpost_do.bml.error.manychars=Atsiprašome, bet Jūsų komentaras yra [[current]] simbolių ilgio ir viršyja maksimalų leistiną ilgi - [[limit]] simbolių. Prašome sugrįžkti , sutrumpinti jį, ir pabandyti išsaugoti dar kartą.
+
+/talkpost_do.bml.error.mustlogin=Jūs turite būti prisijungęs arba naudoti vartotojo vardą/slaptažodį tam, kad atsakyti į šį uždarytą pranešimą.
+
+/talkpost_do.bml.error.noanon=Jūs negalite rašyti anonimiškai į šio asmens žurnalą.
+
+/talkpost_do.bml.error.noauth=Jus neturite teisių atsakinėti į šį uždarytą pranešimą. 
+
+/talkpost_do.bml.error.nocomments=Vartotojas išjungė galimybę komentuoti šį įrašą
+
+/talkpost_do.bml.error.noparent=Negalite atsakyti į neegzistuojantį komentarą. 
+
+/talkpost_do.bml.error.notafriend=Atsiprašome, vartotojas <b>[[user]]</b> neįtraukė Jūsų į draugų sąrašą, ir įjungė nustatymą, leidžiantį tik draugams atsakinėti savo žurnale.
+
+/talkpost_do.bml.error.nousername=Jūs neįvedėte savo LJ vartotojo vardo. Jūs galite parašyti kaip "Anonimas", jei neturite savo žurnalo.
+
+/talkpost_do.bml.error.noverify|staleness=1
+/talkpost_do.bml.error.noverify=Atsiprašome, Jūs negalite rašyti į kitų žmonių žurnalus, kol Jūsų elektroninio pašto adresas nebus patikrintas. Jei Jūs praradote patvirtinimo laišką, Jūs galite atsisiųsti jį iš <a href='/lostinfo.bml'>prarastos informacijos puslapio</a>. 
+
+/talkpost_do.bml.error.screened=Jūs neturite teisių atsakyti į šį paslėptą komentarą.
+
+/talkpost_do.bml.error.suspended=Jūsų žurnalas laikinai sustabdytas. Jūs negalite rašyti pranešimų.
+
+/talkpost_do.bml.error.testacct=Testiniai profiliai gali būti naudojami tik testinių profilių žurnaluose. 
+
+/talkpost_do.bml.opt.preview=Peržiūra
+
+/talkpost_do.bml.preview=Štai kaip Jūsų komentaras atrodys, kai bus išsaugotas. Naudojant formą žemiau, Jūs galite toliau redaguoti savo komentarą, arba nusiųsti jį kaip yra. 
+
+/talkpost_do.bml.preview.subject=<b>Tema:</b>
+
+/talkpost_do.bml.preview.submit=Siųsti
+
+/talkpost_do.bml.preview.title=Peržiūra
+
+/talkpost_do.bml.success.loggedin=Dabar Jūs esate prisijungęs.
+
+/talkpost_do.bml.success.message=Jūsu komentaras išsaugotas. Galite peržiūrėti jį <a href="[[link]]">čia</a>.
+
+/talkpost_do.bml.success.screened.comm=Jūsų komentaras buvo išsaugotas. Pagal šios benduomenės nustatymus, jis buvo pažymėtas kaip paslėptas, ir bus matomas tik Jums ir žmonėms, palaikantiems bendruomenę, kol jie nenutars jo parodyti. Savo komentarą galite pažiūrėti <a href="[[link]]">čia</a>.
+
+/talkpost_do.bml.success.screened.comm.anon=Jūsų anonimiškas komentaras buvo išsaugotas. Pagal šios benduomenės nustatymus jis buvo pažymėtas kaip paslėptas, ir bus matomas tik žmonėms, palaikantiems bendruomenę, kol jie nenutars jo parodyti. Prie kitų komentarų galite sugrįžti <a href="[[link]]">čia</a>.
+
+/talkpost_do.bml.success.screened.user=Jūsų komentaras buvo išsaugotas. Pagal šio žurnalo nustatymus jis buvo pažymėtas kaip paslėptas, ir bus matomas tik Jums ir žurnalo savininkui, kol jis nenutars jo parodyti. Savo komentarą galite pažiūrėti <a href="[[link]]">čia</a>.
+
+/talkpost_do.bml.success.screened.user.anon=Jūsų anonimiškas komentaras buvo išsaugotas. Pagal šio žurnalo nustatymus jis buvo pažymėtas kaip paslėptas, ir bus matomas tik žurnalo savininkui, kol jis nenutars jo parodyti. Prie kitų komentarų galite sugrįžti <a href="[[link]]">čia</a>.
+
+/talkpost_do.bml.success.title=Pavyko
+
+/talkpost_do.bml.success.unscreened=Taip pat, paslėptas komentaras, į kurį Jūs atsakinėjote, buvo atidengtas, ir tapo matomu.
+
+/talkpost_do.bml.title|staleness=2
+/talkpost_do.bml.title=Komentaras išsaugotas
+
+/talkpost_do.bml.title.preview=Komentaro peržiūra
+
+/talkread.bml.anonuser=<i>(Anonimas)</i>
+
+/talkread.bml.confirm.action=Ar tikrai norite ištrinti pasirinktus komentarus?
+
+/talkread.bml.deletedpost=<b>(Ištrintas įrašas)</b>
+
+/talkread.bml.deleteduser=<i>(Ištrintas vartotojas: [[username]])</i>
+
+/talkread.bml.fromip=(iš [[ip]])
+
+/talkread.bml.noreplies=Nėra atsakymų
+
+/talkread.bml.nosubject=(be temos)
+
+/talkread.bml.replysuspended=<b>(Atsakymas nuo laikinai atjungto vartotojo)</b>
+
+/talkread.bml.screenedpost=<b>(Paslėptas įrašas)</b>
+
+/talkread.bml.select=Pasirinkti
+
+/talkread.bml.subjectdeleted=[ištrinta]
+
+/talkread.bml.talkmulti.delete=Ištrinti
+
+/talkread.bml.talkmulti.des=<b>Grupinė operacija</b> su visais pasirintais komentarais:
+
+/talkread.bml.talkmulti.screen=Paslėpti
+
+/talkread.bml.talkmulti.submit=Atlikti operaciją
+
+/talkread.bml.talkmulti.unscreen=Rodyti
+
+/talkread.bml.title=Skaityti komentarus
+
+/talkscreen.bml.error.login=Jūs turite įsijungti tam kad dirbti su pasleptais komentarais.
+
+/talkscreen.bml.error.privs.screen=Jūs neturite teisių paslėpti šį komentarą.
+
+/talkscreen.bml.error.privs.unscreen=Jūs neturite teisių parodyti šį komentarą.
+
+/talkscreen.bml.screen.doit=Taip, paslėpti šį komentarą
+
+/talkscreen.bml.screen.sure.body=Ar tikrai norite paslėpti šį komentarą?
+
+/talkscreen.bml.screen.sure.title=Paslėpti šį komentarą?
+
+/talkscreen.bml.screened.body|staleness=1
+/talkscreen.bml.screened.body=Komentaras paslėptas.
+
+/talkscreen.bml.screened.title=Sėkmė
+
+/talkscreen.bml.title=Paslėptas komentaras
+
+/talkscreen.bml.unscreen.doit=Taip, rodyti šį komentarą
+
+/talkscreen.bml.unscreen.sure.body=Ar tikrai norite rodyti šį komentarą?
+
+/talkscreen.bml.unscreen.sure.title=Rodyti šį komentarą?
+
+/talkscreen.bml.unscreened.body|staleness=1
+/talkscreen.bml.unscreened.body=Komentaras bus rodomas.
+
+/talkscreen.bml.unscreened.title=Sėkmė
+
+/update.bml.altpost=Įrašyti į žurnalą
+
+/update.bml.btn.update=Pakeisti žurnalą
+
+/update.bml.currmood=Mano <a href="/moodlist.bml">Nuotaika</a>:
+
+/update.bml.currmusic=Dabar klausau
+
+/update.bml.date=Data
+
+/update.bml.default=Pagal nutylėjimą
+
+/update.bml.defaultjournal=([[user]]) -- pagal nutylėjimą
+
+/update.bml.error.login=Klaida įsijungiant
+
+/update.bml.error.update=Klaida keičiant žurnalą
+
+/update.bml.event=Įvykis
+
+/update.bml.full=Visiškai pakeisti puslapį
+
+/update.bml.localtime=Vietos laikas
+
+/update.bml.loggingin=Prisijungimas prie serverio
+
+/update.bml.noneother=Nieko, arba kita
+
+/update.bml.note=<b>Pastaba. </b> Viršuje nurodytas laikas ir data yra iš mūsų serverio. Pataisykite pagal Jūsų laiko juosta prieš išsiunčiant
+
+/update.bml.opt.backdate=Atgalinės datos įrašas:
+
+/update.bml.opt.backdate.about=nebus rodoma draugų puslapyje
+
+/update.bml.opt.defpic=Pagal nutylėjimą
+
+/update.bml.opt.nocomments=Neleisti komentuoti:
+
+/update.bml.opt.noemail=Nesiųsti komentarų el. paštu:
+
+/update.bml.opt.noformat=Automatiškai neformatuoti:
+
+/update.bml.opt.spellcheck=Patikrinti rašybą prieš išsiunčiant
+
+/update.bml.options=Neprivalomi nustatymai
+
+/update.bml.other=Kita
+
+/update.bml.picture=Naudoti <a href="[[url]]">paveikslėlį</a>:
+
+/update.bml.security.custom=Pasirinktinai
+
+/update.bml.security.friends=Draugai
+
+/update.bml.security.head=Apsaugos lygis
+
+/update.bml.security.private=Privatus
+
+/update.bml.security.public=Viešas
+
+/update.bml.servermsg=Taigi, serverio žinutė Jums:
+
+/update.bml.simple=Jūs žiūrite paprastą puslapį. Didesniam pasirinkimui, <a href="[[url]]">spauskite čia</a>.
+
+/update.bml.spellchecked=Patikrintas Jūsų įrašas:
+
+/update.bml.subject=<b>Tema:</b> <i>(nebūtina)</i>
+
+/update.bml.timeformat=24 valandų laikas
+
+/update.bml.title=Pakeisti žurnalą
+
+/update.bml.title.readonly=Tik skaitymui
+
+/update.bml.update.head=Pakeisti žurnalą
+
+/update.bml.update.success=Pakeitimai sėkmingi. Galite pamatyti savo žurnalo pakeitimus <a href="[[uri]]">čia</a>.
+
+/update.bml.updating=Žurnalas keičiamas...
+
+/userinfo.bml.about.comm=Apie:
+
+/userinfo.bml.about.user=Biografija:
+
+/userinfo.bml.body.leave=Galite <a href="/community/leave.bml?comm=[[commname]]">palikti bendruomenę</a> bet kuriuo metu.
+
+/userinfo.bml.comminfo.body=Žemiau yra pateikta informacija apie "[[commname]]" LiveJournal'o bendruomenę .
+
+/userinfo.bml.comminfo.name=Bendruomenės informacija
+
+/userinfo.bml.date.never=<i>Niekada.</i>
+
+/userinfo.bml.error.malfname|staleness=1
+/userinfo.bml.error.malfname=Iškraipytas vartotojo vardas.
+
+/userinfo.bml.error.notloggedin=Jei norite peržiūrėti savo vartotojo profilį, turite <a href='/login.bml?ret=1'>prisijungti</a>.
+
+/userinfo.bml.friendof.comm|staleness=2
+/userinfo.bml.friendof.comm=Stebi:
+
+/userinfo.bml.friendof.hidden=(paslėpta)
+
+/userinfo.bml.friendof.syndreadcount=Skaitytojų skaičius
+
+/userinfo.bml.friendof.user|staleness=2
+/userinfo.bml.friendof.user=Draugaujantys:
+
+/userinfo.bml.friends.comm=Nariai
+
+/userinfo.bml.friends.user|staleness=2
+/userinfo.bml.friends.user=Draugai
+
+/userinfo.bml.label.addbuddy=Įkelti bičiulį
+
+/userinfo.bml.label.adduser=Įkelti vartotoją
+
+/userinfo.bml.label.birthdate=Gimimo data:
+
+/userinfo.bml.label.clientsused=<a href="[[siteroot]]/download/">Klientas</a> naudojamas:
+
+/userinfo.bml.label.comments=Komentarai:
+
+/userinfo.bml.label.composted=<b>Išsiųsta:</b> [[num]] - 
+
+/userinfo.bml.label.comreceived=<b>Gauta:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Sukūrimo data:
+
+/userinfo.bml.label.dateupdated=Pakeitimo data:
+
+/userinfo.bml.label.email|staleness=1
+/userinfo.bml.label.email=El. paštas:
+
+/userinfo.bml.label.interests=Pomėgiai
+
+/userinfo.bml.label.interests.modifyyours=Pakeisti&nbsp;jūsų
+
+/userinfo.bml.label.interests.removesome=Pašalinti&nbsp;kai ką
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] nerodyti pomėgių</b>
+
+/userinfo.bml.label.journalentrs=Žurnalo įrašai:
+
+/userinfo.bml.label.location=Vieta:
+
+/userinfo.bml.label.memberof=Narys
+
+/userinfo.bml.label.memories=Atmintinės:
+
+/userinfo.bml.label.moredetails=(plačiau...)
+
+/userinfo.bml.label.msnusername=MSN vartotojas:
+
+/userinfo.bml.label.name=Vardas:
+
+/userinfo.bml.label.nofriends=<i>Tuščias sąrašas.</i>
+
+/userinfo.bml.label.post=Išsiųsti į "[[journal]]"
+
+/userinfo.bml.label.postalt=Pakeisti Jūsų žurnalą
+
+/userinfo.bml.label.reqfinduser=Tik vartotojai su 'rasti vartotoją' privilegija gali ieškoti vartotojų pagal varotojo id.
+
+/userinfo.bml.label.sendmessage=Siųsti žinutę
+
+/userinfo.bml.label.shared=Siuntimo galimybė:
+
+/userinfo.bml.label.supportpoints=Palaikymo klausimai
+
+/userinfo.bml.label.syndicatedfrom=Sindikuotas nuo:
+
+/userinfo.bml.label.syndicatedstatus=Sindikato būsena:
+
+/userinfo.bml.label.textmessage=<nobr>Tekstas<br>Žinutė</nobr>:
+
+/userinfo.bml.label.todo=Reikalų sąrašas
+
+/userinfo.bml.label.user=Vartotojas:
+
+/userinfo.bml.label.viewfriends=Žiūrėti draugus
+
+/userinfo.bml.label.viewmembers=Žiūrėti narius
+
+/userinfo.bml.label.website=Puslapis internete:
+
+/userinfo.bml.membership.body=Norint prisijungti prie šios bendruomenės, <a href="/community/join.bml?comm=[[commname]]">spauskite čia</a>.
+
+/userinfo.bml.memories.entries=[[count]] įrašai
+
+/userinfo.bml.memories.entry=[[count]] įrašas
+
+/userinfo.bml.monitor.comm=Stebėti bendruomenę
+
+/userinfo.bml.monitor.user=Įtraukti šį vartotoją į draugų sąrašą
+
+/userinfo.bml.nonexist.body=Vartotojo vardas <b>[[user]]</b> šiuo metu neregistruotas.
+
+/userinfo.bml.nonexist.name=Nežinomas vartotojas
+
+/userinfo.bml.sendmessage.body=<a href="[[link]]">Siųsti <b>[[user]]</b> tekstinę žinutę</a><br />į jo/jos mobilų telefoną/pranešimų gaviklį.
+
+/userinfo.bml.syn.last.never=Niekada
+
+/userinfo.bml.syn.lastcheck=Paskutinįkart tikrinta:
+
+/userinfo.bml.syn.nextcheck=Kitas patikrinimas:
+
+/userinfo.bml.syn.parseerror=Klaidos pranešimas:
+
+/userinfo.bml.syndinfo.body=Jei pageidaujate, kad straipsniai iš sindikuoto varotojo būtų matomi draugų puslapyje, Jūs galite <a href="[[addtofriends]]">įkelti šį žurnalą į jūsų draugų sąrašą</a>.
+
+/userinfo.bml.syndinfo.name=Sindikuotas žurnalas
+
+/userinfo.bml.tellafriend=Pasakyk draugui!
+
+/userinfo.bml.timeupdate.dayago=Prieš 1 dieną
+
+/userinfo.bml.timeupdate.daysago=Prieš [[num]] dienų
+
+/userinfo.bml.timeupdate.hourago=Prięš 1 valandą
+
+/userinfo.bml.timeupdate.hoursago=Prieš [[num]] valandų
+
+/userinfo.bml.timeupdate.minuteago=Prieš 1 minutę
+
+/userinfo.bml.timeupdate.minutesago=Prieš [[num]] minučių
+
+/userinfo.bml.timeupdate.secondago=Prieš 1 sekundę
+
+/userinfo.bml.timeupdate.secondsago=Prieš [[num]] sekundžių
+
+/userinfo.bml.timeupdate.weekago=Prieš 1 savaitę
+
+/userinfo.bml.timeupdate.weeksago=Prieš [[num]] savaites
+
+/userinfo.bml.title=Informacija apie vartotoją
+
+/userinfo.bml.title.communityinfo=Informacija apie bendruomenę
+
+/userinfo.bml.title.syndicated=Sindikuotas vartotojas
+
+/userinfo.bml.userinfo.body=Žemiau yra vartotojo informacija skirta [[username]]. Jei esate šis vartotojas, galite pakeisti informaciją (arba pasirinkti kokia informacija yra vieša) <a href="[[siteroot]]/editinfo.bml">Pakeisti informaciją</a>.
+
+/userinfo.bml.userinfo.name=Vartotojo informacija
+
+btn.search=Ieškoti
+
+dystopia.nav.logout=Atsijungti
+
+dystopia.nav.siteopts=Naršymo Nustatymai
+
+dystopia.search.icq=ICQ Numeris
+
+dystopia.search.int=Pomėgis
+
+dystopia.search.msn=MSN Vartotojas
+
+dystopia.search.region=Regionas
+
+error.noremote=Kad nautotis puslapiu, visų pirma reikia <a href="/login.bml?ret=1">prisijungti</a>.
+
+langname.be=Baltarusų
+
+langname.da=Danų
+
+langname.de=Vokiečių
+
+langname.en=Anglų
+
+langname.en_GB=Anglų (UK)
+
+langname.en_LJ=Anglų (LJ)
+
+langname.eo=esperanto
+
+langname.es=Ispanų
+
+langname.et=Estų
+
+langname.fi=Suomių
+
+langname.fr=Prancūzų
+
+langname.ga=Airių
+
+langname.gd=Gėlų
+
+langname.he=Hebrajų
+
+langname.hu=Vengrų
+
+langname.is=Islandų
+
+langname.it=Italų
+
+langname.ja=Japonų
+
+langname.la=Lotynų
+
+langname.lv=Latvių
+
+langname.ms=Malajų
+
+langname.nb=Norvegų Bokmål
+
+langname.nl=Olandų
+
+langname.nn=Norvegų, Nynorsk
+
+langname.pl=Lenkų
+
+langname.pt=Portugalų
+
+langname.ru=Rusų
+
+langname.sv=Švedų
+
+langname.tr=Turkų
+
+langname.uk=Ukrainiečių
+
+langname.zh=Kiniečių Supaprastinta
+
+portal.login.portalname=Prisijungimas
+
+talk.anonwrote=Kažkas parašė, 
+
+talk.anonwrote_comm=Kažkas parašė bendruomenėje [[commlink]],
+
+talk.btn.preview=Peržiūra
+
+talk.commentpermlink=nuoroda
+
+talk.commentpost=Rašyti naują komentarą
+
+talk.commentsread=Skaityti komentarus
+
+talk.curname_Mood=<b>Nuotaika:</b>
+
+talk.curname_Music=<b>Dabar groja:</b>
+
+talk.error.bogusargs=Neteisingi parametrai
+
+talk.error.comm_deleted=Šis komentaras ištrintas.
+
+talk.error.deleted=Šis žurnalas ištrintas.
+
+talk.error.deleted.title=Ištrinta
+
+talk.error.mustlogin=Jūs turite būti prisijungęs tam, kad skaityti šį uždarą pranešimą.
+
+talk.error.nocomment=Šis komentaras neegzistuoja.
+
+talk.error.noentry=Nėra tokio pranešimo. 
+
+talk.error.nojournal=Klaida: neįmanoma nustatyti žurnalą pagal parametrus. 
+
+talk.error.nosuchjournal=Nėra tokio žurnalo
+
+talk.error.notauthorised=Jums neleidžiama skaityti šio uždaro įrašo.
+
+talk.error.suspended=Šis žurnalas laikinai sustabdytas.
+
+talk.parentlink=Vienu lygių aukščiau
+
+talk.readsimilar=Skaityti panašius įrašus:
+
+talk.replytothis=Atsakyti į šį komentarą
+
+talk.somebodywrote=[[realname]] ([[userlink]]) parašė,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) parašė bendruomenėje [[commlink]],
+
+talk.spellcheck=Tikrinti rašybą peržiūrint pranešimą
+
+talk.threadlink=Pokalbis pradėdant šiuo komentaru
+
+xcolibur.greeting.anon=Sveiki atvykę į LiveJournal!
+
+xcolibur.greeting.logged_in=Labas, [[name]]! [[logout]]
+
+xcolibur.login=Prisijungti?
+
+xcolibur.logout=Atsijungti?
+
+xcolibur.nav.about=Apie
+
+xcolibur.nav.about.download=Parsisiųsti
+
+xcolibur.nav.about.general=Bendra Informacija
+
+xcolibur.nav.about.paidaccounts=Mokami Vartotojai
+
+xcolibur.nav.about.press=Spauda
+
+xcolibur.nav.about.sitenews=Svietainės Naujienos
+
+xcolibur.nav.about.stats=Statistika
+
+xcolibur.nav.footer.sitemap=Svietainės Žemėlapis
+
+xcolibur.nav.help=Pagalba
+
+xcolibur.nav.help.ask=Užduoti Klausimą
+
+xcolibur.nav.help.contact=Kontaktai
+
+xcolibur.nav.help.faq=<abbr title="Dažniausiai Užduodami Klausimai">DUK</abbr>
+
+xcolibur.nav.help.lostpassword=Pamirštas Slaptažodis
+
+xcolibur.nav.home=Pradinis
+
+xcolibur.nav.journal=Žurnalas
+
+xcolibur.nav.journal.archive=Archyvas
+
+xcolibur.nav.journal.edit.entries=Redaguoti Įrašus
+
+xcolibur.nav.journal.friends=Draugai
+
+xcolibur.nav.journal.info=Informacija
+
+xcolibur.nav.journal.memories=Atmintini Įrašai
+
+xcolibur.nav.journal.recent=Naujausi
+
+xcolibur.nav.journal.update=Atnaujinti
+
+xcolibur.nav.manage=Redaguoti
+
+xcolibur.nav.manage.community=Bendruomenės
+
+xcolibur.nav.manage.customize=Nustatymus
+
+xcolibur.nav.manage.entries=Įrašus
+
+xcolibur.nav.manage.friends=Draugus
+
+xcolibur.nav.manage.info=Informaciją
+
+xcolibur.nav.manage.password=Slaptažodį
+
+xcolibur.nav.manage.pics=Paveikslėlius
+
+xcolibur.nav.manage.styles=Stiliai
+
+xcolibur.nav.search=Paieška
+
+xcolibur.nav.search.directory=Pagal Regioną
+
+xcolibur.nav.search.directory.search=Išplėstinė
+
+xcolibur.nav.search.interests=Pagal Pomėgius
+
+xcolibur.nav.search.random=Atsitiktinis
+
+xcolibur.nav.siteopts=Naršymo Nustatymai
+
+xcolibur.nav.title=Navigacija:
+
+xcolibur.nav.welcome=Sveiki Atvykę
+
+xcolibur.nav.welcome.create=Sukurti Vartotoją
+
+xcolibur.nav.welcome.login=Prisijungti
+
+xcolibur.nav.welcome.update=Atnaujinti Savo Žurnalą
+
+xcolibur.search=Paieška:
+
+xcolibur.search.category=Kategorija:
+
+xcolibur.search.icq=ICQ Numeris
+
+xcolibur.search.int=Pomėgis
+
+xcolibur.search.msn=MSN Vartotojas
+
+xcolibur.search.region=Regionas
+
+xcolibur.upgrade=Tapti Mokamu Vartotoju
+

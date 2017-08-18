@@ -1,0 +1,21 @@
+#-*-s2-*- ;; -*- coding: utf-8 -*-
+
+layerinfo "type" = "i18nc";
+layerinfo "redist_uniq" = "i18nc/ru1";
+layerinfo "name" = "Russian";
+layerinfo "langcode" = "ru";
+set lang_current = "ru";
+
+# Three forms, special cases for numbers ending in 1 and 2, 3, 4, except those ending in 1[1-4]
+function lang_map_plural (int n) : int {
+    if ($n%10 == 1 and $n%100 != 11) { return 0; }
+    if ($n%10 >= 2 and $n%10 <= 4 and ($n%100 < 10 or $n%100>=20)) { return 1; }
+    return 2;
+}
+
+set text_post_comment="Оставить комментарий";
+set text_read_comments="# комментарий // # комментария // # комментариев";
+set text_post_comment_friends="Оставить комментарий";
+set text_read_comments_friends="# комментарий // # комментария // # комментариев";
+
+

@@ -1,0 +1,242 @@
+<?_info
+localblocks<=
+reply<=
+{Fp}
+<?_code
+{
+    my ($scratch, $args) = ($_[1], $_[2]);
+    my $ljuser = $args->{LJUSER};
+    my $count = ++$scratch->{"count"};
+    my $lastnum = $scratch->{"perma_$ljuser"};
+    $scratch->{"perma_$ljuser"} ||= 1;
+    $scratch->{"perma_$ljuser"}++;
+    $ljuser .= ".$lastnum" if $lastnum;
+    return "<a name='$ljuser'></a>" .
+        "<div style='background-color: #ace; width: 100%; padding: 15px'>\n" .
+        "<a href='#$ljuser'>\#$count</a>, " .
+        LJ::ljuser($args->{LJUSER}) . ": <cite>&ldquo;$args->{QUESTION}&rdquo;</cite>" .
+        "</div>";
+
+}
+_code?>
+<?p %%answer%% p?>
+<=reply
+<=localblocks
+_info?><?page
+title=>State of the Goat 2004 Questions and Concerns
+body<=
+
+<?reply
+ljuser=>darksoul
+question=>What is the status on some of the much talked about projects like journal statistics, photo-hosting, etc?
+answer=><em>Photo hosting</em>: We have disk space and bandwidth handled now, so we just need to do quota integration since both fotobilder/picpix and LJ have their own system. We've already integrated the different systems' authentication methods via modules for the two services, so it should be a fairly easy task.<br /><em>Statistics</em>: Nobody's working on it, but it'd be nice. we really need more manpower or hours in the day.
+reply?>
+
+<?reply
+ljuser=>quasidan
+question=>I'd like a WYSIWYG layout helper for S1/S2 styles.
+answer=>We don't really see that happening, at least not in the web interface. There's nothing that would stop someone from writing an offline editor though. What we'd really like to see is an S1 type editor for S2, building a complete layout layer from static HTML. However, that's not a top priority for us right now.
+reply?>
+
+<?reply
+ljuser=>axiem
+question=>I'd like some more information on the state of S2. How much is completed, how far along are the docs, when is it expected to be everything? If I'm behind the times, some sort of formal announcement would be useful, I think.
+answer=>S2 is pretty much done. We're happy with what we've done so far, but we can see what is left to finished. We need a lot more decent styles, and we need to start helping translators translate the styles, since that's one major thing that S2 supports that S1 doesn't. We'd also like to hold a style contest some time soon, like the one we had for S1 (which gave us the Punquin Elegant style).
+reply?>
+
+<?reply
+ljuser=>axiem
+question=>I would also like to know of other plans for paid users, and other things that increments of cash can be used for (such as userpics right now).
+answer=>We'll be offering photo hosting as a paid service in the near future, and we'll also have an option to increase your disk space quota for a fee. When we finish support for journal statistics and logging, we plan to offer basic stats for current paid users, and comprehensive stats for an additional fee.
+reply?>
+
+<?reply
+ljuser=>jadedunoir
+question=>I would like to know if there is any plan to add more permenant accounts.
+answer=>There are no current plans to sell more. It's a delicate issue: we don't want to sell them too cheap, or too expensive, and finding the right number to sell isn't easy. Although selling more permanent accounts isn't entirely out of the question, we don't have any plans for another sale.
+reply?>
+
+<?reply
+ljuser=>prom
+question=>Personally, i was concerned that frank the goat wasn't decorated for the holidays this year.
+answer=>We were fairly busy last holiday season, and the undecorated Frank was an oversight. We've been discussing having more Franks for different holidays and occassions, much like <a href="http://www.google.com/holidaylogos.html">Google's Holiday Logos</a>.
+reply?>
+
+<?reply
+ljuser=>legolas
+question=>Doing something with (or about) the suggestions perhaps? I always get the feeling they disappear into /dev/null &hellip;
+answer=>Not all developers read suggestions, but there are staff members and volunteers who compile suggestions into zilla or email. <a href="http://www.livejournal.com/community/suggestions/428446.html">The Life of a Suggestion</a> explains more about the approval/filing process.
+reply?>
+
+<?reply
+ljuser=>tulipswallow
+question=>Things I'd like to see in the future are all along those lines. New layouts, site tracking, options, options, options.
+answer=>Yes. <tt>:-)</tt>
+reply?>
+
+<?reply
+ljuser=>sherm
+question=>What's the current climate around encouraging people to buy paid accounts? Are we going to see really compelling new features, or free-user limits in the next year? Or is 5% paid accounts an acceptable rate?
+answer=>We don't want to limit or bug free users, coercing them to upgrade. Our plan is to offer enough fun stuff to paid users to make people want to pay. 5% paid accounts includes the inactive accounts. If you look at active accounts, about 10-12% of users are paying, and that's perfectly acceptable. Those 10-12% pay for everybody else just fine, and the site doesn't have any financial problems. We spend money very conservatively and make sure we keep spare money around "just in case".
+reply?>
+
+<?reply
+ljuser=>rho
+question=>I'm concerned about the community/volunteer aspect of things, which seems to be in something of a shambles, with a lot of unnecessary conflict between staff and volunteers. Are there any plans to try to resolve this and improve communication, or is the volunteer aspect of LJ being considered less important these days, with the ever-increasing number of paid employees?
+answer<=
+While we are making an effort to hire more employees to help with the workload, we're not trying to ignore volunteers. We want to start having weekly meetings on IRC so that volunteers can catch up with all of the employees and developers, so hopefully that'll solve most communication issues. We'll post more details in <?ljcomm lj_manage ljcomm?> as we set this up. 
+<=answer
+reply?>
+
+<?reply
+ljuser=>beginning
+question=>My one big concern is that, all too often, something is announced in News, then Drama Ensues, then whatever poorly thought-out idea was first proposed has to be retracted, then something only marginally better is proposed, then people are still upset with staff because of the fact that drama ensued in the first place.<br /><br />So, to fix this, how about having much more discussion before things are announced/finalized? I know that there's probably a lot of discussion now as it is, but to many of us, things just look horribly disorganized where management is concerned. Perhaps, before posting anything to News, it should be posted to lj_core to have everyone look over it first to make sure you're all certain that's what you want to go ahead with, and that your plan doesn't have huge flaws in it?
+answer=>We discuss issues in lj_core constantly, and we often draft our news posts there so that all of the employees can review them. Sometimes it just takes the whole community to chime in with their opinions for us to change our minds - we like being flexible and adaptive in that respect.
+reply?>
+
+<?reply
+ljuser=>technodummy
+question=>Why on earth can I *still* not purchase extra syndication points?
+answer=>While we could offer to buy more points, we'd rather find a good upper limit so that users don't feel hampered by it. Our opinion is that syndication points are not interesting enough to make someone pay for. If you have a suggestion for a better limit, bring it up in <?ljcomm lj_biz ljcomm?> and we can discuss it.
+reply?>
+
+<?reply
+ljuser=>technodummy
+question=>I'd really like to see LJ catch up to the other blog tools in terms of categories. We already have memories, but they're not flexible, never automatic, and have a lot of limits. I would pay extra for categories.
+answer=>Categories are a feature we plan to have support for sometime in the next few months. Right now it's a matter of deciding how we will handle them internally. There have been a few recent discussions in <?ljcomm lj_dev ljcomm?> that you might be interested in.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>Are the main LJ staff happy to continue to work on LJ?
+answer=>Most of the time. There are periods of time when it's hard to find motivation (especially during loud periods of community bickering and server problem stress), but generally we're a happy lot.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>What if Brad, or you, or anyone else on the LJ team, got bored and decided she/he didn't want to work on the site any more? I'm sure you all have minor niggles and annoyances about the site and about working with people; is there a danger that any of you will say "right, that's it, I've had enough" and quit? What if - heaven forbid - there was a freak traffic accident and a senior developer or two was lost? What if Google headhunted senior staff members $10^5-$10^6 p.a. to go and work on Blogger instead?
+answer=>If Brad ever got absolutely bored with the site, he'd try to find someone trustworthy and knowledgable enough to take it over. Another possibility would be to sell the project to the general LiveJournal community, offer to setup a board of trustees (or something similar) and let the service exist as run by its community. That's not something we're concerned about however, because we're still very eager to work on LiveJournal.<br /><br />If we lost a few employees at a time, for whatever reason, we'd hopefully have enough left over to cover the workload until we hired more.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>What if the US government cracks down on the content that is being stored on LJ's servers? (Probably not a big problem now, but if you start doing picture hosting and the like, potentially a big problem.)
+answer=>We do try to comply with the law, but we <em>never</em> volunteer any information without a proper subpoena, court order, or search warrant. We purge our web traffic and statistics often, only keeping an anonymous digest for research purposes. If the government ever cracks down on the website, we'd work through it as best as we can, while keeping the interests of the community in mind.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>Do you intend to let expansion continue at its current rate, especially with the removal of invite codes? Would you like to expand faster? If so, what do you intend to do about it? What can we do to help? (I can guess what the answer is to that question.)
+answer=>At this point, we're not trying to speed up or slow down expansion, but let it evolve naturally. Our main concern is just to keep the site reliable for all users. As such, we've been spending tons of money on servers lately and will continue to do so. We won't be happy until the site's totally fast and reliable, and we know you won't either.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>Do you see yourself in competition with other sites that use the LJ codebase, or with other online journaling sites that use other codebases?
+answer=>The other LiveJournal based sites mostly carve niche markets for themselves, offering only a few variations of our service, as well as fewer users. We understand our code best, so we don't feel that we're in much competition with them. As for other social networking and journaling services there's plenty of competition, but we're trying to find a good balance between the two types of services so that we remain unique.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>Do you have any plans to try to expand your share of the online journal market at the expense of other online journal systems?
+answer=>On the contrary, we're constantly trying to find ways to make them work together.
+reply?>
+
+<?reply
+ljuser=>jiggery_pokery
+question=>How will the possible adoption of Atom affect matters; is there any chance that we will be able to use the same rich possibilities of Friends-list-based interaction with people who currently use other online journalling systems?
+answer=>Yes, that's exactly the goal.
+reply?>
+
+<?reply
+ljuser=>virga
+question=>One thing to be noticing is the namespace. Keep it up-to-date and clean. Wipe out inactive users after a while to keep everything fresh. That was the largest concern I had..people making up tons and tons of livejournals just because they could. Poluting the namespace and diluting the community.
+answer=>We've never really had a policy for deleting inactive accounts, but <?ljuser bradfitz ljuser?> <a href="http://www.livejournal.com/community/lj_biz/201195.html">recently drafted one</a> in <?ljcomm lj_biz ljcomm?>. It's still being reviewed, and is subject to change at any time.
+reply?>
+
+<?reply
+ljuser=>maelkann
+question=>Phone posts: Will they be expanded to other countries, and if so how can we help?
+answer=>Right now we're at the mercy of phone companies offering specific services in different locations. Expanding phone post access numbers depends on if we can get cheap IAX2 access in that country. You can read more about <a href="http://www.livejournal.com/community/lj_backend/1059.html">how the phone post feature works and how you can help</a> in <?ljcomm lj_backend ljcomm?>.
+reply?>
+
+<?reply
+ljuser=>rho
+question=>In terms of direction, I'd like to see more minor bugs getting fixed in a timely manner. New features are great, and increased backend stability is also great, but I'd like to see the little things fixed. A lot of the time it seems as if LJ works "well enough" rather than it being sparkly and shiny and just working. Especially with more employees to get things done, I think that some polishing could be very beneficial.
+answer=>We agree, but stability is always our main concern. You're right though, we have more in-house developers on hand, so having time to polish features is becoming more of a possibility.
+reply?>
+
+<?reply
+ljuser=>rho
+question=>I'm also very interested to know when the splitting up of the friends list into trusted and watched journals is going to happen, as that's a feature I've been wanting for a long time.
+answer=>This is one of our major priorities, since in the process we'll be refining slow queries, and taking the friend information off of the global databases and memcaching it. Solving this fixes many minor issues along the way.
+reply?>
+
+<?reply
+ljuser=>flashfire
+question=>What steps can LJ take (or what steps is LJ already taking) to improve lines of communication with users in general? How much emphasis is put on to-do lists and timeframes? Without timeframes and reminders that a set date goal for a certain project is approaching, it's probably easy for things to slip to the background when other more immediate issues pop up.<br /><br />What are your (LJ as a whole) thoughts on something like a monthly status report that could be posted, something that would list the main projects being worked on with their current levels of progress and expected completion times? I'm sure something like that would go a long ways towards soothing the concerns/complaints of some.
+answer=>We've been working hard to improve our internal communication, and to move most of our employees to the office in Portland so that we're always in contact with each other. We put a lot of emphasis on to-do lists, but most projects are dependant on others which constantly push back projected timeframes. The idea of a monthly status sounds good, so we'll try that for a while and see how it goes.
+reply?>
+
+<?reply
+ljuser=>rho
+question=>I would really really like to see the FAQ engine updated. It works at the moment, but it doesn't work nicely. It's a byzantine monstrosity, where it can be a pain to find a certain bit of information, even if you know the FAQ inside out.
+answer=>We've talked about developing a search engine for the FAQs, now that MySQL supports full text searching with Unicode character sets. Although it's not top priority, it's something that we feel will cut out a lot of complaints regarding our documentation.
+reply?>
+
+<?reply
+ljuser=>lovewithnoface
+question=>My biggest issue with LiveJournal is the large amount of non-LJ specific code. It is very easy for users to go from action to action without anything being explained and without them being pointed towards the FAQ.
+answer=>We're working on navigation issues in the current site schemes, and we'll be adding a bread crumb line of links for most pages. 
+reply?>
+
+<?reply
+ljuser=>icon_goddess
+question=>It would be great if the limit on our friends could be lifted...it is hard having to either create a separate account to accomidate the overflow or having to pick and choose who gets to stay. Does the limit apply for communities as well?
+answer=>The limit on friends can probably be lifted after the friends watching/split concept, as most of that information will be stored in memcache objects and not on the global databases.
+reply?>
+
+<?reply
+ljuser=>twistedchick
+question=>I'd like to have a way to go back to a specific date and read forward in my friends page. For instance, if I'm away on vacation, I'd like to be able to go back to the day I left and read forward, however many posts that is, rather than having to read *backward* from the present.
+answer=>That would take up a lot of space just for that specific task. That's really something that'd better be handled in an offline client.
+reply?>
+
+<?reply
+ljuser=>harry711
+question=>Search. I know I can do some things with google or other 3rd parties, but I want something built in. It would be nice (for example) to get a list of all my posts that are friends only, or available to a certain filter.
+answer=>We had been waiting for MySQL to catch up with full text search features, and now that they support full text searching with Unicode character sets, it's certainly a possibility. However, it's not on anyone's to-do list at the moment.
+reply?>
+
+<?reply
+ljuser=>fool_in_spirit
+question=>S2 power over memories. Possibility to edit memories page, possibility to show a page with the body of all memories.
+answer=>That's a good idea, but it's not a priority for lead developers right now.
+reply?>
+
+<?reply
+ljuser=>mystery544
+question=>Why not make entries easier to move (Friends,Private,etc)/delete/etc?<br /><br />I'd like to move a lot of my entries to Private or Friends, but it would mean going through every entry and seeing which group it's defined under.
+answer=>Yeah we should, but more people want journal-wide security, which is easier to code. Also, we don't really want to offer mass deletion capabilities, in case an account is hijacked. However, that becomes less of an issue after we start offering user-level backups for accounts. 
+reply?>
+
+<?reply
+ljuser=>digitalised
+question=>Make the renaming system a bit more lenient. I'd really like to see an option to switch two journal names without having to purchase 3 rename tokens. Perhaps this could be an option for paid accounts or something of the sort. Right now, it's absurd to try and swap journal names.
+answer=>We don't really want to make the rename process any easier, because we frown on account renaming in general. Right now we have no interest in offering easy username swaps, but if someone wanted to write support for it we'd accept a patch.
+reply?>
+
+<?reply
+ljuser=>digitalized
+question=>I've always thought that blogging sites that allowed you to download your journal onto your homepage without having to go through embedding problems and such were a good idea. It would be nice to see LiveJournal become a service somewhat like Movable Type in addition to what you guys provide on your own servers.
+answer=>We'd eventually like to provide a backup program with an upload feature. We don't want to keep your website's passwords, and CGI wouldn't be required on your server in order for it to work. That's a far off plan though, because it's not an oft-requested feature.
+reply?>
+
+<?reply
+ljuser=>madshrubbery
+question=>I love the LJ store, but are there any plans on expanding the available products? I can't wear any of the shirts, but I'd love to have some other kinds of products with LJ logos/slogans.
+answer=>We're soon going to offer a limited run of sweatshirts and baseball hats in the store, to see how well they sell. Our expansion into other products really depends on how well our current stock appeals to the users. We are still working on researching some new items, but getting styles, and good prices, can be a challenge. Our logo has a 7 color screen print process, and does not work on all items. We will continue to look into new options.
+reply?>
+
+<=body
+page?>

@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>FooBar Enterprises - Page</title>
+</head>
+<body>
+<h1 class="header">FooBar Enterprises - Page</h1>
+<hr />
+<div class="header"><strong>Headers - What good are they?</strong></div>
+<p class="para" style="text-align: justify">
+This is just an introductory text. The normal way to include text like this 
+is to write it in Latin, but since I don't know Latin, you'll have to settle
+with this little paragraph.
+</p>
+<div class="header"><strong>Templates are for Wimps!</strong></div>
+<p class="para">
+I'd rather have to edit all of my pages by hand when I decide to change the
+unified look of my site!
+</p>
+
+</body>
+</html>

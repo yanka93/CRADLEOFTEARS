@@ -1,0 +1,51 @@
+<?page
+title=>Style System
+body<=
+<?h1 Introduction h1?>
+<?p
+When LiveJournal was designed, we wanted it to be both easy to use, and still extremely flexible for the power users that like to tweak everything.  We took some time and developed a system that we hope will accomodate everyone.
+p?>
+<?p
+In LiveJournal, there are different view modes.  The most common one is named "lastn", a view that displays the last 'n' number of events in one's journal.  Additionally, there is a calendar view, a day view, a search page, and a search results page, and possibly more modes we may add in the future.  Knowing that we're going to want to extend this in the future, and knowing some users will never be happy if we hard-code the style of the pages (and knowing that we suck at making things really pretty), our system lets users pick a base style for each mode, and override individual elements of the style at will.
+p?>
+<?p To better explain how things work, let's walk through things step by step, from the perspective of different users, explaining what's going on behind the scenes... p?>
+
+<?h1 The casual user... h1?>
+<?p
+The casual user is one that doesn't know much about programming, if any, and just wants to get their journal up and running as quick as possible, and they want it to look pretty.  What we're going to offer the casual user is a way to pick from pre-made styles.  The pre-made styles define a bunch of variables used internally by the LiveJournal server code that generates the pages.  Users will see syles names like "Classic Layout", "Simple Layout", "Modern Look" and then they'll be able to specify their colors for that layout ("style").  But behind the scenes the server will load the user's record, see they've selected style ID# 1043, and preload all the variables necessary to make the page look a certain way.  By default, we'll provide a few styles and in time we'll let users submit their self-created styles to be approved to be system-wide styles that anybody can use.
+p?>
+
+<?h1 The advanced user... h1?>
+<?p
+The advanced user will more than likely start as being a casual user, but will soon grow annoyed at the way a certain thing about their journal pages are.  The "overrides" section will let these advanced users research the variables that control the page layout and then redefine as much or as little as they want, without having to recreate their whole own style.  In time, though, the user may get really good at the system and simply recreate everything.
+p?>
+
+<?h1 Variables and Properties h1?>
+<?p
+It took us awhile to settle on some terminology that we were happy with, but what we finally decided on was variables and properties.  A <B>variable</B> is something that a style defines (and that a user can override) and is either:
+<OL>
+<LI>A <B>page setup option</B>, like how many items to show, how to sort something, or the format of dates and times.
+<LI>Some <B>HTML</B> that the page contruction engine will use to make the page, with properties that it will fill in.
+</OL>
+A <B>property</B> is something that the server will generate (usually based on other variables) and prefill into your variables.  Properties are mixed in variables like <NOBR><tt><B>%%property%%</B></tt></NOBR> and will be replaced by what they represent before being sent to the users' web-browsers.
+p?>
+
+<?h1 So, what next? h1?>
+<?p To customize your journal beyond just changing colors, you'll need to make a new
+style.  Here are some links: 
+<UL>
+<LI><A HREF="/styles/create.bml">Create Style</A>
+<LI><A HREF="/styles/edit.bml">Edit Style</A> -- (for changing it later)
+</UL>
+p?>
+
+<?h1 Questions? h1?>
+<?p
+If you have any questions or comments, ask the always-eager <a href="/support/submit.bml">support team</a>.
+p?>
+
+<?hr?>
+Back to <A HREF="/developer/">Developer Area</A>.
+
+<=body
+page?>

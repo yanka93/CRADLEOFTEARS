@@ -1,0 +1,118 @@
+#NEWLAYER: unearthed/rampant
+layerinfo "type" = "theme";
+layerinfo "name" = "Rampant Tenderfoot";
+layerinfo redist_uniq = "unearthed/rampant";
+
+set stronger_bgcolor = "#ff3300";
+set strong_bgcolor = "#ff8000";
+set neutral_bgcolor = "#ffb200";
+set weak_bgcolor = "#ffb380";
+set weaker_bgcolor = "#ffcc80";
+
+#NEWLAYER: unearthed/acrid
+layerinfo "type" = "theme";
+layerinfo "name" = "Acrid Slide";
+layerinfo redist_uniq = "unearthed/acrid";
+
+set title_texture = "rough";
+set stronger_bgcolor = "#33ff00";
+set strong_bgcolor = "#0066b2";
+set neutral_bgcolor = "#00B266";
+set weak_bgcolor = "#99ff80";
+set weaker_bgcolor = "#ccffbf";
+
+#NEWLAYER: unearthed/leisure
+layerinfo "type" = "theme";
+layerinfo "name" = "Leisure Renewal";
+layerinfo redist_uniq = "unearthed/leisure";
+
+set title_texture = "camouflage";
+set stronger_bgcolor = "#285577";
+set strong_bgcolor = "#3c3773";
+set neutral_bgcolor = "#287755";
+set weak_bgcolor = "#c0c0ec";
+set weaker_bgcolor = "#b1ecd3";
+
+#NEWLAYER: unearthed/craftis
+layerinfo "type" = "theme";
+layerinfo "name" = "Craftis";
+layerinfo redist_uniq = "unearthed/craftis";
+
+set title_texture = "camouflage";
+set stronger_bgcolor = "#dd0000";
+set strong_bgcolor = "#aa4f39";
+set neutral_bgcolor = "#d2d2d2";
+set weak_bgcolor = "#fcffcf";
+set weaker_bgcolor = "#eeeeee";
+
+#NEWLAYER: unearthed/unveiled
+layerinfo "type" = "theme";
+layerinfo "name" = "Unveiled Metal";
+layerinfo redist_uniq = "unearthed/unveiled";
+
+set title_texture = "brushed_metal";
+set stronger_bgcolor = "#666666";
+set strong_bgcolor = "#999999";
+set neutral_bgcolor = "#333333";
+set weak_bgcolor = "#cccccc";
+set weaker_bgcolor = "#eeeeee";
+
+#NEWLAYER: unearthed/wait
+layerinfo "type" = "theme";
+layerinfo "name" = "Wait Screw";
+layerinfo redist_uniq = "unearthed/wait";
+
+set title_texture = "chalk";
+set stronger_bgcolor = "#009999";
+set strong_bgcolor = "#ff6600";
+set neutral_bgcolor = "#66cccc";
+set weak_bgcolor = "#ffb380";
+set weaker_bgcolor = "#eeeeee";
+
+#NEWLAYER: unearthed/drinkdna
+layerinfo "type" = "theme";
+layerinfo "name" = "Drinking DNA";
+layerinfo redist_uniq = "unearthed/drinkdna";
+
+set title_texture = "cork";
+set stronger_bgcolor = "#4C9978";
+set strong_bgcolor = "#468C8C";
+set neutral_bgcolor = "#53A653";
+set weak_bgcolor = "#ACE6E6";
+set weaker_bgcolor = "#eeeeee";
+
+#NEWLAYER: unearthed/gainful
+layerinfo "type" = "theme";
+layerinfo "name" = "Gainful Magic";
+layerinfo redist_uniq = "unearthed/gainful";
+
+set title_texture = "fibers";
+set stronger_bgcolor = "#DFDFA7";
+set strong_bgcolor = "#FFFF80";
+set neutral_bgcolor = "#AAAA39";
+set weak_bgcolor = "#eeeeee";
+set weaker_bgcolor = "#FFFFBF";
+
+#NEWLAYER: unearthed/inaccurate
+layerinfo "type" = "theme";
+layerinfo "name" = "Inaccurate Lingo";
+layerinfo redist_uniq = "unearthed/inaccurate";
+
+set title_texture = "stucco";
+set stronger_bgcolor = "#FF8080";
+set strong_bgcolor = "#FF9980";
+set neutral_bgcolor = "#E572A5";
+set weak_bgcolor = "#F2B6D0";
+set weaker_bgcolor = "#eeeeee";
+
+#NEWLAYER: unearthed/current
+layerinfo "type" = "theme";
+layerinfo "name" = "Current Protector";
+layerinfo redist_uniq = "unearthed/current";
+
+set title_texture = "type";
+set stronger_bgcolor = "#B5D9D9";
+set strong_bgcolor = "#285577";
+set neutral_bgcolor = "#226666";
+set weak_bgcolor = "#7DA0BB";
+set weaker_bgcolor = "#B5D9D9";

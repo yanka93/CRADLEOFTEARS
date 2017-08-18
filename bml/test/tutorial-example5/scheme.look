@@ -1,0 +1,11 @@
+LINKITEM=>{P}<dt><a href="%%data2%%">%%data1%%</a></dt> <dd>%%data3%%</dd>
+
+LINKLIST<=
+{F}
+<h4>My Current Reading List</h4>
+<dl>
+%%items%%
+</dl>
+<p><small>Last updated: %%date%%</small></p>
+<=LINKLIST
+

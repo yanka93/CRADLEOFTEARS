@@ -1,0 +1,115 @@
+<html>
+<head><title>Enter Batch</title></head>
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+    my $ret;
+
+    my $remote = LJ::get_remote();
+
+    unless (LJ::remote_has_priv($remote, "moneyenter")) {
+        return "You don't have access to enter payments: need 'moneyenter' priv."
+            if $remote;
+        return "<?needlogin?>";
+    }
+
+    my $do_proc = LJ::did_post() && ! $POST{'new'};
+
+    my $dbh = LJ::get_db_writer();
+
+    my $row = sub {
+        my $i = shift;
+        my ($cart, $amt, $meth, $country, $state, $notes) = 
+            $POST{'new'} ? () : map { LJ::trim($POST{"${_}_$i"}) } qw(cart amt meth country state notes);
+
+        my $rowhtml = sub {
+            my $col = shift;
+            $ret .= $col ? "<tr bgcolor='$col'>" : "<tr>";
+            $ret .= "<td>#"  . LJ::html_text({ name => "cart_$i", value => $cart, size => 13 }) . "</td>";
+            $ret .= "<td>\$" . LJ::html_text({ name => "amt_$i", value => $amt, size => 6 }) . "</td>";
+            $ret .= "<td>"   . LJ::html_select({ name => "meth_$i", selected => $meth, },
+                                               qw(check check cash cash moneyorder moneyorder)) . "</td>";
+            $ret .= "<td>"   . LJ::html_text({ name => "country_$i", value => defined $country ? $country : 'US',
+                                               size => 2, maxlength => 70 }) . "</td>";
+            $ret .= "<td>"   . LJ::html_text({ name => "state_$i", value => $state,
+                                               size => 2, maxlength => 70 }) . "</td>";
+            $ret .= "<td>"   . LJ::html_text({ name => "notes_$i", value => $notes, 
+                                               size => 60, maxlength => 255 }) . "</td>";
+            $ret .= "</tr>\n";
+            return undef;
+        };
+
+        my $err = sub {
+            my $errmsg = shift;
+            $rowhtml->("#ff5050");
+            $ret .= "<tr bgcolor='#ff9090'><td colspan='6'>$errmsg</td></tr>\n";
+        };
+
+        return $rowhtml->() unless $do_proc && $cart;
+        return $err->("Invalid order format (should be like 1234-342)") 
+            unless $cart =~ /^\d+-\d+$/;
+        return $err->("Invalid payment amount")
+            unless $amt =~ /^\d+(\.\d\d)?$/;
+
+        my $cartobj = LJ::Pay::load_cart($cart);
+        return $err->("Cannot find order number") unless $cartobj;
+        return $err->("Order price of \$$cartobj->{'amount'} doesn't match paid amount")
+            unless $cartobj->{'amount'}*100 == $amt*100;
+
+        # make sure that the cart is valid and ready for processing, but don't do
+        # checks if the cart is already completely processed, since it doesn't matter
+        # in that case anyway and errors will likely be found
+        unless ($cartobj->{'used'} eq 'Y') {
+            return $err->("Cart is no longer valid.  Cannot process payment.")
+                unless LJ::Pay::is_valid_cart($cartobj);
+        }
+
+        # validate state/country
+        {
+            my $errstr;
+            my ($ctry, $st) = LJ::Pay::check_country_state($country, $state, \$errstr);
+            return $err->("Error: $errstr") if $errstr;
+
+            LJ::Pay::payid_set_state($cartobj->{payid}, $ctry, $st);
+        }
+
+        # only update once (from cart to 'N' (pending))
+        $dbh->do("UPDATE payments SET used='N', mailed='N', daterecv=NOW() ".
+                 "WHERE payid=? AND mailed='C'", undef, $cartobj->{'payid'});
+
+        # allow method to be updated multiple times (to fix error)
+        $dbh->do("UPDATE payments SET method=? WHERE payid=?", undef,
+                 $meth, $cartobj->{'payid'});
+        
+        # likewise, keep letting notes be added (as long as they're different)
+        if ($notes && 
+            ! $dbh->selectrow_array("SELECT COUNT(*) FROM payvars WHERE ".
+                                    "payid=? AND pkey='notes' AND pval=?",
+                                    undef, $cartobj->{'payid'}, $notes))
+        {
+            $dbh->do("INSERT INTO payvars (payid, pkey, pval) VALUES (?,?,?)", undef,
+                     $cartobj->{'payid'}, "notes", $notes);
+        }
+
+        # Note that we've received a valid payment from this user
+        # * FIXME: could be faster, but this page is seldom-used
+        if (my $u = LJ::load_userid($cartobj->{userid})) {
+            LJ::Pay::note_payment_from_user($u);
+        }
+        
+        return $rowhtml->("#c0ffc0");
+    };
+
+    $ret .= "<form method='post'>";
+    $ret .= "<table><tr valign='bottom'><td>order number</td><td>amt paid</td><td>method</td><td colspan=2>country,<br />state</td><td>internal notes (name, return addr)</td></tr>\n";
+    for (1..20) { $row->($_); }
+    $ret .= "</table>";
+    $ret .= "<p><input type='submit' value='Process'> <input type='submit' name='new' value='Blank Page'></p></form>";
+    return $ret;
+
+}
+_code?>
+</body>
+</html>

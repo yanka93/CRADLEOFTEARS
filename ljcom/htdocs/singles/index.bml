@@ -1,0 +1,34 @@
+<?page
+title=>LiveJournal Singles
+body<=
+
+<?h1 Hey, we can be a cheesy dating site too! h1?>
+<?p
+There are a dozen dating/match sites out there, but are there any communities as cool as LiveJournal's?  We realized it'd be trivial to tack some dating features onto the existing LiveJournal site, so here you go...
+p?>
+
+<?standout <b>
+<?_code {
+    LJ::set_active_crumb('singles');
+
+    my $dbr = LJ::get_db_reader();
+    $dbr->selectrow_array("SELECT statval FROM stats WHERE statcat='singles' AND statkey='total'")+0;
+} _code?></b> single people looking for love!
+standout?>
+
+<?choices
+items<=
+<?choice Modify Your Availability|mod.bml|Are you available?  Age, Sex, Location?  And what gender are you seeking? choice?>
+<=items
+itemsb<=
+<?choice Search!|search.bml|Search the LiveJournal singles. choice?>
+<=itemsb
+choices?>
+
+<?h1 Disclaimer h1?>
+<?p
+LiveJournal.com is not responsible for verifying that anybody you find or who finds you using this service isn't entirely psycho.  (In all likelihood, they are.)  So please, use your discretion in who you contact or meet up with in real life.
+p?>
+
+<=body
+page?>

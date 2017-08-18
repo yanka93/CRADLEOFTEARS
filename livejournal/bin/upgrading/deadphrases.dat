@@ -1,0 +1,207 @@
+# these get removed if found by texttool.pl
+#
+
+general /allpics.bml.edit
+general /allpics.bml.nopics.text
+
+general /community/join.bml.label.authpost
+general /community/join.bml.label.closedcomm
+
+general /community/manage.bml.actmembers
+general /community/manage.bml.actsettings
+general /community/manage.bml.commlist.actmoderate
+
+general /community/members.bml.manage
+
+general /community/search.bml.contasmember
+general /community/search.bml.userlikes
+
+general /community/settings.bml.label.admconsole
+general /community/settings.bml.manage
+
+general /create.bml.aolnotice.head
+general /create.bml.aolnotice.text
+general /create.bml.error.seebelow
+general /create.bml.proceed.head
+general /create.bml.proceed.text
+
+general /create.bml.tos.error
+general /create.bml.tos.haveread
+general /create.bml.tos.p1.2
+
+general /editinfo.bml.allowshocontact.email.if_domainaddy
+general /editinfo.bml.allowshowcontact.email.reason
+general /editinfo.bml.newemail.body
+general /editinfo.bml.settings.about
+general /editinfo.bml.showsubjicons.about
+general /editinfo.bml.showsubjicons.header
+general /editinfo.bml.tm.about
+general /editinfo.bml.topicdir.about
+general /editinfo.bml.topicdir.header
+
+general /friends/edit.bml.btn.proceed
+general /friends/edit.bml.edit.head
+general /friends/edit.bml.edit.text
+
+general /editjournal.bml.enterlogin
+general /editjournal.bml.lostinfo.head
+general /editjournal.bml.lostinfo.text
+
+general /editjournal_do.bml.error.mustlogin
+general /editjournal_do.bml.success.edit
+
+general /friends/editgroups.bml.login.header
+general /friends/editgroups.bml.login.text
+
+general /interests.bml.findsim.account.notallowed
+general /interests.bml.findsim.account.notloggedin
+general /interests.bml.findsim.btn.find
+general /interests.bml.findsim.head
+general /interests.bml.findsim.simtouser
+general /interests.bml.findsim.text
+general /interests.bml.interests.findsim1
+general /interests.bml.interests.findsim2
+
+general /login.bml.error.forgotpass
+general /login.bml.error.noaccount
+
+general /manage/index.bml.information.setlang.about
+general /manage/index.bml.information.setscheme.about
+
+general /modify.bml.btn.proceed
+general /modify.bml.journalstatus.about
+general /modify.bml.journalstatus.head
+general /modify.bml.journalstatus.select.activated
+general /modify.bml.journalstatus.select.deleted
+general /modify.bml.journalstatus.select.head
+general /modify.bml.journalstatus.select.suspended
+general /modify.bml.lostinfo.head
+general /modify.bml.lostinfo.text
+general /modify.bml.modify.head
+general /modify.bml.modify.text
+
+general /modify_do.bml.title
+
+general /multisearch.bml.region.text
+
+general /register.bml.new.body
+
+general /setlang.bml.select
+general /setlang.bml.switch
+general /setlang.bml.title
+
+general /setscheme.bml.current
+general /setscheme.bml.default
+general /setscheme.bml.noschemes
+general /setscheme.bml.select
+general /setscheme.bml.switch
+general /setscheme.bml.title
+
+general /support/faqbrowse.bml.title
+
+general /talkpost.bml.label.picturetouse
+
+general /talkpost_do.bml.opt.spellcheck
+
+general /talkread.bml.pageofpages
+
+general /tools/memadd.bml.body.added.body
+
+general /update.bml.update.about
+general /update.bml.login.success
+general /update.bml.htmlokay
+
+general /uploadpic.bml.success.text
+general /uploadpic.bml.btn.proceed
+general /uploadpic.bml.error.badurl
+general /uploadpic.bml.error.databasedown
+general /uploadpic.bml.error.filetoolarge
+general /uploadpic.bml.error.imagetoolarge
+general /uploadpic.bml.error.invalidauth
+general /uploadpic.bml.error.invalidimage
+general /uploadpic.bml.error.toomanypics
+general /uploadpic.bml.error.unknownmode
+general /uploadpic.bml.error.urlerror
+general /uploadpic.bml.fromfile
+general /uploadpic.bml.fromfile.key
+general /uploadpic.bml.fromurl
+general /uploadpic.bml.fromurl.key
+general /uploadpic.bml.header
+general /uploadpic.bml.imagesize.by
+general /uploadpic.bml.kilobytes
+general /uploadpic.bml.makedefault
+general /uploadpic.bml.makedefault.key
+general /uploadpic.bml.restriction.fileformat
+general /uploadpic.bml.restriction.filesize
+general /uploadpic.bml.restriction.imagesize
+general /uploadpic.bml.success.editpics
+general /uploadpic.bml.success.header
+general /uploadpic.bml.success.preview
+general /uploadpic.bml.success.upload
+general /uploadpic.bml.text
+general /uploadpic.bml.title
+
+general /uploadpic_do.bml.error.urlerror
+general uploadpic.error.toolarge
+
+general /userinfo.bml.canpost
+general /userinfo.bml.closedmembership.body
+general /userinfo.bml.fbpictures
+general /userinfo.bml.label.viewlabel
+general /userinfo.bml.openmembership.body
+general /userinfo.bml.posthere
+general /userinfo.bml.rpmembership.body
+general /userinfo.bml.syn.lastnew
+
+general /register.bml.error.alreadyvalidated
+
+general /tools/memories.bml.entry
+general /tools/memories.bml.entries
+
+general /create.bml.tos.p1
+general /create.bml.email.text
+general /create.bml.email.note
+
+general /syn/index.bml.table.cost
+general /syn/index.bml.quota.text
+general /syn/index.bml.quota.your
+general /syn/index.bml.quota.numbers
+general /syn/index.bml.invalid.overquota
+general /syn/index.bml.invalid.overquota.text
+general /syn/index.bml.invalid.overquota.title
+general /syn/index.bml.invalid.overquota.username
+general /syn/index.bml.accounttype.notallowed
+general /syn/index.bml.add.other.title
+general /syn/index.bml.add.other.text
+general /syn/index.bml.notused
+general /userinfo.bml.syn.cost
+
+general bml.needlogin.body
+
+general /userinfo.bml.label.frsyndication
+
+general /syn/index.bml.invalid.address
+
+general /community/members.bml.key.name
+general /community/members.bml.success.addusers
+
+general /userinfo.bml.label.totalfriends
+
+general /community/settings.bml.label.closedmemb
+
+general /talkscreen.bml.title
+
+general /community/members.bml.success.message
+
+general /community/transfer.bml.error.banned
+
+general /create.bml.age.check.question
+general /create.bml.age.check.yes
+general /create.bml.age.check2.question
+general /create.bml.age.check2.yes
+general /create.bml.age.head
+
+general /community/members.bml.reinvited
+general /community/membres.bml.success.invited
+
+general /customize/index.bml.s1

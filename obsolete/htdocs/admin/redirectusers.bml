@@ -1,0 +1,113 @@
+<html>                                                                                                                                
+<head><title>Redirect users</title></head>                                                                                             
+<body>                                                                                                                                
+<?_code
+{
+    use strict;
+    use vars qw($title $body %GET %POST);
+    use LJ::Rewriteuser;
+
+    $title = "Redirect users";
+    $body = "";
+    
+    # login check
+    my $remote = LJ::get_remote();
+    
+        return LJ::bad_input("You must be logged in to modify your journal")                                                              
+	        unless $remote;
+    
+    # priv check
+        return LJ::bad_input("You do not have the necessary privilege to be here.") 
+	    unless LJ::check_priv($remote, 'admin');                                                              
+
+    # Subroutine that provides the HTML form
+
+ my $update_form = sub {
+     my $ret;
+
+     $ret .= "<form action='redirectusers.bml' method='post'>\n";
+     $ret .= LJ::html_hidden(mode => 'submit',
+                              ssl => $GET{'ssl'});
+
+     $ret .= "<?h1 Redirect users h1?>\n";
+     $ret .= "<?p To redirect a user or a community, fill out the form below p?>\n";
+
+     $ret .= "<?standout\n";
+     $ret .= "Redirect from:<br />\n";
+     $ret .= "<input name='from' size='30' maxlength='15'/><br />\n";
+     $ret .= "Redirect to:<br />\n";
+     $ret .= "<input name='to' size='30' maxlength='15' /><br />\n";
+     $ret .= "Affect entries with numbers strictly less than:<br />\n";
+     $ret .= "<input name='maxid' size='30' maxlength='15' /><br />\n";
+     $ret .= "standout?>\n";
+
+     $ret .= "<?h1 Proceed h1?>\n";
+     $ret .= "<?p Press the button to turn on redirect. Should work for communities, too. To remove redirect, leave the &quot;Redirect to:&quot; field empty. p?>\n";
+
+     $ret .= "<?standout\n";
+     $ret .= "<input type='submit' value='Proceed' />\n";
+     $ret .= "standout?>\n";
+     $ret .= "</form>\n";
+     return $ret;
+};
+
+# If POST didn't accur, give out the HTML form. If it did occur,
+# process data
+
+ unless (LJ::did_post()) {
+     $body .= $update_form->();
+
+# Redirect from 'from' to 'to' with maxid 'maxid' 
+
+ } elsif ($POST{'mode'} eq 'submit') {
+
+# Get $from, $to, $maxid, canonicalize $from and $to.
+
+     my $from = LJ::canonical_username($POST{'from'});
+     my $to = LJ::canonical_username($POST{'to'});
+     my $maxid = $POST{'maxid'};
+     
+# If $to not emptry, we're adding a redirect
+
+         if ($to ne "") {
+
+# Check whether maxidx is an integer
+
+	     if($maxid =~ /\d+/){
+	    	$maxid=$maxid+0;
+
+# Check whether we already have a redirect from $from
+
+		if (!(LJ::Rewriteuser::get_rewrite($from))){
+
+# We don't have a redirect -- okay, we add it
+
+		    LJ::Rewriteuser::insert_rewrite_hash($from,$to,$maxid);
+		    $body = "Success: $from is now redirected to $to with maxid $maxid.<br>Please restart httpd before setting any oy other redirects.";
+
+# We do have redirect already -- do nothing, return error
+
+		} else {$body = "Error: there already is a redirect for this user. Namely, to: ".(LJ::Rewriteuser::get_rewrite($from));}
+
+# maxid is not an integer -- return error
+
+	    } else {$body="Error: maxid must be a number.";}
+
+# Okay, $to is empty -- this means we're removing a redirect
+
+         } else { 
+	    if (LJ::Rewriteuser::get_rewrite($from)){
+		LJ::Rewriteuser::delete_rewrite_hash($from);
+		$body="Success: $from is not redirected anywhere from now on. <br>Please restart httpd before setting any oy other redirects.";
+	    }
+	}
+    } 
+    return $body;
+}
+_code?>                                                                                                                               
+</body>                                                                                                                               
+</html>                                                                                                                               
+<?_c <LJDEP>                                                                                                                          
+lib: cgi-bin/console.pl, cgi-bin/ljlib.pl                                                                                             
+</LJDEP> _c?> 
+

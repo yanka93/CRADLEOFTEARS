@@ -1,0 +1,21 @@
+<?page
+title=>It's Free.
+body<=
+
+<?_code
+    LJ::set_active_crumb('itsfree');
+_code?>
+
+<?h1 It's Free? h1?>
+<?p
+Yes, it's free.  You do not have to pay any money to use this service.  You can buy a <A HREF="/paidaccounts/">paid account</A> to show your support and to help us afford better hardware and bring you new features, but you don't have to.
+p?>
+<?p
+I started this website just so I could use it myself with my friends.  The fact that it got so popular without any advertising just goes to show how cool it is.  Try it out .... if you have any problems or suggestions on how it could be made better, <A HREF="mailto:webmaster@livejournal.com">let me know</A>!
+p?>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/paidaccounts/index.bml
+mailto: webmaster@livejournal.com
+</LJDEP> _c?>

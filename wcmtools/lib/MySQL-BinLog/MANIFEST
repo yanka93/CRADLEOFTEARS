@@ -1,0 +1,12 @@
+docs/log_event.h
+docs/log_event.ph
+experiments/cpptokenizer.pl
+experiments/try.pl
+lib/Mysql/BinLog.pm
+lib/Mysql/BinLog/Constants.pm
+lib/Mysql/BinLog/Events.pm
+lib/Mysql/BinLog/Header.pm
+lib/Mysql/BinLog/Net.pm
+lib/Mysql/tmp
+Makefile.PL
+MANIFEST

@@ -1,0 +1,3 @@
+ExpiresActive on
+ExpiresByType image/png "modification plus 24 hours"
+ExpiresByType text/plain "modification plus 24 hours"

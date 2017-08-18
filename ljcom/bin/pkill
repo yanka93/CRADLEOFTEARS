@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+#
+# <LJDEP>
+# prog: ps, grep
+# </LJDEP>
+
+use strict;
+
+my $prog = shift @ARGV;
+exit unless ($prog =~ /^[\w\.\/]+$/);
+
+my @procs = `ps awx | grep $prog | grep -v grep | grep -v pkill`;
+foreach (@procs)
+{
+    next unless (/^\s*(\d+)\s/);
+    my $pid = $1;
+    print $pid, "\n";
+    kill 15, $pid;
+}
+

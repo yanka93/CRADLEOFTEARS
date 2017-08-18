@@ -1,0 +1,552 @@
+<chapter id="bml.tutorial">
+  <!-- $Id: tutorial.xml,v 1.4 2004/07/03 00:13:27 deveiant Exp $ -->
+  <chapterinfo>
+	<title>A Brief Tutorial</title>
+  </chapterinfo>
+
+  <title>A Brief Tutorial</title>
+
+  <para>
+    The goal of using <abbrev>BML</abbrev> is to become a smarter, lazier 
+    webmaster. The qualities that define a <abbrev>BML</abbrev> author should
+    be the same as a good Perl programmer: <emphasis>laziness, impatience, 
+	  and hubris</emphasis>. 
+  </para>
+
+  <section id="bml.tutorial.intro">
+    <title>Introducing <abbrev>BML</abbrev></title>
+
+	<!-- Tutorial: Blocks Section -->
+	<section id="bml.tutorial.intro.blocks">
+	  <title>Blocks</title>
+	  <para>
+		<abbrev>BML</abbrev> is essentially a simple macro language. Macros are
+		called <firstterm>blocks</firstterm> in <abbrev>BML</abbrev>. Blocks are
+		<wordasword>defined</wordasword> in <firstterm>look files</firstterm>
+		and are <wordasword>invoked</wordasword> in <abbrev>BML</abbrev> files.
+		Blocks accept <wordasword>parameters</wordasword> and are divided into
+		several <wordasword>types</wordasword> according to how parameters are
+		transmitted and how the definition of the block is able to make use of
+		them.  Definitions of blocks are essentially chunks of
+		<abbrev>HTML</abbrev> with potentially more recursive
+		<abbrev>BML</abbrev> block invocations inside them.
+	  </para>
+
+	  <example id="bml.lookup.example1">
+		<title>BML lookup file</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+project=>The Alabaster Project
+
+greeting<=
+<p>Welcome to <?project project?>, a joint effort between the citizens of earth
+and Spumco, Inc.</p>
+<=greeting
+]]></programlisting>
+	  </example>
+
+	  <para>The "project" and "greeting" constructs in the above example lookup file are
+		blocks, and can be used to insert their respective content into HTML
+		output. The "project" block is a single-line block that consists of
+		everything immediately following the name of the block and the
+		<literal>=&gt;</literal> up to the end of the line. The "greeting"
+		block is a multiline block, and contains all the lines immediately
+		following the <literal>greeting&lt;=</literal> line and preceding
+		the <literal>&lt;=greeting</literal> one.</para>
+
+	</section>
+
+	<!-- Tutorial: BML Files Section -->
+	<section id="bml.tutorial.intro.bmlfiles">
+	  <title>BML Files</title>
+	  <para>
+		A <abbrev>BML</abbrev> file is simply an <abbrev>HTML</abbrev> file with
+		some <abbrev>BML</abbrev> block invocations in it. Each such invocation
+		specifies the name of the block and the parameters, if any, to pass to it.
+		The ultimate result of a block's invocation at runtime is <abbrev>HTML</abbrev>
+		which is put in the outgoing stream exactly at the place where the block's
+		invocation resided in the <abbrev>BML</abbrev> file.
+	  </para>
+
+	  <example id="bml.file.example1">
+		<title>BML file</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+<html>
+  <head><title><?project project?></title>
+  <body>
+	<h1><?project project?></h1>
+
+	<?greeting greeting?>
+  </body>
+</html>
+]]></programlisting>
+	  </example>
+
+	  <para>Given the lookup file from the previous example, the BML file above
+		would yield output like:</para>
+
+	  <example id="bml.output.example1">
+		<title>Output</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+<html>
+  <head><title>The Alabaster Project</title>
+  <body>
+        <h1>The Alabaster Project</h1>
+
+        <p>Welcome to The Alabaster Project, a joint effort between the citizens of earth
+and Spumco, Inc.</p>
+
+  </body>
+</html>
+]]></programlisting>
+	  </example>
+
+	  <para>The block invocations in the <link linkend="bml.lookup.example1">BML
+		  lookup file example</link> above do not contain parameters, but even
+		so are still a powerful way of building a document out of aggregate
+		parts. Adding parameters, of course, increases this usefulness.</para>
+	</section>
+  </section>
+
+  <!-- Tutorial: Parameters Section -->
+  <section>
+	<title>Block Parameters</title>
+
+	<section id="bml.tutorial.intro.parameters">
+	  <title>The <varname>DATA</varname> Block Parameter</title>
+	  <para>Sometimes the insertion of simple static content into the output
+		will not suffice for projects of moderate complexity. A designer
+		frequently wishes to repeat certain elements throughout the page,
+		keeping a consistent structure and look-and-feel. BML provides this
+		functionality by allowing you to declare blocks which take parameters,
+		which can then be used in building the content inserted into the
+		document.</para>
+
+	  <para>The simplest parameter-accepting block is one you've seen already in
+		the above examples. Unless otherwise designated, all blocks accept one
+		parameter, which is put into a variable called
+		<varname>DATA</varname>. This parameter can then be interpolated
+		into the resulting output with a placeholder that looks like:
+		<literal>%%DATA%%</literal>.</para>
+
+	  <example  id="bml.lookup.example2">
+		<title>Lookup file with DATA blocks</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+heading=><h1>%%DATA%%</h1>
+subheading=><h2>%%DATA%%</h2>
+]]></programlisting>
+	  </example>
+
+	  <para>This lookup file defines two blocks, one called
+		<literal>heading</literal> which creates level-one heading HTML, and
+		another called <literal>subhead</literal>, which creates level-two
+		headings.</para>
+
+	  <para>These could be used like so:</para>
+
+	  <example id="bml.file.example2">
+		<title>BML file using parameterized blocks</title>
+<programlisting linenumbering="numbered"><![CDATA[
+<html>
+  <head><title>Hansel and Grendel Go to Finishing School</title>
+  <body>
+]]>
+<emphasis><![CDATA[	<?heading Hansel and Grendel Go to Finishing School heading?>]]></emphasis>
+<![CDATA[
+	<p>Our story begins at a point in the Universe not unlike where you are now
+	  sitting, drinking your government-sanctioned stimulant, dreaming of the
+	  day when you, too, will own your own personalized luxury home on 0.3 acres
+	  of land, with a stunning view of, well, the neighbor's personalized luxury
+	  home on 0.3 acres of land. Except this point in the Universe is much more
+	  exciting, fine-smelling, and generally a better place to be than
+	  yours.</p>
+]]>
+<emphasis><![CDATA[	<?subheading No, Really, It Is Much Finer subheading?>]]></emphasis>
+<![CDATA[
+	<p>So, anyway, at this particular point in the Universe, on a day not
+	  entirely unlike today, two entirely unrelated mythological pantheons
+	  collided, resulting in a fast friendship between a Little Boy Bound to be
+	  Eaten by the Architypal Crone and a Faceless Beast That Waits for the Hero
+	  to Dispatch It. Which, as you might have guessed, was not the intention of
+	  the various storytellers involved, but that's what happens when people
+	  stop reading all the really cool stories and start checking the Financial
+	  Section every 12 minutes. There's only so much space to go around in the
+	  collective consciousness, you know...</p>
+  </body>
+</html>
+		  ]]></programlisting>
+	  </example>
+
+	  <para>which would result in output like:</para>
+
+	  <example id="bml.output.example2">
+		<title>Parameterized Output: Named Parameters</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+<html>
+  <head><title>Hansel and Grendel Go to Finishing School</title>
+  <body>
+]]>
+<emphasis><![CDATA[	<h1>Hansel and Grendel Go to Finishing School heading</h1>]]></emphasis>
+<![CDATA[
+	<p>Our story begins at a point in the Universe not unlike where you are now
+	  sitting, drinking your government-sanctioned stimulant, dreaming of the
+	  day when you, too, will own your own personalized luxury home on 0.3 acres
+	  of land, with a stunning view of, well, the neighbor's personalized luxury
+	  home on 0.3 acres of land. Except this point in the Universe is much more
+	  exciting, fine-smelling, and generally a better place to be than
+	  yours.</p>
+
+]]>
+<emphasis><![CDATA[	<h2>No, Really, It Is Much Finer</h2>]]></emphasis>
+<![CDATA[
+	<p>So, anyway, at this particular point in the Universe, on a day not
+	  entirely unlike today, two entirely unrelated mythological pantheons
+	  collided, resulting in a fast friendship between a Little Boy Bound to be
+	  Eaten by the Architypal Crone and a Faceless Beast That Waits for the Hero
+	  to Dispatch It. Which, as you might have guessed, was not the intention of
+	  the various storytellers involved, but that's what happens when people
+	  stop reading all the really cool stories and start checking the Financial
+	  Section every 12 minutes. There's only so much space to go around in the
+	  collective consciousness, you know...</p>
+  </body>
+</html>
+]]></programlisting>
+	  </example>
+
+	  <para>By this point, you might be saying, "But wait! I'd much rather type
+		<literal>'&lt;h1&gt; ... &lt;/h1&gt;'</literal> than
+		<literal>'&lt;?heading ... heading?&gt;'</literal>!"  If you were
+		absolutely confident that headings would always be expressed with
+		<literal>&lt;h1&gt;</literal> tags, and subheadings with
+		<literal>&lt;h2&gt;</literal> tags, it might be more efficent to
+		leave them as static HTML. If, however, someone wants all headings and
+		subheadings to change throughout the site, having the definition of them
+		expressed as a block makes changing them everywhere a simple matter of
+		changing the block that defines them:</para>
+
+	  <example id="bml.lookup.example3">
+		<title>Alternate Heading Block</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+heading=><h1 class="heading"><img src="logo.png"/> %%DATA%%</h1>
+subhead<=
+<!-- This is a subheading, which naturally requires a chicken above it -->
+<img src="chicken.png" /><br />
+<h2 class="subheading">%%DATA%%</h2>
+<=subhead
+]]></programlisting>
+	  </example>
+
+	  <para>Instead of a fairly complex search-and-replace session over multiple
+	  files, you instead need only change the definition of what a heading means
+	  in one place, and see it reflected throughout your site. Note that
+	  multiline blocks can also use the <varname>DATA</varname>
+	  parameter.</para>
+
+	  <para>The examples above are admittedly contrived, and could probably be
+		accomplished using <acronym>CSS</acronym>, but it should serve to
+		demonstrate a use which is orthogonal to the role played by style
+		systems.</para>
+	</section>
+
+	<!-- Tutorial: Multiple Parameters Section -->
+	<section id="bml.tutorial.intro.multipleparams">
+	  <title>Block Flags and Passing Multiple Parameters</title>
+
+	  <para>Many tasks will not be able to be accomplished with blocks that have
+		only one parameter, so BML provides another kind of block that can be
+		passed multiple parameters. Up 'til now, we've been using blocks with an
+		implied parameter, but we'll need to tell BML that the block we're
+		defining is different. This is accomplished by specifying one or more
+		<firstterm>flags</firstterm> when declaring the block. Flags are single
+		letters that are placed inside curly braces (<literal>{}</literal>) at
+		the beginning of the block definition. For example, the flag that
+		corresponds to the full block type (which we'll be using for blocks that
+		can accept multiple parameters) is designated with an
+		<literal>{F}</literal> flag:</para>
+
+	  <example id="bml.lookup.example4">
+		<title>Block Definitions with Flags</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+smallcaps=>{D}<span style="font-variant: small-caps">%%DATA%%</span>
+
+topiclink=>{F}<a href="/topic.pl?name=%%name%%">%%linktext%%</a>
+
+section<={F}
+<div id="section-%%id%%" class="section">
+  <h3>%%heading%%</h3>
+  <p>%%body%%</p>
+</div>
+<=section
+]]>
+</programlisting>
+	  </example>
+
+	  <para>As you can see, two of the blocks declared above have an
+	  <literal>{F}</literal> flag, and one has a <literal>{D}</literal>
+	  flag. The <literal>{D}</literal> flag stands for 'data', which is the
+	  default block type we're already familiar with, so the flag part could
+	  have been omitted. There are other block types which specify other
+	  attributes and behaviors, but for now we'll focus on the
+	  <literal>{F}</literal> type.</para>
+
+	  <para>In the above example, two <literal>{F}</literal> blocks are defined,
+	  a single-line one and a multi-line one. Both expect multiple parameters
+	  which they use to fill in parts of the HTML fragments they are responsible
+	  for creating. They also use placeholders like <literal>{D}</literal>
+	  blocks do, but they have unique names that will serve as the label given
+	  with the parameter that belongs there when calling it from a BML
+	  file.</para>
+
+	  <para>Calling an <literal>{F}</literal> block necessarily looks a bit
+	  different than the simple references made to <literal>{D}</literal>
+	  blocks. Calls to a block which requires multiple parameters uses the same
+	  syntax as that used for declaring blocks:</para>
+
+	  <example id="bml.file.example4">
+		<title>BML File</title>
+		<programlisting linenumbering="numbered"><![CDATA[
+<?section
+id=>listrules
+heading=>Rules of the Lists
+body<=
+There are many considerations when engaging in mounted combat at a tourney, not
+the least of which is obeying the convoluted and sometimes confusing localized
+<em>Rules of the Lists</em>.
+<=body
+section?>
+]]></programlisting>
+	  </example>
+
+	  <para>In the above example, the <literal>section</literal> block is being
+	  called with three parameters, two of which are single-line parameters
+	  (<varname>id</varname> and <varname>heading</varname>), and a third
+	  multi-line one (<varname>body</varname>). The output rendered by combining
+	  the above BML file with the previous lookup file would look something
+	  like:</para>
+
+	  <example id="bml.output.example4">
+		<title>Example output</title>
+		<programlisting>
+		  <![CDATA[
+<div id="section-listrules" class="section">
+  <h3>Rules of the Lists</h3>
+  <p>There are many considerations when engaging in mounted combat at a tourney, not
+the least of which is obeying the convoluted and sometimes confusing localized
+<em>Rules of the Lists</em>.
+</p>
+</div>
+]]>
+		</programlisting>
+	  </example>
+	</section>
+
+	<section>
+	  <title>Parameterized Output: Positional Parameters</title>
+
+	  <para>In addition to the named parameters introduced above, BML also
+	  supports positional parameters. Like with named parameters, a block with
+	  positional parameters is designated with the use of a flag, this time the
+	  <literal>{P}</literal> or "pipe-delimited" flag. Parameters in a
+	  <literal>{P}</literal> block are represented with
+	  <varname>%%DATA1%%</varname>, <varname>%%DATA2%%</varname>, etc. This can
+	  be useful when a routine takes a lot of parameters, or when calling the
+	  same block many times with tabular or list data.</para>
+
+	  <para>An example of this is building a list of links, each of which is an
+	  item in a definition list:</para>
+
+	  <example id="bml.lookup.example5">
+		<title>Block Definitions with Positional Parameters</title>
+		<programlisting linenumbering="numbered">
+<![CDATA[
+LINKITEM=>{P}<dt><a href="%%data2%%">%%data1%%</a></dt> <dd>%%data3%%</dd>
+
+LINKLIST<=
+{F}
+<h4>My Current Reading List</h4>
+<dl>
+%%items%%
+</dl>
+<p><small>Last updated: %%date%%</small></p>
+<=LINKLIST
+]]>
+		</programlisting>
+	  </example>
+
+	  <example id="bml.file.example5">
+		<title>BML File using the 'listlist' and 'linkitem' blocks</title>
+		<programlisting linenumbering="numbered">
+<![CDATA[
+<?linklist
+date=>2004/10/14
+items<=
+<?linkitem News of Brad|http://brad.livejournal.com/|Brad's daily adventure linkitem?>
+<?linkitem BoingBoing|http://boingboing.net/|A directory of wonderful things linkitem?>
+<?linkitem WPGtR|http://poignantguide.net/ruby/|Wow, this book comes with an onion! linkitem?>
+<=items
+linklist?>
+]]>
+		</programlisting>
+	  </example>
+
+	  <para>Combining the two files above would render output like this:</para>
+
+	  <example id="bml.output.example5">
+		<title>Example output</title>
+		<programlisting>
+		  <![CDATA[
+
+<h4>My Current Reading List</h4>
+<dl>
+<dt><a href="http://brad.livejournal.com/">News of Brad</a></dt> <dd>Brad's daily adventure</dd>
+<dt><a href="http://boingboing.net/">BoingBoing</a></dt> <dd>A directory of wonderful things</dd>
+<dt><a href="http://poignantguide.net/ruby/">WPGtR</a></dt> <dd>Wow, this book comes with an onion!</dd>
+
+</dl>
+<p><small>Last updated: 2004/10/14</small></p>
+]]>
+		</programlisting>
+	  </example>
+	</section>
+  </section>
+
+  <section>
+	<title>Static Blocks</title>
+
+	<para>Sometimes the re-expansion of embedded BMl might not be what you
+	want. In that case, you can designate a block with a flag which will cause
+	it to stop or limit the re-expansion of embedded calls.</para>
+
+	<section>
+	  <title>Fully-Static Blocks</title>
+
+	  <para>If you add the <literal>{S}</literal> flag to the block you're
+	  defining, the contents of it will not be re-evaluated afterward. This is
+	  mostly useful when you have blocks that you are sure will never contain
+	  BML to be expanded or properties to fill in, and you want to save the
+	  overhead of trying to re-evaluate them.</para>
+
+	  <example id="bml.lookup.example6">
+		<title>Look file with <literal>{S}</literal> block</title>
+		<programlisting linenumbering="numbered">
+<![CDATA[
+companyname=>{S}Spumco, Inc.
+]]>
+		</programlisting>
+	  </example>
+
+	  <para>This defines the <literal>companyname</literal> block as
+	  static.</para>
+
+	  <example id="bml.file.example6">
+		<title>BML File that calls the static block</title>
+		<programlisting linenumbering="numbered">
+<![CDATA[
+<h1>Welcome to <?companyname companyname?></h1>
+]]>
+		</programlisting>
+	  </example>
+
+	  <para>Combining the two yields:</para>
+
+	  <example id="bml.output.example6">
+		<title>Example output</title>
+		<programlisting>
+<![CDATA[
+<h1>Welcome to Spumco, Inc.</h1>
+]]>
+		</programlisting>
+	  </example>
+	</section>
+
+	<section>
+	  <title>Semi-static Blocks</title>
+
+	  <para>Sometimes you want a block which fits somewhere between the
+	  fully-dynamic <literal>{D}</literal> blocks and the completely-static
+	  behavior of <literal>{S}</literal> blocks. Enter the
+	  <literal>{R}</literal> block flag, which expands
+	  p<emphasis>R</emphasis>operties like those passed to a
+	  <literal>{D}</literal>, <literal>{F}</literal>, or <literal>{P}</literal>
+	  block, but doesn't expand BML that might be inserted by one of
+	  those.</para>
+
+	  <example id="bml.lookup.example7">
+		<title>Look file with <literal>{R}</literal> block</title>
+		<programlisting linenumbering="numbered">
+<![CDATA[
+
+]]>
+		</programlisting>
+	  </example>
+
+	  <para></para>
+
+	  <example id="bml.file.example7">
+		<title></title>
+		<programlisting linenumbering="numbered">
+		  <![CDATA[]]>
+		</programlisting>
+	  </example>
+
+	  <para></para>
+
+	  <example id="bml.output.example7">
+		<title>Example output</title>
+		<programlisting>
+		  <![CDATA[]]>
+		</programlisting>
+	  </example>
+
+
+
+	</section>
+
+
+	
+  </section>
+
+  <section id="bml.tutorial.example">
+    <title>A Full Example</title>
+    <para>
+      
+    </para>
+
+    <para>
+	  <programlisting><![CDATA[
+		<html>
+		<head>
+		<title>FooBar Enterprises - Page</title>
+	  </head>
+		<body>
+		<h1 class="header">FooBar Enterprises - Page</h1>
+		<hr />
+		<div class="header"><strong>Headers - What good are they?</strong></div>
+		<p class="para" style="text-align: justify">
+		This is just an introductory text. The normal way to include text like this 
+		is to write it in Latin, but since I don't know Latin, you'll have to settle
+		with this little paragraph.
+	  </p>
+		<div class="header"><strong>Templates are for Wimps!</strong></div>
+		<p class="para">
+		I'd rather have to edit all of my pages by hand when I decide to change the
+		unified look of my site!
+	  </p>
+	  </body>
+	  </html>
+		]]></programlisting>
+    </para>
+    <para>
+	  <programlisting><![CDATA[
+		header=>{D}<div class="header"><strong>%%DATA%%</strong></div>
+		]]></programlisting>
+    </para>
+    <para>
+	  <programlisting><![CDATA[
+		<?header Headers - What good are they? header?>
+		]]></programlisting>
+    </para>
+
+	<!-- :WORK: -->
+
+  </section>
+</chapter>

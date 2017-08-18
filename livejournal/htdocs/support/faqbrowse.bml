@@ -1,0 +1,141 @@
+<?page
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    # make title and body references to BML scratch area
+    my $title = \$_[1]->{'title'};
+    my $body = \$_[1]->{'body'};
+    $$body = '';
+    $$title = '';
+
+    # get faqid and redirect to faq.bml if none
+    my $faqid = $GET{'faqid'} + 0;
+    my $faqcat = $GET{'faqcat'};
+
+    my $where;
+
+    my $dbr = LJ::get_db_reader();
+    # loading single faqid
+    if ($faqid) {
+        $$title = BML::ml('.title_num', { 'num' => $faqid });
+        $where = "faqid=$faqid";
+
+    # loading entire faqcat
+    } elsif ($faqcat) {
+        my $catname = $dbr->selectrow_array("SELECT faqcatname FROM faqcat WHERE faqcat=?",
+                                            undef, $faqcat);
+        $$title = BML::ml('.title_cat', { 'catname' => LJ::ehtml($catname) });
+
+        $where = "faqcat=" . $dbr->quote($faqcat);
+
+    # no faqid or faqcat specified, redirect
+    } else {
+        return BML::redirect("faq.bml");
+    }
+
+    my $remote = LJ::get_remote();
+
+    # get language settings
+    my $curlang = BML::get_language();
+    my $deflang = BML::get_language_default();
+    my $altlang = $curlang ne $deflang;
+    my $mld;
+    if ($altlang) {
+        my $mll = LJ::Lang::get_lang($curlang);
+        $mld = LJ::Lang::get_dom("faq");
+        $altlang = 0 unless $mll && $mld;
+    }
+
+    # query db and get data
+    my $sth = $dbr->prepare("SELECT faqid, question, answer, faqcat, lastmoduserid, ".
+                            "DATE_FORMAT(lastmodtime, '%Y-%m-%d'), ".
+                            "UNIX_TIMESTAMP(lastmodtime) FROM faq ".
+                            "WHERE $where ORDER BY sortorder");
+    $sth->execute;
+    if ($dbr->err) {
+        $$title = $ML{'Error'};
+        $$body = "$ML{'error.dberror'} <ul><li>" . $dbr->errstr . "</li></ul>\n";
+        return;
+    }
+
+    my $count = 0;
+    my $dbh;
+    my $backfaqcat;
+    while (my ($faqid, $question, $answer, $faqcat, $lastmoduserid, 
+               $lastmodtime, $unixmodtime) = $sth->fetchrow_array)
+    {
+
+        $dbh ||= LJ::get_db_writer();
+
+        # log this faq view
+        if ($remote && ! $LJ::DISABLED{faquses}) {
+            $dbh->do("REPLACE INTO faquses (faqid, userid, dateview) ".
+                     "VALUES ($faqid, ?, NOW())", undef, $remote->{'userid'});
+        }
+
+        BML::note_mod_time($unixmodtime);
+
+        # it'd be better to load them in a batch, but this works for now:
+        if ($altlang) {
+            $question = LJ::Lang::get_text($curlang, "$faqid.1question", $mld->{'dmid'});
+            $answer   = LJ::Lang::get_text($curlang, "$faqid.2answer",   $mld->{'dmid'});
+        }
+
+        # escape question and answers
+        my $q = LJ::ehtml($question);
+        $q =~ s/^\s+//; $q =~ s/\s+$//;
+        $q =~ s/\n/<br \/>/g;
+
+        my $a = LJ::ehtml($answer);
+        $a =~ s/^\s+//; $a =~ s/\s+$//;
+        $a =~ s/\n( +)/"\n" . "&nbsp;&nbsp;"x length($1)/eg;
+        $a =~ s/\n/<br \/>/g;
+
+        $a = LJ::auto_linkify($a);
+
+        # display output
+        $$body .= "<?h1";
+        if ($faqcat) {
+            $$body .= " <a style='text-decoration: none;' " .
+                      "href='faqbrowse.bml?faqid=$faqid'>&#x00bb;</a>";
+        }
+        $$body .= " $q h1?><div style='margin-left: 20px;'>$a</div>";
+
+        my $lastmodwho = LJ::get_username($lastmoduserid);
+        if ($lastmodwho) {
+            $$body .= "<p align=\"right\"><b>$ML{'.lastupdated'}</b><br />$lastmodwho, $lastmodtime</p>";
+        }
+        if (LJ::check_priv($remote, "faqedit", "*") ||
+            LJ::check_priv($remote, "faqedit", $faqcat))
+        {
+            $$body .= "<p align=\"right\"><a href=\"/admin/faq/faqedit.bml?id=$faqid\">$ML{'.edit.faq'}</a></p>";
+        }
+
+        $count++;
+        $backfaqcat = $faqcat;
+     }
+
+     # nothing found?
+     unless ($count) {
+         $$title = $ML{'Error'};
+         $$body .= "<p><b>$ML{'.error.nofaq'}</b></p>\n";
+     }
+     
+     $$body .= "<?hr?>";
+     $$body .= BML::ml('.backfaqcat',{'faqcat'=>$backfaqcat,}) . "<br />" if $backfaqcat && $faqid;
+     $$body .= "$ML{'.backfaq'}<br />$ML{'.backsupport'}";
+
+     # we're dynamic, set title as crumb title
+     LJ::set_dynamic_crumb($_[1]->{'title'}, 'faq');
+
+     return $_[1]->{'body'};
+}
+_code?>
+<=body
+title=><?_code return $_[1]->{'title'}; _code?>
+page?><?_c <LJDEP>
+link: htdocs/support/index.bml, htdocs/support/faq.bml
+</LJDEP> _c?>

@@ -1,0 +1,53 @@
+<?page
+title=>Paid Account Status
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    LJ::set_active_crumb('paidacctstatus');
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input("You could not be authenticated as the specified user.")
+        unless $u;
+
+    return LJ::bad_input("Account has been deleted")
+        if $u->{'statusvis'} eq 'D' || $u->{'statusvis'} eq 'X';
+
+    my $ret;
+
+    # authas switcher form
+    $ret .= "<form method='get' action='status.bml'>\n";
+    $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'},
+                                              'cap' => 'paid' }) . "\n";
+    $ret .= "</form>\n\n";
+
+    my $getextra = "?authas=$authas" unless $authas eq $remote->{'user'};
+
+    $ret .= "<?p Below is a summary of the $LJ::SITENAME services to which you ";
+    $ret .= "are currently subscribed: p?>";
+
+    # render account summary
+    $ret .= LJ::Pay::account_summary($u);
+
+    # disk quota summary
+    my $qsummary = LJ::Pay::quota_summary($u);
+    return $ret unless $qsummary;
+
+    $ret .= "<?h2 Disk Quota Usage h2?>";
+    $ret .= "<?p The following is a break-down of your disk space quota usage. p?>";
+
+    $ret .= $qsummary;
+
+    return $ret;
+}
+_code?>
+<=body
+page?>
+

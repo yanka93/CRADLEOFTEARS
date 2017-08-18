@@ -1,0 +1,5 @@
+This is a patch against Asterisk CVS:
+ - Debian package (had to apply a lot of the existing Debian patch by hand)
+ - Snip off the end of a phone conversation from AGI's record when there's a
+   DTMF digit so it doesn't show up in a recording.
+

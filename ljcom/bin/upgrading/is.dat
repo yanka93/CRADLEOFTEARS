@@ -1,0 +1,2382 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=Hér eyðir þú eða afturkallar dagbókina þína - eftir að þú eyðir henni hefurðu 30 daga til að afturkalla hana, ef þú skiptir um skoðun. Eftir það er henni endanlega eytt og engin leið er þá að fá hana aftur.
+
+/accountstatus.bml.journalstatus.head=Virkni dagbókar
+
+/accountstatus.bml.journalstatus.select.activated=í notkun
+
+/accountstatus.bml.journalstatus.select.deleted=hefur verið eytt
+
+/accountstatus.bml.journalstatus.select.head=Staða:
+
+/accountstatus.bml.journalstatus.select.suspended=Tekin úr notkun
+
+/accountstatus.bml.title=Staða skriftu
+
+/allpics.bml.current=Myndir í notkun
+
+/allpics.bml.default=<u>Grunnmynd</u>
+
+/allpics.bml.edit2=Kannski viltu <a href='[[editlink]]'>breyta kenniorðum myndanna þinna</a> eða <a href='[[uploadlink]]'>hlaða upp nýja</a>.
+
+/allpics.bml.error.noparam=Þú þarft að skilgreina notanda.
+
+/allpics.bml.keywords=Flýtiorð:
+
+/allpics.bml.nopics.text.other=Þessi notandi hefur ekki sent neinar myndir hingað.
+
+/allpics.bml.nopics.text2=Þú hefur ekki hlaðið neinni mynd á netþjóninn enn. <a href='[[link]]'>Farðu hingað</a> til að gera það.
+
+/allpics.bml.nopics.title=Engar myndir!
+
+/allpics.bml.pics=Hér eru myndirnar sem [[user]] notar.
+
+/allpics.bml.title=Notendamyndir
+
+/approve.bml.comm.success=Meðbyr og brautargengi!
+
+/approve.bml.comm.text<<
+Þú ert núna meðlimur [[comm]] samfélagsins.
+Smelltu <a [[aotps]]>hér</a> til að bæta því á vinalistann þinn.
+.
+
+/approve.bml.error.actionperformed=Þessi aðgerð hefur þegar verið framkvæmd.
+
+/approve.bml.error.internerr.invalidaction=Innvortis blæðingar kerfis: óleyfileg aðgerð.
+
+/approve.bml.error.invalidargument=Óleyfileg tillaga.
+
+/approve.bml.error.unknownactiontype=Óþekkt tegund aðgerðar
+
+/approve.bml.shared.success=Meðbyr og brautargengi!
+
+/approve.bml.shared.text<<
+Þú hefur nú færsluréttindi í [[shared]].
+Smelltu <a [[aopts]]>hér</a> til að bæta þessari sameiginlegu dagbók á vinalistann þinn.
+.
+
+/approve.bml.title=Samþykki aðgerðar
+
+/birthdays.bml.description=Hér að neðan eru afmælisdagar fólksins á vinalistanum þínum.
+
+/birthdays.bml.title=Afmælisdagar
+
+/changepassword.bml.btn.proceed=Halda áfram
+
+/changepassword.bml.changepassword.header=Breyta lykilorði
+
+/changepassword.bml.changepassword.instructions|staleness=1
+/changepassword.bml.changepassword.instructions=Fylltu út eyðublaðið að neðan til að breyta lykilorðinu þínu.
+
+/changepassword.bml.email.body<<
+Lykilorðið þitt á [[sitename]] hefur verið breytt.
+
+Til að nálgast það í framtíðini, opnaðu síðuna:
+
+  [[siteroot]]/lostinfo.bml
+
+Kveðja,
+[[sitename]] gengið
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=Breyting á lykilorði
+
+/changepassword.bml.error.badcheck=Nýja lykilorðið ónothæft: [[error]]
+
+/changepassword.bml.error.badnewpassword|staleness=1
+/changepassword.bml.error.badnewpassword=Nýja lykilorðið þitt var ekki eins í bæði skiptin sem þú ritaðir það - vinsamlegast sláðu það inn aftur.
+
+/changepassword.bml.error.badoldpassword=Gamla lykilorðið þitt var ekki rétt.
+
+/changepassword.bml.error.blankpassword=Nýja lykilorðið verður að vera eitthvað;)
+
+/changepassword.bml.error.changetestaccount=Það er ekki hægt að breyta lykilorði tilraunarskriftu.
+
+/changepassword.bml.error.characterlimit=Lykilorð mega ekki vera lengri en 30 stafir.
+
+/changepassword.bml.error.invaliduser=Því miður, notandinn <B>[[user]]</B> er ekki til. Stafsettirðu nafnið örugglega rétt?
+
+/changepassword.bml.error.mustenterusername=Þú verður að slá inn notandanafn.
+
+/changepassword.bml.error.nonascii=Lykilorð mega aðeins standa saman af ASCII stöfum, og engum öðrum. Öruggast er því að nota ekki séríslenska stafi í lykiloðinu.
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=Þú getur ekki skipt um lykilorð ef þú hefur ekki staðfest netfangið þitt - en það gerirðu með því að svara staðfestestingarbréfinu sem barst til þín þegar þú skráðir þig.
+
+/changepassword.bml.newpassword=Nýtt lykilorð:
+
+/changepassword.bml.newpasswordagain=Endurtaktu nýja lykilorðið
+
+/changepassword.bml.oldpassword=Gamla lykilorðið:
+
+/changepassword.bml.proceed.instructions=Smelltu á takkann að neðan til að lykilorðinu þínu verði breytt. Þá færðu um leið bréf sem tilkynnir breytinguna.
+
+/changepassword.bml.success.text=Lykilorðinu þínu hefur verið breytt og bréf sent til þín til áminningar.
+
+/changepassword.bml.title=Breyta lykilorði
+
+/community/index.bml.title=Miðstöð samfélags
+
+/community/join.bml.button.join=Ganga í samfélag
+
+/community/join.bml.label.addtofriends=Bæta "[[maintainer]]" á vinalistann.<br>
+
+/community/join.bml.label.allowposting=Þetta samfélag leyfir öllum meðlimum að skrifa færslur, þannig að þú getur gert svo. Ef þú ert þegar með færsluvél í gangi í tölvunni þinni verður þú að skrá þig út og inn aftur til að þessi dagbók komi fram með þeim sem þú getur venjulega skrifað í.
+
+/community/join.bml.label.auth=Þó þú sért núna meðlimur í samfélaginu, þá geta aðeins þeir sem hafa fengið leyfi skrifað færslur. Hafðu samband við einn af stjórnendum ef þú vilt geta það - hér er listi yfir þá: [[admins]]
+
+/community/join.bml.label.banned=Stjórnandi þessa samfélags hefur bannað þér að skrá þig.
+
+/community/join.bml.label.closed=Þetta er einkasamfélag. Hafðu samband við einn af stjórnendunum ef þú hefur áhuga á að ganga í það. Þeir eru: [[admins]]
+
+/community/join.bml.label.commlogged=Þú ert skráður inn sem deili- eða skamfélagsskrifta, ekki sem persónuleg skrifta.
+
+/community/join.bml.label.membernow=Þú ert nú meðlimur í <a href="/userinfo.bml?user=[[username]]">[[commname]] Samfélaginu</a>
+
+/community/join.bml.label.sure=Ertu viss?
+
+/community/join.bml.success=Meðbyr og brautargengi!
+
+/community/join.bml.title=Ganga í samfélag
+
+/community/leave.bml.button.leave=Ganga úr samfélagi
+
+/community/leave.bml.label.buttontoleave=Smelltu á takkann hér að neðan til að yfirgefa  "[[commname]]" samfélagið.
+
+/community/leave.bml.label.infoerror=Þessar tilteknu upplýsingar um samfélagið eru ekki leyfilegar.
+
+/community/leave.bml.label.logoutfirst=Til að yfirgefa samfélag þarftu fyrst að<a href="/login.bml?ret=1"> skrá þig inn</a>.
+
+/community/leave.bml.label.removed=Þú hefur nú verið fjarlægður úr <a href="/userinfo.bml?user=[[commuser]]">[[commname]] samfélaginu</a>
+
+/community/leave.bml.label.removefromfriends=Fjarlæga líka "[[user]]" af vinalistanum.
+
+/community/leave.bml.success=Meðbyr og brautargengi!
+
+/community/leave.bml.sure=Ertu viss?
+
+/community/leave.bml.title=Yfirgefa samfélag
+
+/community/manage.bml.commlist.actinfo=Upplýsingar
+
+/community/manage.bml.commlist.actions=<b>Aðgerðir</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Meðlimir</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Meðlimir
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Stillingar</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Stillingar
+
+/community/manage.bml.commlist.header=Samfélögin þín
+
+/community/manage.bml.commlist.none=<i>Þú ert ekki að sjá um nein samfélög. </i>
+
+/community/manage.bml.commlist.text=Hér eru samfélögin sem þú sérð um:
+
+/community/manage.bml.commlist.title=<b>Titill</b>
+
+/community/manage.bml.commlist.username=<b>Notandanafn</b>
+
+/community/manage.bml.create.header=Skapa samfélag
+
+/community/manage.bml.create.text=Þú getur líka <a href='[[link]]'><b>skapað nýtt samfélag</b></a>.
+
+/community/manage.bml.title=Sýslun samfélaga
+
+/community/members.bml.error.alreadyadded=[[user]] var nú þegar með aðgang að samfélaginu, og var því ekki bætt aftur við listann.
+
+/community/members.bml.error.nocomm=Samfélag fannst ekki
+
+/community/members.bml.error.nouser=Notandinn <b>[[user]]</b> er ekki til.
+
+/community/members.bml.success.header=Meðbyr og brautargengi!
+
+/community/members.bml.update=Uppfærslustillingar
+
+/community/search.bml.button.clear=Hreinsa eyðublað
+
+/community/search.bml.button.search=Hefja leit!
+
+/community/search.bml.checkbox.onlywithpics=Aðeins samfélög með myndum
+
+/community/search.bml.label.byinterest=Eftir áhugamáli
+
+/community/search.bml.label.city=Borg:
+
+/community/search.bml.label.country=Land:
+
+/community/search.bml.label.displayoptions=Skjásýn
+
+/community/search.bml.label.hasmember=Hefur meðlim
+
+/community/search.bml.label.othercriteria=Önnur málefni
+
+/community/search.bml.label.sortmethod=Röðunaraðferð:
+
+/community/search.bml.label.updated=Uppfært síðastliðinn
+
+/community/search.bml.sel.updatetime=Tími uppfærslu
+
+/community/settings.bml.label.changeheader=Breyta sérstillingingum samfélags
+
+/community/settings.bml.label.commheader=Samfélagsskrifta
+
+/community/settings.bml.label.nmtext=Geta notendur skrifað færslur í samfélagið án þess að vera meðlimir? 
+
+/community/settings.bml.label.openmemb=<b>Frjáls skráning</b> <br />Hver sem er getur skráð sig án þess að þurfi að samþykkja skráninguna sérstaklega. 
+
+/community/settings.bml.label.password=Lykilorð:
+
+/community/settings.bml.label.postaccess=Færsluaðgangur
+
+/community/settings.bml.label.rellinks=Tenglar að viðeigandi efni:
+
+/community/settings.bml.label.selcan=<b>Valdir meðlimir</b> <br />Aðeins þeir meðlimir sem stjórnandinn hefur gefið leyfi til geta skrifað færslur. 
+
+/community/settings.bml.label.username=Notendanafn:
+
+/community/settings.bml.label.whocanjoin=Hverjir geta gengið í samfélagið?
+
+/community/settings.bml.label.whocanpost=Hverjir geta skrifað færslur í samfélagið?
+
+/community/settings.bml.name=<b>Titill samfélags:</b> [[name]]
+
+/community/settings.bml.success=Meðbyr og brautargengi!
+
+/community/settings.bml.title.create=Skapa samfélag
+
+/community/settings.bml.title.modify=Samfélagsstillingar
+
+/create.bml.age.check.question=Ertu yngri en 13?
+
+/create.bml.age.check.yes=Já, ég er yngri en 13.
+
+/create.bml.age.check2.question=Ertu eldri en 13?
+
+/create.bml.age.check2.yes=Já, ég er eldri en 13 - alveg satt.
+
+/create.bml.age.head=Aldur
+
+/create.bml.create.head=Að gera nýja dagbók
+
+/create.bml.create.text=Það er auðvelt að gera nýja dagbók, fylgdu bara leiðbeiningunum!
+
+/create.bml.email.head=Netfang þitt
+
+/create.bml.email.input.head=Netfang:
+
+/create.bml.error.coppa.under13=Vegna COPPA reglna geturðu því miður ekki notað LiveJournal fyrr en þú verður 13 ára. Komdu aftur þá.
+
+/create.bml.error.email.nospaces=Engin bil eru leyfð í netfangi. Ef þú ert í AOL mundu þá að netfangið þitt er skjánafnið þitt með öllum bilum fjarlægðum og klesst framan við <b>@aol.com</b>.
+
+/create.bml.error.password.asciionly=Þú mátt bara nota ASCII stafi í lykilorði þínu. Einfalt að halda sig bara við enska stafi.
+
+/create.bml.error.password.blank=Þú verður að slá inn lykilorð.
+
+/create.bml.error.password.nomatch=Lykilorðin eru ekki eins.
+
+/create.bml.error.username.blank=Vinsamlegast gefðu upp (gælu)nafn eða dulnefni.
+
+/create.bml.error.username.inuse=Þetta notandanafn er nú þegar í notkun - vinsamlegast veldu annað.
+
+/create.bml.error.username.iscode=Notandanafnið sem þú gafs upp virðist vera boðskóði en ekki notandanafn.
+
+/create.bml.error.username.mustenter=Þú verður að stimpla inn notandanafn.
+
+/create.bml.error.username.reserved=Því miður, þetta notandanafn er frátekið.
+
+/create.bml.name.head=Nafn þitt
+
+/create.bml.name.input.head=Nafn:
+
+/create.bml.name.text=Hvað heitirðu eða kallar þig? Þetta er nafnið sem mun birtast efst í dagbókinni þinni og í notendaskránn (ef þú kýst að vera skráður í hana) Þú þarft ekki að nota fullt nafn eða einu sinni þitt rétta nafn.
+
+/create.bml.password.head=Lykilorð
+
+/create.bml.password.input.head1=Lykilorð:
+
+/create.bml.password.input.head2|staleness=1
+/create.bml.password.input.head2=Sláðu lykilorð inn aftur:
+
+/create.bml.password.text=Veldu lykilorð.
+
+/create.bml.proceed.btn.proceed=Halda áfram...
+
+/create.bml.proceed.warning=Smelltu bara <i>einu sinni</i> á <b>Halda áfram</b>!!
+
+/create.bml.success.btn.enterinfo=Breyta persónuupplýsingum
+
+/create.bml.success.head=Meðbyr og brautargengi!
+
+/create.bml.success.text1|staleness=1
+/create.bml.success.text1=Dagbókin þín er tilbúin. Mikilvæg staðfestingargögn hafa verið sent á <FONT FACE=Arial SIZE=+1><B>[[email]]</B></FONT> þar sem þú finnur frekari leiðbeiningar. <B>ATH: </B> Þú hefur nákvæmlega <i>viku</i> til þess að staðfesta dagbókina þína. Ef þú hefur ekki gert það innan viku mun notandanafnið <b>[[username]]</b> sjálfkrafa eyðast svo einhver annar geti notað það.
+
+/create.bml.success.text2=Dagbókin þín mun vera á slóðinni:
+
+/create.bml.success.text3=Vinsamlegast gefðu þér tíma til að skrifa eitthvað um sjálfan þig hér. Það er frjálst hvort þú skrifar nokkuð, en það gefur okkur hugmynd um það hverjir eru að nota LiveJournal.
+
+/create.bml.title=Skapa nýja dagbók
+
+/create.bml.tos.error=Þú verður að samþykkja notkunarskilmálana áður en þú getur skapað skriftu.
+
+/create.bml.tos.haveread=Ég hef lesið yfir og geng að notkunarskilmálum.
+
+/create.bml.tos.heading=Notkunarskilmálar
+
+/create.bml.useacctcodes.entercode|staleness=1
+/create.bml.useacctcodes.entercode=Settu skrifturununa hér til að skapa nýja skriftu:
+
+/create.bml.useacctcodes.welcome=Velkomin/n
+
+/create.bml.username.box.head=Notandanafn:
+
+/create.bml.username.forpaidaccts=Eða fyrir þá með áskrift:
+
+/create.bml.username.head=Notandanafn
+
+/create.bml.username.ljaddress=Dagbókin þín verður á þessu veffangi:
+
+/create.bml.username.text=Hver [[sitename]] notandi verður að hafa hans eigin einstaka notandanafn. Notandanafnið þitt er það sem birtist í slóðinni að dagbókinni þinni og það sem þú notar til að tengjast [[sitname]] netþjónunum. Það birtist einnig þegar þú skrifar eitthvað í annarra dagbækur.
+
+/create.bml.username.username=Notandanafn
+
+/customize/index.bml.change=Breyta
+
+/customize/index.bml.choose=Hvort viltu nota nýja útlitskerfið eða það gamla?
+
+/customize/index.bml.choose.header=Veldu útlitskerfi
+
+/customize/index.bml.choose.s1=Gamla kerfið (S1)
+
+/customize/index.bml.choose.s2=Nýja kerfið (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=Gat ekki smíðað notandalag
+
+/customize/index.bml.error.fail_create_style=Náði ekki að skapa nýjan stíl.
+
+/customize/index.bml.error.not_your_layout=Ekki þín sviðsetning.
+
+/customize/index.bml.error.not_your_theme=Ekki þitt þema
+
+/customize/index.bml.previews=(Skoðun)
+
+/customize/index.bml.s1.header=S1 nú í notkun
+
+/customize/index.bml.s2.advanced.header=Þróaðar sérstillingar
+
+/customize/index.bml.s2.customize.language.header=Tungumál
+
+/customize/index.bml.title=Sérsníða dagbók
+
+/directory.bml.open=Opna
+
+/directory.bml.post=Senda inn
+
+/directory.bml.search.monkey=Þrjátíu milljónir vel þjálfaðra gaupa eru nú að nota persónutöfra sína til að finna niðurstöður við leitinni þinni - bíddu bara róleg/ur, hallaðu þér upp að vegg og raulaðu lag úr uppáhaldsdraumnum þínum.
+
+/directory.bml.search.new=Ný fyrirspurn
+
+/directory.bml.search.title=Er að leita...
+
+/directory.bml.update=Uppfæra:
+
+/directory.bml.user=Notandi
+
+/doc/tour/index.bml.clients.caption<<
+LiveJournal færsluvélarnar eru lítil forrit sem þú keyrir á tölvunni þinni sem leyfa þér að uppfæra dagbókina þína þegar þú ert nettengdur án þess að þurfa að opna glugga í vafra.
+Þeir eru til fyrir flest stýrikerfi og er auðvelt að sníða eftir þörfum.
+.
+
+/doc/tour/index.bml.clients.title=Færsluvélar
+
+/doc/tour/index.bml.comms.title=Samfélög
+
+/doc/tour/index.bml.create.title=Að skapa skriftu
+
+/doc/tour/index.bml.title=Kynning - [[title]]
+
+/doc/tour/index.bml.update.caption<<
+Mjög einfalt er að halda utan um og uppfæra LiveJournal dagbók. Færslan er einfaldlega skrifuð í þar til gerðan ramma, og svo smellt á hnapp merktan &#8222;Uppfæra dagbók&#8220;.
+Að auki erum við með sérstaka reiti sem hannaðir hafa verið til að geyma upplýsingar um hvaða tónlist var hlustað á meðan færslan var gerð sem og lýsingu á skapi höfundar - og ef þú skrifar á ensku, þá erum við með ágætan stafsetningarprófun sem bendir þér á villur sem þú kannt að hafa gert (miðast við bandaríska ensku).
+.
+
+/doc/tour/index.bml.update.title=Að uppfæra
+
+/editinfo.bml.allowshowcontact.about=Þú ættir að hafa þennan valkost á þar sem hann gerir öðru fólki kleyft að hafa samband við þig með því að sýna netfangið þitt, ICQ númer og AOL instant messenger skjánafn allt í dagbókinni þinni.
+
+/editinfo.bml.allowshowcontact.email=Ef þú kýst að birta netfang þitt verður það þetta:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Aðeins heimilisfang
+
+/editinfo.bml.allowshowcontact.email.both=Bæði (Heimilisfang + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Aðeins fyrir LiveJournal netfang
+
+/editinfo.bml.allowshowcontact.email.neither=Hvorugt. Sýnið ekkert netfang.
+
+/editinfo.bml.allowshowcontact.email.no_show=Sýna ekki netfang
+
+/editinfo.bml.allowshowcontact.email.show=Sýna netfang
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Með takkanum að ofan geturðu valið að fela netfangið þitt (en þó birta ennþá aðrar upplýsingar), aðeins sýnt LiveJournal netfangið þitt  (aðeins þeir í <a href="/paidaccounts/">Á-skrift</a>), aðeins sýnt venjulega netfangið eða sýna bæði.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Með takkanum að ofan geturðu falið netfangið þitt (án þess að fela allar upplýsingar)
+
+/editinfo.bml.allowshowcontact.title=Sýna tengi-upplýsingar á LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Kveiktu hér ef þú vilt að aðrir sjái hvaða borg, fylki og ríki þú býrð í eða til að sýna afmælisdaginn.
+
+/editinfo.bml.allowshowinfo.title=Sýna staðsetningu &amp; afmælisdag?
+
+/editinfo.bml.autotranslate.about=Notaðu þetta til að segja LiveJournal hvaða kóðun á að nota á færslurnar þínar og athugasemdir áður en því er breytt í Unicode. Ef þú skrifar á ensku, veldu þá &#8222;Western European&#8220;.
+
+/editinfo.bml.autotranslate.header|staleness=1
+/editinfo.bml.autotranslate.header=Kóða sjálfkrafa gamlar færlsur frá:
+
+/editinfo.bml.bday.title=Afmælisdagur
+
+/editinfo.bml.bday.year.opt=Óþarft en gagnlegt
+
+/editinfo.bml.bdayreminders.about=Ef þú vilt að LiveJournal minni þig á afmæli vina þinna í pósti, merktu þá þennan kassa.
+
+/editinfo.bml.bdayreminders.header|staleness=1
+/editinfo.bml.bdayreminders.header=Minna mig á afmæli með pósti.
+
+/editinfo.bml.bio.about|staleness=1
+/editinfo.bml.bio.about=Hér skrifarðu stutt æviágrip til að sýna á notendaupplýsingasíðunni.
+
+/editinfo.bml.bio.header=Um þig
+
+/editinfo.bml.blockrobots.about|staleness=1
+/editinfo.bml.blockrobots.about=Ef þú merkir hér munu allar leitarvélar þræða annað. Þær hlýða þessu ekki allar, en flestar vinsælustu gera það.
+
+/editinfo.bml.blockrobots.header=Stöðva leitarvélar í að skrá vefdagbókina þína.
+
+/editinfo.bml.chat.aolim.title=Aim kenninafn
+
+/editinfo.bml.chat.icquin.title=ICQ númer
+
+/editinfo.bml.chat.msnusername.title=MSN netfang
+
+/editinfo.bml.chat.yahooid.title=Yahoo! kenninafn
+
+/editinfo.bml.city.title=Borg
+
+/editinfo.bml.country.choose=Veldu land.
+
+/editinfo.bml.country.title=Land
+
+/editinfo.bml.donotlog=Nei
+
+/editinfo.bml.email.title=Netfang
+
+/editinfo.bml.enableboards.about|staleness=1
+/editinfo.bml.enableboards.about=Merktu hér ef þú vilt að fólk geti svarað eða gert athugasemdir við færslur þínar (stíll sagbókarinnar verður líka að styðja þetta).
+
+/editinfo.bml.enableboards.header=Leyfa spjallþræði
+
+/editinfo.bml.encoding.about=Hér er hægt að velja &#8222;Western European (ISO)&#8220; í báðum reitunum til að fá alla íslenska stafi til að virka.
+
+/editinfo.bml.encoding.header=Kóðunarmöguleikar
+
+/editinfo.bml.error.day.notinmonth=Þessi dagur er ekki til staðar í þessum tiltekna mánuði.
+
+/editinfo.bml.error.day.outofrange=Afmælisdagur ógildur - vinsamlegast settu dag frá 1-31.
+
+/editinfo.bml.error.email.lj_domain<<
+Þú átt ekki að setja netfang hér, bara þitt raunverulega heimilisfang.
+Ef þú ert með ákrift verða bréfin sem berast [[user]]@[[domain]]  sent áfram heim til þín.
+Til að velja hvort netfangið þitt (eða bæði) verða birt opinberlega skoðaðu þá &#8222;Sýna tengi-upplýsinga&#8220;-valið hér að neðan.
+.
+
+/editinfo.bml.error.email.none=Þú verður að gefa upp netfangið þitt
+
+/editinfo.bml.error.email.no_space<<
+Engin bil leyfð í netfangi.
+Mundu að ef þú ert í AOL, þá er netfangið þitt skjánafnið með öllum bilum fjarlægðum og skeytt framan við <b>@aol.com</b>.
+.
+
+/editinfo.bml.error.excessive_int<<
+Því miður lítur út fyrir að þú hafir skilgreint allt of mörg áhugamál. Hámarkið er 150, en þú skráðir [[intcount]]. 
+Þær breytingar sem þú gerðir á áhugamálalistanum voru ekki vistaðar. Farðu til baka og styttu listann og vistaðu svo aftur.
+.
+
+/editinfo.bml.error.invalidbio=Æviágripið þitt inniheldur óleyfilega stafi - faðru á <a href='/utf8convert.bml'><b>umbreytisíðuna</b></a>  til að breyta yfir í Unicode.
+
+/editinfo.bml.error.invalidints=Áhugamálalistinn þinn inniheldur óleyfilega stafi - faðru á <a href='/utf8convert.bml'><b>umbreytisíðuna</b></a>  til að breyta yfir í Unicode.
+
+/editinfo.bml.error.invalidname=Óleyfilegir stafir eru í nafninu þínu. Þú verður að fara á <a href='/utf8convert.bml'><b>umbreytisíðuna</b></a>  til að breyta því sem þú skrifaðir í leyfilega stafi.
+
+/editinfo.bml.error.locale.country_ne_state=Þú stilltir Bandaríkin sem landið þitt en skráðir fylki sem er ekki þar í &#8222;annað fylki&#8220; liðinn.
+
+/editinfo.bml.error.locale.invalid_country=Einhvernvegin valdirðu vitlaust land.
+
+/editinfo.bml.error.locale.state_ne_country=Þú valdir ekki Bandaríkin sem land þitt en valdir þó ríki sem er í BNA.
+
+/editinfo.bml.error.locale.zip_ne_state=Póstnúmerið passar ekki við fylkið sem þú valdir. Leiðréttu annaðhvort upplýsingarnar eða eyddu öðrum eða báðum liðum.
+
+/editinfo.bml.error.locale.zip_requires_us=Þú hefur sláð inn póstnúmer en ekki valið Bandaríkin sem föðurland. Við söfnum bara póstnúmerum innan Bandaríkjanna, þannig að vinsamlegast fjarlægðu póstnúmerið eða veldu Bandaríkin sem ríki.
+
+/editinfo.bml.error.month.outofrange=Afmælismánuður ógildur - veldu mánuð frá 1 uppí 12 (jan-des)
+
+/editinfo.bml.error.noname=Til að halda áfram verður þú að gefa upp nafn - í það minnsta fornafn, gælunafn eða annað.
+
+/editinfo.bml.error.tm.require.number=Ef þú ætlar að nota sms-þjóðnustuna verðurðu að skrá símanúmer.
+
+/editinfo.bml.error.tm.require_provider<<
+Ef þú ætlar að nota sms-þjónustuna verðurðu að stilla hvað símafyrirtækið þitt er.
+
+Ef það er ekki á listanum, sentu okkur þá upplýsingar um símafyrirtækið þitt og hvernig sms-þjónustan þeirra virkar svo við getum bætt því á listann.
+.
+
+/editinfo.bml.error.year.notenoughdigits=Óleyfilegt fæðingarár, skrifaðu árið í fjórum tölustöfum.
+
+/editinfo.bml.error.year.outofrange=Óleyfilegt fæðingarár.
+
+/editinfo.bml.finished.about=Smelltu á &#8222;Vista breytingar&#8220; takkann þegar þú ert búinn.
+
+/editinfo.bml.finished.header=Ertu búinn?
+
+/editinfo.bml.finished.save_button=Vista breytingar
+
+/editinfo.bml.gender.title=Kyn
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=Merktu hér er þú vilt fá vitkun í pósti þegar fólk svarar færlsum þínum.
+
+/editinfo.bml.getreplies.header=Fá svör frá spjallborði.
+
+/editinfo.bml.hidefriendof.about=Ef þú merkir hér mun listinn yfir fólkið sem hefur þig á vinalistanum sínum vera falinn í mannlýsingunni þinni.
+
+/editinfo.bml.hidefriendof.header=Fela listann sem sýnir hver á þig sem vin.
+
+/editinfo.bml.howhear.about|staleness=1
+/editinfo.bml.howhear.about<<
+Ég spyr nú bara í einskærri forvitni, en hvar heyrðirðu um [[sitename]]? 
+Ef það var ákveðin manneskja settu þá notendanafn hennar hér, og ef það var annarstaðar frá, grein, tengli eða netsíðu skrifaðu það þá hér.
+.
+
+/editinfo.bml.howhear.header=Forvitni
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about=Merktu hér ef póstforritið þitt styður HTML fullkomlega. Mörg slík forrit reyna en mistekst herfilega. Ef þú strokar úr því sendir LiveJournal aðeins bréf sem eru bara texti.
+
+/editinfo.bml.htmlemail.header=Senda HTML bréf
+
+/editinfo.bml.int.about<<
+Ef þú vilt leyfa öðrum að finna þig í skránni eftir áhugamálum, skrifaðu þá hér fyrir neðan allt sem þú hefur áhuga á og aðskildu með kommum.
+Stutt hnit-miðuð orðasambönd henta best. <br><b>Þumalputtaregla</b> Þú ættir að geta sett áhugamál í fram sem svo: "Ég fíla ______". Notaðu rétta málbeitingu, eins og með fleirtölu; "I like DVDs" í staðinn fyrir "I like DVD".
+
+Athugið Íslendingar: Þetta kerfi er hannað með ensku í huga, þannig að það gegnur eflaust betur ef þið notið ensku útgáfurnar af orðum og hugtökum;)
+.
+
+/editinfo.bml.int.ex.bad=<FONT COLOR=#FF0000><B>RANGT</B></FONT> Dæmi: <B>Ég fíla margar hljómsveitir og að horfa á vídjó og spjalla við vini og fara á klúbbarölt.</B> Svona fer í æviágripið þitt að ofan.
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>RÉTT</B></FONT> Dæmi:<B>biking, snow skiing, computers, dvds, mp3s, cheese, women</B> Ef þið hafið áhugamálin á íslensku fara þau ekki í skrána hjá LiveJournal og koma því ekki að jafn miklu gagni og gætu.
+
+/editinfo.bml.int.header=Áhugamál
+
+/editinfo.bml.login.enterinfo=Sláðu inn notandanafn og lykilorð til að stilla persónuupplýsingarnar þínar.
+
+/editinfo.bml.login.forgot.header=Gleymdist eitthvað?
+
+/editinfo.bml.login.forgot.recover=Ef þú ert búinn að gleyma notandanafni eða lykilorði geturðu<a href='lostinfo.bml'> fengið það hérna!</a>.
+
+/editinfo.bml.logip.always=Alltaf
+
+/editinfo.bml.logip.anon_only=Aðeins ókráða notendur
+
+/editinfo.bml.logip.header=Skrá IP tölu þeirra sem svara skeytum?
+
+/editinfo.bml.mangleaddress.about|staleness=1
+/editinfo.bml.mangleaddress.about=Ef þú er heldur að ruslpóstsvélar finni netfangið þitt á LiveJournal merktu þá við hér og því verður breytt þannig að vélarnar finna það ekki.
+
+/editinfo.bml.mangleaddress.header=Rugla birta netfangið þitt
+
+/editinfo.bml.name.title=Nafn
+
+/editinfo.bml.newemail.subject=Netfangi hefur verið breytt
+
+/editinfo.bml.numcomments.about=Merktu hér ef þú vilt að vafrinn þinn geti sýnt "fjölda svara" tengilinn í mismunandi litum.
+
+/editinfo.bml.numcomments.header=Bæta &amp;nc=xx í slóðir svara
+
+/editinfo.bml.optional=Valfrjálst
+
+/editinfo.bml.opt_in.about<<
+Hakaðu hér ef þú vilt fá að vita þegar nýjungar eru kynntar í LiveJournal kerfinu.
+Þessi þjónusta er ekki fullkomlega komin í gang, en verður líklega notuð í náinni framtíð.
+Netfangið þitt verður ekki aðgengilegt almenningi, og þú getur sagt upp þessari þjónustu hvenær sem er.
+.
+
+/editinfo.bml.opt_in.header=Senda mér LiveJournal fréttir.
+
+/editinfo.bml.persinfo.disclaimer=Settu örlitlitlar upplýsingar um þig, bara vegna okkar forvitni og tölfræðirannsókna. Við ætlum okkur ekkert illt með þessa vitneskju - við viljum bara sjá hverjir og hvar þeir eru sem nota kerfin okkar. Vinsamlegast settu rétt inn. Lestu <a href="/legal/privacy.bml">persónuverndarreglur okkar</a> ef þú er eitthvað efins.
+
+/editinfo.bml.persinfo.header=Persónuupplýsingar
+
+/editinfo.bml.screen.all=Allt
+
+/editinfo.bml.screen.anon=Ónafngreindur
+
+/editinfo.bml.screen.header=Hvers konar svör viltu að verði stöðvuð sjálfkrafa?
+
+/editinfo.bml.screen.none=Engin
+
+/editinfo.bml.screen.nonfriends=Öll sem ekki eru frá fókli á vinalista
+
+/editinfo.bml.screen.nonmembers=Öll sem eru frá notendum sem ekki eru á LiveJournal
+
+/editinfo.bml.security.header=Hver getur skoðað tengiupplýsingar þínar?
+
+/editinfo.bml.security.visibility.anybody=Opið hverjum sem er
+
+/editinfo.bml.security.visibility.everybody=Opið öllum
+
+/editinfo.bml.security.visibility.friends=Aðeins fyrir vini
+
+/editinfo.bml.security.visibility.regusers=Aðeins fyrir skráða notendur
+
+/editinfo.bml.settings.friendspage.title=Titill vinasíðu:
+
+/editinfo.bml.settings.friendspage.title.optional=Ef þú vilt geturðu sett titil á vinasíðuna þína. (HTML virkar ekki)
+
+/editinfo.bml.settings.header=LiveJournal Val
+
+/editinfo.bml.settings.journal.subtitle=Undirtitill dagbókar:
+
+/editinfo.bml.settings.journal.subtitle.optional=Einnig geturðu gefið dagbókinni þinni undirtitil (án HTML þó).
+
+/editinfo.bml.settings.journal.title=Dagbókartitill:
+
+/editinfo.bml.settings.privacy.about=Að neðan eru stillingar sem varða almenningsaðgang og almennt val.
+
+/editinfo.bml.settings.privacy.header=Almenningsaðgangur
+
+/editinfo.bml.state.other=Eða sláðu inn annað fylki/hérað/sýslu
+
+/editinfo.bml.state.title=Fylki
+
+/editinfo.bml.state.us=Bandaríkin
+
+/editinfo.bml.stylemine.about=Merktu hér við ef þú vilt hafa athugasemdasíður í sama stíl og aðalsíða dagbókarinnar þinnar.
+
+/editinfo.bml.stylemine.header=Viltu sjá athugasemdasíður í sama stíl og aðalsíða dagbókarinnar þinnar?
+
+/editinfo.bml.success.header=Meðbyr og brautargengi!
+
+/editinfo.bml.success.message=Upplýsingarnar þínar og <a href="/users/[[user]]/">vefdagbókar</a> stillingar og <a href="/userinfo.bml?user=[[user]]">mannlýsing</a> hafa verið uppfærð.
+
+/editinfo.bml.switch.button=Skipta
+
+/editinfo.bml.switch.header=Skipta um dagbók
+
+/editinfo.bml.switch.workwith=Vinna í dagbók
+
+/editinfo.bml.title=Breyta persónulegum upplýsingum
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">smáatriði</a>
+
+/editinfo.bml.tm.phonenum=Fullt símanúmer
+
+/editinfo.bml.tm.sec.about=Leyfa textaskilaboð frá öðrum notendum.
+
+/editinfo.bml.tm.sec.title=Öryggisstig:
+
+/editinfo.bml.tm.servprov=þjónustuveita:
+
+/editinfo.bml.tm.title=Textaskilaboð
+
+/editinfo.bml.translatemailto.about=Ef þú hefur valið að fá að vita af svörum við einhverju frá þér og póstþjónninn þinn styður ekki Unicode (UTF-8) skilaboð mjög vel - veldu þá þetta til að stilla á annað kóðunarkerfi svo LiveJournal geti breytt textanum í það áður enn hann fer í póstkassann þinn.
+
+/editinfo.bml.translatemailto.header=Þýða póstvitkanir í:
+
+/editinfo.bml.unbanusers.about=Eftirfarandi notendum er bannað að setja skilaboð í dagbókina þína. Merktu kassan við notendanafn þeirra til að fjarlæga bannið á þeim.
+
+/editinfo.bml.unbanusers.header=Leyfa notendur
+
+/editinfo.bml.userpic.about=Hér fyrir neðan er myndin sem þú hefur valið til þess að standa fyrir þig á öllu LiveJournal vefsvæðinu, þ.á.m. vefbókinni þinni og vina þinna:
+
+/editinfo.bml.userpic.edit|staleness=1
+/editinfo.bml.userpic.edit=<a href="/uploadpic.bml" target="_blank">Smelltu hér</a> til að eyða þessari mynd eða hlaða nýja inn.
+
+/editinfo.bml.userpic.header=Myndin þín
+
+/editinfo.bml.userpic.none=engar myndir í notkun
+
+/editinfo.bml.weblogscom.about=Merktu hér ef þú vilt að Weblogs.com hafi dagbókina þína á lista sem sýnir nýjustu opinberu færslurnar þínar.
+
+/editinfo.bml.weblogscom.header=Láta Weblogs.com vita þegar þú uppfærir.
+
+/editinfo.bml.webpagename.title=Nafn vefsíðu
+
+/editinfo.bml.webpageurl.title=Slóð verfsíðu
+
+/editinfo.bml.whoreply.header=Hver á að geta svarað þínum færslum?
+
+/editinfo.bml.zip.title=Póstnúmer
+
+/editinfo.bml.zip.usonly=5 stafa póstnúmer - á aðeins við Kana;)
+
+/editjournal.bml.btn.proceed=Halda áfram...
+
+/editjournal.bml.certainday=Ákveðinn dagur:
+
+/editjournal.bml.desc=Notaðu kerfið að neðan til að finna færsluna sem þú vilt breyta.
+
+/editjournal.bml.in=Í samfélagi:
+
+/editjournal.bml.recententries=síðustu færslur
+
+/editjournal.bml.recententry=Allra nýjustu færsluna
+
+/editjournal.bml.title=Laga dagbókarfærslur
+
+/editjournal.bml.viewwhat=Skoða hvaða færslur:
+
+/editjournal_do.bml.body=Til að vista breytingarnar smellirðu einfaldlega á vistunartakkann að neðan. Þú getur líka eytt færslunni með eyðslutakkanum neðst.
+
+/editjournal_do.bml.btn.delete=Eyða færslu
+
+/editjournal_do.bml.btn.edit=Laga valda færslu
+
+/editjournal_do.bml.btn.save=Vista færslu
+
+/editjournal_do.bml.continue.head=Smelltu til að halda áfram...
+
+/editjournal_do.bml.continue.text=Ýttu á Edit-takkann hér fyrir neðan þegar þú hefur valið hlut til að laga eða eyða.
+
+/editjournal_do.bml.currmood|staleness=1
+/editjournal_do.bml.currmood=<A HREF="/moodlist.bml">Skap</A>.
+
+/editjournal_do.bml.currmusic=Ég er að hlusta á:
+
+/editjournal_do.bml.date=Dagsetning:
+
+/editjournal_do.bml.default=grunnstilling
+
+/editjournal_do.bml.delete.confirm=Ertu viss um að þú viljir eyða þessari færslu?
+
+/editjournal_do.bml.edit.text|staleness=2
+/editjournal_do.bml.edit.text=Breyttu því sem þú vilt í færslunni og smelltu á vistunartakkann neðst á síðunni. Til að eyða færslunni þarftu bara að stroka allan textann út og vista - og þá kemur ekkert.
+
+/editjournal_do.bml.error.getting=Það kom upp villa við að ná í færslur til að laga:
+
+/editjournal_do.bml.error.modify=Villumelding átti sér stað er reynt var að breyta dagbókinni þinni.
+
+/editjournal_do.bml.error.nofind=Fann ekki valda dagbókarfærslu.
+
+/editjournal_do.bml.event=Atburður:
+
+/editjournal_do.bml.localtime=Staðartími:
+
+/editjournal_do.bml.noneother=Engin, eða eitthvað aaaaaallt annað:
+
+/editjournal_do.bml.opt.backdate=Gömul færsla
+
+/editjournal_do.bml.opt.backdate.about=kemur ekki fram á vinasíðu
+
+/editjournal_do.bml.opt.nocomments=Banna athugasemdir:
+
+/editjournal_do.bml.opt.noemail=Senda ekki tilkynningu um athugasemd:
+
+/editjournal_do.bml.opt.noformat=Ekki sníða sjálfkrafa:
+
+/editjournal_do.bml.other=Aðra
+
+/editjournal_do.bml.pickentry.head=Veldu færslu til að laga
+
+/editjournal_do.bml.pickentry.text=Veldu það sem þú vilt laga og smelltu svo á &#8222;Laga&#8220; takkann neðst á síðunni.
+
+/editjournal_do.bml.picture=<a href="[[url]]">Mynd</a> til að nota:
+
+/editjournal_do.bml.save.head=Smelltu til að vista...
+
+/editjournal_do.bml.save.text=Ýttu á &#8222;Vista&#8220; þegar þú ert búinn að laga færsluna.
+
+/editjournal_do.bml.subject|staleness=1
+/editjournal_do.bml.subject=<B>Titill:</B> <I>(Óþarft, en nothæft við langar færslur)</I>
+
+/editjournal_do.bml.success.delete=Færlsu hefur verið eytt.
+
+/editjournal_do.bml.success.edit|staleness=1
+/editjournal_do.bml.success.edit=Færslu hefur verið breytt. Þú getur séð hvernig hún er núna <a href="[[url]]">hér</a>.
+
+/editjournal_do.bml.success.head=Meðbyr og brautargengi!
+
+/editjournal_do.bml.timeformat=24 stunda sólarhringur
+
+/editjournal_do.bml.title=Laga færslur
+
+/editpics.bml.btn.proceed=Halda áfram
+
+/editpics.bml.btn.save=Vista stillingar
+
+/editpics.bml.curpics=Myndir í notkun
+
+/editpics.bml.curpics.desc=Hér eru myndirnar sem þú hefur vistað á LJ-netþjóninn. Þú getur gefið þeim heiti til að nota þau án þess að þurfa að sjá myndina í hvert skipti sem þú velur hverja þú vilt nota, valið hverja þú vilt hafa sem grunnmynd og eytt myndum. Notaðu takkann neðst til að uppfæra nýja mynd.
+
+/editpics.bml.error.badurl=Vefslóð myndarinnar sem á að hala á netþjóninn virðist ekki vera rétt - hún ætti að hefjast á <b>http://</b>
+
+/editpics.bml.error.filetoolarge=Myndin var of stór - stærð skjalsins má ekki vera meiri en [[maxsize]].
+
+/editpics.bml.error.imagetoolarge=Víddir myndarinnar þinnar ([[imagesize]]) eru of stórar - hún má ekki vera meiri en 100x100 dílar. Notaðu myndvinnsluforrit til að minnka stærðina í þumalputtamyndarstærð.
+
+/editpics.bml.error.invalidimage=Óvirkt myndarskjal
+
+/editpics.bml.error.keywords=Þú nefndir tvær myndir &#8222;[[ekw]]&#8220; - önnur þeirra fékk nýtt slembivalið nafn, en líklega ekki eitt að þínu skapi. Farðu aftur á myndasíðuna til að breyta því.
+
+/editpics.bml.error.toomanypics2=Þú ert nú þegar með eins margar myndir og þú getur haft - [[maxpics]]. Þú getur ekki halað þessari mynd upp fyrr en þú eyðir einni af þínum gömlu.
+
+/editpics.bml.error.unsupportedtype=Því miður styðjum við ekki myndir á [[filetype]]-sniði. Þú verður að nota mynd á GIF, PNG eða JPG-sniði. Næstum öll myndvinnsluforrit geta breytt myndum á eitthvert þessara sniða fyrir þig.
+
+/editpics.bml.error.urlerror=Smá vesen olli því að ekki tókst að hala inn myndinni þinni.
+
+/editpics.bml.fromfile=Frá  <u>s</u>kjali:
+
+/editpics.bml.fromfile.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".fromfile". This is the shortcut key for the fromfile option.
+/editpics.bml.fromfile.key=s
+
+/editpics.bml.fromurl=Af s<u>l</u>óð:
+
+/editpics.bml.fromurl.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".fromurl". This is the shortcut key for the fromurl option.
+/editpics.bml.fromurl.key=l
+
+/editpics.bml.label.default=Grunnmynd:
+
+/editpics.bml.label.delete=Eyða:
+
+/editpics.bml.label.keywords=Heiti:
+
+/editpics.bml.makedefault=Gera þessa mynd að <u>g</u>runnmynd
+
+/editpics.bml.makedefault.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".makedefault". This is the shortcut key for the makedefault option.
+/editpics.bml.makedefault.key=g
+
+/editpics.bml.restriction.imagesize=Vídd myndar má ekki vera meiri en 100x100 dílar
+
+/editpics.bml.title=Breyta notandamyndum
+
+/editpics.bml.uploaddesc=Notaðu kerfið að neðan til að senda inn nýja mynd
+
+/editpics.bml.uploadheader=Hlaða inn nýrri mynd
+
+/export.bml.btn.proceed=Halda áfram...
+
+/export.bml.label.field.currents=Skap og tónlist
+
+/export.bml.label.field.event=<b>Atburður</b>
+
+/export.bml.label.field.eventtime=Tími atburðar, miðað við klukku notanda
+
+/export.bml.label.field.itemid=Kenninúmer
+
+/export.bml.label.field.logtime=Skráartími, miðað við klukku kerfis
+
+/export.bml.label.field.security=Öryggisstig
+
+/export.bml.label.field.subject=Viðfangsefni
+
+/export.bml.label.format=Snið:
+
+/export.bml.label.header=Haus
+
+/export.bml.label.month=Veldu mánuð:
+
+/export.bml.label.month.year=áááá:
+
+/export.bml.label.notranslation=Til að þýða ekki milli umkóðana
+
+/export.bml.label.what=Hvad skal millifæra:
+
+/export.bml.title=Millifæra dagbók
+
+/export.bml.what.entries=Dagbókarfærslur
+
+/friends/add.bml.add.header=Meðbyr og brautargengi!
+
+/friends/add.bml.add.text|staleness=2
+/friends/add.bml.add.text=<?ljuser [[user]] ljuser?> hefur verið bætt á vinalistann. Þú getur skoðað vinasíðuna <a href="[[url]]">hér</a>.
+
+/friends/add.bml.add.title=Nýr vinur!
+
+/friends/add.bml.btn.add=Bæta [[user]]
+
+/friends/add.bml.btn.modify=Breyta
+
+/friends/add.bml.btn.remove=Fjarlæga
+
+/friends/add.bml.colors.bg=Bakgrunnur
+
+/friends/add.bml.colors.fg=Forgrunnur
+
+/friends/add.bml.colors.header=Litir
+
+/friends/add.bml.colors.hover=(Færðu músina yfir einhvern tiltekinn lit til að sjá nafn hans)
+
+/friends/add.bml.colors.text=Þú getur líka valið liti til að einkenna frekar [[user]] á vinalistanum þínum.
+
+/friends/add.bml.confirm.header=Setja <b>[[user]]</b> á vinalistann?
+
+/friends/add.bml.confirm.text=Smelltu á takkann að neðan til að setja <b>[[user]]</b> á vinalistann þinn.
+
+/friends/add.bml.confirm.title=Vingast við
+
+/friends/add.bml.error1.header|staleness=1
+/friends/add.bml.error1.header=Innskrá fyrst
+
+/friends/add.bml.error1.text=Til að setja einhvern á vinalistann þinn þarftu fyrst að <A HREF="/login.bml?ret=1">skrá þig inn</a>. Ef þú ert ekki nú þegar með skriftu getur þú <a href="/create.bml">skapað eina</a> til að fylgjast með dagbókum vina þinna.
+
+/friends/add.bml.error1.title=Vingast við
+
+/friends/add.bml.error2.text|staleness=1
+/friends/add.bml.error2.text=Annaðhvort vantar notandanafnið eða það er ekki til. Til að bæta við vin farðu á <A HREF="/friends/edit.bml">stilla vini síðuna</A>.
+
+/friends/add.bml.error3.text=<b>[[user]]</b> er nú þegar á vinalistanum þínum - þú gætir þó viljað breyta litunum sem þú valdir fyrir hana á vinasíðunni þinni.
+
+/friends/add.bml.error3.title=Breyta stillingum vinar
+
+/friends/add.bml.groups.header=Vinahópar
+
+/friends/add.bml.groups.nogroup=Engir vinahópar settir upp enn
+
+/friends/add.bml.groups.text=Í hvaða vinahóp viltu setja þennan notanda? Vinahópar eru oft notaðir til að flokka niður vinalistann og til að leyfa aðeins ákveðnum aðilum að skoða sumar færslur.
+
+/friends/add.bml.remove.header=Meðbyr og brautargengi!
+
+/friends/editgroups.bml.done.header=Allt tilbúið?
+
+/friends/editgroups.bml.saved.header=Vistað
+
+/friends/edit_do.bml.addfriends.text=Sláðu inn notendanöfn vina þinna í kassana að neðan og veldu bak- og forgrunnslit sem þér finnst hæfa þeim...
+
+/friends/edit_do.bml.friend=Vinur
+
+/friends/edit_do.bml.hover=Tylltu músinni á einhverjum lit til að sjá nafn hans
+
+/friends/edit_do.bml.mrcolor=Herra Litaskanni
+
+/friends/edit_do.bml.name=Nafn
+
+/friends/edit_do.bml.needmore=Ef þú vilt bæta fleiri vinum en komast fyrir að ofan, vistaðu breytingarnar með takkanum neðst á síðunni og hladdu síðuna aftur.
+
+/friends/edit_do.bml.nofriends.head=Engir vinir?
+
+/friends/edit_do.bml.nofriends.text=Þú ert ekki með neina vina skilgreinda eins og er. Ég er samt viss um að þú átt einhverja! <tt>:)</tt> Skrifaðu bara LiveJournal-notendanöfnin þeirra hér að neðan...
+
+/friends/edit_do.bml.opt.delete=Eyða?
+
+/friends/edit_do.bml.success.head=Meðbyr og brautargengi!
+
+/friends/edit_do.bml.success.text=Vinalisti þinn hefur verið uppfærður - <a href="[[url]]">hér er vinasíðan þín með færslum nýju vinanna</a>.
+
+/friends/edit_do.bml.textcolor=Litur texta:
+
+/friends/edit_do.bml.title=Breyta vinalista
+
+/friends/edit_do.bml.user=Notandi
+
+/friends/edit_do.bml.viewer=Litakanni
+
+/friends/edit_do.bml.yourfriends.head=Vinir þínir
+
+/friends/edit_do.bml.yourfriends.text=Eftirfarandi eru skilgreindir sem vinir þínir:
+
+/friends/index.bml.security.header=Öryggi
+
+/friends/index.bml.security.only=Þegar þú merkir færslur þínar sem &#8222;aðeins fyrir vini&#8220;, þá á það við fólkið á vinalistanum þínum.
+
+/friends/index.bml.title=Vinaverkfæri
+
+/friends/index.bml.tools=Verkfæri
+
+/friends/popwithfriends.bml.account_type=Því miður geturðu ekki notað þetta tól með þinni tegund af skriftu.
+
+/friends/popwithfriends.bml.count=Telja
+
+/friends/popwithfriends.bml.exclude_own=Þú getur líka skoðað listann <a href='popwithfriends.bml'>án vina</a>.
+
+/friends/popwithfriends.bml.include_own=Þú getur líka skoðað listann <a href='popwithfriends.bml?own=1'>með vinum</a>.
+
+/friends/popwithfriends.bml.intro=Hér er listi yfir fólk sem er oftar en einu sinni á vinalista einhverra af vinum þínum en ekki skráð sem vinur þinn.
+
+/friends/popwithfriends.bml.intro_own=Hér er listi yfir fólk sem er oftar en einu sinni á vinalista einhverra af vinum þínum en ekki skráð sem vinur þinn. Þeir sem er skráðir vinir þínir eru einnig á listanum.
+
+/friends/popwithfriends.bml.no_users=Engir notendur
+
+/friends/popwithfriends.bml.title=Vinsælir notendur meðal vina þinna
+
+/friends/popwithfriends.bml.user=Notandi
+
+/index.bml.boldcreate=Búðu til þína eigin vefdagbók! 
+
+/index.bml.frank.image.alt=Farandrekur, lukkugeit LiveJournal.
+
+/index.bml.frank.logo=<b><i>"Hvur rækallinn, ég get talað",</i> segir <a href="/site/goat.bml">Farandrekur</a>.</b>
+
+/index.bml.meta.desc=LiveJournal.com er staður þar sem þú getur deilt þínum pælingum með restinni af heiminum.
+
+/index.bml.meta.keywords=dagbók, vefdagbók, blogg, bloggarar, dagbækur, lífskrá, netblogg, netdagbók
+
+/interests.bml.add.added.head=Komið á listann!
+
+/interests.bml.add.added.text=Þessu áhugamáli hefur verið bætt á listann.
+
+/interests.bml.add.btn.text=Bæta við [[interest]]
+
+/interests.bml.add.confirm.head=Staðfesta
+
+/interests.bml.add.confirm.text=Smelltu á takkan að neðan til að setja <b>[[interest]]</b> á áhugamálalistann þinn.
+
+/interests.bml.add.toomany.head=Því miður...
+
+/interests.bml.add.toomany.text=Þú ert með [[maxinterests]] áhugamál skráð.
+
+/interests.bml.addint=<a href="/interests.bml?mode=add&amp;intid=[[qintid]]">Smelltu hér</A> ef þú hefur áhuga á þessu, og vilt vera með á listanum.
+
+/interests.bml.btn.switch=Skipta
+
+/interests.bml.communities.text=Eftirfarandi samfélög hafa einnig áhuga á <b>"[[interest]]"</b>. 
+
+/interests.bml.count=Talin
+
+/interests.bml.enmasse.header=Sýsla með áhugamál
+
+/interests.bml.enmasse.intro=Breyta áhugamálum þínum í samanburði við áhugamál:
+
+/interests.bml.error.add.mustlogin=Þú verður að vera skráður inn til að bæta við áhugamáli á þennan hátt.
+
+/interests.bml.error.findsim_do.intnotfound=Áhugamál fannst ekki.
+
+/interests.bml.findsim.searchwait=<b>Vinsamlegast athugið:</b> Leitin getur tekið fáeinar sekúndur. Verið þolinmóð.
+
+/interests.bml.finished.header=Tilbúið?
+
+/interests.bml.interests.viewpop=Skoða vinsæl áhugamál
+
+/interests.bml.match=[[count]] fundinn:
+
+/interests.bml.matches=[[count]] fundnir:
+
+/interests.bml.morestuff|staleness=1
+/interests.bml.morestuff=Fleira skemmtilegt er hægt að finna á <A HREF="/interests.bml">áhugamálasíðunni</a>.
+
+/legal/index.bml.about.header=Yfirlit
+
+/legal/index.bml.docs.header=Skjöl
+
+/login.bml.bindip.label=Binda við eina IP tölu:
+
+/login.bml.bindip.no=Nei (virkar með öllum nettengingum)
+
+/login.bml.bindip.yes=Já (öruggara, en virkar bara á einni tengingu)
+
+/login.bml.error.mustenterusername=Þú verður að <a href='/login.bml'>slá inn notandanafn</a>.
+
+/login.bml.expire.btn.neverexpire=Innskráning fellur aldrei úr gildi.
+
+/login.bml.expire.btn.sessiononly=Innskráning gildir aðeins í þetta skipti.
+
+/login.bml.expire.neverexpire.text=Innskráningin rennur <b>aldrei úr gildi</b>, þannig vertu viss um að útskrá þig alltaf ef þú ert í almenningstölvu, skóla, bókasafni eða hvar sem fleiri en þú nota tölvuna. Þú getur líka látið innskráninguna falla úr gildi þegar vafrinn lokast.
+
+/login.bml.expire.sessiononly.text=Innskráningin fellur úr gildi þegar þú lokar vafranum þínum. Ef þetta er þín tölva og þú ert eini notandinn gætir þú viljað stilla innkráninguna þannig að hún gildi alltaf.
+
+/login.bml.links.head=Tenglar
+
+/login.bml.links.link1=<a href='/users/[[username]]/friends'>Vinasíðan</a> þín.
+
+/login.bml.links.link2=<a href='/todo/'>Verkefnalistinn</a> þinn.
+
+/login.bml.links.text=Í náinni framtíð verða á þessari síðu alls konar tenglar og viðeigandi upplýsingar, en í millitíðinni gætirðu viljað kíkja á þetta:
+
+/login.bml.loggedin.head=Skráður inn!
+
+/login.bml.loggedin.text=Þú ert núna skráður inn.
+
+/login.bml.login.btn.changeopts=Breyta stillingum
+
+/login.bml.login.btn.login=Innskrá...
+
+/login.bml.login.expiration=Rennur út:
+
+/login.bml.login.forget=Manstu ekki lykilorðið..?
+
+/login.bml.login.head=Innskrá
+
+/login.bml.login.never=Aldrei
+
+/login.bml.login.otheropts=Aðrir möguleikar:
+
+/login.bml.login.password=Lykilorð:
+
+/login.bml.login.text1=Til að skrá inná [[sitename]], sláðu þá inn notandanafn og lykilorð að neðan. <b>Nýir notendur:</b> <a href='/create.bml'>Farið hingað</a> til að búa til nýja skriftu.
+
+/login.bml.login.text2|staleness=1
+/login.bml.login.text2=Þú gætir viljað stilla hvenær innskráningin fellur úr gildi. Venjulega gildir hún þar til þú lokar vafranum - sem er óneitanlega best á almenningstölvum. Ef þú ert hins vegar sá eini sem notar (og getur notað) þessa tölvu getur þú latið hana gilda alltaf.
+
+/login.bml.login.username=Notandanafn:
+
+/login.bml.login.whenbrowsercloses=Þegar vafri lokast
+
+/login.bml.title=Innskrá
+
+/login.bml.whylogin.benefit1=Þú þarft þá ekki lengur að slá inn notandanafn og lykilorð nokkurstaðar á síðunni.
+
+/login.bml.whylogin.benefit2=Þú munt geta lesið &#8222;læstar&#8220; dagbækur semvinir þínir hafa gefið þér aðgang að.
+
+/login.bml.whylogin.benefit3=Ýmislegt er aðeins hægt að nota ef maður er skráður inn.
+
+/login.bml.whylogin.head=Til hvers að skrá sig inn?
+
+/login.bml.whylogin.text=Hér eru helstu kostir þess að skrá sig inn.
+
+/logout.bml.already.head=Þegar skráður út
+
+/logout.bml.already.text=Þú hefur þegar skráð þig út.
+
+/logout.bml.loggedout.head=Útskráður
+
+/logout.bml.loggedout.text=Þú ert nú útskráður.
+
+/logout.bml.title=Útskrá
+
+/lostinfo.bml.btn.proceed=Halda áfram
+
+/lostinfo.bml.enter_email=Sláðu inn notandanafn:
+
+/lostinfo.bml.enter_email_optional=Netfang: (valfrjálst)
+
+/lostinfo.bml.enter_username=Sláðu inn notandanafn þitt:
+
+/lostinfo_do.bml.lostpasswordmail.part2=Smelltu á tengilinn að neðan til að staðfesta að þetta er netfangið þitt:
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Nytsamlegir tenglar:
+
+LiveJournal dagbókin þín:
+[[journalurl]]
+
+Uppfæra dagbókina í gegnum vafra:
+[[updateurl]]
+
+Kveðja,
+Livejournal-dróttnar
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Glatað lykilorð
+
+/lostinfo_do.bml.password_mailed.text=Meðbyr og brautargengi! Lykilorðið þitt hefur verið sent í pósthólfið þitt!
+
+/lostinfo_do.bml.password_mailed.title=Lykilorð hefur verið sent!
+
+/lostinfo_do.bml.title=Glataðar upplýsingar
+
+/lostinfo_do.bml.username_mailed.text=Meðbyr og brautargengi! Notandanafnið þitt hefur verið sent í pósthólfið þitt.
+
+/lostinfo_do.bml.username_mailed.title=Notandanafn sent á viðeigandi netfang!
+
+/manage/index.bml.about=Auðvelt er að stjórna skriftunni þinni og sérstilla - veldu bara eitt af svæðunum að neðan til að byrja:
+
+/manage/index.bml.communities=Skapaðu og sjáðu um eigin samfélög:
+
+/manage/index.bml.communities.create.about=Skapa nýtt samfélag
+
+/manage/index.bml.communities.header=Samfélög
+
+/manage/index.bml.communities.manage.about=Breyttu stillingum samfélagsins og hagi meðlima þess
+
+/manage/index.bml.customization=Láttu útlit dagbókarsíða þinna vera eftir þínu höfði:
+
+/manage/index.bml.customization.advanced=Sérstilling á hærra stigi
+
+/manage/index.bml.customization.advanced.about=Skoða, skapa og/eða laga þína eigin S2 uppsetningu eða stíl
+
+/manage/index.bml.customization.customize=Sérstilla dagbók
+
+/manage/index.bml.customization.customize.about=Breyttu útliti dagbókarinnar þinnar eða skiptu milli stílkerfa S1 og S2
+
+/manage/index.bml.customization.header=Sérstillingar
+
+/manage/index.bml.customization.links=Tenglalisti
+
+/manage/index.bml.customization.links.about=Gerðu lista af tenglum sem birtast eiga í dagbókinni þinni
+
+/manage/index.bml.customization.modify.about=Breyttu útliti dagbókarinnar
+
+/manage/index.bml.customization.s1.header=Stílkerfi S1
+
+/manage/index.bml.customization.s2.header=Stílkerfi S2
+
+/manage/index.bml.entries=Sýsla með færslur sem þú hefur þegar gert í dagbók skriftunnar þinna:
+
+/manage/index.bml.entries.edit.about=Breyta eða eyða gömlum færslum
+
+/manage/index.bml.entries.header=Dagbókarfærslur
+
+/manage/index.bml.entries.memories.about=Skoða, sýsla með minnisstæðar færslur
+
+/manage/index.bml.friends=Sýsla með vini og vinahópa, eða sía vinasíðuna með ákveðnum vinahópum
+
+/manage/index.bml.friends.edit.about|staleness=1
+/manage/index.bml.friends.edit.about=Bæta notendum við, breyta miðlun þeirra eða fjarlæga þá af vinalistanum þínum
+
+/manage/index.bml.friends.filter=Sía vinasíðuna
+
+/manage/index.bml.friends.filter.about=Sía vinalistann til að sýna aðeins færslur ákveðins vinahópar
+
+/manage/index.bml.friends.groups.about=Skapa undirhópa, breyta miðlun þeirra eða fjarlæga undirhópa úr vinalistanum
+
+/manage/index.bml.friends.header=Vinir
+
+/manage/index.bml.information=Veldu hvaða upplýsingar þú vilt birta í skriftunni þinni.
+
+/manage/index.bml.information.changepass=Breyta lykilorði skriftu
+
+/manage/index.bml.information.changepass.about=Breyttu lykilorði skriftunnar þinnar
+
+/modify_do.bml.journalstatus.select.deleted=Hefur verið eytt
+
+/modify_do.bml.journalstatus.select.head=Staða:
+
+/modify_do.bml.journalstatus.select.suspended=Rekinn (ekki drekinn)
+
+/modify_do.bml.moodicons.head=Skapmerki
+
+/modify_do.bml.moodicons.select=Veldu sett skapmerkja:
+
+/modify_do.bml.overrides.warning=ÞÚ SKRIFAR <U>EKKI</U> DAGBÓKINA ÞÍNA HÉRNA!!!
+
+/modify_do.bml.success.head=Meðbyr og brautargengi!
+
+/modify_do.bml.success.text=Dagbókarstillingum þínum hefur verið breytt. Þú getur skoðað <a href="[[url]]">nýju útkomuna hér</a>!
+
+/paidaccounts/index.bml.costs.header=Jæja, hvað kostar þetta mikið?
+
+/paidaccounts/index.bml.costs.rates.amount.header=Gjald
+
+/paidaccounts/index.bml.costs.rates.time.header=Lengd áskriftar
+
+/paidaccounts/index.bml.features.header=Hvaða svölu eiginleikum verð ég þá gædd/ur?
+
+/paidaccounts/index.bml.whypay.header=Verð ég að borga til að nota LiveJournal?
+
+/styles/index.bml.title=Eigin stílar
+
+/suggestions/index.bml.info.title=Aðrar upplýsingar
+
+/suggestions/index.bml.title=Hugmyndakassi
+
+/suggestions/index.bml.welcome.title=Heil/l þér!
+
+/support/encodings.bml.edit.header=Ég get ekki lagað færslurnar mínar með netviðmótinu!
+
+/support/encodings.bml.editcl.header=Mér tekst ekki að laga færslur í færsluvélinni!
+
+/support/encodings.bml.groups.header=Mér tekst ekki að sýsla með vinalistann minn í færsluvélinni minni!
+
+/support/encodings.bml.overview.header=Hvað á þetta allt að þýða?
+
+/support/encodings.bml.still.header=Enn í vanda?
+
+/support/faqbrowse.bml.lastupdated=Síðast uppfært:
+
+/talkmulti.bml.error.login=Þú ert ekki skráður inn.
+
+/talkmulti.bml.error.none_selected=Þú hefur ekki valið neinar athugasemdir.
+
+/talkmulti.bml.error.privs.delete=Þú hefur ekki leyfi til að eyða þessum athugasemdum.
+
+/talkmulti.bml.error.privs.screen=Þú hefur ekki leyfi til að hylja þessar athugasemdir.
+
+/talkmulti.bml.error.privs.unscreen=Þú hefur ekki leyfi til að opinbera þessar athugasemdir.
+
+/talkmulti.bml.screened.body=Athugasemdir hafa verið huldar. Þú getur skoðað þær <a href="[[link]]">hér</a>.
+
+/talkmulti.bml.screened.title=Athugasemdir huldar
+
+/talkmulti.bml.title.delete=Eyða mörgum athugasemdum
+
+/talkmulti.bml.title.screen=Fela margar athugasemdir
+
+/talkmulti.bml.title.unscreen=Opinbera margar athugasemdir
+
+/talkmulti.bml.unscreened.body=Athugasemdirnar hafa verið opinberaðar. Þú getur skoðað þær <a href="[[link]]">hér</a>.
+
+/talkmulti.bml.unscreened.title=Athugasemdir hafa verið opinberaðar
+
+/talkpost.bml.allowedhtml=Leyft HTML
+
+/talkpost.bml.error.cannotreplynopost=ÞÞú getur ekki svarað færslu sem ekki er til.
+
+/talkpost.bml.error.nocommentsjournal=Notandi hefur lokað á svör í dagbókinni sinni.
+
+/talkpost.bml.error.nocommentspost=Notandi hefur lokað á svör við þessari tilteknu færslu.
+
+/talkpost.bml.error.noreplypost=Svar fannst ekki (hefur kannski verið eytt?)
+
+/talkpost.bml.error.noreply_deleted=Þessari athugasemd hefur verið eytt - þú getur ekki svarað henni.
+
+/talkpost.bml.error.noreply_screened=Þetta svar er falið því þú hefur ekki leyfi til að lesa það né svara því.
+
+/talkpost.bml.label.picturetouse=<a href='/allpics.bml?user=[[username]]'>Mynd</a> sem á að nota:
+
+/talkpost.bml.loganonip=<b>ATH</b> Þessi notandi skráir allar IP tölur óskráðra notenda.
+
+/talkpost.bml.loginq=Innskrá?
+
+/talkpost.bml.logyourip=<b>ATH</b> Þessi notandi skráir IP töluna þína þegar þú svarar einhverju.
+
+/talkpost.bml.nosubjecthtml=Ekkert HTML virkar í viðfangslínu
+
+/talkpost.bml.opt.anonymous=Ónafngreindur
+
+/talkpost.bml.opt.defpic=(grunnstillingar)
+
+/talkpost.bml.opt.friendsonly=- þessi notandi hefur bannað athugasemdir frá öllum sem ekki eru á vinalista hans. Ef [[username]] bætir þér á listann sinn getur þú skrifað athugasemdir í dagbókina hans.
+
+/talkpost.bml.opt.from=Frá:
+
+/talkpost.bml.opt.ljuser=LiveJournal notandi:
+
+/talkpost.bml.opt.loggedin=<b>Innskráður sem:</b> [[username]]
+
+/talkpost.bml.opt.message=Skilaboð:
+
+/talkpost.bml.opt.noanonpost=- þessi notandi hefur bannað athugasemdir frá ónafngreindum.
+
+/talkpost.bml.opt.noautoformat=Ekki sníða sjálfkrafa:
+
+/talkpost.bml.opt.noimage=Note ekkert tákn
+
+/talkpost.bml.opt.preview=Prufuskoða
+
+/talkpost.bml.opt.spellcheck=Leita að enskum villum áður en skráð er
+
+/talkpost.bml.opt.subject=Titill:
+
+/talkpost.bml.opt.submit=Skrifa athugasemd
+
+/talkpost.bml.opt.willscreen=(mun vera hulið)
+
+/talkpost.bml.opt.willscreenfriend=(mun verða hulið ef þú ert ekki vinur)
+
+/talkpost.bml.paraformat=Greinaskil eru sjálfkrafa sniðin.
+
+/talkpost.bml.postresponse=Svara með athugasemd:
+
+/talkpost.bml.title=Skrifa athugasemd
+
+/talkpost.bml.usermismatch<<
+Þú skráðir inn notendanafn en afhakaðir &#8222;Livejournal notandi&#8220; valmöguleikann.
+
+Vinsamlegast hreinsaðu annaðhvort notendanafnið eða veldu réttan skrifham og reyndu á ný.
+.
+
+/talkpost.bml.warnscreened=<b>Athugið:</b> Þessi athugasemd verður hulin. Svar við henni mun opinbera hana og gera hana þannig sjáanlega.
+
+/talkpost_do.bml.error.badpassword=Rangt lykilorð var gefið fyrir notandanafnið sem var áður skilgreint. Þú getur endurheimtad lykilorðið þitt <a href='/lostinfo.bml'>hér</a>, hafir þú gleymt því eða glatað.
+
+/talkpost_do.bml.error.badusername=Livejournal notandanafnið sem þú notaðir er ekki til staðar. Þú getur endurheimtað notandanafnið þitt <a href='/lostinfo.bml'>hér</a>, hafir þú gleymt því eða glatað - annars geturðu skrifað eitthvað &#8222;ónafngreindur&#8220;.
+
+/talkpost_do.bml.error.banned=Þú hefur ekki leyfi til að skrifa í dagbók þessa notanda.
+
+/talkpost_do.bml.error.confused_identity=Þú sláðir inn notendanafn, en valdir svo að svara án nafns eða sem sá sem er innskráður. Farðu aftur og ákveddu hvað þú ætlaðir að gera.
+
+/talkpost_do.bml.error.friendsonly=Aðeins vinir [[user]] mega skrifa í þessa dagbók.
+
+/talkpost_do.bml.error.lostcookie=Innskráningarsmákakan þín virðist hafa horfið...?
+
+/talkpost_do.bml.error.manybytes=Því miður er athugasemdin þín [[current]] of stór í bætum talið, þar sem hámarkið er [[limit]]. Vinsamlegast styttu hana og reyndu að skrá hana aftur.
+
+/talkpost_do.bml.error.manychars=Því miður er athugasemdin þín [[current]] of stór í bókstöfum talið, þar sem hámarkið er [[limit]]. Vinsamlegast styttu hana og reyndu að skrá hana aftur.
+
+/talkpost_do.bml.error.mustlogin=Þú verður að vera skráður inn eða nota notandanafn og lykilorð til að svara þessari læstu færslu.
+
+/talkpost_do.bml.error.noanon=Þú getur ekki skrifað óinnskráður í dagbók þessarar manneskju.
+
+/talkpost_do.bml.preview.subject=<b>titill: </b>
+
+/talkpost_do.bml.success.loggedin=Þú ert núna skráður inn.
+
+/talkpost_do.bml.success.message=Svar þitt hefur verið skráð. Þú getur skoðað það <a href="[[link]]">hér</a>.
+
+/talkpost_do.bml.success.title=Meðbyr og brautargengi!
+
+/talkpost_do.bml.title|staleness=2
+/talkpost_do.bml.title=Skrifa athugasemd
+
+/talkread.bml.anonuser=<i>(Ónafngreindur)</i>
+
+/talkread.bml.select=Velja
+
+/talkread.bml.subjectdeleted=[eytt]
+
+/talkread.bml.talkmulti.delete=Eyða
+
+/talkread.bml.talkmulti.des=<b>Hópaðgerðir</b> á valdar athugasemdir:
+
+/talkread.bml.talkmulti.screen=Hylja
+
+/talkread.bml.talkmulti.submit=Setja í framkvæmd
+
+/talkread.bml.talkmulti.unscreen=Opinbera
+
+/talkread.bml.title=Lesa athugasemdir
+
+/talkscreen.bml.error.login=Þú verður að vera skráður inn til að vinna með lokuð svör.
+
+/talkscreen.bml.error.privs.screen=Þú hefur ekki leyfi til að hylja þessa athugasemd.
+
+/talkscreen.bml.error.privs.unscreen=Þú hefur ekki leyfi til að opinbera þessa athugasemd.
+
+/talkscreen.bml.screen.doit=Já, hylja þessa athugasemd.
+
+/talkscreen.bml.screened.title=Meðbyr og brautargengi!
+
+/talkscreen.bml.unscreened.title=Meðbyr og brautargengi!
+
+/tools/memadd.bml.body.added.body=Listinn þinn yfir minningarverðar færslur hefur verið uppfærður.
+
+/tools/memadd.bml.body.added.header=Meðbyr og brautargengi!
+
+/tools/memadd.bml.form.reset=Endurræsa
+
+/tools/memadd.bml.form.submit=Senda inn
+
+/tools/memadd.bml.keywords=Kenniorð:
+
+/tools/memadd.bml.keywords.example=Dæmi: <B>fyndið, aulalegt, rómantík</B>
+
+/tools/memadd.bml.keywords.select=Þú getur líka notað kenniorð sem þú hefur notað á aðrar færslur:
+
+/tools/memadd.bml.login.forgot.header=Gleymdirðu einhverju?
+
+/tools/memadd.bml.security.friendsonly=Aðeins fyrir vini
+
+/tools/memadd.bml.security.private=Einkamál
+
+/tools/memadd.bml.security.public=Opinbert
+
+/tools/memadd.bml.title=Bæta í minningasafn
+
+/tools/memadd.bml.title.added=Komið inn
+
+/tools/memadd.bml.title.deleted=Hefur verið eytt
+
+/tools/memadd.bml.title.edit_memory=Laga minnisverða færslu
+
+/tools/memadd.bml.whocansee=Hver getur séð að maður hafi merkt færslu sem minnisverða? Allir, aðeins fólk á vinalista eða bara maður sjálfur?
+
+/tools/memories.bml.back=Til baka
+
+/tools/memories.bml.body.keyword<<
+<?h1 [[keyword]] h1?> 
+<?p Eftirfarandi er listi yfir "[[keyword]]" tengdar færslur sem <B>[[user]]</B> fannst minnisverðar. p?>
+.
+
+/tools/memories.bml.error.noentries.body|staleness=2
+/tools/memories.bml.error.noentries.body<<
+Þetta gæti stafað af því að:
+1) Notandinn hefur ekki hefur ekki skilgreint neinar minnisverar færslur
+2) Minnisverðu færslur notandans eru læstar og þú ekki með leyfi til að skoða þær
+3) eða að eingar minnisverðu færslanna passa við síuna þína
+.
+
+/tools/memories.bml.error.noentries.title=Engar minnisverðar færslur fundust
+
+/tools/memories.bml.filter.all=Allt minnisvert
+
+/tools/memories.bml.filter.other=Aðeins aðrar færslur
+
+/tools/memories.bml.filter.own=Aðeins færsur eftir '[[user]]'
+
+/tools/memories.bml.form.switch=Skipta
+
+/tools/memories.bml.sort.journal=Dagbók
+
+/tools/memories.bml.sort.orderadded=Pöntun bætt við
+
+/tools/memories.bml.title.keyword=Minnisverðar [[keyword]] færslur
+
+/tools/memories.bml.title.memorable=Minnisverðar færslur
+
+/tools/memories.bml.uncategorized=Óflokkað
+
+/update.bml.altpost=Dagbók til að skrá í:
+
+/update.bml.btn.update=Uppfæra dagbók
+
+/update.bml.currmood=<a href="/moodlist.bml">Skap</a>:
+
+/update.bml.currmusic=Er að hlusta á:
+
+/update.bml.date=Dagsetning:
+
+/update.bml.default=Það venjulega
+
+/update.bml.defaultjournal=([[user]]) -- þetta venjulega
+
+/update.bml.error.login=Villumelding við innskráningu:
+
+/update.bml.error.nopass=Sláðu inn lykilorð
+
+/update.bml.error.update=Villumelding átti sér stað við að uppfæra dagbók:
+
+/update.bml.event=Atburður:
+
+/update.bml.full=Upfærslusíða með aukavalmöguleikum
+
+/update.bml.localtime=Staðartími:
+
+/update.bml.loggedinas=Þú ert sem stendur skráð/ur inn sem <b>[[user]]</b>. <br /><a href="update.bml[[altget]]">Smelltu hér</a> til að uppfæra sem annar notandi.
+
+/update.bml.loggingin=Skrái inn á netþjón....
+
+/update.bml.noneother=Ekkert, eða eitthvað annað:
+
+/update.bml.note|staleness=1
+/update.bml.note=<b>ATH:</b> Tíminn að ofan er á tímabelti netþjónsins - breytið til ef þið eruð á öðru.
+
+/update.bml.opt.backdate=Gömul færsla:
+
+/update.bml.opt.backdate.about=Kemur ekki fram á vinasíðu
+
+/update.bml.opt.defpic=(
+
+/update.bml.opt.nocomments=Loka á svör:
+
+/update.bml.opt.noemail=Ekki senda mér svör eða athugasemdir:
+
+/update.bml.opt.noformat=Ekki sníða sjálfkrafa:
+
+/update.bml.opt.spellcheck=Fara yfir stafsetningarvillur áður en skráð er
+
+/update.bml.options=Aukastillingar
+
+/update.bml.other=Annað
+
+/update.bml.password=Lykilorð:
+
+/update.bml.picture=<a href="[[url]]">ynd</a> sem á að nota:
+
+/update.bml.security.custom=Sníða betur eftir vexti?
+
+/update.bml.security.friends=Vinir
+
+/update.bml.security.head=Öryggisstig:
+
+/update.bml.security.private=Einkaefni
+
+/update.bml.security.public=Opinbert
+
+/update.bml.servermsg=Heyrðu, netþjónnin þarf eitthvað að tjá sig:
+
+/update.bml.simple=Þú ert á einföldu síðunni - fleiri möguleikar eru <a href="[[url]]">hérna</a>.
+
+/update.bml.spellchecked=Eftir stafsetningarprófun:
+
+/update.bml.subject|staleness=1
+/update.bml.subject=<b>Titill:</b><i>(óþarfi, en nothæft við langar færslur)</i>
+
+/update.bml.timeformat=24 stunda sólarhringur
+
+/update.bml.title=Uppfærsla á dagbók
+
+/update.bml.title.readonly=Aðeins til lestrar
+
+/update.bml.update.head=Uppfæra dagbókina þína...
+
+/update.bml.update.success|staleness=1
+/update.bml.update.success=Uppfærsla tókst. Þú getur skoðað færsluna <a href="[[uri]]">hér</a>.
+
+/update.bml.updating=Uppfæri dagbók...
+
+/update.bml.username=Notandanafn:
+
+/userinfo.bml.about.comm|staleness=1
+/userinfo.bml.about.comm=Upplýsingar
+
+/userinfo.bml.about.user|staleness=1
+/userinfo.bml.about.user=Æviágrip
+
+/userinfo.bml.body.leave=Þú getur <a href="/community/leave.bml?comm=[[commname]]">sagt þig úr</a> samfélaginu hvenær sem er.
+
+/userinfo.bml.comminfo.body=Að neðan eru upplýsingar um LiveJournal samfélagið "[[commname]]".
+
+/userinfo.bml.comminfo.name=Upplýsingar um samfélag
+
+/userinfo.bml.date.never=<i>Aldrei</i>
+
+/userinfo.bml.error.malfname|staleness=1
+/userinfo.bml.error.malfname=Gallað notandanafn.
+
+/userinfo.bml.error.notloggedin=<a href='/login.bml?ret=1'>Skráðu þig inn</a>, ef þú vilt sjá þína eigin upplýsingasíðu. Þú getur líka farið á www.livejournal.com/~notandanafn_þitt/userinfo.
+
+/userinfo.bml.friendof.comm|staleness=2
+/userinfo.bml.friendof.comm=Skoðað af
+
+/userinfo.bml.friendof.hidden=(falið)
+
+/userinfo.bml.friendof.syndreadcount=Tala lesenda
+
+/userinfo.bml.friendof.user|staleness=2
+/userinfo.bml.friendof.user=Vinur
+
+/userinfo.bml.friends.comm=Meðlimir
+
+/userinfo.bml.friends.user|staleness=2
+/userinfo.bml.friends.user=Vinir
+
+/userinfo.bml.label.addbuddy=Bæta við Félaga
+
+/userinfo.bml.label.adduser=Bæta við notanda
+
+/userinfo.bml.label.birthdate=Fæðingardagur
+
+/userinfo.bml.label.clientsused=<a href="[[siteroot]]/download/">Forrit</a>notuð:
+
+/userinfo.bml.label.comments=Athugasemdir:
+
+/userinfo.bml.label.composted=<b>Skrifað:</b> [[num]] -
+
+/userinfo.bml.label.comreceived=<b>Fengið:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Skapað þann:
+
+/userinfo.bml.label.dateupdated=Síðast uppfært:
+
+/userinfo.bml.label.email|staleness=1
+/userinfo.bml.label.email=Netfang:
+
+/userinfo.bml.label.icquin=ICQ númer:
+
+/userinfo.bml.label.interests=Áhugamál
+
+/userinfo.bml.label.interests.modifyyours|staleness=1
+/userinfo.bml.label.interests.modifyyours=Breyta þínum áhugamálum
+
+/userinfo.bml.label.interests.removesome|staleness=1
+/userinfo.bml.label.interests.removesome=Fjarlægja nokkur áhugamál
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] áhugamál ekki birt</b>
+
+/userinfo.bml.label.journalentrs=Dagbókarfærslur:
+
+/userinfo.bml.label.location=Staður:
+
+/userinfo.bml.label.memberof=Meðlimur:
+
+/userinfo.bml.label.memories=Minningar:
+
+/userinfo.bml.label.moredetails=(frekari upplýsingar...)
+
+/userinfo.bml.label.msnusername=MSN notendanafn:
+
+/userinfo.bml.label.name=Nafn:
+
+/userinfo.bml.label.nofriends=<i>Ekki til í skrá.</i>
+
+/userinfo.bml.label.reqfinduser=Aðeins notendur með 'finduser' réttindi geta leitað að notendum eftir notendanafni.
+
+/userinfo.bml.label.sendmessage=Senda skilaboð
+
+/userinfo.bml.label.shared|staleness=2
+/userinfo.bml.label.shared=Deild dagbók:
+
+/userinfo.bml.label.supportpoints=Aðstoðarstig
+
+/userinfo.bml.label.syndicatedfrom=Sent frá:
+
+/userinfo.bml.label.syndicatedstatus=Staða samsteypunar:
+
+/userinfo.bml.label.textmessage=<nobr>Texti<br>Skilaboð</nobr>:
+
+/userinfo.bml.label.todo=Verkefnalisti
+
+/userinfo.bml.label.user=Notandi:
+
+/userinfo.bml.label.viewfriends=Skoða vini
+
+/userinfo.bml.label.viewmembers=Skoða meðlimi
+
+/userinfo.bml.label.website=Vefsíða:
+
+/userinfo.bml.label.yahooid=Yahoo! nafn:
+
+/userinfo.bml.memories.entries=[[count]] færslur
+
+/userinfo.bml.memories.entry=[[count]] færsla
+
+/userinfo.bml.monitor.comm=Umsjónarsamfélag
+
+/userinfo.bml.monitor.user=Bæta þessum notenda á vinalistann þinn
+
+/userinfo.bml.nonexist.body|staleness=1
+/userinfo.bml.nonexist.body=Það er ekki neinn notandi sem gengur undir nafninu <b>[[user]]</b>, því miður.
+
+/userinfo.bml.nonexist.name=Óþekktur notandi
+
+/userinfo.bml.sendmessage.body=<a href="[[link]]">Senda<b>[[user]]</b>textaboð</a><br />í farsíma/friðþjóf hans/hennar
+
+/userinfo.bml.syn.last.never=Aldrei
+
+/userinfo.bml.syn.lastcheck=Síðast gáð:
+
+/userinfo.bml.syn.nextcheck=Næst gáð:
+
+/userinfo.bml.syn.parseerror=Villumelding:
+
+/userinfo.bml.syndinfo.body=Ef þú vilt að greinar af þessari sameiginlegu skriftu að birtast á vinablaðsíðunni þinni getur þú <a href="[[addtofriends]]">bætt þessari dagbók á vinalistann</a>.
+
+/userinfo.bml.syndinfo.name=Sameiginleg dagbók
+
+/userinfo.bml.tellafriend=Segðu vini frá þessu!
+
+/userinfo.bml.timeupdate.dayago=Í gær
+
+/userinfo.bml.timeupdate.daysago=Fyrir [[num]] dögum
+
+/userinfo.bml.timeupdate.hourago=fyrir klukkutíma
+
+/userinfo.bml.timeupdate.hoursago=fyrir [[num]] klukkutímum
+
+/userinfo.bml.timeupdate.minuteago=fyrir mínútu
+
+/userinfo.bml.timeupdate.minutesago=fyrir [[num]] mínútum
+
+/userinfo.bml.timeupdate.secondago=fyrir einni sekúndu síðan!
+
+/userinfo.bml.timeupdate.secondsago=Fyrir [[num]] sekúndum
+
+/userinfo.bml.timeupdate.weekago=Fyrir einni viku
+
+/userinfo.bml.timeupdate.weeksago=Fyrir [[num]] vikum
+
+/userinfo.bml.title=Upplýsingar um notanda
+
+/userinfo.bml.title.communityinfo=Samfélagsupplýsingar
+
+/userinfo.bml.title.syndicated=Sameiginleg skrifta
+
+/userinfo.bml.userinfo.body=Hér fyrir neðan eru upplýsingarum [[username]]. Ef þú ert þessi notandi getur þú breytt upplýsingunum um þig (eða valið hvað á að vera opinbert) á <a href="[[siteroot]]/editinfo.bml">upplýsingastillingasíðunni</a>.
+
+/userinfo.bml.userinfo.name=Upplýsingar um notanda
+
+BML.parse_multipart.parse=Villa við að greina upphal.
+
+BML.parse_multipart.toolarge=Upphal of stórt
+
+BML.parse_multipart.unknowntype=Óþekkt tegund innihalds
+
+btn.search=Leita
+
+date.day.friday.long=föstudagur
+
+date.day.friday.short=fös
+
+date.day.monday.long=mánudagur
+
+date.day.monday.short=mán
+
+date.day.saturday.long=laugardagur
+
+date.day.saturday.short=lau
+
+date.day.sunday.long=sunnudagur
+
+date.day.thursday.long=Fimmtudagur
+
+date.day.thursday.short=Fim
+
+date.day.tuesday.long=Þriðjudagur
+
+date.day.tuesday.short=Þri
+
+date.day.wednesday.long=Miðvikudagur
+
+date.day.wednesday.short=Mið
+
+date.month.april.long=Apríl
+
+date.month.august.long=Ágúst
+
+date.month.august.short=Ágú
+
+date.month.december.long=Desember
+
+date.month.december.short=Des
+
+date.month.february.long=Febrúar
+
+date.month.january.long=Janúar
+
+date.month.july.long=Júlí
+
+date.month.july.short=Júl
+
+date.month.june.long=Júní
+
+date.month.june.short=Jún
+
+date.month.march.long=Mars
+
+date.month.may.long=Maí
+
+date.month.may.short=Maí
+
+date.month.november.long=Nóvember
+
+date.month.november.short=Nóv
+
+date.month.october.long=Október
+
+date.month.october.short=Okt
+
+dystopia.btn.login=INNSKRÁ
+
+dystopia.hello_anonymous=Velkominn í LiveJournal!
+
+dystopia.hello_loggedin=Góðan daginn, [[username]]!
+
+dystopia.nav.createjournal=Búa til dagbók
+
+dystopia.nav.developer=Hönnuðasvæðið
+
+dystopia.nav.download=Niðurhlaða
+
+dystopia.nav.editentries=Laga færslur
+
+dystopia.nav.editfriends=Vinahagur
+
+dystopia.nav.editpassword=Lykilorðið þitt
+
+dystopia.nav.editpics=Myndirnar þínar
+
+dystopia.nav.editstyle=Breyta stíl
+
+dystopia.nav.faq=Spurt og svarað
+
+dystopia.nav.findcomm=Eftir samfélögum
+
+dystopia.nav.finddir=Skráarleit
+
+dystopia.nav.findint=Eftir áhugamáli
+
+dystopia.nav.findrandom=Handahófskennt
+
+dystopia.nav.findregion=Eftir svæði
+
+dystopia.nav.home=Heim
+
+dystopia.nav.journalcalendar=Dagatal
+
+dystopia.nav.journalfriends=Vinir
+
+dystopia.nav.journalinfo=Um notanda
+
+dystopia.nav.journalrecent=Nýjustu færslur
+
+dystopia.nav.legalprivacy=Trúnaður
+
+dystopia.nav.legaltos=Reglur um notkun
+
+dystopia.nav.login=Innskrá
+
+dystopia.nav.logout=Útskrá
+
+dystopia.nav.lostinfo=Týndi lykilorði...
+
+dystopia.nav.memories=Minnisvert
+
+dystopia.nav.modifyjournal=Breyta dagbók
+
+dystopia.nav.news=Fréttir
+
+dystopia.nav.paidaccts=Á-skriftur
+
+dystopia.nav.paymentarea=Borgunarsvæði
+
+dystopia.nav.personalinfo=Persónuupplýsingar
+
+dystopia.nav.sitemap=Kort af vefsíðu
+
+dystopia.nav.siteopts=Skoða val
+
+dystopia.nav.support=Liggur þér eitthvað á hjarta?
+
+dystopia.nav.updatejournal=Uppfæra dagbók
+
+dystopia.nav.width|notes=Some languages require the bar on the left to be wider.  Feel free to keep the default value.
+dystopia.nav.width=122
+
+dystopia.navhead.findusers=Finna notendur
+
+dystopia.navhead.help=Hjálp & aðstoð
+
+dystopia.navhead.journal=Dagbókin þín
+
+dystopia.navhead.legal=Löglegt
+
+dystopia.navhead.settings=Stillingarnar þínar
+
+dystopia.navhead.welcome=Velkominn!
+
+dystopia.search.aolim=AIM nafn
+
+dystopia.search.icq=ICQ númer
+
+dystopia.search.int=Áhugamál
+
+dystopia.search.msn=MSN notendanafn
+
+dystopia.search.region=Svæði
+
+dystopia.search.yahoo=Yahoo! kenninafn
+
+dystopia.searchlj=Leita í LiveJournal:
+
+Email=Netfang
+
+email.newacct.subject=Velkomin/n í LiveJournal
+
+Error|notes=typically used inside an H1 tag to announce an error.
+Error=Villumelding
+
+error.badpassword=Rangt lykilorð.
+
+error.dberror=Villa í gagnagrunni:
+
+error.deleted.name=Hefur verið eytt
+
+error.deleted.text=Þessari dagbók hefur verið eytt. Ef þú ert [[user]] hefur þú einn mánuð til að endurheimta dagbókina. Eftir mánuð verður öllu efni eytt fyrir fullt og allt af netþjónum okkar.
+
+error.deleted.title=Eydd skrifta
+
+error.invalidauth=Ekki var hægt að staðfesta að þú værir þessi notandi.
+
+error.ipbanned=Þessi IP tala hefur verið bönnuð þar sem of oft misheppnaðist að skrá inn úr henni.
+
+error.malformeduser=Misheppnað notendanafn.
+
+error.nobutton=Var ekki þrýst á neinn hnapp?
+
+error.nodb=Gagnagrunnur tímabundið ekki til staðar.
+
+error.nodbmaintenance=Þessi hluti gagnasafnsins er niðri eins og er vegna bilunar. Reyndu aftur eftir nokkrar mínútur.
+
+error.noentry=Engin slík færsla til.
+
+error.nojournal=Óþekkt dagbók
+
+error.noremote=Þú verður að vera <a href="/login.bml?ret=1">skráð/ur inn</a> til að nota þessa síðu.
+
+error.procrequest=Villumelding átti sér stað við úrvinnslu beiðni þinnar:
+
+error.purged.name=Hefur verið eytt
+
+error.purged.text=Þessari dagbók hefur verið eytt.
+
+error.purged.title=Tæmd skrifta
+
+error.suspended.name=Rekinn
+
+error.suspended.text=Þessi skrifta hefur annaðhvort verið tímabundið eða endanlega eytt. Ef þú ert [[user]], kíktu þá í <cite><a href="http://www.livejournal.com/ support/faqbrowse.bml?faqid=106">Skriftunni minni hefur verið eytt! Hvernig fæ ég hana til baka?</a></cite> hlutann af hjálparbókinni til að fá frekari upplýsingar.Athugaður að til að halda trúnaðarleynd getur [[sitename]] ekki rætt ástæður eyðingarinnar við neinn nema eiganda skriftunnar sem eytt var.
+
+error.suspended.title=Eydd skrifta
+
+error.tempdisabled=Þetta hefur verið aftengt tímabundið.
+
+error.unknownmode=Óþekktur hamur.
+
+error.usernameinvalid=Óleyfilegir stafir eru í notandanafni.
+
+error.usernamelong=Notandanafn er of langt - hámarkið er 15 stafir.
+
+error.username_notfound=Notandanafn fannst ekki.
+
+Help=Hjálp
+
+label.security.custom=Sjálfsníða...
+
+label.security.friends=Vinir
+
+label.security.head=Öryggisstig:
+
+label.security.private=Trúnó
+
+label.security.public=Opinbert
+
+label.switch.button=Skipta
+
+label.switch.header=Skipta um dagbók
+
+label.switch.workwith=Vinna í dagbók:
+
+langname.be=Belrúsíska
+
+langname.da=Danska
+
+langname.de=Þýska
+
+langname.en=Enska
+
+langname.en_GB=Breska
+
+langname.en_LJ=Enska
+
+langname.es=Spænska
+
+langname.et=Eistneska
+
+langname.fi=Finnska
+
+langname.fr=Franska
+
+langname.ga=Írska
+
+langname.gd=Gelíska
+
+langname.he=Hebreska
+
+langname.hu=Ungverska
+
+langname.is=Íslenska
+
+langname.it=Ítalska
+
+langname.ja=Japanska
+
+langname.la=Latína
+
+langname.lv=Latverska
+
+langname.ms=Malaíska
+
+langname.nb=Norskt bókmál
+
+langname.nl=Hollenska
+
+langname.nn=Nýnorska
+
+langname.pl=Pólska
+
+langname.pt=Portúgalska
+
+langname.ru=Rússneska
+
+langname.sv=Sænska
+
+langname.tr=Tyrkneska
+
+langname.uk=Úkraíska
+
+langname.zh=Einfölduð kínverska
+
+ljcom.account.feature.email=LiveJournal netfang
+
+ljcom.account.feature.full2=Sjá alla <a [[aopts]]>samanburðartöfluna</a>.
+
+ljlib.pageofpages=Síða [[page]] af [[total]]
+
+lostinfo.head=Gleymdirðu einhverju?
+
+lostinfo.text=Ef þú gleymdir notandanafninu eða lykilorðinu þínu <a href="lostinfo.bml">geturðu fengið það hér</a>.
+
+lynx.nav.friends=Vinir
+
+lynx.nav.help=Tæknileg hjálp
+
+lynx.nav.home=Heim
+
+lynx.nav.login=Innskráning
+
+lynx.nav.logout=Útskrá
+
+lynx.nav.recent=Nýlegar færslur
+
+lynx.nav.sitemap=Vefsíðukort
+
+lynx.nav.siteopts=Vöfrunarstillingar
+
+lynx.nav.update=Uppfæra dagbók
+
+Password=Lykilorð
+
+password.max30=Lykilorð mega ekki vera lengri en 30 stafir.
+
+portal.bdays.count.des=Venjulega eru 5 nærstu afmælisdagar vina birtir.
+
+portal.bdays.count.name=Hve marga afmælisdaga á að sýna
+
+portal.bdays.portalname=Afmælisdagar
+
+portal.bdays.portaltitle=Afmælisdagar
+
+portal.goat.name=Geitin attarna
+
+portal.goattext.des=Hvað viltu að geitin þín segi? Það eina sem geitur geta í raun sagt er &#8222;ble-e-e-e-a&#8220;, en þar sem það er frekar einhæft og leiðinlegt getur þú látið sem þín sé í raun að segja eitthvað annað.
+
+portal.goattext.name=Línur geitarinnar
+
+portal.login.portalname=Innskráningarkassi
+
+portal.memories.entriesnoun=færstlur
+
+portal.popfaq.portalname=10 mest lesnu &#8222;Spurt og svarað&#8220; færslur
+
+portal.popfaq.portaltitle=10 mest lesnu &#8222;Spurt og svarað&#8220; færslur
+
+portal.randuser.count.des=Venjulega er aðeins einn notandi valinn af handahófi, en þú getur haft allt að 10 lóðrétt í mjóum dálki eða 5 lárétt í breiðum dálki.
+
+portal.randuser.count.name=Fjöldi handahófsvaldra notenda til að sýna
+
+portal.randuser.error.tableempty=Það eru engir handahófsvaldir notendur. Hafðu samband við kerfisstjóra.
+
+portal.randuser.hidename.des=Venjulega sýnir viðmótið nafn handahófsvalda notandans - hakaðu hér til að sýna það ekki.
+
+portal.randuser.hidename.name=Fela nafn
+
+portal.randuser.hidepic.des=Venjulega er mynd handahófsvalda notandans sýnd, ef hún er til staðar. Hakaðu hér til að sýna hana ekki.
+
+portal.randuser.hidepic.name=Fela mynd notanda
+
+portal.randuser.portalname=Handahófsvalinn notandi
+
+portal.randuser.portaltitle=Handahófsvalinn notandi
+
+portal.randuser.portaltitleplural=Handahófsvaldir notendur
+
+portal.recent.error.noentries=Því miður, engar færslur.
+
+portal.recent.error.notsetup=Þú verður að stilla þennan kassa. Smelltu á plús merkið til að velja hvaða dagbókum þú vilt fylgjast með héðan.
+
+portal.recent.error.userstatus=Þessi notandi hefur annaðhvort eytt eða tekið skriftu sína úr notkun.
+
+portal.recent.items.description=Venjulega er aðeins nýjasta færslan sýnd.
+
+portal.recent.items.name=Hlutir sem á að sýna
+
+portal.recent.journal.description=Hvaða dagbók viltu fylgjast með?
+
+portal.recent.journal.name=Dagbók
+
+portal.recent.nosubject=(Ekkert viðfangsefni)
+
+portal.recent.permlink=Tengill
+
+portal.recent.portalname=Nýjustu færslur
+
+portal.recent.portaltitle=Kassi nýjustu færslna
+
+portal.recent.showtext.description=Venjulega er aðeins viðfangsefni færslna sýnd.
+
+portal.recent.showtext.name=Sýna færsluna sjálfa líka
+
+portal.stats.journalentyest=Færslur dagsins í gær
+
+portal.stats.portaltitle=Tölfræði
+
+portal.stats.totalusers=Heildarnotendur
+
+portal.update.mode.full=Fullnýtt
+
+portal.update.mode.name=viðmót
+
+portal.update.mode.simple=Einfalt
+
+portal.update.portalname=Dagbókaruppfærsla
+
+portal.update.portaltitle=Uppfæra dagbók
+
+protocol.bad_password=Lykilorðið þitt er svo einfalt að auðvelt yrði að geta upp á því. Ég mæli með því að þú breytir því, því annars hefurðu á hættu að dagbókinni þinni verði rænt. Farðu á [[siteroot]]/changepassword.bml til að breyta lykilorðinu.
+
+protocol.hello_test=Halló fröken prufuskrifta!
+
+protocol.mail_bouncing=Þú notar lélegt eða óvirkt netfang. Allur póstur sem við sendum þér endursendist til bara. [[sitename]] krefst netfangs sem virkar ef á að nota það meira. Farðu á  [[siteroot]]/ support/faqbrowse.bml?faqid=19 til að fá upplýsingar um hvernig á að breyta netfangi þínu.
+
+protocol.modpost=Færslan þín hefur verið send til stjórnanda/enda. Þær eru skoðaðar í röðinni sem þær berast, og stjórnandinn sem fer yfir hana ákveður hvort hún verður sett upp eður ei.
+
+protocol.must_revalidate=Þú þarft að staðfesta netfangið þitt þar sem þú hefur skipt um það. Ef þú staðfestir það ekki geturðu ekki notað alla möguleika [[sitename]]. Frekari upplýsingar er að finna á [[siteroot]]/support/faqbrowse.bml?faqid=11.
+
+protocol.not_validated=Netfangið þitt hefur ekki verið staðfest. Þú getur þó notað [[sitename]], en hefur ekki aðgang að öllum möguleikum síðunnar þar til þú staðfestir netfangið. Líttu á leiðbeiningarnar sem þú fékkst í pósti þegar þú skapaðir dagbókina þína eða farðu á [[siteroot]]/support/faqbrowse.bml?faqid=11 til að fá frekari upplýsingar.
+
+protocol.old_win32_client=Það eru komnir nokkuð mikið nýrri Windows LiveJournal færsluvélar og því mælum við með því að þú uppfærir þína. Farðu á [[siteroot]/download/ til að ná í nýja vél.
+
+protocol.readonly=Skriftuna þína er tímabundið aðeins hægt að lesa. Sumar aðgerðir munu ekki virka í nokkrar mínútur
+
+Sorry|notes=typically used to announce that the requested action can't be done.
+Sorry=Aðgerð mistókst
+
+talk.anonwrote=Einhver út í bæ skrifaði:
+
+talk.anonwrote_comm=Einhver ritaði í [[commlink]]:
+
+talk.btn.preview=Prufuskoða
+
+talk.commentpermlink=staður í gagnasafni
+
+talk.commentpost=Skrifa athugasemd
+
+talk.commentsread=Skoða athugasemdir
+
+talk.curname_Mood=<b>skap:</b>
+
+talk.curname_Music=<b>Er að hlusta á:</b>
+
+talk.error.bogusargs=Einhver galli
+
+talk.error.comm_deleted=Þessari færslu hefur nú verið eytt.
+
+talk.error.deleted=Þessari dagbók hefur verið hent.
+
+talk.error.deleted.title=Eytt
+
+talk.error.mustlogin=Þú verður að vera skráður inn til að lesa þessa læstu færslu.
+
+talk.error.nocomment=Þetta svar er ekki til.
+
+talk.error.noentry=Engin slík færsla.
+
+talk.error.nojournal=Bilun átti sér stað: tókst ekki að tilgreina dagbók.
+
+talk.error.nosuchjournal=Engin slík dagbók til
+
+talk.error.notauthorised=Þú ert ekki með leyfi til að skoða þessa læstu færslu.
+
+talk.error.suspended=Þessi dagbók/notande hefur verið rekinn. Nei, hann er ekki drekinn, hann var REKINN!
+
+talk.error.suspended.title=(D)Rekinn.
+
+talk.parentlink=Skoða yfirfærslu
+
+talk.readsimilar=Lesa svipaðar færslur:
+
+talk.replytothis=Svara þessu
+
+talk.somebodywrote=[[realname]] ([[userlink]]) ritaði eftirfarandi,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) ritaði eftirfarandi í [[commlink]],
+
+talk.spellcheck=Gá að enskum stafsetningarvillum í prufuskoðun
+
+talk.threadlink=Skoða þráð
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_islensku
+
+Username=Notandanafn
+
+userpic.inactive=Óvirkt
+
+xcolibur.greeting.anon=Velkomin í LiveJournal!
+
+xcolibur.greeting.logged_in=Heill þér, [[name]]! [[logout]]
+
+xcolibur.login=Innskrá?
+
+xcolibur.logout=Útskrá?
+
+xcolibur.nav.about=Um
+
+xcolibur.nav.about.download=Niðurhala
+
+xcolibur.nav.about.general=Almennar upplýsingar
+
+xcolibur.nav.about.paidaccounts=Á-skriftur
+
+xcolibur.nav.about.press=Fréttasíða
+
+xcolibur.nav.about.sitenews=Fréttir á síðunni
+
+xcolibur.nav.about.stats=Ýmis hlutföll
+
+xcolibur.nav.footer.sitemap=Kort af síðu
+
+xcolibur.nav.help=Hjálp
+
+xcolibur.nav.help.ask=Spurðu spurningar
+
+xcolibur.nav.help.faq=<abbr title="Spurt og svarað">SOS</abbr>
+
+xcolibur.nav.help.lostpassword=Glatað lykilorð
+
+xcolibur.nav.home=Heim
+
+xcolibur.nav.journal=Dagbók
+
+xcolibur.nav.journal.archive=Safn
+
+xcolibur.nav.journal.edit.entries=Breyta færslum
+
+xcolibur.nav.journal.friends=Vinir
+
+xcolibur.nav.journal.info=Upplýsingar
+
+xcolibur.nav.journal.memories=Minnisvert
+
+xcolibur.nav.journal.recent=Síðustu færslur þinar
+
+xcolibur.nav.journal.update=Uppfæra
+
+xcolibur.nav.manage=Breyta
+
+xcolibur.nav.manage.community=Samfélög
+
+xcolibur.nav.manage.customize=Sérsníða dabók
+
+xcolibur.nav.manage.entries=Færslur
+
+xcolibur.nav.manage.friends=Vinir
+
+xcolibur.nav.manage.info=Upplýsingar
+
+xcolibur.nav.manage.password=Lykilorð
+
+xcolibur.nav.manage.pics=Notandamyndir
+
+xcolibur.nav.manage.styles=Hönnun
+
+xcolibur.nav.search=Leit
+
+xcolibur.nav.search.directory=Svæði
+
+xcolibur.nav.search.directory.search=Nákvæmari leit
+
+xcolibur.nav.search.interests=Áhugamál
+
+xcolibur.nav.search.random=Slembileit
+
+xcolibur.nav.siteopts=Vafrunarval
+
+xcolibur.nav.title=Hvert viltu fara?
+
+xcolibur.nav.welcome=Velkomin/n
+
+xcolibur.nav.welcome.create=Skapa skriftu
+
+xcolibur.nav.welcome.login=Innskrá
+
+xcolibur.nav.welcome.update=Uppfærsla dagbókina þína
+
+xcolibur.search=Leita
+
+xcolibur.search.aolim=AOL notandanafn
+
+xcolibur.search.category=Flokkur:
+
+xcolibur.search.icq=ICQ númer
+
+xcolibur.search.int=Áhugamál
+
+xcolibur.search.msn=MSN netfang
+
+xcolibur.search.region=Svæði
+
+xcolibur.search.yahoo=Yahoo! kenni
+
+xcolibur.upgrade=Uppfæra skriftu
+

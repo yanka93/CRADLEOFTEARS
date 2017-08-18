@@ -1,0 +1,209 @@
+<?_code
+
+ my $remote = LJ::get_remote();
+ my $user = $FORM{'user'};
+ my $u = LJ::load_user($user);
+ my $userid = $u->{userid};
+ $body = "";
+
+ LJ::set_active_crumb('addfriends');
+
+ unless ($remote) 
+ {
+     $title = $ML{'.error1.title'};
+     $body = "<?h1 $ML{'.error1.header'} h1?><?p $ML{'.error1.text'} p?>";
+     return;
+ }
+
+ unless ($user && $userid) 
+ {
+     $title = $ML{'Error'};
+     $body = $ML{'.error2.text'};
+     return;
+ }
+ 
+ if ($FORM{'mode'} eq "add") 
+ {
+     unless (LJ::did_post()) { 
+         $title = $ML{'Error'};
+         $body = "<?h1 $ML{'Error'} h1?><?p <?requirepost?> p?>";
+         return;
+     }
+
+     unless ($remote->{'userid'} == $FORM{'remid'}) {
+         $title = $ML{'Error'};
+         $body = "<?h1 $ML{'Error'} h1?><?p Session info changed.  Try again. p?>";
+         return;
+     }
+
+     my $gmask = 1;
+     foreach my $bit (1..30) {
+         next unless $FORM{"bit_$bit"};
+         $gmask |= (1 << $bit);
+     }
+
+     my $req = {
+         "user" => $remote->{'user'},
+         "mode" => "editfriends",
+         "ver"  => $LJ::PROTOCOL_VER,
+     };
+
+
+     if ($FORM{'action:delete'}) {
+         $req->{"editfriend_delete_$user"} = 1;
+     } else {
+         $req->{"editfriend_add_1_user"} = $user;
+         $req->{"editfriend_add_1_fg"} = $FORM{'editfriend_add_1_fg'};
+         $req->{"editfriend_add_1_bg"} = $FORM{'editfriend_add_1_bg'};
+         $req->{"editfriend_add_1_groupmask"} = $gmask;
+     }
+     
+     my %res = ();
+     LJ::do_request($req, \%res, 
+                    { "noauth" => 1, "userid" => $remote->{'userid'} } );
+     
+     if ($res{'success'} eq "OK") 
+     {
+         if ($FORM{'action:delete'}) {
+             $title = $ML{'.remove.title'};
+             $body = "<?h1 $ML{'.remove.header'} h1?><?p " .
+                     BML::ml('.remove.text', {'user'=>$user,
+                                              'ljuser' => LJ::ljuser($u),
+                                              'url'=>"$LJ::SITEROOT/users/$remote->{'user'}/friends"}) .
+                     " p?>";
+         } else {
+             $title = $ML{'.add.title'};
+             $body = "<?h1 $ML{'.add.header'} h1?><?p " .
+                     BML::ml('.add.text', { 'user' => $user,
+                                            'ljuser' => LJ::ljuser($u),
+                                            'url' => "$LJ::SITEROOT/users/$remote->{'user'}/friends", }) .
+                     " p?>";
+         }
+     } else {
+         $title = $ML{'Error'};
+         $body = "<?h1 $ML{'Error'} h1?><?p $res{'errmsg'} p?>";
+     }
+     return;
+ }
+
+ # check to see if user is already a friend.
+ # TAG:fr:bml_friends_add:check_is_friend
+ my $dbr = LJ::get_db_reader();
+ $sth = $dbr->prepare("SELECT * FROM friends WHERE userid=$remote->{'userid'} AND friendid=$userid");
+ $sth->execute;
+ my $fr = $sth->fetchrow_hashref;
+ 
+ if ($fr) {
+     $title .= $ML{'.error3.title'};
+     $body .= "<?h1 $ML{'.error3.title'} h1?><?p " .
+              BML::ml('.error3.text', {'user'=>$user}) . " p?>";
+ } else {
+     # was this a syndicated add?
+     if ($u->{journaltype} eq 'Y') {
+         $title = $ML{'.confirm.syn.title'};
+         $body .= "<?h1 " . BML::ml('.confirm.syn.header', { user => $user }) . " h1?>";
+     } else {
+         $title .= $ML{'.confirm.title'};
+         $body .= "<?h1 " . BML::ml(".confirm.header", { 'user' => $user }) . " h1?>";
+     }
+     $body .= "<?p " . BML::ml(".confirm.text", { 'user' => $user }) . " p?>";
+ }
+
+ $body .= "<form method='post' action='add.bml'>";
+ $body .= LJ::html_hidden(mode => 'add',
+                          user => $user,
+                          remid => $remote->{userid});
+
+ if ($fr) {
+     $body .= "<center><input type='submit' value=\"$ML{'.btn.modify'}\">";
+     $body .= " - <input type='submit' name='action:delete' value=\"$ML{'.btn.remove'}\"></center>";
+ } else {
+     $body .= "<center><input type='submit' value=\"" .
+              BML::ml('.btn.add', {'user'=>$user}) . "\"></center>";
+ }
+
+ ## let them pick friend groups
+ $body .= "<?h1 $ML{'.groups.header'} h1?><?p $ML{'.groups.text'} p?><blockquote>";
+ my $err;
+ my $greq = LJ::Protocol::do_request("getfriendgroups", {
+     'username' => $remote->{'user'},
+     'ver'      => $LJ::PROTOCOL_VER,
+ }, \$err, { 'noauth' => 1 });
+
+ if (@{$greq->{'friendgroups'}}) {
+     foreach my $g (@{$greq->{'friendgroups'}}) {
+         my $ck = ($fr && ($fr->{'groupmask'} & (1 << $g->{'id'}))) ?
+             "checked='1'" : "";
+
+         # by default, newly added friends are in default view unless unchecked
+         $ck = "checked='1'" if (! $fr && $g->{'name'} eq "Default View");
+
+         $body .= "<input type='checkbox' value='1' name='bit_$g->{'id'}' $ck> ";
+         $body .= LJ::ehtml($g->{'name'}) . "<br />\n";
+     }
+ } else {
+     $body .= "<i>$ML{'.groups.nogroup'}</i>";
+ }
+ $body .= "</blockquote>";
+
+ ## let them pick the colors
+ $body .= "<?h1 $ML{'.colors.header'} h1?><?p " .
+          BML::ml('.colors.text', {'user'=>$user}) . " p?>";
+
+ $ret = "";
+ $ret .= "<P><CENTER><TABLE CELLPADDING=4><TR><TD><B>$ML{'.colors.fg'}</B></TD><TD><B>$ML{'.colors.bg'}</B></TD></TR>\n";
+
+ my @color = ();
+ LJ::load_codes({ "color" => \@color });
+
+ my $sel = $fr || { 'fgcolor' => hex '000000',
+                    'bgcolor' => hex 'FFFFFF', };
+
+ $ret .= "<TR>";
+ $ret .= "<TD><SELECT NAME=\"editfriend_add_1_fg\">";
+ foreach (@color) {
+     my $color_int = hex (substr($_->{'code'},1));
+     my $selected = $color_int eq $sel->{'fgcolor'} ? " SELECTED" : "";
+     $ret .= "<OPTION VALUE=\"$_->{'code'}\"$selected>$_->{'item'}\n";
+ }
+ $ret .= "</SELECT></TD>\n";
+ $ret .= "<TD><SELECT NAME=\"editfriend_add_1_bg\">";
+ foreach (@color) {
+     my $color_int = hex (substr($_->{'code'},1));
+     my $selected = $color_int eq $sel->{'bgcolor'} ? " SELECTED" : "";
+     $ret .= "<OPTION VALUE=\"$_->{'code'}\"$selected>$_->{'item'}\n";
+ }
+ $ret .= "</SELECT></TD>\n";
+ $ret .= "</TR>\n";
+ $ret .= "</TABLE>\n";
+ 
+ ### color swatch
+ my $col = 0;
+ $ret .= "<P><TABLE border=0 cellspacing=0 cellpadding=0>";
+ foreach (@color) {
+     if ($col==0) { $ret .= "<TR>\n"; }
+     $col++;
+     my $ecolor = LJ::ehtml($_->{'item'});
+     $ret .= "<TD bgcolor=$_->{'code'}><IMG SRC=\"/img/dot.gif\" WIDTH=14 HEIGHT=14 TITLE=\"$ecolor\" ALT=\"$ecolor\"></TD>\n";
+     if ($col==23) { $ret .= "</TR>\n"; $col==0; }
+ }
+ if ($col) { $ret .= "</TR>\n"; $col==0; }
+ $ret .= "</TABLE>\n";
+ $ret .= "<FONT SIZE=-2 FACE=\"Arial,Helvetica\">$ML{'.colors.hover'}</FONT>";
+
+ $ret .= "</CENTER>\n";
+ $body .= $ret;
+
+ $body .= "</form>";
+
+ return;
+     
+_code?>
+<?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c <LJDEP>
+link: htdocs/login.bml, htdocs/create.bml, htdocs/friends/edit.bml, htdocs/users
+img: htdocs/img/dot.gif
+post: htdocs/friends/add.bml
+</LJDEP> _c?>

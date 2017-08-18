@@ -1,0 +1,39 @@
+<?_code
+{
+    use strict;
+
+    BML::set_content_type("text/xml");
+    BML::noparse();
+
+    my $ret = "<?xml version='1.0'?>\n";
+    $ret .= <<"EOT";
+<!--You can poll this feed as often as you like, but please don't spider the links.
+See $LJ::SITEROOT/bots/ for more information.
+Mail dev\@livejournal.com if you have any questions/interesting research ideas.-->
+EOT
+
+$ret .= "<livejournal>\n";
+
+    my $rimg = LJ::MemCache::get("blob:ljcom_latestimg");
+unless (ref $rimg eq "ARRAY" && @$rimg) {
+ $ret .= "<!-- no images found -->\n";
+ $ret .= "</livejournal>\n";
+ return $ret;
+}
+
+$ret .= "<recent-images>\n";
+
+foreach my $ri (reverse @$rimg) {
+  my ($img, $ju, $jitemid, $anum) = @$ri;
+  $img = LJ::exml($img);
+  my $url = LJ::item_link($ju, $jitemid, $anum);
+  $ret .= "<recent-image img='$img' url='$url' />\n";
+}
+
+
+$ret .= "</recent-images>\n";
+$ret .= "</livejournal>\n";
+
+    return $ret;
+}
+_code?>

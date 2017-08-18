@@ -1,0 +1,287 @@
+#!/usr/bin/perl
+# -*-perl-*-
+#
+# LiveJournal Sync Client
+# (see http://www.livejournal.com/)
+# (protocol information at http://www.livejournal.com/developer/)
+#
+# Brad Fitzpatrick
+# bradfitz@bradfitz.com
+#
+# For this to work, make a ~/.livejournal.rc file like:
+#
+#      user: username
+#      password: password
+#      syncdir: /path/to/syncdir/
+#
+#      use_proxy: 1                    (optional)
+#      proxy_host: my.proxy.com        (optional)
+#      proxy_port: 81                  (optional)
+#
+# And, if not using livejournal.com's servers:
+#
+#      server_host: ... 
+#      server_port: ...
+#      server_uri: ...
+
+use strict;
+
+my $VERSION = "0.1";
+my $SERVER_HOST = "www.livejournal.com";
+my $SERVER_PORT = 80;
+my $SERVER_URI = "/cgi-bin/log.cgi";
+
+##########################################################
+
+use URI::Escape;
+use LWP::UserAgent;
+
+# load the ~/.livejournal.rc file
+my %rc = ();
+load_rc_file(\%rc);
+$rc{'server_host'} ||= $SERVER_HOST;
+$rc{'server_port'} ||= $SERVER_PORT;
+$rc{'server_uri'} ||= $SERVER_URI;
+
+unless ($rc{'user'}) {
+    die "Error: No username (user) specified in ~/.livejournal.rc\n";
+}
+unless ($rc{'password'}) {
+    die "Error: No password specified in ~/.livejournal.rc\n";
+}
+unless ($rc{'syncdir'}) {
+    die "Error: No sync directory specified in ~/.livejournal.rc\n";
+}
+
+unless (-d $rc{'syncdir'}) {
+    die "Sync dir does not exist ($rc{'syncdir'})\n";
+}
+unless (-w $rc{'syncdir'}) {
+    die "Sync dir is not writable ($rc{'syncdir'})\n";
+}
+
+print "Starting sync.\n";
+my %last;
+if (open (LAST, "$rc{'syncdir'}/lastsyncs.dat")) {
+    print "lastsync file opened.\n";
+    while (<LAST>) {
+	chomp;
+	if (/^(\w+):\s*(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)/) {
+	    $last{$1} = $2;
+	}
+    }
+    close LAST;
+} else {
+    print "no lastsync file found (first use?)\n";
+}
+
+my $ua = make_lj_agent();
+
+my $get_sync_items = 1;
+
+while ($get_sync_items)
+{
+    print "Getting some sync items...\n";
+    print "  last{L} = $last{'L'}\n";
+    my %ljres = lj_request($ua, {
+	"mode" => "syncitems",
+	"user" => $rc{'user'},
+	"password" => $rc{'password'},
+	"lastsync" => $last{'L'},
+    });
+    
+    if ($ljres{'success'} eq "OK")
+    {
+	print "Got $ljres{'sync_count'} sync items of $ljres{'sync_total'} total.\n";
+	if ($ljres{'sync_count'} == $ljres{'sync_total'}) {
+	    print "Done getting sync items!\n";
+	    $get_sync_items = 0;
+	}
+
+	my %syncitem;
+
+	for (my $i=1; $i<=$ljres{'sync_count'}; $i++) {
+	    next unless ($ljres{"sync_${i}_item"} =~ /^(.+?)-(\d+)/);
+	    my $type = $1;
+	    my $id = $2;
+	    my $time = $ljres{"sync_${i}_time"};
+	    $syncitem{$type}->{$id} = $time;
+	}
+
+	# currently there's only type "L" (journal entries), but
+	# this later could be "C"omment or "T"odo, etc..
+	foreach my $type (keys %syncitem) 
+	{
+	    print "Syncing type: $type\n";
+
+            # journal entries
+	    if ($type eq "L") {  
+
+		# rebuild journal entry here ($entry{$itemid}->{$key} = $val)
+		# before writing it to disk.
+		my %entry;
+
+		# keep track of the most recent journal entry saved,
+		# but only use in the case when there are no left to
+		# find the minimum from. (for sending "lastsync")
+		my $maxtime = "0000-00-00 00:00:00";
+
+		# we want to keep fetching more items until no more of
+		# this type exist (we'll delete the key after we write
+		# it to disk)
+		while (keys %{$syncitem{$type}}) 
+		{
+		    print "Getting a batch of log entries...\n";
+		    print " keys = ", scalar(keys %{$syncitem{$type}}), "\n";
+		    print " lastsync = $last{'L'}\n";
+		    
+		    my %sres = lj_request($ua, {
+			"mode" => "getevents",
+			"selecttype" => "syncitems",
+			"user" => $rc{'user'},
+			"password" => $rc{'password'},
+			"lastsync" => $last{'L'},
+		    });
+
+		    if ($sres{"success"} ne "OK") {
+			die "getevents failed: $sres{'errmsg'}\n";
+		    }
+		    
+		    # these next two loops reconstruct the journal entry
+		    # from the response
+		    for (my $i=1; $i<=$sres{'events_count'}; $i++) {
+			my $itemid = $sres{"events_${i}_itemid"};
+			$entry{$itemid} = {
+			    'itemid' => $itemid,
+			    'eventtime' => $sres{"events_${i}_eventtime"},
+			    'event' => $sres{"events_${i}_event"},
+			    'security' => $sres{"events_${i}_security"},
+			    'allowmask' => $sres{"events_${i}_allowmask"},
+			};
+		    }
+		    for (my $i=1; $i<=$sres{'prop_count'}; $i++) {
+			my $itemid = $sres{"prop_${i}_itemid"};
+			my $prop = $sres{"prop_${i}_name"};
+			my $value = $sres{"prop_${i}_value"};
+			$entry{$itemid}->{"prop_$prop"} = $value;
+		    }
+
+		    # now, write each journal entry to disk, then erase
+		    # its from the $syncitem{'L'} hash
+		    print "Writing journal entries to disk...\n";
+		    print "Wrote: ";
+		    foreach my $itemid (sort { $a <=> $b } keys %entry)
+		    {
+			if (open(E, ">$rc{'syncdir'}/$itemid.entry")) {
+			    foreach (sort keys %{$entry{$itemid}}) {
+				print E "$_: $entry{$itemid}->{$_}\n";
+			    }
+			    close E;
+			    print "$itemid, ";
+			    
+			    # increment maxtime if this sync item was newer.
+			    if ($syncitem{'L'}->{$itemid} gt $maxtime) {
+				$maxtime = $syncitem{'L'}->{$itemid};
+			    }
+			    delete $entry{$itemid};
+			    delete $syncitem{'L'}->{$itemid};
+			} else {
+			    die "Couldn't open $itemid.entry for write!\n";
+			}
+		    }
+		    print "\n";
+
+		    # now that's stuff written to disk, we need to update
+		    # the $last{'L'} time
+		    print "Find new LastL...\n";
+		    if (keys %{$syncitem{'L'}}) {
+			# find the earliest that isn't yet synced
+			my @times = sort values %{$syncitem{'L'}};
+			$last{'L'} = $times[0];
+			print "New LastL (keys) = $last{'L'}\n";
+		    } else {
+			$last{'L'} = $maxtime;  # FIXME: subtract a second
+			                        # in case two entries were on
+			                        # same second.
+			print "New LastL (maxtime) = $last{'L'}\n";
+		    }
+		    if (open (LAST, ">>$rc{'syncdir'}/lastsyncs.dat")) {
+			print LAST "L: $last{'L'}\n";
+			close LAST;
+		    } else {
+			die "Couldn't append lastsyncs.dat file.\n";
+		    }
+		}		
+
+	    }
+	}
+    }
+    else
+    {
+	die "Error getting sync items: $ljres{'errmsg'}\n";
+    }
+}
+print "DONE!\n";
+
+sub load_rc_file
+{
+    my $rcref = shift;
+    my $file = "$ENV{'HOME'}/.livejournal.rc";
+    return unless (-e $file);
+    open (RC, $file);
+    while (<RC>)
+    {
+        s/^\s+//;
+        s/\s+$//;
+        next unless /\S/;
+        my ($var, $val) = split(/\s*:\s*/, $_);
+        $rcref->{$var} = $val;
+    }
+    close RC;
+}
+
+sub make_lj_agent
+{
+    my $ua = new LWP::UserAgent;
+    $ua->agent("PerlLiveJournalClient/$VERSION");
+    $ua->timeout(10);
+    return $ua;
+}
+
+sub lj_request
+{
+    my $ua = shift;
+    my $vars = shift;
+    my %ljres = ();
+
+    # Create a request
+    my $req = new HTTP::Request POST => "http://$SERVER_HOST:$SERVER_PORT/$SERVER_URI";
+    $req->content_type('application/x-www-form-urlencoded');
+    $req->content(request_string($vars));
+
+    # Pass request to the user agent and get a response back
+    my $res = $ua->request($req);
+
+    # Check the outcome of the response
+    if ($res->is_success) {
+        %ljres = split(/\n/, $res->content);
+    } else {
+        $ljres{'success'} = "FAIL";
+        $ljres{'errmsg'} = "Client error: Error contacing server.";
+    }
+    return %ljres;
+}
+
+sub request_string
+{
+    my ($vars) = shift;
+    my $req = "";
+    foreach (sort keys %{$vars})
+    {
+        my $val = uri_escape($vars->{$_},"\+\=\&");
+        $val =~ s/ /+/g;
+        $req .= "&" if $req;
+        $req .= "$_=$val";
+    }
+    return $req;
+}

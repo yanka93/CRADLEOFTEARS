@@ -1,0 +1,213 @@
+<html><head>
+<title>Paid Details</title>
+<style>
+    h1 { font-size: 20pt; }
+    h2 { font-size: 17pt; }
+    .fraud
+    {
+        position: absolute;
+        top: 10px;
+        left: 600px;
+        border: 2px solid #842020;
+        padding: 4px;
+        background: #eed9d9;
+        width: 400px;
+    }
+</style>
+</head><body>
+<?_code
+
+ my $dbh = LJ::get_db_writer();
+
+ my ($ret, $sth);
+
+ my $remote = LJ::get_remote();
+
+ my $viewall = LJ::remote_has_priv($remote, "moneyview");
+ my $viewsearch = 0;
+ if (! $viewall) {
+     $viewsearch = LJ::remote_has_priv($remote, "moneysearch");
+ }
+
+ unless ($viewall || $viewsearch) {
+     return "You don't have access to see this, or you're not logged in.";
+ }
+
+$FORM{'payid'} =~ s/\-\d+//;
+unless ($FORM{'payid'}) {
+    return "<form method='get'>Enter payid (or order number): <input name='payid' size='10'> <input type='submit' value='View'></form>";
+}
+
+ my $payid = $FORM{'payid'}+0;
+
+ ## for people without moneyview priv, they have to have userid arg
+ my $extrawhere = "";
+ if (! $viewall) {
+     my $userid = $FORM{'userid'}+0;
+     $extrawhere = "AND p.userid=$userid";
+ }
+
+ if ($FORM{'userid'} eq "0") {  # not == 0
+     $sth = $dbh->prepare("SELECT * FROM payments WHERE payid=$payid AND userid=0");
+ } else {
+     $sth = $dbh->prepare("SELECT p.*, u.user FROM payments p LEFT JOIN useridmap u ON u.userid=p.userid WHERE p.payid=$payid $extrawhere");
+ }
+ $sth->execute;
+ my $pm = $sth->fetchrow_hashref;
+
+return "Invalid payment ID, or missing arguments" unless $pm;
+
+
+# see if a code is associated with this payment:
+my $cd = $dbh->selectrow_hashref("SELECT ac.* FROM acctpay ap, acctcode ac ".
+                                    "WHERE ap.payid=$payid AND ap.acid=ac.acid");
+if ($cd) {
+    my $code = LJ::acct_code_encode($cd->{'acid'}, $cd->{'auth'});
+    $ret .= "<b>From code: </b> <tt>$code</tt>";
+    if ($cd->{'userid'}) {
+        $ret .= " (created by " . LJ::ljuser(LJ::get_username($dbh, $cd->{'userid'})) . ")";
+    }
+    if ($cd->{'rcptid'}) {
+        $ret .= " (used by " . LJ::ljuser(LJ::get_username($dbh, $cd->{'rcptid'})) . ")";
+    } else {
+        $ret .= " (code is unused)";
+    }
+}
+
+
+# see if a rename is associated with this payment
+if ($pm->{'forwhat'} eq "rename") {
+    my $rn = $dbh->selectrow_hashref("SELECT renid, token, fromuser, touser, rendate ".
+                                     "FROM renames WHERE payid=?", undef, $payid);
+    if ($rn) {
+        my $code = sprintf("%06x%s", $rn->{'renid'}, $rn->{'token'});
+        $ret .= "<p><b>Rename Code</b>: <tt>$code</tt> (from: $rn->{'fromuser'}, to: $rn->{'touser'}, rendate: $rn->{'rendate'})</p>";
+    }
+}
+
+$ret .= "<h1>Payment \#$pm->{'payid'}</h1>";
+$ret .= "<b>Amount:</b> \$$pm->{'amount'} <b>Method:</b> $pm->{'method'} <b>For:</b> $pm->{'forwhat'} ";
+if ($pm->{'giftafter'}) {
+    $ret .= " (to be delivered: " . scalar(gmtime($pm->{'giftafter'})) . " (GMT)";
+}
+$ret .= "<br /><b>Date sent:</b> $pm->{'datesent'}  <b>Recv:</b> $pm->{'daterecv'}";
+$ret .= "<br /><b>Used:</b> $pm->{'used'}  <b>Mailed:</b> $pm->{'mailed'}";
+$ret .= "<br /><b>Buyer:</b> ";
+if ($pm->{'user'}) {
+    $ret .= LJ::ljuser($pm->{'user'});
+}
+if ($pm->{'notes'}) {
+    my $not = LJ::eall($pm->{'notes'});
+    $not =~ s/\n/<br>\n/g;
+    $ret .= "<br /><b>Notes:</b> $not";
+}
+
+# clear fraud flag
+if (LJ::did_post() && $FORM{fraudclear}) {
+    LJ::Pay::payvar_set($payid, "fraud_status", "clear");
+    $dbh->do("DELETE FROM fraudsuspects WHERE payid=?", undef, $payid);
+}
+
+# vars
+$ret .= "<p>";
+$sth = $dbh->prepare("SELECT pkey, pval FROM payvars WHERE payid=?");
+$sth->execute($payid);
+my ($refund, $fraud_status);
+while (my ($k, $v) = $sth->fetchrow_array) {
+    if ($k eq "an-refund") {
+	my @parts = split(/,/, $v);
+	$refund = $v; $v = "<i>(hidden)</i> expir=$parts[1]";
+    }
+    $fraud_status = $v if $k eq 'fraud_status';
+    $ret .= "<tt><b>$k</b></tt> = $v<br />\n";
+}
+
+if ($fraud_status eq 'suspect') {
+    my $sql = q{
+        SELECT dateadd, reason
+        FROM fraudsuspects
+        WHERE payid=? 
+    };
+    my ($added, $reason) = $dbh->selectrow_array($sql, undef, $payid);
+    $added = $added ? gmtime($added) . ' GMT' : 'unknown';
+    $reason ||= '?';
+    $reason =~ s#\n#<br />#mg;
+    $ret .= <<EOF;
+        <form method='post' action='paiddetails.bml'>
+        <div class='fraud'>
+        This payment has been flagged as possible fraud.
+        <br /><br />
+        <strong>Date added: </strong>$added<br />
+        <strong>Reason(s): </strong><br />
+        <div style='margin-left: 20px'>$reason</div>
+        <br />
+        <input type='submit' name='fraudclear' value='Clear'>
+        <input type='hidden' value='$payid' name='payid'>
+        </div>
+        </form>
+EOF
+}
+
+$sth = $dbh->prepare("SELECT ikey, ival FROM paymentsearch WHERE payid=?");
+$sth->execute($payid);
+while (my ($k, $v) = $sth->fetchrow_array) {
+    $ret .= "<tt><b>$k</b></tt> = $v<br />\n";
+}
+$ret .= "</p>";
+
+my $cartobj;
+if ($pm->{'forwhat'} eq "cart") {
+    my $cart = "$pm->{'payid'}-$pm->{'anum'}";
+    $ret .= "<h1>Order $cart</h1>";
+    $cartobj = LJ::Pay::load_cart($cart);
+    LJ::Pay::render_cart($cartobj, \$ret, {
+        'tokens' => 1,
+        'piids' => 1,
+    });
+    $ret .= "<small><b>all piids:</b> " . join(", ", map { $_->{'piid'} } @{$cartobj->{'items'}}) . "</small>";
+}
+
+$ret .= "<h1>Authorize.net Transaction Log</h1>";
+my @anet;
+$sth = $dbh->prepare("SELECT cmd, datesent, ip, amt, result, response, cmdnotes ".
+                     "FROM authnetlog WHERE payid=?");
+$sth->execute($payid);
+push @anet, $_ while $_ = $sth->fetchrow_hashref;
+if (@anet) {
+    $ret .= "<table border='1' cellpadding='2'><tr>";
+    foreach (qw(date/ip cmd amt result extra)) {
+        $ret .= "<td><b>$_</b></td>";
+    }
+    $ret .= "</tr>";
+    foreach my $an (@anet) {
+        my @fields = split(/,/, $an->{'response'});
+        my $extra;
+        if ($an->{'cmd'} eq "authcap") {
+            $extra = "authnet_txn = $fields[6]";
+        }
+        $ret .= "<tr><td><small>$an->{'datesent'}<br />$an->{'ip'}</small></td><td>$an->{'cmd'}</td><td>\$$an->{'amt'}</td><td><b>$an->{'result'}</b>: $fields[3]</td><td>$extra</td></tr>\n";
+    }
+    $ret .= "</table>";
+} else {
+    $ret .= "<i>No Authorize.net history</i>";
+}
+
+$ret .= "<h1>Revoke & Refund</h1>";
+$ret .= "<form method='post' action='rr.bml'>";
+$ret .= LJ::html_hidden("cart", "${payid}-$cartobj->{'anum'}");
+$ret .= "Item piids to revoke/refund: <input name='plist' size='30'> (comma or space separated)";
+if ($cartobj->{'method'} eq "cc") {
+    if (! $refund) {
+        $ret .= "<br />Partial Card Number: <input name='partialnum' size='12'> (1234***5678) Exp. Date: <input name='expdate' size='7'> (mm/yyyy)";
+    }
+    $ret .= "<br /><input type='checkbox' value='1' name='no_refund' id='no_refund'> <label for='no_refund'>Don't refund, just revoke (if chargeback, and bank already did it)</label>\n";
+}
+$ret .= "<br />Opt. notes: <input name='refreason' size='40' />\n";
+$ret .= "<br /><input type='submit' value='Revoke+Refund'>\n";
+$ret .= "<small>[ <b>Only press once and wait!</b> ]</small>";
+$ret .= "</form>";
+
+ return $ret;
+ 
+_code?>
+</body></html>

@@ -1,0 +1,5 @@
+DDLockClient.pm
+Makefile.PL
+MANIFEST
+t/00_require.t
+testlock.pl

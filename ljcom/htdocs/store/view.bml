@@ -1,0 +1,71 @@
+<?page
+body<=
+<?_code
+{
+    use strict;
+    use vars qw($title %GET);
+
+    LJ::set_active_crumb('storeitem');
+
+    my $ret;
+    my $item = $GET{'item'};
+
+    my $it = $LJ::Pay::product{$item};
+    return BML::redirect("/store/") unless $it;
+    $title = $it->[0];
+    
+    $ret .= "[&lt;&lt; <a href='/pay/'>View Current Order</a>]\n";
+    $ret .= "[&lt;&lt; <a href='/store/'>Back to store</a>]";
+
+    if ($item =~ /^clothes-(.+)$/) {
+        my $type = $1;
+        my $colors = $it->[1];
+
+        my %inv;
+        my $dbr = LJ::get_db_reader();
+        my $sth = $dbr->prepare("SELECT subitem, avail, price FROM inventory ".
+                                "WHERE item='clothes' AND subitem LIKE '$type%'");
+        $sth->execute;
+        while (my ($si, $avail, $price) = $sth->fetchrow_array) {
+            my ($style, $color, $size) = split(/-/, $si);
+            $inv{$color}->{$size} = [ $avail, $price ];
+        }
+
+        $ret .= "<?h1 Size Information h1?><?p Check out the <a href=\"sizechart.bml\">Size Chart</a> for details about the sizes. p?>";
+        
+        $ret .= "<div style='margin-left: 50px'>";
+        foreach my $col (@$colors) {
+            $ret .= "<table><tr><td><img src=\"$LJ::IMGPREFIX/tshirts/thumb/$type-$col.jpg\" border='0' width='200' height='191' /></td><td><font size='+1'><b>$LJ::Pay::color{$col}</b></font><table>";
+            foreach my $size (sort { $LJ::Pay::size{$a}->[0] <=> $LJ::Pay::size{$b}->[0] } keys %{$inv{$col}}) {
+                my $inv = $inv{$col}->{$size};
+                my $price = sprintf("\$%.02f", $inv->[1]);
+                my $avail = $inv->[0];
+                $ret .= "<tr><td width='100'><b>$LJ::Pay::size{$size}->[1]</b></td><td align='right'>$price&nbsp;&nbsp;</td><td>\n";
+                if ($avail) {
+                    $ret .= "<form method='post' action='/pay/modify.bml' style='display:inline'>";
+                    $ret .= LJ::html_hidden("product", "clothes-$type-$col-$size");
+                    $ret .= "<input name='action:addinventory' type='submit' value='Order' /></form>";
+                } else {
+                    $ret .= " <i>[Out of Stock]</i>";
+                }
+                $ret .= "</td></tr>\n";
+            }
+            $ret .= "</table>";
+            $ret .= "</td></tr></table>\n";
+            
+        }
+        $ret .= "</div>";
+
+        $ret .= "<?h1 Note About Inventory h1?>";
+        $ret .= "<?p At this time some items may show as being out of stock. Please check back if you do not find the items you want. ";
+        $ret .= "After a period of time, orders that are not completed with a payment will have their merchandise placed back ";
+        $ret .= "into available inventory. p?>";
+    }
+        
+
+    return $ret;
+}
+_code?>
+<=body
+title=><?_code return $title; _code?>
+page?>

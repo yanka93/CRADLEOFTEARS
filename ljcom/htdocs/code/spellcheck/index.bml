@@ -1,0 +1,25 @@
+<?page
+title=>LJ::SpellCheck
+body<=
+
+<a href="../"><B>&lt;&lt; Code</b></a> |
+<b>Download:</b> <?dl code/spellcheck/ dl?>
+
+<?h1 License h1?>
+<?p
+LJ::SpellCheck is licensed under the <a href="http://www.gnu.org/copyleft/library.txt">LGPL</a>, also available in the distribution.
+p?>
+
+<?_code
+
+ my $doc = `perldoc -u LJ::SpellCheck | pod2html`;
+ $doc =~ s/<H1>(.+?)<\/H1>/<?h1 $1 h1?>/g;
+ $doc =~ s/<H2>(.+?)<\/H2>/<?h2 $1 h2?>/g;
+ $doc =~ s/<HR>/<?hr?>/g;
+ return $doc;
+
+_code?>
+
+
+<=body
+page?>

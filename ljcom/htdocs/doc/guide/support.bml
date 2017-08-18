@@ -1,0 +1,1676 @@
+<?page
+title=>So You Want to be a Support Volunteer
+body<=
+<a name="toc" /><?h1 Table of Contents h1?>
+
+<ul>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#rules1">Basic Support Rules</a></li>
+<li><a href="#howworks">How Support Works</a></li>
+<li><a href="#rules2">Support Rules in More Detail</a>
+    <ul>
+     <li><a href="#courtesy">Courtesy</a></li>
+     <li><a href="#professionalism">Professionalism</a></li>
+     <li><a href="#helpful">Helpfulness</a></li>
+    </ul>
+</li>
+<li><a href="#comms">Support Communities</a></li>
+<li><a href="#notapproved">Why Answers Don't Get Approved</a></li>
+<li><a href="#improving">How to Improve at Support</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#mentoring">Mentoring</a></li>
+<li><a href="#privs">Support Privs</a></li>
+<li><a href="#cats">Understanding the Categories</a></li>
+<li><a href="#I1">Interim Level One</a></li>
+<li><a href="#I2">Interim Level Two</a></li>
+<li><a href="#tags">Summary Tags</a></li>
+<li><a href="#supporthelp">Being a Supporthelp Priv</a></li>
+<li><a href="#commenting">Leaving Comments</a></li>
+<li><a href="#approving">Approving Answers</a></li>
+<li><a href="#reporting">Reporting Volunteers</a></li>
+<li><a href="#leaving">Leaving Support</a></li>
+<li><a href="#oddities">Support Oddities</a>
+    <ul>
+     <li><a href="#time">Negative Time</a></li>
+     <li><a href="#never">Posted NEVER</a></li>
+     <li><a href="#vanishing">Requests Disappearing</a></li>
+     <li><a href="#collisions">Multiple Answers or Comments</a></li>
+     <li><a href="#privrequests">Requesters Talking to Themselves</a></li>
+    </ul>
+</li>
+<li><a href="#team">Social Aspects of Support</a>
+    <ul>
+     <li><a href="#irc">#lj_support and IRC</a></li>
+     <li><a href="#awe">Answered With Elegance (AWE)</a></li>
+     <li><a href="#bunnies">Support Bunnies</a></li>
+     <li><a href="#calico">Support Cats</a></li>
+     <li><a href="#chinchillas">Chinchillas</a></li>
+     <li><a href="#toast">The French Toast Support Category</a></li>
+    </ul>
+</li>
+<li><a href="#links">Useful Links</a></li>
+<li><a href="#glossary">Glossary of Support Terms</a></li>
+</ul>
+
+<?hr?>
+
+<a name="intro" /><?h1 Introduction h1?>
+
+<p>LiveJournal can always use more volunteers, and helping out in
+Support is a great way to learn more about how LiveJournal works.
+However, it is a time-consuming task that requires patience and
+professionalism. Don't expect to just jump in answering questions and
+get a bunch of points. For many volunteers it will take weeks to earn
+their first support point.</p>
+
+<p>However, if you're reading this, you're already off to a good start.
+The information in this document is designed to help you understand
+Support and get your answers <a href="#glossary">approved</a>. Some
+other good resources are the following communities:</p>
+
+<ul>
+
+<li><?ljcomm lj_support ljcomm?> - the main Support community where policies are announced. New
+volunteers cannot join, but they can and should <a
+href="http://www.livejournal.com/friends/add.bml?user=lj_support">friend
+it</a>. Reading lj_support is required for all support volunteers.</li>
+
+<li><?ljcomm helpscreening ljcomm?> - the community for new Support volunteers. Volunteers are encouraged to
+<a
+href="http://www.livejournal.com/community/join.bml?comm=helpscreening">join</a>
+and post questions here. The guidelines for HelpScreening are linked to
+from its userinfo. Both of the above communities have particularly
+helpful posts saved as memories. Reading through the memories is a very
+good way to learn more.</li>
+
+</ul>
+
+<p>Please note that there is a lot of material you can read, and
+reading it will almost surely help you do better in Support. But
+don't feel as though you need to read through everything right now.
+It's generally best to take things at your own pace. Start with the
+first three sections of this guide, and then read the rest as you feel
+ready to learn more.</p>
+
+<p>This guide is designed to answer most of the common questions asked
+by Support volunteers at all different experience levels. While reading
+the sections for more experienced volunteers is fine, there is no reason
+to feel you should. This is a very long document, and is meant to be
+read in small pieces as you progress in Support.</p>
+
+<a name="rules1" /><?h1 Basic Support Rules h1?>
+
+<p>There are many Support policies, but only a few that are really
+important to keep in mind when you're just starting out. For a more
+detailed listing of support policies, check out the Support communities
+and later parts of this Guide.</p>
+
+<p>Never contact users off of the Support board. If there is a reason
+why it is important to do so, then someone who is authorized to do so
+will. We do not want users to feel harassed or stalked because of their
+Support requests.</p>
+
+<p>Treat people with respect. This goes for both the people who submit
+requests and your fellow volunteers. Do not make fun of people who
+submit Support requests. If you have a question to ask, ask it politely.
+If someone offends you, contact someone about it privately rather than
+starting a flamewar. Most problems are caused by misunderstandings that
+can be sorted out if everyone just discusses the issue calmly. If you
+notice mistakes in Support answers, email support@livejournal.com about
+it and it will be forwarded to the appropriate person or people.</p>
+
+<p>Do not copy other volunteers' answers. You can use other people's
+answers as a guide to what content yours should include, but write your
+own answers. If you need help with the wording, ask in
+HelpScreening.</p>
+
+<p>If a request contains any private information or reports a security
+bug, do not discuss the request with anyone. As you become more
+experienced with Support, you will learn how to handle these requests,
+but until you do, it's simplest to just keep quiet about them.
+Volunteers who are found discussing private information on the board or
+using it for their own purposes may be banned from Support.</p>
+
+<a name="howworks" /><?h1 How Support Works h1?>
+
+<p>Users submit Support requests that are then opened on the board as
+green requests. They remain green until an answer is approved, and then
+they turn yellow. If they re-open because the user needs more help, they
+will turn green again until re-answered and say "answered still needs
+help". When a request is closed it will be moved to the closed section
+and turn a pinkish red. Eventually it will disappear from the board
+entirely, but still be findable by the specific URL to the request. The
+exact colors may vary from browser to browser.</p>
+
+<p>As a new Support volunteer your answers will be <a
+href="#glossary">screened</a>. This means that someone with more
+experience in Support will read them over and only allow them to be sent
+to the users if they meet Support's guidelines. There are several
+Support guidelines both for the board as a whole and individual
+categories. These will be explained in more depth later.</p>
+
+<p>There are many forms of information in Support requests that you will
+not be able to see at first. The most notable are other volunteers'
+screened responses. This means that sometimes you will answer a question
+that already has an acceptable answer in it. The earlier answer will
+appear on the request later, when an experienced volunteer approves it.
+Don't let this discourage you. As a new volunteer you should focus on
+learning as much as you can. In time you will be able to see these
+responses.</p>
+
+<p>Sometimes instead of an answer, a volunteer will make a comment.
+Comments are used primarily to request more information. Sometimes they
+are used to point out additional information that was left out of a
+previous answer, or to follow up on a request. Comments can never earn
+Support points.</p>
+
+<p>If you see a comment in a request asking for more information, you
+should not attempt to answer the request until the user has replied
+back. While sometimes an answer will be approved before then, especially
+if the user seems unwilling to reply back, most of the time attempting
+to answer such questions will just be a waste of effort.</p>
+
+<p>If you see a request that needs a comment, you can leave a screened
+response intended to go through as a comment to the user. Support
+volunteers can approve screened responses as comments, and will do so
+when appropriate.</p>
+
+<p>If it's an unusual request and you have information that shouldn't go
+through to the user, but may be helpful to other volunteers, you can
+write it in a screened response with the words <q>INTERNAL COMMENT</q>
+all in capitals at the top. These internal comments can also never earn
+points, but they do help to get requests resolved. Internal comments
+should only be used if you have good reason to believe that the
+information you can provide is not common knowledge. In most cases
+experienced Support volunteers will know enough to handle requests.</p>
+
+<p>After a request has been answered, the user may reply back with more
+questions. These further questions must then be answered, but not
+necessarily by the person who answered the first question. It's a good
+idea to check back on Support requests you have answered both to see
+what sort of answer was approved and to check for follow-up questions.
+Once the user is fully helped, either the user will close the request or
+it will sit until one of the Support closers comes to close it.</p>
+
+<p>Requests, regardless of who closes them, can be closed with credit to
+any approved answer in the request or without credit. Support closers
+will attempt to assign credit fairly, but only one person can receive
+credit for each request. The users may assign points fairly, but they
+also may close without credit. This is a natural part of Support. Not
+all requests are expected to yield points for anyone.</p>
+
+<p>Most requests will take about a week to close. Many will take longer
+if they involve asking users for clarification, or answering new
+problems. Closed requests can also be re-opened by users or by
+administrators. This does not happen often, but when it does the points
+will be revoked. They may then be re-assigned when the request closes
+again.</p>
+
+<p>The value of a request is based upon the time the answer was
+submitted. The value of that answer, if the request is closed with
+credit to it, will be the amount showing at the time the answer was
+submitted, regardless of when it is approved or closed. Most requests
+are worth one or two points, and the maximum they can be worth is ten
+points.</p>
+
+<p>Once you have earned points, they will show on your full user info
+page between the number of journal entries and the number of comments.
+You can also see your point total and how it compares to that of every
+volunteer who has earned Support points at the <a
+href="http://www.livejournal.com/support/highscores.bml">High Scores</a>
+page. On that page there will be little numbers in red or green next to
+many of the scores. This indicates how much their rank has changed since
+the last time it was calculated. Points and rank are updated more or
+less instantaneously. Changes in rank are usually updated weekly, but
+sometimes problems happen and changes in rank will freeze and not be
+updated for a while.</p>
+
+<p>You can find the specific requests which earned you points in public
+categories through use of the Support Office. This is not an official
+LiveJournal tool, but is very useful for Support volunteers. In addition
+to finding your approved answers, you can also search for screened
+responses, comments, and internal comments. Support Office is located at
+<a href="http://www.supportoffice.org/">http://www.supportoffice.org/</a>.</p>
+
+<a name="rules2" /><?h1 Support Rules in More Detail h1?>
+
+<p>Support is divided into categories, each of which is run by one or
+more category <a href="#glossary">admins</a> who can set policies for
+that category. Thus there are rules that apply in all public categories
+and rules that are category-specific. This Guide focuses on overall
+rules. The best way to learn category-specific rules is through 
+<?ljcomm lj_support ljcomm?>'s <a
+href="http://www.livejournal.com/tools/memories.bml?user=lj_support">memories</a>
+and the <a href="#comms">communities</a> for the specific
+categories.</p>
+
+<p>The first rule of Support is that any policy might have an exception
+if a good enough reason comes up. Policies are there to improve how
+Support works, not bind us in cases where they don't fit. If you believe
+that an exception is needed in a specific case, you should contact the
+relevant <a href="#glossary">category admins</a> or email
+support@livejournal.com to ask about it. Sometimes exceptions will be
+made.</p>
+
+<p>The most important rules of Support were presented in the <a
+href="#rules1">Basic Support Rules</a> section. This section
+goes into detail on more policies. If there is ever a conflict between
+this guide and information given in official Support communities, then
+the communities take precedence. This guide cannot be constantly
+updated, whereas the communities can deal with issues as they occur.</p>
+
+<p>There are some exceptions to the rules in the short rules section.
+Answer copying is allowed with the permission of the person who wrote
+the original answer, but it is highly discouraged. Answer copying makes
+it harder to learn how to do Support, and thus is generally used by
+those who already have enough experience to not need more work on answer
+writing. Reusing your own answers is perfectly acceptable so long as you
+modify them to fit the specific request you are answering.</p>
+
+<p>Contacting users off the board is rarely allowed, but if a user
+writes a thank you post in their journal, you may comment politely to
+it. If the user friends you, you may then comment to them or friend them
+if you wish.</p>
+
+<p>Support strives to be courteous, professional, and helpful. While
+some rules work toward more than one goal at a time, the rules divide up
+fairly well based on those concepts. This section also explores what
+those ideas mean.</p>
+
+<a name="courtesy" /><?h2 Courtesy h2?>
+
+<p>Courtesy is fairly simple. No matter what you think of a user's
+request, answer it with the respect you'd want if you had asked it. If
+you can't do that, do not touch the request in any way. You are always
+free to ignore requests that you dislike. Even in discussions outside
+the Support center, don't ridicule questions.</p>
+
+<p>Be courteous toward other volunteers. Learn from answers by other
+volunteers (when you can tell that they're right), but don't just copy
+them word for word. If you feel compelled to complain about a common
+mistake, criticize the mistake, not the individuals who made it. Make
+corrections privately. Don't ridicule answers.</p>
+
+<p>Specific rules:</p>
+
+<ul>
+
+<li><strong>Don't lie to users.</strong> There shouldn't be any request
+that requires you to lie to a user. You can simplify, as many users do
+not need full details, but try to be honest.</li>
+
+<li><strong>Never ask users to close their requests.</strong> If a user
+is causing serious problems, then email support@livejournal.com about
+it. Most open requests will get closed naturally.</li>
+
+<li><strong>Don't tell people to email other users unless it's about
+joining a closed community or contacting the maintainer to deal with
+community issues.</strong> People do not like it when they are annoyed
+by someone and that person tells them support told them to do so.</li>
+
+<li><strong>Do not include information that is completely irrelevant to
+the request.</strong> You can justify including the lj-cut tag when
+explaining how to post pictures. But don't answer a how to validate
+question with: <q>And I noticed that your journal has really poor
+contrast and you can modify your colors by doing <a
+href="#glossary">FOO</a>.</q></li>
+
+<li><strong>Do not misrepresent the names or policies of other
+sites.</strong> For example, <q>PayPal</q> should be properly
+capitalized. Sites that allow remote loading for a fee should not be
+mentioned as not allowing remote loading at all. We would not want these
+sites misrepresenting LiveJournal, so we should represent them properly
+in return.</li>
+
+</ul>
+
+<a name="professionalism" /><?h2 Professionalism h2?>
+
+<p>Professionalism gives people a good impression of both LiveJournal
+and the Support team. You are expected to act professionally in all
+Support-related contexts. If you are commenting in an official community
+and represent yourself as a Support volunteer, then your comment should
+be professional and courteous. However, when you are outside Support
+contexts, your actions may be whatever you wish.</p>
+
+<p>Specific rules:</p>
+
+<ul>
+
+<li><strong>Don't use an obscene user picture or username.</strong>
+LiveJournal can have members as young as thirteen, and as such the
+Support board should remain PG-13. In any case, an answer from someone
+with an offensive name or picture does not inspire confidence.</li>
+
+<li><strong>Do not use the words <q>we</q> or <q>us</q>.</strong>
+Support volunteers are rarely allowed to speak officially on behalf of
+LiveJournal. We do not want to give the impression that we are doing so.
+We do represent LiveJournal in the sense that we are what users see when
+they come to Support for help, but we do not make official decisions.
+Support volunteers do not control LiveJournal policies and should not
+give the impression that they can.</li>
+
+<li><strong>Do not point requesters to other places when they have
+support problems.</strong> If they have a suggestion, point them to the
+<a
+href="http://www.livejournal.com/support/faqbrowse.bml?faqid=164">Suggestions
+FAQ</a>. If it is a suggestion that has been shot down many times, you
+can simply tell them that it has been suggested before and the reasons
+why it will not be implemented. If it is currently in <a
+href="#glossary">Zilla</a> or has received positive feedback, then say
+that the idea has been considered before and may be implemented at some
+point in the future. Do not point them to the Zilla item. (The one
+exception to this: If a user is having problems with text messaging, it
+is appropriate to point them to the "lj_textmessage" community.)</li>
+
+<li><strong>Do not give support for things outside of the domain of
+LiveJournal.</strong> We can't support everything. If something falls
+outside the domain of LiveJournal, inform the user and try to give them
+a pointer of where to go. For example, with complex HTML, suggest they
+do a web search with their favorite search engine for <q>HTML
+tutorial</q> or similar phrases.</li>
+
+<li><strong>If you have a choice of references, always pick the most
+official one.</strong> Journals intended for the public such as news are
+ideal. If there is none, then go with an official LiveJournal community.
+If there is none, try for a LiveJournal or goathack site with a <a
+href="#glossary">disclaimer</a>. If not, then an outside site. Try to
+avoid linking to Zilla, lj_support, helpscreening, and other sites
+intended to help volunteers/staff. When including links to LiveJournal
+posts use the regular URL, not the URL with "?mode=reply". You want to
+encourage users to read comments in the post rather than to
+comment.</li>
+
+<li><strong>Whenever you link to a page that is not an official
+LiveJournal page, you should include a disclaimer that it is not
+affiliated with LiveJournal and LiveJournal cannot be held responsible
+for its content.</strong> This is useful for many reasons. If the page
+changes, it makes it less likely users will complain. If the page has
+ads, it's important for users to know that those ads have no connection
+with LiveJournal and LiveJournal does not benefit from them in any
+way.</li>
+
+<li><strong>Be sure of your answer.</strong> Don't write something like,
+<q>Well, I'm not sure, but when my friend had a problem like this, blah
+blah blah worked...</q> Professional answers give the user an
+answer--ideally, the correct answer. The exception to this is when the
+request is very vague but you think you know what the user is asking
+about. Then you can say something like, <q>If you mean FOO, then you
+should do <a href="glossary">BAR</a>. If you had something else in mind,
+please reply back so someone can help you further.</q> Asking for more
+information or clarification belongs in comments, which can be useful in
+these situations. However, it is better to answer the question whenever
+possible than to comment for more information. So, if a simple <q>if FOO
+then BAR</q> might resolve it, that should be tried.</li>
+
+<li><strong>Slang and idioms should be avoided in all Support
+answers.</strong> It not only looks unprofessional, but not all users
+will understand such expressions. Support helps people around the world,
+including non-native English speakers. Slang and idioms will often
+confuse such users.</li>
+
+<li><strong>In general, avoid sentence fragments.</strong> All the
+standard rules of good writing apply to Support answers. Nobody is
+likely to mind if you split an infinitive here or there or end a
+sentence with a preposition, but try to write clearly and
+concisely.</li>
+
+<li><strong>Avoid phrases like <q>Hope this helps</q>.</strong> It looks
+unprofessional and some users will read it as a sign of
+uncertainty.</li>
+
+<li><strong>Avoid emoticons.</strong> It looks unprofessional and may
+confuse some users.</li>
+
+<li><strong>Don't sign your answers or use a greeting to begin
+them.</strong> Greetings and signatures are reserved for answers that
+are officially from LiveJournal, to make the distinction clearer. It is
+also unnecessary as the public categories have answers that go out with
+your username and user picture.</li>
+
+<li><strong>Put your entire answer into one reply.</strong> We don't
+want to flood people with e-mails in reply to their support requests. If
+your answer has already been sent to the user and you left something out
+or made a mistake, then you need to post a follow-up, but try to prevent
+that from happening. If your incorrect answer is still a Screened
+Response, no harm has been done; rewrite it completely and correctly
+rather than submitting a follow-up. If your answer was incorrect or
+incomplete, approved, and you do not have supporthelp privs, then submit
+a correction and email support@livejournal.com with a link to the
+request and a brief note that you were approved with a mistake that you
+need to correct. Don't worry that you made a mistake; no one expects you
+to be perfect. Just do your best to fix it.</li>
+
+<li><strong>Don't link back to the request itself.</strong> The link is
+added automatically to the response sent by e-mail.</li>
+
+</ul>
+
+<a name="helpful" /><?h2 Helpfulness h2?>
+
+<p>Helpfulness involves actually giving the user an answer they can use
+in response to their request. The entire point of Support is to help
+people. We <em>want</em> to do it kindly and without offense, but we
+<em>must</em> make sure that we help them.</p>
+
+<p>Specific rules:</p>
+
+<ul>
+
+<li><strong>Always point users toward relevant FAQs</strong>. It's good
+for them to know the FAQs are there and they may find them useful if
+they run into further problems.</li>
+
+<li><strong>When including a FAQ from the drop-down, you should mention
+why the FAQ was included, somewhere in the body of the answer.</strong>
+This can be a simple sentence like: <q>The above referenced FAQ explains
+how to validate your account.</q> The importance of mentioning it is
+twofold. First, to make it clear to the user how the FAQ relates to
+their request. Often the relation is obvious, but in some requests it
+may not be apparent to the user. The second reason is to ensure that the
+user knows there is a FAQ link that should be followed. Most users will
+read their answers in email, and the answer will embedded in some other
+text about the Support request. This can sometimes be confusing, and we
+want to make things as clear as possible.</li>
+
+<li><strong>Don't quote the FAQ unless you are quoting a small excerpt
+to highlight the information.</strong> In general, just direct the user
+to the relevant portion of the FAQ. We want them to go to the FAQ, and
+they don't want to read the same information twice.</li>
+
+<li><strong>When linking to guides, do not link directly. Use the
+find?guide= format instead.</strong> For example, this Support Guide can
+be found at <a
+href="http://www.livejournal.com/doc/find?guide=support">http://www.livejournal.com/doc/find?guide=support</a>.
+Ideally, one day all the guides will be translated. The direct links may
+go to only the English versions while the find?guide= format should go
+to the version in the user's language of choice. Whether it ends up
+working this way or not, we prefer to have volunteers get into the habit
+of doing it this way now.</li>
+
+<li><strong>Be very careful whenever you tell a user to make a change
+involving things outside LiveJournal, such as turning on cookies or
+turning off email <a href="#glossary">filters</a>.</strong> Always
+either tell them to do it in a way that only affects LiveJournal or warn
+them about the possible downside to what they are doing. For example, in
+the case of filters, you may want to recommend they adjust them to allow
+LiveJournal emails through without affecting the rest of the filters.</li>
+
+<li><strong>Never tell a user to give their password to anyone.</strong>
+If the user brings up the idea, explain why that is a bad idea.</li>
+
+<li><strong>Don't tell users to delete their accounts unless they are
+asking how to delete their accounts.</strong> If you have a really good
+reason to do so, recommend they back up their journal first, in case
+anything goes wrong.</li>
+
+<li><strong>Don't assume the user is using a particular client, web
+browser, or operating system.</strong> If you're not sure, give a
+generic answer. Explain how to do things with any client listed on the
+account. If they don't list a client and they want to do something that
+is easier with a client, mention that.</li>
+
+<li><strong>Don't mention sites that offer various services, such as
+remote image hosting, hosting other journals, etc.</strong> It's better
+to tell them to search the web and in the case of images to check with
+their ISP. These policies change rapidly and without notice. Referring
+users to a specific site generally causes more harm than good.</li>
+
+<li><strong>Answers must thoroughly answer the user's direct question,
+address any misconceptions the user has about LiveJournal, and address
+any obvious LiveJournal problems the user has.</strong> This means that
+if the user asks about getting a source code, but clearly wants an
+invite code, you should address the fact that the source code is a
+different thing from an invite code. Likewise if a user asks about how
+to add a user picture, but the account isn't validated, you should tell
+the user how to validate as well as how to add a user picture.</li>
+
+</ul>
+
+<a name="comms" /><?h1 Support Communities h1?>
+
+<p>The main journal for Support is <?ljcomm lj_support ljcomm?>.
+Every Support volunteer should read it. Official policies are announced
+there and relevant LiveJournal news is relayed there. Sometimes the
+direction that LiveJournal Support should take is discussed there. Any
+volunteer may read it, but only experienced volunteers are granted
+posting access. Posting access and membership is given when a volunteer
+earns supporthelp <a href="#privs">priv</a> in any category of
+Support.</p>
+
+<p>The next community to consider is <?ljcomm helpscreening ljcomm?>.
+This community is open to all volunteers. It is used for asking
+Support-related questions, and for supporthelps to give tips to less
+experienced volunteers.</p>
+
+<p>All of the public Support categories have communities. They are:
+<?ljcomm support_clients ljcomm?>,
+<?ljcomm support_comms ljcomm?>,
+<?ljcomm support_embed ljcomm?>,
+<?ljcomm support_general ljcomm?>,
+<?ljcomm support_ssystem ljcomm?>,
+<?ljcomm support_syn ljcomm?>,
+<?ljcomm support_upi ljcomm?>,
+<?ljcomm support_web ljcomm?>, and
+<?ljcomm web_ui ljcomm?>.
+Information about them can be found on their respective userinfo
+pages.</p>
+
+<p>Other Support Communities:</p>
+
+<ul>
+
+<li><?ljcomm lj_supportadmin ljcomm?> is the administrative community. Only category admins and LiveJournal
+staff have membership there. While any volunteer may watch it, and
+sometimes posts are made publicly, there is generally little there for
+non-members to see.</li>
+
+<li><?ljcomm support_interim ljcomm?> is the community for interim <a href="#privs">privs</a>. When you earn
+<a href="#glossary">interim privs</a>, you will be added; until then it
+is not worth watching.</li>
+
+<li><?ljcomm supportlounge ljcomm?> is an unofficial community where many Support volunteers post about
+their Support experience, amusing Support-related events, or
+particularly impressive requests.</li>
+
+<li><?ljcomm howto_userdoc ljcomm?>is an official community for the discussion of tutorials for inclusion
+in <?ljuser howto ljuser?>.
+While it does not directly affect work on the Support Board, it is
+closely tied to Support and considered a part of the Support
+system.</li>
+
+<li><?ljuser privchange ljuser?> is a journal where the addition and removal of Support <a
+href="#privs">privs</a> is announced. No one is required to watch it,
+but many volunteers wish to know about priv changes.</li>
+
+<li><?ljcomm howtosupport ljcomm?> is an unofficial community with tutorials about writing Support answers
+and understanding various aspects of LiveJournal that frequently come up
+in Support.</li>
+
+</ul>
+
+<p>Other Helpful Communities:</p>
+
+<p>All of these are helpful in their own way, but most volunteers will
+not want to watch them all. You should see which you find to be most
+useful for you.</p>
+
+<ul>
+
+<li><?ljcomm lj_biz ljcomm?> is for the discussion of LiveJournal business matters.</li>
+
+<li><?ljcomm changelog ljcomm?> is where changes to the LiveJournal code are announced.</li>
+
+<li><?ljcomm lj_dev ljcomm?> is where development changes are discussed.</li>
+
+<li><?ljcomm lj_maintenance ljcomm?> is where outages and network problems are announced.</li>
+
+<li><?ljcomm lj_userdoc ljcomm?> is for discussing the FAQs and guides.</li>
+
+<li><?ljuser news ljuser?> is where important LiveJournal news is announced.</li>
+
+<li><?ljcomm paidmembers ljcomm?> where news related to paid user accounts is announced.</li>
+
+</ul>
+
+<a name="notapproved" /><?h1 Why Answers Don't Get Approved h1?>
+
+<p>Support takes patience and dedication and new volunteers should not
+expect to get approvals or points quickly. How long it takes will depend
+on what skills you enter Support with, what you read, and how much
+effort you put into it. Keep in mind that only approved answers can earn
+points and that not every request closes with credit. For more details
+about how the Support system works check over the <a
+href="#howworks">section</a> about it.</p>
+
+<p>One common reason for not getting approved is not being first. As a
+new volunteer, you can't see other answers. When an answer gets
+approved, compare the timestamp. If it is earlier than yours, then it
+was already there when you wrote your answer.</p>
+
+<p>Another common reason for new volunteers not being approved is that
+their writing style doesn't meet Support standards. Support requires a
+very professional appearance. Things like emoticons (e.g. :)), <q>Hope
+this helps.</q>, slang, poor spelling, and incomplete sentences can keep
+an accurate answer from being approved.</p>
+
+<p>Answers should always be in one complete screened response. If you
+notice you made a mistake, resubmit a new complete answer without the
+mistake. Do not submit a correction. Since your answer hasn't been
+approved yet, the corrected version can be sent to the user. Almost
+every volunteer will mess up sometimes and re-submit. There is no reason
+to worry about resubmissions. However, if you find you are constantly
+resubmitting answers, then you should proofread more carefully before
+you answer. You may wish to write your answers in a text editor so that
+you can see them more clearly.</p>
+
+<p>Another possibility is that the answer required more information.
+There are three issues that must be considered in every request. First,
+the user's explicit question must be addressed. Second, any
+misconceptions that the user has must be addressed. An example of this
+is a user asking for a source code to start a journal. The user probably
+means they want an invitation code, so there should be a brief
+explanation of what each code is and how each is used. Finally, the
+answer must address any other issues the user needs to be informed of,
+but wouldn't have known enough to ask about. One example of this is a
+user asking an unrelated question, but the account is not validated.
+Validation must always be addressed when it comes up as not being
+validated will lead to several problems for the user.</p>
+
+<p>For more information on why your answers weren't approved you can ask
+in <?ljcomm helpscreening ljcomm?>. Please read the community's <a
+href="http://www.livejournal.com/community/helpscreening/105552.html">guidelines</a>.
+Remember, if no answer has been approved yet, then wait to find out what
+the approved answer is. Sometimes no one qualified to handle the request
+has gotten to it yet. If no answer is approved yet, your answer may be
+fine.</p>
+
+<a name="improving" /><?h1 How to improve at Support h1?>
+
+<p>There are several things you can do to improve at Support. By reading
+this, you've already started. Another is to go through the memories for
+various Support <a href="#comms">communities</a>. A good way to learn
+what to include in your answers is to look over approved answers. Don't
+copy them, but see how they're written and what sort of information they
+contain.</p>
+
+<p>While answering requests, read them carefully. What things might the
+user mean? If the user may be referring to multiple things, address them
+all. If the user asks multiple questions, answer them all.</p>
+
+<p>Read over your answer carefully. Is it well-written? Is it spaced
+nicely? Does it include references when needed? Did you mention every
+FAQ you used?</p>
+
+<p>Think about what the user knows and what the user needs to know. Try
+to make sure your answer provides all the information the user will need
+to resolve the issue. Also make sure you address any misconceptions the
+user has and alternate methods of accomplishing the goal.</p>
+
+<p>Learn the FAQs and check them every so often, since they do change.
+An answer that doesn't include a relevant FAQ will almost never be
+approved. Part of being able to answer most Support requests is knowing
+where the relevant information is.</p>
+
+<p>Look over the information provided with the request. Is this a logged
+in user? Is the account validated? Is the user free or paid? These
+things may have an effect on the answer.</p>
+
+<p>Try to answer questions and check back to see what was approved. How
+was it different from your answer? If it was your answer, then great.
+Look at requests you can't answer, and check back on them to see how
+they do get answered. Ask questions in HelpScreening and get a <a
+href="#reviews">review</a>. After you have learned the basics of a
+category, you may wish to inquire about getting a <a
+href="#mentoring">mentor</a>.</p>
+
+<a name="reviews" /><?h1 Reviews h1?>
+
+<p>Reviews are a wonderful way of learning how to improve your answers
+in Support. They involve an experienced volunteer looking over many
+requests you have recently tried to answer in a category and giving you
+feedback. It allows Support volunteers to get feedback that is more
+personalized to their needs, and it helps the category admins keep track
+of your progress.</p>
+
+<p>Since Support is divided up into different categories, each run by
+its own category admin(s), reviews are generally done for one category
+at a time. To get a review, contact the admin(s) of the category you are
+interested in. They may not review you themselves, but they will make
+sure someone competent does. If you do not know the admin(s) for a
+category you are interested in, submit the request to
+support@livejournal.com and ask them to forward it to the relevant
+admins.</p>
+
+<p>There are four basic methods used for reviewing. The first is that
+you collect requests to be reviewed. The second is that you collect
+requests to be reviewed that are then supplemented by the category
+admin. The third is that you request a review and the category admin
+collects all of the information. The fourth is that you are given
+example requests to answer, which will then be reviewed. In any of these
+cases, you may also be asked to comment on what you did and why and
+anything you learned from the request. If you do not know which type of
+review a category uses, ask an admin.</p>
+
+<p>To gather requests for a review that uses requests from the board, go
+to the Support board and filter to <q>You Replied</q> and whatever
+category you want a review in. Do not remove any requests from this
+filter unless you are specifically instructed to do so.</p>
+
+<p>Then write an email with the URLs to each request in that filter.
+Include your username and whether you have any privs in that category,
+and if so, which privs. If you have any specific questions about some of
+the requests, include those as well, so that the reviewer can address
+them.</p>
+
+<p>How helpful a review is varies. Some volunteers find them to be the
+best way to learn, while others do fine on their own. Sometimes a review
+happens at just the right time to help a volunteer improve further,
+while other reviews for the same volunteer don't help much. New
+volunteers should generally get a review in any category they've been
+working in to a moderate extent for two weeks or more. Then get another
+after about three more weeks, longer if you spend a significant amount
+of time away from Support during that time. Volunteers with all of the
+<a href="#privs">interim privs</a> should generally be reviewed more
+often. These are just rules of thumb and will vary from person to person
+and category to category. Always feel free to ask a category admin about
+what they think is best for you.</p>
+
+<p>When you get your review, you should expect comments on how your
+answers could be improved. But do not expect every request you submitted
+to be mentioned in the review. Often several requests have the same
+problem or were all done well. In these cases, there is little to say,
+and they will often simply be removed. If a large number of your
+requests are removed, you either likely do a lot of similar request
+types or are doing very well.</p>
+
+<p>A review can take a while to get done, depending on the size of the
+review, the time of year (around holidays many volunteers may be away or
+busy), and the category. If you haven't received a response to your
+review after a week, send an email asking if it was received and whether
+everything is okay. Sometimes emails get lost or misplaced, and we don't
+want any volunteers being ignored through such accidents. If another
+week passes, send another reminder. The admin may need to get in touch
+with the volunteer doing the review to make sure no problems came
+up.</p>
+
+<p>Your review or its summary will usually be shared with the
+supporthelp privs for that category. This is to help the supporthelps to
+better teach you about Support, and because in most categories the
+supporthelp privs help to decide when new volunteers are ready for
+different levels of <a href="#privs">privs</a>.</p>
+
+<p>If for any reason the requested review format causes problems for
+you, discuss it with the admins for the categories you are interested
+in. These formats tend to be easiest and work best for most volunteers,
+but special arrangements can be worked out at times to meet a particular
+volunteer's needs.</p>
+
+<a name="mentoring" /><?h1 Mentoring h1?>
+
+<p>Some categories have mentoring programs. Having a mentor will give
+you someone to go to with questions. Your mentor will also likely review
+you, and may bring up issues for you to try to work on. You do not need
+a mentor to improve at Support, but some volunteers will feel more
+comfortable having someone specific they know they can go to for advice
+and answers.</p>
+
+<p>Some categories may have a waiting list for mentors. Some categories
+may limit mentoring to those who have already earned at least I1. You
+should check with the category admin(s) for specific and current
+information. As always, if you don't know who they are, you can have
+support@livejournal.com forward the request for you.</p>
+
+<a name="privs" /><?h1 Support Privs h1?>
+
+<p>There are many privileges or <q>privs</q> associated with Support. A
+priv is what gives someone permission to take a particular action on a
+request. Most privs are publicly viewable at <a
+href="http://www.livejournal.com/admin/priv/">http://www.livejournal.com/admin/priv/</a>.</p>
+
+<p>Support volunteers will also refer to someone with the priv as a
+priv. So, the group of people with any of the interim Support privileges
+is collectively referred to as the interim privs.</p>
+
+<p>All Support privileges are given on a per category basis. Some people
+will have privileges in all categories, but they either are in
+administrative positions or have earned privs in each category.</p>
+
+<p>There are four interim privs. They are:</p>
+
+<ul>
+
+<li>supportviewscreened - the ability to see other screened responses in requests</li>
+
+<li>supportmakeinternal - the ability to make internal comments in requests</li>
+
+<li>supportviewinternal - the ability to see internal comments in requests</li>
+
+<li>supportmovetouch - the ability to change the category of a request
+and insert a request into or remove a request from the queue</li>
+
+</ul>
+
+<p>
+Interim privs will be explained more fully in the sections on <a
+href="#I1">I1s</a> and <a href="#I2">I2s</a>. They stand for interim
+level one and interim level two. Level one consists of having
+supportviewscreened and supportmakeinternal. Level two consists of
+having all of the interim privs.</p>
+
+<p>Supporthelp is the priv that allows a volunteer to approve screened
+responses as either answers or comments. It also allows the volunteer to
+submit an answer or comment that does not need to be approved, but this
+is rarely used. It is generally reserved for times when the board is
+flooded with requests, such as during technical difficulties, to quickly
+answer numerous requests on the same subject. Another function of the
+supporthelp priv is the ability to change the summary of a request. The
+summary is the text that appears on the Support board describing the
+request. Supporthelps generally help to teach newer volunteers how to
+answer in Support.</p>
+
+<p>Supportclose allows a volunteer to close requests and assign points.
+This priv is generally reserved for Support administrators.</p>
+
+<p>There are also admin privs that allow someone to give privs to other
+people.</p>
+
+<a name="cats" /><?h1 Understanding the Categories h1?>
+
+<p>The following are the public Support categories: clients,
+communities, embedding, general/unknown, syndication, user picture
+icons, and web user interface.</p>
+
+<p>The following are the private Support categories: abuse, account
+payments, feedback, press, privacy, support@, and webmaster.</p>
+
+<p>The public categories are best understood by looking through relevant
+<a href="#comms">communities</a> and Support community memories.</p>
+
+<p>The communities for each category are listed below and an explanation
+of who should read the community and how it should be used can be found
+in the userinfo of each community.</p>
+
+<ul>
+
+<li><strong>Clients:</strong> <?ljcomm support_clients ljcomm?></li>
+
+<li><strong>Communities:</strong> <?ljcomm support_comms ljcomm?></li>
+
+<li><strong>Embedding:</strong> <?ljcomm support_embed ljcomm?></li>
+
+<li><strong>General/Unknown:</strong> <?ljcomm support_general ljcomm?></li>
+
+<li><strong>Style Systems:</strong> <?ljcomm support_ssytems ljcomm?></li>
+
+<li><strong>Syndication:</strong> <?ljcomm support_syn ljcomm?></li>
+
+<li><strong>User Picture Icons:</strong> <?ljcomm support_upi ljcomm?></li>
+
+<li><strong>Web User Interface:</strong> <?ljcomm support_web ljcomm?> and <?ljcomm web_ui ljcomm?></li>
+
+</ul>
+
+<p>
+There is also <?ljcomm howto_userdoc ljcomm?> which supports the <?ljuser howto ljuser?> journal. 
+<?ljuser howto ljuser?> is affiliated with Support, but not a part of
+the Support Board itself.</p>
+
+<p>An explanation of the private categories and how they affect Support
+volunteers is below.</p>
+
+<ul>
+
+<li><em>Abuse</em> - this is the team that handles reported violations
+of the <a href="http://www.livejournal.com/legal/tos.bml">Terms of
+Service</a>. All requests reporting specific journals for suspected
+abuse such as harassment or copyright violations, reporting "hacked"
+journals, asking questions about suspended accounts, asking legal
+questions, or asking about the Terms of Service should be moved to the
+abuse category. Requests from the parents of minors should also
+generally be moved to Abuse as they need more delicate handling. If you
+see an abuse request in Support and do not have the ability to move it,
+check the userinfo for <?ljcomm lj_abuse ljcomm?>.
+Contact people who are members of the community and one of them will
+move it for you, if it is deemed to be abuse-related.</li>
+
+<li><em>Account Payments</em> - this category handles problems with
+account payments. If a user didn't have a payment go through, or had a
+problem with how their payment was processed, it is handled by Accounts.
+Unless the request contains personal information, such as a credit card
+number, it can generally sit on the board until someone with the ability
+to move requests sees it. If it does contain personal information,
+contact a supporthelp priv to move it. You can start by contacting
+category admins, as they generally are around and have LiveJournal email
+addresses that are easy to find. You can use the members list for <?ljcomm lj_supportadmin ljcomm?> 
+as a guide for who can be contacted, but do not email bradfitz about a
+routine Support issue such as a request needing to be moved.</li>
+
+<li><em>Feedback</em> - is not currently being used, but might be used
+at some point to allow people to provide feedback to LiveJournal.</li>
+
+<li><em>Press</em> - handles requests from the press for information. If
+someone wants an interview or quotes from LiveJournal staff members, it
+should be moved to Press. These requests can generally sit on the public
+board until a volunteer capable of moving them sees them.</li>
+
+<li><em>Privacy</em> - handles questions about the LiveJournal privacy
+policy or concerns about LiveJournal sending out spam. These are rarely
+urgent and can sit until moved.</li>
+
+<li><em>Support@</em> - handles junk requests such as duplicates and
+nonsense. For those who can move requests, duplicates should contain an
+internal comment linking to the other request by the user. These
+requests can sit until moved by someone with the privs to do so.
+Support@ also handles forwarding private requests when the category is
+unclear. If you have the ability to move requests and know a request
+should be private, but don't know where it should go, move it to
+support@ with an internal comment asking them to forward it. Support@
+also handles requests that would be on the general board, except they
+contain personal information that must be kept private. These requests
+need to be moved quickly, and if you see one, but do not have the privs
+to move the request, contact a supporthelp as explained in accounts
+category. Finally, support@ handles requests about Support itself. If
+you need to report a complaint or problem with a Support volunteer or
+the Support system, you can open a request in support@. You can also use
+support@ to ask private questions about Support that you don't know
+where to ask. Support@ should be contacted if you wish to leave Support
+and have your Support privs removed.</li>
+
+<li><em>Webmaster</em> - requests about business issues, security holes,
+or the death of a LiveJournal user. Security holes need to be moved off
+the public board immediately; see the Accounts category for details on
+how this is done.</li>
+
+</ul>
+
+<p>
+<strong>Special Note:</strong> Sometimes we get reports that a
+LiveJournal user may be committing suicide. While there is only so much
+that LiveJournal can do in such cases, they need to be handled
+immediately. Sometimes the authorities can be contacted. Abuse can
+handle such issues. The most important thing to do in such cases is to
+make sure it is brought to the attention of the people who can deal with
+it. Please, do not be shy about emailing Abuse volunteers or staff. We
+would rather more people be contacted than necessary than that the
+request be overlooked.</p>
+
+<p>Some requests are unclear about whether they should be public or
+private. In these cases, always err on the side of privacy. A request
+can easily be moved back to the public board. If the request has already
+been moved to a private category and sent back, everyone with the
+ability to move requests will be able to see that.</p>
+
+<p>Also, with requests that should be private, it is even more important
+that you respect the privacy of the requesters, and you are expected not
+to discuss such requests at all. Do not post about them, even to get
+them moved, as this just causes more people to see them. Ideally, all
+private requests would go only to private categories, but when they
+don't, we expect volunteers to act respectfully toward the
+requesters.</p>
+
+<p>For more information on each category you can see <a
+href="http://www.livejournal.com/talkread.bml?journal=lj_support&amp;itemid=310353">this
+post</a>.</p>
+
+<a name="I1" /><?h1 Interim Level One h1?>
+
+<p>After a volunteer has been helping in Support for a while they may be
+given I1, the first interim priv level, in one or more of the Support
+categories. I1 conveys two privileges, supportviewscreened and
+supportmakeinternal.</p>
+
+<p>I1 makes Support a bit easier by allowing a volunteer to focus on
+requests that have not yet been adequately answered. It also includes
+some responsibilities.</p>
+
+<p>I1s are expected to keep screened responses confidential. They can
+see them for their own benefit, so they can concentrate their efforts.
+They should not be discussing these screened responses. If they have
+questions about them, they can either email the category admin(s) for
+the category or bring them up in reviews. If an I1 is part of a
+mentoring program, then they can also ask their mentor.</p>
+
+<p>I1s are expected to understand that not all screened responses are
+good models. Try not to pick up bad habits from other volunteers. If a
+screened response isn't approved, there may be a good reason for that.
+Some volunteers will find that other screened responses offer them a
+better perspective on how ambiguous requests may be interpreted or what
+information might be useful to include.</p>
+
+<p>I1s are expected to use internal comments wisely. While unprivved
+volunteers have the ability to add internal comments as screened
+responses, these internal comments will be labeled as such. They are
+more eye-catching, and volunteers expect them to be important. Interim
+privs should not be commenting about shortcomings in other screened
+responses, what should be approved, or what needs to be in an approved
+answer. But internal comments can be used to share information on
+unusual requests.</p>
+
+<p>The general guideline for internal comments is only post them if
+there is something beyond the routine that you feel other volunteers
+need to know about. Some good examples of internal comment use would be
+linking to related requests by the same user, or linking to Zilla items
+that relate to the request. Another good use would be linking to a
+suggestion that is related to the request. However, don't link to
+standard well-known resources, since most volunteers will already be
+aware of them and it will just add clutter.</p>
+
+<p>Internal comments are expected to be professional. The general
+guideline is that every time you leave an internal comment, you should
+be prepared for what you would tell the user if somehow it became
+visible. If you would not be able to handle that situation, you may want
+to re-think your comment.</p>
+
+<p>Internal comments are not to be used for irrelevant chatter or to
+talk about a user behind his/her back. When you reach I2, you may see
+some internal comments that are humorous. Many of the internal actions
+require some text be left, as such, privs are allowed to leave off-topic
+comments in these cases, but they still must not be offensive.</p>
+
+<p>When you earn your first I1 priv, you will be given access to <?ljcomm support_interim ljcomm?>. 
+This community is a good place to ask questions specific to using
+interim privs.</p>
+
+<a name="I2" /><?h1 Interim Level Two h1?>
+
+<p>By the time you are given interim level two in a category, you
+probably have a great deal of Support experience and a good feel for how
+Support is done. Many volunteers will find themselves at I2 level for
+longer than they were unprivved or I1. This will vary from person to
+person, but it's a common occurrence. Try not to let it frustrate you.
+The step to supporthelp is a difficult one as mistakes made as a
+supporthelp can harm the users. As such, it is given out very carefully.
+We prefer to err on the side of taking longer.</p>
+
+<p>The primary responsibilities of an I2 are to keep the screened
+responses and internal comments confidential, to move requests to their
+proper categories, and to refrain from trying to train new volunteers.
+Training is left to supporthelps, to lessen the chance of people being
+given inaccurate information. While I2s tend to be very advanced and
+knowledgeable volunteers, they are not quite ready to take on
+training.</p>
+
+<p>Since I2s can change the category of requests and touch requests,
+they are expected to do so when appropriate. If a request is in the
+wrong category, the category should be changed first. Always check the
+category of a request before doing anything else with the request.
+Please read over the section on the purpose of each <a
+href="#cats">private category</a>. It is very important that requests
+that should be in private categories get moved into them as quickly as
+possible. Remember, when in doubt, move the request to support@.</p>
+
+<p>To change the category of a request, select "Internal Comment/Action"
+and the new category from the drop down, and include some text. This can
+be as little as <q>.</q> if the change is obvious or a brief note about
+the request if you have anything to say, and then submit.</p>
+
+<p>Touching a request will re-green it and mark it as <q>still needs
+help</q>. To touch a request, select "Internal Comment/Action" and check
+the box to touch a request. Then include some text and submit.</p>
+
+<p>Since I2s can see other internal comments, they can see whether
+something has been pointed out yet or not. As such, they can use
+internal comments a bit more broadly. Useful things to leave internal
+comments about would include the current state of the user's information
+as it relates to the request. For example, if the user is trying to add
+memories, you can leave an <a href="#glossary">IC</a> about how many
+memories the user has. If the user is trying to change the bio, you can
+leave an IC about what the text of the bio currently is. This makes it
+easier to tell when the user has succeeded and the request can be
+closed.</p>
+
+<p>You may see internal comments about things missing in Support answers
+or what is needed in an answer, but you should not make internal
+comments like this until you have the supporthelp priv. If you have made
+it to I2, you definitely have the ability to become a supporthelp priv
+if you keep working.</p>
+
+<a name="tags" /><?h1 Summary Tags h1?>
+
+<p><a href="#glossary">Summary tags</a> can only be added by supporthelp
+privs, but understanding them may prove useful to any volunteer. Summary
+tags are designed such that no one needs to remember them or use them,
+but doing so can save you time and effort. Not all tags are used in all
+categories. A listing of the tags can be found <a
+href="http://www.livejournal.com/community/howtosupport/4158.html">here</a>.</p>
+
+<a name="supporthelp" /><?h1 Being a Supporthelp Priv h1?>
+
+<p>There are many aspects to being a supporthelp priv. In its simplest
+form, you answer and approve things on the board. In reality, most
+supporthelps do much more than that.</p>
+
+<p>Supporthelps have all the obligations of interim privs. They are
+expected to keep private information confidential and to treat all
+volunteers and users with respect. They are required to change the
+category of requests, if necessary, before doing anything else in the
+request. They do not have to handle any request they do not want to,
+even if they know how to, but if they do handle a request they must
+approve an acceptable screened response rather than writing their own if
+an acceptable one is already present.</p>
+
+<p>The abilities of a supporthelp are:</p>
+
+<ul>
+<li>to approve comments (see <a href="#comments">leaving comments</a>)</li>
+<li>to approve answers (see <a href="#approving">approving screened answers</a>)</li>
+<li>to leave answers and comments (rarely used and usually discouraged)</li>
+<li>to change summaries (see <a href="#tags">summary change tags</a>)</li>
+</ul>
+
+<p>Supporthelps are also given membership and the ability to post in <?ljcomm lj_support ljcomm?>.</p>
+
+<p>When you first gain supporthelp, you should look over the Support
+policy memories in <?ljcomm lj_support ljcomm?>. 
+Some of the entries about policies will be friends-only. You will be
+expected to know and follow them. You should receive an e-mail that will
+make this a little easier. The Useful Extra category also has some
+helpful friends-only material.</p>
+
+<p>Many supporthelps will do more than just work on the board.
+Supporthelps may be involved in giving <a href="#reviews">reviews</a>,
+<a href="#mentoring">mentoring</a>, answering questions in the Support
+communities, suggesting good volunteers for privs, bringing up issues
+for discussion, and <a href="#reports">reporting</a> volunteers when
+there are problems. To get involved in these activities, discuss it with
+the relevant category admins.</p>
+
+<p>Remember, if you do a review you should send it to the volunteer and
+cc it to the category admin(s). For most categories you will then also
+be expected to post a summary in the category's community. To find out
+the specifics of your category, ask the admin(s).</p>
+
+<p>If you do decide to mentor someone, please make sure that you keep in
+touch with your mentoree/<a href="#glossary">manatee</a>. If you cannot
+do the reviews yourself, ask someone else to. But it is vital that
+manatees not be ignored. By accepting one, you are stating that you will
+handle this volunteer's questions and reviews. If you do not feel
+capable of doing this, either do not offer to mentor or make special
+arrangements for the parts you can't handle.</p>
+
+<p>As a supporthelp priv you will be expected to serve as a good example
+to the other volunteers. While all volunteers are expected to be
+courteous and respectful, it is more strictly enforced on supporthelps.
+Other volunteers are considered to still be in training, and as such,
+mistakes are more understandable. We do not expect supporthelp privs to
+never make mistakes though. It's perfectly fine if some mistakes happen.
+You may be informed of such mistakes by e-mail, but it doesn't mean
+anyone thinks you're a bad priv. It just means we want you to learn from
+it and improve. Mistakes of fact or policy are completely
+understandable. We simply don't expect supporthelps to make mistakes
+such as leaking confidential information or harassing volunteers or
+requesters.</p>
+
+<p>While we like all volunteers to follow up on the requests they try to
+answer, we especially encourage supporthelp privs to do so. A
+supporthelp priv can see a request through its entire life-cycle, from
+possible commenting, to approval, to potential touching, any necessary
+summary changes, <a href="#glossary">validation nags</a>, and <a
+href="#glossary">closing comments</a>. By following up on requests, you
+learn what information is most important to include, both for answers
+and internal comments.</p>
+
+<p>A validation nag is a follow-up comment that reminds a user of the
+importance of validating. It is used after the request has been sitting
+for a few days (how long may vary by category; check with the admin(s)
+if you intend to leave validation comments) and the account is still not
+validated. The current version of the validation nag will be sent to you
+when you earn supporthelp in the general/unknown category. If you need
+the nag and do not have it, please request a copy. Requests should not
+be given more than one validation nag.</p>
+
+<a name="comments" /><?h1 Leaving Comments h1?>
+
+<p>Comments are used to ask questions or give additional information.
+Comments should only be used when necessary. If a request is ambiguous,
+it does not necessarily need a comment. Whenever possible, an answer
+should simply address all possible interpretations. This is usually
+faster and simpler.</p>
+
+<p>However, sometimes a request will not contain sufficient information
+to resolve it. In these cases a supporthelp should comment requesting
+the additional information.</p>
+
+<p>Comments are also used to correct mistakes. If the approved answer
+neglects to mention something important, a comment can add that
+information. Comments are commonly used in validation nags, as explained
+in the <a href="#supporthelp">supporthelp</a> section.</p>
+
+<a name="approving" /><?h1 Approving Answers h1?>
+
+<p>Deciding which answer to approve is not always easy, and there are no
+firm rules that will always work. However, this section provides some
+basic concepts to make it a little clearer.</p>
+
+<p>Do not approve answers that violate any of the Support policies as
+explained <a href="#rules1">here</a> or <a href="#rules2">here</a>.</p>
+
+<p>Do not approve incoherent or poorly written answers, but in general a
+single typo is okay. If the typo causes the answer to be offensive or
+confusing, then that would make it unapprovable.</p>
+
+<p>If information that is important to the request is in a FAQ included
+in the answer, or in a FAQ linked to from the FAQ included in the
+answer, then that is generally acceptable. However, if it requires
+following links beyond that, it is not reasonable to expect the user to
+find the information and the answer cannot be considered complete.</p>
+
+<p>If an answer is close to approvable, but not quite so, it is
+encouraged for supporthelps to email the volunteer to improve the
+answer. It is never required to do so, but doing so helps both the
+request get answered and the volunteer improve.</p>
+
+<p>If the volunteer is an I2, you can leave an IC stating how you would
+want to see the answer improved. This is generally easier than emailing,
+and will usually result in the volunteer seeing the information and
+correcting the answer.</p>
+
+<p>Supporthelps are expected to approve the first good answer. However,
+if a user re-submits an answer with small improvements whether to count
+that new answer as later or based on the time of the original answer is
+up to the particular supporthelp. As long as you are consistent, it
+should affect all screened volunteers equally and still be fair.</p>
+
+<p>It is good, but not required to leave explanations of why you
+approved what you did. In some cases this will be obvious. If it is, you
+do not need to leave any sort of note. But these notes are helpful both
+to I2s, so they can learn what the standards are, and to other
+supporthelps, so they can answer questions about approval easier. They
+can also save time and effort during reviews.</p>
+
+<a name="reporting" /><?h1 Reporting Volunteers h1?>
+
+<p>Any volunteer may report anyone who they feel is violating Support
+policies, causing problems, or simply making mistakes. All reports
+should be sent to support@livejournal.com. Some volunteers are reluctant
+to report mistakes. Please keep in mind that a report does not mean that
+the volunteer in question will necessarily lose privs or have any other
+action taken. But mistakes need to be reported so that the volunteer can
+be corrected. Most reports will be handled simply with a reminder to the
+volunteer of the correct way to handle the situation. Warnings and
+removal of privs are usually reserved for people who continue to make
+the same mistakes after being informed of what they should be doing.</p>
+
+<p>Particularly good volunteers and Support requests handled
+particularly well should also be pointed out. However, only those with
+supporthelp priv in the relevant category should be pointing out such
+things. These can also be reported to support@livejournal.com. Pointing
+out particularly good volunteers is often most appropriately done in the
+community for that category. By the time you have supporthelp, you
+should know which is appropriate for your category.</p>
+
+<a name="leaving" /><?h1 Leaving Support h1?>
+
+<p>Should you wish to stop volunteering, you can do so at any time. If
+you have privs, you should contact support@livejournal.com to have them
+removed. If you simply go inactive for a long time, you may find that
+your privs have been removed for you. This is not personal; it is simply
+because privs are given to people so that they can perform certain
+tasks. If you stop doing the tasks, you stop needing the privs.</p>
+
+<p>If you wish to re-join Support after a long absence, you should again
+contact support@livejournal.com so that you can be caught up as quickly
+and easily as possible. The <a
+href="http://www.livejournal.com/tools/memories.bml?user=lj_support&amp;keyword=Catching+Up&amp;filter=all">Catching
+Up</a> category of <?ljcomm lj_support ljcomm?>'s
+memories is specifically designed to assist returning volunteers.</p>
+
+<a name="oddities" /><?h1 Support Oddities h1?>
+
+<p>Sometimes weird things happen on the Support board. These can startle
+or disturb volunteers who haven't seen them before. This section
+attempts to list some of the unusual things known to happen from time to
+time.</p>
+
+<a name="time" /><?h2 Negative Time h2?>
+
+<p>Probably the oddest is when Support requests get labeled with
+negative time. Support requests normally show how long ago they were
+opened. Sometimes the clocks desynchronize and cause the requests to be
+labeled with impossible times. This will usually get noticed and fixed
+pretty quickly.</p>
+
+<a name="never" /><?h2 Posted NEVER h2?>
+
+<p>Similarly to negative time, if a request is less than a second old or
+believes it is, it will show up on the Support board as posted
+<q>NEVER</q>. In the normal course of Support, you will see these from
+time to time. It means you happened to catch the request just as it came
+onto the board. It will appear with the correct time at the next
+refresh.</p>
+
+<a name="vanishing" /><h3>Requests Disappearing</h3>
+
+<p>Sometimes you will do something in a request, and then not be able to
+find that request again. It may vanish from both the open and closed
+requests. This generally means it was moved into a private category.
+Usually you won't get points for such requests, but every so often an
+answer given publicly will be used in support@. This means you can get
+points that you then can't find. If a request is moved to a private
+category, you generally will not be told why, as the reason is
+confidential. Requests can also be moved to private categories if
+further issues came up on the request that made it confidential or if
+the request had abuse implications. Similarly, requests can appear on
+the board already several hours or even days old if they came from a
+private category but were able to be handled by the public board.</p>
+
+<a name="collisions" /><h3>Requests with Multiple Answers or
+Comments</h3>
+
+<p>Some requests will have two answers about the same thing or two
+comments doing the same thing. This can be caused in two different ways.
+First, multiple Support answers and comments can happen because of
+technical problems just as multiple entries can. The other, and more
+common, reason is that two different people were trying to work on the
+request at the same time. The screening system keeps most <a
+href="#glossary">collisions</a>, as they are called in Support, from
+happening, but a few still get through. To reduce the chance of
+collisions and to encourage error-checking supporthelp privs are
+encouraged to always post screened first and then approve.</p>
+
+<a name="privrequests" /><h3>Requesters Talking to Themselves</h3>
+
+<p>Sometimes you'll see comments from the user who opened a request that
+look like half of a conversation. They may say that the problem isn't
+something that wasn't brought up yet or add additional information
+without prompting. These requests can look very odd. What they tend to
+be are requests opened by someone with support privs. They are replying
+to screened responses or internal comments that they can see.</p>
+
+<a name="team" /><?h1 Social Aspects of Support h1?>
+
+<p>This section does not contain any information that a volunteer needs
+to know. However, whenever a large group of people work together for a
+while, they will create references that can be rather confusing. This
+section attempts to outline the tangential creations of Support.</p>
+
+<a name="irc" /><h3>#lj_support and IRC</h3>
+
+<p>Several Support volunteers hang out on an Internet Relay Chat (IRC)
+channel. This is not an official channel in any way. It is currently
+located on irc.lazynet.org on the channel #lj_support. It can also be
+found through <a
+href="http://irc.callete.com/">http://irc.callete.com/</a>.
+You can check its current location or ask questions about using IRC in
+<?ljcomm supportlounge ljcomm?>.</p>
+
+<a name="awe" /><h3>Answered With Elegance (AWE)</h3>
+
+<p>Every so often a list of particularly well-answered requests is
+posted to <?ljcomm supportlounge ljcomm?>. Any supporthelp priv may 
+submit a request to be included in <a href="#glossary">AWE</a> 
+unless they answered the request themselves.</p>
+
+<a name="bunnies" /><h3>Support Bunnies</h3>
+
+<p>Like many other things in this section, there is really no good
+reason for Support bunnies. One volunteer, <?ljuser emmavescence ljuser?>, 
+once answered a request quickly, and the requester came back and said
+that she was "quick like bunneh". It spread when one volunteer, <?ljuser mullenkamp ljuser?>, 
+created a cute bunny moodtheme. Then several people edited their icons
+to also include that bunny. The bunny became a sort of mascot of the
+Support team. Now many volunteers have user pictures that include one or
+more bunnies. When someone answers requests quickly, they are said to be
+"bunnies" or "bunnehs", and "bunnying" is when someone always answers a
+request a few seconds before you.</p>
+
+<a name="calico" /><h3>Support Cats</h3>
+
+<p>The cat is a natural mascot for the categories, because the word
+"category" is often shortened to "cat". While the exact type of cats
+that represent each category is not currently known, general/unknown is
+a calico cat.</p>
+
+<a name="chinchillas" /><h3>Chinchillas</h3>
+
+<p>One volunteer, <?ljuser leora ljuser?>, 
+became very interested in having a pet chinchilla. Somehow it worked its
+way into posts and comments enough that many people started making
+references to chinchillas. The user picture for <?ljuser privchange ljuser?>
+is at the time of this writing, a chinchilla. Her name is Koala! and the
+exclamation mark is part of her name.</p>
+
+<a name="toast" /><h3>The French Toast Support Category</h3>
+
+<p>This is purely a joke. Before category admins had the ability to add
+and remove privs directly, they would post what changes they want to
+<?ljcomm lj_supportadmin ljcomm?> and <?ljuser jproulx ljuser?>
+would then make them. <?ljuser leora ljuser?>
+included in a normal batch of priv changes that she should be given
+"SuperGodlyPowerOverAllBowBeforeMeMereMortalsAndFeedMeFrenchToast" priv.
+<?ljuser jproulx ljuser?> added supporthelp in FrenchToast to her privs to play along. The priv
+doesn't do anything and the category does not actually exist, although
+there have been some discussions about the best way to make french toast
+and some user pictures of french toast spawned from this.</p>
+
+<a name="links" /><?h1 Useful Links h1?>
+
+<p>There are many links that you may find helpful, both for your own
+reference and to refer to in Support requests. However, before
+referencing any link, you should always check that the link currently
+works and contains the expected information. Some of these links aren't
+official; they are included because volunteers find them helpful.</p>
+
+<ul>
+<li><strong>American Registry for Internet Numbers search:</strong> <a
+href="http://www.arin.net/whois/index.html">http://www.arin.net/whois/index.html</a></li>
+<li><strong>Banners:</strong> <a
+href="http://www.livejournal.com/banners.bml">
+http://www.livejournal.com/banners.bml</a></li>
+<li><strong>Birthdays:</strong> <a
+href="http://www.livejournal.com/birthdays.bml">http://www.livejournal.com/birthdays.bml</a></li>
+<li><strong>Buy for Friends:</strong> <a
+href="http://www.livejournal.com/paidaccounts/friends.bml
+">http://www.livejournal.com/paidaccounts/friends.bml</a></li>
+<li><strong>Cluster Checker:</strong> <a
+href="http://www.livejournal.com/misc/whereami.bml">http://www.livejournal.com/misc/whereami.bml</a></li>
+<li><strong>Color Code Guide:</strong> <a
+href="http://goathack.livejournal.org:8055/docs/color_codes.html">http://goathack.livejournal.org:8055/docs/color_codes.html</a></li>
+<li><strong>Color Usage Guide:</strong> <a
+href="http://www.livejournal.com/users/howto/26423.html">http://www.livejournal.com/users/howto/26423.html</a></li>
+<li><strong>Communities Reference:</strong> <a
+href="http://www.kekkai.org/communities/">http://www.kekkai.org/communities/</a></li>
+<li><strong>Console:</strong> <a
+href="http://www.livejournal.com/admin/console/">http://www.livejournalcom/admin/console/</a></li>
+<li><strong>Console Reference:</strong> <a
+href="http://www.livejournal.com/admin/console/reference.bml">http://www.livejournal.com/admin/console/reference.bml</a></li>
+<li><strong>CVS Repository:</strong> <a
+href="http://cvs.livejournal.org">
+http://cvs.livejournal.org</a></li>
+<li><strong>Debugging Page:</strong> <a
+href="http://www.livejournal.com/misc/debug.bml">http://www.livejournalcom/misc/debug.bml</a></li>
+<li><strong>Documentation Index:</strong> <a
+href="http://home.att.net/~tribelessnomad/lj_support/docindex.htm">http://home.att.net/~tribelessnomad/lj_support/docindex.htm</a></li>
+<li><strong><?ljuser howto ljuser?>'s memory page:</strong> <a
+href="http://www.livejournal.com/tools/memories.bml?user=howto">http://www.livejournal.com/tools/memories.bml?user=howto</a></li>
+<li><strong>IRC Interface:</strong> <a
+href="http://www.callete.com/ljsupport/irc.cgi">http://www.callete.com/ljsupport/irc.cgi</a></li>
+<li><strong>Live Mode:</strong> <a
+href="http://www.livejournal.com/users/exampleusername/friends?mode=live">http://www.livejournal.com/users/exampleusername/friends?mode=live</a></li>
+<li><strong>Meme Page:</strong> <a
+href="http://www.livejournal.com/meme.bml">http://www.livejournal.com/meme.bml</a></li>
+<li><strong>Mood List:</strong> <a
+href="http://www.livejournal.com/moodlist.bml">http://www.livejournal.com/moodlist.bml</a></li>
+<li><strong>News Link for Friending:</strong> <a
+href="http://www.livejournal.com/friends/add.bml?user=news">http://www.livejournal.com/friends/add.bml?user=news</a></li>
+<li><strong>News Page:</strong> <a
+href="http://www.livejournal.com/news.bml">http://www.livejournal.com/news.bml</a></li>
+<li><strong>Popular With Friends:</strong> <a
+href="http://www.livejournal.com/friends/popwithfriends.bml">http://wwwlivejournal.com/friends/popwithfriends.bml</a></li>
+<li><strong>Portal:</strong> <a
+href="http://www.livejournal.com/portal/">http://www.livejournal.com/portal/</a></li>
+<li><strong>Priv Lookup:</strong> <a
+href="http://www.livejournal.com/admin/priv/">http://www.livejournal.com/admin/priv/</a>, <a
+href="http://goathack.livejournal.org:8038/supportprivs.html">http://goathack.livejournal.org:8038/supportprivs.html</a></li>
+<li><strong>Similar Users</strong>: <a
+href="http://www.livejournal.com/interests.bml?mode=findsim">http://www.livejournal.com/interests.bml?mode=findsim</a></li>
+<li><strong>Site Scheme Selection:</strong> <a
+href="http://www.livejournal.com/setscheme.bml">http://www.livejournal.com/setscheme.bml</a></li>
+<li><strong>Statistics:</strong> <a
+href="http://www.livejournal.com/stats.bml">http://www.livejournal.com/stats.bml</a></li>
+<li><strong>Status:</strong> <a
+href="http://status.livejournal.org/">http://status.livejournal.org/</a></li>
+<li><strong>Style Browser:</strong> <a
+href="http://www.livejournal.com/styles/browse/">http://www.livejournalcom/styles/browse/</a></li>
+<li><strong>Style System Reference:</strong> <a
+href="http://www.livejournal.com/developer/styles.bml">http://www.livejournal.com/developer/styles.bml</a></li>
+<li><strong>Suggestions</strong>: <a
+href="http://www.livejournal.com/suggestions/">http://www.livejournal.com/suggestions/</a></li>
+<li><strong>Suicide Crisis Handling:</strong> <a
+href="http://www.livejournal.com/community/lj_support/38232.html">http://www.livejournal.com/community/lj_support/38232.html</a></li>
+<li><strong>Terms of Service:</strong> <a
+href="http://www.livejournal.com/legal/tos.bml">http://www.livejournal.com/legal/tos.bml</a></li>
+<li><strong>Useful LJ Memories:</strong> <a
+href="http://www.livejournal.com/memories.bml?user=bookmarklj">http://www.livejournal.com/memories.bml?user=bookmarklj</a></li>
+<li><strong>Variable List:</strong> <a
+href="http://www.livejournal.com/developer/varlist.bml">http://www.livejournal.com/developer/varlist.bml</a></li>
+<li><strong>Zilla:</strong> <a
+href="http://zilla.livejournal.org/">http://zilla.livejournal.org/</a></li>
+</ul>
+
+<a name="glossary" /><?h1 Glossary of Support Terms h1?>
+
+<p>Support has a lot of terms and abbreviations that volunteers will use
+without thinking. This can be confusing to new volunteers. In an attempt
+to make it clearer, here is a glossary of many of the terms used. Some
+of these are directly related to Support, others simply tend to come up
+in conversation with Support volunteers or in Support posts or comments.
+Some of these are terms that are used elsewhere, but since we get
+questions about them, they are included.</p>
+
+<dl>
+<dt>admin</dt>
+<dd>Someone in an administrative role. The meaning of this word can be
+fuzzy. Sometimes people only refer to staff (employees of LiveJournal)
+as LiveJournal admins. Others refer to the category administrators as
+admins. Basically, it's just someone in an official leadership position,
+and the specifics vary.</dd>
+<dt>approve</dt>
+<dd>The act of turning a screened response into an answer or comment
+that the user will see. Privs approve answers and comments in
+requests.</dd>
+<dt>AWE</dt>
+<dd>Answered With Elegance - a posting of particularly well-answered
+requests in <?ljcomm supportlounge ljcomm?>
+to share with all of the volunteers. AWE posts are made
+irregularly.</dd>
+<dt>BAR</dt>
+<dd>This is a variable, like FOO is. It is used to represent that
+something gets filled in where it is used. FOO and BAR are the most
+commonly used, although others you may see are BAZ, QUX, GIN, and
+TONIC.</dd>
+<dt>bastard freaky</dt>
+<dd>An unusual request that can't be solved through the normal means and
+requires special attention and investigation.</dd>
+<dt>BBB</dt>
+<dd>Big Blue Box - for a long time the box of known issues was blue.
+People are likely to still refer to it this way even though the color
+has changed. At the time of this writing, it is yellow, but it may
+change again. Some people are now calling it the Big Bright Box.</dd>
+<dt>BYB</dt>
+<dd>Big Yellow Box - another name for the known issues box.</dd>
+<dt>canned answer</dt>
+<dd>A saved answer to a common request that is reused. These need to be
+modified to fit the particular request if the request is somehow
+different. A good volunteer knows when to edit a canned answer.</dd>
+<dt>category admin</dt>
+<dd>Someone who oversees one of the Support <a
+href="#cats">categories</a>. Category Admins are usually the best
+contacts for information about their categories.</dd>
+<dt>cats</dt>
+<dd>While Support volunteers will sometimes discuss felines, this
+usually is referring to the public Support <a
+href="#cats">categories</a>. People will ask a question like, <q>What
+cat is it in?</q></dd>
+<dt>close faery</dt>
+<dd>This refers to anyone with the ability to close requests and assign
+points who has been actively closing the board. When closing isn't done
+regularly, it causes volunteers to get a large increase in points in a
+short time. Some volunteers refer to these points as coming from the
+close faery.</dd>
+<dt>closing comments</dt>
+<dd>This refers to going through requests and researching whether they
+are ready to be closed. Often internal comments are left pointing to
+evidence of the user having been helped. The name comes from before the
+ability to make summary changes, when all such requests needed comments
+to mark them as ready to be closed.</dd>
+<dt>collision</dt>
+<dd>When two supporthelps act at around the same time as each other,
+they can cause multiple comments/answers to go through. These are
+referred to as collisions. When multiple people comment answering the
+same question in a community, it is also referred to as a collision.
+Basically, a collision is any time that two or more people, by trying to
+be helpful, end up with a slightly less desirable effect.</dd>
+<dt>comms</dt>
+<dd>Short for communities. Usually used when referring to the
+communities Support category.</dd>
+<dt>cust</dt>
+<dd>Short for customization. Customization used to be a Support category
+and is still closely tied to Support.</dd>
+<dt>custy gunk</dt>
+<dd>Requests in the general/unknown category that would have been in the
+customization category when it existed.</dd>
+<dt>degreening</dt>
+<dd>The act of approving answers so that the requests turn from green to
+yellow.</dd>
+<dt>disclaimer</dt>
+<dd>A string of text in a Support answer used to warn a user about an
+issue. There are a few more or less standard disclaimers needed for
+certain types of requests. An example would be that links to external
+site requires a disclaimer about it not being affiliated with
+LiveJournal.</dd>
+<dt>filters</dt>
+<dd>While this often will refer to things like custom friends groups or
+email filters, it can be used to refer to filtering the Support Board.
+Above the requests at <a
+href="http://www.livejournal.com/support/help.bml">the Support board</a>
+are two drop down menus that let you see the Support board with only
+requests that meet certain criteria visible.</dd>
+<dt>FOO</dt>
+<dd>This is a variable. For more information see BAR.</dd>
+<dt>IANASH</dt>
+<dd>I Am Not A SupportHelp. Used to explain why the person is only
+answering part of a question. Only supporthelp privs can answer specific
+questions about requests.</dd>
+<dt>IC</dt>
+<dd>Internal Comment.</dd>
+<dt>interim priv</dt>
+<dd>Someone with some or all of the <a href="#privs">interim privs</a>
+or a referral to one of the privs. Such as, WonderfulVolunteer is now an
+interim priv, because she just got two interim privs.</dd>
+<dt>je</dt>
+<dd>A single person gender neutral pronoun. Its object form is jer. An
+example would be: <q>Je didn't explain what further help je needed. Jer
+comments were very confusing.</q></dd>
+<dt>manatee</dt>
+<dd>Someone who is being <a href="mentoring">mentored</a>. Mentoree and
+manatee sound similar, so the more amusing form stuck.</dd>
+<dt>mentor</dt>
+<dd>Someone who is helping to train a manatee. A manatee can go to jer
+<a href="mentoring">mentor</a> to ask various Support related
+questions.</dd>
+<dt>PAF/Paid Accout Faery</dt>
+<dd>Sometimes long-time support volunteers find that they randomly have
+more paid time than they used to, or suddenly have a paid account. The
+Paid Account Faery lurks around the edges of the support board, looking
+for people to gift with paid time.</dd>
+<dt>priv faery</dt>
+<dd>Similar to the close faery, someone who grants a volunteer
+privs.</dd>
+<dt>screened</dt>
+<dd>Refers to answers or comments that cannot yet be seen by the user.
+<q>Screened people</q> can also be used to refer to volunteers with no
+supporthelps privs.</dd>
+<dt>snerk</dt>
+<dd>A cross between a snicker, a sneer, and a smirk; the amount of each
+can vary.</dd>
+<dt>summary tag</dt>
+<dd>A string of text put in the summary of a request to allow some
+information to be viewable from the main Support board. See the section
+on <a href="#tags">summary tags</a>.</dd>
+<dt>validation nag</dt>
+<dd>A comment left on a request to remind the user to validate jer
+account.</dd>
+<dt>whomp</dt>
+<dd>Refers to handling users who need to be told that they are somehow
+taking advantage of the Support system. Repeat abusers are said to be
+whomped. The whomping is traditionally done with a whompy thing. When
+large numbers of requests are handled in a small span of time, they may
+also be said to be whomped regardless of what kind of requests they
+are.</dd>
+<dt>YASC</dt>
+<dd>Yet Another Support Community. There are rather a lot and when new
+ones are made people will sometimes use this acronym.</dd>
+<dt>YAUIC</dt>
+<dd>Yet Another Useless Invite Code. Many volunteers have far more
+invite codes than they could ever use, so when they earn more they may
+refer to them as YAUIC.</dd>
+<dt>Zilla</dt>
+<dd>LiveJournal's Bugzilla server. This is where bugs are reported and
+proposed improvements are worked on. A Zilla item refers to a specific
+bug or change under discussion on the Zilla server. See <a
+href="#links">Useful Links</a> for the URL.</dd>
+</dl>
+<=body
+page?>

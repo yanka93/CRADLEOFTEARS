@@ -1,0 +1,250 @@
+<?page
+title=>LiveJournal Banners
+
+body<=
+
+<?_code
+    LJ::set_active_crumb('banners');
+_code?>
+
+<?h1 Help <?sitename?>! h1?>
+<?p
+Help spread the word about how cool <?sitename?> is by placing one of these banners on your website!  The HTML is below, all you have to do is copy & paste into your HTML...
+p?>
+
+<?hr?>
+
+<?bh Sexy Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner1.gif" WIDTH=468 
+HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG
+SRC="<?imgprefix?>/LJbanner1.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Elegant Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner2.gif" WIDTH=468 
+HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner2.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Captivating Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner3.gif" WIDTH=468 
+HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner3.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Impacting Society Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner4.gif" WIDTH=468 
+HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner4.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Narcissicm Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner5.gif" WIDTH=468 
+HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner5.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Goat Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner6.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner6.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Informational Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner7.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner7.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Business Ethics Banner (or, We-Don't-Crash-Twice-Daily Banner) bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner8.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner8.gif"
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Another Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner9.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner9.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+
+<?bh Metal Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner_metal.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner_metal.gif"
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh Pastel Banner bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner_pastel.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/LJbanner_pastel.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+<?bh FireBindy1 bh?>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/banners/firebindy1.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out <?sitename?>!  It's Free!</A>
+</CENTER>
+
+<FONT COLOR=#0000FF><B><XMP>
+<CENTER>
+<A HREF="<?siteroot?>/"><IMG 
+SRC="<?imgprefix?>/banners/firebindy1.gif" 
+ WIDTH=468 HEIGHT=60 BORDER=0></A><BR>
+<A HREF="<?siteroot?>">Check out 
+<?sitename?>!  It's Free!</A>
+</CENTER>
+</XMP></B></FONT>
+<P>
+
+
+</CENTER>
+
+<=body
+page?>

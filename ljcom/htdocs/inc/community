@@ -1,0 +1,56 @@
+<?h1 Welcome! h1?>
+<?p
+Welcome to the LiveJournal Community Center. This is the place to find out how and where to interact with your fellow LiveJournal addicts! LiveJournal isn't only a a great place for keeping a journal – it's a place where people meet, interact, share common interests, and have a good time. Here are some of our community features to keep you informed and in touch. 
+p?>
+
+<?h1 New? h1?>
+<?p
+Are you new to LiveJournal and don't know quite what to do yet? Then you'll want to head over to <a href="/community/newbies"><strong>The 'Newbies' Lounge</strong></a>, where you'll find answers to many of the questions you may have. Visit <?ljcomm newbies ljcomm?>, explore a bit, and you'll be a pro in no time at all! 
+p?>
+
+<?h1 Stay informed! h1?>
+<?p
+Stay informed of what's going on in LiveJournal. There are a number of official LiveJournal communities you may wish to browse. The following two are particularly useful.
+<br /><br />
+Add <?ljuser news ljuser?> to your friends page to keep up with events and issues that are relevant to the entire LiveJournal community.<br />
+Add <?ljcomm lj_maintenance ljcomm?> to your friends page to be informed when downtime is planned, and reports on unplanned interruptions of service. 
+p?>
+
+<?h1 Chat! h1?>
+<?p
+LiveJournal users chat up a storm. Many of them use popular instant messengers, including <a href="http://www.aim.com/index.adp"><strong>AIM</strong></a>, <a href="http://web.icq.com/"><strong>ICQ</strong></a>, <a href="http://messenger.yahoo.com/"><strong>Yahoo!</strong></a>, <a href="http://messenger.msn.com/"><strong>MSN</strong></a>, or <a href="http://www.jabber.org/"><strong>Jabber</strong></a> instant messengers. If you do, be sure to list it in your <a href="/editinfo.bml"><strong>personal info settings</strong></a>. If you have a <a href="/paidaccounts/"><strong>Paid Account</strong></a>, you can also enable your cell phone or pager to <a href="/support/faqbrowse.bml?faqid=30"><strong>receive text messages</strong></a>. 
+p?>
+
+<?h1 Volunteer! h1?>
+<?p
+Don't be shy! Help out! The best way to help out is by purchasing a <a href="/paidaccounts/"><strong>Paid Account</strong></a>. There are, of course, loads of other ways you help out.
+<br /><br />
+LiveJournal is an Open Source project; if you have experience with programming languages or server side applications you can check out the <strong>LiveJournal Development Community</strong>, <?ljcomm lj_dev ljcomm?>. If you have ideas about how LiveJournal could be better, check out the <strong>LiveJournal Suggestions Area</strong>, <?ljcomm suggestions ljcomm?>. If you would like to help with just about anything, visit the <strong>LiveJournal Business Community</strong>, <?ljcomm lj_biz ljcomm?>. If you like helping people, visit our technical support center and help someone out. If you are savy with graphic design, check out the <strong>LiveJournal Art Community</strong>, <?ljcomm lj_art ljcomm?>. 
+p?>
+
+<?h1 What is a Community? h1?>
+<?p
+A community is basically a journal run by a member of LiveJournal for people with common interests. Communities are free to use and create... anyone can have them, and they're easy to set up, too! LiveJournal Communities cover topics from <a href="/community/anime/"><strong>Anime</strong></a> to <a href="/community/zen_within/"><strong>Zen Buddhism</strong></a>, from <a href="/community/astronomy/"><strong>Astronomy</strong></a> to <a href="/community/invader_zim/"><strong>Zim</strong></a>.  You'll also find regional communities for places all around the world. There's probably a LiveJournal community for where you live too! 
+p?>
+
+<?h1 How do I create my own Community? h1?>
+<?p
+There is a <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>FAQ</strong></a> that will explain how to create your very own community.  There are also two FAQ Categories (<a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>General Community FAQs</strong></a> and <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong>Community Management FAQs</strong></a>) covering just about everything you'll ever need to know about communities.  If you still need more information, feel free to <a href="http://www.livejournal.com/support/submit.bml"><strong>submit a support request</strong></a>.
+p?>
+
+<?h1 How do I find other Communities? h1?>
+<?p
+You can search <a href="/interests.bml"><strong>by interest</strong></a>! If the interest you search under is listed by 1000 or more users, the results returned to you will be limited, so try to define your search. The more specific you can be when searching, the more chance you have of finding just the right community for you!
+<br /><br />
+There are two official LiveJournal Communities specifically created to help you find the community you're looking for. 
+
+<ul>
+<li><strong>Check out the Promotions Community (<?ljcomm community_promo ljcomm?>)</strong></li>
+<li><strong>Check out the Search Community (<?ljcomm community_quest ljcomm?>)</strong></li>
+</ul>
+p?>
+
+<?p
+Notice something you think is missing?<br />
+E-mail <a href="mailto:jproulx-(a)-livejournal-dot-com">Jesse Proulx</a>, (<?ljuser jproulx ljuser?>) the Community Director.
+p?>

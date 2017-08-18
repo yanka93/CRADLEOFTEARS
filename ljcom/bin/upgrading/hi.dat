@@ -1,0 +1,1107 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=यही वह जगह है जहाँ पर आप लेखा रद्द कर सकते हैं या रद्द लेखा वापिस ला सकते हैं। किसी लेखा रद्द करने के बाद 30 दिन के अन्दर अन्दर ही आप उसे वापस ला सकते हैं। 30 दिन के बाद लेखा प्रणाली से पूरी तरह गायब हो जाएगा, और किसी भी तरीके से वापिस न आ पाएगा।
+
+/accountstatus.bml.journalstatus.head=लेखा सक्रियन स्थिति
+
+/accountstatus.bml.journalstatus.select.activated=सक्रिय
+
+/accountstatus.bml.journalstatus.select.deleted=रद्द
+
+/accountstatus.bml.journalstatus.select.head=स्थिति:
+
+/accountstatus.bml.journalstatus.select.suspended=लम्बित
+
+/accountstatus.bml.title=खाते की स्थिति
+
+/allpics.bml.current=मौजूदा छवियाँ
+
+/allpics.bml.default=<u>मूल</u>
+
+/allpics.bml.edit2=आप अपने  <a href='[[editlink]]'>चित्र के कुञ्जीशब्द सम्पादित</a> कर सकते हैं या <a href='[[uploadlink]]'>नया चित्र चढ़ा सकते हैं</a>।
+
+/allpics.bml.error.noparam=आपको प्रयोक्ता का कोई मान प्रविष्ट करना होगा।
+
+/allpics.bml.keywords=कुञ्जीशब्द:
+
+/allpics.bml.nopics.text.other=इस प्रयोक्ता ने कोई छवियाँ नहीं चढ़ाई हैं।
+
+/allpics.bml.nopics.text2=आपने कोई छवियाँ नहीं चढ़ाई हैं। चढ़ाने के लिए <a href='[[link]]'>यहाँ</a> जाएँ।
+
+/allpics.bml.nopics.title=कोई छवियाँ नहीं
+
+/allpics.bml.pics=[[user]] की प्रयोक्ता छवियाँ यहाँ हैं।
+
+/allpics.bml.title=प्रयोक्ता छवियाँ
+
+/changepassword.bml.btn.proceed=आगे बढ़ें
+
+/changepassword.bml.changepassword.header=प्रवेश शब्द बदलें
+
+/changepassword.bml.changepassword.instructions=प्रवेश शब्द बदलने के लिए निम्नोक्त पर्चा भरें। अच्छा प्रवेश शब्द चुनने और अपने खाते को सुरक्षित रखेन के बारे में जानकारी के लिए <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71"> इस सवाल जवाब</a> को देखें।
+
+/changepassword.bml.email.body<<
+[[sitename]] में आपका प्रवेश शब्द परिवर्तित कर दिया गया है। 
+
+भविष्य में गुम हो जाने पर इसे प्राप्त करने के लिए 
+
+[[siteroot]]/lostinfo.bml
+
+पर जाएँ
+
+सविनय,
+
+[[sitename]] दल
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=प्रवेश शब्द परिवर्तन
+
+/changepassword.bml.error.badcheck=नया प्रवेश शब्द अनुचित: [[error]]
+
+/changepassword.bml.error.badnewpassword=नए प्रवेश शब्द की पुष्टि के लिए प्रविष्टि, प्रवेश शब्द से मेल नहीं खाती। सम्भव है टङ्कन में कोई त्रुटि हो। कृपया नए प्रवेश शब्द को पुनः टङ्किक करें और पुनः पुष्टि करें।
+
+/changepassword.bml.error.badoldpassword=आपका पुराना प्रवेश शब्द सही नहीं है।
+
+/changepassword.bml.error.blankpassword=आपका नया प्रवेश शब्द खाली नहीं हो सकता।
+
+/changepassword.bml.error.changetestaccount=परीक्षण खाते का प्रवेश शब्द परिवर्तन निषिद्ध है।
+
+/changepassword.bml.error.characterlimit=प्रवेश  शब्द 30 अक्षर से कम के ही हो सकते हैं।
+
+/changepassword.bml.error.invaliduser=अवैध प्रयोक्ता  <B>[[user]]</B>। यह प्रयोक्ता मौजूद नहीं है। क्या आपने सही टङ्कन किया है?
+
+/changepassword.bml.error.mustenterusername=अपना प्रयोक्ता नाम प्रविष्ट करें।
+
+/changepassword.bml.error.nonascii=प्रवेश शब्द में केवल ऍस्की अक्षर हो सकते हैं। कृपया ऍसा प्रवेश शब्द चुनें जिसमें ऍस्की के अलावा अन्य अक्षर न हों।
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=अपने मौजूदा वैपत्रिक पते की पुष्टि होने के बाद ही आप अपना प्रवेश शब्द बदल पाएँगे।
+
+/changepassword.bml.newpassword=नया प्रवेश शब्द:
+
+/changepassword.bml.newpasswordagain=नया प्रवेश शब्द (पुनः):
+
+/changepassword.bml.oldpassword=पुराना प्रवेश शब्द:
+
+/changepassword.bml.proceed.instructions=प्रवेश शब्द बदलने के लिए नीचे दी कुञ्जी दबाएँ। आपको प्रवेश शब्द परिवर्तन सम्बन्धी डाक मिलेगी।
+
+/changepassword.bml.success.text=आपका प्रवेश शब्द परिवर्तित हो चुका है, तथा आपको इससे सम्बन्धित डाक भी भेजी जा चुकी है।
+
+/changepassword.bml.title=प्रवेश शब्द बदलें
+
+/community/index.bml.main<<
+<?h1 स्वागतम्! h1?>
+<?p
+लाइव्जर्नल सामुदायिक केन्द्र में आपका स्वागत है। लाइव्जर्नल का चस्का लगे अन्य साथियों से कैसे और कहाँ घुलें मिलें, यह आपको यहीं पता लगेगा! लाइव्जर्नल लेखा बनाने के लिए बढ़िया जगह तो है ही, साथ ही यहाँ लोग मिलते हैं, आपस में चर्चा करते हैं, आपसी दिलचस्पियों को आगे बढ़ाते हैं, और मज़े करते हैं। आपकी जानकारी बढ़ाने के लिए और एक दूसरे से सम्पर्क में रहने के लिए यह हैं समुदाय की कुछ विशेषताएँ।
+p?>
+
+<?h1 नौसिखिये? h1?>
+<?p
+
+क्या आप लाइव्जर्नल में नए हैं, समझ नहीं आ रहा कि अब क्या करें? तो फिर 
+ <a href="/community/newbies"><strong>'नौसिखियों' की बैठक</strong></a> में जाएँ, जहाँ आपको अपने कई सवालों के जवाब मिलेंगे। <?ljcomm newbies ljcomm?>, में जाएँ, थोड़ी खोज करें, और कुछ ही समय में आप अभ्यस्त हो जाएँगे!
+p?>
+
+<?h1 जानकारी प्राप्त करते रहें! h1?>
+<?p
+लाइव्जर्नल में क्या चल रहा है, पूरी जानकारी रखें। कई अधिकारिक लाइव्जर्नल समुदाय हैं जो कि आप देखना चाहेंगे। निम्नोक्त काफ़ी काम के हैं।
+<br /><br />
+<?ljuser news ljuser?> को अपने मित्र पृष्ठों में जोड़ें, ताकि पूर्ण लाइव्जर्नल समुदाय से सम्बद्ध मुद्दों और समारोहों की आपको पूरी जानकारी रहे।<br />
+<?ljcomm lj_maintenance ljcomm?> को अपने मित्र पृष्ठों में जोड़ें, ताकि आपको पता रहे कि यह सेवा मरम्मत आदि के लिए बन्द रहेगी, साथ ही आपको इस सेवा की अपुनर्नियोजित रुकावटों का लेखा जोखा भी मिलता रहेगा।
+p?>
+
+<?h1 गपशप! h1?>
+<?p
+लाइव्जर्नल प्रयोक्ता दनादन गपशप करते हैं। कई प्रयोक्ता <a href="http://www.aim.com/index.adp"><strong>एम</strong></a>, <a href="http://web.icq.com/"><strong>आईसीक्यू</strong></a>, <a href="http://messenger.yahoo.com/"><strong>याहू!</strong></a>, <a href="http://messenger.msn.com/"><strong>ऍम ऍस ऍन</strong></a>, या <a href="http://www.jabber.org/"><strong>जॅबर</strong></a> जैसे लोकप्रिय द्रुत सन्देशवाहकों का प्रयोग करते हैं। यदि आप भी करते हों, तो अपनी
+ <a href="/editinfo.bml"><strong>व्यक्तिगत जानकारी जमाव</strong></a> इसे उल्लिखित करना न भूलें। यदि आपका <a href="/paidaccounts/"><strong>शुल्कदत्त खाता</strong></a> है, तो आप अपने सॅल फ़ोन या पेजर पर <a href="/support/faqbrowse.bml?faqid=30"><strong>पाठ्य सन्देश प्राप्त </strong></a> करने की सुविधा भी लागू कर सकते हैं।
+p?>
+
+<?h1 स्वयंसेवा! h1?>
+<?p
+शर्माएँ नहीं! मदद करें! मदद करने का सबसे अच्छा तरीका है
+ <a href="/paidaccounts/"><strong>शुल्कदत्त खाता</strong></a> लेना। हाँ इसके अलावा, और भी कई तरीके हैं सहायता करने के।
+<br /><br />
+लाइव्जर्नल मुक्त स्रोत परियोजना है; यदि आपको प्रोग्रामिङ्ग भाषाओं या सेवक ऍप्लिकेशनों का अनुभव है तो <strong>लाइव्जर्नल निर्माण समुदाय</strong>, <?ljcomm lj_dev ljcomm?> पर एक नज़र डालें। यदि आपके पास कोई सुझाव है, लाइव्जर्नल को सुधारने के लिए, तो <strong>लाइव्जर्नल सुझाव क्षेत्र</strong> <?ljcomm suggestions ljcomm?> को देखें। यदि आप किसी भी चीज़ के बारे में मदद करना चाहते हैं, तो <strong>लाइव्जर्नल व्यवसाय सुमदाय</strong>, <?ljcomm lj_biz ljcomm?> को देखें। 
+यदि आपको लोगों की मदद करना अच्छा लगता है, तो हमारे तकनीकी सहायता केन्द्र में जा कर किसी की मदद करें। यदि आपकी चैत्रिक कला में अभिरुचि है, तो  <strong>लाइव्जर्नल कला समुदाय</strong>, <?ljcomm lj_art ljcomm?> पर एक नज़र डालें।
+p?>
+
+<?h1 समुदाय क्या है? h1?>
+<?p
+समुदाय है मूलतः किसी ख़ास विषय में दिलचस्पी रखने वाले लोगों के लिए, लाइव्जर्नल के  किसी सदस्य द्वारा चलाया गया एक लेखा। समुदायों का निर्माण और प्रयोग निःशुल्क है.. कोई भी समुदाय बना सकता है, और इनका जमाव भी आसान है! लाइव्जर्नल समुदायों के विषय  <a href="/community/anime/"><strong>ऍनिम</strong></a> से ले के <a href="/community/zen_within/"><strong>ज़ॅन बौद्धों </strong></a>, तक, <a href="/community/astronomy/"><strong>खगोलशास्त्र</strong></a> से <a href="/community/invader_zim/"><strong>ज़िम</strong></a> तक फैले हुए हैं। 
+आपको दुनिया भर के हर क्षेत्र के क्षेत्रीय समुदाय भी मिलेंगे। सम्भव है कि आपके निवास स्थान से सम्बन्धित समुदाय भी यहाँ मौजूद हो!
+p?>
+
+<?h1 अपना समुदाय कैसे बनाएँ? h1?>
+<?p
+यह <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>सवाल जवाब</strong></a> 
+आपको इस काम में मदद करेगा। साथ ही दो और तरह के सवाल जवाब हैं, (<a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>आम समुदाय सम्बन्धी सवाल जवाब</strong></a> व <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong>समुदाय प्रबन्धन सम्बन्धी सवाल जवाब</strong></a>) जिनमें सभी जानकारी उपलब्ध है। यदि आपको फिर भी और जानकारी की ज़रूरत महसूस होती है, तो <a href="http://www.livejournal.com/support/submit.bml"><strong>सहायता अनुरोध जमा करने से न हिचकें</strong></a>।
+p?>
+
+<?h1 और समुदाय कैसे खोजें? h1?>
+<?p
+फ़िलहाल दो अधिकारिक लाइव्जर्नल समुदाय आपको इस काम में मदद करने के लिए ही बनाई गई हैं।
+p?>
+
+<ul>
+<li><strong><a href="./search.bml">समुदाय खोज</a></strong></li>
+<li><strong>विज्ञापन समुदाय को देखें(<?ljcomm community_promo ljcomm?>)</strong></li>
+<li><strong>खोज समुदाय में खोजें (<?ljcomm community_quest ljcomm?>)</strong></li>
+</ul>
+
+<?p
+कुछ गड़बड़ लग रहा है?<br />
+समुदाय निर्देशक, <a href="mailto:jproulx-(a)-livejournal-dot-com">जॅसी प्रॉल्क्स</a>, (<?ljuser jproulx ljuser?>) को लिखें।
+p?>
+.
+
+/community/index.bml.title=सामुदायिक केन्द्र
+
+/community/join.bml.button.join=समुदाय के सदस्य बनें
+
+/community/join.bml.label.addtofriends="[[maintainer]]" को मित्र सूची में जोड़ें
+
+/community/join.bml.label.allowposting=यह समुदाय सभी सदस्यों को लिखने की अनुमति देता है, अतः अब आप यहाँ पर लिख सकते हैं। यदि आपके सङ्गणक पर पहले से ही लाइव्जर्नल ग्राहक खुला हुआ है, तो आपको बहिर्गमन करके पुनः प्रवेश करना होगा, तभी यह लेखा आपके लेखनीय लेखों की सूची में प्रदर्शित होगा।
+
+/community/join.bml.label.auth=हालाँकि आप अब इस समुदाय के सदस्य हैं, केवल अधिकृत प्रयोक्ता ही यहाँ पर लेख लिख सकते हैं। यदि आप लेखन की अनुमति चाहते हैं तो किसी भी प्रशासक को लिखें। इस समुदाय के प्रशासकों की सूची निम्नोक्त है: [[admins]]
+
+/community/join.bml.label.banned=इस समुदाय के प्रशासकों नें आपको सदस्य बनने से अवरोधित किया हुआ है।
+
+/community/join.bml.label.closed=यह समुदाय बन्द है। यदि आप इसके सदस्य बनना चाहते हैं तो कृपया इसके किसी प्रशासक से सम्पर्क करें। प्रशासकों की सूची निम्नोक्त है: [[admins]]
+
+/community/join.bml.label.commlogged=आपका मौजूदा प्रवेश  साँझा/सामुदायिक खाते के तौर पर है, व्यक्तिगत खाते के तौर पर नहीं।
+
+/community/join.bml.label.errorcomminfo=प्रदत्त सामुदायिक जानकारी अवैध है।
+
+/community/join.bml.label.expls="[[maintainer]]" समुदाय में शामिल होने के लिए  निम्नोक्त कुञ्जी दबाएँ। यदि आप शामिल होने के बाद समुदाय की प्रविष्टियाँ अपने मित्र पृष्ठ पर नहीं देखना चाहते तो नीचे दिए बक्से से सही का निशान हटा दें।
+
+/community/join.bml.label.loginfirst=किसी समुदाय में शामिल होने के पहले आपको  <a href="/login.bml?ret=1">प्रवेश</a> करना होगा।
+
+/community/join.bml.label.membernow=अब आप  <a href="/userinfo.bml?user=[[username]]">[[commname]] समुदाय</a> के सदस्य हैं
+
+/community/join.bml.label.sure=पक्का?
+
+/community/join.bml.success=सफल
+
+/community/join.bml.title=समुदाय में शामिल हों
+
+/community/leave.bml.button.leave=समुदाय छोड़ें
+
+/community/leave.bml.label.buttontoleave="[[commname]]" को छोड़ने के लिए निम्नोक्त कुञ्जी दबाएँ।
+
+/community/leave.bml.label.infoerror=प्रदत्त सामुदायिक जानकारी अवैध है।
+
+/community/leave.bml.label.logoutfirst=समुदाय छोड़ने के लिए आपको पहले <a href="/login.bml?ret=1">प्रवेश</a> करना होगा।
+
+/community/leave.bml.label.removed=अब आपको <a href="/userinfo.bml?user=[[commuser]]">[[commname]] समुदाय</a> से हटा दिया गया है
+
+/community/leave.bml.label.removefromfriends="[[user]]" को मित्र सूची से भी हटाएँ।
+
+/community/leave.bml.success=सफल
+
+/community/leave.bml.sure=पक्का?
+
+/community/leave.bml.title=समुदाय छोड़ें
+
+/community/manage.bml.commlist.actinfo=जानकारी
+
+/community/manage.bml.commlist.actions=<b>क्रियाएँ</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>सदस्य</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=सदस्य
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>जमाव</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=जमाव
+
+/community/manage.bml.commlist.header=आपके समुदाय
+
+/community/manage.bml.commlist.none=<i>आप किसी समुदाय का प्रबन्धन नहीं कर रहे हैं।</i>
+
+/community/manage.bml.commlist.text=आप इन समुदायों का प्रबन्धन या सह प्रबन्धन कर रहे हैं:
+
+/community/manage.bml.commlist.title=<b>शीर्षक</b>
+
+/community/manage.bml.commlist.username=</b>प्रयोक्ता नाम</a>
+
+/community/manage.bml.create.header=समुदाय बनाएँ
+
+/community/manage.bml.create.text=आप <a href='[[link]]'><b>नवीन समुदाय निर्माण</b></a> भी कर सकते हैं।
+
+/community/manage.bml.title=समुदाय प्रबन्धन
+
+/community/members.bml.error.alreadyadded=[[user]] को शामिल नहीं किया गया क्योंकि वे पहले ही इस समुदाय में हैं।
+
+/community/members.bml.error.alreadysent=[[user]] को शामिल नहीं किया जा सका क्योंकि उन्हें पहले ही <i>[[datetime]]</i> को पुष्टि सम्बन्धी डाक भेजी जा चुकी है। कृपया उनकी प्रतिक्रिया की प्रतीक्षा करें।
+
+/community/members.bml.error.invaliduser=सामुदायिक या सिण्डिकेटॅड खाता नहीं जोड़ा जा सकता है: [[user]]
+
+/community/members.bml.error.noaccess=केवल समुदाय प्रशासक ही सदस्यता सूची सम्पादित कर सकते हैं। आप [[comm]] समुदाय के प्रशासक नहीं हैं।
+
+/community/members.bml.error.noattr=प्रयोक्ता: [[user]] की कोई विशेषताएँ नहीं चुनी गईं।
+
+/community/members.bml.error.nocomm=समुदाय अप्राप्य।
+
+/community/members.bml.error.nouser=प्रयोक्ता मौजूद नहीं है: <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>प्रशासक</b>
+
+/community/members.bml.key.member=<b>सदस्य</b>
+
+/community/members.bml.key.moderate=<b>मध्यस्थ</b>
+
+/community/members.bml.key.post=<b>लेखन सुविधा</b>
+
+/community/members.bml.key.preapprove=मध्यस्थताहीन
+
+/community/members.bml.manage2=समुदाय प्रबन्धन करें
+
+/community/members.bml.name=<b>समुदाय का नाम:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(अगला पन्ना...)</i>
+
+/community/members.bml.prevlink=<i>(पिछला पन्ना...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>जमाव</a>]
+
+/community/members.bml.success.header=सफल
+
+/community/members.bml.success.message=आपके परिवर्तन सफलतापूर्वक सँजो लिए गए है।
+
+/community/members.bml.success.return=<a href='[[link]]'>वापस सूची पर जाएँ</a>
+
+/community/members.bml.title=समुदाय के सदस्य
+
+/community/members.bml.update=जमाव बदलें
+
+/community/moderate.bml.approve.button=जी हाँ, स्वीकृति दें
+
+/community/moderate.bml.approve.header=इस प्रविष्टि को स्वीकृति दें?
+
+/community/moderate.bml.approve.preapprove=साथ ही, प्रयोक्ता [[user]] को इस समुदाय के पूर्व स्वीकृत प्रयोक्ताओं की सूची में शामिल करें।
+
+/community/moderate.bml.approve.text=क्या आप निश्चय ही इस प्रविष्टि को स्वीकृत करना चाहते हैं?
+
+/community/moderate.bml.brlist.actions=क्रियाएँ
+
+/community/moderate.bml.brlist.poster=प्रेषक
+
+/community/moderate.bml.brlist.subject=विषय का आरम्भ
+
+/community/moderate.bml.brlist.time=समय
+
+/community/moderate.bml.brlist.view=दृष्य
+
+/community/moderate.bml.browse.empty=मध्यस्थता पङ्क्ति रिक्त है।
+
+/community/moderate.bml.browse.header=समुदाय की मध्यस्थता करें
+
+/community/moderate.bml.browse.text=यह है [[link]] समुदाय की मध्यस्थता पङ्क्ति
+
+/community/moderate.bml.choice.approve=स्वीकृति दें
+
+/community/moderate.bml.choice.reject=अस्वीकार करें
+
+/community/moderate.bml.error.noaccess=आप [[comm]] समुदाय के मध्यस्थ नहीं हैं।
+
+/community/moderate.bml.error.noentry=प्रविष्टि अप्राप्य (सम्भवतः किसी अन्य मध्यस्थ द्वारा सँभाली जा चुकी है)
+
+/community/moderate.bml.error.nolist=आप किसी समुदाय के मध्यस्थ नहीं हैं।
+
+/community/moderate.bml.error.notfound=सामुदायिक खाता अप्राप्य।
+
+/community/moderate.bml.manage=समुदायों का प्रबन्धन करें
+
+/community/moderate.bml.moderate=इस समुदाय की मध्यस्थता करें
+
+/community/moderate.bml.modlist.actions=कृयाएँ
+
+/community/moderate.bml.modlist.actmodempty=[मध्यस्थता करें]
+
+/community/moderate.bml.modlist.actmoderate=मध्यस्थता करें
+
+/community/moderate.bml.modlist.count=पङ्क्ति आकार
+
+/community/moderate.bml.modlist.header=समुदायों की मध्यस्थता करें
+
+/community/moderate.bml.modlist.title=शीर्षक
+
+/community/moderate.bml.modlist.username=प्रयोक्ता नाम
+
+/community/moderate.bml.posted.appheader=पूर्व स्वीकृत
+
+/community/moderate.bml.posted.apptext=इस के अलावा, प्रयोक्ता [[user]] को इस समुदाय के पूर्व स्वीकृत प्रयोक्ताओं की सूची में शामिल किया जा चुका है।
+
+/community/moderate.bml.posted.header=सफल
+
+/community/moderate.bml.posted.proterror=इस प्रोटोकॉल त्रुटि के कारण यह प्रविष्टि  छापी नहीं गई है: [[err]]
+
+/community/moderate.bml.posted.text=प्रविष्टि सफलता पूर्वक छाप दी गई।
+
+/community/moderate.bml.reject.button=जी हाँ, अस्वीकार करें
+
+/community/moderate.bml.reject.header=प्रविष्टि को अस्वीकार करें?
+
+/community/moderate.bml.reject.reason|staleness=1
+/community/moderate.bml.reject.reason=आप प्रेषक को प्रविष्टि अस्वीकृत करने का कारण भी बता सकते हैं। यह प्रेषक को डाक द्वारा भेजी जाएँगी।
+
+/community/moderate.bml.reject.text=क्या आप निश्चय ही इस प्रविष्टि को अस्वीकृत करना चाहते हैं?
+
+/community/moderate.bml.rejected.header=अस्वीकृत
+
+/community/moderate.bml.rejected.text=इस प्रविष्टि को अस्वीकार किया जा चुका है।
+
+/community/moderate.bml.title=समुदाय की मध्यस्थता
+
+/community/search.bml.button.clear=पर्चे की प्रविष्टियाँ हटाएँ
+
+/community/search.bml.button.search=खोजें!
+
+/community/search.bml.checkbox.onlywithpics=केवल छवियों वाले समुदाय
+
+/community/search.bml.label.byinterest=रुचि के अनुसार
+
+/community/search.bml.label.bylocation=स्थान के अनुसार
+
+/community/search.bml.label.bytime=लेखा परिवर्तन समय के अनुसार
+
+/community/search.bml.label.city=शहर:
+
+/community/search.bml.label.country=देश:
+
+/community/search.bml.label.displayoptions=प्रदर्शन विकल्प
+
+/community/search.bml.label.hasmember=जिसमें यह सदस्य हो
+
+/community/search.bml.label.othercriteria=खोज के अन्य आधार
+
+/community/search.bml.label.outputformat=परिणामों का प्रारूप
+
+/community/search.bml.label.records=हर पन्ने पर कितने परिणाम चाहिए:
+
+/community/search.bml.label.searchcomm=समुदायों को खोजें
+
+/community/search.bml.label.selecriteria=नीचे से चुनिए, कि आप किस आधार पर समुदायों को खोजना चाहते हैं। खोज के सभी आधारों से मेल खाने वाले परिणाम प्रदर्शित किए जाएँगे। दूसरे शब्दों में सही के निशान लगाने का मतलब है "और", "या" नहीं।
+
+/community/search.bml.label.sortmethod=छँटनी की विधि:
+
+/community/search.bml.label.stateprovince=राज्य/प्रान्त:
+
+/community/search.bml.label.updated=इतने समय पहले परिवर्तित
+
+/community/search.bml.sel.bypicture=छवि के अनुसार
+
+/community/search.bml.sel.communityname=समुदाय का नाम
+
+/community/search.bml.sel.commview=समुदाय का  दृष्य
+
+/community/search.bml.sel.day=दिवस
+
+/community/search.bml.sel.month=मास
+
+/community/search.bml.sel.simple=सादा
+
+/community/search.bml.sel.updatetime=परिवर्तन समय
+
+/community/search.bml.sel.username=प्रयोक्ता नाम
+
+/community/search.bml.sel.week=सप्ताह
+
+/community/search.bml.title=समुदाय खोज
+
+/community/settings.bml.button.changecommunity=जमाव बदलें
+
+/community/settings.bml.button.createcommunity=समुदाय बनाएँ
+
+/community/settings.bml.error.badpassword=अवैध समुदाय प्रवेश शब्द
+
+/community/settings.bml.error.hasentries=इस खाते में पहले ही प्रविष्टियाँ है, इसका परिवर्तन नहीं किया जा सकता।
+
+/community/settings.bml.error.maintainertype=प्रबन्धक खाता व्यक्ति विशेष का हो, एक अन्य साँझा खाता नहीं।
+
+/community/settings.bml.error.noaccess=केवल समुदाय प्रबन्धक ही सामुदायिक जमाव बदल सकते हैं। आप [[comm]] समुदाय के प्रबन्धक नहीं हैं।
+
+/community/settings.bml.error.notcomm=सामुदायिक खाता नहीं।
+
+/community/settings.bml.error.notfound=सामुदायिक खाता अप्राप्य।
+
+/community/settings.bml.error.samenames=प्रबन्धक खाता व सामुदायिक खाता अलग अलग होने चाहिए।
+
+/community/settings.bml.label.anybodycan=<b>सभी सदस्य</b><br />सदस्य ग्रहण करते ही कोई भी लेख लिख सकता है।
+
+/community/settings.bml.label.changeheader=समुदाय जमाव बदलें
+
+/community/settings.bml.label.changetext=यहाँ पर आप अपने व अपने द्वारा प्रबन्धित समुदायों के जमाव में परिवर्तन ला सकते हैं।
+
+/community/settings.bml.label.commchanged=आपकी सामुदायिक जमाव बदल दिए गए हैं।
+
+/community/settings.bml.label.commcreate=यही है वह खाता जिसे आप समुदाय में बदलना चाहते हैं। यह <a href="/create.bml">पहले ही निर्मित</a>, होना चाहिए, लेकिन किसी व्यक्तिविशेष द्वारा पहले से ही प्रयुक्त नहीं होना चाहिए क्योंकि अब इस पर कई लोगों को लेख लिखने की अनुमति होनी चाहिए।
+
+/community/settings.bml.label.commcreated=आपके समुदाय का जमाव किया जा चुका है।
+
+/community/settings.bml.label.commheader=सामुदायिक खाता
+
+/community/settings.bml.label.comminfo=सामुदायिक जानकारी
+
+/community/settings.bml.label.commopts=सामुदायिक विकल्प
+
+/community/settings.bml.label.commsite=सामुदायिक जालस्थल
+
+/community/settings.bml.label.community=समुदाय:
+
+/community/settings.bml.label.createheader=समुदाय बनाएँ
+
+/community/settings.bml.label.createtext=यहाँ पर आप सामुदायिक खाता चालू कर सकते हैं। समुदाय एक विशेष खाता है जिसमें अन्य प्रयोक्ता भी शामिल हो सकते हैं और लेख लिख सकते हैं। उदाहरणार्थ <a href="/userinfo.bml?user=seattle">सियेटल पार्टी समुदाय</a> को देखें।
+
+/community/settings.bml.label.howoperates=अपने समुदाय के प्रचालन की विधि चुनें। आप इस बाद में बदल सकते हैं।
+
+/community/settings.bml.label.maintainer=प्रबन्धक:
+
+/community/settings.bml.label.maintainer.login=यदि यह प्रबन्धक खाता नहीं है, तो किसी और के तौर पर <a href='/login.bml?ret=1'>प्रवेश</a> करें।
+
+/community/settings.bml.label.membership=सदस्यता
+
+/community/settings.bml.label.modheader=मध्यस्थित
+
+/community/settings.bml.label.modis=<b>मध्यस्थित</b><br />नई प्रविष्टियाँ मध्यस्थ द्वारा स्वीकृत होनी चाहिए।
+
+/community/settings.bml.label.modisnt=<b>मध्यस्थताहीन</b><br />नई प्रविष्टियाँ तुरन्त छप जाती हैं।
+
+/community/settings.bml.label.modtext=क्य इस समुदाय की प्रविष्टियाँ मध्यस्थित हैं?
+
+/community/settings.bml.label.nmcan=<b>सदस्यता के बगैर लिख सकते हैं</b><br/>इस समुदाय में शामिल हुए बिना प्रयोक्ता इसमें लेख लिख सकते हैं।
+
+/community/settings.bml.label.nmcant=<b>सदस्यता के बगैर नहीं लिख सकते</b><br/>इस समुदाय में शामिल होने पर ही प्रयोक्ता इसमें लेख लिख सकते हैं।
+
+/community/settings.bml.label.nmheader=बिना सदस्यता के लेखन
+
+/community/settings.bml.label.nmtext=क्या प्रयोक्ता इस समुदाय में शामिल हुए बिना लेख लिख सकते हैं?
+
+/community/settings.bml.label.openmemb=<b>खुली सदस्यता</b><br />बिना स्वीकृति के कोई भी शामिल हो सकता है।
+
+/community/settings.bml.label.password=प्रवेश शब्द:
+
+/community/settings.bml.label.postaccess=लेखन की अनुमति
+
+/community/settings.bml.label.rellinks=सम्बद्ध कड़ियाँ
+
+/community/settings.bml.label.selcan=<b>चुने हुए सदस्य</b><br />केवल कुछ सदस्य लिख सकते हैं, वह भी प्रबन्धक खाते द्वारा अनुमति मिलने के पश्चात।
+
+/community/settings.bml.label.username=प्रयोक्ता नाम:
+
+/community/settings.bml.label.whocanjoin=आपके समुदाय में कौन शामिल हो सकता है?
+
+/community/settings.bml.label.whocanpost=इस समुदाय में कौन लिख सकता है?
+
+/community/settings.bml.manage2=समुदायों का प्रबन्धन करें
+
+/community/settings.bml.members=[<a href='[[link]]'>सदस्य</a>]
+
+/community/settings.bml.name=<b>समुदाय का नाम:</b> [[name]]
+
+/community/settings.bml.success=सफल
+
+/community/settings.bml.title.create=समुदाय बनाएँ
+
+/community/settings.bml.title.modify=समुदाय का जमाव
+
+/create.bml.age.check.question=क्या आपकी आयु 13 वर्ष से कम है?
+
+/create.bml.age.check.yes=जी हाँ , मेरी आयु तेरह वर्ष से कम है।
+
+/create.bml.age.check2.question=क्या आपकी आयु 13 वर्ष से अधिक है?
+
+/create.bml.age.check2.yes=जी हाँ, मेरी आयु 13 वर्ष से अधिक है।
+
+/create.bml.age.head=आयु
+
+/create.bml.btn.create=लेखा निर्मित करें
+
+/create.bml.btn.proceed=आगे बढ़ें...
+
+/create.bml.captcha.answer=उत्तर:
+
+/create.bml.captcha.audiodesc=आप स्पॅम रोबोट नहीं हैं, यह सिद्ध करने के लिए, जो सङ्ख्याएँ आप को सुनाई दे रही हैं, उन्हें टङ्कित करें:
+
+/create.bml.captcha.desc=आप स्पॅम रोबोट नहीं हैं, यह सिद्ध करने के लिए, नीचे दिख रहे अक्षरों और सङ्ख्याओं को टङ्कित करें। यदि आप पढ़ नहीं पा रहे हैं, तो "AUDIO" टङ्कित करें और श्राव्य परीक्षण करवाएँ।
+
+/create.bml.captcha.invalid=पिछली चुनौती का उत्तर अवैध था। एक और बार कोशिश करें।
+
+/create.bml.captcha.play=ध्वनि चलाएँ
+
+/create.bml.captcha.prove=सिद्ध करें कि आप मानव हैं
+
+/create.bml.clusterselect.cluster=झुण्ड:
+
+/create.bml.clusterselect.clusternum=झुण्ड [[number]]
+
+/create.bml.clusterselect.head=झुण्ड का चुनाव
+
+/create.bml.clusterselect.nocluster=कोई झुण्ड नहीं
+
+/create.bml.clusterselect.text=कृपया चुनें कि आप किस झुण्ड में खाता बनाना चाहते हैं। <b>ध्यान दें:</b> यह विकल्प केवल परीक्षण के लिए है। वास्तव में प्रयोक्ता इसे न तो इसे चुनेंगे, न ही इसके बारे में कुछ जानते होंगे।
+
+/create.bml.create.head=नया लेखा बनाना
+
+/create.bml.create.text=नया लाइव्जर्नल बनाना सरल है, निम्नोक्त निर्देशों की मदद से!
+
+/create.bml.email.head=आपका डाक पता
+
+/create.bml.email.input.head=डाक पता:
+
+/create.bml.email.text2=पुष्टि व सुरक्षा की दृष्टि से हमें आपका डाक पता चाहिए होगा। किसी भी हालत में यह स्पॅमरों को बेचा या दिया नहीं जाएगा। इस चीज़ से हमें खुद सबसे ज़्यादा नफ़रत है। और जानकारी के लिए हमारी <a [[aopts]]>निजी सुरक्षा नीति</a> पढ़ें।
+
+/create.bml.error.coppa.under13=क्षमा करें, कॉप्पा प्रतिबन्धों की वजह से आप 13 वर्ष को होने तक लाइव्जर्नल सेवा का प्रयोग नहीं कर सकते। कृपया अपने 13वें जन्मदिन पर वापिस आएँ।
+
+/create.bml.error.email.blank=आपको अपना डाक पता प्रदान करना होगा।
+
+/create.bml.error.email.lj_domain=खाता खोलते समय [[domain]] छद्मनाम का प्रयोग निषिद्ध है। कःपया कोई अन्य डाक पता प्रविष्ट करें।
+
+/create.bml.error.email.nospaces=डाक पते के बीच में खाली स्थान निषिद्ध हैं। यदि आप ए ओ ऍल प्रयोक्ता हैं, तो आपका अन्तर्जाल डाक पता है आपका पट नाम, सारे खाले स्थान हटा कर, और अन्त में<b>@aol.com</b> लगा कर।
+
+/create.bml.error.password.asciionly=आप प्रवेश शब्द में केवल ऍस्की चिन्हों का प्रयोग कर सकते हैं।
+
+/create.bml.error.password.blank=प्रवेश शब्द प्रविष्टि अनिवार्य है।
+
+/create.bml.error.password.nomatch=प्रवेश शब्द मेल नहीं खाते।
+
+/create.bml.error.postrequired=पोस्ट अनिवार्य।
+
+/create.bml.error.username.blank=कृपया एक नाम या छद्मनाम प्रदान करें।
+
+/create.bml.error.username.inuse=प्रयोक्ता नाम पहले ही इस्तेमाल में है, कृपया कोई और चुनें।
+
+/create.bml.error.username.iscode=यह प्रयोक्ता नाम आमन्त्रण कूट प्रतीत होता है, प्रयोक्ता नाम नहीं।
+
+/create.bml.error.username.mustenter=कृपया प्रयोक्ता नाम प्रविष्ट करें।
+
+/create.bml.error.username.reserved=खेद है कि यह प्रयोक्ता नाम आरक्षित है।
+
+/create.bml.initial.friend.lj_maintenance=पूर्वनियोजित व अनियोजित मरम्मतों व स्थल बन्द होने की रपटें।
+
+/create.bml.initial.friend.news=लाइव्जर्नल समाचार व घटनाएँ
+
+/create.bml.initialfriends=स्थल सम्बन्धी समाचार व जानकारी प्राप्त करने हेतु यह लेखे अपनी मित्र सूची में जोड़ें।
+
+/create.bml.initialfriends.heading=शुरुआती मित्र
+
+/create.bml.name.head=आपका नाम
+
+/create.bml.name.input.head=नाम:
+
+/create.bml.name.text=आपका नाम या छद्मनाम क्या है? यह आपके लेखे के ऊपर प्रदर्शित होगा, और प्रयोक्ता निर्देशिका में भी, यदि आप चाहें तो। आपको पूरी नाम देने की ज़रूरत नहीं है, बल्कि असली नाम देने की भी ज़रूरत नहीं है।
+
+/create.bml.password.head=प्रवेश शब्द
+
+/create.bml.password.input.head1=प्रवेश शब्द:
+
+/create.bml.password.input.head2=प्रवेश शब्द पुष्टि:
+
+/create.bml.password.text=प्रवेश शब्द चुनें।
+
+/create.bml.proceed.btn.proceed=आगे बढ़ें...
+
+/create.bml.proceed.warning=केवल <i>एक बार</i> ही <b>आगे बढ़ें</b> दबाएँ!!
+
+/create.bml.success.btn.enterinfo=व्यक्तिगत जानकारी प्रविष्ट करें
+
+/create.bml.success.head=सफल!
+
+/create.bml.success.text1=आपका चिट्ठा तैयार है। महत्वपूर्ण पञ्जीकरण सम्बन्धी जानकारी <font size="+1"><b>[[email]]</b></font> पर भेज दी गई है, अन्य निर्देशों के साथ। डाक में प्रदत्त कड़ी पर चटका लगा कर चिट्ठे के निर्माण की पुष्टि करना न भूलें।
+
+/create.bml.success.text2=आपका लाइव्जर्नल यहाँ प्राप्य है:
+
+/create.bml.success.text3=अब, थोड़ा समय दे, और अपने बारे में कुछ बताएँ। अधिकतर जानकारी वैकल्पिक है, लेकिन इससे हमें पता चलता है कि लाइव्जर्नल के प्रयोक्ता कैसे हैं।
+
+/create.bml.title=नया चिट्ठा बनाएँ
+
+/create.bml.tos.error=खाता खोलने से पहले आपको सेवा की शर्तों को पढ़ना होगा व उनको मञ्जूरी देनी होगी।
+
+/create.bml.tos.haveread=हमने सेवा की शर्तें पढ़ ली हैं, और वे हमें मञ्जूर हैं।
+
+/create.bml.tos.heading=सेवा की शर्तें
+
+/create.bml.tos.p1.2=आगे बढ़ने से पहले आपको <a [[aopts]]>सेवा की शर्तें</a> पढ़नी होंगी और उन्हें मञ्जूर करना होगा।
+
+/create.bml.useacctcodes.entercode=नया खाता खोलने के लिए खाता खोलने का कूट प्रदान करें। और जानकारी के लिए <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104"> खाता कैसे खोलें?</a> देखें।
+
+/create.bml.useacctcodes.welcome=स्वागतम्
+
+/create.bml.username.box.head=प्रयोक्ता नाम:
+
+/create.bml.username.charsallowed=आपके प्रयोक्ता नाम में केवल छोटे अक्षर (a-z), सङ्ख्याएँ, (0-9) व अण्डर्कोर (_) हो सकते हैं। <br/> साथ ही इसमें १५ से अधिक अक्षर न हों।
+
+/create.bml.username.forpaidaccts=या, शुल्कदत्त खातों के लिए:
+
+/create.bml.username.head=प्रयोक्ता नाम:
+
+/create.bml.username.ljaddress=आपका खाता इन पतों पर रहेगा:
+
+/create.bml.username.text=हरेक [[sitename]] प्रयोक्ता का अनोखा प्रयोक्ता नाम होता है। यह नाम आपके लेखे के पते में दिखलाई देगा, और [[sitename]] सेवक में प्रविष्ट होने के लिए भी यह प्रयुक्त होगा। दूसरों के लेखों पर टिप्पणी लिखने पर भी यह नाम प्रदर्शित होगा।
+
+/create.bml.username.username=प्रयोक्ता नाम
+
+/customize/index.bml.change=बदलें
+
+/customize/index.bml.choose=आप पुरानी शैली प्रणाली चाहते हैं या नई वाली?
+
+/customize/index.bml.choose.header=शैली प्रणाली चुनें
+
+/customize/index.bml.choose.s1=पुरानी प्रणाली (S1)
+
+/customize/index.bml.choose.s2=नई प्रणाली (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=प्रयोक्ता आवरण उत्पन्न करने में असफल
+
+/customize/index.bml.error.fail_create_style=नई शैली बनाने में असफल।
+
+/customize/index.bml.error.not_your_layout=यह आपका जमाव नहीं है।
+
+/customize/index.bml.error.not_your_theme=यह आपकी थीम नहीं है
+
+/customize/index.bml.error.no_core_parent=कोई कोर पितर नहीं हैं?
+
+/customize/index.bml.previews=(पूर्वावलोकन)
+
+/customize/index.bml.s1=पुरानी शैली प्रणाली का जमाव<a href="/modify.bml">चिट्ठा परिवर्तन</a> पृष्ठ से होता है।
+
+/customize/index.bml.s1.header=S1 की मदद से
+
+/customize/index.bml.s2.advanced.denied=केवल शुल्कदत्त, स्थायी व पुराप्रयोगी खाताधारी ही विकसित परिवर्तन क्षेत्र का प्रयोग कर सकते हैं। <a href="/paidaccounts/"> शुल्कदत्त खाते के फ़ायदों के बारे में और जानें</a>।
+
+/customize/index.bml.s2.advanced.header=विकसित परिवर्तन
+
+/customize/index.bml.s2.advanced.permitted=नए आवरण व शैलियाँ बनाने के लिए <a href='./advanced/'>विकसित परिवर्तन</a> केन्द्र पर जाएँ।
+
+/customize/index.bml.s2.customize=निम्नोक्त जमाव आवरण पर निर्भर हैं।
+
+/customize/index.bml.s2.customize.header=क्र. 2: जमाव बदलें
+
+/customize/index.bml.s2.customize.language=इस जमाव में निम्नोक्त भाषाएँ पूर्णतः या आंशिक रूप से उपलब्ध हैं।
+
+/customize/index.bml.s2.customize.language.custom=(बदला हुआ)
+
+/customize/index.bml.s2.customize.language.header=भाषा
+
+/customize/index.bml.s2.customize.settings=यदि आप अपने लेखे को और भी बदलना चाहते हैं, तो आप यहाँ पर हरेक चीज़ का जमाव बदल कर जैसा चाहें वैसा कर सकते हैं।
+
+/customize/index.bml.s2.customize.settings.delete=बदलाव हटा दें
+
+/customize/index.bml.s2.customize.settings.edit=बदलावों को सम्पादित करें
+
+/customize/index.bml.s2.customize.settings.header=व्यक्तिगत जमाव बदलें
+
+/customize/index.bml.s2.customize.settings.new=बदलें
+
+/customize/index.bml.s2.customize.themes=इस जमाव के लिए इन वैकल्पिक थीमों में से चुनें।
+
+/customize/index.bml.s2.customize.themes.default=(जमाव के लिए मूल स्थिति)
+
+/customize/index.bml.s2.customize.themes.header=थीमें
+
+/customize/index.bml.s2.layout=अपना जमाव चुनें। थीम का चुनाव व बदलाव, जमाव पर निर्भर हैं। अतः इसको बदलने से आपके अभी तक के सभी परिवर्तन रद्द हो जाएँगे।
+
+/customize/index.bml.s2.layout.header=क्र. 1: जमाव
+
+/customize/index.bml.s2.related.editinfo.about=अपने लेखे के शीर्षक व अन्य विकल्प निर्धारित करें।
+
+/customize/index.bml.s2.related.header=समान पन्ने
+
+/customize/index.bml.s2.related.links.about=कुछ शैलियों में  स्वप्रबन्धित कड़ी सूची भी शामिल की जा सकती है।
+
+/customize/index.bml.s2.related.modify.about=लेखे की मूड छवियाँ चुनें
+
+/customize/index.bml.title=लेखे को बदलें
+
+/delcomment.bml.changeoptions<<
+<strong>ध्यान दें:</strong> [[link]] पृष्ट से आप यह निर्धारित कर सकते हैं कि कौन टिप्पणियाँ छाप सकता है, <em>सभी</em>, <em>पञ्जीकृत प्रयोक्ता</em>, या
+<em>केवल मित्र</em>।
+.
+
+/delcomment.bml.confirm.banuser=[[user]] को अपने लेखे में टिप्पणियाँ लिखने से प्रतिबन्धित करें
+
+/delcomment.bml.confirm.body=क्या आप निश्चय ही इस टिप्पणी को हटाना चाहते हैं?
+
+/delcomment.bml.confirm.head=टिप्पणी हटाएँ?
+
+/delcomment.bml.confirm.submit=टिप्पणी हटाएँ
+
+/delcomment.bml.error.alreadydeleted=यह टिप्पणी पहले ही हटा दी जा चुकी है।
+
+/delcomment.bml.error.cantdelete=टिप्पणी हटाने का अधिकार केवल उसके लेखक को और लेखे के स्वामी को है।
+
+/delcomment.bml.error.cantdelete.comm=टिप्पणी केवल उसके लेखक, लेखा प्रविष्टि  के लेखक, या समुदाय प्रबन्धक ही हटा सकते हैं।
+
+/delcomment.bml.error.invalidtype=अवैध टिप्पणी प्रकार। यह पन्ना केवल लेखा प्रविष्टियों पर की टिप्पणियों के लिए है।
+
+/delcomment.bml.error.nocomment=प्रदत्त टिप्पणी अनुपलब्ध।
+
+/delcomment.bml.success.andban=यह टिप्पणी हटा दी गई है, और प्रयोक्ता [[user]] को आपके लेखे में टिप्पणी लिखने की मनाही कर दी गई है।
+
+/delcomment.bml.success.head=हटा दी गई
+
+/delcomment.bml.success.noban=टिप्पणी हटा दी गई है।
+
+/delcomment.bml.title=टिप्पणी हटाएँ
+
+/developer/index.bml.clients<<
+तो, आप अपने प्लॅट्फ़ॉर्म के लिए लाइव्जर्नल सेवक बनाना या सुधारना चाहते हैं?
+बढ़िया है!
+निम्नोक्त हैं कुछ आवश्यक संसाधन, जिनसे आपको पता चलेगा कि लाइव्जर्नल काम कैसे करता है।
+.
+
+/developer/index.bml.clients.header=लाइव्जर्नल ग्राहक लेखन
+
+/developer/index.bml.clients.links<<
+<dl>
+  <dt><a href="/doc/server/ljp.csp.guide.html"><b>लाइव्जर्नल सेवक&lt;-&gt;ग्राहक प्रोटोकॉल</b></a></dt>
+  <dd>पता करें कि डॅस्क्टॉप पर मौजूद ग्राहक, व लाइव्जर्नल सेवक आपस में कैसे बात करते हैं।
+  अपने प्लॅट्फ़ॉर्म के लिए ग्राहक बनाने या सुधारने के नज़रिये से यह समझना एक पहला कदम है।</dd>
+  <dt><a href="/doc/server/ljp.csp.protocol.html"><b>सम्पूर्ण प्रोटोकॉल प्रलेख</b></a></dt>
+  <dd>सभी प्रोटोकॉल रीतियाँ व विधियाँ।</dd>
+  <dt><a href="/download/"><b>ग्राहकों की सूची</b></a></dt>
+  <dd>लाइव्जर्नल से जुड़ने के लिए प्रयुक्त ग्राहकों की सूची। अधिकतर ग्राहक मुक्त स्रोत हैं, और सभी निःशुल्क प्रयुक्त किए जा सकते हैं। आप अपने ग्राहक के लिए यहाँ से उदाहरण प्राप्त कर सकते हैं। </dd>
+</dl>
+.
+
+/developer/index.bml.code=लाइव्जर्नल की बॅकेण्ड कैसे चलता है, व कुछ उपलब्ध ग्राहकों के अन्दरूनी मसले को देखने के लिए <a href="/code/">कूट</a> पन्ने पर जाएँ।
+
+/developer/index.bml.code.header=लाइव्जर्नल कूट भण्डार
+
+/developer/index.bml.dbschema<<
+<a href="/doc/server/ljp.dbschema.ref.html">डाटाबेस स्कीमा</a> के बारे में जानना चाहते हैं?
+सभी तालिकाओं के निर्माण व उनमें सामग्री भरने वाले ऍस क्यू ऍल भी सेवक कूट में शामिल हैं।
+.
+
+/developer/index.bml.dbschema.header=डाटाबेस स्कीमा
+
+/developer/index.bml.embedding=अपना लेखा, अपने गृहपृष्ठ पर शामिल करना चाहते हैं? यह करने के कई तरीके हैं, और यह इस पर निर्भर है कि आपका अपने सेवक के ऊपर कैसा नियन्त्रण है। इस सबकी चिन्ता आपको तभी करने की ज़रूरत है यदि आपको अपने लेखे के पते में <tt>www.livejournal.com</tt> प्रदर्शित होना पसन्द न हो।
+
+/developer/index.bml.embedding.header=लाइव्जर्नल को शामिल करना
+
+/developer/index.bml.notice.header=सूचना
+
+/developer/index.bml.notice1=यह जानकारी केवल प्रोग्रामरों व विकसित प्रयोक्ताओं के लिए है। यदि आप लाइव्जर्नल पर ही अपना लेखा रखना चाहते हैं, तो बढ़िया है! आम प्रयोक्ताओं को इस सब की चिन्ता करने की आवश्यकता नहीं है।
+
+/developer/index.bml.notice2=तो अब काम की बात: नीचे दिया मसला दो हिस्सों में बँटा है: लाइव्जर्नल पन्नों को बदलने के बारे में जानकारी, और लाइव्जर्नल सेवक के लिए लाइव्जर्नल ग्राहक लिखने सम्बन्धी जानकारी।
+
+/developer/index.bml.styles=लेखा पृष्ठों की शक्लोसूरत पसन्द नहीं है? कोई गल नहीं, सब कुछ बदला जा सकता है, नीचे दिया प्रलेखन पढ़ें व अपने पन्नों को अपने मन मुआफ़िक बनाएँ।
+
+/developer/index.bml.styles.header=लाइव्जर्नल की शक्लोसूरत बदलना
+
+/developer/index.bml.styles.s1.header=शैली प्रणाली 1
+
+/developer/index.bml.styles.s1.system=शैली प्रणाली
+
+/developer/index.bml.styles.s1.system.about=प्रथम शैली प्रणाली के जमाव के बारे में आम जानकारी
+
+/developer/index.bml.styles.s1.varlist=परिवर्तनीयों की सूची
+
+/developer/index.bml.styles.s1.varlist.about=जिन परिवर्तनीयों को आप बदल सकते हैं, उनकी अकारादिक्रम में सूची।
+
+/developer/index.bml.styles.s1.views=दृष्य के प्रकार
+
+/developer/index.bml.styles.s1.views.about=जिस जिस प्रकार से आप अपना लेखा देख सकते हैं, उनकी सूची, विस्तृत जानकारी सहित।
+
+/developer/index.bml.styles.s2.header=शैली प्रणाली 2
+
+/developer/index.bml.styles.s2.layerbrowse=S2 आवरण प्रदर्शक
+
+/developer/index.bml.styles.s2.layerbrowse.about=S2 के सार्वजनिक आवरणों की पूरी सूची, जिसमें कि S2 प्रणाली की शैलियाँ निहित हैं। इनमें महत्वपूर्ण हैं, कोर आवरण, जिनमें कि मूल परिवर्तनीय, फ़ङ्कशन व क्लास परिभाषित हैं। यही S2 को इतनी सशक्त डिज़ाइन भाषा बनाते हैं।
+
+/developer/index.bml.styles.s2.manual=S2 प्रलेखन
+
+/developer/index.bml.styles.s2.manual.about=लाइव्जर्नल पर S2 के प्रयोग के बारे में सम्पूर्ण जानकारी
+
+/developer/index.bml.title=निर्माता सम्बन्धी जानकारी
+
+/directory.bml.browse.country.desc=किसी देश विशेष के चिट्ठे पढ़ने के लिए, कोई देश चुनें...
+
+/directory.bml.browse.country.title=देशानुसार लेखे देखें
+
+/directory.bml.browse.usa.desc=किसी अमरीकी राज्य विशेष के चिट्ठे पढ़ने के लिए राज्य पर चटका लगाएँ, या नक्शे के नीचे प्रदत्त देशों के नाम में से अक पर चटका लगाएँ, उस देश के लेखों को पढ़ने के लिए।
+
+/directory.bml.browse.usa.title=अमरीकी राज्यों के अनुसार लेखा देखें
+
+/directory.bml.error.accounttype=मुआफ़ी, या तो जिस प्रकार का आपका खाता है, उसमें निर्देशिका का प्रयोग वर्जित है, अन्यथा आप <a href='/login.bml'>प्रविष्ट नहीं हैं</a>। यदि आपके खाते में निर्देशिका का प्रयोग उपलब्ध है, तो कृपया प्रवेश करके फिर से कोशिश करें।
+
+/directory.bml.navcrap.matches=[[count]] मेल
+
+/directory.bml.navcrap.xofy=कुल [[totpages]] पन्नों में से  पृष्ठ [[curpage]]  प्रदर्शित किया गया (क्र. [[reca]]-[[recb]])
+
+/directory.bml.open=खोलें
+
+/directory.bml.post=छापें
+
+/directory.bml.search.monkey=सैकड़ों प्रशिक्षित वानर कूद फ़ाँद कर आपके खोज परिणाम निकाल रहे हैं। कृपया प्रतीक्षा करें।
+
+/directory.bml.search.new=नई खोज
+
+/directory.bml.search.overflow=<b>खोज परिणाम [[count]] से अधिक नहीं हो सकते। कृपया खोज को छोटा करें।</b>
+
+/directory.bml.search.title=खोज जारी
+
+/directory.bml.update=बदलें:
+
+/directory.bml.user=प्रयोक्ता
+
+/doc/index.bml.about=लाइव्जर्नल के प्रलेखन भण्डार में आपका स्वागत है। यहाँ आपको लाइव्जर्नल सेवा से ले के सेवक तन्त्रांश तक के बारे में जानकारी मिलेगी। कृपया निम्नोक्त सूची से विषय चुनें:
+
+/doc/index.bml.about.header=स्वागतम्
+
+/doc/index.bml.docs.faq.about=लाइव्जर्नल के बारे में सवाल जवाब
+
+/doc/index.bml.docs.faq.title=सवाल जवाब
+
+/doc/index.bml.docs.guides.about=सवाल जवाब सम्बन्धी अन्य जानकारी
+
+/doc/index.bml.docs.guides.title=सहायिकाएँ
+
+/doc/index.bml.docs.header=प्रलेख
+
+/doc/index.bml.docs.howto.about=लाइव्जर्नल खाते की शक्लोसूरत बदलने सम्बन्धी नुस्खे
+
+/doc/index.bml.docs.server.about=लाइव्जर्नल जमाव को स्थापित, प्रबन्धित व जुगाड़ने से सम्बन्धित जानकारी
+
+/doc/index.bml.docs.server.title=लाइव्जर्नल सेवक प्रलेखन
+
+/doc/index.bml.docs.tour.about=नए दर्शकों की स्थल से जानपहचान बढ़ाने के लिए निर्मित
+
+/doc/index.bml.docs.tour.title=यात्रा
+
+/doc/index.bml.title=प्रलेखन
+
+/doc/index.bml.volunteering.about=यदि आप लाइव्जर्नल के प्रलेखन में सहायता करना चाहते हैं, तो इन मञ्चों को देखें:
+
+/doc/index.bml.volunteering.header=स्वयंसेवा
+
+/doc/index.bml.volunteering.ljsysdoc=लाइव्जर्नल प्रलेखन प्रणाली पर चर्चा
+
+/doc/index.bml.volunteering.ljuserdoc=प्रयोक्ताओं की प्रलेखन सम्बन्धी चर्चा
+
+/doc/tour/index.bml.clients.caption=लाइव्जर्नल ग्राहक आपके सङ्गणक पर चलने वाले छोटे कार्यक्रम होते हैं, जिनकी मदद से जाल से जुड़े होने पर आप बिना ब्राउज़र खोले अपना लेखा बदल सकते हैं। ग्राहक लगभक सभी प्लॅट्फ़ॉर्मों के लिए उपलब्ध हैं, और आसानी से परिवर्तनीय भी हैं।
+
+/doc/tour/index.bml.clients.title=ग्राहक
+
+/doc/tour/index.bml.comms.caption=लाइव्जर्नल एक बहुत बड़ा समुदाय है, चुनाँचे यह ताज्जुब की बात नहीं है कि कई सदस्यों की दिल्चस्पियाँ आपस में मेल खाती हैं। इसको मद्देनज़र रखते हुए, हमने समुदाय, यानी ऐसे लेखे जिनमें कई लोग लेख लिख सकते हैं, बनाने की सुविधा पेश की है।
+
+/doc/tour/index.bml.comms.title=समुदाय
+
+/doc/tour/index.bml.create.caption=लाइव्जर्नल सदस्यता आधारित लेखन समुदाय है। इस पन्ने से आपको पता चलेगा कि सदस्यता क्या है, यह क्यों आवश्यक है, और सदस्यता के लाभ। इसमें अपना खाता खोलने का एक पर्चा भी है।
+
+/doc/tour/index.bml.create.title=खाता खोलना
+
+/doc/tour/index.bml.friends.caption="मित्रगण" सुविध से, आप अपने मित्रों के हालचाल पता करते रह सकते हैं। यदि आपको कोई लेखा दिलचस्प लगता है, तो उसे अपने मित्रों की सूची में शामिल कर दें। इससे आप एक ही पन्ने पर अपने सभी मित्रों की प्रविष्टियाँ पढ़ सकेंगे।
+
+/doc/tour/index.bml.friends.title=मित्रगण
+
+/doc/tour/index.bml.intro.caption=यह यात्रा नए दर्शकों के लिए है, ताकि वे इस स्थल से और परिचित हों। इसमें आपको पता चलेगा कि सबसे महत्वपूर्ण विभाग कौन से हैं, और साथ ही कुछ और दिलचस्प सुविधाओं के बारे में भी।
+
+/doc/tour/index.bml.intro.title=स्वागतम्
+
+/doc/tour/index.bml.modify.caption=आप अपने लेखे को कई तरह से प्रारूपित कर सकते हैं, पूर्वनिर्धारित शैलियों व रङ्ग योजनाओं की मदद से। अपना लेखा अनोखा बनाएँ!
+
+/doc/tour/index.bml.modify.title=वैयक्तीकरण
+
+/doc/tour/index.bml.nav.next=अगला --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- पिछला
+
+/doc/tour/index.bml.profile.caption=लाइव्जर्नल सदस्यों को हम प्रेरित करते हैं कि वे अपने बारे में और जानकारी दें, ताकि हमें पता चले कि स्थल के प्रयोक्ता कौन हैं और इसका प्रयोग कौन करता है। लेकिन, इसमें से कोई भी जानकारी लाज़िमी नहीं है, लाइव्जर्नल का प्रयोग शुरू करने के लिए केवल एक नाम, डाक पता व प्रवेश शब्द की ज़रूरत है।
+
+/doc/tour/index.bml.profile.title=पार्श्व चित्र
+
+/doc/tour/index.bml.sitemap.caption=आशा है कि इस यात्रा से आपको लाइव्जर्नल स्थल व सेवा के बारे में काम की जानकारी दी होगी। यदि आपको लाइव्जर्नल से सम्बन्धित कोई भी सहायता चाहिए हो तो कृपया <a href="/support/">हमारे सहायता विभाग</a> से सम्पर्क करें। यदि आप और खोजबीन करना चाहते हैं, तो कृपया <a href="/site/">स्थल मानचित्र</> पर उपलब्ध इस स्थल  के सभी पन्नों की सूची देखें।
+
+/doc/tour/index.bml.sitemap.title=स्थल मानचित्र
+
+/doc/tour/index.bml.support.caption=सहायता पृष्ठ में उन क्षेत्रों की सूची है जिनसे पता चलता है कि लाइव्जर्नल के बारे में अक्सर पूछे गए सवाल जवाब क्या हैं, और साथ ही, इस सेवा, कम्पनी व समुदाय के बारे में जानकारी भी।
+
+/doc/tour/index.bml.support.title=मदद माँगें
+
+/doc/tour/index.bml.title=यात्रा - [[title]]
+
+/doc/tour/index.bml.update.caption=लाइव्जर्नल को बदलना ही लाइव्जर्नल सेवा का मूल मन्त्र है, यहीं पर तो हमारे प्रयोक्ताओं को अपने मन की बात कहने की व अपने जीवन के कुछ क्षण हमारे साथ बिताने का मौका मिलता है। लेखा बदलना सरल है। प्रदत्त बक्से में एक प्रविष्टि लिखे, और "लेखा बदलें" वाली कुञ्जी दबाएँ। हाँ, हम और विकसित सुविधाएँ भी इस पन्ने पर देते हैं, जैसे वर्तनी की जाँच, या अन्य जानकारी, जैसे कि मौजूदा सङ्गीत या आपका फ़िलहाल का मूड।
+
+/doc/tour/index.bml.update.title=बदलना
+
+/editinfo.bml.allowshowcontact.about=आपको यह विकल्प लागू करना चाहिए। इसकी मदद से अन्य लोग आपसे सम्पर्क साध सकते है, लाइव्जर्नल पर उपलब्ध डाक पते, आई सी क्यू क्रमाङ्क, व ए ओ ऍल इंस्टॅण्ट मॅसॅञ्जर पटनाम की मदद से
+
+/editinfo.bml.allowshowcontact.email=प्रदर्शनीय डाक पता (यदि प्रदर्शित हो तो):
+
+/editinfo.bml.allowshowcontact.email.actual_only=केवल असली पता
+
+/editinfo.bml.allowshowcontact.email.both=दोनो (असली + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=केवल लाइव्जर्नल पता
+
+/editinfo.bml.allowshowcontact.email.neither=कोई भी नहीं। मेरा डाक पता प्रदर्शित न करें।
+
+/editinfo.bml.allowshowcontact.email.no_show=डाक पता न दिखाएँ
+
+/editinfo.bml.allowshowcontact.email.show=डाक पता दिखाएँ
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr<<
+उपरोक्त विकल्प की मदद से आप अपना डाक पता छिपा सकते हैं, (अन्य सम्पर्क जानकारी का प्रदर्शन बरकरार रखते हुए), या केवल लाइव्जर्नल डाक पता प्रदर्शित कर सकते हैं( केवल <a href="/paidaccounts/">शुल्कदत्त खातों</a>
+के लिए), केवल असली पता दिखा सकते हैं, या दोनो दिखा सकते हैं।
+.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=उपरोक्त विकल्प की मदद से आप अपना डाक पता छिपा सकते हैं (अन्य सम्पर्क जानकारी का प्रदर्शन बरकरार रखते हुए)
+
+/editinfo.bml.allowshowcontact.title=अपने लाइव्जर्नल पर सम्पर्क जानकारी प्रदर्शित करें?
+
+/editinfo.bml.allowshowinfo.about=यदि आप चाहते हैं कि आपका शहर/राज्य/देश व जन्मदिवस सब प्रयोक्ताओं को प्रदर्शित हो तो इसे चालू कर दें।
+
+/editinfo.bml.allowshowinfo.title=स्थान व जन्मदिवस प्रदर्शित करें?
+
+/editinfo.bml.autotranslate.about=इस विकल्प की मदद से आप लाइव्जर्नल को यह बता सकते हैं कि स्थल को यूनीकोड में परिवर्तित करने के पहले की प्रविष्टियों के लिए कौन सा कूटबन्धन मान कर चला जाए। यदि आप अङ्ग्रेज़ी में लिखते हैं, तो यहाँ पर "Western European" चुनें।
+
+/editinfo.bml.autotranslate.header=पुरानी प्रविष्टियों को यहाँ से स्वतः परिवर्तित करें:
+
+/editinfo.bml.bday.title=जन्मदिवस
+
+/editinfo.bml.bday.year.opt=वर्ष वैकल्पिक है
+
+/editinfo.bml.bdayreminders.about=यदि आप लाइव्जर्नल मित्रों के जन्मदिवसों की याद दिलाने वाली डाक पाना चाहते हैं, तो इस बक्से पर सही का निशान लगाएँ।
+
+/editinfo.bml.bdayreminders.header=जन्मदिवसों की याद दिलाएँ (फ़िलहाल अनुपलब्ध)
+
+/editinfo.bml.bio.about=यहाँ पर आप अपनी एक छोटी सी आत्मकथा लिख सकते हैं। यद आपके प्रयोक्ता जानकारी पृष्ठ पर प्रदर्शित होगी।
+
+/editinfo.bml.bio.header=आपके बारे में
+
+/editinfo.bml.blockrobots.about=यदि आप इस विकल्प पर सही का निशान लगाते हैं, तो रोबोटों को कहा जाएगा कि वे यहाँ न आएँ। लेकिन सभी रोबोट नियमों का पालन नहीं करते हैं।
+
+/editinfo.bml.blockrobots.header=आपके लेखे को रोबोटों/स्पाइडरों द्वारा अपने सूचकाङ्क में डालने की अनुमति न दें।
+
+/editinfo.bml.chat.aolim.title=ए ओ ऍल आई ऍम
+
+/editinfo.bml.chat.icquin.title=आई सी क्यू यू आई ऍन
+
+/editinfo.bml.chat.jabber.title=जॅबर
+
+/editinfo.bml.chat.msnusername.title=ऍम ऍस ऍन प्रयोक्ता नाम
+
+/editinfo.bml.chat.yahooid.title=याहू! आई डी
+
+/editinfo.bml.city.title=शहर
+
+/editinfo.bml.country.choose=देश चुनें
+
+/editinfo.bml.country.title=देश
+
+/editinfo.bml.donotlog=नहीं
+
+/editinfo.bml.email.title=डाक पता
+
+/editinfo.bml.enableboards.about=यदि आप चाहते हैं कि आपके द्वारा छापे गए लेखों पर लोग टिप्पणियाँ लिख सकें, तो इस पर सही का निशान लगाएँ।
+
+/editinfo.bml.enableboards.header=सन्देश पट लागू करें
+
+/editinfo.bml.encoding.about=इसकी चिन्ता न करें। यहाँ केवल उन्हीं अन्तर्राष्ट्रीय लेखकों को कुछ बदलना होगा, जो कई भाषाओं में लिखते हैं।
+
+/editinfo.bml.encoding.header=कूटबन्धन विकल्प
+
+/editinfo.bml.error.day.notinmonth=इस मास के लिए यह दिन अवैध है।
+
+/editinfo.bml.error.day.outofrange=जन्मदिवस अवैध। 1-31 के बीच का दिन प्रविष्ट करें।
+
+/editinfo.bml.error.email.lj_domain|staleness=1
+/editinfo.bml.error.email.lj_domain=आप @[[domain]] डाक पता प्रविष्ट नहीं कर सकते। इस खाने में अपना असली पता प्रविष्ट करें। यदि आप शुल्कदत्त प्रयोक्ता हैं, तो [[user]]@[[domaon]] पते पर प्राप्त डाक असली पते पर अग्रेषित कर दी जाएगी। कौन सा पता (या दोनो) सार्वजनिक रूप से प्रदर्शित किए जाएँ, यह चुनने के लिए "सम्पर्क सूचना दर्शाएँ" के नीचे वाला विकल्प देखें।
+
+/editinfo.bml.error.email.none=डाक पता प्रदान करना अनिवार्य है
+
+/editinfo.bml.error.email.no_space=डाक पते में खाली स्थान वर्जित हैं। यदि आप ए ओ ऍल पर हैं, तो याद रखें कि आपका अन्तर्जाल डाक पता है, सभी खाली स्थान हटाने के बाद आपका पटनाम, अन्त में <b>@aol.com</b> ए ओ ऍल लगा कर।
+
+/editinfo.bml.error.excessive_int=मुआफ़ी, आपने बहुत अदिक रुचियाँ सूचित की हैं। इसकी सीमा है 150, पर आपने [[intcount]] सूचित की हैं। यदि आपने रुचियों में परिवर्तन किए थे, तो वे सँजोए नहीं गए हैं। वापस जा के सूची की प्रविष्टियाँ कम करें, और फिर सँजोएँ।
+
+/editinfo.bml.error.invalidbio=आपके सँजोई गई आत्मकथा में अवैध अक्षर है। आपको <a href='/utf8convert.bml'><b>परिवर्तक पृष्ठ पर जा कर</b></a> इन्हें यूनिकोड में परिवर्तित करना होगा।
+
+/editinfo.bml.error.invalidints=आपकी फ़िलहाल सँजोई हुई रुचियों की सूची में अवैध अक्षर हैं। कृपया यूनिकोड में परिवर्तित करने के लिए <a href='/utf8convert.bml'><b>परिवर्तन पृष्ठ</b></a> पर जाएँ।
+
+/editinfo.bml.error.invalidname=आपके नाम में अवैध अक्षर हैं। कृपया यूनिकोड में परिवर्तित करने के लिए <a href='/utf8convert.bml'><b>परिवर्तन पृष्ठ</b></a> पर जाएँ।
+
+/editinfo.bml.error.locale.country_ne_state=आपने देश का नाम संयुक्त राज्य प्रदान किया है, किन्तु "अन्य राज्य" खाने में ऐसा राज्य प्रविष्ट किया है जो संयुक्त राज्य में नहीं है।
+
+/editinfo.bml.error.locale.invalid_country=देश का नाम अवैध है।
+
+/editinfo.bml.error.locale.state_ne_country=आपने देश तो संयुक्त राज्य नहीं चुना है, किन्तु राज्य संयुक्त राज्य का चुना है।
+
+/editinfo.bml.error.locale.zip_ne_state=प्रदत्त ज़िप कोड राज्य के साथ मेल नहीं खाता। या तो जानकारी को सही करें, अथवा, राज्य, ज़िप कोड या दोनों की ही प्रविष्टि हटा दें।
+
+/editinfo.bml.error.locale.zip_requires_us=आपने ज़िप कोड प्रविष्ट किया है किन्तु देश संयुक्त राज्य नहीं चुना है। हम केवल संयुक्त राज्य के प्रवासियों के ज़िप कोड एकत्रित करते हैं। कृपया वापस जा के ज़िप कोड का कोष्ठक रिक्त करें अथवा संयुक्त राज्य को अपना देश चुनें।
+
+/editinfo.bml.error.month.outofrange=जन्मदिवस मास अवैध। 1-12 (जन.-दिस) के बीच का मास चुनें।
+
+/editinfo.bml.error.noname=नाम प्रविष्ट करना अनिवार्य है। कम से कम एक नाम, या छद्मनाम ही प्रदान करें।
+
+/editinfo.bml.error.tm.require.number=यदि आप पाठ्य सन्देशों का प्रयोग करेंगे तो, दूरभाष सङ्ख्या भी प्रदान करें।
+
+/editinfo.bml.error.tm.require_provider=यदि आप पाठ्य सन्देशों का प्रयोग करेंगे, तो आपको सेवा प्रदाता भी चनना होगा। यदि आपका सेवा प्रदाता सूची में नहीं है, तो कृपया इसकी जानकारी हमें प्रदान करें ताकि हम यह सुविधा इसके लिए भी प्रदान कर सकें।
+
+/editinfo.bml.error.year.notenoughdigits=अवैध जन्मदिवस वर्ष। 4 सङ्ख्याओं का वर्ष प्रविष्ट करें।
+
+/editinfo.bml.error.year.outofrange=अवैध जन्मदिवस वर्ष।
+
+/editinfo.bml.finished.about=सम्पूर्ण होने के उपरान्त निम्नोक्त "परिवर्तन सँजोएँ" वाली कुञ्जी दबाएँ।
+
+/editinfo.bml.finished.header=सम्पूर्ण?
+
+/editinfo.bml.finished.save_button=परिवर्तन सँजोएँ
+
+/editinfo.bml.gender.title=लिङ्ग
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=सूचना पटों पर आपकी लेखा प्रविष्टियों के ऊपर टिप्पणियाँ मिलने पर यदि आप डाक से सूचना चाहते हैं तो इस पर सही का निशान लगाएँ।
+
+/editinfo.bml.getreplies.header=सूचना पट से टिप्पणियाँ प्राप्त करें
+
+/editinfo.bml.hidefriendof.about=यदि आप इस पर सही का निशान लगाते हैं आपको मित्र घोषित करने वाले व्यक्तियों की सूची आपके जानकारी पृष्ठ पर प्रदर्शित नहीं होगी।
+
+/editinfo.bml.hidefriendof.header="इनका मित्र" सूची छिपाएँ
+
+/editinfo.bml.howhear.about<<
+हम यह जानने के लिए उत्सुक हैं कि आपने [[sitename]] के बारे में कहाँ से सुना?
+यदि किसी व्यक्तिविशेष न बताया तो उनका प्रयोक्ता नाम प्रविष्ट करें; यदि किसी और स्रोत/लेख/कड़ी/स्थल से पता चला, तो उपयुक्त जानकारी प्रदान करें।
+.
+
+/editinfo.bml.howhear.header=कौतूहल
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about=जाँचे, आपका डाक कार्यक्रम डाक में पूर्णतः ऍच टी ऍम ऍल प्रदान करता है या नहीं। अधिकतर ग्राहक कोशिश करते हैं, लेकिन असफल रहते हैं। यदि आप इस पर सही का निशान नहीं लगाते हैं तो लाइव्जर्नल केवल पाठ्य सन्देश भेजेगा।
+
+/editinfo.bml.htmlemail.header=ऍच टी ऍम ऍल डाक भेजें
+
+/editinfo.bml.int.header=रुचियाँ
+
+/editinfo.bml.login.enterinfo=व्यक्तिगत जानकारी परिवर्तित करने के लिए प्रयोक्ता नाम व प्रवेश शब्द प्रविष्ट करें।
+
+/editinfo.bml.login.forgot.header=कुछ भूल गए?
+
+/editinfo.bml.login.forgot.recover=यदि आप अपना प्रयोक्ता नाम या प्रवेश शब्द भूल गए हैं, तो <a href='lostinfo.bml'>यहाँ से प्राप्त करें!</a>।
+
+/editinfo.bml.logip.always=हमेशा
+
+/editinfo.bml.newemail.subject=डाक पता परिवर्तित।
+
+/editinfo.bml.optional=वैकल्पिक
+
+/editinfo.bml.opt_in.header=मुझे लाइव्जर्नल समाचार भेजें
+
+/editinfo.bml.persinfo.header=व्यक्तिगत जानकारी
+
+/editinfo.bml.screen.all=सभी
+
+/editinfo.bml.screen.anon=अज्ञात
+
+/editinfo.bml.security.visibility.everybody=सभी
+
+/editinfo.bml.security.visibility.friends=केवल मित्र
+
+/editinfo.bml.security.visibility.regusers=पञ्जीकृत प्रयोक्ता
+
+/editinfo.bml.state.us=अमरीकी राज्य
+
+/editinfo.bml.success.header=सफल!
+

@@ -1,0 +1,49 @@
+<?page
+title=>Purchase new account
+body<=
+<?_code
+{
+    my $months = $FORM{'months'};
+    return "<b>Error:</b> Invalid months value." unless $LJ::Pay::account{$months};
+    my $amount = $LJ::Pay::account{$months}->{'amount'};
+    my $name = "New account, with paid benefits for $months months";
+  
+    if (LJ::did_post()) {
+        if ($FORM{'email'}) {
+            my @errors;
+            if ($FORM{'email'} =~ /\s/) { push @errors, "Email address shouldn't contain spaces."; }
+            LJ::check_email($FORM{'email'}, \@errors);            
+            return LJ::bad_input(@errors) if @errors;
+        }
+
+        my $url = "https://www.paypal.com/cgi-bin/webscr?amount=$amount&return=http%3A//www.livejournal.com/paidaccounts/thankyou.bml&item_name=" . LJ::eurl($name) . "&custom=months%3D$months%26newacct%3D1%26email%3D" . LJ::eurl($FORM{'email'}) . "&business=paypal%40livejournal.com&cmd=_xclick&cmd=_xclick&no_shipping=1&no_note=1&notify_url=http%3A//www.livejournal.com/paidaccounts/pp_notify.bml";
+        return BML::redirect($url);
+    }
+
+    return <<"FORM";
+<form method='post'>
+<input type='hidden' name='months' value='$months'>
+<?h1 Step 1: Your email address. h1?>
+<?p
+What email address should we email your account creation code to?
+<blockquote>
+<input type='text' name='email' size='30'> <input type='submit' value='Continue &gt;&gt;'><br />
+<b>Example:</b> <tt>bob3984\@yourisp.com</tt>
+</blockquote>
+If you leave the box blank, the code will be mailed to your PayPal email address (if you have an existing PayPal account), or the email address PayPal will ask you for if you don't have an account.
+p?>
+<?p
+If you no longer have access to your PayPal email address, but continue to use that PayPal account, please provide a good email address we can mail you at.
+p?>
+</form>
+
+
+
+FORM
+    
+}
+_code?>
+<=body
+page?>
+
+

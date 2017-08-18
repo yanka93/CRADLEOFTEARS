@@ -1,0 +1,719 @@
+? build-arch-stamp
+? build-indep-stamp
+? configure-stamp
+? debian
+? doc/api
+? include/linux
+Index: Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/Makefile,v
+retrieving revision 1.27
+diff -u -r1.27 Makefile
+--- Makefile	2 Sep 2003 00:33:42 -0000	1.27
++++ Makefile	13 Sep 2003 00:36:00 -0000
+@@ -19,10 +19,10 @@
+ OSARCH=$(shell uname -s)
+ 
+ ifeq (${OSARCH},Linux)
+-PROC=$(shell uname -m)
++#PROC=$(shell uname -m)
+ endif
+ # Pentium Pro Optimize
+-#PROC=i686
++PROC=i686
+ 
+ # Pentium & VIA processors optimize
+ #PROC=i586
+@@ -39,7 +39,7 @@
+ #K6OPT  = -DK6OPT
+ 
+ #Tell gcc to optimize the asterisk's code
+-OPTIMIZE=-O6
++OPTIMIZE=-O2
+ 
+ #Include debug symbols in the executables (-g) and profiling info (-pg)
+ DEBUG=-g #-pg
+@@ -64,7 +64,7 @@
+ 
+ # Where to install asterisk after compiling
+ # Default -> leave empty
+-INSTALL_PREFIX=
++INSTALL_PREFIX=$(DESTDIR)
+ 
+ # Original busydetect routine
+ BUSYDETECT = #-DBUSYDETECT
+@@ -87,9 +87,14 @@
+ ASTCONFPATH=$(ASTETCDIR)/asterisk.conf
+ ASTBINDIR=$(INSTALL_PREFIX)/usr/bin
+ ASTSBINDIR=$(INSTALL_PREFIX)/usr/sbin
+-ASTVARRUNDIR=$(INSTALL_PREFIX)/var/run
+-
++ASTVARRUNDIR=$(INSTALL_PREFIX)/var/run/asterisk
+ 
++# By default asterisk installs sound files under /var/lib/asterisk,
++# according to the FHS these files should be in /usr/share/asterisk
++# As they are architecture independant, thus:
++#
++ASTDATADIR=$(INSTALL_PREFIX)/usr/share/asterisk
++ 
+ MODULES_DIR=$(ASTLIBDIR)/modules
+ AGI_DIR=$(ASTVARLIBDIR)/agi-bin
+ 
+@@ -97,14 +102,14 @@
+ CFLAGS=-pipe  -Wall -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations $(DEBUG) $(INCLUDE) -D_REENTRANT -D_GNU_SOURCE #-DMAKE_VALGRIND_HAPPY
+ CFLAGS+=$(OPTIMIZE)
+ CFLAGS+=$(shell if $(CC) -march=$(PROC) -S -o /dev/null -xc /dev/null >/dev/null 2>&1; then echo "-march=$(PROC)"; fi)
+-CFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-fsigned-char"; fi)
++CFLAGS+=$(shell if uname -m | grep -q "ppc\|arm\|s390"; then echo "-fsigned-char"; fi)
+ ifeq (${OSARCH},OpenBSD)
+ CFLAGS+=-pthread
+ endif
+ 
+ CFLAGS+=$(shell if [ -f /usr/include/linux/zaptel.h ]; then echo "-DZAPTEL_OPTIMIZATIONS"; fi)
+ 
+-LIBEDIT=editline/libedit.a
++LIBEDIT=-ledit
+ 
+ ASTERISKVERSION=$(shell if [ -f .version ]; then cat .version; else if [ -d CVS ]; then echo "CVS-`date +"%D-%T"`"; fi; fi)
+ HTTPDIR=$(shell if [ -d /var/www ]; then echo "/var/www"; else echo "/home/httpd"; fi)
+@@ -116,6 +121,7 @@
+ CFLAGS+=-DASTVARLIBDIR=\"$(ASTVARLIBDIR)\"
+ CFLAGS+=-DASTVARRUNDIR=\"$(ASTVARRUNDIR)\"
+ CFLAGS+=-DASTSPOOLDIR=\"$(ASTSPOOLDIR)\"
++CFLAGS+=-DASTDATADIR=\"$(ASTDATADIR)\"
+ CFLAGS+=-DASTLOGDIR=\"$(ASTLOGDIR)\"
+ CFLAGS+=-DASTCONFPATH=\"$(ASTCONFPATH)\"
+ CFLAGS+=-DASTMODDIR=\"$(MODULES_DIR)\"
+@@ -152,17 +158,6 @@
+ 
+ all: depend asterisk subdirs
+ 
+-editline/config.h:
+-	@if [ -d editline ]; then \
+-		cd editline && unset CFLAGS LIBS && ./configure ; \
+-	else \
+-		echo "You need to do a cvs update -d not just cvs update"; \
+-		exit 1; \
+-	fi
+-
+-editline/libedit.a: editline/config.h
+-	$(MAKE) -C editline libedit.a
+-
+ db1-ast/libdb1.a: 
+ 	@if [ -d db1-ast ]; then \
+ 		$(MAKE) -C db1-ast libdb1.a ; \
+@@ -199,7 +194,7 @@
+ 	./make_build_h
+ endif
+ 
+-asterisk: editline/libedit.a db1-ast/libdb1.a $(OBJS)
++asterisk: db1-ast/libdb1.a $(OBJS)
+ 	$(CC) $(DEBUG) -o asterisk -rdynamic $(OBJS) $(LIBS) $(LIBEDIT) db1-ast/libdb1.a
+ 
+ subdirs: 
+@@ -214,10 +209,10 @@
+ 	$(MAKE) -C db1-ast clean
+ 
+ datafiles: all
+-	mkdir -p $(ASTVARLIBDIR)/sounds/digits
++	mkdir -p $(ASTDATADIR)/sounds/digits
+ 	for x in sounds/digits/*.gsm; do \
+ 		if grep -q "^%`basename $$x`%" sounds.txt; then \
+-			install $$x $(ASTVARLIBDIR)/sounds/digits ; \
++			install -m 644 $$x $(ASTDATADIR)/sounds/digits ; \
+ 		else \
+ 			echo "No description for $$x"; \
+ 			exit 1; \
+@@ -225,16 +220,16 @@
+ 	done
+ 	for x in sounds/vm-* sounds/transfer* sounds/pbx-* sounds/ss-* sounds/beep* sounds/dir-* sounds/conf-* sounds/agent-* sounds/invalid* sounds/tt-* sounds/auth-* sounds/privacy-*; do \
+ 		if grep -q "^%`basename $$x`%" sounds.txt; then \
+-			install $$x $(ASTVARLIBDIR)/sounds ; \
++			install -m 644 $$x $(ASTDATADIR)/sounds ; \
+ 		else \
+ 			echo "No description for $$x"; \
+ 			exit 1; \
+ 		fi; \
+ 	done
+-	mkdir -p $(ASTVARLIBDIR)/mohmp3
+-	mkdir -p $(ASTVARLIBDIR)/images
++	mkdir -p $(ASTDATADIR)/mohmp3
++	mkdir -p $(ASTDATADIR)/images
+ 	for x in images/*.jpg; do \
+-		install $$x $(ASTVARLIBDIR)/images ; \
++		install -m 644 $$x $(ASTDATADIR)/images ; \
+ 	done
+ 	mkdir -p $(AGI_DIR)
+ 
+@@ -254,14 +249,15 @@
+ 	mkdir -p $(ASTBINDIR)
+ 	mkdir -p $(ASTSBINDIR)
+ 	mkdir -p $(ASTVARRUNDIR)
++	mkdir -p $(ASTDATADIR)
+ 	mkdir -p $(ASTSPOOLDIR)/voicemail
+ 	install -m 755 asterisk $(ASTSBINDIR)/
+ 	install -m 755 astgenkey $(ASTSBINDIR)/
+ 	install -m 755 safe_asterisk $(ASTSBINDIR)/
+ 	for x in $(SUBDIRS); do $(MAKE) -C $$x install || exit 1 ; done
+ 	install -d $(ASTHEADERDIR)
+-	install include/asterisk/*.h $(ASTHEADERDIR)
+-	rm -f $(ASTVARLIBDIR)/sounds/vm
++	install -m 644 include/asterisk/*.h $(ASTHEADERDIR)
++	rm -f $(ASTDATADIR)/sounds/vm
+ 	rm -f $(ASTVARLIBDIR)/sounds/voicemail
+ 	if [ ! -h $(ASTSPOOLDIR)/vm ] && [ -d $(ASTSPOOLDIR)/vm ]; then \
+ 		mv $(ASTSPOOLDIR)/vm $(ASTSPOOLDIR)/voicemail/default; \
+@@ -272,12 +268,11 @@
+ 	ln -s $(ASTSPOOLDIR)/voicemail/default $(ASTSPOOLDIR)/vm
+ 	rm -f $(MODULES_DIR)/chan_ixj.so
+ 	rm -f $(MODULES_DIR)/chan_tor.so
+-	mkdir -p $(ASTVARLIBDIR)/sounds
++	mkdir -p $(ASTDATADIR)/sounds
+ 	mkdir -p $(ASTLOGDIR)/cdr-csv
+ 	mkdir -p $(ASTVARLIBDIR)/keys
+ 	install -m 644 keys/iaxtel.pub $(ASTVARLIBDIR)/keys
+-	( cd $(ASTVARLIBDIR)/sounds  ; ln -s $(ASTSPOOLDIR)/vm . )
+-	( cd $(ASTVARLIBDIR)/sounds  ; ln -s $(ASTSPOOLDIR)/voicemail . )
++	( cd $(ASTDATADIR)/sounds  ; ln -s $(ASTSPOOLDIR)/voicemail . )
+ 	@echo " +---- Asterisk Installation Complete -------+"  
+ 	@echo " +                                           +"
+ 	@echo " +    YOU MUST READ THE SECURITY DOCUMENT    +"
+@@ -318,7 +313,7 @@
+ 		if [ -f $(ASTETCDIR)/`basename $$x .sample` ]; then \
+ 			mv -f $(ASTETCDIR)/`basename $$x .sample` $(ASTETCDIR)/`basename $$x .sample`.old ; \
+ 		fi ; \
+-		install $$x $(ASTETCDIR)/`basename $$x .sample` ;\
++		install -m 644 $$x $(ASTETCDIR)/`basename $$x .sample` ;\
+ 	done
+ 	echo "[directories]" > $(ASTETCDIR)/asterisk.conf
+ 	echo "astetcdir => $(ASTETCDIR)" >> $(ASTETCDIR)/asterisk.conf
+@@ -330,23 +325,23 @@
+ 	echo "astlogdir => $(ASTLOGDIR)" >> $(ASTETCDIR)/asterisk.conf
+ 	for x in sounds/demo-*; do \
+ 		if grep -q "^%`basename $$x`%" sounds.txt; then \
+-			install $$x $(ASTVARLIBDIR)/sounds ; \
++			install $$x $(ASTDATADIR)/sounds ; \
+ 		else \
+ 			echo "No description for $$x"; \
+ 			exit 1; \
+ 		fi; \
+ 	done
+ 	for x in sounds/*.mp3; do \
+-		install $$x $(ASTVARLIBDIR)/mohmp3 ; \
++		install -m 644 $$x $(ASTDATADIR)/mohmp3 ; \
+ 	done
+ 	mkdir -p $(ASTSPOOLDIR)/voicemail/default/1234/INBOX
+-	:> $(ASTVARLIBDIR)/sounds/voicemail/default/1234/unavail.gsm
++	:> $(ASTSPOOLDIR)/vm/1234/unavail.gsm
+ 	for x in vm-theperson digits/1 digits/2 digits/3 digits/4 vm-isunavail; do \
+-		cat $(ASTVARLIBDIR)/sounds/$$x.gsm >> $(ASTVARLIBDIR)/sounds/voicemail/default/1234/unavail.gsm ; \
++		cat $(ASTDATADIR)/sounds/$$x.gsm >> $(ASTSPOOLDIR)/vm/1234/unavail.gsm ; \
+ 	done
+-	:> $(ASTVARLIBDIR)/sounds/voicemail/default/1234/busy.gsm
++	:> $(ASTSPOOLDIR)/vm/1234/busy.gsm
+ 	for x in vm-theperson digits/1 digits/2 digits/3 digits/4 vm-isonphone; do \
+-		cat $(ASTVARLIBDIR)/sounds/$$x.gsm >> $(ASTVARLIBDIR)/sounds/voicemail/default/1234/busy.gsm ; \
++		cat $(ASTDATADIR)/sounds/$$x.gsm >> $(ASTSPOOLDIR)/vm/1234/busy.gsm ; \
+ 	done
+ 
+ webvmail:
+Index: astconf.h
+===================================================================
+RCS file: /usr/cvsroot/asterisk/astconf.h,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 astconf.h
+--- astconf.h	12 Feb 2003 13:59:13 -0000	1.1.1.1
++++ astconf.h	13 Sep 2003 00:36:00 -0000
+@@ -28,5 +28,6 @@
+ extern char ast_config_AST_PID[AST_CONFIG_MAX_PATH];
+ extern char ast_config_AST_SOCKET[AST_CONFIG_MAX_PATH];
+ extern char ast_config_AST_RUN_DIR[AST_CONFIG_MAX_PATH];
++extern char ast_config_AST_DATA_DIR[AST_CONFIG_MAX_PATH];
+ 
+ #endif
+Index: asterisk-ng-doxygen
+===================================================================
+RCS file: /usr/cvsroot/asterisk/asterisk-ng-doxygen,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 asterisk-ng-doxygen
+--- asterisk-ng-doxygen	12 Feb 2003 13:59:13 -0000	1.1.1.1
++++ asterisk-ng-doxygen	13 Sep 2003 00:36:01 -0000
+@@ -707,7 +707,7 @@
+ # toolkit from AT&T and Lucent Bell Labs. The other options in this section 
+ # have no effect if this option is set to NO (the default)
+ 
+-HAVE_DOT               = YES
++HAVE_DOT               = NO
+ 
+ # If the CLASS_GRAPH and HAVE_DOT tags are set to YES then doxygen 
+ # will generate a graph for each documented class showing the direct and 
+Index: asterisk.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/asterisk.c,v
+retrieving revision 1.20
+diff -u -r1.20 asterisk.c
+--- asterisk.c	8 Sep 2003 16:48:06 -0000	1.20
++++ asterisk.c	13 Sep 2003 00:36:02 -0000
+@@ -104,6 +104,7 @@
+ char ast_config_AST_PID[AST_CONFIG_MAX_PATH];
+ char ast_config_AST_SOCKET[AST_CONFIG_MAX_PATH];
+ char ast_config_AST_RUN_DIR[AST_CONFIG_MAX_PATH];
++char ast_config_AST_DATA_DIR[AST_CONFIG_MAX_PATH];
+ 
+ int ast_register_atexit(void (*func)(void))
+ {
+@@ -1152,6 +1153,7 @@
+ 	strncpy((char *)ast_config_AST_PID,AST_PID,sizeof(ast_config_AST_PID)-1);
+ 	strncpy((char *)ast_config_AST_SOCKET,AST_SOCKET,sizeof(ast_config_AST_SOCKET)-1);
+ 	strncpy((char *)ast_config_AST_RUN_DIR,AST_RUN_DIR,sizeof(ast_config_AST_RUN_DIR)-1);
++	strncpy((char *)ast_config_AST_DATA_DIR,AST_DATA_DIR,sizeof(ast_config_AST_DATA_DIR)-1);
+ 	
+ 	/* no asterisk.conf? no problem, use buildtime config! */
+ 	if (!cfg) {
+@@ -1213,13 +1215,6 @@
+ 	tdd_init();
+ 	if (getenv("HOME")) 
+ 		snprintf(filename, sizeof(filename), "%s/.asterisk_history", getenv("HOME"));
+-	/* Check if we're root */
+-	/*
+-	if (geteuid()) {
+-		ast_log(LOG_ERROR, "Must be run as root\n");
+-		exit(1);
+-	}
+-	*/
+ 	/* Check for options */
+ 	while((c=getopt(argc, argv, "hfdvqprgcinx:C:")) != EOF) {
+ 		switch(c) {
+Index: asterisk.h
+===================================================================
+RCS file: /usr/cvsroot/asterisk/asterisk.h,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 asterisk.h
+--- asterisk.h	12 Feb 2003 13:59:13 -0000	1.1.1.1
++++ asterisk.h	13 Sep 2003 00:36:02 -0000
+@@ -28,11 +28,12 @@
+ #define AST_AGI_DIR	ASTAGIDIR
+ #define AST_KEY_DIR	ASTVARLIBDIR "/keys"
+ #define AST_DB		ASTVARLIBDIR "/astdb"
++#define AST_DATA_DIR	ASTDATADIR
+ 
+ #define AST_CONFIG_FILE ASTCONFPATH
+ 
+-#define AST_SOUNDS AST_VAR_DIR "/sounds"
+-#define AST_IMAGES AST_VAR_DIR "/images"
++#define AST_SOUNDS ASTDATADIR "/sounds"
++#define AST_IMAGES ASTDATADIR "/images"
+ 
+ /* Provided by module.c */
+ extern int load_modules(void);
+Index: cli.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/cli.c,v
+retrieving revision 1.9
+diff -u -r1.9 cli.c
+--- cli.c	13 Aug 2003 15:25:16 -0000	1.9
++++ cli.c	13 Sep 2003 00:36:02 -0000
+@@ -25,7 +25,7 @@
+ #include <string.h>
+ #include <pthread.h>
+ /* For rl_filename_completion */
+-#include "editline/readline/readline.h"
++#include "readline/readline.h"
+ /* For module directory */
+ #include "asterisk.h"
+ #include "build.h"
+Index: file.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/file.c,v
+retrieving revision 1.21
+diff -u -r1.21 file.c
+--- file.c	16 Aug 2003 05:10:35 -0000	1.21
++++ file.c	13 Sep 2003 00:36:03 -0000
+@@ -275,7 +275,7 @@
+ {
+ 	char *fn;
+ 	char tmp[AST_CONFIG_MAX_PATH];
+-	snprintf(tmp,sizeof(tmp)-1,"%s/%s",(char *)ast_config_AST_VAR_DIR,"sounds");
++	snprintf(tmp,sizeof(tmp)-1,"%s/%s",(char *)ast_config_AST_DATA_DIR,"sounds");
+ 	fn = malloc(strlen(tmp) + strlen(filename) + strlen(ext) + 10);
+ 	if (fn) {
+ 		if (filename[0] == '/') 
+Index: image.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/image.c,v
+retrieving revision 1.3
+diff -u -r1.3 image.c
+--- image.c	16 Aug 2003 05:10:35 -0000	1.3
++++ image.c	13 Sep 2003 00:36:03 -0000
+@@ -95,9 +95,9 @@
+ 			snprintf(buf, len, "%s.%s", filename, ext);
+ 	} else {
+ 		if (preflang && strlen(preflang))
+-			snprintf(buf, len, "%s/%s/%s-%s.%s", ast_config_AST_VAR_DIR, "images", filename, preflang, ext);
++			snprintf(buf, len, "%s/%s/%s-%s.%s", ast_config_AST_DATA_DIR, "images", filename, preflang, ext);
+ 		else
+-			snprintf(buf, len, "%s/%s/%s.%s", ast_config_AST_VAR_DIR, "images", filename, ext);
++			snprintf(buf, len, "%s/%s/%s.%s", ast_config_AST_DATA_DIR, "images", filename, ext);
+ 	}
+ }
+ 
+Index: apps/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/Makefile,v
+retrieving revision 1.16
+diff -u -r1.16 Makefile
+--- apps/Makefile	4 Sep 2003 04:40:37 -0000	1.16
++++ apps/Makefile	13 Sep 2003 00:36:03 -0000
+@@ -40,10 +40,10 @@
+ #APPS+=app_sql_postgres.so
+ #APPS+=app_sql_odbc.so
+ 
+-APPS+=$(shell if [ -f /usr/include/linux/zaptel.h ]; then echo "app_zapras.so app_meetme.so app_flash.so app_zapbarge.so" ; fi)
++APPS+=$(shell if [ -f ../include/linux/zaptel.h ]; then echo "app_zapras.so app_meetme.so app_flash.so app_zapbarge.so" ; fi)
+ #APPS+=$(shell if [ -f /usr/include/zap.h ]; then echo "app_rpt.so" ; fi)
+ 
+-CFLAGS+=-fPIC
++CFLAGS+=-fPIC -DPIC
+ 
+ all: $(APPS)
+ 
+@@ -60,7 +60,7 @@
+ 	for x in $(APPS); do $(INSTALL) -m 755 $$x $(MODULES_DIR) ; done
+ 
+ app_todd.o: app_todd.c
+-	gcc -pipe -O6 -g  -Iinclude -I../include -D_REENTRANT -march=i586 -DDO_CRASH -c -o  app_todd.o app_todd.c
++	gcc -pipe $(OPTIMIZE) -g  -Iinclude -I../include -D_REENTRANT -march=$(PROC) -DDO_CRASH -c -o  app_todd.o app_todd.c
+ 
+ app_todd.so: app_todd.o
+ 	$(CC) -shared -Xlinker -x -o $@ $< -L/usr/local/ssl/lib -lssl -lcrypto
+@@ -82,7 +82,7 @@
+ 	$(CC) -shared -Xlinker -x -o $@ $< -lodbc
+ 
+ look:	look.c
+-	gcc -pipe -O6 -g look.c -o look -lncurses
++	gcc -pipe -O2 -g look.c -o look -lncurses
+ 
+ ifneq ($(wildcard .depend),)
+ include .depend
+Index: apps/app_agi.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/app_agi.c,v
+retrieving revision 1.12
+diff -u -r1.12 app_agi.c
+--- apps/app_agi.c	8 Sep 2003 16:48:06 -0000	1.12
++++ apps/app_agi.c	13 Sep 2003 00:36:04 -0000
+@@ -547,6 +547,10 @@
+ 			case AST_FRAME_DTMF:
+ 				if (strchr(argv[4], f->subclass)) {
+ 					/* This is an interrupting chracter */
++					/* Strip off the last 1/4 second of it
++					 * to get rid of the beep. */
++					ast_stream_rewind(fs, 250);
++					ast_truncstream(fs);
+ 					sample_offset = ast_tellstream(fs);
+ 					fdprintf(agi->fd, "200 result=%d (dtmf) endpos=%ld\n", f->subclass, sample_offset);
+ 					ast_closestream(fs);
+@@ -581,12 +585,12 @@
+ 		    	gettimeofday(&tv, NULL);
+ 			if (gotsilence)
+ 				break;
+-        }
++		}
+ 
+               	if (gotsilence) {
+                      	ast_stream_rewind(fs, silence-1000);
+                 	ast_truncstream(fs);
+-		}		
++		}
+ 		fdprintf(agi->fd, "200 result=%d (timeout) endpos=%ld\n", res, sample_offset);
+ 		ast_closestream(fs);
+ 	} else
+Index: apps/app_flash.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/app_flash.c,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 app_flash.c
+--- apps/app_flash.c	12 Feb 2003 13:59:13 -0000	1.1.1.1
++++ apps/app_flash.c	13 Sep 2003 00:36:04 -0000
+@@ -21,7 +21,7 @@
+ #include <asterisk/image.h>
+ #include <asterisk/options.h>
+ #include <sys/ioctl.h>
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ #include <string.h>
+ #include <errno.h>
+ #include <stdlib.h>
+Index: apps/app_meetme.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/app_meetme.c,v
+retrieving revision 1.4
+diff -u -r1.4 app_meetme.c
+--- apps/app_meetme.c	20 Aug 2003 23:32:23 -0000	1.4
++++ apps/app_meetme.c	13 Sep 2003 00:36:04 -0000
+@@ -30,7 +30,7 @@
+ #include <sys/ioctl.h>
+ 
+ #include <pthread.h>
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ 
+ static char *tdesc = "Simple MeetMe conference bridge";
+ 
+Index: apps/app_zapbarge.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/app_zapbarge.c,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 app_zapbarge.c
+--- apps/app_zapbarge.c	12 Feb 2003 13:59:14 -0000	1.1.1.1
++++ apps/app_zapbarge.c	13 Sep 2003 00:36:05 -0000
+@@ -33,7 +33,7 @@
+ #include <sys/ioctl.h>
+ 
+ #include <pthread.h>
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ static char *tdesc = "Barge in on Zap channel application";
+ 
+ static char *app = "ZapBarge";
+Index: apps/app_zapras.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/apps/app_zapras.c,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 app_zapras.c
+--- apps/app_zapras.c	12 Feb 2003 13:59:14 -0000	1.1.1.1
++++ apps/app_zapras.c	13 Sep 2003 00:36:05 -0000
+@@ -33,7 +33,7 @@
+ #include <pthread.h>
+ 
+ /* Need some zaptel help here */
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ 
+ static char *tdesc = "Zap RAS Application";
+ 
+Index: cdr/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/cdr/Makefile,v
+retrieving revision 1.6
+diff -u -r1.6 Makefile
+--- cdr/Makefile	19 Aug 2003 16:42:30 -0000	1.6
++++ cdr/Makefile	13 Sep 2003 00:36:05 -0000
+@@ -13,7 +13,7 @@
+ 
+ MODS=cdr_csv.so
+ 
+-CFLAGS+=-fPIC
++CFLAGS+=-fPIC -DPIC
+ 
+ #
+ # MySQL stuff...  Autoconf anyone??
+Index: channels/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/channels/Makefile,v
+retrieving revision 1.10
+diff -u -r1.10 Makefile
+--- channels/Makefile	11 Sep 2003 19:45:43 -0000	1.10
++++ channels/Makefile	13 Sep 2003 00:36:05 -0000
+@@ -27,6 +27,7 @@
+ CHANNEL_LIBS+=$(shell [ -f /usr/include/linux/ixjuser.h ] && echo chan_phone.so)
+ CHANNEL_LIBS+=$(shell [ -f h323/libchanh323.a ] && echo chan_h323.so)
+ 
++CFLAGS+=-fPIC -DPIC
+ CFLAGS+=-Wno-missing-prototypes -Wno-missing-declarations
+ CFLAGS+=$(shell [ ! -f /usr/include/linux/if_wanpipe.h ] && echo " -DOLD_SANGOMA_API")
+ CHANNEL_LIBS+=$(shell [ -f /usr/include/alsa/asoundlib.h ] && echo "chan_alsa.so")
+@@ -37,7 +38,7 @@
+ ZAPR2=$(shell [ -f /usr/lib/libmfcr2.so.1 ] && echo "-lmfcr2")
+ CHANZAP=$(shell if [ -f .oldzap ]; then echo "chan_zap_old.c"; else echo "chan_zap.c"; fi)
+ ZAPLIB=$(shell if [ -f .oldzap ]; then echo "-lzap"; fi)
+-CFLAGS+=$(shell [ -f /usr/include/linux/zaptel.h ] && echo "-DIAX_TRUNKING")
++CFLAGS+=$(shell [ -f ../include/linux/zaptel.h ] && echo "-DIAX_TRUNKING")
+ CHANNEL_LIBS+=$(shell [ -f /usr/include/vpbapi.h ] && echo "chan_vpb.so" )
+ 
+ ALSA_SRC=chan_alsa.c
+@@ -50,7 +51,8 @@
+ 
+ ZAPDIR=/usr/lib
+ 
+-CHANNEL_LIBS+=$(shell [ -f /usr/include/linux/zaptel.h ] && echo "chan_zap.so")
++# XXX evan disable zaptel
++# CHANNEL_LIBS+=$(shell [ -f ../include/linux/zaptel.h ] && echo "chan_zap.so")
+ 
+ CHANNEL_LIBS+=$(shell [ -f /usr/include/nbs.h ] && echo "chan_nbs.so" )
+ 
+Index: channels/chan_zap.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/channels/chan_zap.c,v
+retrieving revision 1.98
+diff -u -r1.98 chan_zap.c
+--- channels/chan_zap.c	12 Sep 2003 17:09:44 -0000	1.98
++++ channels/chan_zap.c	13 Sep 2003 00:36:10 -0000
+@@ -44,7 +44,7 @@
+ #include <stdint.h>
+ #include <unistd.h>
+ #include <sys/ioctl.h>
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ #include <math.h>
+ #include <tonezone.h>
+ #include <ctype.h>
+Index: codecs/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/codecs/Makefile,v
+retrieving revision 1.5
+diff -u -r1.5 Makefile
+--- codecs/Makefile	6 May 2003 00:00:20 -0000	1.5
++++ codecs/Makefile	13 Sep 2003 00:36:10 -0000
+@@ -25,9 +25,8 @@
+ 
+ LIBG723=g723.1/libg723.a
+ LIBG723B=g723.1b/libg723b.a
+-LIBGSM=gsm/lib/libgsm.a
+-LIBGSM=$(shell if uname -m | grep -q 86; then echo gsm/lib/libgsm.a; else echo "-lgsm" ; fi)
+-LIBGSMT=$(shell if uname -m | grep -q 86; then echo gsm/lib/libgsm.a; fi)
++LIBGSM=-lgsm
++LIBGSMT=-lgsm
+ LIBMP3=mp3/libmp3.a
+ LIBLPC10=lpc10/liblpc10.a
+ LIBSPEEX=-lspeex -lm
+Index: codecs/codec_gsm.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/codecs/codec_gsm.c,v
+retrieving revision 1.2
+diff -u -r1.2 codec_gsm.c
+--- codecs/codec_gsm.c	13 Aug 2003 15:25:16 -0000	1.2
++++ codecs/codec_gsm.c	13 Sep 2003 00:36:10 -0000
+@@ -31,8 +31,8 @@
+ #include <netinet/in.h>
+ #include <string.h>
+ #include <stdio.h>
++#include <gsm/gsm.h>
+ 
+-#include "gsm/inc/gsm.h"
+ #include "../formats/msgsm.h"
+ 
+ /* Sample frame data */
+Index: codecs/gsm/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/codecs/gsm/Makefile,v
+retrieving revision 1.3
+diff -u -r1.3 Makefile
+--- codecs/gsm/Makefile	27 Apr 2003 18:13:11 -0000	1.3
++++ codecs/gsm/Makefile	13 Sep 2003 00:36:10 -0000
+@@ -55,7 +55,7 @@
+ # CCFLAGS 	= -c -O
+ 
+ CC		= gcc -ansi -pedantic $(OPTIMIZE) -march=$(PROC) -fschedule-insns2  -fomit-frame-pointer 
+-CCFLAGS 	+= -c -DNeedFunctionPrototypes=1 -finline-functions -funroll-loops -fPIC
++CCFLAGS 	+= -c -DNeedFunctionPrototypes=1 -finline-functions -funroll-loops -fPIC -DPIC
+ 
+ LD 		= $(CC)
+ 
+Index: codecs/lpc10/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/codecs/lpc10/Makefile,v
+retrieving revision 1.3
+diff -u -r1.3 Makefile
+--- codecs/lpc10/Makefile	27 Apr 2003 18:13:11 -0000	1.3
++++ codecs/lpc10/Makefile	13 Sep 2003 00:36:10 -0000
+@@ -22,13 +22,8 @@
+ # 
+ 
+ WARNINGS = -Wall -Wno-comment -Wno-error
+-CFLAGS = $(OPTIMIZE) -I$(LIB_TARGET_DIR) $(WARNINGS) -fPIC
++CFLAGS = $(OPTIMIZE) -I$(LIB_TARGET_DIR) $(WARNINGS) -fPIC -DPIC
+ #CFLAGS+= $(shell if uname -m | grep -q 86; then echo "-mpentium" ; fi)
+-
+-#fix for PPC processors
+-ifneq ($(PROC),ppc)
+-	CFLAGS+= -march=$(PROC)
+-endif
+ 
+ LIB = $(LIB_TARGET_DIR)/liblpc10.a
+ 
+Index: formats/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/formats/Makefile,v
+retrieving revision 1.7
+diff -u -r1.7 Makefile
+--- formats/Makefile	19 Aug 2003 16:42:30 -0000	1.7
++++ formats/Makefile	13 Sep 2003 00:36:11 -0000
+@@ -20,9 +20,9 @@
+ #
+ #FORMAT_LIBS+=format_g723.so
+ 
+-GSMLIB=../codecs/gsm/lib/libgsm.a
++GSMLIB=-lgsm
+ 
+-CFLAGS+=-fPIC
++CFLAGS+=-fPIC -DPIC
+ 
+ all: depend $(FORMAT_LIBS)
+ 
+Index: pbx/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/pbx/Makefile,v
+retrieving revision 1.4
+diff -u -r1.4 Makefile
+--- pbx/Makefile	19 Aug 2003 16:42:30 -0000	1.4
++++ pbx/Makefile	13 Sep 2003 00:36:11 -0000
+@@ -27,7 +27,7 @@
+ MOC=$(QTDIR)/bin/moc
+ KDE_FLAGS=-I$(KDEDIR)/include -I$(KDEDIR)/include/kde -I$(QTDIR)/include
+ KDE_LIBS=-L$(KDEDIR)/lib -L$(QTDIR)/lib -lqt -lkdecore -lkdeui
+-CFLAGS+=-fPIC
++CFLAGS+=-fPIC -DPIC
+ 
+ KDE_CONSOLE_OBJS=pbx_kdeconsole_main.o pbx_kdeconsole.o 
+ 
+Index: pbx/pbx_wilcalu.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/pbx/pbx_wilcalu.c,v
+retrieving revision 1.4
+diff -u -r1.4 pbx_wilcalu.c
+--- pbx/pbx_wilcalu.c	28 Apr 2003 22:00:30 -0000	1.4
++++ pbx/pbx_wilcalu.c	13 Sep 2003 00:36:11 -0000
+@@ -12,7 +12,7 @@
+  * the GNU General Public License
+ 
+  *  Autodialer for Asterisk 
+- *  Redirect dialstring thru fifo "/var/run/autodial.ctl"
++ *  Redirect dialstring thru fifo "/var/run/asterisk/autodial.ctl"
+  *  Format of string is :
+  *  "tech/tele,filename&" ie. "tor1/23,file&"
+  */
+Index: res/Makefile
+===================================================================
+RCS file: /usr/cvsroot/asterisk/res/Makefile,v
+retrieving revision 1.7
+diff -u -r1.7 Makefile
+--- res/Makefile	19 Aug 2003 16:42:30 -0000	1.7
++++ res/Makefile	13 Sep 2003 00:36:11 -0000
+@@ -15,8 +15,8 @@
+ 
+ CRYPTO_LIBS=-lssl -lcrypto
+ 
+-CFLAGS+=
+-CFLAGS+=$(shell [ -f /usr/include/linux/zaptel.h ] && echo " -DZAPATA_MOH")
++CFLAGS+=-fPIC -DPIC
++CFLAGS+=$(shell [ -f ../include/linux/zaptel.h ] && echo " -DZAPATA_MOH")
+ #
+ # Work around buggy RedHat 9.0
+ #
+Index: res/res_musiconhold.c
+===================================================================
+RCS file: /usr/cvsroot/asterisk/res/res_musiconhold.c,v
+retrieving revision 1.8
+diff -u -r1.8 res_musiconhold.c
+--- res/res_musiconhold.c	8 Sep 2003 16:48:07 -0000	1.8
++++ res/res_musiconhold.c	13 Sep 2003 00:36:11 -0000
+@@ -36,7 +36,7 @@
+ #include <sys/stat.h>
+ #include <dirent.h>
+ #ifdef ZAPATA_MOH
+-#include <linux/zaptel.h>
++#include "linux/zaptel.h"
+ #endif
+ #include <unistd.h>
+ #include <sys/ioctl.h>

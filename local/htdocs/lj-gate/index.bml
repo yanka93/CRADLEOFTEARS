@@ -1,0 +1,305 @@
+﻿<?page
+title=>LJR::Gate
+body<=
+<?_code
+  LJ::set_active_crumb('export_live');
+  return;
+_code?>
+
+<?_code
+{
+
+  use strict;
+  use vars qw(%POST %GET);
+  use LJR::Gate;
+  use LJR::Distributed;
+  use GD::Simple;
+  
+  my @font_names = ('Tiny', 'Small', 'MediumBold', 'Large', 'Giant');
+  my @color_names = GD::Simple->color_names;
+
+  my $err = sub {
+    my $txt = shift;
+
+    return "<?inerr " . $txt . " inerr?><br/>";
+  };
+
+  my $update_export_settings = sub {
+    my ($iremote) = @_;
+
+    my $ret;
+    my $e;
+
+    my $dbh = LJ::get_db_writer();
+    if (!$dbh) {
+      return $err->("Can't get database writer!");
+    }
+    my $dbr = LJ::get_db_reader();
+    if (!$dbr) {
+      return $err->("Can't get database reader!");
+    }
+    
+    my $iserver;
+    if ($POST{'server'} eq "lj") {
+      $iserver = "www.livejournal.com";
+    }
+#    elsif ($POST{'server'} eq "gj") {
+#      $iserver = "www.greatestjournal.com";
+#    }
+    else {
+      $ret .= $err->("Invalid server specified!");
+      $e = 1;
+    }
+
+    my $iuser = LJ::canonical_username($POST{'username'});
+    if (!$iuser) {
+      $ret .= $err->("Invalid user name!");
+      $e = 1;
+    }
+
+    my $ipassword = $POST{'password'};
+    unless (LJ::is_ascii($ipassword) && $ipassword ne "") {
+      $ret .= $err->("Invalid password!");
+      $e = 1;
+    }
+    return $ret if $e;
+
+    my $xmlrpc = LJR::Gate::Authenticate ($iserver, $iuser, $ipassword);
+    print STDERR
+          "Error in LJR::Gate::Authenticate  for user " . $iuser . "\n" . $xmlrpc->{'err_text'} . "\n"
+          if $xmlrpc->{'err_text'};
+					
+    return $err->($xmlrpc->{'err_text'}) if $xmlrpc->{'err_text'};
+    
+    my $ru = LJR::Distributed::get_remote_server($iserver);
+    return $err->($ru->{"errtext"}) if $ru->{"err"};
+
+    $ru->{'username'} = $iuser;
+
+    $ru = LJR::Distributed::get_cached_user($ru);
+    return $err->($ru->{"errtext"}) if $ru->{"err"};
+
+    my $r = LJR::Distributed::update_export_settings($iremote, $ru->{'ru_id'}, $ipassword);
+    return $r->{'errtext'} if $r->{'err'};
+
+    my $cu = LJ::load_user($iremote, 1);
+    return $err->("Error logging export modification for [$iremote]!") unless $cu;
+
+    $cu->log_event('ljr_export_configured', {
+        remote => $cu,
+        actiontarget => $ru->{'ru_id'},
+        method => 'web',
+      });
+    
+    return;
+  };
+
+  my $cancel_export = sub {
+    my ($iremote) = @_;
+
+    my $dbr = LJ::get_db_reader();
+    return $err->("Can't get database reader!") unless $dbr;
+    my $dbh = LJ::get_db_writer();
+    return $err->("Can't get database writer!") unless $dbh;
+
+    my $sth1;
+    $sth1 = $dbr->prepare("SELECT * FROM ljr_export_settings WHERE user=?");
+    $sth1->execute($iremote);
+    my $r = $sth1->fetchrow_hashref;
+
+    $sth1 = $dbr->prepare("DELETE FROM ljr_export_settings WHERE user=?");
+    $sth1->execute($iremote);
+    $sth1->finish;
+
+    my $cu = LJ::load_user($iremote, 1);
+    return $err->("Error logging export modification for [$iremote]!") unless $cu;
+
+    $cu->log_event('ljr_export_unconfigured', {
+        remote => $cu,
+        actiontarget => $r->{'ru_id'},
+        method => 'web',
+      });
+
+    return;
+  };
+  
+  my $export_options = sub {
+    my ($iremote) = @_;
+
+    my %h_font_names;
+    @h_font_names{map {"gd" . $_ . "Font"} @font_names} = ();
+    if (! exists $h_font_names{$POST{'font_name'}}) {
+      return $err->("Invalid font name: " . $POST{'font_name'});
+    }
+    
+    my %h_color_names;
+    @h_color_names{@color_names} = ();
+    if (! exists $h_color_names{$POST{'font_color'}}) {
+      return $err->("Invalid color name: " . $POST{'font_color'});
+    }
+    
+    my $dbh = LJ::get_db_writer();
+    return $err->("Can't get database writer!") unless $dbh;
+
+    my $sth1;
+    $sth1 = $dbh->prepare("UPDATE ljr_export_settings SET update_time=NOW(), last_status='OK: updated options', font_name=?, font_color=? WHERE user=?");
+    $sth1->execute($POST{'font_name'}, $POST{'font_color'}, $iremote);
+    $sth1->finish;
+    
+    return;
+  };
+
+  return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+  my $remote = LJ::get_remote();
+  return LJ::bad_input("You must be logged in to access this page.")
+    unless $remote;
+
+  my $authas = $GET{'authas'} || $remote->{'user'};
+  my $u = LJ::get_authas_user($authas);
+  return LJ::bad_input("You could not be authenticated as the specified user.")
+      unless $u;
+
+  my $iremote = $remote->{'user'};
+
+  return $LJ::MSG_READONLY_USER if $u->readonly;
+
+  my $ret;
+  $ret = "<?h1 Настройки гэйта пользователя " . $remote->{'user'}  . " h1?>\n<br>";
+
+  my $iremote_is_protected = 0;
+  foreach (@LJ::PROTECTED_USERNAMES) {
+    if ($iremote =~ $_) {
+      $iremote_is_protected = 1;
+    }
+  }
+  if ($iremote_is_protected) {
+    $ret .= $err->("Invalid local user: export not allowed!");
+    return $ret;
+  }
+
+  if (LJ::did_post()) {
+    if ($POST{'cancel_export'}) {
+      $ret .= $cancel_export->($iremote);
+      return BML::redirect("index.bml");
+    }
+    elsif ($POST{'export_options'}) {
+      $ret .= $export_options->($iremote);
+      return BML::redirect("index.bml") unless $ret;
+    }
+    else {
+      $ret .= $update_export_settings->($iremote);
+    }
+  }
+
+  my $dbh = LJ::get_db_writer();
+  if (!$dbh) {
+    return $err->("Can't get database writer!");
+  }
+  my $dbr = LJ::get_db_reader();
+  if (!$dbr) {
+    return $err->("Can't get database reader!");
+  }
+
+  my $sth1;
+  $sth1 = $dbr->prepare("SELECT * FROM ljr_export_settings WHERE user=?");
+  $sth1->execute($iremote);
+  my $r = $sth1->fetchrow_hashref;
+  $sth1->finish;
+
+  if (! $r->{'enabled'}) {
+    $ret .= "<form action='index.bml' method='post'>";
+    $ret .= "<table border=0><tr valign='top'><td>Гэйтовать журнал на сервер:</td><td>";
+    $ret .= "<select name='server' id='server'>";
+    $ret .= "<option value='lj' id='lj'>http://www.livejournal.com</option>";
+ #  $ret .= "<option value='gj' id='gj'>http://www.greatestjournal.com</option>";
+    $ret .= "</select>";
+    $ret .= "<br/><br/></td></tr>";
+
+    $ret .= "<tr valign='top'><td>Имя пользователя:</td><td>";
+    $ret .= LJ::html_text({
+      'name' => 'username',
+      'value' => $POST{'username'},
+      'size' => '15',
+      'maxlength' => '15',
+      });
+    $ret .= "<br/><br/></td></tr>";
+
+    $ret .= "<tr valign='top'><td>Пароль:</td><td>";
+    $ret .= LJ::html_text({
+      'name' => 'password',
+      'value' => $POST{'password'},
+      'size' => '31',
+      'maxlength' => '31',
+      'type' => 'password',
+      });
+    $ret .= "<br/><br/></td></tr>";
+    $ret .= "<tr><td>Статус (" . $r->{'update_time'} .")</td><td>" . $r->{'last_status'} . "</td></tr>";
+    $ret .= "<tr><td><br/></td></tr>";
+    $ret .= "</table>";
+
+    $ret .= "<input type=submit value='&nbsp;Начать гэйтование&nbsp;'>";
+  }
+  else {
+    my $ru;
+    $ru = LJR::Distributed::get_cached_user({ 'ru_id' => $r->{'ru_id'}});
+    $ru = LJR::Distributed::get_remote_server_byid($ru);
+
+    $ret .=
+      "<br/>Ваш журнал в данный момент гэйтуется в <a href=" .
+      $ru->{'servername'} . "/users/" . $ru->{'username'} .
+      ">" . $ru->{'username'} . "</a>"
+      ;
+
+    $ret .= "<br/><br/><table border=0>";
+    
+    $ret .= "<tr><td>Статус (" . $r->{'update_time'} .")</td><td>" . $r->{'last_status'} . "</td></tr>";
+    $ret .= "<tr><td><br/></td></tr>";
+
+    $ret .= "<tr><td><form action='index.bml' method='get'><input type=submit value='&nbsp;Обновить&nbsp;'></form></td>";
+
+    $ret .= "<td valign=top><form action='index.bml' method='post'>";
+    $ret .= "<input type=submit value='&nbsp;Прекратить гэйтование&nbsp;'>";
+    $ret .= "<input type=hidden name='cancel_export' value='true'>";
+    $ret .= "</td></tr></table>";
+  }
+  $ret .= "</form>";
+  
+
+  my $dbr = LJ::get_db_reader();
+  return $err->("Can't get database reader!") unless $dbr;
+
+  my $sth1;
+  $sth1 = $dbr->prepare("SELECT font_name, font_color FROM ljr_export_settings WHERE user=?");
+  $sth1->execute($iremote);
+  my ($cname, $ccolor) = $sth1->fetchrow_array;
+  $sth1->finish;
+
+  $ret .= "<form action='index.bml' method='post'><input type=hidden name='export_options' value='true'><table>";
+  $ret .= "<tr><td colspan=2><strong>Количество комментариев</strong></td></tr>";
+
+  $ret .= "<tr><td>Размер шрифта:</td><td><select name='font_name'>";
+  foreach my $f (@font_names) {
+    $ret .= "<option value='gd${f}Font' " . ("gd${f}Font" eq $cname ? "selected='yes'" : "") .">$f</option>";
+  }
+  $ret .= "</select></td></tr>";
+  
+  $ret .= "<tr><td>Цвет шрифта:</td><td><select name='font_color'>";
+  foreach my $c (@color_names) {
+    if ($c !~ /^gradient/) {
+      $ret .= "<option value='$c' " . ($c eq $ccolor ? "selected='yes'" : "") . ">$c</option>";
+    }
+  }
+  $ret .= "</select></td></tr>";
+  
+  $ret .= "<tr><td colspan=2><input type=submit value='Сохранить'></td></tr>";
+  $ret .= "</table></form><br/>";
+  
+  $ret .= "См также: <a href=lj-gate-faq.bml>Частые вопросы про гейт</a>";
+
+  return $ret;
+}
+_code?>
+
+<=body
+page?>

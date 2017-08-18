@@ -1,0 +1,12 @@
+Immediate value/Simple string:
+Foo
+
+Immediate value/List:
+list
+
+Returned string:
+Bar
+
+Returned List:
+list
+

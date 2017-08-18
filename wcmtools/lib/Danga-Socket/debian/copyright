@@ -1,0 +1,26 @@
+This package was debianized by Jay Bonci <jaybonci@debian.org> on
+Thu Jan 13 23:18:32 EST 2005
+
+It was downloaded from: http://www.danga.com/dist/Danga-Socket/
+
+Upstream Authors: 
+		Brad Fitzpatrick <brad@danga.com>
+		Michael Granger <ged@danga.com>
+		Mark Smith <marksmith@danga.com>
+
+Copyright:
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of either:
+
+	a) the GNU General Public License as published by the Free
+	Software Foundation; either version 1, or (at your option) any
+	later version, or
+
+	b) the "Artistic License"
+
+	See:
+
+	/usr/share/common-licenses/Artistic
+	/usr/share/common-licenses/GPL
+
+	For more information regarding these licensing options

@@ -1,0 +1,105 @@
+###
+### server-supported moods vs. custom moods
+###
+
+users will be able to use either server-supported moods or their
+own custom moods.
+
+to use a server-supported mood, clients will use metadata property:
+
+    current_moodid   (numeric)
+
+to use a custom mood, clients will use metadata property:
+
+    current_mood
+
+Or, use them both.  Why?  The current_moodid will indicte the picture to use, the current_mood will have the text to display.  Clients may decide how they'd like to do it (using neither, one, or both)
+
+If only a current_moodid is given, the text will be from the server.    
+
+### a list of all server-supported moods
+### each mood has a parent (base) mood.  at the top of the tree would be
+### "positive" or "negative", but since those are boring, maybe "happy" and "sad"
+
+CREATE TABLE moods (
+   moodid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   mood   VARCHAR(40),
+   parentmood INT UNSIGNED NOT NULL DEFAULT '0'
+);
+
+### I think the moods should be displayed with a picture with ALIGN=ABSMIDDLE, a space,
+### and then the mood in text.
+
+### people will of course want to customize the images for the moods, so there
+### will be mood themes
+
+CREATE TABLE moodthemes (
+   moodthemeid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   ownerid INT UNSIGNED NOT NULL
+   name VARCHAR(50),
+   des VARCHAR(100),
+   is_public ENUM('Y', 'N') NOT NULL DEFAULT 'N'
+);
+
+### users don't have to define pictures for every mood ... just certain base ones
+### LiveJournal will find the picture by working up the tree until it finds one
+### with a picture defined that's either gender neutral or matching gender
+
+CREATE TABLE moodthemedata (
+   moodthemeid INT UNSIGNED NOT NULL,
+   KEY (moodthemeid),
+   moodid   INT UNSIGNED NOT NULL,
+   gender   ENUM('m', 'f', 'n') NOT NULL DEFAULT 'n',
+   UNIQUE (moodthemeid, moodid, gender),
+   picurl   VARCHAR(100),
+   width    TINYINT UNSIGNED NOT NULL,
+   height   TINYINT UNSIGNED NOT NULL
+);
+
+### how to get moods:
+###
+
+extending the "login" protocol:
+
+if you send the request key "getmoods" with a value of the highest moodid you have
+cached locally, the server will send you back the newer ones, if any:
+
+    mood_count
+    mood_n_id    -- mood ID number
+    mood_n_name  -- mood text
+
+if you're lazy, you can send getmoods=0 to get all the moods everytime, or you can
+send no getmoods key at all, and not have them returned, so it doesn't slow old
+clients.
+
+#### some moods (these need to be put into a tree, showing which moods 
+#### are base moods of each other..... volunteers?)
+
+aggravated
+angry
+annoyed
+anxious
+bored
+confused
+depressed
+exhausted
+happy
+lonely
+pissed
+sad
+stressed
+tired
+sore
+energetic
+enraged
+infuriated
+jubilant
+horny
+hungry
+discontent
+thirsty
+satisfied
+thoughtful
+.....
+
+tons more needed.  if you send me some, don't just rip off another site's list... use your head and think of them independently.

@@ -1,0 +1,32 @@
+<?page
+title=>LiveJournal Store
+body<=
+<?_code
+    return LJ::set_active_crumb('store');
+_code?>
+
+[&lt;&lt; <a href='/pay/'>View Current Order</a>]
+
+<?h1 LiveJournal Clothing h1?>
+<?p Click a style to view available colors and sizes. [<a href="sizechart.bml">Sizing Chart</a>]p?>
+
+<table cellpadding='5' style='margin-left: 50px; margin-top: 20px'>
+<tr align='center'><td> 
+<a href="view.bml?item=clothes-short"><img src="<?imgprefix?>/tshirts/thumb/short-white.jpg" border='0' width='200' height='191' /></a>
+<br />Short Sleeve
+</td><td>
+<a href="view.bml?item=clothes-long"><img src="<?imgprefix?>/tshirts/thumb/long-white.jpg" border='0' width='200' height='191' /></a>
+<br />Long Sleeve
+</td></tr>
+<tr align='center'><td>
+<a href="view.bml?item=clothes-babydoll"><img src="<?imgprefix?>/tshirts/thumb/babydoll-white.jpg" border='0' width='200' height='191' /></a>
+<br />"Baby Doll"
+</td><td>
+<a href="view.bml?item=clothes-polo"><img src="<?imgprefix?>/tshirts/thumb/polo-white.jpg" border='0' width='200' height='191' /></a>
+<br />Embroidered Polo
+</td></tr>
+</table>
+
+<=body
+page?>
+

@@ -1,0 +1,211 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET $title $body);
+
+    $title = "Generate Invitation codes";
+    $body = "";
+
+    my @time = localtime();
+    my $now = sprintf("%04d%02d", $time[5]+1900, $time[4]+1);
+    if ($now gt "2004") {
+        $body = "Invite code generation is disabled, as invite codes are no longer necessary.";
+        return;
+    }
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return $err->($ML{'error.invalidauth'})
+        unless $u && $u->{'user'} ne "test";
+
+    # extra arguments for get requests
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+
+    my $dbr = LJ::get_db_reader();
+    my $sth;
+
+    if ($u->{'statusvis'} eq "S") {
+        $title = "Suspended Account";
+        $body = "<?h1 Suspended h1?><?p This journal has been either temporarily or permanently suspended by $LJ::SITENAME for policy violation.  You are unable to generate any more account codes until this journal is unsuspended p?>";
+        return;
+    }
+
+    $sth = $dbr->prepare("SELECT reason FROM acctinvite WHERE userid=? ORDER BY dateadd");
+    $sth->execute($u->{'userid'});
+
+    my @prev;
+    my %reason;
+    while ($_ = $sth->fetchrow_array) {
+        $reason{$_} = 1;
+        push @prev, [ split(/-/, $_) ];
+    }
+
+    my @added;
+
+    # REASONS TO GET INVITATION CODES    REASON FORMAT
+    # --------------------------------------------------------
+    # 1 in a week                        "week"
+    # 1 per acked contribution           "con-0123456789"
+    # 1 per month of paid account time   "pay-2342343243-nn
+    #    ""          ""  (payitem rcpt)  "pay2-<payid>-<piid>-nn"
+    # 1 per 20 support points            "sup-20/40/60"
+    # 5 per month for perm accounts      "perm-200108-n"
+    # 15 base for early adopters         "early-nn"
+
+    my $dbh;
+    my $gen_code = sub {
+        my $reasonlist = shift;
+        my $reason = join("-", @$reasonlist);
+
+        return 0 if $reason{$reason};  # duplicate
+        $dbh ||= LJ::get_db_writer();
+        my $qr = $dbh->quote($reason);
+        $dbh->do("INSERT INTO acctinvite (userid, reason, dateadd, acid) ".
+                 "VALUES ($u->{'userid'}, $qr, NOW(), 0)");
+        return 0 if $dbh->err;  # already exists (race / slave behind)
+
+        my $code = LJ::acct_code_generate($u->{'userid'});
+        my ($acid, $auth) = LJ::acct_code_decode($code);
+        $dbh->do("UPDATE acctinvite SET acid=$acid WHERE ".
+                 "userid=$u->{'userid'} AND reason=$qr");
+        push @added, $reasonlist;
+        return 1;
+    };
+
+    my $reason_name = sub {
+        my $r = shift;
+        if ($r->[0] eq "week") {
+            return "For having an account for at least a week.";
+        }
+        if ($r->[0] eq "con") {
+            return "For <a href=\"/site/contributors.bml?mode=detail&amp;coid=$r->[1]\">this contribution</a>";
+        }
+        if ($r->[0] eq "early") {
+            return "For being an early adopter (#$r->[1])";
+        }
+        if ($r->[0] eq "pay") {
+            return "For payment #$r->[1] (#$r->[2])";
+            }
+        if ($r->[0] eq "pay2") {
+            return "For payment #$r->[1], item $r->[2] (#$r->[3])";
+            }
+        if ($r->[0] eq "perm") {
+            return "For having a permanent account ($r->[1], #$r->[2])";
+        }
+        if ($r->[0] eq "sup") {
+            return "For reaching $r->[1] support points.";
+        }
+
+    };
+
+    #### try to make some new ones
+
+    ## for being a member for a week
+    if (0 && ! $reason{'week'}) {  # off
+        $sth = $dbr->prepare("SELECT (UNIX_TIMESTAMP()-UNIX_TIMESTAMP(timecreate)) > (86400*7) FROM userusage WHERE userid=$u->{'userid'}");
+        $sth->execute;
+        my ($been_week) = $sth->fetchrow_array;
+        if ($been_week) { $gen_code->(['week']); }
+    }
+
+    ## one for every acked contribution
+    $sth = $dbr->prepare("SELECT coid FROM contributed WHERE userid=$u->{'userid'} AND acks > 0");
+    $sth->execute;
+    while (my ($coid) = $sth->fetchrow_array) {
+        next if $reason{"con-$coid"};
+        $gen_code->(['con', $coid]);
+    }
+
+    ## one for each month of paid account time
+    $sth = $dbr->prepare("SELECT payid, months FROM payments WHERE mailed<>'C' AND userid=$u->{'userid'}");
+    $sth->execute;
+    while (my ($payid, $months) = $sth->fetchrow_array) {
+        next if ($months > 24);
+        for (1..$months) { $gen_code->(['pay', $payid, $_]); }
+    }
+
+    # and the new payment system:
+    $sth = $dbr->prepare("SELECT payid, piid, qty FROM payitems ".
+                         "WHERE rcptid=? AND status='done' ".
+                         "AND item='paidacct'");
+    $sth->execute($u->{'userid'});
+    while (my ($payid, $piid, $months) = $sth->fetchrow_array) {
+        next if $payid > 422525;  # approx. last payid before invite codes were removed
+        for (1..$months) { $gen_code->(['pay2', $payid, $piid, $_]); }
+    }
+    $sth = $dbr->prepare("SELECT pi.payid, pi.piid, pi.qty ".
+                         "FROM acctcode a, acctpayitem api, payitems pi ".
+                         "WHERE a.rcptid=? AND api.acid=a.acid ".
+                         "AND pi.piid=api.piid AND pi.status='done' ".
+                         "AND pi.item='paidacct'");
+    $sth->execute($u->{'userid'});
+    while (my ($payid, $piid, $months) = $sth->fetchrow_array) {
+        next if $payid > 422525;  # approx. last payid before invite codes were removed
+        for (1..$months) { $gen_code->(['pay2', $payid, $piid, $_]); }
+    }
+
+    ## 15 for early adopters
+    if (LJ::get_cap($u, "earlyadopter")) {
+        for (1..15) { $gen_code->(['early', $_]); }
+    }
+
+    ## 1 per 20 support points
+    $sth = $dbr->prepare("SELECT SUM(points) FROM supportpoints WHERE userid=$u->{'userid'}");
+    $sth->execute;
+    {
+        my ($points) = $sth->fetchrow_array;
+        my $p = 20;
+        while ($p <= $points) {
+            $gen_code->(['sup', $p]);
+            $p += 20;
+        }
+    }
+
+    ## 5 per month for permanent accounters
+    if ($u->{'caps'} & 0x10) {
+        for (1..5) { $gen_code->(['perm', $now, $_]); }
+    }
+
+    #### apologize if they couldn't get more
+    my $ct = scalar @added;
+    unless ($ct)
+    {
+        $body .= "<?h1 Sorry h1?><?p You are not eligible to receive any more invitation codes at this time. p?><?p For more information on how invitation codes are given out, <a href=\"http://www.livejournal.com/support/faqbrowse.bml?faqid=103\">read this</a>. p?>";
+    }
+
+    #### show which new ones they got
+    else
+    {
+        my $s = $ct == 1 ? " was" : "s were";
+        $body .= "<?h1 Codes Generated h1?><?p <b>$ct</b> more code$s generated for the following reasons: <ul>";
+        foreach my $r (@added) {
+            $body .= "<li>" . $reason_name->($r) . "</li>\n";
+        }
+        $body .= "</ul> p?>";
+    }
+
+    #### show previous codes
+    $body .= "<?h1 Previous Codes h1?><?p You've previously had codes generated for the following reasons: <ul>";
+    foreach my $r (@prev) {
+        $body .= "<li>" . $reason_name->($r) . "</li>\n";
+    }
+    $body .= "</ul> p?>";
+
+    $body .= "<?hr?>Back to your <a href=\"./$getextra\">list of codes</a>.";
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

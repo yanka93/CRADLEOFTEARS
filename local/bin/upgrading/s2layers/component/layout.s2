@@ -1,0 +1,2806 @@
+# -*-s2-*-
+
+# Copyright (c) 2003-2005 Danga Interactive. All rights reserved.
+#
+# NOTICE: The Component style is not licensed for general use, and may not be 
+# used in any production sites. We provide the source to Component so that our 
+# users and designers can learn the proper way to extend and customize the 
+# style.
+
+layerinfo type = "layout";
+layerinfo name = "Component";
+layerinfo author_name = "Kevin Phillips";
+layerinfo author_email = "xevinx@livejournal.com";
+layerinfo redist_uniq = "component/layout";
+layerinfo previews = "component/component.jpg";
+layerinfo source_viewable = 0;
+
+
+#############################################
+#
+#	Properties
+#
+#############################################
+
+
+
+propgroup layout = "Layout";
+propgroup layout {
+	property string comp_state {
+		des = "Component Position";
+		values = "right|Right|left|Left|none|None";
+		note = "Components are the boxes on the side of the layout.";
+	}
+	property bool comp_friends { 
+		des = "Enable Friends View Components";
+		note = "Select No if you don't want components on your friends page.";
+	}
+	
+	property bool comp_navbar {
+		des = "Enable Navigation Component";
+		note = "Select Yes if you want the main navigation to be in a component instead of the top bar.  If components are not active, the navigation will remain at the top regardless of this value.";
+	}
+	property bool show_profile {
+		des = "Enable Profile";
+		note = "Select Yes to make the profile component visible.";
+	}
+	property bool show_calendar {
+		des = "Enable Mini-Calendar";
+		note = "Select Yes to make the mini-calendar component visible.";
+        }
+	
+	property bool icalendar {
+		des = "Enable Interactive Mini-Calendar";
+		note = "Select Yes to enable forward and back buttons on the mini-calendar.  Uses inline frames and javascript.";
+	}
+  
+	property bool show_links {
+		des = "Enable Links";
+		note = "Select Yes to make the links component visible.";
+	}
+	
+	property bool show_summary {
+		des = "Enable Page Summary";
+		note = "Select Yes to make the page summary component visible.";
+	}
+	property bool show_free_text {
+		des = "Enable Free Text";
+		note = "Select Yes to show the free text component.  The text that will be shown in this component needs to be added below.";
+	}
+	property string free_text {
+		des = "Free Text Component";
+		note = "Add text that will appear in the Free Text component if it is enabled.  Good for poetry, friends only warnings, general descriptions.  HTML is disabled in all properties.";
+		rows = 10;
+		cols = 25;
+	}
+	
+	property string first_position {
+		des = "First Component";
+		note = "Select what component you want to be on the top.  Only applies if component is activated.";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+	
+	property string second_position {
+		des = "Second Component";
+		note = "Only applies if component is activated.";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+	
+	property string third_position {
+		des = "Third Component";
+		note = "Only applies if component is activated.";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+	
+	property string fourth_position {
+		des = "Fourth Component";
+		note = "Only applies if component is activated.";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+	
+	property string fifth_position {
+		des = "Fifth Component";
+		note = "Only applies if component is activated";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+	
+	property string sixth_position {
+		des = "Sixth Component";
+		note = "Only applies if component is activated";
+		values = "none|None|navigation_order|Navigation|profile_order|Profile|calendar_order|Calendar|links_order|Links|free_text_order|Free Text|summary_order|Page Summary";
+	}
+}
+
+set comp_friends = true;
+set first_position = "navigation_order";
+set second_position = "profile_order";
+set third_position = "calendar_order";
+set fourth_position = "links_order";
+set fifth_position = "free_text_order";
+set sixth_position = "summary_order";
+set comp_navbar = false;
+set comp_state = "right";
+set show_calendar = true;
+set show_profile = true;
+set show_links = true;
+set show_summary = false;
+set show_free_text = false;
+set icalendar = true;
+
+propgroup colors = "Colors";
+propgroup colors {
+
+	property string topnavcolor { noui = 1;	}
+	property string backarrow { noui = 1; }
+	property string forwardarrow { noui = 1; }
+	property string backarrow2 { noui = 1; }
+	property string forwardarrow2 { noui = 1; }
+	property string ctl { noui = 1;	}
+	property string ctr { noui = 1; }
+	property string cbl { noui = 1; }
+	property string cbr { noui = 1;	}
+	property string url { noui = 1; }
+	property string mem_img { noui = 1; }
+	property string edit_img { noui = 1; }
+	property string tellfriend_img { noui = 1; }
+	property string tags_img { noui = 1; }
+	property Color outside_border { noui = 1; }
+	property Color inside_border { noui = 1; }
+	property Color system_border { noui = 1; }
+
+	property Color main_bgcolor { 
+	    des = "Page background";
+	    s1color = "page_back";
+	}
+
+	property Color entry_bgcolor {
+		des = "Entry background";
+		note = "Background color of each entry.";
+	}
+	
+	property Color entry_fgcolor {
+	    des = "Entry font";
+		note = "Font color for text that will appear on top of 'Entry background color'.";
+	    s1color = "page_text";
+	}
+	
+	property Color entry_link {
+		des = "Main link";
+		note = "Font color of any links that appear within each journal entry or within each component.  Should be visible on Entry Background Color and Component Background Color.";
+	}
+	
+	property Color entry_link_visited {
+		des = "Main visited link";
+		note = "Font color of any visited links that appear within each journal entry or within each component.  Should be visible on Entry Background Color and Component Background Color.";
+	}
+
+	property Color comp_bgcolor {
+		des = "Component background";
+		note = "Background color of all component boxes.";
+	}
+
+	property Color comp_fgcolor {
+	    des = "Component font";
+		note = "Font color for text that will appear on top of 'Component background color'.  (leave blank to use 'Entry font color')";
+	}
+	
+	
+	property Color header_bgcolor {
+		des = "Header background";
+		note = "Background color of all component headers.";
+	}
+	
+	property Color header_fgcolor {
+	    des = "Header font";
+		note = "Font color for text that will appear on top of 'Component header background color'.  (leave blank to use 'Entry font color')";
+	}
+
+	property Color header_fgcolor_lt {
+		des = "Header font alternative";
+		note = "Font color used for information that deserves a different accent, like the date and journal sub-title.  {leave blank to use 'Component font color')";
+	}
+	
+	property Color header_link {
+		des = "Header link";
+		note = "Font color of any links that appear within each component header.  For example, the navigation. (leave blank to use 'Main link')";
+	}
+
+	property Color comments_bgcolor {
+		des = "Comments header";
+		note = "Background color of the header information for each comment.";
+	}
+	
+	property Color comments_screened_bgcolor {
+		des = "Screened comments header";
+		note = "Background color of the header information for each screened comment.";
+	}
+	
+	
+	property Color calendar_inactive {
+		des = "Calendar inactive background";
+		note = "Background color of inactive dates on calendar component.";
+	}
+	
+	property Color calendar_active {
+		des = "Calendar active background";
+		note = "Background color of active dates on calendar component.";
+	}
+	
+	property Color calendar_fgcolor {
+		des = "Calendar inactive font";
+		note = "Color of font on each inactive calendar date.  Appears on top of 'Calendar inactive background'.  (leave blank to use 'Entry font color')";
+	}
+	
+	property Color calendar_link {
+		des = "Calendar active font";
+		note = "Color of font on each active calendar date.  Appears on top of 'Calendar active background'.  (leave blank to use 'Main link').";
+	}
+}
+
+set main_bgcolor = "#ffffff";
+set entry_bgcolor = "#ffffff";
+set entry_fgcolor = "#6D6D6D";
+set entry_link = "#333333";
+set entry_link_visited = "#555555";
+set comp_bgcolor = "#F4F4F4";
+set header_bgcolor = "#e5e5e5";
+set header_fgcolor = "#4D4D4D";
+set comments_bgcolor = "#E5E5E5";
+set comments_screened_bgcolor = "#ECECEC";
+set calendar_inactive = "#C8C8C8";
+set calendar_active = "#DFDFDF";
+
+set outside_border = "#7f7f7f";
+set inside_border = "#ffffff";
+set system_border = "#cccccc";
+
+
+propgroup presentation = "Presentation";
+propgroup presentation {
+
+	property use page_recent_items;
+	property use page_friends_items;
+  
+	property string page_background_image {
+		des = "Background image";
+		note = "URL to an image to be used for the page background (leave blank for none).  Only the default component background image will change colors as they are set in the Color properties (http://www.livejournal.com/palimg/component/bg.gif).";
+	}
+
+	property string background_repeat {
+		des = "Background image repeat";
+		values = "repeat|Repeat|no-repeat|Don't repeat|repeat-x|Repeat across only|repeat-y|Repeat down only";
+	}
+
+	property string background_position {
+		des = "Background image position";
+		note = "Does not apply if background image is repeating in both directions.";
+		values = "center|Center|center left|Center-left|center right|Center-right|top|Top|top left|Top-left|top right|Top-right|bottom|Bottom|bottom left|Bottom-left|bottom right|Bottom-right|left|Left|right|Right";
+	}
+
+	property string background_scrolling {
+		des = "Background image scrolling";
+		note = "Not supported in all browsers, but allows for the background image to be in a fixed position when scrolling.";
+		values = "scroll|Scroll|fixed|Fixed";
+	}
+  
+	property string font_size {
+		des = "Adjust font size";
+		values = "small|Small|normal|Normal|large|Large|larger|Larger|hulk|Hulk!";
+	}
+  
+	property string underline_links {
+		des = "Show link underline";
+		values = "no|No|yes|Yes|hover|Only on mouse over";
+	}
+  
+	property use view_entry_disabled;
+  
+	property bool show_entry_userpic { 
+		des = "Recent userpics"; 
+		note = "Select this if you want your userpic to show up on each entry of your Recent page.";
+	}
+  
+	property use use_shared_pic;
+  
+	property bool show_entrynav_icons {
+		des = "Enable Entry icons";
+		note = "Toggle to show the memory, edit, etc icons on the Entry View page.";
+	}
+
+	property bool show_recentnav_icons {
+		des = "Enable Recent View icons";
+		note = "Toggle to show the memory, edit, etc icons on the Recent and Friend's View page.";
+	}
+  
+	property int lineheight {
+		des = "Line Height";
+		note = "This specifies the distance between each text line on all pages.";
+	}
+  
+	property string path {
+		noui = 1;
+	}
+
+	property string font_family {
+		des = "Font Family";
+		note = "The default font to use for all journal pages.";
+		values = "Arial, sans-serif|Arial|Tahoma, sans-serif|Tahoma|Verdana, sans-serif|Verdana|Trebuchet MS, sans-serif|Trebuchet|Georgia, serif|Georgia|Times New Romans, serif|Times New Roman|sans-serif|sans-serif|serif|serif";
+	}
+
+	property bool color_forms {
+		des = "Form Elements";
+		note = "Select No to disable the customized form elements.";
+	}
+
+	property string base_font { noui = 1; }
+	property bool show_entrypage_userpic { noui = 1; }
+
+}
+set font_family = "Arial, sans-serif";
+set lineheight = 22;
+set show_entry_userpic = false;
+set font_size = "normal";
+set background_repeat = "repeat";
+set background_position = "center";
+set background_scrolling = "scroll";
+set page_recent_items = 10;
+set page_friends_items = 10;
+set page_background_image = "http://www.livejournal.com/palimg/component/bg.gif";
+set view_entry_disabled = false;
+set show_entrynav_icons = true;
+set show_recentnav_icons = true;
+set underline_links = "hover";
+set color_forms = true;
+set base_font = "";
+set show_entrypage_userpic = true;
+
+propgroup Text {
+
+	property use text_post_comment;
+	property use text_read_comments;
+	property use text_reply_back;
+
+	property string comment_divider {
+		des = "Comment divider";
+		note = "This is the text that divides the read comments and the post comments.  For example 'OR' as in 'read 2 comments OR leave a comment'.";
+	}
+	
+	property use text_post_comment_friends;
+	property use text_read_comments_friends;
+	property string profile_text {
+		des = "Profile Component Title";
+		maxlength = 50;
+	}
+
+	property string page_summary_text {
+		des = "Page Summary Title";
+	}
+
+	property string links_text {
+		des = "Links Component Title";
+	}
+	property string calendar_text {
+		des = "Calendar Component Title";
+		note = "This is for the title of the component box, not the link to the calendar from the navigation.  This title will only be visible if the Interactive mini-calendar is on.  Otherwise the title of the component will be the current month and year.";
+	}
+	property string free_text_text {
+		des = "Free Text Component Title";
+	}
+	
+	property string nav_entries_text {
+		des = "Navigation Recent Entries Text";
+		maxlength = 50;
+	}
+	property string nav_friends_text {
+		des = "Navigation Friends View Text";
+		maxlength = 50;
+	}
+	property string nav_calendar_text {
+		des = "Navigation Calendar Text";
+		note = "This is the text for the link to the calendar from the navigation, not the title of the calendar component.";
+		maxlength = 50;
+	}
+	property string nav_info_text {
+		des = "Navigation User Info Text";
+		maxlength = 50;
+	}
+	
+	property string nav_text_forward {
+		des = "Navigation Forward Text";
+		note = "The text that appears in the navigation component or header when the user can navigate forward.";
+	}
+
+	property string nav_text_back {
+		des = "Navigation Back Text";
+		note = "The text that appears in the navigation component or header when the user can navigate back.";
+	}
+
+	property use text_meta_mood;
+	property use text_meta_music;
+	property use text_permalink;
+	
+}
+
+
+set free_text_text = "About this journal";
+set calendar_text = "calendar";
+set nav_entries_text = "entries";
+set nav_friends_text = "friends";
+set nav_calendar_text = "calendar";
+set nav_info_text = "user info";
+set page_summary_text = "Page Summary";
+set links_text = "links";
+set profile_text = "profile";
+set comment_divider = "or";
+set nav_text_forward = "Next";
+set nav_text_back = "Previous";
+set tags_aware = true;
+
+
+#############################################
+#
+#	Stylesheet
+#
+#############################################
+
+function print_stylesheet ()
+{
+	var int inc;
+	if($*font_size == "normal") {
+		$inc = 0;
+	} elseif($*font_size == "small") {
+		$inc = -1;
+	} elseif($*font_size == "large") {
+		$inc = 1;
+	} elseif($*font_size == "larger") {
+		$inc = 2;
+	} else {
+		$inc = 3;
+	}
+	
+    """
+		body { background-color: $*main_bgcolor;
+""";
+
+	if(clean_url($*page_background_image) != "") {
+		"""
+			background-image: url("$*page_background_image");
+			background-repeat: $*background_repeat;
+			background-position: $*background_position;
+			background-attachment: $*background_scrolling;
+		""";
+	}
+	
+"""
+			margin-top: 0px; margin-left: 0px;
+			margin-right: 0px;
+			font-family: $*font_family;
+			font-size: """; print 11 + $inc; """px;
+			color: $*entry_fgcolor;
+		}
+		
+		td, tr {
+			font-family: $*font_family;
+			font-size: """; print 11 + $inc; """px;
+			color: $*entry_fgcolor;
+			line-height: """; print $*lineheight; """px;
+		}
+		
+		a {
+			color: $*entry_link;
+			""";
+			if($*underline_links != "yes") { "text-decoration: none;"; } 
+			"""
+		}
+		
+		a:visited {
+			color: $*entry_link_visited;
+		}
+		
+		a.calendarLink {
+			color: $*calendar_link;
+		}
+		
+		a.header {
+			color: $*header_link;
+		}
+		a.headerLinks {
+			color: $*header_link;
+		}
+		
+		""";
+		if($*underline_links == "hover") {
+			"		a:hover { text-decoration: underline;}";
+		}
+                $*topnavcolor = clean_url($*topnavcolor);
+
+        if ($*color_forms) {
+            """		
+		select {
+			font-family: $*font_family;
+			font-size: """; print 11 + $inc; """px;
+			background-color: $*comp_bgcolor;
+		}
+		
+		input { 
+			line-height: normal; 
+			background-color: $*comp_bgcolor;
+			color: $*comp_fgcolor;
+		}
+
+		textarea { 
+			background-color: $*comp_bgcolor;
+			color: $*comp_fgcolor;
+        }
+            """;
+        }
+
+        """
+
+		.subject { font-weight: bold; }
+		.small { margin-top: 3px;}
+	
+		.header {
+			background-image: url("$*topnavcolor");
+			background-repeat: repeat-x;
+			height: 25px;
+		}
+		
+		.userTitle {
+			font-size: """; print 18 + ($inc * 2); """px;
+			text-weight: bolder;
+			color: $*header_fgcolor;
+			line-height: 17px;
+		}
+		
+		.userSubTitle { 
+			font-size: """; print 12 + $inc; """px;
+			color: $*header_fgcolor_lt;
+			line-height: """; print $*lineheight; """px;
+		}
+		
+		.header-item {
+			padding-left: 15px;
+			position: relative;
+			top: 5px;
+		}
+		
+		.dkLine { background-color: $*outside_border; }
+		.ltLine { background-color: $*inside_border; }
+		.medLine { background-color: $*system_border; }
+		.divLine { background-color: $*header_fgcolor; }
+		.tabBg { background-color: $*header_bgcolor; }
+		
+		.entryDate {
+			font-size: """; print 11 + $inc; """px;
+			color: $*header_fgcolor_lt;
+		}
+		
+		.entryHolderBg {
+			background-color: $*comp_bgcolor;
+			color: $*comp_fgcolor;
+			padding-top: 7px;
+			padding-right: 7px;
+			padding-left: 7px;
+			padding-bottom: 7px;
+		}
+		
+		.entry {
+			padding-top: 7px;
+			padding-right: 7px;
+			padding-left: 7px;
+			padding-bottom: 7px;
+			background-color: $*entry_bgcolor;
+			font-size: """; print 12 + $inc; """px;
+		}
+		
+		.entryHeader {
+			font-size: """; print 12 + $inc; """px;
+			font-weight: bold;
+		}
+		
+		.entryComments {
+			font-size: """; print 11 + $inc; """px;
+			margin-top: 8px;
+			margin-left: 8px;
+			color: $*comp_fgcolor;
+		}
+		
+		.entryDash {
+			background-color: $*system_border;
+			width: 100%;
+			height: 1px;
+		}
+		
+		.sideHeader {
+			font-size: """; print 11 + $inc; """px;
+			color: $*header_fgcolor;
+		}
+		
+		.comp { margin-bottom: 3px; }
+
+		.compBg { background-color: $*comp_bgcolor; }
+
+		.compContent {
+			padding-left: 6px;
+			padding-right: 6px;
+			padding-bottom: 6px;
+			padding-top: 3px;
+			line-height: 18px;
+			color: $*comp_fgcolor;
+		}
+		
+		.compFont {
+			color: $*comp_fgcolor;
+		}
+
+		.compList {
+			line-height: """; 
+			
+			print $*lineheight - 2; 
+			
+			"""px;
+			padding-left: 6px;
+		}
+		
+		.userPic { border-color: $*system_border; }
+		
+		.shortLine {
+			width: 20px;
+			background-color: $*system_border;
+			margin-bottom: 1px;
+		}
+		
+		.calendarInactive {
+			background-color: $*calendar_inactive;
+			font-size: 9px;
+			letter-spacing: 2px;
+			color: $*calendar_fgcolor;
+		}
+		
+		.calendarActive {
+			color: $*calendar_link;
+			background-color: $*calendar_active;
+			font-size: 9px;
+			letter-spacing: 2px;
+		}
+		
+	""";
+}
+
+
+function prop_init() {
+
+	$*path = "http://www.livejournal.com";
+
+	$*outside_border = $*header_bgcolor->darker(50);
+	$*inside_border = $*header_bgcolor->lighter();
+	$*system_border = $*comp_bgcolor->darker();
+	
+	if($*page_background_image == "http://www.livejournal.com/palimg/component/bg.gif") {
+		$*page_background_image = palimg_modify("component/bg.gif", [PalItem(0, $*system_border)]);
+	} 
+	$*topnavcolor = palimg_tint("component/top-bg.gif", $*header_bgcolor);
+	$*forwardarrow = palimg_modify("component/forward.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*backarrow = palimg_modify("component/back.gif", [PalItem(1, $*inside_border), PalItem(0, $*outside_border)]);
+	$*forwardarrow2 = palimg_modify("component/forwardarrow.gif", [PalItem(1, $*inside_border), PalItem(0, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*backarrow2 = palimg_modify("component/backarrow.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border)]);
+	$*ctl = palimg_modify("component/curve-top-left.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*ctr = palimg_modify("component/curve-top-right.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*cbl = palimg_modify("component/curve-bottom-left.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*cbr = palimg_modify("component/curve-bottom-right.gif", [PalItem(0, $*inside_border), PalItem(1, $*outside_border), PalItem(2, $*header_bgcolor)]);
+	$*mem_img = palimg_modify("component/btn_memories.gif", [PalItem(10, $*inside_border), PalItem(14, $*outside_border)]);
+	$*tellfriend_img = palimg_modify("component/btn_tellfriend.gif", [PalItem(3, $*inside_border), PalItem(2, $*outside_border)]);
+	$*edit_img = palimg_modify("component/btn_edit.gif", [PalItem(12, $*inside_border), PalItem(14, $*outside_border)]);
+	$*tags_img = palimg_modify("component/btn_tags.gif", [PalItem(12, $*inside_border), PalItem(14, $*outside_border)]);
+	
+	if($*comp_fgcolor.as_string == "") { $*comp_fgcolor = $*entry_fgcolor; }
+	if($*header_fgcolor.as_string == "") { $*header_fgcolor = $*entry_fgcolor; }
+	if($*header_fgcolor_lt.as_string == "") { $*header_fgcolor_lt = $*header_fgcolor; }
+	if($*header_link.as_string == "") { $*header_link = $*entry_link; }
+	if($*calendar_fgcolor.as_string == "") { $*calendar_fgcolor = $*entry_fgcolor; }
+	if($*calendar_link.as_string == "") { $*calendar_link = $*entry_link; }
+	
+}
+
+
+
+
+#############################################
+#
+#	Navigation
+#
+#############################################
+
+function Page::lay_viewspec_nav() {
+    # Intentionally blank
+}
+
+function RecentPage::lay_viewspec_nav() {
+    # FIXME: There is currently no decent way to i18nize this
+	var string forward_link = "";
+	var string back_link = "";
+	var bool side = true;
+	
+	if($*comp_state == "none" or $*comp_navbar == false or ($.view == "friends" and $*comp_friends == false)) { $side = false; }
+	
+    if ($.nav.forward_url != "" or $.nav.backward_url != "") {
+        if ($.nav.forward_url != "") {
+			if($side) {
+				$forward_link = $forward_link + """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$.nav.forward_url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></div>""";
+			} else {
+				$forward_link = $forward_link + """<span class="header-item"><a href="$.nav.forward_url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></span>""";
+			}
+        }
+        if ($.nav.backward_url != "") {
+			if($side) {
+				$back_link = $back_link + """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$.nav.backward_url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></div>""";
+			} else {
+				$back_link = $back_link + """<span class="header-item"><a href="$.nav.backward_url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></span>""";
+			}
+        }
+		if($*comp_navbar) {
+			"$forward_link $back_link";
+		} else {
+			"$back_link $forward_link";
+		}
+    }
+}
+
+function EntryPage::lay_viewspec_nav() {
+	var string forward_link = "";
+	var string back_link = "";
+	var bool side = true;
+	
+	if($*comp_state == "none" or $*comp_navbar == false or ($.view == "friends" and $*comp_friends == false)) { $side = false; }
+	
+	var Link forward = $.entry->get_link("nav_next");
+	var Link backward = $.entry->get_link("nav_prev");
+
+    if (defined $forward or defined $backward) {
+        if (defined $forward) {
+			if($side) {
+				$forward_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$forward.url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></div>""";
+			} else {
+				$forward_link = """<span class="header-item"><a href="$forward.url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></span>""";
+			}
+        }
+        if (defined $backward) {
+			if($side) {
+				$back_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$backward.url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></div>""";
+			} else {
+				$back_link = """<span class="header-item"><a href="$backward.url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></span>""";
+			}
+        }
+		if($*comp_navbar) {
+			"$forward_link $back_link";
+		} else {
+			"$back_link $forward_link";
+		}
+    }
+}
+
+function ReplyPage::lay_viewspec_nav() {
+	var string forward_link = "";
+	var string back_link = "";
+	var bool side = true;
+	
+	if($*comp_state == "none" or $*comp_navbar == false or ($.view == "friends" and $*comp_friends == false)) { $side = false; }
+	
+	var Link forward = $.entry->get_link("nav_next");
+	var Link backward = $.entry->get_link("nav_prev");
+
+    if (defined $forward or defined $backward) {
+        if (defined $forward) {
+			if($side) {
+				$forward_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$forward.url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></div>""";
+			} else {
+				$forward_link = """<span class="header-item"><a href="$forward.url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></span>""";
+			}
+        }
+        if (defined $backward) {
+			if($side) {
+				$back_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$backward.url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></div>""";
+			} else {
+				$back_link = """<span class="header-item"><a href="$backward.url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></span>""";
+			}
+        }
+		if($*comp_navbar) {
+			"$forward_link $back_link";
+		} else {
+			"$back_link $forward_link";
+		}
+    }
+}
+
+function DayPage::lay_viewspec_nav() {
+	var string forward_link = "";
+	var string back_link = "";
+	var bool side = true;
+	
+	if($*comp_state == "none" or $*comp_navbar == false or ($.view == "friends" and $*comp_friends == false)) { $side = false; }
+	
+    if ($.prev_url != "" or $.next_url != "") {
+        if ($.next_url != "") {
+			if($side) {
+				$forward_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$.next_url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></div>""";
+			} else {
+				$forward_link = """<span class="header-item"><a href="$.next_url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a></span>""";
+			}
+        }
+        if ($.prev_url != "") {
+			if($side) {
+				$back_link = """	<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+							<div class="compList"><a href="$.prev_url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></div>""";
+			} else {
+				$back_link = """<span class="header-item"><a href="$.prev_url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a></span>""";
+			}
+        }
+		if($*comp_navbar) {
+			"$forward_link $back_link";
+		} else {
+			"$back_link $forward_link";
+		}
+    }
+}
+
+
+function print_bottom_nav(RecentPage p) {
+	if ($p.nav.forward_url != "" or $p.nav.backward_url != "") {	
+		"""
+		<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="5" alt="" border="0" /></div>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr>
+				<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+				<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+			</tr><tr>
+				<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+			</tr><tr>
+				<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+			</tr><tr>
+				<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				<td class="tabBg" width="100%" align="center">
+				<div class="compList">
+				""";
+				
+				if($p.nav.backward_url != "") {
+					"""<a href="$p.nav.backward_url" class="headerLinks"><img src="$*backarrow" width="13" height="10" alt="$*nav_text_back" border="0" /> $*nav_text_back</a> """;
+				}
+				
+				if($p.nav.forward_url != "" and $p.nav.backward_url != "") {
+					""" &nbsp; &nbsp; """;
+				}
+				
+				if ($p.nav.forward_url != "") {
+					"""<a href="$p.nav.forward_url" class="headerLinks">$*nav_text_forward <img src="$*forwardarrow" width="13" height="10" alt="$*nav_text_forward" border="0"></a>""";
+				}
+				
+				"""
+				</td>
+				<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+			</tr><tr>
+				<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbl" width="5" height="5" alt="" border="0" /></td>
+				<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbr" width="5" height="5" alt="" border="0" /></td>
+			</tr><tr>
+				<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+			</tr><tr>
+				<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+			</tr>
+		</table>
+		<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="8" alt="" border="0" /></div>
+		""";
+	}
+}
+
+
+
+#############################################
+#
+#	Common snippets of HTML in print statements
+#
+#############################################
+
+# Top of the table for each comment
+function print_content_top() {
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td width="100%">	
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="entry">
+	""";
+
+}
+
+# Bottom of the table for each comment
+function print_content_bottom() {
+	"""
+						</td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+	""";
+}
+
+
+# Top of the table to each new thread
+function print_comment_bottom() {
+	"""				<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+			<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+	""";
+}
+
+# Bottom of the table to each new thread
+function print_comment_top() {
+	"""
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="entryHolderBg" width="100%">
+	""";	
+}
+
+# Top of lt gray table
+function print_system_box_top() {
+	"""			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td width="1" colspan="3" class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr><tr>
+						<td width="1" class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="entryHolderBg" width="100%">
+	""";
+}
+
+# Bottom of lt gray table
+function print_system_box_bottom() {
+	"""
+						</td>
+						<td width="1" class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr><tr>
+						<td width="1" colspan="3" class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+	""";
+}
+
+function print_spacer() {
+	"""</div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>""";
+}
+
+
+# prints out tab header with $content being the text in it
+
+function print_entry_header(string content) {
+	var int cspan = 1;
+	var int cspan2 = 4;
+	var int cspan3 = 5;
+	
+"""
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td valign="top" rowspan="3" colspan="3" width="5"><!--HERE --><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+					<td class="dkLine" colspan="$cspan"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="ltLine" colspan="$cspan"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="tabBg" colspan="$cspan"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="dkLine" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td class="ltLine" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+					<td class="tabBg" width="100%"><!-- HEADER CONTENT -->
+						<div class="entryDate">
+""";
+
+						print safe $content;
+
+"""	
+						</div>
+					</td>
+					<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+					<td class="ltLine" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td class="dkLine" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="medLine" colspan="$cspan2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="dkLine" colspan="$cspan3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+""";
+}
+
+# couldn't use the print above because comp column must be all one table for width issues
+# this starts a comp with $content being its header
+
+function print_comp_header(string content) {
+
+"""
+						<tr>
+							<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+							<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="dkLine" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							<td class="ltLine" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="tabBg" width="100%"><div class="sideHeader">
+""";
+							print safe $content;
+"""
+							</div></td>
+							<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="ltLine" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							<td class="dkLine" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="medLine" colspan="4"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="dkLine" colspan="5"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							<td class="compBg" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="compBg" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="compBg"><div class="compFont">
+""";
+}
+
+# this ends a comp
+function print_comp_footer() {
+"""							
+							</div></td>
+							<td class="compBg" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="compBg" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr><tr>
+							<td class="dkLine" colspan="8"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						</tr>
+						<tr>
+							<td><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+						</tr>
+	
+""";
+}
+
+#############################################
+#
+#	Component Setups
+#
+#############################################
+
+#### PAGE SUMMARY ####
+function Page::lay_entry_nav (Entry e)  : string {
+	var string line;
+	var string link = "item";
+	var string subject = ($e.subject != "") ? " $e.subject" : """ <i>$*text_nosubject</i>""";
+	if($.view == "friends") { $line = "$e.poster : "; $link = $e.journal.username; }
+	if($e.journal.username != $e.poster.username) { $line = $line + " $e.journal : "; }
+	$line = """<div>$line <a href="#$link$e.itemid">$subject</a></div>""";
+	return $line;
+}
+
+function Page::lay_print_summary ()  {
+}
+
+function num_comments_in_thread (Comment[] comments)  : int {
+    var int total = 0;
+    foreach var Comment c ($comments) {
+	$total = $total + 1;
+        if (size $c.replies > 0) {
+            $total = $total + num_comments_in_thread($c.replies);
+        }
+    }
+    return $total;
+}
+
+function EntryPage:: lay_print_summary ()  {
+	print_comp_header($*page_summary_text);
+	var string text;
+	var bool sep = false;
+	foreach var Comment e ($.comments) {
+		if($sep) {
+			$text = $text + """
+			<div class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			""";
+		}
+		var string subject = ($e.subject != "") ? " $e.subject" : """<i>$*text_nosubject</i>""";
+		var string poster = defined $e.poster ? $e.poster->as_string() : "<i>Anonymous</i>";
+		$text = $text + """<div>$poster <a href="#$e.anchor">$subject</a>""";
+		$sep = true;
+		var int num = num_comments_in_thread($e.replies);
+		if($num > 0) {
+			$text = $text + " [+" + string($num) + "] ";
+		}
+		"</div>";
+	}
+	print $text;
+	print_comp_footer();
+}
+
+
+function MonthPage::lay_print_summary ()  {
+	print_comp_header($*page_summary_text);
+	var string text;
+	var bool sep = false;
+	foreach var MonthDay d ($.days) {
+		if ($d.has_entries) {
+			if($sep) {
+				$text = $text + """
+				<div class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+				<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+				""";
+			}
+			var string day = lang_ordinal($d.day);
+			$text = $text + """<div class="columnitem"><a href="#item$d.day">$day [$d.num_entries entries]</a></div>""";
+			$sep = true;
+		}
+	}
+	print $text;
+	print_comp_footer();
+}
+
+function DayPage::lay_print_summary ()  {
+	print_comp_header($*page_summary_text);
+	var string text;
+	var bool sep = false;
+	foreach var Entry e ($.entries) {
+		if($sep) {
+			$text = $text + """
+			<div class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			""";
+		}
+		$text = $text + $this->lay_entry_nav($e);
+		$sep = true;
+	}
+	print $text;
+	print_comp_footer();
+}
+
+
+
+function RecentPage:: lay_print_summary ()  {
+	print_comp_header($*page_summary_text);
+	var string text;
+	var bool sep = false;
+	foreach var Entry e ($.entries) {
+		if($sep) {
+			$text = $text + """
+			<div class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+			""";
+		}
+		$text =  $text + $this->lay_entry_nav($e);
+		$sep = true;
+	}
+	print $text;
+	print_comp_footer();
+}
+
+
+#### TYPE ####
+function print_free_text(Page p) {
+	print_comp_header($*free_text_text);
+	"""	
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td width="100%" class="compFont">""";
+			
+	print $*free_text;
+		 
+		 """</td>
+		</tr>
+	</table>""";
+	print_comp_footer();
+}
+
+#### LINKS ####
+
+function print_link(string link, string name) {
+	print safe "<a href=\"$link\">";
+	if($name != "") { print safe "$name"; } else { "<i>no name</i>"; }
+}
+
+
+
+function Page::print_linklist() {
+
+	if (size $.linklist <= 0) {
+		return;
+	}
+
+
+	var string endHTML = """</a>
+		<div class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+		<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+	""";
+
+
+	var int count = 0;
+
+	foreach var UserLink l ($.linklist) {
+		$count = $count + 1;
+		if ($l.title) {
+			if ($l.is_heading) {
+				if($count != 1) {
+					"<br>";
+				}
+				"<div><b>$l.title</b></div>";
+			} else {
+				print_link($l.url, $l.title);
+			}
+				
+			if($count != size $.linklist) {
+				print $endHTML;
+			}
+
+		} else {
+			"<br />";
+		}
+	}
+
+}
+
+
+function print_links(Page p) {
+
+	print_comp_header($*links_text);
+
+		"""
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td width="100%">
+		""";
+
+		$p->print_linklist();
+
+		"""
+					</td>
+				</tr><tr>
+					<td><img src="$*PALIMGROOT/component/clear.gif" width="1" height="2" alt="" border="0" /></td>
+				</tr>
+			</table>
+		""";
+			
+		print_comp_footer();
+}
+							
+
+#### CALENDAR COMPONENT ####
+function print_calendar(Page p) {
+
+var YearMonth m = $p->get_latest_month();
+
+if($m.has_entries) {
+
+	var string month = $m->month_format();
+	var string header = "";
+	if($*icalendar) {
+		$header = "$*calendar_text";
+	} else {
+		$header = "$month";
+	}
+	print_comp_header($header);
+							
+	if($*icalendar) {
+	
+		"""
+			<div id="calendarBox">
+			<div id="calendar">
+		""";
+
+	}
+	
+								if($*icalendar) {
+									var int lastm;
+									$lastm = $m.month - 1;
+									var int lasty;
+									$lasty = $m.year;
+									var string journal;
+									$journal = $p.base_url;
+									var string link;
+									
+									if($lastm == 0) {
+										$lasty = $m.year - 1;
+										$lastm = 12;
+									}
+									
+									var string myM;
+									if($lastm < 10) { $myM = "0" + $lastm; }
+									else { $myM = string($lastm); }
+									
+									$link = $journal + "/" + $lasty + "/" + $myM + "/";
+									
+									"""
+									
+									<script>
+											
+										function inner()
+										{
+											var time = new Date().getTime();
+											document.getElementById('calendarBox').innerHTML = '';
+											var writestring = '<iframe width="100%" height="180" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" align="top" src="$link?.ical=true"></iframe>';
+											document.getElementById('calendarBox').innerHTML = writestring;
+										}
+
+									</script>
+									
+									<table cellspacing="2" cellpadding="0" border="0" width="100%">
+									  	<tr>
+											<td align="center"><a href=\"javascript:inner()\"><img src=\"$*backarrow2\" alt=\"Back\" border=\"0\" width=\"23\" height=\"18\"></a></td>
+											<td colspan="4" align="center" class="compContent"><a href="$m.url" class="calendartitle">$month</a></td>
+										</tr>
+										
+									""";
+									
+								} else {
+									"""<table cellspacing="2" cellpadding="0" border="0" width="100%">""";
+								}
+									
+									
+									var YearWeek[] theWeeks = $m.weeks;
+									foreach var YearWeek w ($theWeeks) {
+										"<tr>";
+										var YearDay[] theDays = $w.days;
+										var int pre = $w.pre_empty;
+										if($pre > 0) {
+											"<td width=\"14%\" colspan=\"$pre\" valign=\"top\"><img src=\"$*PALIMGROOT/component/clear.gif\" width=\"22\" height=\"16\" alt=\"\" border=\"0\" /></td>";
+										}
+										foreach var YearDay d ($theDays) {
+											var int num = $d.num_entries;
+											if($num > 0) {
+												"<td width=\"14%\" class=\"calendarActive\" align=\"center\"><a href=\"$d.url\" class=\"calendarLink\">$d.date.day</a></td>";
+											} else {
+												"<td width=\"14%\" class=\"calendarInactive\" align=\"center\">$d.date.day</td>";
+											}
+										}
+										"</tr>";
+									}
+								
+								
+	"""
+								</table>
+"""; 
+	if($*icalendar) {
+
+		"</div></div>";
+	}
+				print_comp_footer();
+	}
+}
+
+#### PROFILE COMPONENT ####
+function print_profile(Page p) {
+
+
+	var string jtype;
+	
+	var string comphead = "$*profile_text";
+	print_comp_header($comphead);
+
+		"""<table cellspacing="0" cellpadding="0" border="0">""";
+				
+								if($p.journal.default_pic) {
+								"""
+									<tr>
+										<td width="50%" align="center">
+											<div class="shortLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+											<div class="shortLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+										</td>
+										<td align="center"><img src="$p.journal.default_pic.url" alt="$p.journal.name" width="$p.journal.default_pic.width" height="$p.journal.default_pic.height" border="1" vspace="4" class="userpic" /></td>
+										<td width="50%" align="center">
+											<div class="shortLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+											<div class="shortLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+										</td>
+									</tr>""";
+								}
+								
+"""								<tr>
+									<td colspan="3" class="compContent">
+
+								 """; 
+								 
+								"<div><b>User:</b> $p.journal</div>";
+								
+								if($p.journal.name) {
+									"<div><b>Name:</b> $p.journal.name</div>";
+								}
+								
+								if($p.journal.website_url) {
+                                    var string website_name = $p.journal.website_name ? $p.journal.website_name : $*text_website_default_name;
+									"<div><b>Website:</b> <a href=\"$p.journal.website_url\">$website_name</a></div>";
+								}
+								
+"""
+									</td>
+								</tr>	
+							</table>
+""";
+
+	print_comp_footer();
+	
+}
+
+
+#### PROFILE COMPONENT ####
+function print_nav_comp (Page p) {
+    var string title = $p->title();
+	var string website = "";
+	if($p.journal.website_url) {
+        var string website_name = $p.journal.website_name ? $p.journal.website_name : $*text_website_default_name;
+	    $website = "									<div class=\"ltLine\"><img src=\"$*PALIMGROOT/component/clear.gif\" width=\"1\" height=\"1\" alt=\"\" border=\"0\" /></div>\n";
+		$website = $website + "									<div class=\"compList\"><a href=\"" + $p.journal.website_url + "\" class=\"headerLinks\">" + $website_name + "</a></div>\n";
+	}
+
+
+"""
+				<tr>
+					<td colspan="7">
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+								<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td class="tabBg" width="100%"><!-- HEADER CONTENT -->
+									<div class="compList"><a href="$p.base_url/" class="headerLinks">$*nav_entries_text</a></div>
+									<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+									<div class="compList"><a href="$p.base_url/friends/" class="headerLinks">$*nav_friends_text</a></div>
+									<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+									<div class="compList"><a href="$p.base_url/calendar/" class="headerLinks">$*nav_calendar_text</a></div>
+									<div class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></div>
+									<div class="compList"><a href="$p.base_url/info" class="headerLinks">$*nav_info_text</a></div>
+									$website""";
+									$p->lay_viewspec_nav();
+								"""</td>
+								<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbl" width="5" height="5" alt="" border="0" /></td>
+								<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbr" width="5" height="5" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				</tr>
+""";
+}
+
+function print_my_components (Page p) {
+	if($p.view == "friends" and $*comp_friends == false) {
+		return;
+	}
+	if($*comp_state != "none") {
+"""
+		<td valign="top" width="184">
+			<table cellspacing="0" cellpadding="0" border="0" width="184">
+""";
+
+		if($*first_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*first_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*first_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*first_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*first_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*first_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+		
+		if($*second_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*second_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*second_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*second_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*second_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*second_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+		
+		if($*third_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*third_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*third_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*third_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*third_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*third_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+		
+		if($*fourth_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*fourth_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*fourth_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*fourth_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*fourth_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*fourth_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+		
+		
+		if($*fifth_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*fifth_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*fifth_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*fifth_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*fifth_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*fifth_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+		
+		
+		if($*sixth_position == "navigation_order") {
+			if($*comp_navbar) {
+				print_nav_comp($p);
+			}
+		} elseif ($*sixth_position == "profile_order") {
+			if($*show_profile) {
+				print_profile($p);
+			}
+		} elseif($*sixth_position == "calendar_order") {
+			if($*show_calendar) {
+				print_calendar($p);
+			}
+		} elseif($*sixth_position == "links_order") {
+			if($*show_links and size $p.linklist > 0) {
+				print_links($p);
+			}
+		} elseif($*sixth_position == "free_text_order") {
+			if($*show_free_text) {
+				print_free_text($p);
+			}
+		} elseif($*sixth_position == "summary_order") {
+			if($*show_summary) {
+				$p->lay_print_summary();
+			}
+		}
+				
+		"			</table>\n			</td>";
+	}
+}
+
+#############################################
+#
+#	Entries
+#
+#############################################
+
+function print_my_entries (Page p, string title) {
+
+"""			
+						<!-- USER HEADER -->
+					<td valign="top" width="99%">
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+								<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td class="tabBg" width="100%"><!-- HEADER CONTENT -->
+									<div class="userTitle">
+""";
+
+print safe $title;
+
+"""
+									</div>
+							""";
+							
+							if($p.global_subtitle != "") {
+"									<div class=\"userSubTitle\">$p.global_subtitle</div>";
+							}
+							
+							"""
+								
+								</td>
+								<td class="tabBg" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td class="ltLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbl" width="5" height="5" alt="" border="0" /></td>
+								<td class="tabBg"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+								<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*cbr" width="5" height="5" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="ltLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr><tr>
+								<td class="dkLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+						</table>
+					
+					<!-- SPACER -->
+					
+						<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="4" alt="" border="0" /></div>
+	""";
+
+    $p->print_body();
+
+	"""
+				</td>
+	""";
+}
+
+function page_layout(Page p) {
+
+    var string title = $p->title();
+
+    var string website_name = $p.journal.website_name ? $p.journal.website_name : $*text_website_default_name;
+    var string website = ($p.journal.website_url != "" ? "<span class=\"header-item\"><a href=\"$p.journal.website_url\" class=\"headerLinks\">$website_name</a></span>" : "");
+
+"""
+	<!DOCTYPE html 
+    	 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		  <head>
+		    <link rel="stylesheet" href="$p.stylesheet_url" type="text/css" />
+	""";
+		$p->print_head();
+	"""
+		    <title>$title</title>
+	</head>
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+""";
+	if($*comp_state == "none" or $*comp_navbar == false or ($p.view == "friends" and $*comp_friends == false)) {
+
+"""
+<div class="header">
+	<span class="header-item"><a href="$p.base_url/" class="headerLinks">$*nav_entries_text</a></span>
+	<span class="header-item"><a href="$p.base_url/friends/" class="headerLinks">$*nav_friends_text</a></span>
+	<span class="header-item"><a href="$p.base_url/calendar/" class="headerLinks">$*nav_calendar_text</a></span>
+	<span class="header-item"><a href="$p.base_url/info" class="headerLinks">$*nav_info_text</a></span>
+	$website
+""";
+
+			$p->lay_viewspec_nav();
+
+		"</div>";
+
+	}
+
+"""
+<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+		
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td><img src="$*PALIMGROOT/component/clear.gif" width="3" height="1" alt="" border="0" /></td>
+""";
+			if($*comp_state == "right" or $*comp_state == "none") {
+				print_my_entries($p, $title);
+			} elseif($*comp_state == "left") {
+				print_my_components($p);
+			}
+"""
+		<td><img src="$*PALIMGROOT/component/clear.gif" width="3" height="1" alt="" border="0" /></td>
+""";
+	
+		if($*comp_state == "right") {
+			print_my_components($p);
+		} elseif($*comp_state == "left") {
+			print_my_entries($p, $title);
+		}
+"""		
+		<td><img src="$*PALIMGROOT/component/clear.gif" width="3" height="1" alt="" border="0" /></td>
+	</tr>
+</table>
+
+</body>
+</html>
+""";
+}
+
+function Page::print () {
+	page_layout($this);
+}
+
+
+function Page::lay_print_linkbar() : bool {
+	return false;
+}
+
+function Entry::lay_print_linkbar() : bool {
+	var Page p = get_page();
+	if (($*show_entrynav_icons and $p.view == "entry") or ($*show_recentnav_icons and ($p.view == "recent" or $p.view == "friends"))) {
+		print "<td valign=\"top\" class=\"entryHolderBg\"><div>";
+		var Link link;
+		var string icon;
+		foreach var string k ($.link_keyseq) {
+			$link = $this->get_link($k);
+			if($link) {
+				if($k == "edit_entry") { $icon = $*edit_img; }
+				elseif($k == "mem_add") { $icon = $*mem_img; }
+				elseif($k == "tell_friend") { $icon = $*tellfriend_img; }
+				elseif($k == "edit_tags") { $icon = $*tags_img; }
+				if ($icon != "") { print "<a href=\"$link.url\"><img src=\"$icon\" border=\"0\" alt=\"$link.caption\" vspace=\"2\" /></a><br />"; }
+			}
+			$icon = "";
+		}
+		print "</div></td>";
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function print_entry (Page p, Entry e, Color bgcolor, Color fgcolor, bool hide_text)
+{
+    var string time = $e.time->time_format();
+    var string userpic = (defined $e.userpic ? "<img src=\"$e.userpic.url\" alt=\"$e.poster.username\" border=\"1\" vspace=\"4\" class=\"userpic\" />" : "");
+
+	var string header = "";
+	if (($p.view != "entry" and $e.new_day) or $p.view == "entry") {
+		$header = "$time <b>" + $e.time->date_format("long") + "</b>";
+	} else {
+		$header = "$time " + $e.time->date_format("long");
+	}
+	if ($e.security) { $header = $e.security_icon + " &nbsp; " + $header; }
+	var string link = ($p.view == "friends") ? $e.journal.username : "item";
+"""
+
+						<a name="$link$e.itemid"></a>
+""";
+	print_entry_header($header);
+	
+	var string fgstyle = "class=\"userpic\"";
+	var string bgstyle;
+	if($p.view == "friends") {
+		$fgstyle = "style=\"border-color: $fgcolor;\"";
+		$bgstyle = "style=\"padding-top: 3px; padding-left: 3px; padding-right: 3px; padding-bottom: 3px; background-color: $bgcolor;\"";
+	}
+	
+						
+"""
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+""";
+								if($p.view == "friends" or $p.journal_type == "c" or $e.poster.username != $e.journal.username or ($p.view == "entry" and $*show_entrypage_userpic)) {
+								"""<td valign="top" class="entryHolderBg">""";
+								
+									if(defined $e.userpic) {
+										"""<div $bgstyle align="center"><a href=\"""" + $e.journal->base_url() + """/"><img border="1" src="$e.userpic.url" width="$e.userpic.width" height="$e.userpic.height" alt="$e.poster.username" $fgstyle /></a></div>""";
+        							}
+"""									$e.journal""";
+
+									if($e.journal.username != $e.poster.username) {
+										print "<br>$e.poster";
+									}
+
+"""								</td>""";
+								} elseif($*show_entry_userpic and (($p.view == "entry" and ($*show_entrypage_userpic == false)) == false)) {
+									"""<td valign="top" class="entryHolderBg">""";
+									if(defined $e.userpic) {
+										"""<div align="center"><img border="1" src="$e.userpic.url" width="$e.userpic.width" height="$e.userpic.height" alt="$e.poster.username" $fgstyle /></div>""";
+        								}
+"""									</td>""";
+								}
+	var int cs = 4;
+	var bool test = $e->lay_print_linkbar();
+	if($test) { $cs = 5; }
+								
+"""
+								<td class="entryHolderBg" width="100%" valign="top">
+									<table cellspacing="0" cellpadding="0" border="0" width="100%">
+										<tr>
+											<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+											<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+											<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+										</tr>
+	""";
+	
+    # Subject
+	if($e.subject != "") {
+		"""
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="entry">
+									<div class="entryHeader">$e.subject</div>
+""";
+							if($e.text != "") {
+									"<div class=\"entryDash\"><img src=\"$*PALIMGROOT/component/clear.gif\" width=\"1\" height=\"1\" alt=\"\" border=\"0\" /></div>";
+							}
+"""
+								</td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+""";
+
+	}
+
+    if (not $hide_text)
+    {
+        # Entry
+		"""
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="entry">
+									<div>
+									$e.text
+""";
+                            if (size $e.tags or size $e.metadata) { print "<p>"; }
+                            if ($e.tags) {
+                                var int tcount = 0;
+                                "<strong>Tags:</strong> ";
+                                foreach var Tag t ($e.tags) {
+                                    """<a rel="tag" href="$t.url">$t.name</a>""";
+                                    $tcount++;
+                                    if ($tcount != size $e.tags) { ", "; }
+                                }
+                                "<br />";
+                            }
+                    
+							if (size $e.metadata)
+					          {
+					              foreach var string k ($e.metadata)
+					              {
+					                  var string key = $k;
+					                  var string val = $e.metadata{$k};
+					                  if ($k == "mood")  { $key = $*text_meta_mood;  }
+					                  if ($k == "music") { $key = $*text_meta_music; }
+					                  if ($k == "mood" and defined $e.mood_icon)
+					                  {
+					                      var Image i = $e.mood_icon;
+					                      $val = "<img src='$i.url' width='$i.width' height='$i.height' alt='' /> $val";
+					                  }
+					                  "<strong>$key:</strong> $val<br />";
+					              }
+					          }
+                             if (size $e.tags or size $e.metadata) { print "</p>"; }
+"""
+									</div>
+								</td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+		""";
+    }
+	
+		"""
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+						</table>
+		""";
+
+    # Comments
+		"				<div class=\"entryComments\">";
+							$e.comments->print();
+		"""				
+						</div>
+						</td>
+						<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr><tr>
+						<td colspan="$cs" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+				
+				<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+		""";
+	
+}
+
+function CommentInfo::print()
+{
+    if (not $.enabled) { return; }
+    if ($.count > 0 or $.screened) {
+        $this->print_readlink(); " $*comment_divider ";
+    }
+    $this->print_postlink();
+}
+
+function Page::print_entry (Entry e) 
+{
+    print_entry($this, $e, null Color, null Color, false);
+}
+
+function RecentPage::print_body 
+{
+	
+	var int count = 0;
+	var string[] myarray;
+	
+    foreach var Entry e ($.entries) {
+        $this->print_entry($e);
+    }
+	
+	print_bottom_nav($this);
+	
+}
+
+
+function FriendsPage::print_entry (Entry e) 
+{
+    var Friend f = $.friends{$e.journal.username};
+    print_entry($this, $e, $f.bgcolor, $f.fgcolor, false);
+}
+
+function FriendsPage::print_body 
+{
+	var int count = 0;
+	var string[] myarray;
+	
+    foreach var Entry e ($.entries) {
+        $this->print_entry($e);
+    }
+	
+	
+	print_bottom_nav($this);
+}
+
+
+#############################################
+#
+#	Calendar:
+#	Year, Month, Week, and Day View
+#
+#############################################
+
+
+function YearPage::print_year_links ()
+{
+	print_system_box_top();
+    "Year: ";
+    foreach var YearYear y ($.years) {
+        if ($y.displayed) {
+            " (<span class=\"Active\">$y.year</span>) ";
+        } else {
+            " (<a href=\"$y.url\">$y.year</a>) ";
+        }
+    }
+	print_system_box_bottom();
+	print_spacer();
+}
+
+function YearPage::print_body {
+    $this->print_year_links();
+	var bool toggle = false;
+	"\n			<table cellspacing=\"2\" cellpadding=\"0\" border=\"0\">\n				<tr>";
+    foreach var YearMonth m ($.months) {
+	    if ($m.has_entries) {
+			"\n					<td valign=\"top\">";
+	        $this->print_month($m);
+			"\n					</td>";
+			if($toggle) {
+				"\n				</tr><tr>";
+				$toggle = false;
+			} else {
+				$toggle = true;
+			}
+		}
+    }
+	"\n				</tr>\n			</table>";
+}
+
+# prints out the multiple month calendar view
+function YearPage::print_month(YearMonth m)
+{
+	var string header;
+	$header = $header +  "<a href=\"$m.url\" class=\"headerLinks\">";
+	$header = $header +  $m->month_format();
+	$header = $header +  "</a>";
+	print_entry_header($header);
+	print_comment_top();
+    "\n			<table cellspacing=\"3\" cellpadding=\"2\" border=\"0\" width=\"210\">";
+    foreach var YearWeek w ($m.weeks) {
+        $w->print();
+    }
+    "\n			</table>\n		</td>";
+	print_comment_bottom();
+}
+
+function YearWeek::print() {
+    "\n				<tr>";
+    if ($.pre_empty) { "\n					<td colspan=\"$.pre_empty\"></td>"; }
+    foreach var YearDay d ($.days)
+    {
+        if ($d.num_entries) {
+       	 "\n					<td width=\"30\" class=\"calendarActive\">$d.day";
+         "<div align=\"center\"><a href=\"$d.url\"><strong>$d.num_entries</strong></a></div>";
+        } else {
+        "\n					<td width=\"30\" class=\"calendarInactive\">$d.day";
+            "<br />&nbsp;";
+        }
+        "</td>\n";
+    }
+    if ($.post_empty) { "\n					<td class=\"empty\" colspan=\"$.post_empty\"> </td>"; }
+    "\n				</tr>";
+}
+
+
+# Has two views.  A normal one, and one for the iCalendar.
+function MonthPage::print() {
+
+	if($*icalendar and $.args{"ical"} == "true") {
+	    var string title = $this->title();
+		var MonthDay[] theM = $this.days;
+		"""
+			<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+				<html>
+				  <head>
+				    <link rel="stylesheet" href="$.stylesheet_url" type="text/css" />
+					<style>
+						body {
+							background-image: none;
+							background-color: $*comp_bgcolor;
+						}
+					</style>
+					$.head_content
+				    <title>$title</title>
+				  </head>
+				  <body>
+<table cellspacing="2" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td align="center">""";
+						
+						if ($.prev_url != "") { "<a href=\"$.prev_url?.ical=true\"><img src=\"$*backarrow2\" alt=\"Back\" border=\"0\" width=\"23\" height=\"18\"></a>"; }
+						"</td>\n		<td colspan=\"5\" align=\"center\" class=\"compContent\">";
+						var string current = $.date->date_format($*lang_fmt_month_long);
+						var int mm = $.date.month;
+						var string mms;
+						if($mm < 10) {
+							$mms = "0" + $mm;
+						} else {
+							$mms = string($mm);
+						}
+						
+						"<a href=\"$.base_url/" + $.date.year + "/$mms/\" target=\"_top\">$current</a>";
+						"</td>\n		<td align=\"center\">";
+						if ($.next_url != "") { "<a href=\"$.next_url?.ical=true\"><img src=\"$*forwardarrow2\" alt=\"Forward\" border=\"0\" width=\"23\" height=\"18\"></a>"; }
+						"</td>\n	</tr><tr>";
+						
+						var int count = 1;
+						var int first = 0;
+						var int colspan = 0;
+						foreach var MonthDay d ($theM) {
+							if($first == 0) {
+								$first = $d.date->day_of_week();
+								$count = $first;
+								$colspan = $first - 1;
+							}
+							if($d.day == 1) {
+								if($first > 1) {
+									"""		<td width="14%" colspan="$colspan"><img src="$*PALIMGROOT/component/clear.gif" width="22" height="16" alt="" border="0" /></td>\n""";
+								}
+							}
+							if($count == 8) {
+								"	</tr><tr>\n";
+								$count = 1;
+							}
+							if($d.has_entries) {
+								"		<td width=\"14%\" class=\"calendarActive\" align=\"center\"><a href=\"$d.url\" class=\"calendarLink\" target=\"_top\">$d.date.day</a></td>";
+							} else {
+								"		<td width=\"14%\" class=\"calendarInactive\" align=\"center\" target=\"_top\">$d.date.day</td>";
+							}
+
+							$count ++;
+
+						}
+						
+	
+		"""
+	</tr>
+</table>
+</body>
+</html>
+		""";
+	} else {
+	   page_layout($this);
+	}
+}
+
+function MonthPage::print_body() {
+	"<form method=\"post\" action=\"$.redir.url\">";
+	 $.redir->print_hiddens();
+	print_system_box_top();
+	"""
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td valign="middle" align="center" width="33%">
+	""";
+	if ($.prev_url != "") { "<a href=\"$.prev_url\"><img src=\"$*backarrow2\" width=\"23\" height=\"18\" alt=\"Back\" border=\"0\"></a>\n"; }
+	"</td><td valign=\"middle\" align=\"center\" width=\"34%\">";
+    if (size $.months > 1) {
+        "<select name=\"redir_key\">\n";
+        foreach var MonthEntryInfo mei ($.months) {
+            var string sel;
+            if ($mei.date.year == $.date.year and $mei.date.month == $.date.month) {
+                $sel = " selected=\"selected\"";
+            }
+            "<option value=\"$mei.redir_key\"$sel>" + $mei.date->date_format($*lang_fmt_month_long) + "</option>";
+        }
+        "</select>\n<input type=\"submit\" value=\"View\" />";
+    }
+	"</td><td valign=\"middle\" align=\"center\" width=\"33%\">";
+    if ($.next_url != "") { "\n<a href=\"$.next_url\"><img src=\"$*forwardarrow2\" width=\"23\" height=\"18\" alt=\"Forward\" border=\"0\"></a>\n"; }
+	"""
+				</td>
+			</tr>
+		</table>
+	""";
+	print_system_box_bottom();
+	print_spacer();
+	
+    foreach var MonthDay d ($.days) {
+        if ($d.has_entries) {
+			var string head = """<a name="item$d.day"></a>""";
+			$head = $head + "<a href=\"$d.url\" class=\"headerLinks\"><b>";
+			$head = $head +  lang_ordinal($d.day);
+            $head = $head + "</b></a>";
+			print_entry_header($head);
+            $d->print_subjectlist();
+			print_spacer();
+        }
+    }
+	"</form>";
+	
+}
+
+function MonthDay::print_subjectlist() {
+	print_comment_top();
+    foreach var Entry e ($.entries) {
+		print_content_top();
+        print $e.time->time_format("short") + ": ";
+        if ($e.poster.username != $e.journal.username) {
+            $e.poster->print(); " ";
+        }
+        "$e.security_icon";
+        if ($e.subject != "") {
+            " <a href=\"$e.permalink_url\">$e.subject</a>";
+        } else { 
+            " <a href=\"$e.permalink_url\" style=\"font-style: italic;\">($*text_nosubject)</a>";
+        }
+        if ($e.comments.count > 0) {
+            " - " + get_plural_phrase($e.comments.count, "text_read_comments");
+        }
+        if ($e.comments.screened) {
+            " <b>$*text_month_screened_comments</b>";
+        }
+        "<br />\n";
+		print_content_bottom();
+    }
+	print_comment_bottom();
+}
+
+### Day
+
+function DayPage::print_body ()
+{
+	
+    if (not $.has_entries) {
+	var string sub = $.date->date_format("med");
+	
+	print_system_box_top();
+	"<div>$*text_noentries_day</div>";
+	print_system_box_bottom();
+
+    } else {
+
+		var int count = 0;
+		var string[] myarray;
+
+        foreach var Entry e ($.entries) {
+            $this->print_entry($e);
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+#############################################
+#
+#	Entry and Comments
+#
+#############################################
+
+function ItemRange::print() {
+	if ($.all_subitems_displayed) { return; }
+	"<br />";
+	print lang_page_of_pages($.current, $.total);
+	"<br />";
+	foreach var int i (1..$.total) {
+		if ($i == $.current) {
+			"<b>[$i]</b> "; 
+		} else { 
+	            var string url_of = $this->url_of($i);
+	            """<a href="$url_of" class="link"><b>[$i]</b></a> """;
+	        }
+	}
+}
+
+function EntryPage::print_body () 
+{
+        set_handler("unscreen_comment_#", [
+                                           [ "style_bgcolor", "cmtbar#", "$*comments_bgcolor", ],
+                                           ]);
+        set_handler("screen_comment_#", [
+                                         [ "style_bgcolor", "cmtbar#", "$*comments_screened_bgcolor", ],
+                                         ]);
+
+    print_entry($this, $.entry, null Color, null Color, $.viewing_thread);
+    if ($.entry.comments.enabled and $.comment_pages.total_subitems > 0)
+    {
+        $this->print_multiform_start();
+	"""
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr><tr>
+						<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="entryHolderBg" width="100%"><b>Comments</b>
+	""";
+					        if ($.comment_pages.total_subitems > 0) {
+					            $.comment_pages->print();
+						}
+	"""
+						</td>
+						<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr><tr>
+						<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+	""";	
+		print_spacer();
+
+        if ($.comment_pages.total_subitems > 0) {
+            $this->print_comments($.comments);
+        }
+"""					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+
+			<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td class="entryHolderBg" width="100%"><b>
+""";
+
+						$.entry.comments->print();
+
+"""
+</b>
+""";
+					if ($.comment_pages.total_subitems > 0) {
+					    $.comment_pages->print();
+					}
+"""
+					</td>
+					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+
+
+			<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+""";
+        if ($this.multiform_on) {
+"""
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td class="dkLine" colspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td class="entryHolderBg" width="100%"><b>
+""";					
+            "<h2>Mass Action</h2><div style=\"margin-left: 30px;\">";
+            $this->print_multiform_actionline();
+            $this->print_multiform_end();
+            "</div>";
+"""					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+""";
+        }
+    }
+}
+
+
+# Top of the table for each comment
+function print_comment_content_top(Comment c) {
+
+	var int indent = ($c.depth - 1) * 25;
+	
+	"""
+	<table id='$c.dom_id' cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td><img src="$*PALIMGROOT/component/clear.gif" width="${indent}" height="1"></td>
+			<td width="100%">	
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="entry">
+	""";
+
+}
+
+# Bottom of the table for each comment
+function print_comment_content_bottom() {
+	"""
+						</td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+					<tr>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+	""";
+	"\n\n<!-- END OF COMMENT -->\n\n";
+}
+
+#  partial entries such as collapsed and screened.
+function EntryPage::print_comment_partial (Comment c) {
+	if($c.depth == 1) {
+		var Comment[] replies;
+		$replies = $c.replies;
+		var int count = 0;
+		foreach var Comment reply ($replies) {
+			$count ++;
+		}
+		var string head;
+		if($count > 0) {
+			$head = "Thread started by a screened user";
+		} else {
+			$head = "Comment by screened user";
+		}
+		print_entry_header($head);
+		print_comment_top();
+	}
+	var string content;
+	if($c.screened) {
+		$content = "<b>Screened comment</b>";
+	} else {
+	    var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+	    var string subj = $c.subject != "" ? $c.subject : $*text_nosubject;
+	    $content =  "<a href=\"$c.permalink_url\">$subj</a> - $poster";
+	}
+	print_comment_content_top($c);
+	"$content";
+	print_comment_content_bottom();
+}
+
+# called from entry page.  loops through entries and runs EntryPage::print_comment
+function EntryPage::print_comments (Comment[] cs) {
+	if (size $cs == 0) { return; }
+	var bool first = true;
+	foreach var Comment c ($cs) {
+		if($c.depth == 1) {
+			if($first != true) {
+				print_comment_bottom();
+			} else {
+				$first = false;
+			}
+		}
+		if ($c.full) {
+			$this->print_comment($c);
+		} else {
+			$this->print_comment_partial($c);
+		}
+		$this->print_comments($c.replies);
+	}
+}
+
+# Runs for every entry found
+function EntryPage::print_comment (Comment c) {
+    var Color background; var Color color;
+	
+	$color = $*entry_fgcolor;
+    
+	if ($c.screened) {
+        $background = $*comments_screened_bgcolor;
+    } else {
+        $background = $*comments_bgcolor;
+    }
+	
+    var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+    var string sub_icon;
+    if (defined $c.subject_icon) {
+        $sub_icon = $c.subject_icon->as_string();
+    }
+
+	if ($c.depth == 1) {
+			var string poster_name = defined $c.poster ? $c.poster.name : "<i>Anonymous</i>";
+
+			var Comment[] replies;
+			$replies = $c.replies;
+			var int count = 0;
+			foreach var Comment reply ($replies) {
+				$count ++;
+			}
+
+			var string head;
+
+			if($count > 0) {
+				$head = "Thread started by $poster_name";
+			} else {
+				$head = "Comment by $poster_name";
+			}
+			print_entry_header($head);
+			print_comment_top();
+	}
+
+	print "<a name=\"t$c.talkid\"></a>";
+	print_comment_content_top($c);
+	
+	"\n\n<div style=\"background-color: $background; color: $color; margin-top: 10px;\">\n";
+	"	<table id='cmtbar$c.talkid' cellpadding=\"2\" cellspacing=\"0\" summary=\"0\" width=\"100%\" bgcolor=\"$background\">\n		<tr valign=\"top\">\n";
+    var int td = 6;
+    if (defined $c.userpic and $*comment_userpic_style != "off") { 
+        $td = 7;
+        var int w = $c.userpic.width;
+        var int h = $c.userpic.height;
+        # WARNING: this will later be done by the system (it'll be a
+        # constructional property), so don't copy this hack into your
+        # layout layers or you'll be messed up later.
+        if ($*comment_userpic_style == "small") {
+            $w = $w / 2;
+            $h = $h / 2;
+        }
+	"			<td rowspan=\"2\" align=\"center\"><img src=\"$c.userpic.url\" width=\"$w\" height=\"$h\" alt=\"$c.poster.username\" border=\"1\" class=\"userpic\"></td>\n";
+    }
+	"			<td align=\"left\" style=\"white-space: nowrap\"><strong>From:</strong> $poster</td>\n";
+	"			<td align=\"left\" style=\"white-space: nowrap\"><strong>Date:</strong> " + $c.time->date_format("long") + " - " + $c.time->time_format() + "</td>\n";
+
+    "<td style='text-align: center;'>";
+
+    # action links (screen, unscreen, delete, freeze, etc)
+    foreach var string k ($c.link_keyseq) {
+        var Link link = $c->get_link($k);
+        if ($link) {
+            " $link ";
+        }
+    }
+
+	"			<td align=\"right\"><strong>(<a href=\"$c.permalink_url\">$*text_permalink</a>)</strong></td>\n		</tr>\n";
+	"		<tr valign=\"top\">\n			<td colspan=\"$td\" style=\"width: 95%\">";
+    if (defined $c.subject_icon or $c.subject != "") { 	"<p class=\"subject\">$c.subject_icon $c.subject</p>\n"; }
+    if ($c.metadata{"poster_ip"}) { 	" (IP Address: " + $c.metadata{"poster_ip"} + ")<br>"; }
+
+    if ($this.multiform_on) {
+		" <label for=\"ljcomsel_$c.talkid\">$*text_multiform_check</label>";
+		$c->print_multiform_check();
+    }
+
+	"</td>\n		</tr>\n</table>\n</div>\n";
+	"<div style=\"margin-left: 5px\">$c.text</div>\n";
+	"<div class=\"small\">";
+    if ($c.frozen) {
+        "(Replies frozen) ";
+    } else {
+        "(<a href=\"$c.reply_url\">Reply to this</a>) ";
+    }
+    if ($c.parent_url != "") { 	"(<a href=\"$c.parent_url\">Parent</a>) "; }
+    if ($c.thread_url != "") { 	"(<a href=\"$c.thread_url\">Thread</a>) "; }
+	"</div>\n";
+	print_comment_content_bottom();
+	
+}
+
+# The ReplyPage is without any comments...just the item being replied to and form.
+function ReplyPage::print_body () 
+{
+    var string time = $.replyto.time->time_format();
+
+    if (not $.entry.comments.enabled)
+    {
+        print "<h2>$*text_reply_nocomments_header</h2><p>$*text_reply_nocomments</p>";
+        return;
+    }
+	
+	var string posttime = "$time " + $.replyto.time->date_format("med");
+	if ($.entry.security) { $posttime = $.entry.security_icon + " &nbsp; " + $posttime; }
+    var string subject = ($.replyto.subject ? "$.replyto.subject" : "");
+    var string poster = defined $.replyto.poster ? $.replyto.poster->as_string() : "<i>(Anonymous)</i>";
+	var string pic = "";
+	if (defined $.replyto.userpic) { $pic = "<div align=\"center\"><img src=\"$.replyto.userpic.url\" alt=\"$.replyto.poster.username\" class=\"userpic\" border=\"1\" /></div>"; }
+
+	print_entry_header($posttime);
+			
+"""
+
+			
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td valign="top" class="entryHolderBg">$pic <div>$poster</div>
+				</td>
+					<td class="entryHolderBg" valign="top" width="100%">
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+""";
+							if($subject != "") {
+
+"""
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="entry">
+									<div class="entryHeader">$subject</div>
+""";
+
+									if($.replyto.text != "") {
+											"<div class=\"entryDash\"><img src=\"$*PALIMGROOT/component/clear.gif\" width=\"1\" height=\"1\" alt=\"\" border=\"0\" /></div>";
+									}
+
+"""
+								</td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+""";
+
+							}
+
+
+"""
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="entry">
+									<div>$.replyto.text</div>
+								</td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+							<!-- end e.text -->
+							
+							<tr>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td width="1" class="medLine"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+						</table>
+						<div class="entryComments"><a href=\"$.entry.comments.read_url\">$*text_reply_back</a></div>
+					</td>
+					<td class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td colspan="3" class="dkLine" width="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+
+			<div><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></div>
+			
+""";
+					print_system_box_top();
+					"<h2>Reply</h2>";
+				    $.form->print();
+					print_system_box_bottom();
+
+}
+
+
+
+#############################################
+#
+#	Preview
+#
+#############################################
+
+
+function print_theme_preview ()
+{
+ 	"""
+		<table width="100%" bgcolor="$*main_bgcolor" cellpadding="0" cellspacing="0" border="0">
+	  		<tr valign="top">
+				<td>
+				
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td valign="top" rowspan="3" colspan="3" width="5"><!--HERE --><img src="$*ctl" width="5" height="5" alt="" border="0" /></td>
+					<td style="background-color: $*outside_border;" colspan="1><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td valign="top" rowspan="3" colspan="3" width="5"><img src="$*ctr" width="5" height="5" alt="" border="0" /></td>
+				</tr><tr>
+					<td style="background-color: $*inside_border;" colspan="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td style="background-color: $*header_bgcolor;" colspan="1"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+				</tr><tr>
+					<td style="background-color: $*outside_border;" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td style="background-color: $*inside_border;" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td style="background-color: $*header_bgcolor;" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+					<td style="background-color: $*header_bgcolor;" width="100%"><!-- HEADER CONTENT -->
+						<div style="color: $*header_fgcolor_lt;">Component Header</div>
+					</td>
+					<td style="background-color: $*header_bgcolor;" width="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="3" alt="" border="0" /></td>
+					<td style="background-color: $*inside_border;" width="1" rowspan="2"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					<td style="background-color: $*outside_border;" width="1" rowspan="3"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td style="background-color: $*system_border;" colspan="4"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr><tr>
+					<td style="background-color: $*outside_border;" colspan="5"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+				</tr>
+			</table>
+			
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td width="100%">	
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+							</tr>
+							<tr>
+								<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+								<td style="padding: 7px;">
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+								</td>
+						<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+					<tr>
+						<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+						<td width="1" style="background-color: $*system_border;"><img src="$*PALIMGROOT/component/clear.gif" width="1" height="1" alt="" border="0" /></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+				</td>
+			</tr>
+		</table>
+	""";
+}

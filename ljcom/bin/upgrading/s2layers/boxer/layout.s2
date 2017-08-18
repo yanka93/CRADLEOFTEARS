@@ -1,0 +1,1988 @@
+# -*-s2-*-
+
+# Copyright (c) 2003-2005 Danga Interactive. All rights reserved.
+#
+# NOTICE: The Boxer style is not licensed for general use, and may not be 
+# used in any production sites. We provide the source to The Boxer so that our 
+# users and designers can learn the proper way to extend and customize the 
+# style.
+
+layerinfo type = "layout";
+layerinfo name = "The Boxer";
+layerinfo author_name = "Kevin Phillips";
+layerinfo author_email = "xevinx@livejournal.com";
+layerinfo redist_uniq = "boxer/layout";
+layerinfo previews = "boxer/boxer.jpg";
+layerinfo source_viewable = 0;
+layerinfo is_public = 0;
+
+#############################################
+#
+#	Properties
+#
+#############################################
+
+propgroup presentation = "Presentation";
+propgroup presentation { 
+	property int page_width {
+		des = "Page Width";
+		note = "Set in pixels what you want the page width to be.";
+		min = 400;
+	}
+
+	property string page_align {
+		des = "Page Alignment"; 
+		values = "left|Left|center|Center|right|Right";
+	}
+
+	property use text_view_recent;
+	property use text_view_friends;
+	property use text_view_month;
+	property use text_view_archive;
+
+	property use linklist_support;
+
+	property string links_name {
+		des = "Links Title";
+	}
+
+
+	property string links_divider {
+		des = "Links Divider";
+		note = "This appears between each link to seperate them.";
+	}
+
+	property use page_recent_items;
+	property use page_friends_items;
+
+
+	property string my_date {
+		des = "Date format";
+		note = "Choose the date format that will appear by each entry and each comment, followed by the time.";
+		values = "short|2/5/80|med|Feb. 5th, 1980|med_day|Tue, Feb. 5th, 1980|long|February 5th, 1980|long_day|Tuesday, February 5th, 1980";
+	}
+
+	property bool color_forms {
+		des = "Form Elements";
+		note = "Select Yes to use customized form elements.";
+	}
+
+	property bool show_mini_calendar {
+		des = "Enable Mini-Calendar";
+	}  
+	
+	property bool show_entry_userpic { 
+		des = "Recent userpics"; 
+		note = "Select this if you want your userpic to show up on each entry of your Recent page.";
+	}
+  
+	property use use_shared_pic;
+
+}
+
+propgroup color = "Colors";
+propgroup colors {
+	property Color bg_color {
+		des = "Background Color";
+	}
+
+	property Color color_nav_bg  {
+		des = "Navigation Background";
+		note = "This is the base color for the navigation bar.  After selecting a color, select if you want that color to get darker or lighter (from left to right).";
+	}
+
+	property string nav_scale {
+		des = "Navigation Background Progression";
+		note = "Select if you want the background of the navigation to get lighter, darker or all the same color starting from the color you selected above.";
+		values = "lighter|Lighter|darker|Darker|same|Same";
+	}
+
+	property Color nav_link {
+		des = "Navigation Text Color";
+	}
+
+	property Color info_bg {
+		des = "Info Background";
+		note = "The background to the area where the user information and calendar are presented.";
+	}
+	
+	property Color info_font {
+		des = "Info Font";
+		note = "The color of the font for the text in the information area.";
+	}
+
+	property Color info_link {
+		des = "Info Link Color";
+	}
+
+	property Color info_link_visited {
+		des = "Visited Info Link Color";
+		note = "The color of a visited link in the info section.";
+	}
+
+	property Color entry_bg {
+		des = "Entry Background";
+		note = "The background color for each entry.";
+	}
+
+	property Color entry_font {
+		des = "Entry Font";
+		note = "The font color for color for entry text.";
+	}
+	
+	property Color entry_link {
+		des = "Entry Link Color";
+	}
+
+	property Color entry_link_visited {
+		des = "Visited Entry Link Color";
+		note = "The color of a visited link in the entries section.";
+	}
+
+
+	# Non-visible properties go here.
+
+	property Color nav1_bg { noui = 1; }
+	property Color nav2_bg { noui = 1; }
+	property Color nav3_bg { noui = 1; }
+	property Color nav4_bg { noui = 1; }
+	property Color nav5_bg { noui = 1; }
+	property Color nav6_bg { noui = 1; }
+	property Color nav7_bg { noui = 1; }
+	property string backarrow { noui = 1; }
+	property string forwardarrow { noui = 1; }
+	property string leave_comment { noui = 1; }
+	property string comment { noui = 1; }
+	property string memories { noui = 1; }
+	property string edit { noui = 1; }
+	property string mail { noui = 1; }
+	property string delete { noui = 1; }
+	property string screen { noui = 1; }
+	property string unscreen { noui = 1; }
+        property string freeze { noui = 1; }
+        property string unfreeze { noui = 1; }
+	property string parent { noui = 1; }
+	property int half_width { noui = 1; }
+	property int half_width_pixel { noui = 1; }
+	property bool show_links { noui = 1; }
+	property string bg_pattern { noui = 1; }
+}
+
+propgroup background = "Background";
+propgroup Background {
+
+  property string page_background_pattern {
+  	des = "Background Pattern";
+	note = "Select a premade background or enter a background image below";
+	values = "none|None|background-horz-stripes.gif|Horizontal Stripes|background-vert-stripes.gif|Vertical Stripes|background-diag-stripes.gif|Diagnal Stripes|background-diamond.gif|Diamonds|background-hearts.gif|Hearts|background-lg-boxes.gif|Large Boxes|background-stitched.gif|Stitched";
+  }
+  
+  property string page_background_image {
+	des = "Background image";
+	note = "URL to an image to be used for the page background (leave blank for none).";
+  }
+
+  property string background_repeat {
+  	des = "Background image repeat";
+	values = "repeat|Repeat|no-repeat|Don't repeat|repeat-x|Repeat across only|repeat-y|Repeat down only";
+  }
+
+  property string background_position {
+  	des = "Background image position";
+	note = "Does not apply if Background Image Repeat is set to 'Repeat'.";
+	values = "top|Top|top left|Top-left|top right|Top-right|center|Center|center left|Center-left|center right|Center-right|bottom|Bottom|bottom left|Bottom-left|bottom right|Bottom-right|left|Left|right|Right";
+  }
+
+  property string background_scrolling {
+  	des = "Background image scrolling";
+	note = "Not supported in all browsers, but allows for the background image to be in a fixed position when scrolling.";
+	values = "scroll|Scroll|fixed|Fixed";
+  }
+
+}
+
+propgroup fontsettings = "Font Settings";
+propgroup fontsettings {
+
+	property string font_family {
+		des = "Font Family";
+		note = "The default font to use for all journal pages.";
+		values = "Arial, sans-serif|Arial|Tahoma, sans-serif|Tahoma|Verdana, sans-serif|Verdana|Trebuchet MS, sans-serif|Trebuchet MS|Georgia, serif|Georgia|Times New Romans, serif|Times New Roman|sans-serif|sans-serif|serif|serif";
+	}
+	
+
+	property string font_size {
+		des = "Adjust font size";
+		values = "small|Small|normal|Normal|large|Large|larger|Larger|hulk|Hulk!";
+	}
+
+	property int lineheight {
+		des = "Line Height";
+		note = "This specifies the distance between each text line on all pages.";
+	}
+
+	property string underline_links {
+		des = "Show link underline";
+		values = "no|No|yes|Yes|hover|Only on mouse over";
+	}
+
+
+}
+
+
+# setting layout
+set page_width = 667;
+set page_align = "center";
+set text_view_recent = "Recent Entries";
+set text_view_friends = "Friends Entries";
+set text_view_userinfo = "User Info";
+set text_view_month = "Calendar";
+set links_name = "Links";
+set linklist_support = true;
+set links_divider = "/";
+set my_date = "long_day";
+set color_forms = false;
+set show_mini_calendar = true;
+set view_entry_disabled = false;
+set show_entry_userpic = false;
+set tags_aware = true;
+
+# setting colors
+set nav_scale = "darker";
+set bg_color = "#f1ede2";
+set info_bg = "#d3ccc1";
+set color_nav_bg = "#da712b";
+set nav_link = "#ffffff";
+set entry_bg = "#275974";
+set entry_font = "#bfcadd";
+set entry_link = "#efe397";
+set entry_link_visited = "#f0ffc0";
+set info_font = "#9a927e";
+set info_link = "#ffffff";
+set info_link_visited = "#ffffff";
+
+# setting Background
+set page_background_pattern = "background-diamond.gif";
+set background_repeat = "repeat";
+set background_position = "center";
+set background_scrolling = "scroll";
+
+# setting Font_Settings
+set font_family = "Trebuchet MS, sans-serif";
+set lineheight = 17;
+set font_size = "normal";
+set underline_links = "hover";
+
+#############################################
+#
+#	Printing
+#
+#############################################
+
+
+
+
+#############################################
+#
+#	Forward and back nav functions
+#
+#############################################
+
+function Page::lay_viewspec_nav() {
+    	"""
+		<td width="50" class="nav6" align="center"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0"></td>
+		<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+		<td width="50" class="nav6" align="center"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0"></td>
+	""";
+}
+
+function DayPage::lay_viewspec_nav() {
+	"""
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.prev_url != "") {
+			"""<a href="$.prev_url"><img src="$*backarrow" alt="Back" title="Back" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";	
+		}
+
+	"""
+		</td>
+		<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.next_url != "") {
+			"""<a href="$.next_url"><img src="$*forwardarrow" alt="Forward" title="Forward" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";
+		}
+
+
+	"""
+	</td>
+	""";
+}
+
+function MonthPage::lay_viewspec_nav() {
+	"""
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.prev_url != "") {
+			"""<a href="$.prev_url"><img src="$*backarrow" alt="Back" title="Back" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";	
+		}
+
+	"""
+		</td>
+		<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.next_url != "") {
+			"""<a href="$.next_url"><img src="$*forwardarrow" alt="Forward" title="Forward" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";
+		}
+
+
+	"""
+	</td>
+	""";
+}
+
+function RecentPage::lay_viewspec_nav() {
+	"""
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.nav.backward_url != "") {
+			"""<a href="$.nav.backward_url"><img src="$*backarrow" alt="Back" title="Back" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";	
+		}
+
+	"""
+		</td>
+		<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+		<td width="50" class="nav6" align="center">
+	""";
+
+		if ($.nav.forward_url != "") {
+			"""<a href="$.nav.forward_url"><img src="$*forwardarrow" alt="Forward" title="Forward" width="28" height="28" border="0"></a>""";
+		} else {
+			"""<img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0">""";
+		}
+
+
+	"""
+	</td>
+	""";
+
+}
+
+
+#############################################
+#
+#	Top Navigation
+#
+#############################################
+
+function print_nav(Page p) {
+
+	# figure out the width of each table cell in the navigation based on total page width
+	var int blank = $*page_width - 512;
+	if($p.journal.website_url) {
+		$blank = $blank - 102;
+	}
+
+	"""
+			<!-- /////////////////// NAVIGATION ///////////////////// -->
+
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td width="100" class="nav1" align="center"><a href="$p.base_url/" class="nav">$*text_view_recent</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" class="nav2" align="center"><a href="$p.base_url/friends/" class="nav">$*text_view_friends</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" class="nav3" align="center"><a href="$p.base_url/calendar/" class="nav">$*text_view_month</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" class="nav4" align="center"><a href="$*SITEROOT/tools/memories.bml?user=$p.journal.username" class="nav">$*text_view_archive</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+	""";
+				if($p.journal.website_url) {
+					"""
+					<td width="100" class="nav5" align="center"><a href="$p.journal.website_url" class="nav">$p.journal.website_name</a></td>
+					<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+					""";
+				}
+
+				$p->lay_viewspec_nav();
+				
+				if($blank > 0) {
+					"""
+					<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+					<td class="nav7" width="$blank">&nbsp;</td>
+					""";
+				}
+	"""
+			</tr>
+		</table>
+	""";
+
+}
+
+#############################################
+#
+#	Mini-calendar
+#
+#############################################
+
+function print_calendar_day_top(string style) {
+	"""
+			<td>
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td class="calendarborder" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="15" height="1" alt="" border="0"></td>
+					<td class="calendarborder" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+				</tr><tr>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0">
+					<td class="$style" align="center">""";
+
+}
+
+function print_calendar_day_bottom() {
+					"""</td>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+				</tr><tr>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+					<td class="calendarborder"><img src="$*PALIMGROOT/boxer/clear.gif" width="1" height="1" alt="" border="0"></td>
+				</tr>
+			</table>
+		</td>
+		""";
+}
+
+function print_active_day(YearDay day) {
+
+					var string style = "calendarcontent";
+					var string dayentry;
+
+					if($day.num_entries > 0) {
+						$style = "calendarcontentactive";
+						$dayentry = """<a href="$day.url" class="dayentry">$day.date.day</a>""";
+					} else {
+						$dayentry = "" + $day.date.day;
+					}	
+
+					print_calendar_day_top($style);
+					print $dayentry;
+					print_calendar_day_bottom();
+
+}
+
+function print_inactive_day(int day) {
+					var string style = "calendarcontent";
+					print_calendar_day_top($style);
+					print "&nbsp;";
+					print_calendar_day_bottom();
+}
+
+function print_calendar(Page p) {
+
+	var YearMonth y = $p->get_latest_month();
+
+	var string m = $y->month_format();
+
+	var YearWeek[] w = $y.weeks;
+
+	var bool multiple = false;
+	if($p.journal.default_pic) {
+		$multiple = true;
+	} elseif($*linklist_support and size $p.linklist > 0) {
+		$multiple = true;
+	}
+
+	if($multiple) {
+		"""
+		<a href="$y.url" class="link">$m</a>
+		<table cellspacing="0" cellpadding="1" border="0" width="140">
+			<tr>
+		""";
+	} else {
+		"""
+		<table cellspacing="0" cellpadding="1" border="0" width="100%">
+			<tr>
+				<td colspan="20"><a href="$y.url" class="link">$m</a> </td>
+			</tr><tr>
+		""";
+	}
+
+	foreach var YearWeek weeks ($w) {
+		var YearDay[] d = $weeks.days;
+		if($multiple) {
+			var int pre = $weeks.pre_empty;
+			if($pre > 0) {
+				foreach var int num (1..$pre) {
+					print_inactive_day($num);
+				}
+			}
+		}
+		foreach var YearDay days ($d) {
+			print_active_day($days);
+		}
+		if($multiple) {	
+			var int post = $weeks.post_empty;
+			if($post > 0) {
+				foreach var int num (1..$post) {
+					print_inactive_day($num);
+				}
+			}
+		}
+		
+		if($multiple) {
+			print "</tr><tr>";
+		}
+
+	}
+	"""
+		</tr>
+	</table>
+	""";
+
+
+
+}
+
+
+#############################################
+#
+#	Built-in Links
+#
+#############################################
+
+function Page::print_linklist() {
+
+	if (size $.linklist <= 0) {
+		return;
+	} elseif (not $*linklist_support) {
+		return;
+	}
+
+	var int link_width = $*page_width - 290;
+	"""
+		<td class="info" valign="top" width="$link_width" align="left"><b>$*links_name</b> 
+	""";
+	var bool slash = false;
+	foreach var UserLink l ($.linklist) {
+		if ($l.title) {
+			if ($l.is_heading) {
+				"<b>$l.title</b> ";
+				$slash = false;
+			} else {
+				if($slash) {
+					""" $*links_divider """;
+				}
+				""" <a href="$l.url" class="link">$l.title</a> """;
+				$slash = true;
+			}
+		} else {
+			"<br />";
+		}
+	}
+	"""
+		</td>
+	""";
+	
+}
+
+#############################################
+#
+#	Print and Print Bodies
+#
+#############################################
+
+function Page::print() {
+
+	var string title = $this->title();
+
+	"""
+	<!DOCTYPE html 
+    	 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		  <head>
+		    <link rel="stylesheet" href="$.stylesheet_url" type="text/css" />
+	""";
+		$this->print_head();
+	"""
+		    <title>$title</title>
+	</head>
+	<body>
+	<div align="$*page_align">
+
+	""";
+
+	print_nav($this);
+
+
+	"""
+
+
+		<!-- /////////////////// HEADER ///////////////////// -->
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td class="info" align="left">
+					<div class="title">$title</div>
+					<div><a href="$*SITEROOT/userinfo.bml?user=$.journal.username" class="subtitle">$.journal.name</a></div>
+				</td>
+			</tr>
+		</table>
+
+	""";
+
+
+	var bool linkl = false;
+	if(size $.linklist > 0) { $linkl = true; }
+	if(not $*linklist_support) { $linkl = false; }
+
+	var bool box = false;
+	if($.journal.default_pic) { $box = true; }
+	if($*show_mini_calendar) { $box = true; }
+	if($linkl) { $box = true; }
+
+	if($box) {
+	"""
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+	""";
+
+			if($.journal.default_pic) {
+				"""
+				<td align="center" class="info"><a href="$*SITEROOT/allpics.bml?user=$.journal.username"><img src="$.journal.default_pic.url" width="$.journal.default_pic.width" height="$.journal.default_pic.height" border="0"></a></td>
+				""";
+				if($linkl or $*show_mini_calendar) {
+					"""
+					<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+					""";
+				}
+			}
+
+			$this->print_linklist();
+			if($*show_mini_calendar) {
+				if($linkl) {
+					"""
+					<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+					""";
+				}
+	"""
+				<td align="center" class="info">
+	""";
+				
+				print_calendar($this);
+
+	"""
+				</td>
+	""";
+			}
+	"""
+			</tr>
+		</table>
+
+		<!-- /////////////////// ENTRIES ///////////////////// -->
+	
+	""";
+	}
+
+	$this->print_body();
+
+	print_nav($this);
+	
+	"""
+	</div>
+	</body>
+	</html>
+	""";
+}
+
+
+##############
+#  recent page
+##############
+
+function RecentPage::print_body  {
+    foreach var Entry e ($.entries) {
+        $this->print_entry($e);
+    }
+}
+
+
+#############################################
+#
+#	Print Entries
+#
+#############################################
+
+function print_entry (Page p, Entry e, Color bgcolor, Color fgcolor, bool hide_text) {
+
+	var int entry_page_width = $*page_width;
+	var int entry_half_width = $entry_page_width / 2;
+	var bool userpic_view = false;
+
+	if($p.view == "friends" or $p.journal_type == "C" or $e.poster.username != $e.journal.username or $*show_entry_userpic) {
+		$userpic_view = true;
+	} 
+
+	if($p.view != "friends" and $*show_entry_userpic) {
+		$bgcolor = $*entry_bg;
+		$fgcolor = $*entry_font;
+	}
+		
+
+	if($userpic_view) {
+		var string url = $e.journal->base_url();
+		var string url2 = $e.poster->base_url();
+		$entry_page_width = $*page_width - 122;
+		$entry_half_width = $entry_page_width / 2;
+
+		"""
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td valign="top" width="120" style="background-color: $bgcolor; color: $fgcolor; text-weight: bold;" align="center">
+		""";
+				if($e.journal.username != $e.poster.username) {
+					"""<a href="$url2/" style="color: $fgcolor; text-decoration: none;">$e.poster.username</a>:<br>""";
+				}
+		"""
+				<a href="$url/" style="color: $fgcolor; text-decoration: none;">$e.journal.username</a>
+		""";
+
+
+				if($e.userpic) {
+					"""<br><img src="$e.userpic.url" width="$e.userpic.width" height="$e.userpic.height" border="0" alt="$e.journal.username" title="$e.journal.username">""";
+				}
+
+		"""
+				<br><a href="$*SITEROOT/userinfo.bml?user=$e.journal.username" style="color: $fgcolor; text-decoration: none;">$e.journal.name</a></td>
+				<td><img src="$*PALIMGROOT/boxer/clear.gif" width="2" height="1" alt="" border="0"></td>
+				<td valign="top" class="entry">
+		""";
+	}
+
+	"""
+
+	<!-- BEGIN ENTRY -->
+	
+	<table cellspacing="0" cellpadding="0" border="0" width="$entry_page_width" """;
+	if($userpic_view == false) {
+		print """ class="new" """;
+	}
+	""">
+		<tr>
+			<td class="entry">
+			""";
+			
+			if ($e.security) { print "<div style='padding-left: 5px;'>$e.security_icon</div>"; }
+
+			"""
+			</td>
+
+			<td class="entry" align="right">
+				<table cellspacing="0" cellpadding="0" border="0" width="$entry_half_width">
+					<tr>
+						<td class="bgcolor" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+						<td align="right" class="date" width="$entry_half_width">
+						""";
+						
+						print $e.time->date_format($*my_date);
+						print " " + $e.time->time_format();
+
+						
+						"""
+						</td>
+					</tr><tr>
+						<td colspan="2" class="bgcolor" width="1"></td>
+					</tr>
+				</table>
+			</td>
+		</tr><tr>
+			<td class="entry" colspan="2" align="left">
+				<div class="entrycontent">""";
+
+					if($e.subject) {
+						"""
+						<div><b>$e.subject</b></div><br>
+						""";
+					}
+					
+					
+					var string metadata;
+
+					if ($e.metadata) {
+						foreach var string k ($e.metadata) {
+							var string text = $k;
+							var string val = $e.metadata{$k};
+							if ($k == "mood") { $text = $*text_meta_mood; }
+							if ($k == "music") { $text = $*text_meta_music; }
+							if ($k == "mood" and defined $e.mood_icon) {
+								var Image i = $e.mood_icon;
+								$val = "<img src='$i.url' width='$i.width' height='$i.height' align='absmiddle'> $val";
+							}
+							$metadata = $metadata + """<b>$text:</b> $val<br>""";
+						}
+					}
+
+                    var string tags;
+                    if ($e.tags) {
+                        var int tcount = 0;
+                        var string user = $e.journal.username;
+                        $tags = """<b><a href='$*SITEROOT/edittags.bml?journal=$user&itemid=$e.itemid'>Tags</a>:</b> """;
+                        foreach var Tag t ($e.tags) {
+                            $tags = """$tags<a rel="tag" href="$t.url">$t.name</a>""";
+                            $tcount++;
+                            if ($tcount != size $e.tags) { $tags = """$tags, """; }
+                        }
+                        $tags = "$tags<br />";
+                    }
+
+					if (not $hide_text) { print "<div>$e.text</div><br />"; print "$tags $metadata"; }
+
+					"""</div><p class="entrycontent">""";
+
+					$e.comments->print();
+     """<span class="icon">"""; $p->print_reply_link({"target" => "topcomments", "img_url" => $*leave_comment, "img_width" => "20", "img_height" => "21", "img_align" => "middle", "alt" => "Reply", "title" => "Reply"}); "</span>";
+					
+					var Link mem;
+					$mem = $e->get_link("mem_add");
+					if(defined $mem) {
+						"""
+						<span class="icon"><a href="$mem.url"><img src="$*memories" alt="Add to Memories" title="Add to Memories" width="20" height="21" border="0" align="middle"></a></span>
+						""";
+					}
+					
+					var Link lnk;
+					$lnk = $e->get_link("edit_entry");
+					if(defined $lnk) {
+						"""
+						<span class="icon"><a href="$lnk.url"><img src="$*edit" alt="Edit entry" title="Edit entry" width="20" height="21" border="0" align="middle"></a></span>
+						""";
+					}
+
+					var Link tag;
+					$lnk = $e->get_link("edit_tags");
+					if(defined $tag) {
+						"""
+						<span class="icon"><a href="$tag.url"><img src="$*edit" alt="Edit entry" title="Edit entry" width="20" height="21" border="0" align="middle"></a></span>
+						""";
+					}
+					
+					var Link tell;
+					$tell = $e->get_link("tell_friend");
+					if(defined $tell) {
+						"""
+							<span class="icon"><a href="$tell.url"><img src="$*mail" alt="Email this entry to a friend" title="Email this entry to a friend" width="20" height="21" border="0" align="middle"></a></span>
+						""";
+                                                $p->print_reply_container({"target"=>"topcomments"});
+					}
+
+					"""
+				</p>
+			</td>
+		</tr>
+	</table>
+	
+	<!-- END ENTRY -->
+	
+	""";
+
+	if($userpic_view) {
+		"""
+				</td>
+			</tr>
+		</table>
+		""";
+	}
+}
+
+
+function Page::print_entry (Entry e) 
+{
+    print_entry($this, $e, null Color, null Color, false);
+}
+
+function FriendsPage::print_entry (Entry e) {
+   var Friend f = $.friends{$e.journal.username};
+   print_entry($this, $e, $f.bgcolor, $f.fgcolor, false);
+}
+
+#############################################
+#
+#	Reply Page
+#
+#############################################
+
+function ReplyPage::print_body () {
+
+	if (not $.entry.comments.enabled) {
+		"""
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td class="entry" align="right">
+					<table cellspacing="0" cellpadding="0" border="0" width="50%">
+						<tr>
+							<td class="bgcolor" width="1"></td>
+							<td align="right" class="date">&nbsp;</td>
+						</tr><tr>
+							<td colspan="2" class="bgcolor" width="1"></td>
+						</tr>
+					</table>
+				</td>
+			</tr><tr>
+				<td class="entry">
+					<div class="entrycontent" align="left">
+						<p><b>$*text_reply_nocomments</b></p>
+					</div>
+				</td>
+			</tr>
+		</table>
+		""";
+		return;
+	}
+
+
+	"""
+
+	<!-- BEGIN ENTRY -->
+	
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="entry">""";
+						
+						
+						if ($.entry.security) { print "<div style='padding-left: 5px;'>$.entry.security_icon</div>"; }
+
+						"""</td>
+			<td class="entry" align="right">
+				<table cellspacing="0" cellpadding="0" border="0" width="$*half_width">
+					<tr>
+						<td class="bgcolor" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+						<td align="right" class="date" width="$*half_width_pixel">""";
+						
+						
+						print $.replyto.time->date_format($*my_date);
+						print " " + $.replyto.time->time_format();
+
+						
+						"""</td>
+					</tr><tr>
+						<td colspan="2" class="bgcolor" width="1"></td>
+					</tr>
+				</table>
+			</td>
+		</tr><tr>
+			<td class="entry" colspan="2">
+				<div class="entrycontent" align="left">
+				""";
+					if($.replyto.subject) {
+						"""
+						<p><b>$.replyto.subject</b></p>
+						""";
+					}
+					
+					
+					var string metadata;
+
+					if ($.entry.metadata) {
+						foreach var string k ($.entry.metadata) {
+							var string text = $k;
+							var string val = $.entry.metadata{$k};
+							if ($k == "mood") { $text = $*text_meta_mood; }
+							if ($k == "music") { $text = $*text_meta_music; }
+							if ($k == "mood" and defined $.entry.mood_icon) {
+								var Image i = $.entry.mood_icon;
+								$val = "<img src='$i.url' width='$i.width' height='$i.height' align='absmiddle'> $val";
+							}
+							$metadata = $metadata + """<b>$text</b> $val<br>""";
+						}
+					}
+
+					print "<p>$.replyto.text</p>"; print "<p>$metadata</p>";
+
+					"""
+					<br />
+					
+					<span class="icon"><a href="$.entry.comments.read_url" class="comments"><img src="$*comment" alt="Comment" title="Comment" width="17" height="21" border="0" align="middle"></a></span>
+					<span class="icon"><a href="$*SITEROOT/tools/memadd.bml?journal=$.journal.username&itemid=$.entry.itemid"><img src="$*memories" alt="Add to Memories" title="Add to Memories" width="20" height="21" border="0" align="middle"></a></span>
+					""";
+
+					if(viewer_is_owner()) {
+						"""
+						<span class="icon"><a href="$*SITEROOT/editjournal_do.bml?journal=$.journal.username&itemid=$.entry.itemid"><img src="$*edit" alt="Edit entry" title="Edit entry" width="20" height="21" border="0" align="middle"></a></span>
+						""";
+					}
+					"""
+					<span class="icon"><a href="$*SITEROOT/tools/tellafriend.bml?journal=$.journal.username&itemid=$.entry.itemid"><img src="$*mail" alt="Email this entry to a friend" title="Email this entry to a friend" width="20" height="21" border="0" align="middle"></a></span>
+
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="entry" align="left">
+	""";
+			$.form->print();
+	"""
+			</td>
+		</tr>
+	</table>
+	""";
+}
+
+
+#############################################
+#
+#	Entry Page
+#
+#############################################
+
+function ItemRange::print() {
+    if ($.all_subitems_displayed) { return; }
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td align="center" class="info"><b>
+	""";
+	
+	print lang_page_of_pages($.current, $.total);
+	
+	"""</b><br />""";
+
+    foreach var int i (1..$.total) {
+        if ($i == $.current) { "<b>[$i]</b> "; }
+        else { 
+            var string url_of = $this->url_of($i);
+            """<a href="$url_of" class="link"><b>[$i]</b></a> """;
+        }
+    }
+    print "</td></tr></table>";
+}
+
+function EntryPage::print_body () {
+
+        set_handler("screen_comment_#", [ [ "set_image", "sus_#", "$*unscreen", ], ]);
+        set_handler("unscreen_comment_#", [ [ "set_image", "sus_#", "$*screen", ], ]);
+        set_handler("freeze_comment_#", [ [ "set_image", "fuf_#", "$*unfreeze", ], ]);
+        set_handler("unfreeze_comment_#", [ [ "set_image", "fuf_#", "$*freeze", ], ]);
+
+	if ($.entry.comments.enabled and $.comment_pages.total_subitems > 0) {
+		$.comment_pages->print();
+	}
+
+	print_entry($this, $.entry, null Color, null Color, $.viewing_thread);
+
+	if ($.entry.comments.enabled and $.comment_pages.total_subitems > 0) {
+		$this->print_multiform_start();
+	        $this->print_comments($.comments);
+
+		if ($this.multiform_on) {
+			"""
+			<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+				<tr>
+					<td class="info"><b>Mass Action</b><br>
+			""";
+				$this->print_multiform_actionline();
+				$this->print_multiform_end();
+			"</div></td></tr></table>";
+		}
+
+	}
+}
+
+
+function EntryPage::print_comments (Comment[] cs) {
+    if (size $cs == 0) { return; }
+    foreach var Comment c ($cs) {
+        if ($c.full) {
+            $this->print_comment($c);
+        } else {
+            $this->print_comment_partial($c);
+        }
+        $this->print_comments($c.replies);
+    }
+}
+
+function EntryPage::print_comment_partial (Comment c) {
+	var int count = $c.depth / 7; # get how many times greater is the depth than our 8 color choices
+	$count = $count + (($count*10%10 >= 5) ? 1 : 0);  # round that number
+
+	var int subtract = $count * 7;  # figure out how many times we need to subtract 8 from the depth
+
+	var Color mybg;
+	
+	var int multiplier = (($c.depth - 1) - $subtract) * 15;
+
+        var int sidewidth = 122 + ($c.depth - 1) * 25;
+	var int entry_page_width = $*page_width - $sidewidth;
+	var int entry_half_width = $entry_page_width / 2;
+
+	if($*nav_scale == "darker") {
+		$mybg = $*color_nav_bg->darker($multiplier);
+	} else {
+		$mybg = $*color_nav_bg->lighter($multiplier);
+	}
+	
+	var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+	var string subj = $c.subject != "" ? $c.subject : $*text_nosubject;
+
+	"""
+	<a name="t$c.talkid"></a>
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td valign="top" width="$sidewidth" style="background-color: $mybg;" align="center"><br></td>
+			<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" width="2" height="1" alt="" border="0"></td>
+			<td valign="top" class="entry" align="left"><div style="padding-top: 3px; padding-bottom: 3px; padding-left: 3px;"><a href='$c.permalink_url'>$subj</a> - $poster</div>
+		</tr>
+	</table>
+	""";
+}
+
+function EntryPage::print_comment (Comment c) {
+	
+	var int count = $c.depth / 7; # get how many times greater is the depth than our 8 color choices
+	$count = $count + (($count*10%10 >= 5) ? 1 : 0);  # round that number
+
+	var int subtract = $count * 7;  # figure out how many times we need to subtract 8 from the depth
+
+	var Color mybg;
+	
+	var int multiplier = (($c.depth - 1) - $subtract) * 15;
+
+	if($*nav_scale == "darker") {
+		$mybg = $*color_nav_bg->darker($multiplier);
+	} else {
+		$mybg = $*color_nav_bg->lighter($multiplier);
+	}
+
+	var string poster;
+	var string url;
+	if(defined $c.poster) {
+		$poster = $c.poster.name;
+		$url = $c.poster->base_url();
+	} else {
+		$poster = "<i>(Anonymous)</i>";
+	}
+	var string sub_icon;
+
+	if (defined $c.subject_icon) {
+		$sub_icon = $c.subject_icon->as_string();
+	}
+	var string ip;
+	if ($c.metadata{"poster_ip"}) { 	$ip = " (" + $c.metadata{"poster_ip"} + ")"; }
+
+        var int sidewidth = 122 + ($c.depth - 1) * 25;
+	var int entry_page_width = $*page_width - $sidewidth;
+	var int entry_half_width = $entry_page_width / 2;
+	
+	
+	"""
+	<a name="t$c.talkid"></a>
+	<table id='$c.dom_id' cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td valign="top" width="$sidewidth" style="background-color: $mybg;" align="center"><a href="$url/" class="nav">$c.poster.username</a>
+	""";
+
+			if(defined $c.userpic) {
+				"""<br><a href="$url/" class="nav"><img src="$c.userpic.url" width="$c.userpic.width" height="$c.userpic.height" border="0" alt="$c.poster.username" title="$c.poster.username"></a>""";
+			}
+			
+			if($c.journal) {
+	"""
+			<br><a href="$*SITEROOT/userinfo.bml?user=$c.poster.username"  class="nav">$poster</a></td>
+	""";
+			} else {
+	"""
+			<br>$poster</td>
+	""";
+			}
+	"""
+			<td><img src="$*PALIMGROOT/boxer/clear.gif" width="2" height="1" alt="" border="0"></td>
+			<td valign="top" class="entry">
+				<table cellspacing="0" cellpadding="0" border="0" width="$entry_page_width">
+					<tr>
+						<td class="entry">$sub_icon $ip</td>
+						<td class="entry" align="right">
+							<table cellspacing="0" cellpadding="0" border="0" width="$entry_half_width">
+								<tr>
+									<td class="bgcolor" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+									<td align="right" class="date" width="$entry_half_width">
+	""";
+
+	print $c.time->date_format($*my_date);
+	print " " + $c.time->time_format();
+	if ($this.multiform_on) {
+		$c->print_multiform_check();
+	}
+									
+	"""
+									</td>
+								</tr><tr>
+									<td colspan="2" class="bgcolor" width="1"></td>
+								</tr>
+							</table>
+						</td>
+					</tr><tr>
+						<td class="entry" colspan="2" align="left">
+							<div class="entrycontent">""";
+
+								if($c.subject) {
+									"""
+									<div><b>$c.subject</b></div><br>
+									""";
+								}
+	"""
+								<p>$c.text</p><br>""";
+        
+        if (not $c.frozen) {
+          """<span class="icon">"""; $c->print_reply_link({"img_url" => $*leave_comment, "img_width" => "20", "img_height" => "21", "img_align" => "middle", "alt" => "Reply", "title" => "Reply"}); "</span>";
+        } else {
+           """
+<span class="icon"><img src="$*leave_comment" alt="Frozen" title="Frozen" width="20" height="21" border="0" align="middle"></span>""";
+
+                                }
+
+							     """<span class="icon"><a href=\"$c.thread_url\"><img src="$*comment" alt="Thread" title="Thread" width="17" height="21" border="0" align="middle"></a></span>
+	""";
+	
+	if ($c.parent_url != "") { """		<span class="icon"><a href=\"$c.parent_url\"><img src="$*parent" border="0" alt="Parent" title="Parent" width="20" height="21" align="middle"></a></span> """; }
+	var Link lnk;
+	$lnk = $c->get_link("delete_comment"); if($lnk) { """		<span class="icon"><a href="$lnk.url"><img src="$*delete" border="0" alt="$lnk.caption" title="$lnk.caption" width="20" height="21" align="middle"></span>\n""";	}
+	$lnk = $c->get_link("screen_comment"); if($lnk) { """		<span class="icon"><a href="$lnk.url"><img id='sus_$c.talkid' src="$*screen" border="0" alt="$lnk.caption" title="$lnk.caption" width="20" height="21" align="middle"></span>\n"""; }
+	$lnk = $c->get_link("unscreen_comment"); if($lnk) { """		<span class="icon"><a href="$lnk.url"><img id='sus_$c.talkid' src="$*unscreen" border="0" alt="$lnk.caption" title="$lnk.caption" width="20" height="21" align="middle"></span>\n"""; }
+	$lnk = $c->get_link("freeze_thread"); if($lnk) { """		<span class="icon"><a href="$lnk.url"><img id='fuf_$c.talkid' src="$*freeze" border="0" alt="$lnk.caption" title="$lnk.caption" width="20" height="21" align="middle"></span>\n"""; }
+	$lnk = $c->get_link("unfreeze_thread"); if($lnk) { """		<span class="icon"><a href="$lnk.url"><img id='fuf_$c.talkid' src="$*unfreeze" border="0" alt="$lnk.caption" title="$lnk.caption" width="20" height="21" align="middle"></span>\n"""; }
+
+	$c->print_reply_container(); """
+
+
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	""";
+
+}
+
+
+#############################################
+#
+#	Calendar Pages
+#
+#############################################
+
+### Day view
+
+function DayPage::print_body() {
+    if ($.has_entries) {
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="info" align="left">
+				<div>
+				
+	""";
+        print $.date->date_format("long");
+	"""
+				</div>
+			</td>
+		</tr>
+	</table>
+	""";
+
+        foreach var Entry e ($.entries) {
+		$this->print_entry($e);
+        }
+
+    } else {
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="info" align="left">
+				<div>
+				
+	""";
+        print $.date->date_format("long");
+	"""
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="newentry" valign="top" align="left">$*text_noentries_day</td>
+		</tr>
+	</table>
+	""";
+    }
+}
+
+### Month View
+
+function MonthPage::print_body {
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="info" align="left">
+				<div>
+				
+	""";
+    "<form method='post' action='$.redir.url'>";
+    $.redir->print_hiddens();
+    if (size $.months > 1) {
+        """
+		<select name="redir_key" class="infoform">
+	""";
+        foreach var MonthEntryInfo mei ($.months) {
+            var string sel;
+            if ($mei.date.year == $.date.year and $mei.date.month == $.date.month) {
+                $sel = " selected='selected'";
+            }
+            "<option value='$mei.redir_key'$sel>" + $mei.date->date_format($*lang_fmt_month_long) + "</option>";
+        }
+	"""</select>\n<input type="submit" value="View" class="infoform" />""";
+    }
+    "</form>\n<dl>";
+    "</dl>\n";
+	"""
+				</div>
+			</td>
+		</tr>
+	</table>
+	""";
+    foreach var MonthDay d ($.days) {
+        if ($d.has_entries) {
+
+		"""
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td class="date" width="100%" align="left"><a href=\"$d.url\" class="entryinfo"><b>
+		""";
+					print lang_ordinal($d.day);
+		"""
+					</b></a>
+				</td>
+			</tr>
+		</table>
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+			<tr>
+				<td class="newentry" valign="top" align="left">
+		""";
+					$d->print_subjectlist();
+		"""
+				</td>
+			</tr>
+		</table>
+		""";
+
+	}
+    }
+}
+
+### Year View
+function YearPage::print_year_links ()
+{
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+			<td class="info" align="left">
+				<div>Years:
+				
+	""";
+		var int count = 0;
+
+		foreach var YearYear y ($.years) {
+			if($count != 0) {
+				" | ";
+			}
+			$count = $count + 1;
+			if ($y.displayed) {
+				" <b>$y.year</b> ";
+			} else {
+				""" <a href="$y.url" class="link">$y.year</a> """;
+			}
+		}
+
+	"""
+				</div>
+			</td>
+		</tr>
+	</table>
+	""";
+}
+
+function YearPage::print_body {
+	$this->print_year_links();
+	var bool toggle = false;
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" class="new">
+		<tr>
+	""";
+	foreach var YearMonth m ($.months) {
+		if ($m.has_entries) {
+			"""<td valign="top" class="newentry" align="center" width="$*half_width_pixel">""";
+			$this->print_month($m);
+			"</td>";
+			if($toggle) {
+				"""
+					</tr><tr>
+						<td colspan="3"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="2" border="0"></td>
+					</tr><tr>
+				""";
+				$toggle = false;
+			} else {
+				$toggle = true;
+				"""
+					<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				""";
+			}
+		}
+	}
+	if($toggle) {
+		"""
+			<td valign="top" class="newentry">&nbsp;</td>
+		""";
+	}
+	"""
+		</tr>
+	</table>
+	""";
+}
+
+function YearPage::print_month (YearMonth m) {
+	"""
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td class="date" width="100%" align="left"><a href="$m.url" class="entryinfo">
+	""";
+				print $m->month_format();
+	"""
+			</a></td>
+		</tr>
+	</table>
+	<table cellpadding="5" cellspacing="0" border="0">
+		<tr>
+			<td colspan="2" align="left">
+				<table width="100%" cellpadding="5" cellspacing="0" border="0">
+					<tr align="center">
+	""";
+
+	foreach var int d (weekdays()) {
+		"				<td>" + $*lang_dayname_short[$d] + "</td>";
+	}
+
+	"""
+					</tr>
+	""";
+
+	foreach var YearWeek w ($m.weeks) {
+		$w->print();
+	}
+
+	"""
+				</table>
+			</td>
+		</tr>
+	</table>
+	""";
+
+}
+
+
+#############################################
+#
+#	Comment Links
+#
+#############################################
+
+function CommentInfo::print_readlink {
+    var Page p = get_page();
+	var string count;
+	if($.count > 0) {
+		$count = "" + $.count;
+	} else {
+		$count = "";
+	}
+
+	
+	"""<span class="icon"><a href=\"$.read_url\" class="comments">$count<img src="$*comment" alt="Comment" title="Comment" width="17" height="21" border="0" align="middle"></a></span>""";
+}
+
+function CommentInfo::print()
+{
+    if (not $.enabled) { return; }
+    $this->print_readlink();
+}
+
+
+
+#############################################
+#
+#	Property Initialization
+#
+#############################################
+function prop_init() {
+
+	# initialize the colors of the navigation bar.
+	$*nav1_bg = $*color_nav_bg;
+	
+	if($*nav_scale == "lighter") {
+		$*nav2_bg = $*nav1_bg->lighter(10);
+		$*nav3_bg = $*nav1_bg->lighter(20);
+		$*nav4_bg = $*nav1_bg->lighter(30);
+		$*nav5_bg = $*nav1_bg->lighter(40);
+		$*nav6_bg = $*nav1_bg->lighter(50);
+		$*nav7_bg = $*nav1_bg->lighter(70);
+	} elseif($*nav_scale == "darker") {
+		$*nav2_bg = $*nav1_bg->darker(10);
+		$*nav3_bg = $*nav1_bg->darker(20);
+		$*nav4_bg = $*nav1_bg->darker(30);
+		$*nav5_bg = $*nav1_bg->darker(40);
+		$*nav6_bg = $*nav1_bg->darker(50);
+		$*nav7_bg = $*nav1_bg->darker(70);
+	} else {
+		$*nav2_bg = $*color_nav_bg;
+		$*nav3_bg = $*color_nav_bg;
+		$*nav4_bg = $*color_nav_bg;
+		$*nav5_bg = $*color_nav_bg;
+		$*nav6_bg = $*color_nav_bg;
+		$*nav7_bg = $*color_nav_bg;
+	}
+
+	# change the colors of the graphics using palimg
+	var Color dk_arrow = $*nav6_bg->darker(50);
+
+	$*backarrow = palimg_modify("boxer/back.gif", [PalItem(0, $dk_arrow), PalItem(1, $*nav_link)]);
+	$*forwardarrow = palimg_modify("boxer/forward.gif", [PalItem(0, $dk_arrow), PalItem(1, $*nav_link)]);
+
+	# tint the icons
+
+	var Color entry_bg_tint;
+	var int entry_lightness = $*entry_bg->lightness();
+
+	if($entry_lightness > 120) {
+		$entry_bg_tint = $*entry_bg->lighter();
+	} else {
+		$entry_bg_tint = $*entry_font;
+	}
+
+	$*leave_comment = palimg_tint("boxer/leave_comment.gif", $entry_bg_tint);
+	$*comment = palimg_tint("boxer/comment.gif", $entry_bg_tint);
+	$*edit = palimg_tint("boxer/edit.gif", $entry_bg_tint);
+	$*memories = palimg_tint("boxer/memories.gif", $entry_bg_tint);
+	$*mail = palimg_tint("boxer/mail.gif", $entry_bg_tint);
+	$*delete = palimg_tint("boxer/delete.gif", $entry_bg_tint);
+	$*screen = palimg_tint("boxer/screen.gif", $entry_bg_tint);
+	$*unscreen = palimg_tint("boxer/unscreen.gif", $entry_bg_tint);
+    $*freeze = palimg_tint("boxer/freeze.gif", $entry_bg_tint);
+    $*unfreeze = palimg_tint("boxer/unfreeze.gif", $entry_bg_tint);
+	$*parent = palimg_tint("boxer/parent.gif", $entry_bg_tint);
+
+	# background pattern
+
+	var Color bg_lt = $*bg_color->lighter();
+	var Color bg_dk = $*bg_color->darker();
+
+	if($*page_background_pattern != "" and $*page_background_pattern != "none") {
+		$*bg_pattern = palimg_modify("boxer/$*page_background_pattern", [PalItem(1, $bg_lt), PalItem(0, $bg_dk)]);
+	}
+
+	$*half_width = $*page_width / 2;
+	$*half_width_pixel = $*half_width - 1;
+
+}
+
+
+
+#############################################
+#
+#	Stylesheet
+#
+#############################################
+
+function appended_to_stylesheet() {
+	
+}
+
+function print_stylesheet () {
+
+	var int inc;
+	if($*font_size == "normal") {
+		$inc = 0;
+	} elseif($*font_size == "small") {
+		$inc = -1;
+	} elseif($*font_size == "large") {
+		$inc = 1;
+	} elseif($*font_size == "larger") {
+		$inc = 2;
+	} else {
+		$inc = 3;
+	}
+
+
+	"""
+		body {
+			background-color: $*bg_color;
+	""";
+
+	if(clean_url($*page_background_image) != "") {
+		"""
+			background-image: url("$*page_background_image");
+			background-position: $*background_position;
+			background-repeat: $*background_repeat;
+			background-attachment: $*background_scrolling;
+		""";
+	} elseif ($*page_background_pattern != "none" and $*page_background_pattern != "") {
+		"""
+			background-image: url("$*bg_pattern");
+			background-attachment: $*background_scrolling;
+		""";
+	}
+
+	"""
+			font-family: $*font_family;
+			line-height: """; print $*lineheight; """px;
+			font-size: """; print 12 + $inc; """px;
+			color: $*entry_font;
+			margin-top: 2px;
+		}
+		
+		tr, td {
+			font-family: $*font_family;;
+			font-size: """; print 12 + $inc; """px;
+		}
+
+
+
+		
+		a {
+			color: $*entry_link;
+			""";
+			if($*underline_links != "yes") { "text-decoration: none;"; } 
+			"""
+		}
+
+		""";
+		if($*underline_links == "hover") {
+			"		a:hover { text-decoration: underline;}";
+		}
+		
+		"""
+
+		a:visited {
+			color: $*entry_link_visited;
+		}
+
+		a:visited.link {
+			color: $*info_link_visited;
+		}
+
+		a:visited.subtitle {
+			color: $*info_link_visited;
+		}
+		
+		a.nav, a:visited.nav {
+			text-decoration: none;
+			color: $*nav_link;
+		}
+
+		a.link {
+			color: $*info_link;
+		}
+
+
+		a.dayentry, a:visited.dayentry {
+			color: $*info_bg;
+			text-decoration: none;
+		}
+
+		a.comments, a:visited.comments {
+			color: $*entry_font;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+
+
+		.nav1 { 
+			background-color: $*nav1_bg; 
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+		
+		.nav2 { 
+			background-color: $*nav2_bg; 
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+		
+		.nav3 { 
+			background-color: $*nav3_bg;
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+		
+		.nav4 { 
+			background-color: $*nav4_bg; 
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+		
+		.nav5 { 
+			background-color: $*nav5_bg; 
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+
+		.nav6 { 
+			background-color: $*nav6_bg; 
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-right: 2px;
+		}
+		
+		.nav7 { 
+			background-color: $*nav7_bg;
+		}
+		
+		.info {
+			background-color: $*info_bg;
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			color: $*info_font;
+		}
+		
+		.title {
+			font-size: """; print 18 + $inc; """px;
+			font-weight: bold;
+		}
+		
+		.subtitle {
+			font-size: """; print 14 + $inc; """px;
+			font-weight: bold;
+			color: $*info_link;
+		}
+		
+		.new {
+			margin-top: 2px;
+		}
+		
+		.entry {
+			background-color: $*entry_bg;
+			
+		}
+
+		.newentry {
+			margin-top: 2px;
+			padding-left: 5px;
+			padding-top: 5px;
+			padding-right: 5px;
+			padding-bottom: 5px;
+			background-color: $*entry_bg;
+		}
+				
+		.entrycontent {
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 6px;
+			padding-top: 6px;
+			line-height: 18px;
+		}
+		
+		.date {
+			background-color: $*entry_font;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-right: 5px;
+			padding-left: 5px;
+			color: $*entry_bg;
+		}
+
+		.entryinfo, a.entryinfo, a:visited.entryinfo {
+			color: $*entry_bg;
+		}
+
+
+		
+		.bgcolor {
+			background-color: $*bg_color;
+		}
+		
+		.icon {
+			margin-right: 10px;
+		}
+		
+		.calendarborder {
+			background-color: $*info_font;;
+		}
+		
+		.calendarcontent {
+			padding-top: 2px;
+			padding-left: 1px;
+			padding-bottom: 2px;
+			padding-right: 2px;
+			font-family: Tahoma, sans-serif;
+			font-size: """; print 8 + $inc; """px;
+			color: $*info_font;
+		}
+		
+		.calendarcontentactive {
+			padding-top: 2px;
+			padding-left: 1px;
+			padding-bottom: 2px;
+			padding-right: 2px;
+			font-family: Tahoma, sans-serif;
+			font-size: """; print 8 + $inc; """px;
+			background-color: $*info_font;
+			color: $*info_bg;
+		}
+
+	""";
+
+	if($*color_forms) {
+		"""
+		.infoform {
+			background-color: $*info_bg;
+			color: $*info_font;
+			font-family: $*font_family;;
+			font-size: """; print 12 + $inc; """px;
+		}
+
+		input, select, submit, textarea {
+			background-color: $*entry_font;
+			color: $*entry_bg;
+			font-family: $*font_family;;
+			font-size: """; print 12 + $inc; """px;
+		}
+
+		""";
+	}
+
+	appended_to_stylesheet();
+}
+
+#############################################
+#
+#	Theme Preview
+#
+#############################################
+
+
+function print_theme_preview ()
+{
+
+	var int inc;
+	if($*font_size == "normal") {
+		$inc = 0;
+	} elseif($*font_size == "small") {
+		$inc = -1;
+	} elseif($*font_size == "large") {
+		$inc = 1;
+	} elseif($*font_size == "larger") {
+		$inc = 2;
+	} else {
+		$inc = 3;
+	}
+
+var int bigsize = $*page_width + 100;
+	"""
+<table cellspacing="0" cellpadding="0" border="0" width="$bigsize" style="background-color: $*bg_color;""";
+
+if ($*page_background_pattern != "none" and $*page_background_pattern != "") {
+	""" background-image: url("$*bg_pattern"); background-attachment: $*background_scrolling;""";
+}
+	""" font-family: $*font_family; line-height: """; print $*lineheight; """px; margin-top: 2px;">
+	<tr>
+		<td align="$*page_align">
+
+
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" style="margin-top: 4px;">
+			<tr>
+				<td width="100" style="background-color: $*nav1_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><a href="#" style="color: $*nav_link; text-decoration: none;">Recent Entries</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" style="background-color: $*nav2_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><a href="#" style="color: $*nav_link; text-decoration: none;">Friends Entries</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" style="background-color: $*nav3_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><a href="#" style="color: $*nav_link; text-decoration: none;">Calendar</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" style="background-color: $*nav4_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><a href="#" style="color: $*nav_link; text-decoration: none;">Memories</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="100" style="background-color: $*nav5_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><a href="#" style="color: $*nav_link; text-decoration: none;">My Website</a></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="50" style="background-color: $*nav6_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0"></td>
+				<td width="2"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="2" height="1" border="0"></td>
+				<td width="50" style="background-color: $*nav6_bg; font-family: $*font_family; font-size: """; print 12 + $inc; """px;" align="center"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="28" height="28" border="0"></td>
+			</tr>
+		</table>
+
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" style="margin-top: 2px;">
+			<tr>
+				<td style="background-color: $*info_bg; padding-left: 16px; padding-right: 16px; padding-top: 16px; color: $*info_font; padding-bottom: 16px;" align="left">
+					<div style="font-size: """; print 18 + $inc; """px; font-weight: bold;">Lou Reed</div>
+					<div><a href="#" style="font-size: """; print 13 + $inc; """px; color: $*info_link; font-weight: bold;">iloveloureed</a></div>
+				</td>
+			</tr>
+		</table>
+
+		<table cellspacing="0" cellpadding="0" border="0" width="$*page_width" style="margin-top: 2px;">
+			<tr>
+				<td style="background-color: $*entry_bg;" align="right">
+				<table cellspacing="0" cellpadding="0" border="0" width="$*half_width">
+					<tr>
+						<td style="$*bg_color" width="1"><img src="$*PALIMGROOT/boxer/clear.gif" alt="" width="1" height="1" border="0"></td>
+						<td align="right" style="color: $*entry_bg;padding-left: 5px;padding-right: 5px;background-color: $*entry_font;padding-top: 2px;padding-bottom: 2px;" width="$*half_width">8/10/06 12:09 am</td>
+					</tr><tr>
+						<td colspan="2" style="$*bg_color" width="1"></td>
+					</tr>
+				</table>
+				</td>
+			</tr><tr>
+				<td style="background-color: $*entry_bg;">
+					<div style="padding-left: 20px; padding-right: 20px; padding-bottom: 6px; line-height: 18px; color: $*entry_font;" align="left">
+						<p><b>$*text_reply_nocomments</b></p>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		</td>
+	</tr>
+</table>
+	""";
+}

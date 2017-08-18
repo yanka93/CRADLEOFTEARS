@@ -1,0 +1,17 @@
+<?page
+title=>Credit Card Verification
+body<=
+<?h1 What is CVV2/CVC2/CID? h1?>
+<?p CVV2/CVC2/CID is a security feature for transactions where your credit card is not physically present. It is a three or four digit value which provides our payment system with a check of your credit card's authenticity. The terms are generally used interchangeably. CVV2 stands for "Card Verification Value 2", CVC2  stands for "Card Validation Code 2", and CID stands for "Card Identification Number". Verification numbers help us to verify two things: p?>
+<ul>
+  <li>Your credit card is in your possession.</li>
+  <li>Your credit card account is legitimate.</li>
+</ul>
+<?p Verification numbers are only on the card - they are not contained in the magnetic stripe information, nor do they appear on sales receipts or statements. Using the credit card verification number helps us minimize the risk of unknowingly accepting a counterfeit card or being a victim of fraud. p?>
+<?h1 Where to Find Your Verification Number h1?>
+<?p <img src="/img/visa.jpg" alt="" /><br />
+On a Visa, Eurocard/MasterCard, or Discover credit card, the verification number is the three digits to the right of the credit card number in the signature area on the back of the card. p?>
+<?p <img src="/img/amex.jpg" alt="" /><br />
+On an American Express credit card, the verification number is the four digits printed (not embossed) on the front of the card above the credit card number. p?>
+<=body
+page?>

@@ -1,0 +1,452 @@
+<?_code
+#line 2
+
+ use strict;
+ use vars qw(%FORM $body $title);
+
+ LJ::set_active_crumb('download');
+
+ $title = "Download a Client";
+ $body = "";
+ 
+ # this structure just screams to be in a database,
+ # but it'll do for now.
+ 
+ # to do:
+ # put trademarks/restricted symbols where neccesary
+ # remove english!
+
+
+# WINDOWS SECTION
+
+ my $c_win32_sema = 
+ { 
+     name => 'Semagic',
+     author => '<?ljuser quirrc ljuser?>, <?ljuser sema ljuser?>, <?ljuser visions ljuser?>, <?ljuser bradfitz ljuser?>',
+     text => "<?ljuser quirrc ljuser?> has been updating and enhancing the Visions Client with various features.  For example, this client supports posting in non-Roman languages, and lets you preview your entry before you post it.  Pick up a copy from the journal listed below.",
+     journal => 'ljwin32_sema',
+ };
+
+ my $c_win32_visions = 
+ { 
+     name => 'Visions Client',
+     author => '<?ljuser visions ljuser?>, <?ljuser bradfitz ljuser?>',
+     text => "This is one branch of the first Windows client.  Instructions on how to download it are offered in its journal. <br /><strong>Note:</strong> This client is no longer being actively developed.",
+     journal => 'lj_win32',
+ };
+
+ my $c_win32_lochj =
+ {
+     name => 'LochJournal',
+     author => '<?ljuser xb95 ljuser?>',
+     text => "LochJournal is a client that lets you use LiveJournal more easily.  A popular feature of LochJournal is that it has support for many accounts on different LiveJournal-based sites.  Please see the <?ljcomm lochj_announce ljcomm?> community to download this client.",
+     journal => 'lochj_announce',
+ };
+
+ my $c_win32_ljnet = 
+ {
+     name => 'LJ.NET',
+     author => '<?ljuser browren ljuser?>',
+     text => "LJ.NET provides a simple and powerful user interface to LiveJournal's services. It is currently in beta testing, and is not feature complete yet.",
+     homepage => 'http://lj-net.sourceforge.net/',
+     journal => 'ljnetdev',
+ };
+
+ 
+# MAC SECTION
+
+ my $c_mac_phoenix =
+ {
+     name => 'Phoenix',
+     author => '<?ljuser thorshammer ljuser?>',
+     text => "A LiveJournal client for both PowerPC and 68k Macs.  Phoenix works on Macs running anything from System 6 through OS 9; a Carbon version is also available for Mac OS X users.",
+     homepage => 'http://homepage.mac.com/thorshammer/phoenix.html',
+     journal => 'phoenix_lj',
+ };
+
+ my $c_mac_ijournal = 
+ {
+     name => 'iJournal',
+     author => '<?ljuser cryo ljuser?>',
+     text => "iJournal is a client for Mac OS X.  This client can auto-detect the music that you are currently listening to, if you are using iTunes or Audion.  It also supports custom friends groups, friends list editing, and can periodically check your friends page for new posts.",
+     homepage => 'http://www.os10.org/osx/iJournal.html',
+     journal => 'ijournal',
+ };
+
+ my $c_mac_xjournal =
+ {
+     name => 'Xjournal',
+     author => '<?ljuser fraserspeirs ljuser?>',
+     text => "A full-featured client for Mac OS X.  It supports offline operation, local saving of posts, history browsing, checking for changes in specific friends groups and multiple-group security.  Also supports all the other things you might expect, like music auto-detection and friends list editing.",
+     homepage => 'http://www.speirs.org/xjournal/',
+     journal => 'xjournal',
+ };
+
+ my $c_mac_journalert =
+ {
+     name => 'Journalert',
+     author => '<?ljuser sprote ljuser?>',
+     text => "A Mac OS X client, featuring WYSIWYG (What You See Is What You Get) editing and immediate notification of friends' posts.",
+     homepage => 'http://www.sprote.com/journalert/',
+     journal => 'sprote',
+ };
+ 
+ my $c_mac_zljpost =
+ {
+     name => 'zlj post',
+     author => '<?ljuser zloba ljuser?>',
+     text => 'A lightweight Dashboard Widget designed to quickly update your journal.  Supports other common features such as mood setting, iTunes music detection, community posting, and security settings.',
+     homepage => 'http://www.dmitrykirillov.com/',
+     journal => 'zlj',
+ };
+
+# X WINDOW SYSTEM SECTION
+
+ my $c_xwin_gtk_logjam =
+ {
+     name => 'LogJam',
+     author => '<?ljuser evan ljuser?>',
+     text => "A feature-loaded <a href=\"http://www.gtk.org/\">GTK+</a> client which runs under many different flavors of UNIX, and Linux.  Binary packages for Debian and Red Hat are available.  A limited-functionality, unsupported version of LogJam is also available for Windows <a href=\"http://logjam.danga.com/windows/\">here</a>.",
+     homepage => 'http://logjam.danga.com/',
+     journal => 'logjam',
+ };
+
+ my $c_xwin_kde_kluje =
+ {
+     name => 'KLuJe',
+     author => '<?ljuser bbrewer ljuser?>, <?ljuser billybreen ljuser?>',
+     text => "A LiveJournal client for the <a href=\"http://www.kde.org/\">K Desktop Environment</a>.  Requires the <a href=\"http://www.trolltech.com/products/qt/\">Qt</a> 3 graphics toolkit, and can be run independently from KDE.",
+     homepage => 'http://kluje.sourceforge.net/',
+     journal => 'kluje',
+ };
+
+ my $c_xwin_gnome_drivel =
+ {
+     name => 'Drivel',
+     author => '<?ljuser fflewddur ljuser?>',
+     text => "Drivel is a LiveJournal client for the <a href=\"http://www.gnome.org/\">GNOME</a> desktop environment.  It is designed to utilize some of the new features of GNOME 2 including GConf, GnomeVFS, and GTK+ 2.",
+     homepage => 'http://sourceforge.net/projects/drivel/',
+ };
+
+
+# HANDHELD SECTION
+
+ my $c_handheld_palm_pocketlj =
+ {
+     name => 'PocketLJ',
+     author => '<?ljuser thelovebug ljuser?>',
+     text => "With this, you can update your LiveJournal from your Palm/PocketPC/WinCE device.  This client also supports offline posting for when you don't have an Internet connection, sending your posts when you sync (HotSync/ActiveSync) or directly connect to the Internet.  Requires <a href=\"http://avantgo.com/\">AvantGo</a>.",
+     homepage => 'http://www.pocketlj.com/',
+     journal => 'pocketlj',
+ };
+
+ my $c_handheld_wap_mojo =
+ {
+     name => 'Mojo',
+     author => '<?ljuser camdez ljuser?>',
+     text => "Mojo is a LiveJournal client which can be used to update your journal from your WAP-enabled phone.  Visit the URL below from your phone to use it.",
+     homepage => 'http://www.binaryuprising.com/mojo/',
+ };
+
+ my $c_handheld_wap_tapjam =
+ {
+     name => 'TapJam',
+     author => '<?ljuser sol3 ljuser?>',
+     text => "With this client you can update your LiveJournal from your WAP cell phone.  Visit the URL below from your phone to use it.",
+     homepage => 'http://www.tapjam.net/lj/',
+ };
+
+ my $c_handheld_java_mobilelj =
+ {
+     name => 'MobileLJ',
+     author => '<?ljuser brienigma ljuser?>',
+     text => "A J2ME (Java 2 Micro Edition) LiveJournal client, which can be used on mobile devices which support the language.",
+     homepage => 'http://netninja.com/files/mobilelj/',
+ };
+
+ my $c_handheld_java_lj2me =
+ {
+     name => 'LJ2ME',
+     author => '<?ljuser xfyre ljuser?>',
+     text => "A J2ME LiveJournal client that offers a variety of useful features and has internal support for UTF-8 character encoding.",
+     homepage => 'http://www.xfyre.com/sw/lj2me/',
+ };
+
+# COMMAND-LINE INTERFACE SECTION
+
+ my $c_cli_python_charm =
+ {
+     name => 'Charm',
+     author => '<?ljuser evilhat ljuser?>',
+     text => "Charm is a menu-driven, text-only, cross-platform client written in <a href=\"http://www.python.org/\">Python</a>. It supports the full array of posting and editing options, can run in a polling check-friend-updates-only mode, supports multiple usernames and other various features.",
+     homepage => 'http://ljcharm.sourceforge.net/',
+     journal => 'ljcharm',
+ };
+
+ my $c_cli_perl_jlj =
+ {
+     name => 'JLJ',
+     author => '<?ljuser jerronimo ljuser?>',
+     text => "JLJ is an interactive Perl client with numerous features, including friends-list checking, multiple profiles and several offline posting options.  It can be run in a non-interactive mode for automated posts.  Requires perl 5.002.",
+     homepage => 'http://www.cis.rit.edu/~jerry/Software/perl/#jlj',
+     journal => 'jlj',
+ };
+
+ my $c_cli_perl_sclj =
+ {
+     name => 'SCLJ',
+     author => '<?ljuser sapphirecat ljuser?>',
+     text => "SCLJ is a Perl program, based on the original Perl client by <?ljuser bradfitz ljuser?>, which can be used to update your LiveJournal from your Linux or BSD-based box.  Requires perl 5.005 and the URI and LWP Perl modules.",
+     homepage => 'http://sclj.sourceforge.net/',
+     journal => 'sclj',
+ };
+
+ my $c_cli_posix_clive =
+ {
+     name => 'Clive',
+     author => '<?ljuser stesla ljuser?>',
+     text => "clive is a console-based UNIX client for LiveJournal, written in C.  It can be used in a number of ways: on a pipe (like a filter), interactively, or just as a command.  It supports both file-based and command-line configuration.",
+     homepage => 'http://sourceforge.net/projects/ljclive/',
+ };
+
+ my $c_cli_posix_centericq = 
+ {
+     name => 'centericq',
+     author => '<?ljuser thekonst ljuser?>',
+     text => "centericq is a text-mode window-driven instant messaging application that supports many different IM networks, and integrates LiveJournal support into its IM interface. It supports posting, watching for friend view updates, announcements about friends' birthdays, reading journals via an internal RSS reader and many other options. It runs under a variety of UNIX variants, Windows, and Mac OS/X.",
+     homepage => 'http://thekonst.net/centericq/',
+ };
+
+# APPLICATION SECTION
+
+ my $c_app_mozilla_livelizard =
+ { 
+     name => 'Livelizard',
+     author => '<?ljuser drbrain ljuser?>',
+     text => "Livelizard is a client for LiveJournal-based sites that integrates into the popular <a href=\"http://www.mozilla.org/\">Mozilla</a> web browser.",
+     homepage => 'http://livelizard.mozdev.org/',
+     journal => 'livelizard',
+ };
+
+ my $c_app_mozilla_deepest_sender =
+ { 
+     name => 'Deepest Sender',
+     author => '<?ljuser evildoive ljuser?>',
+     text => "Deepest Sender is a LiveJournal client plugin for Mozilla and Mozilla Firefox.",
+     homepage => 'http://deepestsender.mozdev.org',
+     journal => 'deepestsender',
+ };
+
+ my $c_app_emacs_ljupdate =
+ {
+     name => 'ljupdate',
+     author => '<?ljuser hober ljuser?>',
+     text => "Update your journal from within Emacs with this lisp extension.",
+     homepage => 'http://www.freesoftware.fsf.org/ljupdate/',
+     journal => 'ljupdate',
+ };
+
+ my $c_app_mirc_mirc =
+ { 
+     name => 'mIRC Client',
+     author => '<?ljuser mart ljuser?>',
+     text => "You can update your LiveJournal from within the popular <a href=\"http://www.mirc.com/\">mIRC</a> IRC client with this script.<br /><strong>Note:</strong> This client is no longer being actively developed.",
+     journal => 'mirclj',
+ };
+
+# MISCELLANEOUS SECTION
+
+ my $c_other_beos_alivejournal =
+ {
+     name => 'AliveJournal',
+     author => '<?ljuser grahams ljuser?>, <?ljuser simon ljuser?>',
+     text => "For users of the now-defunct <a href=\"http://www.beincorporated.com/\">BeOS operating system</a>.<br /><strong>Note:</strong> This client is no longer being actively developed.",
+     homepage => 'http://codeninja.net/alivejournal/',
+     journal => 'alivejournal',
+ };
+
+
+
+# INDEXES
+
+ my $p_win32 = 
+ { 
+     name => 'Windows',
+     detail => '95 / 98 / Me / NT / 2000 / XP', 
+     clients => [ $c_win32_sema, $c_win32_visions, $c_win32_lochj, $c_win32_ljnet ],
+ };
+
+ my $p_mac = 
+ {
+     name => 'Macintosh',
+     detail => 'System 6 - OS 9, OS X', 
+     clients => [ $c_mac_phoenix, $c_mac_ijournal, $c_mac_xjournal, $c_mac_journalert, $c_mac_zljpost ],
+ };
+
+ my $p_xwindow =
+ {
+     name => 'X Window System',
+     detail => 'GTK+, Qt / GNOME, KDE',
+     clients => [ $c_xwin_gtk_logjam, $c_xwin_kde_kluje, $c_xwin_gnome_drivel ],
+ };
+
+ my $p_handheld =
+ {
+     name => 'Handhelds',
+     detail => 'Palm OS&trade;, Windows CE, cell phones',
+     clients => [ $c_handheld_palm_pocketlj, $c_handheld_wap_mojo, $c_handheld_wap_tapjam, $c_handheld_java_lj2me, $c_handheld_java_mobilelj ],
+ };
+
+ my $p_cli =
+ {
+     name => 'Command-line',
+     detail => 'Multiplatform',
+     clients => [ $c_cli_python_charm, $c_cli_posix_centericq, $c_cli_perl_jlj, $c_cli_perl_sclj, $c_cli_posix_clive ],
+ };
+
+ my $p_app =
+ {
+     name => 'Application-level',
+     detail => 'Plug-ins, extensions',
+     clients => [ $c_app_mozilla_deepest_sender, $c_app_emacs_ljupdate, $c_app_mirc_mirc ],
+ };
+
+ my $p_other =
+ {
+     name => 'Miscellaneous',
+     clients => [ $c_other_beos_alivejournal ],
+ };
+
+
+
+ my @platforms = 
+ (
+  $p_win32,
+  $p_mac,
+  $p_xwindow,
+  $p_handheld,
+  $p_cli,
+  $p_app,
+  $p_other,
+ );
+
+ my $form_platform = $FORM{'platform'}; 
+ my $ret;
+ 
+ my $valid_selection = (defined $form_platform and
+                        ($form_platform eq "all" or
+                         grep { $form_platform eq $_->{'name'} } @platforms));
+
+ # mode: pick platform
+ unless ($valid_selection) {
+     $ret .= <<"EOT";
+     <?h1 Introduction h1?>
+         
+     <?p While it's possible to use LiveJournal with just a web browser, it's convenient to download a small program that lets you work with your LiveJournal directly.
+         For more information on what a client is, <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=158">check out the FAQ</a>. p?>
+
+     <?h1 Choose a Platform h1?>
+         
+     <?p First, pick your platform: 
+
+     <ul>
+EOT
+      foreach my $platform (@platforms) {
+          my $uplat = LJ::eurl($platform->{'name'});
+          $ret .= "<li><a href=\"?platform=$uplat\"><strong>$platform->{name}</strong>";
+          if (defined $platform->{detail}) {
+              $ret .= " ($platform->{detail})";
+          }
+          $ret .= "</a>\n";
+      }
+      
+      $ret .= <<"EOT";
+      </ul>
+
+      Or, view <a href="?platform=all">all of the clients on one page</a>.
+      p?>
+
+      <?h1 Don't see your platform listed? h1?>
+      <?p LiveJournal clients are available for a variety of platforms. If no version is available for your computer, or you don't want to download anything, you can still use the <a href="/update.bml">Web update page</a>.  p?>
+
+      <?h1 Alternative Clients h1?>
+      <?p Clients written for the Blogger and Atom <acronym title="Application Programming Interface">API</acronym>s should be able to work
+      with LiveJournal, provided you can change which server they post to. p?>
+
+      <?h1 Want to port to other languages/platforms? h1?> 
+      <?p For information on how to develop your own client, check out the <a href="http://www.livejournal.com/developer/">developer section</a>.  p?>
+
+EOT
+
+     $body = $ret;
+     return;
+ }
+
+ # mode: list clients
+ my $display_platform = sub 
+ {
+     my $platform = shift;
+     
+     next if not defined $platform->{clients};
+     foreach my $client (@{$platform->{clients}}) {
+         $ret .= "<?h1 $client->{name} h1?>\n";
+         $ret .= '<table width="100%" cellpadding="5">';
+         
+         my ($t1, $t2, $t3);
+         $t1 = '<tr valign="top"><td align="right" style="white-space: nowrap"><strong>';
+         $t2 = '</strong></td><td width="100%" align="left">';
+         $t3 = "</td></tr>\n";
+         
+         $ret .= ($t1 . "Name:" . $t2 . 
+                  "$client->{name}<br /><small>by $client->{author}</small>" .
+                  $t3);
+         
+         $ret .= $t1 . "Description:" . $t2 . $client->{text} . $t3;
+         
+         if (defined $client->{downloads}) {
+             $ret .= $t1 . "Downloads:" . $t2 . "<ul style='margin-left: 0px'>";
+             
+             foreach my $download (@{$client->{downloads}}) {
+                 $ret .= "<li style='list-style: none'><p><a href=\"$download->{url}\"><img border='0' align='absmiddle' src='$LJ::IMGPREFIX/download.gif' hspace='5' width='16' height='16'>$download->{title}</a> $download->{text}</p></li>\n";
+             }
+             $ret .= "</ul>" . $t3;
+         }
+         
+         if (defined $client->{homepage}) {
+             $ret .= $t1 . "Home Page:" . $t2 . "<a href=\"$client->{homepage}\">$client->{homepage}</a>" . $t3;
+         }
+         
+         if (defined $client->{journal}) {
+             $ret .= "$t1 Journal: $t2 Watch " . LJ::ljuser($client->{journal}) . " for updates.$t3";
+         }
+         $ret .= "</table>";
+         $ret .= "<?hr?>";
+     }
+ };
+ 
+ if ($form_platform eq "all") {
+     $title = "All Clients";
+     foreach my $platform (@platforms) {
+         $display_platform->($platform);
+     }
+
+ } else {
+     $title = "$form_platform Clients";
+     foreach my $platform (@platforms) {
+         if ($platform->{'name'} eq $form_platform) {
+             $display_platform->($platform);
+         }
+     }
+ }
+ $ret .= "Back to the <a href=\"./\">Platform Selection page</a>.";
+     
+ $body = $ret;
+ return;
+
+_code?><?page
+title=><?_code return $title _code?>
+body=><?_code return $body _code?>
+page?><?_c <LJDEP>
+img: htdocs/img/download.gif
+link: htdocs/download/index.bml, htdocs/update.bml, htdocs/developer/index.bml
+</LJDEP> _c?>

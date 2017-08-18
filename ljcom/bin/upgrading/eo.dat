@@ -1,0 +1,3580 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.btn.status|notes=Submit button for form
+/accountstatus.bml.btn.status=Ŝanĝu Statuson
+
+/accountstatus.bml.error.db=Estis datumbaza eraro dum prilaboro de via peto.
+
+/accountstatus.bml.error.invalid=Nevalida statuso tipo
+
+/accountstatus.bml.error.nochange.expunged=Ĉi tiu konto estas senrubigita de sistemo.
+
+/accountstatus.bml.error.nochange.suspend|notes=You can't change a journal to be unsuspended. This message is for users who attempt to do so.
+/accountstatus.bml.error.nochange.suspend=Ne povas ŝanĝi taglibron statuson de suspendita.
+
+/accountstatus.bml.header.success=Sukceso
+
+/accountstatus.bml.journalstatus.about=Se vi volas forigi vian taglibron aŭ rehavi ĝin, vi estas en la ĝusta paĝo. Vi havos 30 tagojn post forigo de via taglibro, dum kiuj vi povos ŝanĝi vian intencon kaj rehavi vian taglibron. Post 30 tagoj taglibro estos forigita tute, sen ebleco reakiri ĝin.
+
+/accountstatus.bml.journalstatus.head=Stato de taglibro
+
+/accountstatus.bml.journalstatus.select.activated=Aktivita
+
+/accountstatus.bml.journalstatus.select.deleted=Forigita
+
+/accountstatus.bml.journalstatus.select.head=Stato:
+
+/accountstatus.bml.journalstatus.select.suspended=Provizore Forigita
+
+/accountstatus.bml.message.nochange=Vian taglibron statuson lasis kiel <b>[[statusvis]]</b>.
+
+/accountstatus.bml.message.success=Vian taglibron statuson ŝanĝis sukcese al <b>[[statusvis]]</b>.
+
+/accountstatus.bml.title=Konta Stato
+
+/allpics.bml.current=Nunaj Bildoj
+
+/allpics.bml.default=<u>Defaŭlto</u>
+
+/allpics.bml.edit2=Vi povas <a href='[[editlink]]'>redakti ŝlosilvortojn por la bildoj</a> aŭ <a href='[[uploadlink]]'>alŝuti novan bildon</a>.
+
+/allpics.bml.error.noparam=Vi devas specifi parametron.
+
+/allpics.bml.keywords=Ŝlosilvortoj:
+
+/allpics.bml.nopics.text.other=Ĉi tiu uzanto ne alŝutis iujn ajn uzantobildojn.
+
+/allpics.bml.nopics.text2=Vi ne havas alŝutitajn bildojn. <a href='[[link]]'>Alŝutu iun</a>.
+
+/allpics.bml.nopics.title=Neniuj Bildoj
+
+/allpics.bml.pics=Jen la uzant-bildoj de [[user]].
+
+/allpics.bml.title=Uzant-Bildoj
+
+/approve.bml.comm.success=Sukceso
+
+/approve.bml.comm.text<<
+Vi nun estas ano de [[comm]].
+Klaku <a [[aopts]]>ĉi tie</a> por aldoni la komunumon al via amikolisto.
+.
+
+/approve.bml.commjoin.text<<
+Vi aprobis la membreca peto de [[user]] en [[comm]].
+Klaku <a [[aopts]]>ĉi tie</a> por viziti la membra listo de ĉi tiu komunumo, por agordi aliajn elektojn por ĉi tiu uzanto.
+.
+
+/approve.bml.error.actionperformed=Ĉi tiu ago jam estas farita
+
+/approve.bml.error.approving=Estis eraro dum aprobo de ĉi tiu peto aliĝi.
+
+/approve.bml.error.internerr.invalidaction=Interna eraro: malvalida ago
+
+/approve.bml.error.invalidargument=Malvalida argumento donita
+
+/approve.bml.error.unknownactiontype=Nekonata agotipo
+
+/approve.bml.shared.success=Sukceso
+
+/approve.bml.shared.text<<
+Vi nun havas afiŝa rajto ĉe [[shared]].
+Klaku <a [[aopts]]>ĉi tie</a> por aldoni la partoprenitan taglibran al via amikolisto.
+.
+
+/approve.bml.title=Ago Aprobo
+
+/birthdays.bml.description=Sube estas naskiĝtagoj por c^iuj, kiuj vi listas kiel amiko.
+
+/birthdays.bml.title=Naskiĝtagoj
+
+/changepassword.bml.btn.proceed=Daŭrigu
+
+/changepassword.bml.changepassword.header=Ŝanĝu Pasvorton
+
+/changepassword.bml.changepassword.instructions=Plenigu la formularon malsupre, por ŝanĝi vian pasvorton. Ricevu helpon pri elekto de bona kaj sekura pasvorto en <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">tiu ĉi sekcio de Oftaj Demandoj (ODo)</a>.
+
+/changepassword.bml.email.body<<
+Via pasvorto estas ŝanĝita ĉe [[sitename]].
+
+Por reakiri ĝin estontece, vizitu:
+
+[[siteroot]]/lostinfo.bml
+
+Sincere,
+La Teamo [[sitename]]
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=Ŝanĝo de Pasvorto
+
+/changepassword.bml.error.badcheck=Malbona nova pasvorto: [[error]]
+
+/changepassword.bml.error.badnewpassword<<
+Via pasvorta konfirmo ne egalas vian novan pasvorton.  Eble vi mistajpis.
+Bonvolu retajpi kaj rekonfirmi vian novan pasvorton.
+.
+
+/changepassword.bml.error.badoldpassword=Via malnova pasvorto ne estas ĝusta.
+
+/changepassword.bml.error.blankpassword=Via nova pasvorto ne rajtas esti nenio.
+
+/changepassword.bml.error.changetestaccount=Ne eblas ŝangi testkontan pasvorton.
+
+/changepassword.bml.error.characterlimit=Pasvortoj ne povas havi pli ol 30 signoj.
+
+/changepassword.bml.error.invaliduser=Malvalida uzanto <B>[[user]]</B>. Ĉi tiu uzanto ne ekzistas. Ĉu vi certas ke vi ne mistajpis ĝin?
+
+/changepassword.bml.error.mustenterusername=Vi devas enmeti vian uzantnomon.
+
+/changepassword.bml.error.nonascii=Pasvortoj devas uzi sole ASCII-ajn signojn. Bonvolu elekti pasvorton, kiu ne uzas ekster-ASCII-ajn signojn.
+
+/changepassword.bml.error.notvalidated=Vi ne povas ŝanĝi vian pasvorton, se la valido de via nuna retpoŝtadreso ankoraŭ ne estas kontrolita. Bonvolu rigardi <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=11">la OD-n</a> por instruo pri ĉi tiu.
+
+/changepassword.bml.newpassword=Nova Pasvorto:
+
+/changepassword.bml.newpasswordagain=Nova Pasvorto (denove):
+
+/changepassword.bml.oldpassword=Malnova Pasvorto:
+
+/changepassword.bml.proceed.instructions=Premu la butonon suban, kaj via pasvorto estos ŝanĝita. Vi ankaŭ ricevos retpoŝton, kiu notas la pasvortan ŝanĝon.
+
+/changepassword.bml.relogin=Ankaŭ, vi estas elsalutita de ĉiuj el viaj ekzistaj sesioj. Vi devus <a [[aopts]]>resaluti</a>, antaŭ vi kontinuas.
+
+/changepassword.bml.success.text=Via pasvorto estas ŝanĝita, kaj retpoŝto estas sendita al vi kun memoriga mesaĝo.
+
+/changepassword.bml.title=Ŝanĝu Pasvorton
+
+/community/index.bml.main<<
+<?h1 Bonvenon! h1?> 
+<?p 
+Bonvenon al Komunuma Centro de VivĴurnalo. Ĉi tie estas loko por ekscii, kiel ekkontakti viajn kolegojn ĉe VivĴurnalo. LiveJournal.com ne estas loko nur por skribi vian taglibron; ĝi ankaŭ estas loko por renkonti novajn homojn, interagi, umi pri komunaj interesoj kaj bone amuziĝi. Jen kelkaj kelkaj specifaĵoj de niaj komunumoj, kiuj helpas vin resti ĉiam informita kaj konektita. 
+p?> 
+
+<?h1 Ĉu vi estas novulo? h1?> 
+<?p 
+Ĉu vi estas novulo ĉe VivĴurnalo kaj ne imagas, kion fari nun? Plej unue aliĝu al <a href="/community/esperanto"><strong>Komunumo "Esperanto"</strong></a>, kie oni povos helpi vin en komprenebla lingvo. Se vi regas la anglan lingvon, vizitu ankaŭ komunumon <?ljcomm newbies ljcomm?>, iom esploru tie kaj tre baldaŭ vi mem povos ĉiujn instrui pri la ecoj kaj agordoj de VivĴurnalo.
+p?> 
+
+<?h1 Sciu aktualaĵojn! h1?>
+<?p
+Ĉiam havu aktualan informon pri tio, kio okazas en VivĴurnalo. Ekzistas kelkaj oficialaj komunumoj de VivĴurnalo, kiujn indas legi. Du el ili estos speciale utilaj.
+ <br /><br />
+Por scii pri novaj eventoj kaj pri la problemoj, kiujn renkontas la tuta VĴ-komunumo, aldonu al viaj amikoj <?ljuser news ljuser?>. <br />
+Por ĝustatempe ricevi informon pri planataj problemoj aŭ forŝaltoj de la servilo, aldonu al via amiko-bendo komunumon <?ljcomm lj_maintenance ljcomm?>.
+ <br /><br />
+Se vi <i>ne komprenas la anglan</i>, ĉiam eblas ekscii novaĵojn en Esperanto ĉe komunumo <?ljcomm esperanto ljcomm?>.
+p?>
+
+<?h1 Babilu! h1?>
+<?p
+Uzantoj de VivĴurnalo konstante komunikas inter si. Multaj uzas popularajn tujmesaĝilojn: <a href="http://www.aim.com/index.adp"><strong>AIM</strong></a>, <a href="http://web.icq.com/"><strong>ICQ</strong></a>, <a href="http://messenger.yahoo.com/"><strong>Yahoo!</strong></a>, <a href="http://messenger.msn.com/"><strong>MSN</strong></a> aŭ <a href="http://www.jabber.org/"><strong>Jabber</strong></a>. Se ankaŭ vi tujumas foje, aldonu tiun informon al <a href="/editinfo.bml"><strong>via privata informo</strong></a>. Se vi havas <a href="/paidaccounts/"><strong>pagatan konton</strong></a>, vi povas <a href="/support/faqbrowse.bml?faqid=30"><strong>agordi ricevon de tekstaj mesaĝoj</strong></a> al via poŝtelefono. 
+p?>
+
+<?h1 Hej, volontuloj! h1?>
+<?p
+Ne dubu helpi al la projekto! La plej bona ebleco helpi estas <a href="/paidaccounts/"><strong>aĉeti pagatan konton</strong></a>. Sed, certe, ekzistas aliaj manieroj partopreni nian agadon.
+<br /><br />
+VivĴurnalo estas projekto kun malferma kodo de programoj. Se vi havas bonan sperton en programado de servilaj programoj, turnu vin al <strong>Komunumo de VivĴurnalaj programistoj</strong>, <?ljcomm lj_dev ljcomm?>. Se vi havas ideojn pri plibonigo de VivĴurnalo, skribu ilin en <strong>la Libro de Proponoj</strong>, <?ljcomm suggestions ljcomm?>. Se vi volas helpi per io ajn, iru al <?ljcomm lj_biz ljcomm?>. Se vi ŝatas solvi problemojn de aliaj homoj, ni proponas al vi partoprenon en <a href="/support/">Centro de Subteno</a>. Se vi estas sperta pri aspektigo, vizitu nian <strong>Artistan Komunumon</strong>, <?ljcomm lj_art ljcomm?>.
+p?>
+
+<?h1 Kio estas komunumo? h1?>
+<?p
+Komunumo estas simple taglibro, kiu apartenas al kelkaj homoj kun komunaj interesoj. Tian taglibron kutime kreas kaj estras unu el la uzantoj de VivĴurnalo. Eblas fondi novan komunumon senpage: ajna uzanto rajtas tion fari (kaj estas tre facila afero). Komunumoj jam kovras multajn temojn, ekzistas ankaŭ komunumoj laŭ landoj kaj regionoj.
+p?>
+
+<?h1 Kiel mi fondu novan komunumon? h1?>
+<?p
+En <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>ĉi tiu teksto</strong></a> vi povas ekscii, kiel fari novan komunumon. Krom tio ekzistas du pliaj tekstoj, kiuj kovras preskaŭ ĉiujn demandojn, kiuj povas aperi pri komunumoj: <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>Ĝenerala helpo pri komunumoj</strong></a> kaj <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong>Mastrumado de komunumoj</strong></a>. Se vi tamen ne trovis respondon al via demando, <a href="http://www.livejournal.com/support/submit.bml"><strong>uzu help-paĝaron</strong></a>.
+p?>
+
+<?h1 Kiel trovi komunumon? h1?>
+<?p
+Nun ekzistas du oficialaj komunumoj de VivĴurnalo, kiuj helpas trovi bezonatan komunumon.
+p?>
+
+<ul>
+<li><strong><a href="./search.bml">Serĉu komunumon</a></strong></li>
+<li><strong>Vidu taglibron kun reklamo de novaj komunumoj (<?ljcomm community_promo ljcomm?>)</strong></li>
+<li><strong>Vidu taglibron, kie oni serĉas komunumojn (<?ljcomm community_quest ljcomm?>)</strong></li>
+<li><strong>Se tio ne funkcias, demandu en la ĉefa E-lingva komunumo (<?ljcomm esperanto ljcomm?>) </strong></li>
+</ul>
+
+<?p
+Io mankas laŭ vi?<br />
+Skribu <a href="mailto:jproulx-(a)-livejournal-dot-com">Jesse Proulx</a>, (<?ljuser jproulx ljuser?>) mesaĝon al direktoro pri komunumoj.
+p?>
+.
+
+/community/index.bml.title=Komunumejo
+
+/community/join.bml.button.join=Aliĝu al la komunumo
+
+/community/join.bml.error.already.member=Vi jam estas membro de ĉi tiu komunumo.
+
+/community/join.bml.error.closed=Ĉi tiu komunumo estas fermita al novaj membroj. Se vi deziras aliĝi, bonvolu kontakti iun el la sekvantaj prizorgantoj: [[admins]]
+
+/community/join.bml.error.statusvis.body=La konto, per kiu vi salutis, ne estas aktiva konto.
+
+/community/join.bml.error.statusvis.title=Ne Povas Aliĝi Komunumojn
+
+/community/join.bml.label.addtofriends=Aldonu al la listo de geamikoj: "[[maintainer]]".<br>
+
+/community/join.bml.label.allowposting=Ĉi tiu komunumo permesas afiŝi al ĉiuj membroj, do vi nun rajtas afiŝi al ĝi.  Se vi jam uzas VivĴurnalan klient-programon en via komputilo, vi devos elsaluti kaj reensaluti por ke ĉi tiu taglibro aperu en via listo de taglibroj al kiuj vi rajtas afiŝi.
+
+/community/join.bml.label.auth=Kvankam vi nun estas registrita kiel membro, ĉi tiu komunumo nur permesas afiŝojn de aŭtoritataj uzantoj.  Kontaktu unun de la prizorgantoj, se vi deziras afiŝan atingon.  Jen la listo de prizorgantoj de ĉi tiu komunumo: [[admins]]
+
+/community/join.bml.label.banned=La prizorganto(j) de ĉi tiu komunumo malpermesis ke vi membriĝu.
+
+/community/join.bml.label.closed=Ĉi tiu komunumo estas fermita.  Se vi interesiĝas pri aliĝo al ĝi, bonvolu kontakti unun de ties prizorgantoj.  Jen la listo de prizorgantoj de ĉi tiu komunumo: [[admins]]
+
+/community/join.bml.label.commlogged=Vi estas ensalutita kiel komunuma konto, ne la propra konto.
+
+/community/join.bml.label.errorcomminfo=La indikitaj informoj pri komunumo ne validas.
+
+/community/join.bml.label.expls=Premu la malsupran butonon por aliĝi al la komunumo "[[maintainer]]". Malmarki la malsupran kvadraton se vi volas aniĝi la komunumon sen vidi komunumaj enskriboj ĉe via amikara paĝo.
+
+/community/join.bml.label.loginfirst=Por aliĝi al komunumo, unue vi devas <a href="/login.bml?ret=1">ensaluti</a>.
+
+/community/join.bml.label.membernow=Vi nun estas membro de la <a href="/userinfo.bml?user=[[username]]">komunumo [[commname]]</a>
+
+/community/join.bml.label.sure=Ĉu vi certas?
+
+/community/join.bml.reqsubmitted.body=Via peto por aliĝi estis konservita al la prizorgantoj:
+
+/community/join.bml.reqsubmitted.title=Aliĝa Peto Konservita
+
+/community/join.bml.request.body=La [[comm]] konumumo ne havas malferman membriĝon. Bonvolu klaki sube, kontroli ke vi deziras aliĝi ĉi tiun komunumon.
+
+/community/join.bml.request.reason=<i>Nedevige</i>, enmeti kialon ke vi deziras aliĝi ĉi tiun komunumon:
+
+/community/join.bml.request.title=Peto Aliĝi
+
+/community/join.bml.success=Pasis sukcese
+
+/community/join.bml.title=Aliĝu al la Komunumo
+
+/community/leave.bml.button.leave=Forlasu la Komunumon
+
+/community/leave.bml.label.buttontoleave=Premu la malsupran butonon por forlasi la komunumon "[[commname]]".
+
+/community/leave.bml.label.infoerror=La indikita informo pri komunumo ne validas.
+
+/community/leave.bml.label.logoutfirst=Por forlasi komunumon, unue vi devas <a href="/login.bml?ret=1">ensaluti</a>.
+
+/community/leave.bml.label.removed=Vi nun estas forigita el <a href="/userinfo.bml?user=[[commuser]]">la komunumo [[commname]]</a>
+
+/community/leave.bml.label.removefromfriends=Ankaŭ forigu "[[user]]" de amikolisto.
+
+/community/leave.bml.success=Sukcese pasis
+
+/community/leave.bml.sure=Ĉu vi certas?
+
+/community/leave.bml.title=Forlasu Komunumon
+
+/community/manage.bml.commlist.actinfo=Informoj
+
+/community/manage.bml.commlist.actions=<b>Agoj</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Membroj</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Membroj
+
+/community/manage.bml.commlist.actpending|notes=This is appended to /community/manage.bml.commlist.actmembers2 when there are pending people.
+/community/manage.bml.commlist.actpending=, <a [[aopts]]>[[num]] pritraktataj</a>
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Agordoj</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Agordoj
+
+/community/manage.bml.commlist.header=Viaj komunumoj
+
+/community/manage.bml.commlist.moderation=Atendanta Moderigo
+
+/community/manage.bml.commlist.moderation.num=[<a href='[[link]]'>[[num]] en atendovico</a>]
+
+/community/manage.bml.commlist.none=<i>Vi ne administras komunumojn.</i>
+
+/community/manage.bml.commlist.text=Jen la komunumoj, kiujn vi administras aŭ kun-administras:
+
+/community/manage.bml.commlist.title=<b>Titolo</b>
+
+/community/manage.bml.commlist.username=<b>Uzantnomo</b>
+
+/community/manage.bml.create.header=Krei novan komunumon
+
+/community/manage.bml.create.text=Vi ankaŭ povas <a href='[[link]]'><b>krei novan komunumon</b></a>.
+
+/community/manage.bml.joinmail.body=Por komunumoj kun fermitaj membriĝoj, vi havas kelkajn retpoŝtajn elektojn:
+
+/community/manage.bml.joinmail.save=Konservu Agordojn
+
+/community/manage.bml.title=Komunuma Administrado
+
+/community/members.bml.error.alreadyadded=[[user]] ne estas aldonita, ĉar li jam povas atingi ĉi tiun komunumon.
+
+/community/members.bml.error.alreadysent=[[user]] ne estas aldonita, ĉar jam retpoŝto konfirma estas sendita al li je: <i>[[datetime]]</i>. Bonvolu atendi ĝis la respondo.
+
+/community/members.bml.error.invaliduser=Ne povas aldoni komunuman aŭ resendatan konton: [[user]]
+
+/community/members.bml.error.noaccess=Nur komunumo-prizorgantoj eblas redakti membriĝajn listojn.  Vi ne estas prizorganto de la komunumo [[comm]].
+
+/community/members.bml.error.noattr=Neniam da atributoj elektita por uzanto: [[user]]
+
+/community/members.bml.error.nocomm=Komunumo ne estas trovebla.
+
+/community/members.bml.error.nouser=Uzanto ne ekzistas: <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>Prizorganto</b>
+
+/community/members.bml.key.member=<b>Membro</b>
+
+/community/members.bml.key.moderate=<b>Moderiganto</b>
+
+/community/members.bml.key.post=<b>Afiŝa Atingo</b>
+
+/community/members.bml.key.preapprove=Ne-moderigita
+
+/community/members.bml.key.user=<b>Uzanto</b>
+
+/community/members.bml.manage2=Administru komunumojn
+
+/community/members.bml.name=<b>Komunuma nomo:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(Sekvonta paĝo...)</i>
+
+/community/members.bml.prevlink=<i>(Antaŭa paĝo...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>Preferigoj</a>]
+
+/community/members.bml.success.header=Sukceso
+
+/community/members.bml.success.message=Viaj ŝanĝoj estas sukcese konservitaj.
+
+/community/members.bml.success.return=<a href='[[link]]'>Revenu al la listo</a>
+
+/community/members.bml.title=Komunumaj Membroj
+
+/community/members.bml.update=Ĝisdatigaj agordoj
+
+/community/moderate.bml.approve.button=Jes, mi permesas ĝin
+
+/community/moderate.bml.approve.header=Ĉu vi permesas ĉi tiun enskribon?
+
+/community/moderate.bml.approve.preapprove=Cetere, aldonu uzanton [[user]] al la listo de antaŭ-permesitaj uzantoj por ĉi tiu komunumo.
+
+/community/moderate.bml.approve.text=Ĉu vi certas pri la deziro permesi ĉi tiun enskribon?
+
+/community/moderate.bml.brlist.actions=Agoj
+
+/community/moderate.bml.brlist.poster=Afiŝanto
+
+/community/moderate.bml.brlist.subject=Komenco de titolo
+
+/community/moderate.bml.brlist.time=Tempo
+
+/community/moderate.bml.brlist.view=Rigardu
+
+/community/moderate.bml.browse.empty=La vico por moderigo estas malplena.
+
+/community/moderate.bml.browse.header=Moderigu Komunumon
+
+/community/moderate.bml.browse.text=Jen la vico por moderigi en la komunumo [[link]]
+
+/community/moderate.bml.choice.approve=Permesu
+
+/community/moderate.bml.choice.reject=Malpermesu
+
+/community/moderate.bml.error.noaccess=Vi ne moderigas la komunumon [[comm]].
+
+/community/moderate.bml.error.noentry=Enskribo ne trovita (eble jam prizorgita de alia moderiganto).
+
+/community/moderate.bml.error.nolist=Vi ne moderigas iujn ajn komunumojn.
+
+/community/moderate.bml.error.notfound=Komunuma konto ne trovita.
+
+/community/moderate.bml.manage=Administru komunumojn
+
+/community/moderate.bml.moderate=Moderigi ĉi tiun komunumon
+
+/community/moderate.bml.modlist.actions=Agadoj
+
+/community/moderate.bml.modlist.actmodempty=[Moderigu]
+
+/community/moderate.bml.modlist.actmoderate=Moderigu
+
+/community/moderate.bml.modlist.count=Vica grandeco
+
+/community/moderate.bml.modlist.header=Moderigu Komunumojn
+
+/community/moderate.bml.modlist.title=Titolo
+
+/community/moderate.bml.modlist.username=Uzantnomo
+
+/community/moderate.bml.posted.appheader=Antaŭ-permesita
+
+/community/moderate.bml.posted.apptext=Krome, la uzanto [[user]] estas nun en la listo de antaŭ-permesita uzantoj por ĉi tiu komunumo.
+
+/community/moderate.bml.posted.header=Sukceso
+
+/community/moderate.bml.posted.proterror=La enskribo ne estas afiŝita, laŭ jena protokola eraro: [[err]]
+
+/community/moderate.bml.posted.text=La enskribo estas afiŝita sukcese.
+
+/community/moderate.bml.reject.button=Jes, malpermesu ĝin
+
+/community/moderate.bml.reject.header=Ĉu malpermesu ĉi tiun enskribon?
+
+/community/moderate.bml.reject.reason=Vi ankaŭ povas klarigi al la afiŝanto viajn kialoj por malpermesi ties enskribon. La kialoj estas sendota al la afiŝanto retpoŝte.
+
+/community/moderate.bml.reject.text=Ĉu vi certas pri malpermesi ĉi tiun enskribon?
+
+/community/moderate.bml.rejected.header=Malpermesita
+
+/community/moderate.bml.rejected.text=La enskribon estas malpermesita.
+
+/community/moderate.bml.title=Komunuma Administrado
+
+/community/pending.bml.approve.title=<b>Ĉu Aprobu Membriĝon?</b>
+
+/community/pending.bml.no=Ne
+
+/community/pending.bml.nopending.title=Neniu pritraktata
+
+/community/pending.bml.yes=Jes
+
+/community/search.bml.button.clear=Malplenigu la Demandaron
+
+/community/search.bml.button.search=Serĉu!
+
+/community/search.bml.checkbox.onlywithpics=Nur komunumoj, kiuj havas bildojn
+
+/community/search.bml.label.byinterest=Laŭ Intereso
+
+/community/search.bml.label.bylocation=Laŭ Loko
+
+/community/search.bml.label.bytime=Laŭ Taglibra Ĝisdatiga Horo
+
+/community/search.bml.label.city=Urbo:
+
+/community/search.bml.label.country=Lando:
+
+/community/search.bml.label.displayoptions=Montradaj Elektoj
+
+/community/search.bml.label.hasmember=Membras
+
+/community/search.bml.label.othercriteria=Aliaj Kriterioj
+
+/community/search.bml.label.outputformat=Eliga Formato:
+
+/community/search.bml.label.records=Nombro da rekordoj paĝe:
+
+/community/search.bml.label.searchcomm=Serĉu Komunumojn
+
+/community/search.bml.label.selecriteria=Elektu la malsuprajn kriteriojn, per tiuj vi volas trovi komunumojn. La rezultoj redonitaj estas la kongruaĵo de la tutaj serĉkriterioj. Alie dire, tuta markobutono, sur kiun vi klakas, signifas "AND" (kaj), ne "OR" (aŭ).
+
+/community/search.bml.label.sortmethod=Ordiga Metodo:
+
+/community/search.bml.label.stateprovince=Ŝtato/Provinco:
+
+/community/search.bml.label.updated=Ĝisdatigita dum la lastaj
+
+/community/search.bml.sel.bypicture=Laŭ Bildo
+
+/community/search.bml.sel.communityname=Nomo de Komunumo
+
+/community/search.bml.sel.commview=Komunuma Vidaĵo
+
+/community/search.bml.sel.day=tago
+
+/community/search.bml.sel.month=monato
+
+/community/search.bml.sel.simple=Simpla
+
+/community/search.bml.sel.updatetime=Horo de Ĝisdatigo
+
+/community/search.bml.sel.username=Uzantnomo
+
+/community/search.bml.sel.week=semajno
+
+/community/search.bml.title=Komunuma Serĉo
+
+/community/settings.bml.button.changecommunity=Ĝisdatugu Preferigojn
+
+/community/settings.bml.button.createcommunity=Kreu Komunumon
+
+/community/settings.bml.error.badpassword=Malvalida komunuma pasvorto
+
+/community/settings.bml.error.hasentries=Ĉi tiu konto havas afiŝojn kaj ne povas esti konvertota.
+
+/community/settings.bml.error.maintainertype=Prizorganta konto devas esti homo, ne alia partoprenita konto.
+
+/community/settings.bml.error.noaccess=Nur komunumaj prizorgantoj eblas editi komunumajn preferigojn. Vi ne estas prizorganto de la komunumo [[comm]].
+
+/community/settings.bml.error.notcomm=Ne estas komunuma konto.
+
+/community/settings.bml.error.notfound=Komunuma konto ne estas trovebla.
+
+/community/settings.bml.error.samenames=Prizorganta konto kaj komunuma konto ne povas esti la sama.
+
+/community/settings.bml.label.anybodycan=<b>Ĉiuj Membroj</b><br />Iu ajn povas tuj enskribi, post membriĝo.
+
+/community/settings.bml.label.changeheader=Ŝanĝi Komunumajn Preferigojn
+
+/community/settings.bml.label.changetext=Ĉi tie vi povas ŝanĝi la preferigojn por la komunumo propra aŭ prizorgata.
+
+/community/settings.bml.label.commchanged=Viaj komunumaj preferoj estas ŝanĝitaj.
+
+/community/settings.bml.label.commcreate=Ĉi tiu estas la konto, kiun vi volas komunumigi. Ĝi devas <a href="/create.bml">jam esti kreita</a>, sed ne devas esti uzata de individuo, ĉar post tiu, multaj diferencaj homoj eblas afiŝi en ĝin, laŭ la potencioj.
+
+/community/settings.bml.label.commcreated=Via komunumo nun estas agordita.
+
+/community/settings.bml.label.commheader=Komunuma Konto
+
+/community/settings.bml.label.comminfo=Komunumaj informoj
+
+/community/settings.bml.label.commopts=Komunumaj preferigoj
+
+/community/settings.bml.label.commsite=TTT-ejo de komunumo
+
+/community/settings.bml.label.community=Komunumo:
+
+/community/settings.bml.label.createheader=Kreu Komunumon
+
+/community/settings.bml.label.createtext=De ĉi tie vi povas krei komunuman konton. Komunumo estas speciala kontotipo kien aliaj uzantoj povas aliĝi kaj enafiŝi. Por ekzemplo de komunumo, vizitu la <a href="/userinfo.bml?user=seattle">Seattle-an Festan Komunumon</a>.
+
+/community/settings.bml.label.howoperates=Elektu, kiel via komunumo funkcios. Vi povos ŝanĝi ĝin pli poste.
+
+/community/settings.bml.label.maintainer=Prizorganto:
+
+/community/settings.bml.label.maintainer.login=Se tiu ne estas la prizorganta konto, <a href='/login.bml?ret=1'>ensalutu</a> kromule.
+
+/community/settings.bml.label.managepage=<a [[aopts]]>Komunuma Administrado</a> - por aldoni anojn, rajtigi afiŝadojn, enoficigi moderigantojn, ktp.
+
+/community/settings.bml.label.membership=Membriĝo
+
+/community/settings.bml.label.modheader=Moderigado
+
+/community/settings.bml.label.modis=<b>Moderigita</b><br />Novaj enskriboj devas esti permesitaj de moderiganto.
+
+/community/settings.bml.label.modisnt=<b>Ne-moderigita</b><br />Novaj enskriboj aperas tuj.
+
+/community/settings.bml.label.modtext=Ĉu malprotestoj al ĉi tiu komunumo estas moderigitaj?
+
+/community/settings.bml.label.nmcan=<b>Ne-Membroj Povas Afiŝi</b><br />Uzantoj povas afiŝi al ĉi tiu komunumo sen membriĝi.
+
+/community/settings.bml.label.nmcant=<b>Ne-Membroj Ne Povas Afiŝi</b><br />Uzantoj devas membriĝi en ĉi tiu komunumo por afiŝi en ĝin..
+
+/community/settings.bml.label.nmheader=Ne-Membra Afiŝo
+
+/community/settings.bml.label.nmtext=Ĉu uzantoj povas afiŝi al ĉi tiu komunumo sen membriĝu?
+
+/community/settings.bml.label.openmemb=<b>Malfermita Membriĝo</b><br />Iu ajn povas membriĝi sen aprobo.
+
+/community/settings.bml.label.password=Pasvorto:
+
+/community/settings.bml.label.postaccess=Afiŝa Atingo
+
+/community/settings.bml.label.rellinks=Ligiloj laŭtemaj:
+
+/community/settings.bml.label.selcan=<b>Elektu Membrojn</b><br />Nur iuj membroj eblas afiŝi post li ricevis atingon de la prizorganta konto.
+
+/community/settings.bml.label.username=Uzantnomo:
+
+/community/settings.bml.label.whocanjoin=Kiu povas aliĝi al via komunumo?
+
+/community/settings.bml.label.whocanpost=Kiu povas afiŝi al ĉi tiu komunumo?
+
+/community/settings.bml.manage2=Administru komunumojn
+
+/community/settings.bml.members=[<a href='[[link]]'>Membroj</a>]
+
+/community/settings.bml.name=<b>Komunuma nomo:</b> [[name]]
+
+/community/settings.bml.success=Sukceso
+
+/community/settings.bml.title.create=Kreu Komunumon
+
+/community/settings.bml.title.modify=Komunumaj Preferigoj
+
+/create.bml.age.check.question=Ĉu vi havas malpli ol 13 jarojn?
+
+/create.bml.age.check.yes=Jes, mi havas malpli ol 13 jarojn.
+
+/create.bml.age.check2.question=Ĉu vi havas pli ol 13 anojn?
+
+/create.bml.age.check2.yes=Jes, mi havas pli ol 13 anojn.
+
+/create.bml.age.head=Aĝo
+
+/create.bml.btn.create=Startu Ĵurnalon
+
+/create.bml.btn.proceed=Daŭrigu...
+
+/create.bml.captcha.answer=Respondo:
+
+/create.bml.captcha.audiodesc=Tajpu la numerojn, kiujn vi aŭdas, por pruvi ke vi ne estas spamroboto:
+
+/create.bml.captcha.desc=Tajpu la literojn kaj numerojn, kiujn vi vidas sube, por pruvi ke vi ne estas spamroboto. Se vi ne povas legi la tekston, tajpu la vorton "AUDIO" kaj akceptu sonan teston anstataŭe.
+
+/create.bml.captcha.invalid=Malvalida respondo al antaŭa kontesto. Provu alian.
+
+/create.bml.captcha.play=Ludu la sonon.
+
+/create.bml.captcha.prove=Pruvu ke vi estas homa.
+
+/create.bml.clusterselect.cluster=Servilaro:
+
+/create.bml.clusterselect.clusternum=Servilaro [[number]]
+
+/create.bml.clusterselect.head=Servilara Elekto:
+
+/create.bml.clusterselect.nocluster=Neniu Servilaro
+
+/create.bml.clusterselect.text=Bonvolu selekti la servilaron, kien vi volas krei ĉi tiun konton. <b>Komentario:</b> Ĉi tiu nur estas ĝustiga/testa elekto. Produkuktante, uzantoj ne elektos tiun aŭ scios iojn pri ĝi.
+
+/create.bml.create.head=Krei Novan Taglibron
+
+/create.bml.create.text=Facilas krei novan Livejournal, nur sekvu la jenajn instrukciojn!
+
+/create.bml.email.head=Via retpoŝtadreso
+
+/create.bml.email.input.head=Retpoŝtadreso:
+
+/create.bml.email.text2=Pro verkontrolaj kaj sekurecaj celoj, ni bezonas vian retpoŝtadreson. Ĝi neniam, je ia cirkonstanco, estos vendita au^ donita al spamistoj. Ni malamas tion pli ol io ajn. Legu nia <a [[aopts]]>privatecan politikon</a> por pli informo.
+
+/create.bml.error.coppa.under13=Bedaŭrinde, pro la Usonaj reguloj COPPA, vi ne rajtas uzi LiveJournal ĝis vi havas 13 jarojn.  Bonvolu reveni je via 13-a naskiĝtago.
+
+/create.bml.error.email.blank=Vi devas provizi vian retpoŝtadreson.
+
+/create.bml.error.email.lj_domain=Kreante konton, ne uzu alinomo de [[domain]].  Bonvolu entajpi alian retpoŝtadreson.
+
+/create.bml.error.email.nospaces=Ne permesatas spacoj en retpoŝtadreso.  Se vi uzas AOL, memoru ke via Interreta Retpoŝtadreso estas via ekrannomo sen iu ajn spacoj, sekvata de <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=Vi povas uzi nur ASCII-ajn simbolojn en la pasvorto.
+
+/create.bml.error.password.blank=Vi devas enmeti pasvorton.
+
+/create.bml.error.password.nomatch=Pasvortoj ne samas.
+
+/create.bml.error.postrequired=POST estas postulata.
+
+/create.bml.error.username.blank=Bonvolu doni nomon aŭ kaŝnomon.
+
+/create.bml.error.username.inuse=Uzantnomo jam uzatas; bonvolu elekti alian.
+
+/create.bml.error.username.iscode=Uzantnomo ŝajnas esti invitaĵa kodo, ne uzantnomo.
+
+/create.bml.error.username.mustenter=Vi devas enmeti uzantnomon.
+
+/create.bml.error.username.reserved=Bedaŭrinde, tiu uzantnomo estas reservita.
+
+/create.bml.errors.label=Bonvolu noti la sekvantajn problemojn, kaj rekonservu:
+
+/create.bml.initial.friend.lj_maintenance=Raportoj pri ambaŭ planitaj kaj neplanitaj senkonektadoj kaj funkcitenoj.
+
+/create.bml.initial.friend.news=Novaĵoj kaj eventoj de VivĴurnalo
+
+/create.bml.initialfriends=Aldonu tiujn taglibrojn al via listo de amikoj por sekvi novaĵojn de la paĝaro.
+
+/create.bml.initialfriends.heading=Amikoj de komencanto
+
+/create.bml.name.head=Via Nomo
+
+/create.bml.name.input.head=Nomo:
+
+/create.bml.name.text=Kio estas via nomo aŭ kaŝnomo?  Ĝi aperos je la supro de via taglibro, kaj en la uzanto-listo, se vi elektas aperiĝi tie.  Vi ne devas doni vian kompletan nomon aŭ eĉ vian veran nomon.
+
+/create.bml.password.head=Pasvorto
+
+/create.bml.password.input.head1=Pasvorto:
+
+/create.bml.password.input.head2=Retajpu pasvorton:
+
+/create.bml.password.text=Elektu pasvorton.
+
+/create.bml.proceed.btn.proceed=Daŭrigu...
+
+/create.bml.proceed.warning=Nur <i>unufoje</i> premu <b>Daŭrigu</b>!!
+
+/create.bml.success.btn.enterinfo=Enmetu Personajn Informojn:
+
+/create.bml.success.head=Sukceso!
+
+/create.bml.success.text1=Via taglibro estas kreita.  Gravaj informoj pri la registro estas enretpoŝtitaj al <strong style="font-size:larger">[[email]]</strong>, kaj ili enhavas pli da instrukcio. Nepre konfirmu la taglibra kreado per klaki la ligilon en la mesaĝo.
+
+/create.bml.success.text2=Via LiveJournal haveblos ĉe:
+
+/create.bml.success.text3=Nun, bonvolu pasigi la tempon por plenskribi informojn pri vi mem.  Ĝi estas plimalpli nedeviga, sed ĝi donas al ni ideon pri kiaj homoj uzas LiveJournal.
+
+/create.bml.title=Krei Novan Taglibron
+
+/create.bml.tos.error=Vi devas legi kaj akcepti la Servajn Kondiĉojn antaŭ krei konton.
+
+/create.bml.tos.haveread=Mi legis kaj akceptas la Servajn Kondiĉojn.
+
+/create.bml.tos.heading=Servaj Kondiĉoj
+
+/create.bml.tos.p1.2=Antaŭ daŭrigos, vi devas legi kaj konsenti pri la <a [[aopts]]>Servaj Kondiĉoj</a>.
+
+/create.bml.useacctcodes.entercode=Por krei novan konton, enmetu kontan kreikodon. Por pli da informo, vizitu <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">Kiel mi kreas konton?</a>
+
+/create.bml.useacctcodes.welcome=Bonvenon
+
+/create.bml.username.box.head=Uzantnomo:
+
+/create.bml.username.charsallowed=Via uzantnomo povas konsisti nur el minusklaj literoj (a-z), ciferoj (0-9) kaj substreko-signo (_).<br />Ankaŭ konsideru, ke la uzantnomo ne povas esti pli ol 15 signojn longa.
+
+/create.bml.username.forpaidaccts=Aŭ, por pagitaj kontoj:
+
+/create.bml.username.head=Uzantnomo
+
+/create.bml.username.ljaddress=Via taglibro estos je la jenaj adresoj:
+
+/create.bml.username.text=Ĉiu uzanto de [[sitename]] devas havi la propran unikan uzantnomon.  Via uzantnomo aperas en la adreso de via taglibro, kaj vi uzos ĝin por ensaluti je la servilo [[sitename]].  Ĝi aperas ankaŭ kiam vi afiŝas komentojn al la taglibroj de aliaj homoj.
+
+/create.bml.username.username=uzantnomo
+
+/customize/index.bml.change=Ŝanĝu
+
+/customize/index.bml.choose=Ĉu vi deziras uzi la malnovan stilsistemon, aŭ la novan?
+
+/customize/index.bml.choose.header=Elektu stilsistemon
+
+/customize/index.bml.choose.s1=Malnova sistemo (S1)
+
+/customize/index.bml.choose.s2=Nova sistemo (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=Ne povis generi uzanta tavolo
+
+/customize/index.bml.error.fail_create_style=Kreo de nova stilo fiaskis.
+
+/customize/index.bml.error.not_your_layout=Ne via aranĝo.
+
+/customize/index.bml.error.not_your_theme=Ne via temo
+
+/customize/index.bml.error.no_core_parent=Nenia kerna gepatro?
+
+/customize/index.bml.previews=(Antaŭrigardoj)
+
+/customize/index.bml.s1=Oni konfiguras la malnovan stilsistemon per la <a href="/modify.bml">Modifu Taglibron</a> paĝo.
+
+/customize/index.bml.s1.header=Uzi S1
+
+/customize/index.bml.s2.advanced.denied=Sole pagitaj, konstantaj, kaj frua-adoptantaj kont-propruloj rajtas uzi la altgrada individuiga areo. <a href="/paidaccounts/">Malkovri la avantaĝojn de pagitaj kontoj</a>.
+
+/customize/index.bml.s2.advanced.header=Altnivelaj Individuigaĵoj
+
+/customize/index.bml.s2.advanced.permitted=Por krei novajn tavolojn kaj stilojn de nenio, vizitu la <a href='./advanced/'>altnivelan individuigadan centron</a>.
+
+/customize/index.bml.s2.customize.language.header=Lingvo
+
+/customize/index.bml.s2.customize.settings.delete=Forigu Individuigaĵojn
+
+/customize/index.bml.s2.customize.settings.delete.confirm=Ĉu vi certas ke vi deziras forigi ĉi tiun individuigaĵojn?
+
+/customize/index.bml.s2.customize.settings.edit=Redaktu Individuigaĵojn
+
+/customize/index.bml.s2.customize.settings.header=Ŝanĝu individuajn agordojn
+
+/customize/index.bml.s2.related.header=Rilataj Paĝoj
+
+/delcomment.bml.confirm.banuser=Malpermesu, ke [[user]] komentu en via taglibro.
+
+/delcomment.bml.confirm.body=Ĉu vi certas, ke vi deziras forigi ĉi tiun komenton?
+
+/delcomment.bml.confirm.head=Ĉu forigu ĉi tiun?
+
+/delcomment.bml.confirm.spam=Marku, ke cxi tiu komento estas spamo
+
+/delcomment.bml.confirm.submit=Forigu komenton
+
+/delcomment.bml.error.alreadydeleted=La komento jam estas forigita.
+
+/delcomment.bml.error.cantdelete=Nur 
+
+/delcomment.bml.error.cantdelete.comm=Komenton rajtas forigi nur ĝia aŭtoro, aŭtoro de la enskribo aŭ komunum-estro.
+
+/delcomment.bml.error.nocomment=La komento ne ekzistas.
+
+/delcomment.bml.success.head=Forigita
+
+/delcomment.bml.success.noban=La komento estas forigita.
+
+/delcomment.bml.title=Forigu komenton
+
+/developer/index.bml.dbschema.header=Skemo de datumbazo
+
+/developer/index.bml.notice.header=Anonco
+
+/developer/index.bml.styles<<
+Ĉu ne plaĉas al vi, kiel aspektas viaj taglibraj paĝoj?
+Ne malesperu...  ĉio estas fleksebla, kaj se vi legos la jenan instrukcion, vi scios ĉion,
+kion vi bezonas por fari, ke viaj paĝoj aspektu kia ajn vi deziras.
+.
+
+/developer/index.bml.styles.s1.header=Stila Sistemo 1
+
+/developer/index.bml.styles.s1.system=Stila Sistemo
+
+/developer/index.bml.styles.s1.varlist=Listo de variabloj
+
+/developer/index.bml.styles.s1.views=Rigardu Tipojn
+
+/developer/index.bml.styles.s2.header=Stila Sistemo 2
+
+/directory.bml.browse.country.title=Trarigardi Taglibrojn Lande
+
+/directory.bml.browse.usa.title=Trarigardi Taglibrojn Usonoŝtate
+
+/directory.bml.error.accounttype=Pardonu, via kontotipo ne permesas uzon de la adresaro, aŭ vi ne estas <a href='/login.bml'>ensalutinta</a>. Se via kontotipo permesas uzon de adresaro, certiĝu ke vi estas ensalutita kaj tiam reprovu.
+
+/directory.bml.navcrap.matches=[[count]] kongruaĵoj
+
+/directory.bml.open=Malfermu
+
+/directory.bml.post=Afiŝu
+
+/directory.bml.search.monkey=Centoj da dresitaj simioj nune ĉirkaukuras por trovi viajn serĉorezultojn. Bonvolu atendi.
+
+/directory.bml.search.new=Nova Informmendo
+
+/directory.bml.search.title=Serĉanta
+
+/directory.bml.update=Ĝisdatu:
+
+/directory.bml.user=Uzanto
+
+/doc/index.bml.about=Bonvenon ĉe LiveJournal-a dokumentaro ripozejo, kie vi povas trovi informojn pri plej multe da temoj pri la servo de LiveJournal aŭ servila programaro. Bonvolu elekti temon el la subaj:
+
+/doc/index.bml.about.header=Bonvenon
+
+/doc/index.bml.docs.faq.about=Oftaj Demandoj pri LiveJournal.com
+
+/doc/index.bml.docs.faq.title=Oftaj Demandoj
+
+/doc/index.bml.docs.header=Dokumentoj
+
+/doc/index.bml.docs.howto.about=Konsiloj kaj konsiletoj por helpi individuigi vian LiveJournal-an konton
+
+/doc/index.bml.docs.server.about=Tutaj sciindoj kiuj ebligas vin de instali, administri kaj kodumi LiveJournal-an konton
+
+/doc/index.bml.docs.server.title=LiveJournal-a Servila Manlibro
+
+/doc/index.bml.docs.tour.about=Designita por novaj vizitantoj por kutimiĝi al la paĝo
+
+/doc/index.bml.docs.tour.title=Ekskurso
+
+/doc/index.bml.title=Dokumentaro
+
+/doc/index.bml.volunteering.about=Se vi ŝatus helpi pri la dokumentaro de LiveJournal, vizitu la sekvantajn forumojn:
+
+/doc/index.bml.volunteering.header=Voluntaĵo
+
+/doc/index.bml.volunteering.ljsysdoc=Priparoladoj pri la dokumentara sistemo de LiveJournal
+
+/doc/index.bml.volunteering.ljuserdoc=Fina uzula dokumentara priparoladoj
+
+/doc/tour/index.bml.clients.caption<<
+LiveJournal-aj klientiloj estas malgrandaj programoj kiuj iras sur via komputilo, permesante al vi ĝisdatigi vian taglibron kiam ajn vi estas interreta, sen malfermitu foliumilan fenestron.
+Klientiloj haveblas por ja iu ajn platformo kaj multaj estas facile individuigeblaj.
+.
+
+/doc/tour/index.bml.clients.title=Klientiloj
+
+/doc/tour/index.bml.comms.caption=LiveJournal estas granda interaktiva komunumo, do ne-surprezige ekzistas multaj membroj kun similaj interesoj. Por tio, ni ofertas kreeblon de komunumoj aŭ taglibroj al kiuj multajn homojn povas afiŝi.
+
+/doc/tour/index.bml.comms.title=Komunumoj
+
+/doc/tour/index.bml.create.caption=LiveJournal estas membriĝ-bazata taglibra komunumo. Ĉi tiu paĝo klarigas kion membriĝo sekvigas, kial membriĝo estas grava kaj la avantaĝojn de la membreĝo. Ĝi ankaŭ enhavas la formularon por krei vian propran konton.
+
+/doc/tour/index.bml.create.title=Krei Konton
+
+/doc/tour/index.bml.friends.caption=Vi krome povas esti plej bone informita pri viaj geamikoj per LiveJournal uzante la inkluzivan funkcion "geamikoj". Se vi trovas taglibron kiu ŝajnas interesa, aldonu ĝin al via listo de geamikoj, kiu lasos vin legi tutajn da enskribojn de via geamikoj sur la sama paĝo.
+
+/doc/tour/index.bml.friends.title=Geamikoj
+
+/doc/tour/index.bml.intro.caption=Ĉi tiu turneo estas desegnita por novaj vizitantoj ekkoni pli multe pri la retpaĝo. Ĝi montros al vi kie oni trovas la plej gravajn sekciojn, kaj ankaŭ iom da pli interesigaj trajtoj.
+
+/doc/tour/index.bml.intro.title=Bonvenon
+
+/doc/tour/index.bml.modify.caption=Ankaŭ eblas ke vi formatigi vian taglibron kelke diversmaniere, per uzi antaŭdefinitajn stilojn kaj kolorskemojn. Uniku vian taglibron laŭ vi volas!
+
+/doc/tour/index.bml.modify.title=Personigo
+
+/doc/tour/index.bml.nav.next=Posta --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- Antaŭa
+
+/doc/tour/index.bml.profile.caption=LiveJournal-aj membroj estas kuraĝigitaj aldoni informojn pri sin mem en siaj profiloj, do ĝi donas al ni ideon pri kiaj homoj uzas LiveJournal kaj ni plej povas servi ilin. Tamen, neniuj de ĉi tiuj estas bezonataj &mdash; la solaj informoj bezonataj por komenci uzi LiveJournal-on estas nomo, retpoŝtadreso kaj pasvorto.
+
+/doc/tour/index.bml.profile.title=Profiloj
+
+/doc/tour/index.bml.sitemap.caption<<
+Espereble ĉi tiu tureo donis al vi iom da helpemaj komencaj informoj pri la LiveJournal-a paĝo kaj servo.
+Se vi bezonas helpon pri iu ajn LiveJournal-a, nehezitante kontaktu <a href="/support/">nian subtenan fakon</a>. Se vi volas plu esplori, bonvolu viziti <a href="/site/">la TTT-eja mapo</a> por vidi liston de la tutaj paĝoj je ĉi tiu TTT-ejo.
+.
+
+/doc/tour/index.bml.sitemap.title=TTT-eja Mapo
+
+/doc/tour/index.bml.support.caption=La subtena paĝo listas areojn kiuj helpas komprenigi kio LiveJournal estas, oftajn demandojn pri la TTT-ejo, kaj aliajn helpemajn informojn pri la servo, la kompanio kaj la komunumo grande.
+
+/doc/tour/index.bml.support.title=Ricevas Helpon
+
+/doc/tour/index.bml.title=Tureo - [[title]]
+
+/doc/tour/index.bml.update.caption=Ĝisdatigi LiveJournal-on estas la kerno de la LiveJournal-a servo; ĉi tie ni ofertas al membroj ŝancon de partopreni siajn vivojn kaj diri siajn opinion. Ĝisdatigi LiveJournal-on estas facile. Simple skribu afiŝon en la havigitan kestenon kaj klaku la "Ĝisdatigu Taglibron" butonon. Kompreneble, ni ankaŭ ofertas progresintajn trajtojn je nia ĝisdatiga paĝo, kiel la kontroleblo de ortografiaj eraroj kaj la provizeblo de ekstraj informoj pri viaj afiŝoj, kio estas via nuna muziko aŭ nuna humoro.
+
+/doc/tour/index.bml.update.title=Ĝisdatigi
+
+/editinfo.bml.allowshowcontact.about=Vi devus restigi ĉi tiun elekton ebligita. Ĉi tio permesas ke aliaj homoj eblas kontakti vin per montri vian retpoŝtadreson, ICQ-an numeron kaj AOL-an tujmesaĝilan ekrannomon tute en via LiveJournal.
+
+/editinfo.bml.allowshowcontact.email=Se videbla, retpoŝtadreso por montri:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Nur vera adreso
+
+/editinfo.bml.allowshowcontact.email.both=Ambaŭ (vera + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Nur LiveJournal-a adreso
+
+/editinfo.bml.allowshowcontact.email.neither=Neniu. Ne montru iun ajn retpoŝtadreson.
+
+/editinfo.bml.allowshowcontact.email.no_show=Ne montru retpoŝtadreson
+
+/editinfo.bml.allowshowcontact.email.show=Montru retpoŝtadreson
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Per la elekto supra, vi ankaŭ elekteblas kaŝi vian retpoŝtadreson (ankoraŭ montrante aliajn kontaktinformojn), aŭ nur montri vian LiveJournal-an retpoŝtadreson (nur <a href="/paidaccounts/">Pagitaj Kontoj</a>), aŭ nur montri vian veran adreson, aŭ montri ambaŭ ilin.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Per la elekto supra, vi ankaŭ elekteblas kaŝi vian retpoŝtadreson (ankoraŭ montrante aliajn kontaktinformojn).
+
+/editinfo.bml.allowshowcontact.title=Ĉu montru viajn kontaktajn informojn en via LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Ŝaltu ĉi tion, se vi volas ke aliaj uzantoj vidos vian urbon/ŝtaton/landon kaj naskiĝtagon.
+
+/editinfo.bml.allowshowinfo.title=Ĉu montru lokon &amp; naskiĝtagon?
+
+/editinfo.bml.autotranslate.about<<
+Elektu kiun enkodigon supozi por viaj afiŝoj kaj komentoj enmetitaj antaŭ ol la paĝaro unikodiĝis.
+Se vi skribas angle, elektu "Western European" ĉi tie.
+.
+
+/editinfo.bml.autotranslate.header=Aŭtomate traduku malnovajn enskribojn el:
+
+/editinfo.bml.bday.title=Naskiĝtago
+
+/editinfo.bml.bday.year.opt=jaro ne devigatas
+
+/editinfo.bml.bdayreminders.about=Se vi deziras ricevi retpoŝtojn por memorigi vin pri geamikaj naskiĝtagoj, klaku ĉi tiun kvadraton.
+
+/editinfo.bml.bdayreminders.header=Sendu al mi naskiĝtagajn memorigojn (nuntempe malebligita)
+
+/editinfo.bml.bio.about=Vi povas enskribi biografieton pri vi mem kiu aperos en via Uzant-Informa paĝo.
+
+/editinfo.bml.bio.header=Pri Vi
+
+/editinfo.bml.blockrobots.about=Se vi markos ĉi tiun elekton, la sistemo diros al robotoj, ke ili foriru. Ne ĉiuj robotoj obeas la regulojn.
+
+/editinfo.bml.blockrobots.header=Malebligu, ke robotoj/araneoj indeksu vian taglibron
+
+/editinfo.bml.chat.aolim.title=AOL-Nomo
+
+/editinfo.bml.chat.icquin.title=ICQ-Numero
+
+/editinfo.bml.chat.msnusername.title=MSN Uzantnomo
+
+/editinfo.bml.chat.yahooid.title=Yahoo!-ID
+
+/editinfo.bml.city.title=Urbo
+
+/editinfo.bml.country.choose=Elektu landon
+
+/editinfo.bml.country.title=Lando
+
+/editinfo.bml.donotlog=Ne
+
+/editinfo.bml.email.title=Retpoŝtadreso
+
+/editinfo.bml.enableboards.about=Marku tiun, se vi volas ke homoj eblas respondi al viaj taglibraj afiŝoj.
+
+/editinfo.bml.enableboards.header=Ebligu komentoj
+
+/editinfo.bml.encoding.about=Ne maltrankviliĝu pri ĉi tiuj umoj.  Ĝenerale, nur uzantoj kiuj skribas plurlingve devas ŝanĝi ion ĉi tie.
+
+/editinfo.bml.encoding.header=Kodoprezentaj Elektoj
+
+/editinfo.bml.error.day.notinmonth=Nevalida tago por tiu monato.
+
+/editinfo.bml.error.day.outofrange=Nevalida tago por nasktago.  Entajpu tagon de 1 ĝis 31.
+
+/editinfo.bml.error.email.lj_domain|staleness=1
+/editinfo.bml.error.email.lj_domain<<
+Vi ne entajpu retpoŝtadreson de @[[domain]].
+Entajpu vian veran retpoŝtadreson en tiu kampo.
+Se vi estas paginto, via adreso [[user]]@[[domain]] ekspedos al via vera adreso.
+Por elekti kiu adreso montriĝos (aŭ la ambaŭ), vidu la elekton sub la elekto "Montru vian Kontaktan Informon".
+.
+
+/editinfo.bml.error.email.none=Vi devas provizi vian retpoŝtadreson
+
+/editinfo.bml.error.email.no_space<<
+Neniuj spacoj permesatas en retpoŝta adreso.
+Se vi uzas AOL-n, memoru ke via retpoŝtadreso estas via ekrannomon escepte de ĉiuj spacoj forprenitaj, sekvita de <b>@aol.com</b>
+
+.
+
+/editinfo.bml.error.excessive_int=Bedaŭron; vi listigis tro multe da interesoj. La limo estas 150, sed vi listigis [[intcount]]. Iuj ajn ŝanĝoj, kiujn vi faris al viaj interesoj, ne konserviĝis. Iru reen kaj malpliigu vian liston, kaj poste konservu denove.
+
+/editinfo.bml.error.invalidbio=Via konservita historieto enhavas malvalidajn literojn. Vi vizitu la <a href='/utf8convert.bml'><b>konvertatan paĝon</b></a> por konverti ĝin al Unikodo.
+
+/editinfo.bml.error.invalidints=Via nuna konservita listo de interesoj enhavas malvalidajn literojn. Vi vizitu la <a href='/utf8convert.bml'><b>konvertan paĝon</b></a> por konverti la liston al Unikodo.
+
+/editinfo.bml.error.invalidname=Via nomo enhavas malvalidajn literojn. Vi vizitu la <a href='/utf8convert.bml'><b>konvertatan paĝon</b></a> por konverti ĝin al Unikodo.
+
+/editinfo.bml.error.locale.country_ne_state=Vi specifis Usonon por via lando, sed vi tajpis neusonan ŝtaton en la kampon por "alia ŝtato".
+
+/editinfo.bml.error.locale.invalid_country=Iel, vi elektis nevalidan landon.
+
+/editinfo.bml.error.locale.state_ne_country=Vi specifis neusonan landon sed elektis usonan ŝtaton.
+
+/editinfo.bml.error.locale.zip_ne_state<<
+Via poŝtkodo ne akordas kun la ŝtato, kiun vi specifis.
+Aŭ ĝustigu la informojn, aŭ forigu unu aŭ ambaŭ el la ŝtata kaj poŝtkoda kampoj.
+.
+
+/editinfo.bml.error.locale.zip_requires_us<<
+Vi enskribis poŝtkodon, sed vi ne elektis Usonon por via lando.
+Ni kolektas poŝtkodajn informojn nur pri usonanoj.
+Bonvolu iri reen kaj forigu la poŝtkodon aŭ elektu Usonon por via lando.
+
+.
+
+/editinfo.bml.error.month.outofrange=Nevalida monato por nasktago.  Entajpu monaton de 1 ĝis 12.  (jan-dec)
+
+/editinfo.bml.error.noname=Vi devas enmeti vian nomon en la formularon. Almenaŭ enmetu vian antaŭnomon aŭ salutnomon.
+
+/editinfo.bml.error.tm.require.number=Se vi uzos tekstan mesaĝumon, vi devas enskribi vian telefonnumeron.
+
+/editinfo.bml.error.tm.require_provider<<
+Por tekstmesaĝi, vi devas elekti vian Interret-peranton.
+
+Se via Interretperanto ne estas en la listo, bonvolu kontakti nin kun informo pri via tekstmesaĝa komplezo, tial ke ni povas kongruigi ĝin.
+.
+
+/editinfo.bml.error.year.notenoughdigits=Nevalida jaro por nasktago.  Entajpu 4-ciferan jaron.
+
+/editinfo.bml.error.year.outofrange=Nevalida jaro por nasktago.
+
+/editinfo.bml.finished.about=Kiam vi finos, premu la malsupran ŝaltilon "Konservu Ŝanĝojn":
+
+/editinfo.bml.finished.header=Ĉu finita?
+
+/editinfo.bml.finished.save_button=Konservu Ŝanĝojn
+
+/editinfo.bml.gender.title=Genro
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=Marku tiun, se vi volas ricevi retpoŝtajn ĝisdatigojn kiam homoj respondas al viaj taglibraj afiŝoj en la mesaĝejoj.
+
+/editinfo.bml.getreplies.header=Ricevu mesaĝarajn respondojn
+
+/editinfo.bml.getselfemails.header=Enretpoŝtigu la proprajn komentojn
+
+/editinfo.bml.hidefriendof.about=Se vi elektas ĉi tion, la listo de personoj, kiuj havas vin en sia listo de geamikoj, kaŝiĝos ĉe via uzant-informa paĝo.
+
+/editinfo.bml.hidefriendof.header=Kaŝu "Amiko de" liston
+
+/editinfo.bml.howhear.about<<
+Nur tial scivolemaj motivoj, de kie vi aŭdis pri [[sitename]]?
+Se ĝi estis specifa persono, enskribu ties uzantnomon; se ĝi estis alia fonto/artikolo/ligilo/retpaĝo, aldonu la konvenajn informojn.
+.
+
+/editinfo.bml.howhear.header=Scivolemo
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about<<
+Marku se via retpoŝta programo plene subtenas HTML en viaj retpoŝto.
+Multe da klientiloj provas subteni ĝin, sed malsukcesas terure.
+Se vi malmarkas ĝin, LiveJournal nur sendos tekstajn retpoŝtojn.
+.
+
+/editinfo.bml.htmlemail.header=Sendu HTML-ajn Retpoŝtmesaĝojn
+
+/editinfo.bml.int.about=Se vi volas, ke aliaj homoj povos serĉi la adresaron kaj trovi vin per intereso, listu malsupre ĉion, kio interesas vin, apartigitaj per komoj.  Mallongaj unu-vortaj esprimoj estas plej bonaj.  <strong>Ĝenerala regulo:</strong> Eblu uzi la intereson en la frazo "(La) <em>[io]</em> plaĉas al mi". Aludante al substantivoj, uzu la pluralan formon por uniformeco: "La <em>viddiskoj</em> plaĉas al mi" anstataŭ "La <em>viddisko</em> plaĉas al mi".
+
+/editinfo.bml.int.ex.bad=<strong style="color:#ff0000">MALBONA</strong> Ekzemplo: <strong>Plaĉas al mi multaj muzikistaroj kaj iri al kinejoj kaj paroli kun amikoj kaj iri al diskokluboj.</strong> Metu tiaj umoj supre en vian biografieton.
+
+/editinfo.bml.int.ex.good=<strong style="color:#009000">BONA</strong> Ekzemplo: <strong>biciklado, neĝoskiado, komputiloj, viddiskoj, MP3oj, kesoj, virinoj</strong>
+
+/editinfo.bml.int.header=Interesoj
+
+/editinfo.bml.login.enterinfo=Enskribu vian uzantnomon kaj pasvorton por ŝanĝi viajn personajn informojn.
+
+/editinfo.bml.login.forgot.header=Ĉu vi forgesis ion?
+
+/editinfo.bml.login.forgot.recover=Se vi forgesis vian uzantnomon au pasvorton, <a href='lostinfo.bml'>rehavigu ĝin ĉi tie</a>!
+
+/editinfo.bml.logip.always=Ĉiam
+
+/editinfo.bml.logip.anon_only=Nur anonimaj afiŝantoj
+
+/editinfo.bml.logip.header=Ĉu registru IP-adresojn de respondantoj?
+
+/editinfo.bml.mangleaddress.about|staleness=1
+/editinfo.bml.mangleaddress.about=Se vi timas ke spam-robotoj povus trovi vian retpoŝtadreson ĉe LiveJournal, elektu ĉi tiun elekton. Via retpoŝtadreso estas modifota, do ĝi ne estos trovebla de retpoŝtkolektantaj robotoj.
+
+/editinfo.bml.mangleaddress.header=Malklarigu vian montratan retpoŝtadreson
+
+/editinfo.bml.name.title=Nomo
+
+/editinfo.bml.newemail.subject=Retpoŝtadreso Ŝanĝita
+
+/editinfo.bml.numcomments.about=Marku tiun se vi volas aldoni la komentan nombron al URL-oj por vidigebligi la ligilojn aliakolore.
+
+/editinfo.bml.numcomments.header=Aldonu &amp;nc=xx al komentaj URL-oj
+
+/editinfo.bml.optional=nedeviga
+
+/editinfo.bml.opt_in.about=Se vi volas scii kiam ni estas aldonantaj kelkan bonegan novan eblon al LiveJournal, marku tiun butonon. Ni ne estas nuntempe uzanta ĉi tiun eblon, sed ni eble uzos ĝin pli poste. Via retpoŝtadreso ne estos videbla por aliaj uzantoj, kaj vi povas malelekti ĝin ĉiam kiam vi volas.
+
+/editinfo.bml.opt_in.header=Sendu al mi novaĵojn (en la angla) pri LiveJournal.
+
+/editinfo.bml.persinfo.disclaimer=Enskribu kelkajn mallongajn informojn pri vi mem, por nia propra scivolemo kaj statistikaj celoj. Ni ne estas faronta ian fian aŭ enuigantan per tiuj informoj; ni nur volus vidi kiuj kaj kie estas niaj uzantoj. Bonvolu plenigi ĝin ĝuste. Se vi okupiĝas, legu nian <a href="/legal/privacy.bml">privatecan politikon</a>.
+
+/editinfo.bml.persinfo.header=Personaj Informoj
+
+/editinfo.bml.screen.all=Ĉiuj
+
+/editinfo.bml.screen.anon=Sennomaj
+
+/editinfo.bml.screen.header=Kiajn respondojn vi volas havi kaŝantajn defaŭlte?
+
+/editinfo.bml.screen.none=Neniuj
+
+/editinfo.bml.screen.nonfriends=De ne-geamikoj
+
+/editinfo.bml.screen.nonmembers=De ne-membroj
+
+/editinfo.bml.security.header=Kiu rajtas vidi viajn kontaktajn informojn?
+
+/editinfo.bml.security.visibility.anybody=Iu ajn
+
+/editinfo.bml.security.visibility.everybody=Ĉiu
+
+/editinfo.bml.security.visibility.friends=Nur geamikoj
+
+/editinfo.bml.security.visibility.regusers=Registritaj Uzantoj
+
+/editinfo.bml.settings.friendspage.title=Titolo de Geamikara Paĝo:
+
+/editinfo.bml.settings.friendspage.title.optional=Se vi deziras, enmetu titolon por viaj geamikaraj paĝoj (sen HTML).
+
+/editinfo.bml.settings.header=LiveJournal-aj Elektoj
+
+/editinfo.bml.settings.journal.subtitle=Ĵurnala Subtitolo:
+
+/editinfo.bml.settings.journal.title=Taglibra Titolo:
+
+/editinfo.bml.settings.privacy.header=Privatecaj Alternativoj
+
+/editinfo.bml.state.other=Aŭ tajpu alian ŝtaton/provincon/teritorion
+
+/editinfo.bml.state.title=Ŝtato
+
+/editinfo.bml.state.us=Usonaj Ŝtatoj
+
+/editinfo.bml.success.header=Sukceso!
+
+/editinfo.bml.success.message=Viaj informoj kaj <a href="/users/[[user]]/">taglibraj</a> preferigoj kaj <a href="/userinfo.bml?user=[[user]]">profilo</a> estas ĝisdatigitaj.
+
+/editinfo.bml.switch.button=Interŝanĝu
+
+/editinfo.bml.switch.header=Interŝanĝu Taglibron
+
+/editinfo.bml.switch.workwith=Uzu tiun taglibron:
+
+/editinfo.bml.title=Redaktu Personajn Informojn
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">detaloj</a>
+
+/editinfo.bml.tm.phonenum=Plena telefona numero:
+
+/editinfo.bml.tm.sec.about=Kapabligu tekstan mesaĝadon de aliaj uzantoj.
+
+/editinfo.bml.tm.sec.title=Sekureca Nivelo:
+
+/editinfo.bml.tm.servprov=Serva Provizanto
+
+/editinfo.bml.tm.title=Teksta Mesaĝado
+
+/editinfo.bml.translatemailto.about=En la okazo se vi elektis ricevi mesaĝtabulajn respondojn retpoŝte, kaj via retpoŝta klientilo ne traktas unikodajn (UTF-8) mesaĝojn tre bone, uzu tiun elekton por specifi malsaman kodoprezenton en kiun LiveJournal aŭtomate transformos la tekston de la komentoj senditaj al vi.
+
+/editinfo.bml.translatemailto.header=Traduku retpoŝtajn informiĝojn en:
+
+/editinfo.bml.unbanusers.about=Vi malpermesis al la sekvantajn uzantojn afiŝi en via taglibron. Marku la markobutonon apud iliaj uzantnomoj por elpreni la malpermeson el ili.
+
+/editinfo.bml.unbanusers.header=Repermesu Uzantojn
+
+/editinfo.bml.userpic.about=Jen supre maketa bildo kiun vi alŝutis por reprezenti vin en la tuta LiveJournal-a paĝo, en via taglibro, kaj en la taglibroj de viaj amikoj:
+
+/editinfo.bml.userpic.edit|staleness=1
+/editinfo.bml.userpic.edit=Por forigi ĉi tiun bildon aŭ alŝuti novan, <a href="/uploadpic.bml" target="_blank">iru tien</a>.
+
+/editinfo.bml.userpic.header=Via Bildo
+
+/editinfo.bml.userpic.none=bildo ne alŝutiĝis
+
+/editinfo.bml.webpagename.title=Nomo de TTT-ejo
+
+/editinfo.bml.webpageurl.title=URL-o de TTT-ejo
+
+/editinfo.bml.whoreply.header=Kiu rajtas respondi al viaj enskriboj?
+
+/editinfo.bml.zip.title=Poŝtkodo
+
+/editinfo.bml.zip.usonly=5-cifera poŝtkodo; nur por usonanoj
+
+/editjournal.bml.btn.proceed=Daŭrigu...
+
+/editjournal.bml.certainday=Specifa Tago:
+
+/editjournal.bml.in=En komunumo:
+
+/editjournal.bml.recententries=plej lastatempaj enskriboj
+
+/editjournal.bml.recententry=Plej lastatempa enskribo
+
+/editjournal.bml.title=Redaktu Taglibrajn Enskribojn
+
+/editjournal.bml.viewwhat=Vidu Kiujn Enskribojn:
+
+/editjournal_do.bml.btn.delete=Forigu Taglibran Enskribon
+
+/editjournal_do.bml.btn.edit=Redaktu Elektitan Enskribon
+
+/editjournal_do.bml.btn.preview=Antaŭrigardu Enskribaĵon
+
+/editjournal_do.bml.btn.save=Konservu Taglibran Enskribon
+
+/editjournal_do.bml.continue.head=Premu por daŭrigi...
+
+/editjournal_do.bml.continue.text=Post vi elektis eron por redakti aŭ forigi, premu la Redaktu butonon malsupre.
+
+/editjournal_do.bml.currmood=Nuna <a href="/moodlist.bml">Humoro</a>:
+
+/editjournal_do.bml.currmusic=Nuna Muziko:
+
+/editjournal_do.bml.date=Dato:
+
+/editjournal_do.bml.default=defaŭlto
+
+/editjournal_do.bml.delete.confirm=Ĉu vi certas, ke vi volus forigi tiun afiŝon?
+
+/editjournal_do.bml.edit.text=Jen la taglibra enskribo, kiun vi elektis redakti.  Ŝanĝu ĉiujn la informojn, kiujn vi volas, kaj poste klaku la butonon  "Konservu Taglibra Enskribo" sube.<br /><br />Por forigi la enskribon, forigu la tutan tekston en la kamparo kaj poste klaku la butonon "Konservu Taglibra Enskribo" sube.
+
+/editjournal_do.bml.error.getting=Eraro okzazis dum provi redakti la taglibrajn enskribojn:
+
+/editjournal_do.bml.error.modify=Eraro okzazis dum modifi vian taglibron:
+
+/editjournal_do.bml.error.nofind=Ne eblis trovi elektitan taglibran enskribon.
+
+/editjournal_do.bml.event=Evento:
+
+/editjournal_do.bml.localtime=Loka horo:
+
+/editjournal_do.bml.noneother=Neniu, aŭ alia:
+
+/editjournal_do.bml.opt.backdate=Retrodatu Enskribon:
+
+/editjournal_do.bml.opt.backdate.about=ne aperos sur geamikoj vido
+
+/editjournal_do.bml.opt.nocomments=Malpermesu Komentojn:
+
+/editjournal_do.bml.opt.noemail=Ne retpoŝtu Komentojn:
+
+/editjournal_do.bml.opt.noformat=Ne aŭtomate formatu:
+
+/editjournal_do.bml.other=Aliaj:
+
+/editjournal_do.bml.pickentry.head=Elektu enskribon por redakti
+
+/editjournal_do.bml.pickentry.text=Elektu la redaktendan eron kaj premu la redaktu-butonon malsupre sur la paĝo.
+
+/editjournal_do.bml.picture=Uzu la <a href="[[url]]">bildon</a>:
+
+/editjournal_do.bml.preview.header=Antaŭrigardu Enskribaĵon
+
+/editjournal_do.bml.save.head=Premu por konservi...
+
+/editjournal_do.bml.save.text=Post vi finis redakti vian taglibran enskribon, premu Konservu.
+
+/editjournal_do.bml.subject=<b>Subjekto:</b> <i>(nedeviga)</i>
+
+/editjournal_do.bml.success.delete=La taglibra enskribo estas forigita.
+
+/editjournal_do.bml.success.edit=Via enskribo nun estas redaktita. Vi povas vidi ĝin <a href="[[url]]">ĉi tie</a>.
+
+/editjournal_do.bml.success.head=Sukceso
+
+/editjournal_do.bml.timeformat=24-hora tempo
+
+/editjournal_do.bml.title=Redaktu Taglibrajn Enskribojn
+
+/editpics.bml.btn.save=Konservu Agordojn
+
+/editpics.bml.curpics=Nunaj Bildoj
+
+/editpics.bml.error.filetoolarge=La alŝutita bildo estas tro granda.  La grandeco de la dosiero ne rajtas preteri [[maxsize]].
+
+/editpics.bml.error.invalidimage=Nevalida formato de dosiero.
+
+/editpics.bml.error.toomanypics2=Vi jam havis la maksimumon el [[maxpics]] bildoj. Vi ne povas alŝuti la novan bildon, se vi ne forigas iun el la nun ekzistantaj.
+
+/editpics.bml.fromfile=El <u>d</u>osiero:
+
+/editpics.bml.fromfile.key|notes=Enter here a <b>lower-case</b> version of the letter you underlined in ".fromfile". This is the shortcut key for the fromfile option.
+/editpics.bml.fromfile.key=d
+
+/editpics.bml.fromurl=De U<u>R</u>L:
+
+/editpics.bml.imagesize.by|notes=This character is inserted between two numbers to indicate "by" when specifying image dimensions, for example "100x100".
+/editpics.bml.imagesize.by=p
+
+/editpics.bml.kilobytes=Kbajt
+
+/editpics.bml.restriction.fileformat=Formato de la dosiero devas esti PNG, GIF aŭ JPG
+
+/editpics.bml.restriction.filesize=La dosiero ne povas esti pli granda ol 40 KB
+
+/editpics.bml.restriction.imagesize=La bildo ne povas esti pli granda ol 100x100 punktoj.
+
+/editpics.bml.uploadheader=Aldonu novan bildon
+
+/export.bml.btn.proceed=Progresu...
+
+/export.bml.description|staleness=1
+/export.bml.description=Ĉi tiu trajto elŝutebligas vian tutan taglibron al kutiman formaton por restaŭrkopion.
+
+/export.bml.fields=Ĉeloj:
+
+/export.bml.format.csv=CSV (Kome Subdividitaj Valoroj)
+
+/export.bml.label.encoding=Kodoprezento:
+
+/export.bml.label.field.allowmask=Permesi Maskon
+
+/export.bml.label.field.currents=Nuna Humoro &amp; Muziko
+
+/export.bml.label.field.event=<b>Evento</b>
+
+/export.bml.label.field.eventtime=Eventa Tempo (de uzanta horloĝo)
+
+/export.bml.label.field.itemid=ID-Numero
+
+/export.bml.label.field.logtime=Protokola Tempo (de sistema horloĝo)
+
+/export.bml.label.field.security=Sekureca Nivelo
+
+/export.bml.label.field.subject=Subjekto
+
+/export.bml.label.format=Formato
+
+/export.bml.label.header=Ĉapo
+
+/export.bml.label.month=Elektu monaton:
+
+/export.bml.label.month.year=jjjj:
+
+/export.bml.label.notranslation=Ne traduku inter kodoprezentoj
+
+/export.bml.label.what=Eksporti kion:
+
+/export.bml.title=Elŝutu la Taglibron
+
+/export.bml.what.entries=Taglibraj enskriboj
+
+/friends/add.bml.add.header=Sukceso
+
+/friends/add.bml.add.text=La uzanto [[ljuser]] aldoniĝis al via listo de geamikoj. Vi povas vidi vian geamikan paĝon <a href="[[url]]">ĉi tie</ a>.
+
+/friends/add.bml.add.title=Geamiko Aldoniĝis!
+
+/friends/add.bml.btn.add=Aldonu [[user]]
+
+/friends/add.bml.btn.modify=Modifu
+
+/friends/add.bml.btn.remove=Forigu
+
+/friends/add.bml.colors.bg=Fono
+
+/friends/add.bml.colors.fg=Malfono
+
+/friends/add.bml.colors.header=Koloro
+
+/friends/add.bml.colors.hover=(Movu vian muson super koloron por vidi sian nomon)
+
+/friends/add.bml.colors.text=Vi ankaŭ povas elekti la koloron kiu reprezentos [[user]] en via listo de geamikoj.
+
+/friends/add.bml.confirm.header=Ĉu aldoni <b>[[user]]</b> kiel geamikon?
+
+/friends/add.bml.confirm.text=Por aldoni <b>[[user]]</b> al via listo de geamikoj, klaku la butonon sube.
+
+/friends/add.bml.confirm.title=Aldonu Geamikon
+
+/friends/add.bml.error1.header=Unue Ensalutu
+
+/friends/add.bml.error1.text=Por aldoni uzanton al via listo de geamikoj, vi unue devas <a href="/login.bml?ret=1">ensaluti</a>. Se vi ne jam havas konton, vi povas <a href="/create.bml">krei ĝin</a> por traki viajn geamikajn taglibrojn.
+
+/friends/add.bml.error1.title=Aldonu Geamikon
+
+/friends/add.bml.error2.text=Malvalida aŭ mankanta uzantnomo. Por aldoni geamikon, vizitu la <a href="/friends/edit.bml">redaktu geamikojn</a> paĝon.
+
+/friends/add.bml.error3.text=Vi jam havas <b>[[user]]</b> sur via listo de geamikoj. Tamen, vi povas modifi la kolorojn kiuj vi elektis por reprezenti lin/ŝin.
+
+/friends/add.bml.error3.title=Modifu Geamikon
+
+/friends/add.bml.groups.header=Geamikaj Grupoj
+
+/friends/add.bml.groups.nogroup=Neniuj geamikaj grupoj starigitas.
+
+/friends/add.bml.groups.text=En kiu geamikan grupon vi volas meti ĉi tiun uzanton? Geamikaj grupoj estas uzataj por filtri la vidon de via listo de geamikoj kaj ankaŭ por grup-bazita vidada sekureco de erojn.
+
+/friends/add.bml.remove.header=Sukceso
+
+/friends/add.bml.remove.text=Uzanto <?ljuser [[user]] ljuser?> estas forigita el via listo de geamikoj. Vi povas vidi vian geamikan paĝon <a href="[[url]]">ĉi tie</a>.
+
+/friends/add.bml.remove.title=Geamiko forigitas!
+
+/friends/edit.bml.title=Redaktu Geamikojn
+
+/friends/editgroups.bml.btn.ge.del=Forigu
+
+/friends/editgroups.bml.btn.ge.new=Nova
+
+/friends/editgroups.bml.btn.ge.ren=Renomu
+
+/friends/editgroups.bml.btn.gs.private=Privata
+
+/friends/editgroups.bml.btn.gs.public=Publika
+
+/friends/editgroups.bml.btn.mv.down=Movu malsupren
+
+/friends/editgroups.bml.btn.mv.up=Movu supren
+
+/friends/editgroups.bml.confirm.delete=Ĉu vi certas ke vi viŝas forigi ĉi tiun kutiman geamikan grupon?
+
+/friends/editgroups.bml.done.btn=Konservu Ŝanĝojn
+
+/friends/editgroups.bml.done.header=Ĉu finita?
+
+/friends/editgroups.bml.done.text=Kiam vi estas finita, premu la malsupran butonon por konsevi viajn ŝanĝojn.
+
+/friends/editgroups.bml.error.max30|notes=It is important for the JavaScript on this page to work that this string remains a single line without linebreaks. Additionally, it must not contain any quotation marks.
+/friends/editgroups.bml.error.max30=Vi atingis la maksimuman limon de 30 kutimajn geamikajn grupojn. Se vi forigi unu aŭ pli multe da grupojn, sed ne ankoraŭ konservis la ŝanĝojn, faru ĝin nun, tiem returnu al ĉi tiu paĝo kaj reŝarĝu ĝin. Vi poste eblas krei novajn kutimajn geamikajn grupojn.
+
+/friends/editgroups.bml.error.text=La servilo redonis la sekvantan erar-mesaĝon:
+
+/friends/editgroups.bml.group.public=(publika)
+
+/friends/editgroups.bml.ingroup=En grupo:
+
+/friends/editgroups.bml.ingroup.not=Ne en grupo:
+
+/friends/editgroups.bml.prompt.newname=Enskribu la nomon por la nova kutima geamika grupo:
+
+/friends/editgroups.bml.prompt.rename=Renomu ĉi tiun kutiman geamikan grupon en:
+
+/friends/editgroups.bml.saved.header=Konservita
+
+/friends/editgroups.bml.saved.text=Viaj kutimaj geamikaj grupoj nun konservitaj.
+
+/friends/editgroups.bml.text<<
+Ĉi-paĝo ebligas al vi redakti viajn grupojn de amikoj. La grupoj de amikoj povas esti uzataj por sekurecaj agordoj kaj por filtrado de via paĝo de amikoj. Trovu helpon ĉe <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">Kio estas grupoj de amikoj? Kiel mi uzu ilin?</a> 
+
+La paĝo bezonas JavaSkripton por bone funkcii.
+.
+
+/friends/editgroups.bml.text.sec=<strong>Sekurecan noto:</strong> Se vi volas forigi grupon kaj krei novas, <strong>ne</strong> faru ĝin renomante unu grupon kaj redakti ĝin tiam. Se vi faras tiun, tute da viaj antaŭaj enskriboj kiuj estas videblaj por la malnova grupo, tiam videbligos por la nova grupo.
+
+/friends/editgroups.bml.title=Redaktu Kutimajn Geamikajn Grupojn
+
+/friends/editgroups.bml.yourgroups=Via kutimaj geamikaj grupoj:
+
+/friends/edit_do.bml.addfriends.head=Aldonu Geamikojn
+
+/friends/edit_do.bml.addfriends.text=Enskribu la LiveJournal-an uzantnomon de via geamikoj en la ĉelon malsupran, kaj elektu la kolorojn fonajn kaj malfonajn kiujn vi volas havi por ilin...
+
+/friends/edit_do.bml.background=Fono
+
+/friends/edit_do.bml.bgcolor=Fonan Koloro:
+
+/friends/edit_do.bml.btn.close=Fermu
+
+/friends/edit_do.bml.btn.save=Konservu Ŝanĝojn
+
+/friends/edit_do.bml.btn.toggle=Baskulu Antaŭrigardan Fenestron
+
+/friends/edit_do.bml.done.head=Ĉu finita?
+
+/friends/edit_do.bml.done.text=Kiam vi finitis, premu la "Konservu Ŝanĝojn" butonon malsupre...
+
+/friends/edit_do.bml.error.updating=Okazis eraro dum ĝisdatigi vian listo de geamikoj:
+
+/friends/edit_do.bml.fellowfriends.head=Kameradoj
+
+/friends/edit_do.bml.fellowfriends.text=La sekvantaj homoj listigis vin kiel amikon. Vi eblas ankaŭ listigi ilin kiel vian amikon. Ĉi tiu estas provizita kiel referecon, do vi konas iliajn LiveJournal-ajn uzantnomojn. Tamen, vi ne devas aldoni ilin al via listo.
+
+/friends/edit_do.bml.foreground=Malfono
+
+/friends/edit_do.bml.friend=Geamiko
+
+/friends/edit_do.bml.hover=Movi vian muson super koloron por vidi sian nomon
+
+/friends/edit_do.bml.mrcolor=S-ro Kolor-Vidilo
+
+/friends/edit_do.bml.name=Nomo
+
+/friends/edit_do.bml.needmore=Se vi bezonas aldoni pli da geamikoj ol vi havas ĉelojn en ĉi tiu formo, konservu la ŝanĝojn malsupre, kaj poste revenu por aldoni pluajn.
+
+/friends/edit_do.bml.nofriends.head=Neniuj Geamikoj?
+
+/friends/edit_do.bml.nofriends.text=Vi nun ne havas iujn ajn geamikojn difinitajn. Tamen, ni estas certaj ke vi devas havi kelkajn geamikojn! <tt>:)</tt> Simple enskribu iliajn VivĴurnalajn nomojn malsupre...
+
+/friends/edit_do.bml.opt.addtolist=Aldonu amikon
+
+/friends/edit_do.bml.opt.delete=Ĉu Forigu?
+
+/friends/edit_do.bml.success.head=Sukceso
+
+/friends/edit_do.bml.success.text|staleness=1
+/friends/edit_do.bml.success.text=Viaj geamikoj estas ĝisdatigitaj. Vi povas rigardi vian denove ĝisdatigitan geamikan paĝon <a href="[[url]]">ĉi tie</a>.
+
+/friends/edit_do.bml.textcolor=Teksta Koloro:
+
+/friends/edit_do.bml.title=Redaktu Geamikojn
+
+/friends/edit_do.bml.user=Uzanto
+
+/friends/edit_do.bml.viewer=Kolor-Vidigilo
+
+/friends/edit_do.bml.yourfriends.head=Viaj Geamikoj
+
+/friends/edit_do.bml.yourfriends.text=Vi estas specifinta la jenaj amikoj:
+
+/friends/filter.bml.reset=Malelektu
+
+/friends/filter.bml.select=Elektu grupo(j)n de geamikoj, kiujn vi volus vidi en via listo de amikoj.
+
+/friends/filter.bml.select.header=Elektu grupojn
+
+/friends/filter.bml.submit=Vidu!
+
+/friends/filter.bml.title=Filtro de amikoj
+
+/friends/index.bml.edit.about=Aldonu aŭ forigu uzantojn en via listo de amikoj; aŭ redaktu kolorojn, kiuj reprezentas la amikojn.
+
+/friends/index.bml.editgroups.about=Kreu, redaktu aŭ forigu grupojn de viaj amikoj.
+
+/friends/index.bml.filter.about=Filtru vian liston de amikoj laŭ specifaj grupoj.
+
+/friends/index.bml.title=Iloj por Geamikoj
+
+/friends/index.bml.tools=Iloj
+
+/friends/popwithfriends.bml.account_type=Paronu, sed via kontotipo ne permesas uzadon de tiu ĉi ilo.
+
+/friends/popwithfriends.bml.count=Nombro
+
+/friends/popwithfriends.bml.intro=Vi ne listigas tiujn ĉi amikojn, sed multaj viaj amikoj listigas.
+
+/friends/popwithfriends.bml.no_users=Neniom da uzantoj
+
+/friends/popwithfriends.bml.title=Uzantoj Popularaj Inter Viaj Amikoj
+
+/index.bml.about.header=Pri LiveJournal
+
+/index.bml.about.joining=Aliĝi la retejon ne kostas. Uzantoj povas <a [[aopts1]]>promocii</a> iliajn kontojn por <a [[aopts2]]>pliaj funkcioj</a>.
+
+/index.bml.about.us=LiveJournal estas simple uzebla (sed tre pova kaj individuigebla) ilo por persona eldonado, konstruita sur <a [[aopts]]>libera programaro</a>.
+
+/index.bml.boldcreate=Kreu la propran LiveJournal-on!
+
+/index.bml.frank.image.alt=Franĉjo la kapro, bestsimbolo de LiveJournal
+
+/index.bml.frank.logo=<b><i>"Beeeee"</i>, diras <a href="/site/goat.bml">Franĉjo</a>.</b>
+
+/index.bml.learnmore.header=Deziras lerni pli?
+
+/index.bml.learnmore.text=Bonvolu legi nian <a [[aopts1]]>funkcion resumon</a>. Ĉu konvinkita? <b><a [[aopts2]]>Kreu</a></b> vian propran LiveJournal!
+
+/index.bml.meta.desc=LiveJournal.com estas loko, kie oni povas doni siajn pensojn al la mondo.
+
+/index.bml.meta.keywords=taglibro, rettaglibro, taglibroj, skribo, reta taglibro, interreta taglibro
+
+/index.bml.news.text=La plej freŝaj <a [[aopts]]>retejaj novaĵoj </a> (sole angle, bedaŭrinde):
+
+/index.bml.news.title=Plej Freŝaj Novaĵoj
+
+/index.bml.post=Aktuala Afiŝa Statistikoj
+
+/index.bml.post.hour=Hore
+
+/index.bml.post.latest=Plej Freŝaj Afiŝoj
+
+/index.bml.post.min=Minute:
+
+/interests.bml.add.added.head=Aldonita!
+
+/interests.bml.add.added.text=La intereso estas nun en via listo. 
+
+/interests.bml.add.btn.text=Aldonu [[interest]]
+
+/interests.bml.add.confirm.head=Konfirmu
+
+/interests.bml.add.confirm.text=Por aldoni <b>[[interest]]</b> kiel intereston, klaku la butonon malsupre.
+
+/interests.bml.add.toomany.head=Bedaŭron...
+
+/interests.bml.add.toomany.text=Vi jam difinis [[maxinterests]] interesojn.
+
+/interests.bml.addint=Se vi ankaŭ interesiĝas pri ĝi kaj volas esti aldonita al ĉi tiu listo, <a href="/ interests.bml?mode=add&amp;intid=[[qintid]]">klaku ĉi tie</a>.
+
+/interests.bml.communities.head=Rilataj Komunumoj
+
+/interests.bml.communities.text=La sekvaj komunumoj ankaŭ interesiĝas pri <b>"[[interest]]"</b>.
+
+/interests.bml.count=Komptilo
+
+/interests.bml.error.add.mustlogin=Vi devas esti salutita por aldoni interson tiel.
+
+/interests.bml.error.enmasse.noaccess=Evidentiĝis, ke vi ne havas rajtojn por ŝanĝi agordojn de [[user]]
+
+/interests.bml.error.findsim_do.intnotfound=La intereso ne estis trovata.
+
+/interests.bml.error.nointerests=La elektita uzanto ne ekzistas aŭ ne indikis siajn interesojn.
+
+/interests.bml.findsim.searchwait=<strong>Notu bone:</strong> La serĉo daŭros plurajn sekundojn.  Paciencu.
+
+/interests.bml.findsim_do.account.notallowed=Bedaŭrinde via kontotipo ne permesas vin uzi ĉi tiun ilon.
+
+/interests.bml.findsim_do.magic=Magia<br />Indico
+
+/interests.bml.findsim_do.magic.head=Ĉu Magia Indico...?
+
+/interests.bml.findsim_do.magic.text=Estas komputata por ĉiu uzanto po magia indico, kiu estas pezigo de du faktoroj: la baza nombro de samaj interesoj, kaj kelkaj kromaj poentoj pro interhavi maloftaj interesoj.
+
+/interests.bml.findsim_do.nomatch.head=Neniuj Rezultoj
+
+/interests.bml.findsim_do.nomatch.text=Neniu uzantoj similas al [[user]].
+
+/interests.bml.findsim_do.notdefined=La uzanto [[user]] ne difinis iun ajn interesojn.
+
+/interests.bml.findsim_do.similar.head=Similaj Uzantoj
+
+/interests.bml.findsim_do.similar.text=La jenaj estas la uzantoj plej rilate al [[user]]
+
+/interests.bml.finished.about=Kiam vi finos, presu la butonon "Konservu ŝanĝojn" ĉi-sube:
+
+/interests.bml.finished.header=Ĉu vi finis?
+
+/interests.bml.finished.save_button=Konservu ŝanĝojn
+
+/interests.bml.interest=Intereso
+
+/interests.bml.interested.btn.find=Trovu
+
+/interests.bml.interested.in=Trovu personojn kaj komunumojn, kiuj interesiĝas pri:
+
+/interests.bml.interests.findsim=Trovu uzantojn, kies interesoj similas al interesoj de:
+
+/interests.bml.interests.head=Interesoj
+
+/interests.bml.interests.text=Jen kelkajn amuzaĵojn kiujn vi povas fari kun la interesoj.
+
+/interests.bml.interests.viewpop=Vidu popularajn interesojn
+
+/interests.bml.login.enterinfo=Entajpu vian uzant-nomon kaj pasvorton por redakti viajn interesojn.
+
+/interests.bml.match=[[count]] konformas:
+
+/interests.bml.matches=[[count]] havas:
+
+/interests.bml.morestuff=Pli multe da amuzaĵoj estas trovebla sur la <a href="/interests.bml">interesoj-paĝo</a>.
+
+/interests.bml.nointerests.text=Ĉu neniuj interesoj en via listo? Aldonu kelkajn per tio, ke vi vizitas la <a href="/editinfo.bml">Redaktu Personajn Informojn & Preferigojn</a> paĝon.
+
+/interests.bml.popular.head=Popularaj Interesoj
+
+/interests.bml.popular.text=La jenaj estas la plej popularaj interesoj.
+
+/interests.bml.results.added=La interesoj, kiujn vi elektis, estas sukcese aldonitaj al via listo de interesoj.
+
+/interests.bml.results.both=La elektitaj interesoj estas sukcese aldonitaj al via listo de interesoj, la malelektitaj interesoj estas forigitaj.
+
+/interests.bml.results.deleted=La malelektitaj interesoj estas sukcese forigitaj el via listo de interesoj.
+
+/interests.bml.results.header=Rezultoj
+
+/interests.bml.results.nothing=Vi nenion ŝanĝis
+
+/interests.bml.title=Interesoj
+
+/interests.bml.toomany.body=Estas [[intcount]] homoj kaj/aŭ komunumoj kiuj listas ĉi tion kiel intereso.  Listo ne montriĝos.
+
+/interests.bml.toomany.head=Multegaj egaluloj
+
+/interests.bml.users.head=Interesataj uzantoj
+
+/interests.bml.users.text=La jenaj uzantoj interesiĝas pri <b>[[interest]]</b>.
+
+/invite/index.bml.code=Kodo
+
+/invite/index.bml.error=Eraro
+
+/invite/index.bml.none=Neniu
+
+/invite/index.bml.title=Invitu aliaj al LiveJournal
+
+/invite/index.bml.unused=Neuzitaj
+
+/legal/index.bml.about<<
+LiveJournal estas dediĉita al oferti stabilan kaj multsignifan sperton por ĉiaj membroj el ĉiaj landoj, do ni starigis kelkajn regulojn por provizi ĝin. Niaj dokumentoj enhavas prudentajn kondiĉojn kaj informojn pri kiel ni provos la plej bonan por bonservi vin, kaj kiel membroj devus konduti al ni kaj aliaj, laŭ ni. LiveJournal plej bone funkcias kiam homoj agi laŭ tiuj reguloj. Jen iom da reguloj gravaj kaj rememorindaj:
+<ul>
+<li>Ne atakadu, misuzi aŭ minaci aliajn homojn.</li>
+<li>Ne ia malutili neplenaĝulojn.</li>
+<li>Ne spami la TTT-ejon aŭ iu ajn konton sur la TTT-ejo.</li>
+<li>Ne afiŝu kopirajtan enhavon senpermese.</li>
+<li>Ne entrudiĝu en la privatsfero de aliaj homoj.</li>
+<li>Ne malobeu iel la leĝojn de la Usono aŭ de via ejo.</li>
+</ul>
+La plena listo de reguloj kaj politikoj troveblas malsupre:
+.
+
+/legal/index.bml.about.header=Resumo
+
+/legal/index.bml.docs.coppa.about=La Interreta Privateca Protektado de la Infantoj (COPPA) regulas la retan kolektadon kaj uzadon de personaj informoj de infantoj sub la aĝo de dek tri. Nia COPPA-paĝo klarigas nian vidpunkton sur tiu leĝo, kaj priskribas kiel oni traktas COPPA-problemojn.
+
+/legal/index.bml.docs.header=Dokumentoj
+
+/legal/index.bml.docs.privacy.about=La Privateco priskribas, kiajn informojn de niaj membroj ni kolektas kaj ĝi klarigas kiel ni uzas tiujn informojn.
+
+/legal/index.bml.docs.tos.about=La Servaj Kondiĉoj priskribas nian uzantan politikon, kaj ankaŭ la ĝeneralajn kondiĉojn de la membreco. Membreco kaj/aŭ uzo de la sistemo konsistigas konsenton pri obei la regulojn kaj tute da aliaj akceptitaj kondiĉoj.
+
+/legal/index.bml.title=Leĝaj Informoj
+
+/legal/privacy.bml.title=Privateco
+
+/legal/tos.bml.title=Servaj Kondiĉoj
+
+/login.bml.bindip.label=Bindu kun IP-adreso:
+
+/login.bml.bindip.no=Ne (funkcias per ĉiuj ISP-oj)
+
+/login.bml.bindip.yes=Jes (pli sekura)
+
+/login.bml.error.mustenterusername=Vi devas <a href='/login.bml'>entajpi uzantnomon</a>.
+
+/login.bml.expire.btn.neverexpire=Ŝanĝu finiĝi-modon al NENIAM
+
+/login.bml.expire.btn.sessiononly=Ŝanĝu finiĝi-modon al NUR SESIO
+
+/login.bml.expire.neverexpire.text=Via ensaluto <b>neniam finiĝos</b>, do se vi estas ĉe publika terminalo, en lernejo, librejo aŭ alia loko kie homoj uzos ĉi tiun komputilon baldaŭ, ne forgesu elsaluti post vi finlaboris! Aŭ ŝanĝu vian ensalut-modon por ke ĝi finiĝu kiam vi fermos vian retumilon:
+
+/login.bml.expire.sessiononly.text=Via ensaluto finiĝos post vi fermis vian retumilon. Se ĝi estas via propra komputilo kaj vi estas la sola uzanto, vi eble volas ŝanĝi la finiĝon tian, ke ĝi neniam finiĝas:
+
+/login.bml.links.head=Ligiloj
+
+/login.bml.links.link1=Via <a href='/users/[[username]]/friends'>amikara paĝo</a>.
+
+/login.bml.links.link2=Via <a href='/todo/'>farendaĵa listo</a>.
+
+/login.bml.links.text=Ĉi tiu paĝo iam havos ĉiajn ligilojn kaj gravajn informojn, sed por nun, jen kelkaj lokoj kiujn vi volas eble viziti:
+
+/login.bml.loggedin.head=Ensalutita!
+
+/login.bml.loggedin.text=Vi nun estas ensalutita.
+
+/login.bml.login.btn.changeopts=Ŝanĝu Elektojn
+
+/login.bml.login.btn.login=Ensalutu...
+
+/login.bml.login.expiration=Finiĝo:
+
+/login.bml.login.forget=Forgesis?
+
+/login.bml.login.head=Ensalutu
+
+/login.bml.login.never=Neniam
+
+/login.bml.login.otheropts=Aliaj Elektoj:
+
+/login.bml.login.password=Pasvorto:
+
+/login.bml.login.text1=Por ensaluti al [[sitename]], entajpi vian uzantnomon kaj pasvorton malsupren. <b>Novaj Uzantoj:</b> Por krei konton, <a href='/create.bml'>iru ĉi tien</a>.
+
+/login.bml.login.text2=Vi povas ankaŭ specifi kiam via ensaluto finiĝos. Defaŭlte, via ensaluto finiĝos kiam vi fermos vian retumilon, kiu estas la plej bona por publikaj komputilaj. Tamen, se vi estas la sola uzanto de via komputilo kaj neniu alia ajn rajtas aliri, vi verŝajne elekti resti ensalutita ĉiame.
+
+/login.bml.login.username=Uzantnomo:
+
+/login.bml.login.whenbrowsercloses=Kiam retumilo fermiĝos
+
+/login.bml.logout.btn=Elsalutu
+
+/login.bml.title=Ensalutu
+
+/login.bml.whylogin.benefit1=Vi ne devos enskribi vian uzantnomon/pasvorton ie ajn sur tiu paĝo.
+
+/login.bml.whylogin.benefit2=Vi rajtos vidi "protektitajn" taglibrajn enskribojn el via geamikoj, kiuj donas al vin la permeson de legi ilin.
+
+/login.bml.whylogin.benefit3=Multe da trajtoj nur estas videblaj aŭ atingeblaj kiam vi estas ensalutita.
+
+/login.bml.whylogin.head=Kial Ensaluti?
+
+/login.bml.whylogin.text=Jen iom da la ĉefaj avantaĝoj pri ensaluti:
+
+/logout.bml.already.head=Jam salutita
+
+/logout.bml.already.text=Vi jam estas elsalutita.
+
+/logout.bml.killall.btn=Finigu tute da miajn sesiojn
+
+/logout.bml.killall.head=Aliaj sesioj
+
+/logout.bml.killall.text=Vi havas aliajn aktivajn sesiojn. Ĉu vi volas finigi tute da viajn sesiojn, kaj ne nur tiun ĉi? (Vidu <a href="http:// www.livejournal.com/support/faqbrowse.bml?faqid=159">ĉi tiun OD-on</a> por pli multaj informoj.)
+
+/logout.bml.loggedout.already=Jam elsalutita.
+
+/logout.bml.loggedout.head=Elsalutita
+
+/logout.bml.loggedout.killedall=Tute da viaj sesioj estas forigitaj.
+
+/logout.bml.loggedout.success=Elsalutita.
+
+/logout.bml.loggedout.text=Vi nun estas elsalutita.
+
+/logout.bml.logout.btn=Elsalutu
+
+/logout.bml.logout.head=Ĉu elsalutu?
+
+/logout.bml.logout.text=Klaku la butonon malsupre por elsaluti.
+
+/logout.bml.title=Elsalutu
+
+/lostinfo.bml.btn.proceed=Daŭrigu
+
+/lostinfo.bml.enter_email=Enskribu vian retpoŝtadreson:
+
+/lostinfo.bml.enter_email_optional=Retpoŝtadreso: (nedeviga)
+
+/lostinfo.bml.enter_username=Enskribu vian uzantnomon:
+
+/lostinfo.bml.error.no_email=Vi devas entajpi vian retpoŝtan adreson por rericevi vian uzantnomon.
+
+/lostinfo.bml.lostpassword.text|staleness=1
+/lostinfo.bml.lostpassword.text=Se vi forgesis vian pasvorton, enskribu vian uzantnomon kaj, libervole, la retpoŝtadreson al kiu la pasvorto devas esti sendota. Ne forgesu ke la retpoŝtadreso devas esti unu kiun vi jam uzis ĉe LiveJournal kaj devis konfirmi jam. Se vi lasas la retpoŝtan ĉelon blanka, ĝi estos sendata retpoŝte al via nuna adreso.
+
+/lostinfo.bml.lostpassword.title=Ĉu forgesis vian pasvorton?
+
+/lostinfo.bml.lostusername.text=Se vi forgesis vian uzantnomon, enskribu vian retpoŝtadreson kaj ni sendos al vi vian uzantnomon.
+
+/lostinfo.bml.lostusername.title=Ĉu forgesis vian uzantnomon?
+
+/lostinfo.bml.title=Forgesitaj Informoj
+
+/lostinfo_do.bml.error.no_usernames_for_email=Ne estas uzantnomo(j) por ĉi tiu retpoŝtadreso: [[address]] .
+
+/lostinfo_do.bml.error1.text=Vi neniam uzis ĉi tiun retpoŝtadreson kun ĉi tiu konto, aŭ ĝi neniam estis validigita.
+
+/lostinfo_do.bml.lostpasswordmail.part1|staleness=1
+/lostinfo_do.bml.lostpasswordmail.part1<<
+*** Ĉi tiu estas aŭtomata retpoŝto. Vi ne bezonas respondi al ĝi. ***
+
+Ĉi tiu estas via demandita pasvort-memorigo de [[sitename]].
+Jen via uzantnomo, pasvorto kaj retpoŝtadreso kun kiuj via taglibro estas registrita.
+
+Uzantnomo: [[username]]
+Pasvorto: [[password]]
+Retpoŝtadreso: [[emailadr]]
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=Por validigi vian retpoŝtadreson, iru tien:
+
+/lostinfo_do.bml.lostpasswordmail.part3<<
+Ĉi tiu informo estas petita el la TTT-ejo de [[remoteip]].
+
+Se vi ne petis ke la pasvorto estas sendata al vi, ne paniku. Vi ja kvankam estas la persono kiu vidas la retpoŝton, kaj ne alia persono. Eblas ke la alia uzanto kiu petis, malpravis kaj kredas ke li aŭ ŝi kontrolas ĉi tiun uzantnomon. Ankaŭ estas verŝajne ke iu misskribis la uzantnomon aŭ la adreson.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part4|notes=Site-local text.  For 'en', it's blank.
+/lostinfo_do.bml.lostpasswordmail.part4<<
+Se vi vere kredas ke via konto ne estas sekura, legu
+    http://www.livejournal.com/support/faqbrowse.bml?faqid=117
+por kelkaj informoj pri kiel oni re-sekurigas ĝin.
+.
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Utilaj ligiloj:
+
+  Via LiveJournal:
+    [[journalurl]]
+
+  Ĝisdatigu vian taglibron enrete:
+    [[updateurl]]
+
+Saluton,
+LiveJournal-a Teamo
+
+[[rooturl]]
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Forgesita Pasvorto
+
+/lostinfo_do.bml.password_mailed.text=Sukceso.  Via pasvorto enretpoŝtiĝis.
+
+/lostinfo_do.bml.password_mailed.title=Pasvorto sendita!
+
+/lostinfo_do.bml.title=Forgesitaj Informoj
+
+/lostinfo_do.bml.username_mailed.text=Sukceso.  Via uzantnomo estas enretpoŝtigita.
+
+/lostinfo_do.bml.username_mailed.title=Uzantnomo enretpoŝtigita!
+
+/manage/index.bml.customization.advanced=Altnivela Individuigado
+
+/manage/index.bml.customization.header=Individuigado
+
+/manage/siteopts.bml.btn.lang=Interŝanĝu la lingvon
+
+/manage/siteopts.bml.head.lang=Elektu Vian Lingvon
+
+/manage/siteopts.bml.scheme.preview=[Antaŭrigardo de [[title]] skemo]
+
+/modify.bml.title=Modifu Taglibron
+
+/modify_do.bml.availablestyles.head=Haveblaj Stiloj
+
+/modify_do.bml.availablestyles.userstyles=Uzantaj Stiloj:
+
+/modify_do.bml.colortheme.about=Jen vi povas elekti kiu kolorskemo estos apliki al la aranĝaj elektoj kiuj vi elektas supre. Aŭ se vi ne ŝatas la provizitajn kolorojn, specifu viajn proprajn!
+
+/modify_do.bml.colortheme.area.head=Uzoejo
+
+/modify_do.bml.colortheme.color.head1=Koloro
+
+/modify_do.bml.colortheme.color.head2=(#rrvvbb aŭ nomo)
+
+/modify_do.bml.colortheme.customcolors=Kutimaj Koloroj
+
+/modify_do.bml.colortheme.defaulttheme=Defaŭlta Temo
+
+/modify_do.bml.colortheme.head=Kolor-Temo
+
+/modify_do.bml.domainalias.about=Se vi jam havas domajnan nomon registritan (aŭ registrotan) kaj volas ke ĝi aŭtomate ŝargas vian taglibron, enskribu la domajnan nomon ĉi tie:
+
+/modify_do.bml.domainalias.domainname=Domajna nomo:
+
+/modify_do.bml.domainalias.example=Ekzemplo: <i>mia-taglibro.com</i>
+
+/modify_do.bml.domainalias.head=Domajna Sinonimado
+
+/modify_do.bml.domainalias.helptext|staleness=1
+/modify_do.bml.domainalias.helptext=Por ke tiu funkcias, vi bezonas ŝanĝi la DNS-on de via domajna nomo tiel, ke ĝi montras al la saman IP-adreson de [[sitename]].
+
+/modify_do.bml.done.btn.savechanges=Konservu Ŝanĝojn
+
+/modify_do.bml.done.head=Ĉu finita?
+
+/modify_do.bml.done.text=Se finita, premu la "Konservu Ŝanĝojn" butonon malsupre...
+
+/modify_do.bml.error.dupdomainalias=Alia uzanto jam registris sin mem kaj uzas vian elektitan domajnan sinonimadon.
+
+/modify_do.bml.error.stylenotavailable=Unu de la stiloj, kiujn vi elektis, ne estas havebla. Estas aŭ ĉar iu forigis la stilon, aŭ vi provas elekti iun al kiu vi ne havas rajton.
+
+/modify_do.bml.friends.about=Jen la elektoj kiuj kontroli kiel via geamika paĝo aspektas.
+
+/modify_do.bml.friends.head=Geamika Vido
+
+/modify_do.bml.friends.opt.usesharedpic.about=Tiu elekto kontrolas kiun bildon vi vidas sur via geamika paĝo kiam uzanto afiŝas en partoprenita taglibro aŭ komunumo. Se vi markas ĝin, tiam vi vidas la komunuman piktogramon. Se vi lasas ĝin nemarkita, tiam vi vidas la personan uzant-piktogramon de la afiŝanto.
+
+/modify_do.bml.friends.opt.usesharedpic.head=Uzu partoprenitan taglibran bildon anstataŭ la uzantan bildon de la afiŝanto.
+
+/modify_do.bml.journaloptions.about=Ĉi tie vi povas individuigi la aspekton de via LiveJournal-an paĝon. Se vi vere interesiĝas pri ĉiu funkcias, legu la <a href="/developer/" target="_blank">disvolviĝantajn informojn</a>. Krome, ni supozas ke vi kontentas pri la bazaj elektoj malsupraj:
+
+/modify_do.bml.journaloptions.head=Taglibraj Elektoj
+
+/modify_do.bml.journalstatus.about=Se vi volas forigi aŭ malforigi vian taglibron, vi povas fari ĝin tie. Kiam vi forigis vian taglibron, vi havas 30 tagojn por malforigi ĝin, por la kazo ke vi redecidi. Post 30 tagoj, la taglibro estos eterne forigita kaj ne ekiston eblo por reakiru ĝin.
+
+/modify_do.bml.journalstatus.head=Taglibra Aktiveca Stato
+
+/modify_do.bml.journalstatus.select.activated=Aktivita
+
+/modify_do.bml.journalstatus.select.deleted=Forigita
+
+/modify_do.bml.journalstatus.select.head=Stato:
+
+/modify_do.bml.journalstatus.select.suspended=Provizore Forigita
+
+/modify_do.bml.moodicons.about=Kiam afiŝi taglibrajn enskribojn, vi ankaŭ povas specifi vian laŭtempan humoron. Diversaj uzantoj sendis al ni diversajn humor-piktogramarojn kiujn vi ankaŭ povas uzi. Aŭ elektu "Neniu" kiam vi ne volas iun ajn bildon apud viaj humoroj. (vi ne eĉ devas uzi la Nuna Humoro trajton ajn.)
+
+/modify_do.bml.moodicons.head=Humoraj Piktogramoj
+
+/modify_do.bml.moodicons.opt.forcefriends.about=Fortu ĉi tiun humoran temon por viaj tutaj geamikoj sur via geamikoj paĝo
+
+/modify_do.bml.moodicons.personal=Personaj Temoj:
+
+/modify_do.bml.moodicons.preview=antaŭrigardu
+
+/modify_do.bml.moodicons.select=Elektu humor-piktogramaron:
+
+/modify_do.bml.overrides.about|staleness=1
+/modify_do.bml.overrides.about=Vi povas ignori tiun sekcion. Ĝi estas por optimigi tre specifajn aĵojn pri via paĝa aranĝo. Vizitu la <a href="/ developer/" target=_blank>disvolviĝantan sekcion</A> por detaloj. Ankaŭ ne forgesu ke malvalidigoj estas por malvalidigi nur unu aŭ du aĵojn pri stilon. Se vi viŝas malvalidigi ĉiun, vi bezonas <a href="/styles/create.bml" target=_blank>krei vian propran stilon</a>.
+
+/modify_do.bml.overrides.box.head=Malvalidigoj:
+
+/modify_do.bml.overrides.head=Stil-Malvalidigoj
+
+/modify_do.bml.overrides.note=Bonvolu remarki ke ne ĉiuj la stil-variabloj estas malvalidigeblaj. Vizitu la <a href="/developer/varlist.bml">klarigon</a> por pluaj detaloj.<br />Sciu ankaŭ ke kiam vi klopodas redakti viajn malvalidigojn, kaj vi uzis etikedon kiu ne estas permesita en la ĉapo de la dokumento &ndash; kiel &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt; kaj multaj aliaj etikedojn &ndash; tiu etikedo estos forigata. La solaj HTML-aj elementoj kiuj povas esti uzitaj en la *_HEAD-aj malvalidigoj estas tiuj elementoj kiuj estas validaj en la ĉapo de HTML-dokumentoj. Tiuj ĉi estas limitaj al &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, kaj &lt;meta&gt;.
+
+/modify_do.bml.overrides.warning=ĈI TIO <U>NE</U> ESTAS KIE VI TAJPAS VIAN TAGLIBRON!!
+
+/modify_do.bml.pagelayoutstyle.about=Ŝanĝi ĝin kontrolas kiel via taglibro estos montrita sur la ekrano.
+
+/modify_do.bml.pagelayoutstyle.head=Paĝa Aranĝa Stilo
+
+/modify_do.bml.pagelayoutstyle.warning=Via konto-tipo nur permesas vin elekti inter malmultaj da defaŭltaj stiloj.
+
+/modify_do.bml.success.head=Sukceso
+
+/modify_do.bml.success.text=Viaj taglibraj preferigoj estas ĝisdatigitaj. Vi povas vidi vian taglibron <A HREF="[[url]]">ĉi tie</A>.
+
+/paidaccounts/index.bml.costs.header=Nu, kiom ĝi kostas?
+
+/paidaccounts/index.bml.costs.rates=Jen la ratoj:
+
+/paidaccounts/index.bml.costs.rates.amount.header=Nombro
+
+/paidaccounts/index.bml.costs.rates.inexpensive=Tiu estas iomete pli ol <b>po $2 por monato</b> por la jara plano. Tiom apenaŭ malplenigos vian monujon. La plej enuiga parto verŝajne estos eltiri vian monujon, trovi vian kreditkarton, kaj entajpi viajn informojn.
+
+/paidaccounts/index.bml.costs.rates.time.header=Tempo
+
+/paidaccounts/index.bml.features.header=Do, kiajn bonegajn eblojn mi ricevos?
+
+/paidaccounts/index.bml.title=Pri Pagitaj Kontoj
+
+/paidaccounts/index.bml.whypay.argument=Ne, kompreneble ne. Ni konsentas, ke estas enuige, pagi por TTT-servoj. Tio estas kial preskaŭ la tuta funkciado de LiveJournal estas havebla senkoste. Tamen, se vi estas kontenta pro la provizita servo, montru vian subtenon kaj aĉetu pagitan konton.
+
+/paidaccounts/index.bml.whypay.header=Ĉu vere mi devas pagi por LiveJournal?
+
+/paidaccounts/index.bml.whypay.no_ads=Oni bezonas monon por funkciigi TTT-ejojn (por serviloj, aranĝoj kaj kapacito), kaj tiu ŝajnas kiel pli bona maniero por pagi ol enuigi vin per ŝpruc-reklamiloj kaj spami vin per reklamoj.
+
+/paidaccounts/index.bml.your_username=via_uzantnomo
+
+/paidaccounts/usepaypal.bml.delivery.badformat=Malvalida livera data formato. Devas esti en la formato <i>jjjj-mm-tt</i> aŭ <i>jjjj-mm-tt hh:mm</i>.
+
+/paidaccounts/usepaypal.bml.delivery.past=Livera dato ne povas esti en la estinteco. Por sendi ĝin tuj, lasu la liveran datan ĉelon blanka.
+
+/paidaccounts/usepaypal.bml.delivery.toofuture=Livera dato ne povas esti pli ol unu monato en la futuro.
+
+/pay/index.bml.deliverydate.details=Formato: <i>yyyy-mm-dd hh:mm</i> (GMT-tempo)<br>(enskribu nenion por neprokrastita livero)
+
+/pay/index.bml.deliverydate.label=Livera Dato:
+
+/pay/index.bml.gift.anonymous=Sennoma donaco
+
+/poll/create.bml.button.editpoll=Redaktu Baloton
+
+/poll/create.bml.button.postpoll=Afiŝu Baloton
+
+/poll/create.bml.button.preview=Antaŭrigardu Baloton
+
+/poll/create.bml.error.accttype=Via kontotipo ne permesas ke vi uzas la balot-krea funkcio.
+
+/poll/create.bml.error.parsing=Eraro dum analizo de baloto:
+
+/poll/create.bml.haserrors=Estas unu aŭ pli eraroj en via baloto. Bonvolu rulumi malsupren por pluaj detaloj.
+
+/poll/create.bml.pollname=Balota Nomo: <i>(opt.)</i>
+
+/poll/create.bml.preview.desc=Sube estas antaŭrigardo de via baloto. Ĉi tiu estas precize kiel ĝi aspektas, post kiam ĝi estas afiŝita en via taglibro. Uzu la butonojn sube por reiri kaj redakti ĝin, aŭ afiŝi ĝin en via taglibro.
+
+/poll/create.bml.properties=Balotaj Atributoj
+
+/poll/create.bml.questions=Balotaj Demandoj
+
+/poll/create.bml.title=Balota Kreinto
+
+/poll/create.bml.whoview=Kiu rajtas rigardi ĉi tiun baloton?
+
+/poll/create.bml.whovote=Kiu rajtas baloti en ĉi tiu baloto?
+
+/poll/index.bml.error.cantview=Bedaŭrinde, vi ne rajtas rigardi ĉi tiun baloton.
+
+/poll/index.bml.error.postdeleted=Posedanta afiŝo estas forigita, do baloto ne jam haveblas.
+
+/poll/index.bml.filloutpoll=Plenigu Baloton
+
+/poll/index.bml.gotocreate=Ĉi tiu estas adreso por partopreni en baloto. Vi trovis adreson kiu nuntempe ne faris ion ajn. Se vi deziras, vi povas <a href='create.bml'>krei novan baloton</a>.
+
+/poll/index.bml.pollnotfound=Baloto ne trovita.
+
+/poll/index.bml.submitted.text=Via balotaj respondoj estas konservita.
+
+/poll/index.bml.title=Baloto
+
+/poll/index.bml.viewresults=Rigardu Balotajn Rezultojn
+
+/press/staff.bml.administration=Administrado
+
+/press/staff.bml.administration.about=LiveJournal.com komencis je 1999 kiel projekto de Brad Fitzpatrick, kaj dum la unuaj du vivjaroj, estis subtenata de <a href="/site/contributors.bml">granda kaj lojala voluntara</a>. Dum granda parto de LiveJournal.com estas ankoraŭ kondukata de voluntaraj, ni nun havas malgrandan estro-stabon kiu superrigardas ĉiujn operaciojn:
+
+/press/staff.bml.avva.title=Estro-Disvolviĝanto
+
+/press/staff.bml.back2=Reen al la Gazetara paĝo
+
+/press/staff.bml.bradfitz.quip=Koncentriĝu pri via produkto kaj ne nur pri la enspezado de mono.
+
+/press/staff.bml.bradfitz.title=Prezidanto / Ĉef-Disvolviĝanto
+
+/press/staff.bml.contact=Se vi bezonas kontakti iun da ni, bonvolu skribi retpoŝton al <a href="mailto:webmaster@livejournal.com">webmaster@livejournal.com</a>.
+
+/press/staff.bml.denisep.quip=Mi havos tion por vi venontĵaŭde
+
+/press/staff.bml.denisep.title=Voluntarulaj / Uzeblada Fakulo
+
+/press/staff.bml.jproulx.quip=Geek to User Liaison
+
+/press/staff.bml.jproulx.title=Komunumaj Paĝa Supervidanto / Gazetaraj
+
+/press/staff.bml.lisa.title=Sistem-Administranto
+
+/press/staff.bml.ryanfitz.title=Pago-Servoj
+
+/press/staff.bml.sandy.title=Konteco kaj Administrado
+
+/press/staff.bml.title=Estraro
+
+/press/staff.bml.whitaker.quip=Kio sekvas?
+
+/press/staff.bml.whitaker.title|staleness=1
+/press/staff.bml.whitaker.title=La Praktikanto
+
+/register.bml.error.invalidcode=Malĝusta konfirma kodo.
+
+/register.bml.error.usernotfound=Uzanto ne estis trovita.
+
+/register.bml.new.header=Sukcese
+
+/register.bml.new.update=<a href="/update.bml">Ĝisdatigu la Taglibron</a> -- Skribu en via taglibro.
+
+/register.bml.sent.body=La konfirmiga mesaĝo estis sendita al la adreso <b>[[email]]</b>. Por fini konfirmon de la adreso vi bezonas alklaki ligon, kiun vi trovos en la mesaĝo.
+
+/register.bml.sent.header=Sukcese
+
+/register.bml.title=Konfirmu Retpoŝtan Adreson
+
+/register.bml.trans.body=Via nova retpoŝta adreso estas sukcese konfirmita.
+
+/site/contract.bml.promise.account=Estimi statuson de ĉiu konto
+
+/site/contract.bml.promise.ads=Resti sen reklamo
+
+/site/contract.bml.promise.community=Labori kun la komunumo kaj por la komunumo
+
+/site/goat.bml.image.alt=Franĉjo, la bestsimbolo de LiveJournal.
+
+/site/goat.bml.image.caption=<i>"Beeeee"</i>, diras <a href="/site/goat.bml">Franĉjo</a>.
+
+/site/goat.bml.meet.body=Ĉi tiu estas Franĉjo. Franĉjo estas la bestsimbolon de LiveJournal.com. Li helpas nin kun hazardan <a href="/code/">programadon</a> kiam ni postiĝas, kaj kelkfoje li respondas al demandoj el la <a href="/support/">teknika subteno</a>. Franĉoj vere estas tre multflanka... li eĉ faras la ĝardenlaboron, kelkfoje. Kiam la razeno superkreskas, ni vokas: <i>"Hej, Franĉjo! Estas tempo por lunĉi... manĝu la razenon!"</i>. Vere estas ambaŭflanke profitabla situacio.
+
+/site/goat.bml.meet.header=Renkontiĝu kun Franĉjo
+
+/site/goat.bml.title=Franĉjo la Kapro
+
+/styles/create_do.bml.error.accounttype=Via kontotipo ne permesas ke vi kreas stiloj.
+
+/suggestions/index.bml.howto.title=Kiel mi submetas sugeston?
+
+/suggestions/index.bml.info.title=Alia Informo
+
+/suggestions/index.bml.title=Sugestejo
+
+/suggestions/index.bml.welcome.title=Bonvenon!
+
+/support/encodings.bml.edit.header=Mi ne povas redakti miajn enskribojn en la TTT-eja interfaco!
+
+/support/encodings.bml.edit.text<<
+<?p <b>Mallonga respondo:</b> <i>(farebla kiam vi skribas viajn enskribojn angle)</i>: Iru al via <a href="/editinfo.bml">personaj preferigoj-paĝo</a>. Trovu elekton apud la fundo de la paĝo kun la nomo <b>Aŭtomate konvertu malnovajn enskribojn de:</b>. Elektu "Western European (Windows)" el la tirmenuo kaj konservu viajn preferigojn. Viaj enskriboj nun devus esti redakteblaj. p?>
+
+<?p <b>Longa respondo:</b> Por vi povas redakti ne-unikodan enskribon, LiveJournal devas scii en kiu enkodo ĉi tiu enskribo estas afiŝita. Por uzantoj de la angla lingvo aŭ aliaj okcidenteŭropaj lingvoj, tiu normale estos "Western European (Windows)", kvankam se ĝi ne funkcias bone por citiloj kaj aliaj similaj meta-literoj, provu "Western European (ISO)". Uzantoj skribantaj en aliaj lingvoj devas elekti sian enkodon; se ĝi ne estas en la provizita listo, kontaktu la <a href="/support/">Subtenon</a> kaj klarigu la problemon. p?>
+
+<?p Ne forgesu ke "ne-unikodaj enskriboj" signifas aŭ taglibran enskribon afiŝita antaŭ LiveJournal estis konvertita al unikodo, aŭ novan taglibran enskribon afiŝita lastatempe kun klienta programo kiu ne estas unikodebla. p?>
+.
+
+/support/encodings.bml.editcl.header=Mi ne povas redakti miajn enskribojn en la klienta programo!
+
+/support/encodings.bml.editcl.text=<?p Se ekzistas pli nova versio de via klienta programo kiu subtenas unikodon, promociu. Se ne, vi eblas redakti enskribojn kiuj enhavas nur ASCII-simbolojn (baze la latina alfabeto kaj la kutimaj interpunkcioj). Por afiŝi iajn frenezajn simbolojn aŭ aliajn lingvojn, vi fakte devus resti kun la TTT-interfaco, kiu funkcias tre bone en tuta kazo. p?>
+
+/support/encodings.bml.groups.header=Mi ne povas redakti mian liston de geamikoj kun mia klienta programo!
+
+/support/encodings.bml.groups.text=<?p Tio verŝajne estas ĉar vi havas geamikajn grupojn kun nomoj kiuj ne estas nur ASCII (ekzemple, skribita en ne-latinleteraj lingvoj aŭ enhavanta akcentajn simbolojn). Por sukcesplene labori kun tiaj grupnomoj, vi devus uzi unikodeblan klientilon. Alternative, vi povas renomi viaj grupojn en nur-ASCII-ajn nomojn sur la <a href="/friends/editgroups.bml">grupaj redakti paĝo</a> kaj tiam uzi vian klientilan programon. p?>
+
+/support/encodings.bml.overview.header=Kial estas la tuta aĵo?
+
+/support/encodings.bml.overview.text<<
+<?p LiveJournal uzas unikodon por stori kaj vidigi ĉion:
+teksto de taglibraj enskriboj, komentoj, nomoj kaj personaj informoj... ĉio. Unikodo estas tre fortega standardo por labori kun teksto. Ĝi ekzemple permesas al uzantoj stori kaj enskribi informoj en multaj lingvoj senprokraste. Ĝi subtenas la infrastrukturon de tradukeco kaj funkciteno de uzantinterfacon en lingvoj krom la anglan. p?>
+
+<?p Taglibraj enskriboj kaj komentoj kiuj estis storita antaŭ LiveJournal estis ŝanĝita al unikodo devas esti konverti al unikode tuj por la uzanto eblas vidi aŭ redakti ilin. Ĉi tiu paĝo klarigas kiel oni traktas iom da tiaj problemoj kutimaj. p?>
+.
+
+/support/encodings.bml.still.header=Ĉu ankoraŭ perpleksa?
+
+/support/encodings.bml.still.text=<?p Vi povas provi starigi vian demandon en la <a href="/support/">Subtenejo</a>. p?>
+
+/support/encodings.bml.title=Kodoprezento
+
+/support/faqbrowse.bml.backfaq=Reen al <a href="faq.bml">la OD</a>
+
+/support/faqbrowse.bml.backsupport=Reen al <a href="./">la helpejo</a>
+
+/support/faqbrowse.bml.error.nofaq=La specifita OD ne ekzistas.
+
+/support/faqbrowse.bml.lastupdated=Laste Ĝisdatiĝita:
+
+/support/faqbrowse.bml.title_cat=OD - [[catname]]
+
+/support/faqbrowse.bml.title_num=OD Demando #[[num]]
+
+/support/see_overrides.bml.error.noprivs|staleness=1
+/support/see_overrides.bml.error.noprivs=Nur uzantoj kun la subtenvido-interna aŭ subtenhelpa privilegio povas vidi la malvalidigojn de aliaj uzantoj.
+
+/support/see_overrides.bml.error.nos1=Ĉi tiu uzanto ne uzas S1.
+
+/support/see_overrides.bml.header=Malvalidigoj por <?ljuser [[user]] ljuser?>:
+
+/support/see_overrides.bml.nooverrides=Neniuj malvalidigoj troveblaj por <?ljuser [[user]] ljuser?>.
+
+/support/see_overrides.bml.title=Uzantaj Malvalidigoj
+
+/talkmulti.bml.deleted.body=La komentoj estas forigitaj. Vi povas legi la reston de la fadeno <a href="[[link]]">ĉi tie</a>.
+
+/talkmulti.bml.deleted.title=Komentoj forigitaj
+
+/talkmulti.bml.error.comms_deleted=Unu de la komentoj estas forigita ekde vi selektis ĝin. Por sekurecaj kaŭzoj, bonvolu iri reen kaj reprovu.
+
+/talkmulti.bml.error.inconsistent_data=La provizita datumo estas nekonsekvenca.
+
+/talkmulti.bml.error.invalid=Malvalidaj parametroj specifitaj.
+
+/talkmulti.bml.error.invalid_mode=Vi ne elektis unu de la agadoj. Bonvolu iri reen kaj elektu se vi volas kaŝi, malkaŝi aŭ forigi la komentojn.
+
+/talkmulti.bml.error.login=Vi ne estas salutita.
+
+/talkmulti.bml.error.none_selected=Vi ne selektis iujn ajn komentojn.
+
+/talkmulti.bml.error.privs.delete=Vi ne estas permesita forigi tiujn komentojn.
+
+/talkmulti.bml.error.privs.screen=Vi ne estas permesita kaŝi tiujn komentojn.
+
+/talkmulti.bml.error.privs.unscreen=Vi ne estas permesita malkaŝi tiujn komentojn.
+
+/talkmulti.bml.screened.body=La komentoj estas kaŝitaj. Vi povas vidi ilin <a href="[[link]]">ĉi tie</a>.
+
+/talkmulti.bml.screened.title=Komentoj kaŝitaj
+
+/talkmulti.bml.title.delete=Forigu Multoblajn Komentojn
+
+/talkmulti.bml.title.screen=Kaŝu Multoblajn Komentojn
+
+/talkmulti.bml.title.unscreen=Malkaŝu Multoblajn Komentojn
+
+/talkmulti.bml.unscreened.body=La komentoj estas malkaŝitaj. Vi povas vidi ilin <a href="[[link]]">ĉi tie</a>
+
+/talkmulti.bml.unscreened.title=Komentoj malkaŝitaj
+
+/talkpost.bml.allowedhtml=Permesata HTML
+
+/talkpost.bml.error.cannotreplynopost=Vi ne povas respondi al neekzistanta mesaĝo
+
+/talkpost.bml.error.nocommentsjournal=La uzanto malebligis komentojn en sia taglibro.
+
+/talkpost.bml.error.nocommentspost=La uzanto malebligis komentojn por ĉi tiu rakonto.
+
+/talkpost.bml.error.noreplypost=Mesaĝo al kiu vi respondas, ne trovitas (forigita?)
+
+/talkpost.bml.error.noreply_screened=Ĉi tiu komento estas kaŝita kaj vi ne estas permesita vidi ĝin aŭ respondi al ĝi.
+
+/talkpost.bml.label.picturetouse=Uzu la <a href='/allpics.bml?user=[[username]]'>bildon</a>:
+
+/talkpost.bml.loganonip=<b>Notu!</b> Ĉi tiu uzanto ŝaltis la opcion kiu registras IP-adresojn de sennomaj respondantoj.
+
+/talkpost.bml.loginq=Ĉu ensalutu?
+
+/talkpost.bml.logyourip=<b>Notu!</b> Ĉi tiu uzanto ŝaltis la opcion kiu registras vian IP-adreson kiam vi respondas.
+
+/talkpost.bml.nosubjecthtml=HTML ne permesatas en la subjekto
+
+/talkpost.bml.opt.anonymous=Sennoma
+
+/talkpost.bml.opt.defpic=(la defaŭlta)
+
+/talkpost.bml.opt.friendsonly=- ĉi tiu uzanto malebligis la anoniman kaj ne-geamikan afiŝadon.  Vi rajtas afiŝi ĉi tie se [[username]] listas vin kiel amik(in)o.
+
+/talkpost.bml.opt.from=De:
+
+/talkpost.bml.opt.ljuser=LiveJournal uzanto:
+
+/talkpost.bml.opt.loggedin=<b>Salutita uzanto:</b> [[username]]
+
+/talkpost.bml.opt.message=Mesaĝo:
+
+/talkpost.bml.opt.noanonpost=- ĉi tiu uzanto malebligis la sennoman komentadon.
+
+/talkpost.bml.opt.noautoformat=Ne aŭtomate formatu:
+
+/talkpost.bml.opt.noimage=Neniu Bildo
+
+/talkpost.bml.opt.preview=Antaŭrigardu
+
+/talkpost.bml.opt.spellcheck=Literumile kontrolu enskribon antaŭ afiŝi
+
+/talkpost.bml.opt.subject=Subjekto:
+
+/talkpost.bml.opt.submit=Afiŝu Komenton
+
+/talkpost.bml.opt.willscreen=(estas kaŝota)
+
+/talkpost.bml.opt.willscreenfriend=(estas kaŝota se ne amika)
+
+/talkpost.bml.paraformat=Paragrafoj defaŭlte estos aŭtomate formatita.
+
+/talkpost.bml.postresponse=Afiŝu komenton responde:
+
+/talkpost.bml.title=Afiŝu Komenton
+
+/talkpost.bml.usermismatch<<
+Vi enskribis uzantnomon, sed vi malelektis la 'LiveJournal-a uzanto' elekton.
+
+Bonvolu aŭ blanki la uzanto-ĉelon aŭ elekti la ĝustan afiŝmodon kaj reprovu.
+.
+
+/talkpost.bml.warnscreened=<b>Rimarku:</b> Ĉi tiu komento estas kaŝita. Respondi al ĝi aŭtomate malkaŝigos kaj videbligos ĝin.
+
+/talkpost_do.bml.error.badpassword=Malĝusta pasvorto por tiu uzantnomo.  Vi povas remalkovri vian pasvorton <a href='/lostinfo.bml'>ĉi tie</a> se vi forgesis ĝin.
+
+/talkpost_do.bml.error.badusername=La LiveJournal-an uzantnomon kiun vi elektis ne ekzistas.  Vi povas rehavigi vian uzantnomon <a href='/lostinfo.bml'>ĉi tie</a> se vi forgesis ĝin, aŭ vi simple povas afiŝi kiel "sennoma."
+
+/talkpost_do.bml.error.banned=Vi ne rajtas afiŝi en la taglibro de ĉi tiu uzanto.
+
+/talkpost_do.bml.error.blankmessage=Via mesaĝo malplenis.  Bonvolu tajpi ion en la mesaĝa kampo.
+
+/talkpost_do.bml.error.confused_identity=Vi entajpis uzantnomon, sed elektis afiŝi sennome aŭ kiel la nuna uzanto.  Iru reen kaj elektu kiun vi vere volas fari.
+
+/talkpost_do.bml.error.deleted=Via taglibro estas forigita. Vi ne povas afiŝi mesaĝojn.
+
+/talkpost_do.bml.error.friendsonly=Nur geamikoj de [[user]] rajtas afiŝi ĉe tiu ĉi taglibro.
+
+/talkpost_do.bml.error.lostcookie=Via ensalut-kuketo ŝajnas malaperinta, ĉu ne?
+
+/talkpost_do.bml.error.manybytes=Pardonu, sed via komento de [[current]] superas la maksimuman bajtlongecon de [[limit]]. Bonvolu iri reen, malplilongigi ĝin kaj provi reposti ĝin ankoraŭfoje.
+
+/talkpost_do.bml.error.manychars=Pardonu, sed via komento de [[current]] signoj superas la maksimuman signolongecon de [[limit]]. Bonvolu iri reen, malplilongigi ĝin kaj provi reposti ĝin ankoraŭfoje.
+
+/talkpost_do.bml.error.mustlogin=Vi devas esti ensalutita aŭ uzi uzantnomon/pasvorton por respondi al ĉi tiu protektita enskribo.
+
+/talkpost_do.bml.error.noanon=Vi ne rajtas sennome afiŝi en la taglibro de ĉi tiu homo.
+
+/talkpost_do.bml.error.noauth=Vi ne estas aŭtorizatita respondi al ĉi tiu protektita enskribo.
+
+/talkpost_do.bml.error.nocomments=La uzanto malebligis komentadon pri ĉi tiu taglibra enskribo.
+
+/talkpost_do.bml.error.noparent=Ne povas respondi al ne-ekzista komento.
+
+/talkpost_do.bml.error.notafriend=Pardonu, uzanto <b>[[user]]</b> ne listigas vin kiel amikon, kaj li/ŝi elektis la "nur geamikoj" elekton por kiu povas respondi al sia taglibro.
+
+/talkpost_do.bml.error.nousername=Vi ne enskribis vian LiveJournal-an uzantnomon. Vi eblas afiŝi "sennome" se vi ne havas LiveJournal-an uzantkonton.
+
+/talkpost_do.bml.error.noverify|staleness=1
+/talkpost_do.bml.error.noverify=Pardonu, vi ne estas permesita afiŝi komentojn en la taglibroj de aliaj homoj, ĝis via retpoŝtadreso estas kontrolita. Se vi venkiĝis la konfirm-retpoŝtmesaĝon por ĝi, vi povas havi ĝin resendita de la <a href='/lostinfo.bml'>venkiĝi-informoj-paĝo</a>.
+
+/talkpost_do.bml.error.postshared=Vi ne rajtas afiŝi kiel partoprenita aŭ komunuma konto. Partoprenitaj kontoj reprezentas grupojn, ne individuojn.
+
+/talkpost_do.bml.error.screened=Vi ne estas permesita respondi al ĉi tiu kaŝita komento.
+
+/talkpost_do.bml.error.suspended=Via taglibro estis provizore forigita.  Vi ne povas afiŝi mesaĝojn.
+
+/talkpost_do.bml.error.testacct=Oni nur povas uzi provajn kontojn en provaj taglibroj.
+
+/talkpost_do.bml.opt.preview=Antaŭrigardu
+
+/talkpost_do.bml.preview=Jen kiel via mesaĝo aperos.  Per la malsupra formularo, vi povas pluredakti vian komenton, aŭ vi povas nun aldoni ĝin.
+
+/talkpost_do.bml.preview.subject=<b>Subjekto: </b>
+
+/talkpost_do.bml.preview.submit=Konservu
+
+/talkpost_do.bml.preview.title=Antaŭrigardu
+
+/talkpost_do.bml.success.loggedin=Vi nun estas ensalutita.
+
+/talkpost_do.bml.success.message=Via komento afiŝiĝis.  Vi povas rigardi ĝin <a href="[[link]]">ĉi tie</a>.
+
+/talkpost_do.bml.success.screened.comm=Via komento afiŝiĝis. Laŭ la preferigoj de ĉi tiu komunumo, ĝi estas kaŝita kaj nur estos videbla por vi kaj la prizorgantoj de la komunumo ĝis ili volas malkaŝi ĝin. Vi povas vidi vian komenton <a href="[[link]]">ĉi tie</a>.
+
+/talkpost_do.bml.success.screened.user=Via komento afiŝiĝis. Laŭ la taglibraj preferigoj, ĝi estas kaŝita kaj nur estos videbla por vi kaj la proprulo de ĉi tiu taglibro ĝis li/ŝi volas malkaŝi ĝin. Vi povas vidi vian komenton <a href="[[link]]">ĉi tie</a>.
+
+/talkpost_do.bml.success.screened.user.anon=Via komento sennoma estas afiŝita. Laŭ la preferigoj de la taglibro, ĝi estas kaŝita, kaj aperos nur al la taglibra proprulo, ĝis ri malkaŝos ĝin. Vi povas reiri al la komenta fadeno <a href="[[link]]">ĉi tie</a>.
+
+/talkpost_do.bml.success.title=Sukceso
+
+/talkpost_do.bml.success.unscreened=Cetere, la kaŝita komento, al kiu vi respondis, nun estas malkaŝita kaj videbla.
+
+/talkpost_do.bml.title=Komento Afiŝiĝis
+
+/talkpost_do.bml.title.preview=Komenta Antaŭrigardo
+
+/talkread.bml.anonuser=<i>(Sennoma)</i>
+
+/talkread.bml.confirm.action=Ĉu vi certas ke vi viŝas forigi la elektitajn komentojn?
+
+/talkread.bml.deletedpost=<b>(Forigita mesaĝo)</b>
+
+/talkread.bml.deleteduser=<i>(Forigita uzanto: [[username]])</i>
+
+/talkread.bml.fromip=(el [[ip]])
+
+/talkread.bml.noreplies=Neniuj respondoj
+
+/talkread.bml.nosubject=(neniu subjekto)
+
+/talkread.bml.replysuspended=<b>(Respondo de provizore forigita uzanto)</b>
+
+/talkread.bml.screenedpost=<b>(Kaŝita Afiŝo)</b>
+
+/talkread.bml.select=Elektu
+
+/talkread.bml.subjectdeleted=[forigita]
+
+/talkread.bml.talkmulti.delete=Forigu
+
+/talkread.bml.talkmulti.des=<b>Amasagado</b> por elektitaj komentoj:
+
+/talkread.bml.talkmulti.screen=Kaŝu
+
+/talkread.bml.talkmulti.submit=Agu
+
+/talkread.bml.talkmulti.unscreen=Malkaŝu
+
+/talkread.bml.title=Legu Komentojn
+
+/talkscreen.bml.error.login=Vi devas esti ensalutita por labori kun kaŝitaj komentoj.
+
+/talkscreen.bml.error.privs.screen=Vi ne rajtas kaŝi ĉi tiun komenton.
+
+/talkscreen.bml.error.privs.unscreen=Vi ne rajtas malkaŝi ĉi tiun komenton.
+
+/talkscreen.bml.screen.doit=Jes, kaŝu ĉi tiun komenton
+
+/talkscreen.bml.screen.sure.body=Ĉu vi certas ke vi volas kaŝi ĉi tiun komenton?
+
+/talkscreen.bml.screen.sure.title=Ĉu kaŝu ĉi tiun komenton?
+
+/talkscreen.bml.screened.body|staleness=1
+/talkscreen.bml.screened.body=La komento estas kaŝita.
+
+/talkscreen.bml.screened.title=Sukceso
+
+/talkscreen.bml.title=Kaŝita Komento
+
+/talkscreen.bml.unscreen.doit=Jes, malkaŝu ĉi tiun komenton
+
+/talkscreen.bml.unscreen.sure.body=Ĉu vi certas ke vi volas malkaŝi ĉi tiun komenton?
+
+/talkscreen.bml.unscreen.sure.title=Ĉu kaŝu ĉi tiun komenton?
+
+/talkscreen.bml.unscreened.body|staleness=1
+/talkscreen.bml.unscreened.body=La komento estas malkaŝita.
+
+/talkscreen.bml.unscreened.title=Sukceso
+
+/tools/memadd.bml.add_previous<<
+<?h1 Aldoni al memorindaj afiŝoj... h1?> 
+<?p Por aldoni la taglibran enskribon kiun vi ĵus vidis al la "memoroj", plenigu la formularon malsupre. p?>
+.
+
+/tools/memadd.bml.body.added.body=Via listo de memorindaj afiŝoj estas ĝisdatigita.
+
+/tools/memadd.bml.body.added.header=Sukceso
+
+/tools/memadd.bml.description=Priskribo:
+
+/tools/memadd.bml.description.text<<
+Donu al ĉi tiu taglibra enskribo priskribon per kiu vi povas rememorigi ĝin.
+Por forigi ĉi tiun enskribon el la listo de memorindaj afiŝoj, enskribu blankan priskribon.
+.
+
+/tools/memadd.bml.error.deleted.body=La taglibra enskribo antaŭe priskribis kiel "[[desc]]" estas elprenita el via listo de memorindaj afiŝoj.
+
+/tools/memadd.bml.error.deleted.title=Memoro forigita
+
+/tools/memadd.bml.error.entry_deleted=Taglibra enskribo ne plue ekzistas. Memoro forigita.
+
+/tools/memadd.bml.error.fivekeywords=Nur 5 kapvortoj/kategorioj estas permesitaj per memorinda afiŝo.
+
+/tools/memadd.bml.error.invalid_security=Malvalida aŭ venka sekureca elekto.
+
+/tools/memadd.bml.error.login=Vi devas esti <a href="/login.bml?ret=1">ensalutita</a> por uzi ĉi tiun trajton. Ensalutu kaj vi estas reportita ĉi tien.
+
+/tools/memadd.bml.error.maxsize=Ĉi tiu kapvorto superas la maksimuman permesatan grandecon: "[[keyword]]"
+
+/tools/memadd.bml.error.nodescription.body<<
+Por aldoni taglibran enskribon al via listo de memorindaj afiŝoj, vi bezonas provizi priskribon.
+Por forigi memoron, vi povas redakti ĝin kaj elpreni la priskribon, sed vi ne jam havis ĉi tiun enskribon en viaj memoroj.
+.
+
+/tools/memadd.bml.error.nodescription.title=Neniu priskribo
+
+/tools/memadd.bml.form.reset=Reŝargu
+
+/tools/memadd.bml.form.submit=Konservu
+
+/tools/memadd.bml.keywords=Kapvortoj:
+
+/tools/memadd.bml.keywords.example=Ekzemple: <B>Amuza, Intelekta, Ama</B>
+
+/tools/memadd.bml.keywords.select=Aŭ, vi povas elekti ankaŭ kapvortojn, kiujn vi uzis antaŭe:
+
+/tools/memadd.bml.keywords.text=Kial ĉi tiu afiŝo memorindas? Enskribu ĝis kvin kapvortojn aŭ kategoriojn, apartigatajn per komoj, por ke vi povos retrovi ĝin poste.
+
+/tools/memadd.bml.login.enterinfo=Enskribu uzantnomon kaj pasvorton de la konto en kiun vi volas konservi la memoron.
+
+/tools/memadd.bml.login.forgot.header=Ĉu forgesis iun?
+
+/tools/memadd.bml.login.forgot.recover=Se vi forgesis vian uzantnomon aŭ pasvorton, <a href='lostinfo.bml'>reakiru ĝin ĉi tie!</a>.
+
+/tools/memadd.bml.multiple_selections=Tenu 'Ctrl' dum klaki kapvortojn por elekti multajn.
+
+/tools/memadd.bml.security.friendsonly=Nur Geamikoj
+
+/tools/memadd.bml.security.private=Privata
+
+/tools/memadd.bml.security.public=Publika
+
+/tools/memadd.bml.title=Aldonu al Memoroj
+
+/tools/memadd.bml.title.added=Aldonita
+
+/tools/memadd.bml.title.deleted=Forigita
+
+/tools/memadd.bml.title.edit_memory=Redaktu Memorindan Enskribon
+
+/tools/memadd.bml.whocansee<<
+Kiu rajtas vidi ke ĉi tiu afiŝo memorindas?
+Ĉu ĉiu, ĉu nur homoj kiujn vi listas kiel geamikoj, aŭ ĉu nur vi?
+
+.
+
+/tools/memories.bml.back=Reen
+
+/tools/memories.bml.body.keyword<<
+<?h1 [[keyword]] h1?> 
+<?p La sekvanta estas listo de "[[keyword]]"-aj taglibraj enskriboj kiujn uzanto <b>[[user]]</b> trovis memorindaj. p?>
+.
+
+/tools/memories.bml.body.list_categories<<
+<?h1 Memorindaj Afiŝoj h1?> 
+<?p La sekvanta estas listo de kategorioj en kiu <b>[[user]]</b> aldonis memorindajn afiŝojn. p?>
+.
+
+/tools/memories.bml.body.memorable=La sekvanta estas listo de ne-kategoritaj taglibraj enskriboj kiujn la uzanto <b>[[user]]</b> trovis memorindaj.
+
+/tools/memories.bml.edit=redaktu
+
+/tools/memories.bml.error.noentries.body<<
+Tiu povus esti ĉar: </ol>
+<li>la uzanto ne definis iun ajn memorindajn afiŝojn,</li>
+<li>la memorindaj afiŝoj de la uzanto estas protektitaj kaj vi ne havas permeson vidi ilin, aŭ</li>
+<li>la uzanto ne havas memorindajn afiŝojn kiuj konformas viajn filtrilkriterioj.</li></ol>
+.
+
+/tools/memories.bml.error.noentries.title=Neniuj memoroj trovitas.
+
+/tools/memories.bml.filter.all=Ĉiuj memoroj
+
+/tools/memories.bml.filter.other=Nur aliaj enskriboj
+
+/tools/memories.bml.filter.own=Nur enskriboj de '[[user]]' 
+
+/tools/memories.bml.form.switch=Ŝanĝu
+
+/tools/memories.bml.title.keyword=Memorindaj [[keyword]]-aj Afiŝoj
+
+/tools/memories.bml.title.memorable=Memorindaj Afiŝoj
+
+/tools/memories.bml.uncategorized=Senkategoriaj
+
+/update.bml.altpost=Taglibro por enskribi:
+
+/update.bml.btn.preview=Antaŭrigardu
+
+/update.bml.btn.update=Ĝisdatigu la Taglibron
+
+/update.bml.currmood=Nuna <a href="/moodlist.bml">Humoro</a>:
+
+/update.bml.currmusic=Nuna Muziko:
+
+/update.bml.date=Dato:
+
+/update.bml.default=defaŭlta
+
+/update.bml.defaultjournal=([[user]]) -- defaŭlta
+
+/update.bml.error.login=Eraro pri ensalutado:
+
+/update.bml.error.update=Eraro pri ĝisdatigado de taglibro:
+
+/update.bml.event=Evento:
+
+/update.bml.full=Plena Ĝisdatiga Paĝo
+
+/update.bml.localtime=Loka horo:
+
+/update.bml.loggingin=Ensalutanta al la servilo...
+
+/update.bml.noneother=Neniu, aŭ alia:
+
+/update.bml.note|staleness=1
+/update.bml.note=<b>Rimarku:</b> La tempo/dato supre estas de nia servilo. Korektu ilin laŭ via horzono antaŭ afiŝi.
+
+/update.bml.opt.backdate=Antaŭdatigu Enskribo:
+
+/update.bml.opt.backdate.about=ne montriĝos ĉe geamika vidaĵo
+
+/update.bml.opt.defpic=(defaŭlta)
+
+/update.bml.opt.nocomments=Malpermesu komentojn:
+
+/update.bml.opt.noemail=Ne enretpoŝtigu komentojn:
+
+/update.bml.opt.noformat=Ne aŭtomate formatu:
+
+/update.bml.opt.spellcheck=Kontrolu literumadon de enskribo antaŭ ol afiŝi [utila nur kun la angla?]
+
+/update.bml.options=Nedevigaj Preferigoj
+
+/update.bml.other=Alia:
+
+/update.bml.picture=Uzu la <a href="[[url]]">bildon</a>:
+
+/update.bml.preview.header=Antaŭrigardo
+
+/update.bml.security.custom=Aparta...
+
+/update.bml.security.friends=Geamikoj
+
+/update.bml.security.head=Sekureca Nivelo:
+
+/update.bml.security.private=Privata
+
+/update.bml.security.public=Publika
+
+/update.bml.servermsg=Ankaŭ, la servilo havas mesaĝon por vi:
+
+/update.bml.simple=Vi rigardas la simplan paĝon.  Por pli da elektoj, <a href="[[url]]">iru ĉi tien</a>.
+
+/update.bml.spellchecked=Via literuma-kontrolita afiŝo:
+
+/update.bml.subject=<b>Subjekto:</b> <i>(nedeviga)</i>
+
+/update.bml.timeformat=24-hora tempo
+
+/update.bml.title=Ĝisdatigu la Taglibron
+
+/update.bml.title.readonly=Nur-lega modalo
+
+/update.bml.update.head=Ĝisdatigu Vian Taglibron...
+
+/update.bml.update.success=La ĝisdatigo sukcesis.  Vi povas vidi vian ĝisdatigitan taglibron <a href="[[uri]]">ĉi tie</a>.
+
+/update.bml.updating=Ĝisdatigata la taglibro...
+
+/uploadpic.bml.error.unsupportedtype=Dosieroj de la tipo [[filetype]] ne estas subtenata. Vi povas alŝuti sole GIF-ajn, PNG-ajn, aŭ JPG-ajn dosierojn. Preskaŭ ĉiuj el bildaj/fotaj programoj povas konverti al tiuj formatoj.
+
+/userinfo.bml.about.comm=Pri
+
+/userinfo.bml.about.user=Historieto:
+
+/userinfo.bml.body.leave=Vi eblas <a href="/community/leave.bml?comm=[[commname]]">forlasi la komunumon</a> iam kiam vi volas.
+
+/userinfo.bml.comminfo.body=Ĉi-sube estas informoj pri la  "[[commname]]" -komunumo en LiveJournal.
+
+/userinfo.bml.comminfo.name=Komunuminformoj
+
+/userinfo.bml.date.never=<em>Neniam.</em>
+
+/userinfo.bml.error.malfname|staleness=1
+/userinfo.bml.error.malfname=La uzantnomo misformiĝis.
+
+/userinfo.bml.error.notloggedin=Se vi deziras vidi vian uzantprofilon, vi devas <a href='/login.bml?ret=1'>ensalutiĝi</a>.
+
+/userinfo.bml.friendof.comm|staleness=2
+/userinfo.bml.friendof.comm=Observata de:
+
+/userinfo.bml.friendof.hidden=(kaŝata(j))
+
+/userinfo.bml.friendof.syndreadcount=Numero de Legantoj
+
+/userinfo.bml.friendof.user|staleness=2
+/userinfo.bml.friendof.user=Amik(in)o de:
+
+/userinfo.bml.friends.comm=Membroj
+
+/userinfo.bml.friends.user|staleness=2
+/userinfo.bml.friends.user=Amikoj
+
+/userinfo.bml.label.addbuddy=Aldonu Uzanton
+
+/userinfo.bml.label.adduser=Aldonu Uzanton
+
+/userinfo.bml.label.aolim=AOL-Nomo: 
+
+/userinfo.bml.label.birthdate=Naskiĝtago:
+
+/userinfo.bml.label.clientsused=Uzataj <a href="[[siteroot]]/download/">klientiloj</a>:
+
+/userinfo.bml.label.comments=Komentoj:
+
+/userinfo.bml.label.composted=<b>Afiŝita:</b> [[num]] -
+
+/userinfo.bml.label.comreceived=<b>Ricevita:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Kiam kreita:
+
+/userinfo.bml.label.dateupdated=Kiam ĝisdatigita:
+
+/userinfo.bml.label.email|staleness=1
+/userinfo.bml.label.email=Retpoŝtadreso:
+
+/userinfo.bml.label.icquin=ICQ-Numero:
+
+/userinfo.bml.label.interests=Interesoj
+
+/userinfo.bml.label.interests.modifyyours=Ŝanĝu&nbsp;la&nbsp;via
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] interesoj ne montrataj</b>
+
+/userinfo.bml.label.journalentrs=Taglibraj enskriboj:
+
+/userinfo.bml.label.location=Loko:
+
+/userinfo.bml.label.memberof=Membro de
+
+/userinfo.bml.label.memories=Memoroj
+
+/userinfo.bml.label.moredetails=(pli da detaloj...)
+
+/userinfo.bml.label.msnusername=MSN-Uzantnomo:
+
+/userinfo.bml.label.name=Nomo:
+
+/userinfo.bml.label.nofriends=<i>Neniuj listigitaj.</i>
+
+/userinfo.bml.label.reqfinduser=Nur uzantoj kun 'finduser'-privilegio rajtas serĉi uzantojn per uzanta ID.
+
+/userinfo.bml.label.sendmessage=Sendu Mesaĝon
+
+/userinfo.bml.label.shared=Afiŝi-Rajto:
+
+/userinfo.bml.label.supportpoints=Subteni-Punktoj
+
+/userinfo.bml.label.syndicatedfrom=Sindikatita de:
+
+/userinfo.bml.label.syndicatedstatus=Sindikateca Stato:
+
+/userinfo.bml.label.textmessage=<nobr>Teksta<br>Mesaĝo</nobr>:
+
+/userinfo.bml.label.todo=Farendaĵa Listo
+
+/userinfo.bml.label.user=Uzanto:
+
+/userinfo.bml.label.viewfriends=Vidu Geamikojn
+
+/userinfo.bml.label.viewmembers=Vidu Membrojn
+
+/userinfo.bml.label.website=TTT-ejo:
+
+/userinfo.bml.label.yahooid=Yahoo!-ID:
+
+/userinfo.bml.membership.body=Por kuniĝi en ĉi tiun komunumon, <a href="/community/join.bml?comm=[[commname]]">klaku ĉi tien</a>.
+
+/userinfo.bml.memories.entries=[[count]] enskriboj
+
+/userinfo.bml.memories.entry=[[count]] enskribo
+
+/userinfo.bml.monitor.comm=Observu Komunumon
+
+/userinfo.bml.monitor.user=Aldonu ĉi tiun uzanton al via listo de geamikoj
+
+/userinfo.bml.nonexist.body=La uzantnomo <b>[[user]]</b> ne troveblas inter la registritaj.
+
+/userinfo.bml.nonexist.name=Nekonata uzanto
+
+/userinfo.bml.sendmessage.body=<a href="[[link]]">Sendu <b>[[user]]</b> tekstan mesaĝon</a><br />al lia/ŝia kunportebla telefono/tekstmesaĝilo.
+
+/userinfo.bml.syn.last.never=Neniam
+
+/userinfo.bml.syn.lastcheck=Lastatempe kontrolita:
+
+/userinfo.bml.syn.nextcheck=Sekvanta kontrolota:
+
+/userinfo.bml.syn.parseerror=Erarmesaĝo:
+
+/userinfo.bml.syndinfo.body=Se vi volas ke artikuloj de la sindikatita TTT-ejo aperas sur via geamika paĝo, vi povas <a href="[[addtofriends]]">aldoni tiun taglibron al via geamika paĝo</a>.
+
+/userinfo.bml.syndinfo.name=Sindikata Taglibro
+
+/userinfo.bml.tellafriend=Informu Amikon!
+
+/userinfo.bml.timeupdate.dayago=antaŭ 1 tago
+
+/userinfo.bml.timeupdate.daysago=antaŭ [[num]] tagoj
+
+/userinfo.bml.timeupdate.hourago=antaŭ 1 horo
+
+/userinfo.bml.timeupdate.hoursago=antaŭ [[num]] horoj
+
+/userinfo.bml.timeupdate.minuteago=antaŭ 1 minuto
+
+/userinfo.bml.timeupdate.minutesago=antaŭ [[num]] minutoj
+
+/userinfo.bml.timeupdate.secondago=antaŭ 1 sekundo
+
+/userinfo.bml.timeupdate.secondsago=antaŭ [[num]] sekundoj
+
+/userinfo.bml.timeupdate.weekago=antaŭ 1 semajno
+
+/userinfo.bml.timeupdate.weeksago=antaŭ [[num]] semajnoj
+
+/userinfo.bml.title=Uzantinformoj
+
+/userinfo.bml.title.communityinfo=Komunuminformoj
+
+/userinfo.bml.title.syndicated=Sindikatita Konto
+
+/userinfo.bml.userinfo.body=Jen malsupre la uzantinformojn por [[username]]. Se vi estas tiu uzanto, vi povas redakti viajn informojn (aŭ elekti kiuj informoj estu publikaj) sur <a href="[[siteroot]]/editinfo.bml">la Redaktu Informojn paĝo</a>.
+
+/userinfo.bml.userinfo.name=Uzantinformoj
+
+BML.parse_multipart.parse=Eraro kun sintakse analizi ĝisdatigon
+
+BML.parse_multipart.toolarge=Tro granda alŝuto
+
+BML.parse_multipart.unknowntype=Nekonata enhavotipo
+
+btn.search=Serĉu
+
+crumb.acctfeatures=Funkcioj Laŭ Kontotipo
+
+crumb.latestposts=Plej Freŝaj Afiŝoj
+
+date.day.friday.long=vendredon
+
+date.day.friday.short=ven
+
+date.day.monday.long=lundon
+
+date.day.monday.short=lun
+
+date.day.saturday.long=sabaton
+
+date.day.saturday.short=sab
+
+date.day.sunday.long=dimanĉon
+
+date.day.sunday.short=dim
+
+date.day.thursday.long=ĵaŭdon
+
+date.day.thursday.short=ĵaŭ
+
+date.day.tuesday.long=mardon
+
+date.day.tuesday.short=mar
+
+date.day.wednesday.long=merkredon
+
+date.day.wednesday.short=mer
+
+date.month.april.long=aprilo
+
+date.month.april.short=apr
+
+date.month.august.long=aŭgusto
+
+date.month.august.short=aŭg
+
+date.month.december.long=decembro
+
+date.month.december.short=dec
+
+date.month.february.long=februaro
+
+date.month.february.short=feb
+
+date.month.january.long=januaro
+
+date.month.january.short=jan
+
+date.month.july.long=julio
+
+date.month.july.short=jul
+
+date.month.june.long=junio
+
+date.month.june.short=jun
+
+date.month.march.long=marto
+
+date.month.march.short=mar
+
+date.month.may.long=majo
+
+date.month.may.short=maj
+
+date.month.november.long=novembro
+
+date.month.november.short=nov
+
+date.month.october.long=oktobro
+
+date.month.october.short=okt
+
+date.month.september.long=septembro
+
+date.month.september.short=sep
+
+dystopia.btn.login=ENSALUTU
+
+dystopia.hello_anonymous=Bonvenon al LiveJournal!
+
+dystopia.hello_loggedin=Saluton, [[username]]!
+
+dystopia.nav.createjournal=Kreu Taglibron
+
+dystopia.nav.developer=Programistejo
+
+dystopia.nav.download=Elŝutu
+
+dystopia.nav.editentries=Redaktu Enskribojn
+
+dystopia.nav.editfriends=Viaj Geamikoj
+
+dystopia.nav.editpassword=Via Pasvorto
+
+dystopia.nav.editpics=Viaj Bildoj
+
+dystopia.nav.editstyle=Redaktu Stilon
+
+dystopia.nav.faq=LiveJournal OD
+
+dystopia.nav.findcomm=Laŭ Komunumo
+
+dystopia.nav.finddir=Adresara Serĉo
+
+dystopia.nav.findint=Laŭ Intereso
+
+dystopia.nav.findrandom=Hazarde
+
+dystopia.nav.findregion=Laŭ Regiono
+
+dystopia.nav.home=Hejmo
+
+dystopia.nav.journalcalendar=Kalendaro
+
+dystopia.nav.journalfriends=Geamikoj
+
+dystopia.nav.journalinfo=Uzantinformoj
+
+dystopia.nav.journalrecent=Lastatempaj
+
+dystopia.nav.legalprivacy=Privateco
+
+dystopia.nav.legaltos=Servaj Kondiĉoj
+
+dystopia.nav.login=Ensalutu
+
+dystopia.nav.logout=Elsalutu
+
+dystopia.nav.lostinfo=Perdita Pasvorto
+
+dystopia.nav.memories=Memoroj
+
+dystopia.nav.modifyjournal=Ŝanĝu Taglibron
+
+dystopia.nav.news=Novaĵoj
+
+dystopia.nav.paidaccts=Pagitaj Kontoj
+
+dystopia.nav.paymentarea=Pagejo
+
+dystopia.nav.personalinfo=Personaj Informoj
+
+dystopia.nav.sitemap=TTT-eja Mapo
+
+dystopia.nav.siteopts=Retumaj opcioj
+
+dystopia.nav.support=Ĉu Demando?
+
+dystopia.nav.updatejournal=Ĝisdatigu la Taglibron
+
+dystopia.nav.width|notes=Some languages require the bar on the left to be wider.  Feel free to keep the default value.
+dystopia.nav.width=146
+
+dystopia.navhead.findusers=Trovu Uzantojn
+
+dystopia.navhead.help=Helpo & Subteno
+
+dystopia.navhead.journal=Via Taglibro
+
+dystopia.navhead.legal=Leĝaj Informoj
+
+dystopia.navhead.settings=Viaj Preferigoj
+
+dystopia.navhead.welcome=Bonvenon!
+
+dystopia.search.aolim=AOL-tujmesaĝilo
+
+dystopia.search.icq=ICQ-numero
+
+dystopia.search.int=Intereso
+
+dystopia.search.msn=MSN-Uzantnomo
+
+dystopia.search.region=Regiono
+
+dystopia.search.yahoo=Yahoo!-ID
+
+dystopia.searchlj=Serĉu interne de LiveJournal
+
+Email=Retpoŝtadreso
+
+email.newacct.body<<
+Gratulon, vi havas novas LiveJournal-an konton!
+
+Por kompletigi vian taglibran kreadon kaj kontroli vian retpoŝtadreson, iru tien:
+
+   [[regurl]]
+
+La URL, kie via nova taglibro estas trovebla, estas:
+
+   [[siteroot]]/users/[[username]]/
+
+kaj ankaŭ:
+
+   [[siteroot]]/~[[username]]/
+
+Jen malsupre via LiveJournal-a uzantnomo kaj pasvorto:
+Below is your LiveJournal username and password:
+
+   Uzantnomo: [[username]]
+   Pasvorto:  [[password]]
+
+Vi povas viziti [[siteroot]]/ por viziti vian konton, krei novajn taglibrajn enskribojn kaj modifi viajn taglibrajn elektojn, sed ni rekomendas ke vi elŝutas LiveJournal-an klientilon. Ĝi estas la plej facila metodo ĝisdatigi vian taglibron, kaj estas tre multaj klientiloj haveblaj por multaj platformoj! Elŝutu unu ĉe:
+
+   [[siteroot]]/download/
+
+Komenci kun LiveJournal povas esti kelke malfacila kiam vi ne konas iun. Vizitu http://newbies.livejournal.com por ruzaj, helpemaj konsiloj...
+Kun iom da bonŝanco, vi estos LiveJournal-a profesiulo en nultempo!
+
+Ni esperas ke vi ŝatas LiveJournal-on kiom multe, kiel ni ŝatas alporti ĝin al vi. Se vi havas iun ajn demandon pri la uzado de LiveJournal, bonvolu viziti la subtenejon ĉe:
+
+   [[siteroot]]/support/
+
+Tie vi trovos respondojn por preskaŭ iu ajn demando vi povus demandi pri LiveJournal.
+
+Nia venko estas tute frenezegigi LiveJournal-on... se vi povas fari iun por plifaciligi, plifortegigi, plikutimebligi ĝin, ion ajn... rakontu ĝin al ni.
+Ni ne havas la TTT-ejon por fari monon. Ni ne estas dot-com-firmo, salajratata per riskkapital-esperantan aĝiotisto... ĉi tiu paĝo funkcias per tute da homoj kiuj uzas ĝin. Rakontu al ni kion vi volas el ĝi.
+
+Se vi havas demandon, la subtenanta teamo havos respondon por vi dum malpli ol 24 horoj.
+
+Ĝoju!
+
+[[sitename]] Teamo
+[[siteroot]]/
+.
+
+email.newacct.subject=Bonvenon al LiveJournal
+
+Error|notes=typically used inside an H1 tag to announce an error.
+Error=Eraro
+
+error.badpassword=Malkorekta Pasvorto.
+
+error.dberror=Datumbaza eraro okazis:
+
+error.deleted.name=Forigita
+
+error.deleted.text=Ĉi tiu taglibro estas forigita.  Se vi estas [[user]], estas periodo da 30 tagoj post la horo de forigo por malforigi la taglibron. Post 30 tagoj ni persiste forigos ĉiuj enhavoj el niaj serviloj.
+
+error.deleted.title=Forigita Konto
+
+error.ipbanned=Via IP-adreso portempe malpermesita por ke superi la enslauti-malsukcesega rato.
+
+error.malformeduser=Malformata uzantnomo.
+
+error.nobutton=Ĉu neniu butono premita?
+
+error.nodb=Datumbazo portempe nehavebla.
+
+error.nodbmaintenance=Ĉi tiu parto de la datumbazo estas portempe nefunkciebla ĉar konservado. Reprovu ankoraŭfoje post kelkaj minutoj.
+
+error.noentry=Neniu tia taglibra enskribo.
+
+error.nojournal=Nekonata Taglibro
+
+error.noremote=Vi devas <a href="/login.bml?ret=1">ensaluti</a> por uzi ĉi tiun paĝon.
+
+error.procrequest=Okazis eraro dum procesi vian demandon:
+
+error.purged.name=Forigita
+
+error.purged.text=Ĉi tiu taglibro estas forigita kaj senrubigita.
+
+error.purged.title=Senrubigita Konto
+
+error.suspended.name=Provizore Forigita
+
+error.suspended.text=Ĉi tiu konto estas aŭ portempe aŭ ĉiame forigita. Se vi estas [[user]], bonvolu legi la OD-on <cite><a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=106">Mia konto estas provizore forigita! Kiel mi rehavigas ĝin?</a></cite> por pli da informoj. Bonvolu rimarki, ke por konservi la privatecon de niaj uzantoj, [[sitename]] ne povas priparoli la kaŭzojn de la provizora forigo kun iu ajn escepte de la posedanto de la konto.
+
+error.suspended.title=Provizore Forigita Konto
+
+error.tempdisabled=Ĉi tiu estas portempe malebligita.
+
+error.unknownmode=Nekonata reĝimo.
+
+error.usernameinvalid=Uzantnomo enhavas nevalidajn signojn.
+
+error.usernamelong=Uzantnomo estas tro longa; 15 signoj maksimume.
+
+error.username_notfound=Uzantnomo ne troviĝis.
+
+Help=Helpo
+
+label.screening.all=Ĉiuj komentoj
+
+label.screening.header=Kaŝantaj Komentoj:
+
+label.security.custom=Individuiga...
+
+label.security.friends=Geamikoj
+
+label.security.head=Sekureca Nivelo:
+
+label.security.private=Privata
+
+label.security.public=Publika
+
+label.switch.button=Interŝanĝu
+
+label.switch.header=Interŝanĝu la Taglibron
+
+label.switch.workwith=Prilabori la taglibron:
+
+langname.be=la belarusa
+
+langname.da=la dana
+
+langname.de=la germana
+
+langname.en=la angla
+
+langname.en_GB=la angla (brita)
+
+langname.en_LJ=la angla
+
+langname.eo=Esperanto
+
+langname.es=la hispana
+
+langname.et=la estona
+
+langname.fi=la finna
+
+langname.fr=la franca
+
+langname.ga=la irlanda
+
+langname.gd=la gaela
+
+langname.he=la hebrea
+
+langname.hu=la hungara
+
+langname.is=la islanda
+
+langname.it=la itala
+
+langname.ja=la japana
+
+langname.la=la latina
+
+langname.lv=la latva
+
+langname.ms=la malaja
+
+langname.nb=la norvega (bokmål)
+
+langname.nl=la nederlanda
+
+langname.nn=la norvega (nynorsk)
+
+langname.pl=la pola
+
+langname.pt=la portugala
+
+langname.ru=la rusa
+
+langname.sv=la sveda
+
+langname.tr=la turka
+
+langname.uk=la ukrajna
+
+langname.zh=la ĉina (simpligata)
+
+ljcom.accounttype=Kontotipo
+
+ljcom.userinfo.accounttype=Kontotipo
+
+ljcom.userinfo.types.early=Frua Adoptanto
+
+ljcom.userinfo.types.paid_early=Pagita Konto, antaŭe Frua Adoptanto
+
+ljcom.userinfo.types.paid_early_expiring=Pagita Konto, finiĝota [[paiduntil]], antaŭe Frua Adoptanto
+
+ljcom.userinfo.types.permanent_early=Konstanta Konto, antaŭe Frua Adoptanto
+
+ljlib.pageofpages=Paĝo [[page]] el [[total]]
+
+lostinfo.head=Ĉu vi forgesis ion?
+
+lostinfo.text=Se vi forgesis vian uzantnomon aŭ pasvorton, <a href="lostinfo.bml">reakiru ĝin ĉi tie</a>.
+
+Password=Pasvorto
+
+password.max30=Pasvortoj ne rajtas esti pli longaj ol 30 signoj.
+
+poll.error.cantview=Eraro: vi ne rajtas rigardi ĉi tiujn balotajn rezultojn.
+
+poll.error.cantvote=Bedaŭrinde, vi ne estas permesita baloti en ĉi tiu baloto.
+
+poll.error.missingljpoll=Ĉiuj lj-pq etikedoj devas esti ingita interne de lj-poll etikedo.
+
+poll.error.noentry=Eraro: ĉi tiu baloto ne estas fiksita al ĉi tiu taglibra enskribo
+
+poll.error.noitems=Vi devas havi almenaŭ unu ero en ne-teksta balota demando.
+
+poll.error.noitemstext=lj-pq etikedoj de tipo 'teksto' ne povas enhavi balotajn erojn.
+
+poll.error.nopollid=pollid parametro mankas.
+
+poll.error.noquestions=Vi devas have almenaŭ unu demando en baloto.
+
+poll.error.pollnotfound=Eraro: baloto #[[num]] ne trovita
+
+poll.error.questionnotfound=Eraro: ĉi tiu balota demando ne ekzistas.
+
+poll.pollnum=Baloto #[[num]]
+
+poll.submit=Konservu Baloton
+
+portal.bdays.count.des=Defaŭlte, la 5 geamikoj kun la plej baldaŭaj naskiĝtagoj estas montrataj.
+
+portal.bdays.count.name=Montrotaj Naskiĝtagoj
+
+portal.bdays.portalname=Naskiĝtagoj
+
+portal.bdays.portaltitle=Naskiĝtagoj
+
+portal.goat.name=Paĝa Bestsimbolo
+
+portal.goattext.des=Kion vi volas ke via kapro diras? La sola kion kaproj povas diri, estas 'Beeeee', sed vi povas ŝajnigi ke via kapro povas diri iun alian, se vi vere volas.
+
+portal.goattext.name=Kapra Teksto
+
+portal.login.portalname=Ensalutada Kesto
+
+portal.memories.entriesnoun=enskriboj
+
+portal.memories.entrynoun=enskribo
+
+portal.memories.portalname=Memorindaj Afiŝoj
+
+portal.memories.portaltitle=Memorindaj Afiŝoj
+
+portal.ministats.active=Aktivaj:
+
+portal.ministats.title=Uzantaj Statistikoj
+
+portal.ministats.total=Tutaj:
+
+portal.misbehaved.des=Vi vere volis lasi ĝin nekontrolita. Kaproj kiuj ne estas edukitaj, nur estas ĝenaj.
+
+portal.misbehaved.name=Miskondutanta Kapro
+
+portal.newtolj.name=TTT-ejaj Ligiloj
+
+portal.popfaq.portalname=10 Plej Ofte Vizititaj OD-oj
+
+portal.popfaq.portaltitle=10 Plej Ofte Vizititaj OD-oj
+
+portal.randuser.count.des=Defaŭlte, 1 hazarda uzanto estas montrita, sed vi povas havi ĝis 10 uzantojn vertikale en la malvastaj kolonoj, aŭ 5 horizontale en vasta kolono
+
+portal.randuser.count.name=Nombro de montrotaj hazardaj uzantoj
+
+portal.randuser.error.tableempty=Ne ekzistas hazardaj uzantoj. Kontaktu la administriston.
+
+portal.randuser.hidename.des=Defaŭlte, la hazarda uzantnomo estas montrata. Kontrolu tion por elpreni ĝin.
+
+portal.randuser.hidename.name=Kaŝu Nomon
+
+portal.randuser.hidepic.des=Defaŭlte, la hazarda uzantbildo estas montrata, se havebla. Kontrolu tion por elpreni ĝin.
+
+portal.randuser.hidepic.name=Kaŝu Uzantbildon
+
+portal.randuser.portalname=Hazarda Uzanto
+
+portal.randuser.portaltitle=Hazarda Uzanto
+
+portal.randuser.portaltitleplural=Hazardaj Uzantoj
+
+portal.recent.error.noentries=Pardonu. Neniuj enskriboj.
+
+portal.recent.error.notsetup=Vi devas konfiguri ĉi tiun keston. Klaku sur la plus-simbolon por agordi la taglibron kiun vi volas vidi ĉi tie.
+
+portal.recent.error.userstatus=Uzanto forigis aŭ provizore forigis sian konton.
+
+portal.recent.items.description=Defaŭlte, nur la plej nova enskribo estas montrata.
+
+portal.recent.items.name=Anoj por vidigi
+
+portal.recent.journal.description=De kiu taglibro vi volas vidi la novajn anojn?
+
+portal.recent.journal.name=Taglibro
+
+portal.recent.nosubject=(Neniu Temo)
+
+portal.recent.permlink=Ligilo
+
+portal.recent.portalname=Novaj Enskriboj Vido
+
+portal.recent.portaltitle=Novaj Enskriboj Kesto
+
+portal.recent.showtext.description=Defaŭlte, nur subjektoj estas montrata.
+
+portal.recent.showtext.name=Inkluzivu Tekston
+
+portal.stats.journalentyest=Taglibraj enskriboj hieraŭ
+
+portal.stats.portalname=TTT-ejaj Statistikoj
+
+portal.stats.portaltitle=Statistikoj
+
+portal.stats.totalusers=Tutaj uzantoj
+
+portal.update.mode.des=Plena modo ofertas al vi tre multe da ekstra-afiŝaj elektoj... inkluzive de afiŝi en komunumojn kaj preferigi vian nunan humoron, muzikon kaj bildon. Simpla modo estas pli afabla se vi apenaŭ uzas tiujn trajtojn kaj preferus neniam vidi ĝin.
+
+portal.update.mode.full=Plena
+
+portal.update.mode.name=Modo
+
+portal.update.mode.simple=Simpla
+
+portal.update.portalname=Taglibra Ĝisdatigilo
+
+portal.update.portaltitle=Ĝisdatigu Vian Taglibron
+
+protocol.bad_password=Via pasvorto estas tro facile supozebla. Rekomendate, ŝanĝu ĝin, kontraŭe vi riskas ke via taglibro estas forkaptota. Vizitu [[siteroot]]/changepassword.bml por ŝanĝi vian pasvorton.
+
+protocol.hello_test=Saluton al Prova Konto!
+
+protocol.mail_bouncing=Vi nuntempe estas uzanta malĝustan retpoŝtadreson. Tute da retpoŝto, kiun ni provas sendi, estas resendata. [[sitename]] bezonas validan retpoŝtadreson por kontinui uzon. Vizitu [[siteroot]]/support/faqbrowse.bml?faqid=19 por scii pri kiel oni ŝanĝas sian retpoŝtadreson.
+
+protocol.modpost=Via enskribo estas metita en la modero-vicon. Ĝi estas akceptota aŭ rifuzita de unu de la komunumaj moderantoj.
+
+protocol.must_revalidate=Vi devas validigi vian novan retpoŝtadreson. Via malnova estis bona, sed ĉar vi ŝanĝis ĝin, vi devos revalidigi la novan. Se vi ne validigi vian adreson, vi ne havos rajton por tute da funkcioj de [[sitename]]. Vizitu [[siteroot]]/support/faqbrowse.bml?faqid=11 por pli multe da informoj.
+
+protocol.not_validated=Via retpoŝtadreso ne estas validigita. Vi povas plue uzi [[sitename]], sed se vi ne validigas vian adreson, vi ne havos rajton por tute da funkcioj de la TTT-ejo. Vidu la instrukciojn kiuj estas sendita al vi kiam vi kreis vian taglibron, aŭ vizitu [[siteroot]]/support/faqbrowse.bml?faqid=11 por pli multe da informoj.
+
+protocol.old_win32_client=Estas grave pli novaj Vindozaj LiveJournal-aj klientiloj haveblaj, kaj ni rekomendas ke vi ĝisdatigas. Vizitu [[siteroot]]/download/ por elŝuti pli novan klientilon.
+
+protocol.readonly=Via konto estas portempe en nur-legata modo. Iom da operacioj ne funkcios por kelkaj minutoj.
+
+Sorry|notes=typically used to announce that the requested action can't be done.
+Sorry=Bedaŭron
+
+talk.anonwrote=Iu skribis,
+
+talk.anonwrote_comm=Iu skribis ĉe [[commlink]],
+
+talk.btn.preview=Antaŭrigardu
+
+talk.commentpermlink=ligilo
+
+talk.commentpost=Afiŝu novan komenton
+
+talk.commentsread=Legu komentojn
+
+talk.curname_Mood=<b>Nuna humoro:</b>
+
+talk.curname_Music=<b>Nuna muziko:</b>
+
+talk.error.bogusargs=Ŝajnaj argumentoj
+
+talk.error.comm_deleted=Ĉi tiu komento estas forigita.
+
+talk.error.deleted=Ĉi tiu taglibro estas forigita.
+
+talk.error.deleted.title=Forigita
+
+talk.error.mustlogin=Vi devas esti ensalutita por vidi ĉi tiun protektatan enskribon.
+
+talk.error.nocomment=La komento ne ekzistas.
+
+talk.error.noentry=La enskribo ne ekzistas.
+
+talk.error.nojournal=Eraro: ne eblis determini taglibron el argumentoj.
+
+talk.error.nosuchjournal=La taglibro ne ekzistas
+
+talk.error.notauthorised=Vi ne rajtas vidi ĉi tiun protektitan enskribon.
+
+talk.error.suspended=Ĉi tiu taglibro/afiŝanto estas provizore forigita.
+
+talk.error.suspended.title=Provizore Forigita
+
+talk.parentlink=Patro
+
+talk.readsimilar=Legu similajn taglibrajn enskribojn:
+
+talk.replytothis=Respondu al tiu ĉi
+
+talk.somebodywrote=[[realname]]([[userlink]]) skribis, 
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) skribis ĉe [[commlink]],
+
+talk.spellcheck=Kontrolu ortografie dum antaŭrigardi
+
+talk.threadlink=Fadeno
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_esperanto
+
+Username=Uzantnomo
+
+userpic.inactive=Neaktiva
+
+xcolibur.greeting.anon=Bonvenon al LiveJournal!
+
+xcolibur.greeting.logged_in=Bonvenon, [[name]]! [[logout]]
+
+xcolibur.login=Ĉu ensalutu?
+
+xcolibur.logout=Ĉu&nbsp;elsalutu?
+
+xcolibur.nav.about=Pri
+
+xcolibur.nav.about.download=Elŝutu
+
+xcolibur.nav.about.general=Ĝeneralaj Informoj
+
+xcolibur.nav.about.paidaccounts=Pagitaj Kontoj
+
+xcolibur.nav.about.press=Gazetaro
+
+xcolibur.nav.about.sitenews=TTT-ejaj Novaĵoj
+
+xcolibur.nav.about.stats=Statistikoj
+
+xcolibur.nav.footer.sitemap=TTT-eja Mapo
+
+xcolibur.nav.help=Helpo
+
+xcolibur.nav.help.ask=Demandu Ion
+
+xcolibur.nav.help.faq=<abbr title="Oftaj Demandoj">OD</abbr>
+
+xcolibur.nav.help.lostpassword=Perdita Pasvorto
+
+xcolibur.nav.home=Hejmo
+
+xcolibur.nav.journal=Taglibro
+
+xcolibur.nav.journal.archive=Arĥivo
+
+xcolibur.nav.journal.edit.entries=Redaktu Enskribojn
+
+xcolibur.nav.journal.friends=Geamikoj
+
+xcolibur.nav.journal.info=Informoj
+
+xcolibur.nav.journal.memories=Memoroj
+
+xcolibur.nav.journal.recent=Lastatempaj
+
+xcolibur.nav.journal.update=Ĝisdatigu
+
+xcolibur.nav.manage=Administru
+
+xcolibur.nav.manage.community=Komunumoj
+
+xcolibur.nav.manage.customize=Kutimigi
+
+xcolibur.nav.manage.entries=Enskriboj
+
+xcolibur.nav.manage.friends=Geamikoj
+
+xcolibur.nav.manage.info=Informoj
+
+xcolibur.nav.manage.password=Pasvorto
+
+xcolibur.nav.manage.pics=Uzantaj Bildoj
+
+xcolibur.nav.manage.styles=Stiloj
+
+xcolibur.nav.search=Serĉu
+
+xcolibur.nav.search.directory=Laŭ Regiono
+
+xcolibur.nav.search.directory.search=Altgrada
+
+xcolibur.nav.search.interests=Interesoj
+
+xcolibur.nav.search.random=Hazarde
+
+xcolibur.nav.siteopts=Retumaj opcioj
+
+xcolibur.nav.title=Navigaciu:
+
+xcolibur.nav.welcome=Bonvenon
+
+xcolibur.nav.welcome.create=Kreu konton
+
+xcolibur.nav.welcome.login=Ensalutu
+
+xcolibur.nav.welcome.update=Ĝisdatigu Vian Taglibron
+
+xcolibur.search=Serĉu:
+
+xcolibur.search.category=Kategorio:
+
+xcolibur.search.icq=ICQ-numero
+
+xcolibur.search.int=Intereso
+
+xcolibur.search.msn=MSN-uzantnomo
+
+xcolibur.search.region=Regiono
+
+xcolibur.search.yahoo=Yahoo!-ID
+
+xcolibur.upgrade=Promociu Vian Konton
+

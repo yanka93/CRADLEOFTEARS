@@ -1,0 +1,38 @@
+<?page
+title=>Code
+body<=
+
+<?_code
+    return LJ::set_active_crumb('code');
+_code?>
+
+<?h1 Open Source h1?>
+<?p
+Nearly all the source code to run the LiveJournal.com server is <a href="http://www.opensource.org/">Open Source</a> / <a href="http://www.gnu.org/philosophy/free-sw.html">Free Software</a> (depending which label you prefer), as are most the <a href="/download/">client apps</a>.
+p?>
+
+<?h1 Server Code h1?>
+<?p
+You can get the LiveJournal server code either from the <a href="http://www.livejournal.org/download/code/">latest snapshots</a> in *.tar.gz format, or <a href="http://cvs.livejournal.org/">from CVS</a>.  The snapshots are taken pretty regularly, and CVS is almost always stable, so use whatever's easiest for you.  Whatever you do, though, <a href="http://www.livejournal.com/doc/server/">read the documentation</a>.  You can consult current issues and pending feature requests in <a href="http://zilla.livejournal.org/">our bug database</a>.
+p?>
+
+<?h1 Libraries h1?>
+<?p
+The server distribution above includes the following reusable components:
+<p><table cellpadding=4 border=1>
+<tr bgcolor=<?emcolor?>><td><b>Name</b></td></td><td><b>Description</b></td></tr>
+<tr><td>LJ::Cache</td><td>Perl module to do caching of images and other data from the database, while keeping a bound on memory usage.</tr>
+<tr><td>LJ::TextMessage</td><td>Perl module to send people text messages on their cellphones and pagers</td></tr>
+<tr><td>LJ::SpellCheck</td><td>Perl module to check spelling, using ispell or aspell</td></tr>
+<tr><td>HTML Cleaner</td><td>Removes JavaScript and other harmful markup from HTML.</td></tr>
+<tr><td>BML</td><td>Server-side markup language and templating engine.</td></tr>
+</table>
+p?>
+
+<=body
+page?>
+
+
+
+
+

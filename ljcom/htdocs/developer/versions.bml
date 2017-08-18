@@ -1,0 +1,40 @@
+<?page
+title=>LiveJournal Protocol Versions
+body<=
+<?h1 Protocol Versions h1?>
+<?p
+The LiveJournal protocol (so far) has been more or less static; while new
+modes have been added, the basic operation has not changed much. However, recent
+introduction of Unicode support in LiveJournal necessitated changes in the way
+text is encoded in protocol requests and responses. In order to allow new clients
+to take advantage of Unicode support and at the same time avoid breaking existing
+clients, a versioning scheme has been put into the protocol. The client sends
+the number of the highest protocol version it supports in every request, inside
+a <b><tt>ver</tt></b> attribute; version 0 is implicit if the client does not
+send the <b><tt>ver</tt></b> attribute. Currently there are two versions of the protocol,
+and the Unicode-enabled server code supports both of them. 
+p?>
+
+<ul>
+<li><b>Version 0</b><br/>
+If a client does not send a <b><tt>ver</tt></b> key on a request, it assumed to support 
+protocol Version 0. In protocol Version 0, textual information transmitted from or to the 
+server is always assumed to be a stream of 8-bit bytes, not necessarily ASCII, but without 
+any guarantee that the non-ASCII bytes are presented in any particular encoding. 
+<li><b>Version 1</b><br/>
+Version 1 differs from Version 0 only by imposing additional requirements on the text
+transmitted through requests and responses; there aren't any changes in protocol modes.
+The additional requirements are that in a Version 1 request, the client <b>must</b> transmit
+all textual information as a stream of Unicode data encoded in UTF-8; the server <b>must</b>
+respond to Version 1 requests with Version 1 responses; in such Version 1 responses, the server
+<b>must</b> also transmit all textual information encoded in UTF-8; and the client must expect
+that and handle such responses correctly.
+
+In other words, all information transmitted via protocol when Version 1 is used is always encoded
+in UTF-8. UTF-8 is a representation of Unicode in a bytestream format compatible with ASCII. See
+<a href="http://www.unicode.org">the Unicode Consortium website</a> for more information on Unicode
+and UTF-8.</li>
+</ul>
+
+<=body
+page?>

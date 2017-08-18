@@ -1,0 +1,34 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+    LJ::set_active_crumb('friends');
+_code?>
+
+<?p <?_ml .about _ml?> p?>
+<?h1 <?_ml .tools _ml?> h1?>
+<dl>
+  <dt><a href="edit.bml"><?_ml /friends/edit.bml.title _ml?></a></dt>
+  <dd><?_ml .edit.about _ml?></dd>
+</dl>
+<?p <?_ml .groups _ml?> p?> 
+<dl>
+  <dt><a href="editgroups.bml"><?_ml /friends/editgroups.bml.title _ml?></a></dt>
+  <dd><?_ml .editgroups.about _ml?></dd>
+</dl>
+<?p <?_ml .filter _ml?> p?>
+<dl>
+  <dt><a href="filter.bml"><?_ml /friends/filter.bml.title _ml?></a></dt>
+  <dd><?_ml .filter.about _ml?></dd>
+</dl>
+<?h1 <?_ml .security.header _ml?> h1?>
+<?p <?_ml .security _ml?> p?>
+<ul>
+  <li><?_ml .security.only _ml?></li>
+  <li><?_ml .security.custom _ml?></li>
+</ul>
+<=body
+page?><?_c <LJDEP>
+link: htdocs/friends/edit.bml, htdocs/friends/editgroups.bml
+link: htdocs/friends/filter.bml, htdocs/download/index.bml
+</LJDEP> _c?>

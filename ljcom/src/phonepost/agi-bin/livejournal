@@ -1,0 +1,167 @@
+#!/usr/bin/perl
+# vim: set ts=4 sw=4 et :
+
+use strict;
+use POSIX qw(strftime);
+
+use lib "$ENV{LJHOME}/cgi-bin";
+BEGIN {
+    require "phonepost-asterisk.pl";
+    require "mp3encode.pl";
+
+    $LJ::PHONESPOOL = $ENV{'LJ_PHONESPOOL'} || $LJ::PHONESPOOL;
+}
+
+use Asterisk::AGI;
+
+# in milliseconds.
+use constant POST_TIME_LIMIT => 3 * 60 * 1_000;
+
+use constant MENU_REPLAY =>       1;
+use constant MENU_RECORD =>       2;
+use constant MENU_POST_PUBLIC =>  3;
+use constant MENU_POST_FRIENDS => 4;
+use constant MENU_POST_PRIVATE => 5;
+use constant MENU_POST_REPEAT =>  9;
+
+my $AGI = new Asterisk::AGI;
+
+my %input = $AGI->ReadParse();
+while (my ($k, $v) = each %input) {
+    print STDERR "  $k -> $v\n";
+}
+
+$AGI->setcallback(\&hangup);
+sub hangup {
+    my ($returncode) = @_;
+    print STDERR "HANGUP: User Hungup ($returncode)\n";
+    exit($returncode);
+}
+
+
+$AGI->stream_file('livejournal/welcome');
+
+my $phone;
+my $u;
+
+foreach my $i (1..3) {
+    if ($input{callerid} =~ /(\d{10,})/) {
+        $phone = $1;
+        
+        # if they have caller id, offer to use it.
+        # they'll hit pound if they want it, causing this to return zero.
+        my $res = $AGI->get_data('livejournal/phonecid', 30_000, 15);
+
+        # maybe they entered a phone number.
+        $phone = $res if $res;
+    }
+
+    unless ($phone) {
+        $phone = $AGI->get_data('livejournal/phone', 30_000, 15);
+    }
+
+    $phone = LJ::PhonePost::canonicalize_phone($phone);
+
+    my $pin = $AGI->get_data('livejournal/pin', 20_000, 6);
+    $u = LJ::PhonePost::get_user($phone, $pin);
+    if ($u) {
+        last;
+    } else {
+        $AGI->stream_file('livejournal/badlogin');
+    }
+}
+
+exit(0) unless $u;
+
+if (LJ::PhonePost::over_disk_quota($u)) {
+    $AGI->stream_file('livejournal/space');
+    $AGI->stream_file('livejournal/support');
+    exit(0);
+}
+if (LJ::PhonePost::over_post_quota($u)) {
+    $AGI->stream_file('livejournal/quota');
+    $AGI->stream_file('livejournal/support');
+    exit(0);
+}
+
+my $posttime = time();
+my $filename = "$u->{userid}-$posttime";
+my $inpath = $PHONESPOOL . "/in/$filename";
+
+my $menuoption = MENU_RECORD;
+my $security;
+while ($menuoption) {
+    if ($menuoption == MENU_REPLAY) {
+        # use get_data here to play the message back,
+        # so they can quit out of the playback by pressing a key.
+        # we wait 1ms after the message is done,
+        # because waiting 0ms means wait forever (i think)?
+        $AGI->get_data($inpath, 1, 1);
+    } elsif ($menuoption == MENU_RECORD) {
+        $AGI->get_data('livejournal/record', 1, 1);
+        # XXX record this.  $AGI->stream_file('livejournal/beep1');
+        $AGI->stream_file('beep');
+        $AGI->record($inpath, "wav", '#', POST_TIME_LIMIT);
+    } elsif ($menuoption == MENU_POST_PUBLIC) {
+        $security = 'public';
+        last;
+    } elsif ($menuoption == MENU_POST_FRIENDS) {
+        $security = 'friends';
+        last;
+    } elsif ($menuoption == MENU_POST_PRIVATE) {
+        $security = 'private';
+        last;
+    } elsif ($menuoption == MENU_POST_REPEAT) {
+        # do nothing.
+    } else {
+        $AGI->stream_file('livejournal/unknown');
+    }
+    $menuoption = $AGI->get_data('livejournal/menu', 10_000, 1);
+}
+
+# did they manage to exit the menu without choosing to post.
+# (timeout? the pound key?)  anyway, hangup.
+exit(0) unless $security;
+
+my $wavpath = $PHONESPOOL . "/in/$filename.wav";
+my $mp3path = $PHONESPOOL . "/out/$filename.mp3";
+
+my $tzoffset = LJ::PhonePost::get_user_timezone($u);
+
+# mp3 id3 tag information.  text fields must be <= 30 chars.
+my $attr = {
+    title   => strftime("%F %R", gmtime($posttime + $tzoffset*3600)),
+    artist  => substr($u->{user}, 0, 30),
+    comment => substr($LJ::SITENAME, 0, 30),
+    year    => (gmtime($posttime + $tzoffset*3600))[5]+1900,
+};
+
+unless (LJ::PhonePost::encode_mp3($attr, $wavpath, $mp3path)) {
+    $AGI->stream_file('livejournal/error');
+    # XXX unlink files?
+    exit(-1);
+}
+
+unlink($wavpath);
+
+my $bid = LJ::PhonePost::store_audio($u, $mp3path);
+unless ($bid) {
+    $AGI->stream_file('livejournal/error');
+    exit(-1);
+}
+
+unless (LJ::PhonePost::post_audio($u, $posttime, $security, $bid)) {
+    # XXX can this return an error, too?
+    #$AGI->stream_file('livejournal/queued');
+    $AGI->stream_file('livejournal/error');
+    exit(-1);
+}
+
+unlink($mp3path);
+
+$AGI->stream_file('livejournal/posted');
+
+$AGI->stream_file('livejournal/goat') if rand() < 0.1;
+
+exit(0);
+

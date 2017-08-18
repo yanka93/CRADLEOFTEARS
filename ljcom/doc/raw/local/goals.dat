@@ -1,0 +1,47 @@
+S2: mart, bradfitz
+screening/moderation: avva (+)
+stats daemon: dormando (+)
+tech docs: jproulx (+)
+
+bandwidth -> keep site running
+employees -> keep site running
+
+screening/moderation -> no invite codes
+S2 -> customization
+S2 -> S2 paid features
+S2 paid features -> paid features
+backup client -> happy customers
+backup client -> reliable service
+config 2nd bigip -> redundancy
+correctness -> happy customers
+customization -> ease of use
+customization -> happy customers
+tech docs -> releases
+tech docs -> more installations
+ease of use -> growth
+ease of use -> happy customers
+growth -> money
+happy customers -> money
+english removal -> releases
+releases -> more installations
+english removal -> translation
+translation -> growth
+limits -> no invite codes
+limits -> reliable service
+money -> bandwidth
+money -> employees
+cool stuff -> happy customers
+no invite codes -> growth
+paid features -> money
+rate limiting -> limits
+redundancy -> reliable service
+more installations -> more developers
+reliable service -> growth
+reliable service -> happy customers
+size limits -> limits
+stats daemon -> user stats
+stats daemon -> rate limiting
+user stats -> paid features
+syndication -> growth
+syndication -> cool stuff
+

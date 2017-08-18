@@ -1,0 +1,139 @@
+<?_code
+{
+    use strict;
+    use vars qw($body $title %GET);
+
+    $title = "Feedback Survey Results";
+
+    my $remote = LJ::get_remote();
+    unless (LJ::check_priv($remote, "siteadmin", "feedback") || LJ::check_priv($remote, "siteadmin", "*")) {
+        $title = "Restricted";
+        $body  = "<?p This is the feedback review tool for LiveJournal administrators. p?>"; 
+        return BML::redirect("/feedback/");
+    }
+
+    $body .= "<?h1 Retrieve Surveys h1?>\n";
+    $body .= '<form method="GET" action="./"><input type="hidden" name="mode" value="list" />';
+    $body .= "<table cellpadding='4' cellspacing='2' class='search'>";
+    $body .= "<tr><th>URL:</th><td>" .
+        LJ::html_text({ 'name' => 'url', 
+                        'value' => $GET{'url'},
+                        'size' => 30, 'maxlength' => 50 }) . "</td></tr>";
+
+    $body .= "<tr><th>Username:</th><td>" .
+        LJ::html_text({ 'name' => 'username', 
+                        'value' => $GET{'username'},
+                        'size' => 15, 'maxlength' => 15 }) . "</td></tr>";
+
+    $body .= "<tr><th>State:</th><td>" . 
+        LJ::html_select({'name' => 'state', 'selected' => $GET{'state'}},
+                        '', "", 'N', "New", 'D', "Deleted", 'Z', "Zilla item") . "</td></tr>";
+
+    $body .= "<tr><td></td><td>" . LJ::html_submit("", "Search") . "</td></tr>";
+
+    $body .= "</table></form>";
+
+    return unless $GET{'mode'};
+    
+    if ($GET{'mode'} eq "list") {
+        my @where;
+        my $dbr = LJ::get_db_reader();
+        $body .= "<?hr?><?h1 Results h1?>";
+        if ($GET{'viewall'} ne "") {
+            # Do nothing extra
+        }
+        if ($GET{'username'} ne "") {
+            my $userid = LJ::get_userid($GET{'username'});
+            unless ($userid) 
+            {
+                $body .= "<?h2 Error: h2?> <?p No results for '$GET{'username'}'. p?>";
+                return;
+            }
+            push @where, "userid=$userid";
+        }
+        if ($GET{'url'} ne "") {
+            my $qvalue  = $dbr->quote($GET{'url'});
+            push @where, "url=$qvalue";
+        }
+        if ($GET{'state'} ne "") {
+            my $qvalue  = $dbr->quote($GET{'state'});
+            push @where, " state=$qvalue";
+        }
+
+        my $where; my $i;
+        if (@where > 0) {
+            $where = "WHERE ";
+            foreach (@where) {
+                $i++;
+                $where .= $i == 1 ? $_ : " && " . $_;
+            }
+        }
+
+        my $sth = $dbr->prepare("SELECT * FROM fotobilder_feedback $where");
+        $sth->execute;
+
+        my $show_total = 50;
+        my $row_ct = 0;
+        my $row_show = 0;
+        my $row_skip = 0;
+        my $row_html;
+        my @rows; while (my $row = $sth->fetchrow_hashref) { push @rows, $row; }
+        foreach my $row ( reverse @rows ) {
+             next if LJ::trim($row->{'body'}) eq "";
+             $row_ct++;
+             next if $GET{'skip'} && ++$row_skip <= $GET{'skip'};
+             if ($row_show < $show_total) {
+                 $row_show++;
+                 my $username = LJ::get_username($row->{'userid'});
+                 $row_html .= "<tr><td style='white-space: nowrap'>" . LJ::ljuser($username) . "<br /><br />";
+                 if ($row->{'datetime'} ne "0000-00-00 00:00:00") {
+                     $row_html .= "<strong>Filed at:</strong> $row->{'datetime'}<br />";
+                 }
+                 $row_html .= "<ul><li><a href='./?mode=list&amp;url=" . LJ::ehtml($row->{'url'}) . "'>$row->{'url'}</a></li>";
+                 $row_html .= "<li><a href='./?mode=list&amp;username=$username'>Other feedback</a></li>";
+                 $row_html .= "<li><a href='./?mode=list&amp;state=$row->{'state'}'>State: $row->{'state'}</a></li></ul></td>";
+                 $row_html .= "<td style='border: 1px solid #000' valign='top'>";
+                 my $abstract = LJ::ehtml($row->{'body'});
+                 $abstract =~ s/\n/<br \/>/g;
+                 $row_html .= "$abstract</td></tr>";
+             }
+         }
+        if ($row_ct eq 0) { $body .= "<?p No Results Returned p?>"; return; }
+        
+        $body .= "<table cellpadding='4' cellspacing='1' border='0' class='feedback'>";
+        $body .= "<tr><th style='width: 175px;'>Links</th><th>Feedback</th></tr>";
+        $body .= $row_html;
+        my $slinks;
+        if ($GET{'skip'}) {
+            $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} - $show_total}) . "\">&lt;&lt; Back</a> ";
+        }
+        if ($row_show != $row_ct) {
+            my $from = $GET{'skip'}+1;
+            my $to = $row_show + $GET{'skip'};
+            $slinks .= "(Records $from-$to of $row_ct) ";
+        }
+        if ($GET{'skip'} + $row_show < $row_ct) {
+            $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} + $show_total}) . "\">Forward &gt;&gt;</a> ";
+        }
+        $body .= "</table>";
+        if ($slinks ne "") { $body .= "<?h1 Tally h1?> <?p $slinks p?>"; }
+    } else {
+        $body .= "<?p Please select a search criteria p?>";
+    }
+    return;    
+}
+_code?>
+<?page
+title=><?_code return $title; _code?>
+body=> <?_code return $body;  _code?>
+head<=
+<style type='text/css'>
+.feedback {
+    width: 100%;
+}
+.feedback th, .search th {
+    text-align: left;
+}
+</style>
+<=head
+page?>

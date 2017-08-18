@@ -1,0 +1,21 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+    return LJ::set_active_crumb('suggview');
+_code?>
+
+<?h1 <?_ml .welcome.title _ml?> h1?>
+<?p  <?_ml .welcome.text  _ml?>  p?>
+<?p  <?_ml .rules         _ml?>  p?>
+<?h1 <?_ml .howto.title   _ml?> h1?>
+<?p  <?_ml .howto.text    _ml?>  p?>
+<?h1 <?_ml .info.title    _ml?> h1?>
+<?p  <?_ml .info.text     _ml?>  p?>
+
+
+<=body
+page?><?_c <LJDEP
+link: htdocs/users, htdocs/userinfo.bml, htdocs/todo/index.bml, htdocs/tools/memory.bml, 
+link: htdocs/suggestions/generator.bml, htdocs/friends/add.bml
+</LJDEP> _c?>

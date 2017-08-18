@@ -1,0 +1,138 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+{
+    use strict;
+    use vars qw/ %POST /;
+
+    return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+    LJ::set_active_crumb('phonepostsettings');
+
+    my $remote = LJ::get_remote();
+
+    return "<?h1 Error h1?><?p Only personal journals are allowed to use the post by phone system. p?>"
+        if $remote && $remote->{journaltype} ne 'P';
+        
+    return $LJ::MSG_READONLY_USER if LJ::get_cap($remote, "readonly");
+
+    my ($ret, $saved);
+    my %errors;
+    my $error_msg = sub {
+        my $key = shift;
+        my $msg = $errors{$key};
+        return unless $msg;
+        return "<tr><th align='right'><?inerr $ML{'Error'}: inerr?></th><td colspan='2'><?inerr $msg inerr?></td></tr>";
+    };
+
+    my %formats = (
+        'ogg', 'Ogg Vorbis',
+        'wav', 'Wav (GSM encoded)'
+    );
+    $formats{'mp3'} = 'Mp3' if $LJ::PHONEPOST_MP3;
+
+    POST:
+    while ($remote && LJ::did_post()) {
+        my $phone = $POST{phone};
+        my $trans = $POST{trans};
+        my $format = $POST{format};
+        my $pin = $POST{pin};
+
+        if ($POST{delete}) {
+            my $dbh = LJ::get_db_writer();
+            $dbh->do("DELETE FROM phonepostlogin WHERE userid=?", undef, $remote->{userid});
+            return "<?h1 $ML{'.deleted.header'} h1?><?p $ML{'.deleted'} p?>";
+        }
+
+        $phone =~ s/\D//g;
+        $errors{'.phone'} = $ML{'.error.phone.length'}
+             unless length $phone >= 10;
+
+        $errors{'.pin'} = $ML{'.error.pin'} if $pin =~ /\D/ or
+                                           length $pin < 1;
+
+        my $dbh = LJ::get_db_writer();
+        my $prevuserid = $dbh->selectrow_array("SELECT userid FROM phonepostlogin ".
+                                               "WHERE phone=? AND pin=?", undef,
+                                               $phone, $pin);
+        $errors{'.pin'} = $ML{'.error.inuse'} if $prevuserid && $prevuserid != $remote->{userid};
+
+        my $grouplist = LJ::get_friend_group($remote);
+        $errors{'.transcribers'} = $ML{'.error.transcription'}
+             unless $trans == -1 || $trans == 0 || defined $grouplist->{$trans};
+
+        $errors{'.format'} = "Bad format selected." unless $formats{$format};
+
+        last POST if %errors;
+
+        $dbh->do("REPLACE INTO phonepostlogin ".
+                 "(phone, pin, userid) VALUES (?, ?, ?)", undef,
+                 $phone, $pin, $remote->{userid});
+
+        LJ::set_userprop($remote, 'pp_transallow', $trans);
+        LJ::set_userprop($remote, 'pp_format', $format);
+
+        $saved .= "<?h1 $ML{'.saved'} h1?>";
+        $saved .= "<?p $ML{'.success.text'} p?>";
+        $saved .= "<?p $ML{'.success.moreinfo'} p?>";
+        last;
+    }
+
+    my $grouplist = LJ::get_friend_group($remote);
+
+    my $tableline = sub {
+        my ($mlcaption, $content) = @_;
+        my $err = $error_msg->($mlcaption);
+        return "<tr><th align='right' nowrap='1'>$ML{$mlcaption}</th><td>$content</td><td><?de " . $ML{"$mlcaption.help"} . " de?></td></tr>\n$err";
+    };
+
+    my $dbr = LJ::get_db_reader();
+    my ($phone, $pin);
+
+    if ($remote) {
+        ($phone, $pin) = $dbr->selectrow_array(
+                               "SELECT phone, pin FROM phonepostlogin ".
+                               "WHERE userid=?", undef,
+                               $remote->{userid});
+        LJ::load_user_props($remote, qw/ pp_transallow pp_format /);
+        $ret .= $ML{'.intro.loggedin'};
+    } else {
+        $ret .= "<?p $ML{'.intro.loggedout'} p?>";
+    }
+
+    $phone = $POST{'phone'} ? $POST{'phone'} : $phone;
+    $pin   = $POST{'pin'}   ? $POST{'pin'}   : $pin;
+
+    $ret .= "<form method='post' action='phonepost.bml' style='margin-left: 40px'>\n";
+    $ret .= "<table cellpadding='3' cellspacing='0'>";
+    $ret .= $tableline->('.phone', 
+                LJ::html_text({name => 'phone', value => $phone, 
+                               maxlength => 25, disabled => !$remote}));
+
+    $ret .= $tableline->('.pin',
+                LJ::html_text({name => 'pin', value => $pin, type => 'password', 
+                               maxlength => 8, disabled => !$remote}));
+
+    my $default_format = $remote->{pp_format} || ($LJ::PHONEPOST_MP3 ? 'mp3' : 'ogg');
+
+    $ret .= $tableline->('.format',
+            LJ::html_select({ name => 'format', selected => $default_format }, %formats));
+
+    $ret .= $tableline->('.transcribers',
+            LJ::html_select({ name=>'trans', selected=>$remote->{pp_transallow} },
+                              0,'All friends',-1,'No one but you',
+                              map { $_, $grouplist->{$_}->{groupname} }
+                              sort {$grouplist->{$a}->{groupname} cmp $grouplist->{$b}->{groupname}}
+                              keys %$grouplist));
+
+    $ret .= '<tr><td>&nbsp;</td><td>' . LJ::html_submit('save', $ML{'.save'}, { disabled => !$remote }) . '</td><td>';
+    $ret .= LJ::html_submit('delete', $ML{'.delete'}, { disabled => !$remote}) . '</td></tr></table><br />';
+    $ret .= "</form>";
+
+    $ret .= $saved if $saved;
+    return $ret;
+}
+_code?>
+<=body
+page?>

@@ -1,0 +1,54 @@
+
+=== Blob Client
+BlobClient.pm, and BlobClient/* provide an interface to the blob
+server, both a local file path and a remote mod_perl server.  They
+generally use a clusterid, userid, domain, file extension, and blobid to
+refer to a given blob.
+
+
+On top of this, we have LJ/Blob.pm:
+ - LJ::Blob is the LJ-specific blob code, and it's the only interface
+   external clients care about.  It takes in stuff like $u objects and
+   handles all of the cluster-related mapping for you.  It uses a bunch
+   of settings in ljconfig to set up all the blob clusters.
+
+So the code path is like this:
+ - asterisk script calls
+ - phonepost-asterisk.pl's LJ::PhonePost::store_audio, which calls
+ - LJ::Blob::put, which calls
+ - BlobClient::put, which is a virtual function that maps to
+ - BlobClient::Local::put or BlobClient::Remote::put.
+
+A note on the "domain"s.  The blob clients all use domains in string form.
+LJ uses integer ids in its own userblob table, but that's a layer on top
+of the blob client, and all of the functions exposed by LJ/Blob.pm take
+strings.  (The mapping from string->id is LJ-specific, and so it's in
+ljconfig.pl.)
+
+The LJ::get_blob_domainid() function in ljlib.pl controls the user
+clusterid => blob clusterid mappings.
+
+
+=== Database Tables
+userblob is the LJ table used to track blobs.  It knows the bare minimum
+that is shared by all blobs: owner, domain, id, and size.
+
+phonepostlogin is the phone number and pin for users to interact with
+journals.  There's space in there to work with communities, too, but
+it's not implemented.
+
+phonepostentry stores extra information about a phonepost: not only its
+blobid, but also a jitemid (used to find the entry it's associated with,
+which controls its security), an anum, the posttime, etc.  lengthsecs
+should store the length of the audio in seconds but it's not used yet;
+I think the unix "file" command can be used to retreive this from the
+wavs.
+
+
+=== Files
+See also the documents "paths" and "symlinks" for asterisk stuff.
+ - cgi-bin/
+    phonepost.pl provides the main functions, and is used by ljlib.
+    phonepost-asterisk.pl provides extra functions used by asterisk.
+
+vim: set tw=72 :

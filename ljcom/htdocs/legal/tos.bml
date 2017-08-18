@@ -1,0 +1,67 @@
+<?page
+title=>Terms of Service
+head<=
+<style type='text/css'>
+    ol.ljtos li { margin-top: 0.7em; }
+    ol.ljtos b+p { margin-top: 0; }
+    ol.ljtos p { margin-top: 0.5em; margin-bottom: 0.5em; }
+
+</style>
+<=head
+body<=
+<?_code LJ::set_active_crumb('tos'); _code?>
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    my $remote = LJ::get_remote();
+    if ($remote && ! $remote->tosagree_verify) {
+
+        if (LJ::did_post()) {
+            my $err;
+            unless ($remote->tosagree_set(\$err)) {
+                return LJ::bad_input($err);
+            }
+            return 
+                "<?h1 Acknowledged h1?>" .
+                "<?p It has been acknowledged that you have agreed to version " .
+                "$LJ::REQUIRED_TOS{rev} of the $LJ::SITENAME terms of service. p?>" .
+                "<?hr?>";
+        }
+
+        my $htmlstr = LJ::tosagree_str('tos.bml' => 'html');
+        return 
+            "<?h1 " . LJ::tosagree_str('tos.bml' => 'title') . " h1?>" .
+            ($htmlstr ? "<?p $htmlstr p?>" : '') . "<?hr?>";
+    }
+
+    return '';
+}
+_code?>
+
+<?_include
+bml=>0
+code=>0
+file=>legal-tos
+_include?>
+
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    my $remote = LJ::get_remote();
+    if ($remote && ! $remote->tosagree_verify) {
+        return 
+            "<?hr?>" .
+            "<form method='post'><p align='center'>" . 
+            LJ::html_submit('agree_tos' => BML::ml('tos.haveread')) . 
+            "</p></form>";
+    }
+
+    return '';
+}
+_code?>
+<=body
+page?>

@@ -1,0 +1,180 @@
+<?_code
+{
+    use strict;
+    use vars qw(%POST $title $body);
+
+    # central time t from which validity calculations are made
+    my $time_start = 1101427200; # nov. 26, 2004 (GMT)
+    my $time_end   = 1104537599; # last second of 2004 (GMT)
+
+    # statushistory type
+    my $shtype = '2004_dec_promo';
+    my $dollar_value = 15; # value of generated coupon
+    my $dollar_req   = 50; # need 50 per coupon
+
+    $title = "2004 Holidays Promotion";
+    $body = "";
+
+    # date with no hhmmss
+    my $date = sub { substr(LJ::mysql_time($_[0]), 0, 10) };
+
+    # die immediately if applicable time frame has expired
+    my $now = time();
+    if ($now > $time_end) {
+        $title = "Offer Expired";
+        $body  = "Sorry, the 2004 Holidays Promotion offer expired at the end of December, GMT.";
+        return;
+    }
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    # no authas for this page
+    my $u = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $u;
+
+    my $dbh = LJ::get_db_writer();
+    my $sys_id = LJ::get_userid("system") or die "No system id";
+
+    # form output
+    $body = "";
+
+    # no suspended accounts
+    if ($u->{statusvis} eq "S") {
+        $body .= "<?h1 Suspended Account h1?>";
+        $body .= "<?p This journal has been either temporarily or permanently suspended by $LJ::SITENAME for policy violation. " .
+            "You are unable to claim paid time until this journal is unsuspended. p?>";
+        return;
+    }
+
+    # statusvis must be v, and journaltype C || P
+    unless ($u->{statusvis} eq 'V' && $u->{journaltype} eq 'P') {
+        $body .= "<?h1 Invalid Account h1?>";
+        $body .= "<?p This journal's current status does not allow it to use this tool. p?>";
+        return;
+    }
+
+    # Find the following payitems:
+    # -- belong to this user
+    # -- between $time_start and $time_end
+    # -- checked out (used='Y')
+    # -- not clothes (intangible ... coupons are allowed)
+    # -- positive amount
+
+    my $has_already = sub {
+        return $dbh->selectrow_array
+            ("SELECT COUNT(*) FROM statushistory WHERE userid=? AND adminid=? AND shtype=?",
+             undef, $u->{userid}, $sys_id, $shtype)+0;
+    };
+
+    my $amt = $dbh->selectrow_array
+        ("SELECT SUM(pi.amt) FROM payments p, payitems pi WHERE p.userid=? AND pi.payid=p.payid " .
+         "AND p.daterecv>=FROM_UNIXTIME(?) AND p.daterecv<=FROM_UNIXTIME(?) " .
+         "AND p.used='Y' AND pi.amt>0 AND pi.item IN ('rename','paidacct','perm','userpic')",
+         undef, $u->{userid}, $time_start, $time_end);
+
+    my $total = POSIX::floor($amt/$dollar_req);
+    my $have = $has_already->() + 0;
+    my $need = $total - $have;
+
+    # posting a form submission
+    if (LJ::did_post() && $POST{submit} && $need > 0) {
+
+        # get a lock on this userid
+        my $lockkey = "$shtype:$u->{userid}";
+        LJ::get_lock($dbh, "global", $lockkey)
+            or return $err->("Couldn't get lock: $lockkey");
+
+        # revalidate count inside of lock
+        $have = $has_already->();
+        $need = $total - $have;
+
+        my @tokens = ();
+        foreach my $ct ($have+1..$total) {
+
+            my ($tokenid, $token) = LJ::Pay::new_coupon('dollarofftan', $dollar_value, $u->{userid}, 0);
+            unless ($tokenid && $token) {
+                return $err->("There has been an error generating your coupon.  Please try again later.");
+            }
+            push @tokens, $token;
+
+            # log this action in statushistory.  note that this is also what signifies the action
+            # has already been performed
+            LJ::statushistory_add
+                ($u->{userid}, $sys_id, $shtype, "($ct) generated coupon: $token");
+            
+        }
+
+        # we're done working, release lock
+        LJ::release_lock($dbh, "global", $lockkey);
+
+        $body = "<?h1 Success! h1?>";
+        $body .= "<?p You've generated $need coupons: p?><ul>";
+        foreach ( @tokens ) {
+            $body .= "<li>$_</li>";
+        }
+        $body .= "</ul>";
+        
+        my $coup_amt = $dollar_value * $need;
+        $body .= "<?p You can redeem your coupons for \$$coup_amt USD in <a href='/store/'>$LJ::SITENAMESHORT merchandise</a>. p?>";
+        $body .= "<?p <strong>Note:</strong> A coupon is only valid for one use, so be sure that your order's ";
+        $body .= " value is greater than or equal to \$$coup_amt USD. p?>";
+
+        return;
+    }
+        
+    # claim form
+    $body .= "<form method='post' action='2004_december_promo.bml'>";
+
+    $body .= "<?h1 Something Extra this Year&hellip; h1?>";
+    $body .= "<?p As a way to say thank you to all of our supporters, we're offering \$$dollar_value USD ";
+    $body .= "<a href='/store/'>clothing</a> coupons ";
+    $body .= "for every \$$dollar_req USD spent on service items in <a href='/pay/'>our store</a>. ";
+    $body .= "Store purchases are cumulative, so you don't have to spend \$$dollar_req at once -- separate ";
+    $body .= "purchases can be saved up until there's enough to generate a coupon. p?>";
+    $body .= "<?p The promotion begins November 26th of 2004 (GMT) ";
+    $body .= "and will end at the beginning of 2005 (GMT), at which time the generated coupons also expire.";
+    $body .= " p?>";
+
+    $body .= "<?h1 Coupon Status h1?>";
+    if ($need > 0) {
+        my $s = $total == 1 ? "" : "s";
+        $body .= "<?p You purchased \$$amt of service items between November 26th and the end of December (GMT)";
+        $body .= ", making you eligible for $total \$$dollar_value.00 USD clothing coupon${s}.  You have currently claimed $have of ";
+        $body .= "these, so you can claim $need more if you wish. p?>";
+    
+        my $s = $need == 1 ? "" : "s";
+        $body .= "<div style='margin-left: 30px; margin-top: 10px'>";
+        $body .= LJ::html_submit('submit' => "Claim $need Coupon$s");
+        $body .= "</div>";
+
+    } else {
+        my $goal = sprintf("%0.02f", $dollar_req - ($amt % $dollar_req));
+        if ($have == 0) {
+            $body .= "<?p To qualify for this promotion, please purchase at least \$$dollar_req USD worth of <a href='/pay/'>services from our store</a>. p?>";
+        } else {
+            my $s = $have == 1 ? "" : "s";
+            $body .= "<?p You have purchased \$$amt USD of service items between November 26th and the end of December (GMT) ";
+            $body .= " and have already claimed $have coupon${s}.  You will need to purchase another \$$goal USD";
+            $body .= " worth of services from our store before you will be eligible for a new coupon. p?>";
+        }
+    }
+
+    if ($have > 0) {
+        $body .= "<?h1 Existing Coupons h1?>";
+        $body .= "<?p To view or retrieve any of the $have coupons that you have already generated via this promotion, ";
+        $body .= "please see the <a href='$LJ::SITEROOT/pay/coupons.bml'>coupon retrieval</a> page. p?>";
+    }
+
+    $body .= "</form>";
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

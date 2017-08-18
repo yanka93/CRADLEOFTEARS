@@ -1,0 +1,20 @@
+<?page
+title=>Thanks!
+body<=
+
+<?h1 What now? h1?>
+<?p
+PayPal is now processing your payment and their server will contact our server with the full details of the transaction shortly.  This will happen within 12 hours, if not much sooner.
+p?>
+<?p
+If you're paying for an existing account, your paid account will be setup when PayPal sends our server the details.
+p?>
+<?p
+If you're paying to <a href="/create.bml">create a new account</a>, an account creation code will be emailed to the same email address you used for PayPal.
+p?>
+<?p
+We appreciate your payment.
+p?>
+
+<=body
+page?>

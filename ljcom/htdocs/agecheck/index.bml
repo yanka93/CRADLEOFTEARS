@@ -1,0 +1,177 @@
+<?page
+title=>Age Verification
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $remote = LJ::get_remote();
+    return "<?needlogin?>"
+        unless $remote;
+    return "<?h1 Error h1?><?p Your account is not marked as being underage or has already been verified.  You do not need to do this again. p?>"
+        unless $remote->underage;
+
+    if (LJ::did_post()) {
+        # make the cart and add our verification item
+        unless ($POST{cartid}) {
+            my $cart = LJ::Pay::new_cart($remote);
+            LJ::Pay::add_cart_item($cart, {
+                item => 'coppa',
+                rcptid => $remote->{userid},
+            });
+            $POST{cartid} = "$cart->{payid}-$cart->{anum}";
+        }
+
+        # redirect to it
+        return BML::redirect("$LJ::SSLROOT/pay/cc.bml?c=$POST{cartid}");
+    }
+
+    # throw in extra boxes
+    my ($extra, $cartid);
+    if ($GET{o}) {
+        $extra = "<?standout " .
+                 "Even though you specified a birthday that makes you at least 13 years old, the computer " .
+                 "you are using was previously used to create an account that is under the age of 13.  " .
+                 "Therefore, the account you have just created is also required to verify its age." .
+                 " standout?>";
+    } elsif ($GET{s}) {
+        $extra = "<?standout " .
+                 "We're sorry, the action you were trying to perform requires you to verify that you are " .
+                 "authorized to have this account.  Please ask your parent to continue the registration " .
+                 "process with you." .
+                 " standout?>";
+    } else {
+        $extra = "<?standout " .
+                 "You appear to be under the age of 13. Before you can continue to use LiveJournal.com, " .
+                 "we must verify that your parents have read and agree to our privacy policy and Terms of " .
+                 "Service.  Please ask your parent to continue the registration process with you." .
+                 " standout?>";
+    }
+    if ($GET{c}) {
+        # verify input before putting in our output
+        $cartid = $1
+            if $GET{c} =~ /^(\d+-\d+)$/;
+    }
+
+    return qq{
+$extra
+
+<?h1 Information Relating to Children h1?>
+
+<?p The Children's Online Privacy Protection Act ("COPPA") requires that we
+inform parents about how we collect, use, and disclose personal information
+from children under 13 years of age. LiveJournal.com is not directed at
+children under 13 but we recognize that with proper adult supervision
+some parents might permit their children to visit LiveJournal.com and use
+our Service. COPPA also requires that we obtain the consent of parents
+and guardians in order for children under 13 years of age to use certain
+features of LiveJournal.com. p?>
+
+<?p When your child attempts to register and/or provide personal information  
+to LiveJournal.com, we require a parent or legal guardian to: p?>
+
+<ol>
+<li>complete the registration;</li>
+
+<li>review our privacy policy and to submit a valid credit card number to
+verify that the child's parent or guardian knows about and authorizes our
+information practices related to children protected by COPPA; and</li>
+
+<li>verify through the use of an email confirmation and second
+authorization that the parent or guardian consents to the Terms of
+Service and LiveJournal.com's privacy policy.</li>
+</ol>
+
+<?p <strong>Once parental notice and consent has been verified, the
+information we collect will be treated the same as information collected
+from any other user of LiveJournal.com.</strong> p?>
+
+<?p Without verified parental notice and consent, we will not knowingly
+collect personal information of children under 13, and if we learn that we
+have inadvertently collected such information, we will promptly delete it.
+p?>
+
+<?p Some highlights of our privacy policy include: p?>
+
+<ul>
+
+<li>We <strong>do not</strong> transfer personal information we collect to people or
+organizations outside the LiveJournal.com family of companies for their
+direct marketing purposes.</li>
+
+<li>We <strong>do</strong> share this information within the LiveJournal.com family of
+companies but any use or disclosure of this information is controlled by
+our privacy policy.</li>
+
+<li>We may use or share account users' personal information where it
+is necessary for us to complete a transaction, to operate or improve
+LiveJournal.com and related products and services, to do something that the
+user has asked us to do, or to tell the user of products and services that
+we think may be of interest.</li>
+
+<li>We may occasionally contact our users with offers.  When we do this, we
+will do our best to provide you with an opportunity to opt-out of receiving
+such further communications at the time you are contacted.</li>
+
+</ul>
+
+Detailed information on our complete privacy practices is available
+<a href="/legal/privacy.bml">here</a>.
+
+<?h1 How Parents can Access their Children's Personal Information h1?>
+
+<?p In compliance with COPPA, parents and legal guardians may request       
+from us to review, delete or stop the collection of the personally      
+identifiable information of their child. You may do so in one of two    
+ways. p?>
+
+<?p If you know the user name and password, follow the instructions below
+regarding "Changing your Preferences and Personal Information", or you
+may contact our privacy officer by phone, mail or email using the contact
+information disclosed in our <a href="/legal/privacy.bml#contact">privacy
+policy</a>. p?>
+
+<?p If you request that no further information about your child be
+collected or used, we will be required to terminate your child's ability to
+use LiveJournal.com's products and services that require a user to "sign
+in." p?>
+
+<?h1 Changing Preferences and Personal Information h1?>
+
+<ul>
+
+<li> You can edit your child's LiveJournal.com Account Information at any
+time.  Most personal information provide to LiveJournal.com is entirely
+optional.  For example, to the extent that parents are considering whether
+to permit their children to use the Service, we do not condition a child's
+participation based upon their provision of any more personal information
+than is necessary to operate the Service. </li>
+
+<li> You can delete your LiveJournal.com account by visiting our Account
+Deletion page; however, please note that some personal information,
+primarily your contact information, may remain in LiveJournal.com's records
+to the extent necessary to protect LiveJournal's legal interests or
+document compliance with regulatory requirements. </li>
+
+</ul>
+
+<?h1 Continue with Account Verification h1?>
+<?p If you have access to a credit card, you may continue with electronic
+account verification by clicking the button below.  This is the preferred
+method.  Alternatively, you can mail or fax a copy of your government-issued
+ID or birth vertificate using our 
+<a href='$LJ::SITEROOT/agecheck/altform.bml'>printable form</a>. p?>
+
+
+<form method="post" action="$LJ::SITEROOT/agecheck/index.bml" style='margin: 20px 0 0 20px'>
+} .
+
+LJ::html_submit("Continue Electronic Verification") . "\n" .
+LJ::html_hidden(cartid => $cartid) . "\n" .
+"</form>\n";
+
+}
+_code?>
+<=body
+page?>

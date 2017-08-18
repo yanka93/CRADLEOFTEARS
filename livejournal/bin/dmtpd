@@ -1,0 +1,231 @@
+#!/usr/bin/perl
+#
+# Danga's Mail Transfer Daemon
+#
+# Status: 2004-06-07:  quick hack.
+#
+# Copyright 2004, Danga Interactive
+#
+# Authors:
+#   Brad Fitzpatrick <brad@danga.com>
+#
+# License:
+#   Artistic/GPL.  Your choice.
+#
+
+use strict;
+use Getopt::Long;
+use Carp;
+use Danga::Socket;
+use IO::Socket::INET;
+use POSIX ();
+
+use vars qw($DEBUG);
+$DEBUG = 0;
+
+my (
+    $daemonize,
+   );
+my $conf_port = 7005;
+
+Getopt::Long::GetOptions(
+    'd|daemon'       => \$daemonize,
+    'p|port=i'       => \$conf_port,
+    'debug=i'        => \$DEBUG,
+   );
+
+daemonize() if $daemonize;
+
+use Socket qw(IPPROTO_TCP SO_KEEPALIVE TCP_NODELAY SOL_SOCKET);
+
+$SIG{'PIPE'} = "IGNORE";  # handled manually
+
+# establish SERVER socket, bind and listen.
+my $server = IO::Socket::INET->new(LocalPort => $conf_port,
+                                   Type      => SOCK_STREAM,
+                                   Proto     => IPPROTO_TCP,
+                                   Blocking  => 0,
+                                   Reuse     => 1,
+                                   Listen    => 10 )
+    or die "Error creating socket: $@\n";
+
+# Not sure if I'm crazy or not, but I can't see in strace where/how
+# Perl 5.6 sets blocking to 0 without this.  In Perl 5.8, IO::Socket::INET
+# obviously sets it from watching strace.
+IO::Handle::blocking($server, 0);
+
+my $accept_handler = sub {
+    my $csock = $server->accept();
+    return unless $csock;
+
+    printf("Listen child making a Client for %d.\n", fileno($csock))
+	if $DEBUG;
+
+    IO::Handle::blocking($csock, 0);
+    setsockopt($csock, IPPROTO_TCP, TCP_NODELAY, pack("l", 1)) or die;
+
+    my $client = Client->new($csock);
+    $client->watch_read(1);
+};
+
+Client->OtherFds(fileno($server) => $accept_handler);
+Client->EventLoop();
+
+sub daemonize {
+    my($pid, $sess_id, $i);
+
+    ## Fork and exit parent
+    if ($pid = fork) { exit 0; }
+
+    ## Detach ourselves from the terminal
+    croak "Cannot detach from controlling terminal"
+        unless $sess_id = POSIX::setsid();
+
+    ## Prevent possibility of acquiring a controling terminal
+    $SIG{'HUP'} = 'IGNORE';
+    if ($pid = fork) { exit 0; }
+
+    ## Change working directory
+    chdir "/";
+
+    ## Clear file creation mask
+    umask 0;
+
+    ## Close open file descriptors
+    close(STDIN);
+    close(STDOUT);
+    close(STDERR);
+
+    ## Reopen stderr, stdout, stdin to /dev/null
+    open(STDIN,  "+>/dev/null");
+    open(STDOUT, "+>&STDIN");
+    open(STDERR, "+>&STDIN");
+}
+
+#####################################################################
+### C L I E N T   C L A S S
+#####################################################################
+package Client;
+
+use Danga::Socket;
+use base 'Danga::Socket';
+use fields (
+	    'headers',    # hashref of header fields read
+            'line',       # partial line read so far
+            'readcount',  # how much into the message body we've read
+            'sendmail',   # IO::File pipe to sendmail
+            'gotheaders', # bool: if we've finished reading headers
+            'err',        # bool: error has occurred so far
+	    );
+use Errno qw(EPIPE);
+use IO::File;
+
+sub new {
+    my Client $self = shift;
+    $self = fields::new($self) unless ref $self;
+    $self->SUPER::new( @_ );
+
+    $self->reset_for_next_message;
+    return $self;
+}
+
+sub reset_for_next_message {
+    my Client $self = shift;
+    $self->{line} = '';
+    $self->{headers} = {};
+    $self->{readcount} = 0;
+    $self->{gotheaders} = 0;
+    $self->{sendmail} = undef;
+    $self->{err} = 0;
+    return $self;
+}
+
+# Client
+sub event_read {
+    my Client $self = shift;
+    my $bref = $self->read(8192);
+    return $self->close() unless defined $bref;
+    $self->process_read_buf($bref);
+}
+
+sub process_read_buf {
+    my Client $self = shift;
+    my $bref = shift;
+
+    if (! $self->{gotheaders}) {
+        $self->{line} .= $$bref;
+        while ($self->{line} =~ s/^(.*?)\r?\n//) {
+            my $line = $1;
+            if ($line =~ /^(\S+)\s*:\s*(.+)/) {
+                $self->{headers}{lc($1)} = $2;
+            } elsif ($line eq "") {
+                $self->{gotheaders} = 1;
+                $self->{readcount} = 0;
+                my $opts = "";
+                my $h = $self->{headers};
+                # pass the '-f' option to sendmail, if the given
+                # Envelope-Sender header is clean
+                if (my $es = $h->{'envelope-sender'}) {
+                    if ($es =~ /^[\w\-\+\.]+\@[\w\-\.]+$/) {
+                        $opts = "-f $es";
+                    }
+                }
+                unless ($self->{sendmail} =
+                        IO::File->new("| /usr/sbin/sendmail -t -i $opts")) {
+                    $self->{err} = 1;
+                }
+                $self->close unless $h->{'content-length'} > 0 &&
+                    $h->{'content-length'} =~ /^\d+$/;
+
+                $bref = \$self->{line};
+                last;
+            }
+        }
+    }
+    return unless $self->{gotheaders};
+
+    my $need = $self->{headers}{'content-length'} - $self->{readcount};
+    my $len = length($$bref);
+
+    # if we read into the next message (pipelined messages)
+    # then we need to push the overflow piece back into $overflow
+    my $overflow;
+    if ($len > $need) {
+        my $needed = substr($$bref, 0, $need);
+        $overflow = substr($$bref, $need);
+        $bref = \$needed;
+        $len = $need;
+    }
+
+    $self->{readcount} += $len;
+    if ($self->{sendmail} && ! $self->{err}) {
+        $self->{sendmail}->print($$bref);
+        $self->{err} = 1 if $! == EPIPE;
+    }
+
+    # if we're done, close sendmail
+    if ($len == $need) {
+        if (! $self->{err} &&
+            $self->{sendmail} &&
+            $self->{sendmail}->close()) {
+            $self->write("OK\r\n");
+        } else {
+            $self->write("FAIL\r\n");
+        }
+        $self->reset_for_next_message;
+        $self->process_read_buf(\$overflow) if defined $overflow;
+    }
+
+    $self->watch_read(1);
+}
+
+
+# Client
+sub event_err { my $self = shift; $self->close; }
+sub event_hup { my $self = shift; $self->close; }
+
+# Local Variables:
+# mode: perl
+# c-basic-indent: 4
+# indent-tabs-mode: nil
+# End:

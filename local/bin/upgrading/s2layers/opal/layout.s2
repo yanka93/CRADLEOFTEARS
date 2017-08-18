@@ -1,0 +1,1625 @@
+# -*-s2-*-
+layerinfo type = "layout";
+layerinfo name = "Opal (Libra OSWD)";
+layerinfo lang = "en";
+
+layerinfo author_name = "Ported by Kevin Phillips";
+layerinfo author_email = "xevinx@livejournal.com";
+layerinfo des = "Based on the Libra and Pasilda design available from Open Source Web Designs. Originally written by whompy.";
+layerinfo redist_uniq = "opal/layout";
+layerinfo previews = "opal/opal.jpg";
+
+
+
+################################################################################
+#
+# Properties
+# 
+
+
+propgroup prez = "Presentation";
+propgroup prez {
+
+	property use font_base;
+	property use font_fallback;
+	property string static_font_size { noui = 1; }
+	property string static_font_measurement { noui = 1; }
+	property use page_recent_items;
+	property use page_friends_items;
+	property use use_shared_pic;
+	property use view_entry_disabled;
+
+	property bool show_entry_userpic {
+		des = "Always display userpic?";
+	}
+
+	property int summary_items {
+		des = "Summary Items";
+		note="Maximum number of items in the Page Summary list.  Set to 0 to turn off the Page Summary.  Set to 100 to show all available items.";
+	}
+
+	property bool use_count {
+		noui=1;
+	}
+
+	set static_font_size = "12";
+	set static_font_measurement = "px";
+	set summary_items = 100;
+	set show_entry_userpic = false;
+	set font_fallback = "sans-serif";
+}
+
+
+propgroup colors = "Colors";
+
+propgroup colors {
+	property Color color_bg {
+		des = "Background Color";
+	}
+
+	property Color color_bg_font {
+		des = "Background Font Color";
+		note = "The color of any font appearing on the background color.";
+	}
+
+	property Color color_med {
+		des = "Page Holder Background";
+		note = "This is the background of the main body, but within the outer borders.";
+	}
+
+	property Color color_med_font {
+		des = "Page Holder Font Color";
+		note="The color of the font appearing on the Page Holder Background color.";
+	}
+
+	property Color color_fg {
+		des = "Content Background Color";
+		note = "This is the background to the main content where the entries and side elements are.";
+	}
+
+	property Color color_fg_font {
+		des = "Content Font Color";
+		note = "The color of the font that appears on in the main Content area.";
+	}
+
+	property Color color_link {
+		des = "Link Color";
+	}
+
+	property Color color_visited {
+		des = "Visited Link Color";
+	}
+
+	set color_bg = "#2d3851";
+	set color_bg_font = "#ffffff";
+	set color_med = "#7C8AA4";
+	set color_med_font = "#e9f2fc";
+	set color_fg = "#BFC4CB";
+	set color_fg_font = "#333333";
+}
+
+propgroup text = "Text";
+propgroup text {
+
+	property string free_text_header {
+		des = "Free Text Header";
+	}
+
+	property string free_text_text {
+		des = "Free Text Text";
+		cols = 30;
+		rows = 10;
+	}
+
+	property string links_header {
+		des = "Links Header";
+	}
+
+	property string page_summary_title {
+		des = "Page Summary Header";
+	}
+
+	property use text_view_userinfo;
+	property use text_view_recent;
+	property use text_view_friends;
+	property use text_view_archive;
+	property string text_forward {
+		des = "Text to show in a link to skip forward through entries";
+	}
+	property string text_back {
+		des = "Text to show in a link to skip backward through entries";
+	}
+	property use text_read_comments;
+	property use text_read_comments_friends;
+	property use text_post_comment;
+	property use text_post_comment_friends;
+	property use text_comment_reply;
+	property use text_reply_back;
+	property use text_nosubject;
+	property use text_noentries_day;
+	property use text_meta_music;
+	property use text_meta_mood;
+
+	set page_summary_title = "Page Summary";
+	set links_header = "Links";
+	set free_text_header = "About this journal";
+	set free_text_text = "";
+	set text_back = "Back";
+	set text_forward = "Forward";
+}	
+
+set tags_aware = true;
+
+
+################################################################################
+#
+# Prop Init
+# 
+
+function prop_init ()  {
+	if($*color_bg.as_string == "") { $*color_bg = "#000000"; }
+	if($*color_fg.as_string == "") { $*color_fg = "#000000"; }
+	if($*color_fg_font.as_string == "") { $*color_fg_font = "#000000"; }
+}
+
+
+################################################################################
+#
+# Stylesheet
+# 
+
+function getAltColor (Color color, string dir, int num) : Color {
+	var int lt = $color->lightness();
+	if($dir == "light") {
+		if($lt > 200) {
+			$color = $color->darker($num);
+		} else {
+			$color = $color->lighter($num);
+		}
+	} elseif($dir == "dark") {
+		if($lt < 55) {
+			$color = $color->lighter($num);
+		} else {
+			$color = $color->darker($num);
+		}
+	}
+	return $color;
+}
+
+function print_stylesheet ()  {
+
+
+	var Color color_bg_lt = getAltColor($*color_bg, "light", 30);
+	var Color color_fg_dk = getAltColor($*color_fg, "dark", 20);
+	var Color color_fg_dk_font = getAltColor($*color_fg_font, "dark", 20);
+	var Color color_divider = getAltColor($color_fg_dk, "dark", 30);
+	var Color color_fg_dk_dk_font = getAltColor($color_fg_dk, "dark", 50);
+	var Color color_border = getAltColor($*color_bg, "light", 90);
+	var string base = ($*font_base != "") ? "$*font_base, " : "";
+
+	"""
+	body { 
+		font-family: $base $*font_fallback;
+		background-color: $*color_bg;
+		margin: 10px;
+	}
+	
+	.border4 { border: 1px solid $*color_bg; }
+	.border3 { border: 1px solid $*color_fg; }
+	.border2 { border: 2px solid $color_border; }
+
+	""";
+	if($*color_link.as_string != "") {
+		"""
+	A { color: $*color_link; }
+		""";
+	}
+
+	if($*color_visited.as_string != "") {
+		"""
+	A:Visited { color: $*color_visited; }
+		""";
+	}
+	"""
+	#bodycontent { background-color: $*color_med; border: 1px solid $*color_bg; padding: 3px; }
+		
+	#headerinfo {
+		background-color: $*color_bg;
+		color: $*color_bg_font;
+		text-align: right;
+		font-size: 10px;
+		padding: 2px;
+		margin-top: 1px;
+	}
+	#header { color: $*color_med_font; }
+	#header h3 { font-weight: normal; }
+	#userpic { float: right; }
+
+	.userpic2 {
+		float: right;
+		text-align: right;
+		margin-top: 2px;
+		margin-right: 3px;
+	}
+	
+	#nav {
+		white-space: nowrap;
+		margin-bottom: 10px;
+		font-size: $*static_font_size$*static_font_measurement;
+	}
+	
+	#nav A {
+		border: 1px solid $*color_bg;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 2px;
+		padding-bottom: 2px;
+		height: 20px;
+		text-decoration: none;
+		color: $*color_bg_font;
+		background-color: $color_bg_lt;
+	}
+	
+	#nav A:Hover { background-color: $*color_bg; }	
+	
+	#content {
+		background-color: $*color_fg;
+		border: 1px solid $color_fg_dk;
+		padding: 4px;
+	}
+	
+	.columncontent { 
+		background-color: $color_bg_lt; 
+		border: 1px solid $*color_bg; 
+		padding: 3px; 
+		width: 200px; 
+		font-size: $*static_font_size$*static_font_measurement;
+		color: $*color_bg_font;
+	}
+	
+	.columnitem {
+		background-color: $color_fg_dk;
+		padding: 3px;
+		margin-top: 5px;
+		color: $*color_fg_font;
+		border-top: 1px solid $color_divider;
+		border-bottom: 1px solid $color_divider;
+		overflow: hidden;
+	}
+
+	.entries { color: $*color_fg_font; }
+	
+	.entrydivider {
+		border-top: 1px solid $color_divider;
+		border-bottom: 1px solid $*color_fg;
+	}
+
+	.minicomment {
+		background-color: $color_fg_dk;
+		padding: 4px;
+		color: $*color_fg_font;
+		border: 1px solid $*color_fg;
+		font-size: $*static_font_size$*static_font_measurement;
+	}
+	
+	.minicommentholder { border: 1px solid $color_divider; }
+
+	.entryinfo {
+		background-color: $color_fg_dk;
+		font-size: $*static_font_size$*static_font_measurement;
+		padding: 4px;
+		color: $*color_fg_font;
+	}
+
+	.postedby {
+		background-color: $color_fg_dk;
+		padding: 6px;
+		font-size: $*static_font_size$*static_font_measurement;
+	}
+
+	.entrylinks {
+		border-bottom: 1px solid $*color_fg;
+		background-color: $color_fg_dk;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		font-size: $*static_font_size$*static_font_measurement;
+	}
+	
+	.entrylinks A {
+		text-decoration: none;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		white-space: nowrap;
+		color: $*color_fg_font;
+		border-right: 1px solid $*color_fg;
+	}
+	
+	.entrylinks A:Hover {
+		background-color: $*color_fg;
+	}
+
+	.messageholder {
+		border: 1px solid $*color_bg;;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+
+	.systemmessage {
+		background-color: $color_bg_lt;
+		color: $*color_bg_font;
+		border: 1px solid $color_border;
+		font-size: $*static_font_size$*static_font_measurement;
+	}
+	
+	.systemtext { 
+		font-weight: normal;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.systemmessage A {
+		text-decoration: none;
+		padding-left: 10px;
+		padding-right: 10px;
+		color: $*color_bg_font;
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+	
+	.systemmessage A:Hover {
+		background-color: $*color_bg;
+	}
+
+	.systemmessage input, .systemmessage textarea, .systemmessage select {
+		background-color: $*color_fg;
+		color: $*color_fg_font;
+	}
+
+	.systemmessage TD {
+		padding: 4px;
+		font-size: $*static_font_size$*static_font_measurement;
+		color: $*color_bg_font;
+	}
+
+	.entry { margin-bottom: 30px; }
+	.entrytext { margin: 10px; }
+	.subject { font-weight: bold; }
+	
+	.meta {
+		font-size: $*static_font_size$*static_font_measurement;
+		padding: 4px;
+	}
+
+	.meta A {
+		text-decoration: none;
+		color: $*color_link;
+	}
+	
+	.systemmessage A:Hover {
+		background-color: $*color_bg;
+	}
+
+	#sidecolumn TD { color: $*color_bg_font; }
+
+	#sidecolumn A {
+		text-decoration: none;
+		color: $*color_fg_font;
+	}
+
+	.sidetd {
+		width: 200px;
+	}
+
+	.backtop {
+		text-align: right;
+	}
+
+	.backtop A {
+		color: $*color_fg_font;
+		font-size: $*static_font_size$*static_font_measurement;
+		text-decoration: none;
+		padding-bottom: 1px;
+	}
+
+	#cal A {
+		text-decoration: none; 
+		color: $*color_fg_font;
+	}
+
+	.calrow {
+		clear: both;
+		font-family: Arial, sans-serif;
+	}
+	
+	.calempty {
+		width: 24px;
+		font-size: 11px;
+		margin: 1px;
+		float: left;
+	}
+
+	.calactitem {
+		float: left;
+		margin: 1px;
+		width: 23px;
+		font-size: 11px;
+		text-align: center;
+		background-color: $color_fg_dk;
+		border-right: 1px solid $color_bg_lt;
+		border-bottom: 1px solid $color_bg_lt;
+	}
+
+	.calinitem {
+		float: left;
+		margin: 1px;
+		width: 23px;
+		font-size: 11px;
+		text-align: center;
+		border-right: 1px solid $color_fg_dk;
+		border-bottom: 1px solid $color_fg_dk;
+	}
+	
+	.friendcolor {
+		width: 10px;
+		height: 10px;
+		border: 2px solid $*color_fg;
+	}
+
+	.multiform {
+		font-weight: bold;
+	}
+
+	.ip {
+		color: $color_fg_dk_dk_font;
+	}
+
+	.friendname {
+		padding: 4px;
+		text-decoration: none;
+		border-left: 1px solid $*color_fg;
+		border-right: 1px solid $*color_fg;
+	}
+
+	.bigday {
+		font-size: 2em;
+		color: $color_fg_dk;
+		float: left;
+		font-weight: bolder;
+	}
+
+	.notablemessage {
+		padding: 4px;
+	}
+
+	""";
+}
+
+
+
+################################################################################
+#
+# Global functions
+# 
+
+function generateDots (string un)  : string {
+	var string dots;
+	if($un != "") {
+		foreach var string s ($un)  {
+			if($s == "a" or $s == "c" or $s == "e" or $s == "f" or $s == "h" or $s == "k" or $s == "m" or $s == "n" or $s == "p" or $s == "r" or $s == "t" or $s == "v" or $s == "x" or $s == "z") {
+				$dots = $dots + ":";
+			} elseif($s == " ") {
+				$dots = $dots + " ";
+			} else {
+				$dots = $dots + ".";
+			}
+		}
+	}
+	return $dots;
+}
+
+
+
+
+function print_box (string header, string text)  {
+	"""
+
+								<div class="border4">
+									<div class="border3">
+										<div class="border2">
+											<div class="columncontent">
+	""";
+	print safe """<strong>$header</strong>""";
+	print safe """$text""";
+
+	"""
+											</div>
+										</div>
+									</div>
+								</div>
+								<br />
+	""";
+	
+}
+
+function box_item (string text) : string {
+	return """<div class="columnitem">$text</div>\n""";
+}
+
+
+function num_comments_in_thread (Comment[] comments)  : int {
+    var int total = 0;
+    foreach var Comment c ($comments) {
+	$total = $total + 1;
+        if (size $c.replies > 0) {
+            $total = $total + num_comments_in_thread($c.replies);
+        }
+    }
+    return $total;
+}
+
+
+################################################################################
+#
+# Layout specific functions
+# 
+
+function Page::lay_print_userpic() {
+	if(defined $.journal.default_pic) {
+	"""
+				<div id="userpic"><a href="$*SITEROOT/allpics.bml?user=$.journal.username"><img src="$.journal.default_pic.url" width="$.journal.default_pic.width" height="$.journal.default_pic.height" alt="$.journal.name" title="$.journal.name" border="0" /></a></div>
+	""";
+	}
+}
+
+function Page::lay_print_username ()  {
+
+	var string dots = generateDots($.global_title);
+
+	"""
+				<div id="headerinfo">
+					$.journal.username <br /> $dots
+				</div>
+	""";
+}
+
+function Page::lay_print_header ()  {
+	var string title = $this->title();
+	"""
+				<div id="header">
+					<h3>$title</h3>
+					<div id="nav">
+	""";
+
+	foreach var string v ($.views_order) {
+		println "<a href=\""+$.view_url{$v}+"\">"+lang_viewname($v)+"</a>";
+	}
+
+	var string website;
+	if($.journal.website_url != "") {
+		$website = """<a href="$.journal.website_url">$.journal.website_name</a>""";
+	}
+
+	"""
+						$website
+					</div>
+				</div>
+	""";
+}
+
+function Page::lay_print_freetext ()  {
+	if($*free_text_text != "") {
+		var string text = box_item($*free_text_text);
+		print_box($*free_text_header, $text);
+	}
+}
+
+function Page::print_linklist() {
+	if (size $.linklist <= 0) {
+		return;
+	}
+    
+	var string links;
+	foreach var UserLink l ($.linklist) {
+		if ($l.title) {
+			if ($l.is_heading) {
+				$links = $links + """<div style="margin-top: 4px;"><strong>$l.title</strong></div>""";
+			} else {
+				$links = $links +  box_item("""<a href="$l.url">$l.title</a>""");
+			}
+		}
+	}    
+
+	print_box($*links_header, $links);
+}
+
+
+function Page::lay_print_calendar ()  {
+	var YearMonth m = $this->get_latest_month();
+	var string mon = $m->month_format();
+	var string text;
+	$text = """
+			<table cellspacing="2" cellpadding="2" border="0" width="100%">""";
+	foreach var YearWeek w ($m.weeks) {
+		$text = $text + """
+				<tr>""";
+		if($w.pre_empty > 0) {
+			foreach var int empty (1..$w.pre_empty)  {
+				$text = $text + """
+					<td class="calempty">&nbsp;</td>""";
+			}
+		}
+		foreach var YearDay d ($w.days) {
+			if($d.num_entries > 0) {
+				$text = $text + """
+					<td class="calactitem"><a href="$d.url">$d.day</a></td>""";
+			} else {
+				$text = $text + """
+					<td class="calinitem">$d.day</td>""";
+			}
+		}
+		$text = $text + "</tr>\n";
+	}
+	$text = $text + "</table>";
+	print_box($mon, $text);
+}
+
+
+function Page::lay_entry_nav (Entry e)  : string {
+
+	var string line;
+	var string date;
+	if($e.new_day) {
+		$date = $e.time->date_format("short");
+	}
+	var string time = $e.time->time_format();
+	var string subject = ($e.subject != "") ? " :: $e.subject" : """ :: <i class="nosubject">$*text_nosubject</i>""";
+	var string j = ($.view == "friends" and $e.journal.username != $e.poster.username) ? " : $e.journal " : "";
+	var string item = ($.view == "friends" or $e.journal.username != $e.poster.username) ? $e.poster->as_string() + """$j <a href="#item""" + $e.itemid + """\">""" : """<a href="#item""" + $e.itemid + """\"><strong>$date $time</strong>""";
+	$line = """<div class="columnitem">$item $subject</a></div>""";
+
+	return $line;
+}
+
+function Page::lay_print_summary ()  {
+	#blank because there's shouldn't be a box if there's nothing specific about the page.
+}
+
+
+function RecentPage::lay_print_summary ()  {
+	var int count = $*summary_items;
+	if($count == 0) { return; }
+
+	var string text;
+	foreach var Entry e ($.entries) {
+		if($count > 0) {
+			$text = $text + $this->lay_entry_nav($e);
+		}
+		$count = $count - 1;
+	}
+	if($text != "") {
+		if($count < 0) {
+			$count = $count * -1;
+			$text = $text + """<div style="margin-top: 4px;"><strong>+$count more</strong></div>""";
+		}
+		print_box($*page_summary_title, $text);
+	}
+}
+
+function EntryPage::lay_print_summary ()  {
+	var int count = $*summary_items;
+	if($count == 0) { return; }
+
+	var string text;
+	$text = $this->lay_entry_nav($.entry);
+	$count = $count - 1;
+
+	foreach var Comment c ($.comments)  {
+		if($count > 0) {
+			var string subject = ($c.subject != "") ? $c.subject : """<i class="nosubject">$*text_nosubject</i> """;
+			$text = $text + """<div class="columnitem">$c.poster :: <a href="#$c.anchor">$subject</a>""";
+			var int num = num_comments_in_thread($c.replies);
+			if($num > 0) {
+				$text = $text + " [+" + string($num) + "] ";
+			}
+			$text = $text + """</div>""";
+		}
+		$count = $count - 1;
+	}
+
+	if($text != "") {
+		if($count < 0) {
+			$count = $count * -1;
+			$text = $text + """<div style="margin-top: 4px;"><strong>+$count more</strong></div>""";
+		}
+		if($count != ($*summary_items - 1)) {
+			print_box($*page_summary_title, $text);
+		}
+	}	
+}
+
+function YearPage::lay_print_summary ()  {
+	var int count = $*summary_items;
+	if($count == 0) { return; }
+
+	var string text;
+	var int num_entries;
+	foreach var YearMonth m ($.months) {
+		if($count > 0) {
+			var string mon = $m->month_format();
+			if($m.has_entries) {
+				$num_entries = 0;
+				foreach var YearWeek w ($m.weeks) {
+					foreach var YearDay d ($w.days) {
+						$num_entries = $num_entries + $d.num_entries;
+					}
+				}
+				$text = $text + """<div class="columnitem"><a href="#anchor$m.month">$mon [$num_entries entries]</a></div>""";
+			}
+		}
+		$count = $count - 1;
+	}
+	if($text != "") {
+		if($count < 0) {
+			$count = $count * -1;
+			$text = $text + """<div style="margin-top: 4px;"><strong>+$count more</strong></div>""";
+		}
+		print_box($*page_summary_title, $text);
+	}
+
+}
+
+function MonthPage::lay_print_summary ()  {
+	var int count = $*summary_items;
+	if($count == 0) { return; }
+
+	var string text;
+	foreach var MonthDay d ($.days) {
+		if($count > 0) {
+			var string day = lang_ordinal($d.day);
+			if ($d.has_entries) {
+				$text = $text + """<div class="columnitem"><a href="#anchor$d.day">$day [$d.num_entries entries]</a></div>""";
+			}
+		}
+	}
+
+	if($text != "") {
+		if($count < 0) {
+			$count = $count * -1;
+			$text = $text + """<div style="margin-top: 4px;"><strong>+$count more</strong></div>""";
+		}
+		print_box($*page_summary_title, $text);
+	}
+}
+
+function DayPage::lay_print_summary ()  {
+	var int count = $*summary_items;
+	if($count == 0) { return; }
+	
+	var string text;
+	foreach var Entry e ($.entries) {
+	    $text = $text + $this->lay_entry_nav($e);
+	}
+
+	if($text != "") {
+		if($count < 0) {
+			$count = $count * -1;
+			$text = $text + """<div style="margin-top: 4px;"><strong>+$count more</strong></div>""";
+		}
+		print_box($*page_summary_title, $text);
+	}
+}
+
+function Page::lay_print_subnav ()  {
+	#
+}
+
+function RecentPage::lay_print_subnav ()  {
+	var string back;
+	if($.nav.backward_url != "") {
+		$back = """<a href="$.nav.backward_url">$*text_back</a>""";
+	} else {
+		$back = "&nbsp;";
+	}
+	var string forward;
+	if($.nav.forward_url != "") {
+		$forward = """<a href="$.nav.forward_url">$*text_forward</a>""";
+	} else {
+		$forward = "&nbsp;";
+	}
+
+	var int start = $.nav.skip;
+	var int end = $.nav.skip + size $.entries;
+	var string text = "Viewing $start - $end";
+	"""
+								<div class="messageholder"><div class="systemmessage">
+								<table cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr>
+										<td width="15%">$back</td>
+										<td width="70%" align="center">$text</td>
+										<td width="15%" align="right">$forward</td>
+									</tr>
+								</table>
+								</div></div>
+	""";
+}
+
+function DayPage::lay_print_subnav ()  {
+	var string back;
+	if($.prev_url != "") {
+		$back = """<a href="$.prev_url">$*text_back</a>""";
+	} else {
+		$back = "&nbsp;";
+	}
+	var string forward;
+	if($.next_url != "") {
+		$forward = """<a href="$.next_url">$*text_forward</a>""";
+	} else {
+		$forward = "&nbsp;";
+	}
+	
+	var string text = $.date->date_format("long");
+
+	"""
+								<div class="messageholder"><div class="systemmessage">
+								<table cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr>
+										<td width="15%">$back</td>
+										<td width="70%" align="center">$text</td>
+										<td width="15%" align="right">$forward</td>
+									</tr>
+								</table>
+								</div></div>
+	""";
+
+}
+
+
+function Page::lay_print_sidebar ()  {
+	$this->lay_print_summary();
+	$this->print_linklist();
+	$this->lay_print_freetext();
+	$this->lay_print_calendar();
+}
+
+
+function Page::lay_make_username(Entry e) {
+	"""
+		<div class="entryinfo">
+			$e.poster
+		</div>
+		<div class="entrydivider"></div>
+	""";
+}
+
+function FriendsPage::lay_make_username (Entry e) {
+	var Friend f = $.friends{$e.journal.username};
+	var string url = $e.poster->base_url();
+	"""
+		<div class="entryinfo">
+			<a href="$url/" class="friendname" style="color: $f.fgcolor; background-color: $f.bgcolor;">$e.poster.username</a>
+	""";
+	if($e.poster.username != $e.journal.username) {
+		""" $e.journal""";
+	}
+	"""
+		</div>
+		<div class="entrydivider"></div>
+	""";
+}
+
+function Page::print_entry (Entry e)  {
+
+	print """<a name="item""" + $e.itemid + """\"></a>""";
+	var string time = $e.time->time_format();
+	var string date = $e.time->date_format();
+	var string security;
+	if ($e.security != "") {
+		$security =  """<img src="$e.security_icon.url" align="right" """+
+		"""width="$e.security_icon.width" height="$e.security_icon.height" """+
+		"""alt="[$e.security]" />""";
+	}
+
+	var UserLite name;
+	var string pname;
+
+	var bool show_name = ($.view == "friends" or $e.poster.username != $.journal.username or $.view == "entry") ? true : false;
+	var bool show_pic = (defined $e.userpic and ($.view == "friends" or $*show_entry_userpic or $e.poster.username != $e.journal.username or $.view == "entry")) ? true : false;
+
+
+
+
+	"""	
+									<div class="entry">
+										<div class="entrydivider"></div>
+	""";
+	if($show_pic) {
+		"""
+			<div class="userpic2">
+				<a href="$*SITEROOT/allpics.bml?user=$e.poster.username"><img src="$e.userpic.url" width="$e.userpic.width" height="$e.userpic.height" alt="$e.poster.name [userpic]" title="$e.poster.name [userpic]" border="0" /></a>
+			</div>
+		""";
+	}
+
+	if($show_name) {
+		$this->lay_make_username($e);
+	}
+	"""
+										<div class="entryinfo">$security $date $time</div>
+										<div class="entrydivider"></div>
+										<div class="entrylinks">
+	""";
+
+	$e.comments->print();
+
+	foreach var string key (["edit_entry","edit_tags","mem_add","tell_friend"]) {
+		var Link link = $e->get_link($key);
+		if ($link) {
+			"""<a href=\"$link.url\"> &nbsp; $link.caption &nbsp; </a>""";
+		}
+	}
+	"""<a href="$e.permalink_url"> &nbsp; $*text_permalink &nbsp; </a>
+										</div>
+										<div class="entrytext">
+											<div class="subject">$e.subject</div>
+											<p>$e.text</p>
+	""";
+
+	$e->print_metadata();
+
+	"""
+										</div>
+									</div>
+									<div class="backtop"><a href="#top">back to top</a></div>
+									
+	""";
+}
+
+
+
+function CommentInfo::print() {
+    if ($.enabled) {
+        $this->print_postlink();
+        if ($.count > 0 or $.screened) {
+            $this->print_readlink();
+        }
+    }
+}
+
+function CommentInfo::print_postlink() {
+    var Page p = get_page();
+    "<a href=\"$.post_url\"> &nbsp; "+($p.view == "friends" ? $*text_post_comment_friends : $*text_post_comment)+" &nbsp; </a>";
+}
+
+function CommentInfo::print_readlink {
+    var Page p = get_page();
+    "<a href=\"$.read_url\"> &nbsp; "+
+        get_plural_phrase($.count, $p.view == "friends" ? 
+                          "text_read_comments_friends" : "text_read_comments")+
+    " &nbsp; </a>";
+}
+
+
+################################################################################
+#
+# EntryPage and Comments
+# 
+
+function EntryPage::print_body() {
+	"""<div class="entries">""";
+	$this->print_entry($.entry);
+	if ($this.multiform_on) {
+		$this->print_multiform_start();
+	}
+
+	if ($.entry.comments.count > 0) {
+	"""
+										<div class="messageholder"><div class="systemmessage"><div class="notablemessage "><b>Comments</b></div></div></div>
+	""";
+	}
+	
+	if ($.comment_pages.total_subitems > 0) {
+		$.comment_pages->print();
+	}
+
+	if ($.entry.comments.enabled) {
+		$this->print_comments($.comments);
+	}
+
+	
+	if ($.entry.comments.count > 0) {
+	"""
+										<div class="messageholder">
+											<div class="systemmessage">
+												<div class="notablemessage ">
+	""";
+	
+		$.entry.comments->print();
+
+	"""
+												</div>
+											</div>
+										</div>
+	""";
+	}
+
+	if ($.comment_pages.total_subitems > 0) {
+		$.comment_pages->print();
+	}
+
+	if ($this.multiform_on and ($.entry.comments.count > 0)) {
+		"""
+										<div class="messageholder">
+											<div class="systemmessage">
+												<div class="notablemessage ">
+												<div class="multiform">
+		""";
+		$this->print_multiform_actionline();
+		"""
+												</div>
+												</div>
+											</div>
+										</div>
+		""";
+		$this->print_multiform_end();
+	}
+	"""</div>""";
+}
+
+function EntryPage::print_comments(Comment[] cs) {
+	if (size $cs == 0) { return; }
+	foreach var Comment c ($cs) {
+		if ($c.full) {
+		    $this->print_comment($c);
+		} else {
+		    $this->print_comment_partial($c);
+		}
+	}
+}
+
+function EntryPage::print_comment(Comment c) {
+	
+	var string datetime;
+	$datetime = $c.time->date_format()+", " + $c.time->time_format();
+	
+	
+	var string parent;
+	var string thread;
+	if($c.parent_url != "") {
+		$parent = """<a href="$c.parent_url"> &nbsp; $*text_comment_parent &nbsp; </a>""";
+	}
+	if($c.thread_url != "") {
+		$thread = """<a href="$c.thread_url"> &nbsp; $*text_comment_thread &nbsp; </a>""";
+	}
+	
+	var string subjecticon;
+	if (defined $c.subject_icon) {
+		$subjecticon = """<img src="$c.subject_icon.url" width="$c.subject_icon.width" height="$c.subject_icon.height" alt="" />""";
+	}
+
+	var string ip;
+	if ($c.metadata{"poster_ip"}) { 
+		$ip = """ &nbsp;  """ + $c.metadata{"poster_ip"}; 
+	}
+
+	var string poster = defined $c.poster ? $c.poster->as_string() : "<b>(Anonymous)</b>";
+
+	var string pic;
+	if (defined $c.userpic and $*comment_userpic_style != "off") {
+		$pic = """<div class="userpic2"><img src="$c.userpic.url" width="$c.userpic.width" height="$c.userpic.height" alt="" /></div>""";
+	}
+
+	var string indent = ($c.depth - 1) * 25 + "px";
+
+	"""
+                <div id='$c.dom_id'>
+		<a name='$c.anchor'></a>
+		$pic
+		<div class="entry" style="margin-left: $indent;">
+			<div class="entrydivider"></div>
+			<div class="postedby">$poster  <span class="ip">$ip</span></div>
+			<div class="entrydivider"></div>
+			<div class="entryinfo">$subjecticon $datetime</div>
+			<div class="entrydivider"></div>
+
+	""";
+	
+	if ($.multiform_on) {
+		"""<div class="entryinfo"><label for="ljcomsel_$c.talkid">$*text_multiform_check</label> """; 
+		$c->print_multiform_check();
+		"""</div>
+			<div class="entrydivider"></div>
+		""";
+	}
+
+    var string replyurl;
+    if ($c.frozen) {
+        $replyurl = """<a href="javascript://"> &nbsp; $*text_comment_frozen &nbsp; </a>""";
+    } else {
+        $replyurl = """<a href="$c.reply_url"> &nbsp; $*text_comment_reply &nbsp; </a>""";
+    }
+    
+	"""
+			<div class="entrylinks">
+				$replyurl
+    """;
+
+    # some links for doing stuff to this comment
+    foreach var string k ($c.link_keyseq) {
+        var Link link = $c->get_link($k);
+        if ($link) {
+            """<a href=\"$link.url\"> &nbsp; $link.caption &nbsp; </a>""";
+        }
+    }
+    
+    """
+                <a href="$c.permalink_url"> &nbsp; $*text_permalink &nbsp; </a>$parent$thread
+			</div>
+			<div class="entrytext">
+				<div class="subject">$c.subject</div>
+				<p>$c.text</p>
+			</div>
+	""";
+
+
+	if ((size $c.replies) > 0 and $c.replies[0].full == false) {
+            """<div style="margin-top: 5px; margin-bottom: 5px; clear: both;">\n""";
+            $this->print_comments($c.replies);
+            "</div>\n";
+        }
+
+	"""
+		</div>
+		<div class="backtop"><a href="#top">back to top</a></div>
+                </div>
+	""";
+
+    if ((size $c.replies) > 0 and $c.replies[0].full == true) {
+        $this->print_comments($c.replies);
+    }
+
+}
+
+function EntryPage::print_comment_partial(Comment c) {
+	var string poster = defined $c.poster ? $c.poster->as_string() : "<i>(Anonymous)</i>";
+	var string subj = $c.subject != "" ? $c.subject : """<i class="nosubject">$*text_nosubject</i>""";
+	var string indent = ($c.depth - 1) * 25 + "px";
+	"""
+			<div class="entry" style="margin-left: $indent;"><div class="minicommentholder"><div class="minicomment">$poster - <a href="$c.permalink_url">$subj</a></div></div></div>
+	""";
+	$this->print_comments($c.replies);
+}
+
+function ItemRange::print() {
+	if ($.all_subitems_displayed) { return; }
+	"""
+		<div class="messageholder"><div class="systemmessage"><div class="notablemessage ">
+		<b>""";
+	print lang_page_of_pages($.current, $.total);
+	"</b> &mdash; ";
+	foreach var int i (1..$.total) {
+		if ($i == $.current) { """<b class="systemtext">[$i]</b>""";
+		
+		} else { 
+			var string url_of = $this->url_of($i);
+			"<a href='$url_of'><b>[$i]</b></a>";
+		}
+	}
+	"""</div></div></div>""";
+}
+
+################################################################################
+#
+# ReplyPage
+# 
+
+function ReplyPage::print_body() {
+
+	var EntryLite e = $.replyto;
+	var string poster = defined $e.poster ? $e.poster->as_string() : "<i>(Anonymous)</i>";
+	var string datetime;
+	var string time = $e.time->time_format();
+	var string date = $e.time->date_format();
+
+	var UserLite name;
+	if(defined $e.userpic and $*comment_userpic_style != "off") {
+		$name = $e.poster;
+		"""<div class="userpic2">""";
+		if (defined $e.userpic or (defined $e.userpic and $.view == "entry" and $*show_entry_userpic)) {
+			"""<img src="$e.userpic.url" width="$e.userpic.width" height="$e.userpic.height" alt="" />""";
+		}
+		"""									</div>""";
+	}
+	"""	
+									<div class="entry">
+										<div class="entrydivider"></div>
+										<div class="entryinfo">$name</div>
+										<div class="entrydivider"></div>
+										<div class="entryinfo">$time $date</div>
+										<div class="entrydivider"></div>
+										<div class="entrylinks">
+										<a href="$.entry.comments.read_url" class="comments">$*text_reply_back</a>""";
+
+
+	foreach var string key (["edit_entry","mem_add","tell_friend"]) {
+		var Link link = $e->get_link($key);
+		if ($link) {
+			"""<a href=\"$link.url\">$link.caption</a>""";
+		}
+	}
+	"""<a href="$e.permalink_url">$*text_permalink</a>
+										</div>
+	""";
+
+	"""
+										<div class="entrytext">
+											<div class="subject">$e.subject</div>
+											<p>$e.text</p>
+										</div>
+	
+										<div class="messageholder"><div class="systemmessage">
+	""";
+	$.form->print();
+	"""
+										</div></div>
+	""";
+}
+
+
+function Entry::print_metadata() {
+    var string caption;
+    var string val;
+    var Image i;
+    if ($this.tags) {
+        """<div class="meta">""";
+        print $this->get_tags_text();
+        "</div>";
+    }
+    if (size $.metadata == 0) { return; }
+    foreach var string k ($.metadata) {
+        $caption = $k;
+        $val = $.metadata{$k};
+        if ($k == "music") {
+            $caption = $*text_meta_music;
+        }
+        elseif ($k == "mood") {
+            $caption = $*text_meta_mood;
+            if (defined $.mood_icon) {
+                $i = $.mood_icon;
+                $val = """<img src="$i.url" width="$i.width" height="$i.height" alt="$val" title="$val" /> $val""";
+            }
+        }
+        println """<div class="meta">$caption: $val</div>""";
+    }
+}
+
+
+################################################################################
+#
+# RecentPage
+# 
+
+function RecentPage::print_body ()  {
+	"""
+	
+								<div class="entries">
+	""";
+
+	foreach var Entry e ($.entries) {
+		$this->print_entry($e);
+	}
+
+	"""
+								</div>
+	""";
+}
+
+################################################################################
+#
+# YearPage
+# 
+
+
+function YearPage::print_body {
+    $this->print_year_links();
+    """<div id="cal">""";
+    foreach var YearMonth m ($.months) {
+        $this->print_month($m);
+    }
+    """</div>""";
+}
+
+function YearPage::print_year_links() {
+    """<div class="messageholder"><div class="systemmessage"><div class="notablemessage">""";
+    foreach var YearYear y ($.years) {
+        if ($y.displayed) {
+            """<b class="systemtext">$y.year</b>""";
+        } else {
+            """<b><a href="$y.url"> &nbsp; $y.year &nbsp; </a></b>""";
+        }
+    }
+    """</div></div></div>""";
+}
+
+function YearPage::print_month(YearMonth m) {
+	if (not $m.has_entries) { return; }
+
+	"""
+			<a name="anchor$m.month"></a>
+			<div class="entry">
+			<div class="entrydivider"></div>
+			<div class="entryinfo">
+	""";
+
+	print $m->month_format();
+
+	"""
+			</div>
+			<div class="entrydivider"></div>
+			<div class="entrylinks"><a href="$m.url"> &nbsp; $*text_view_month &nbsp; </a></div>
+			<div class="entrytext">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+	""";
+
+	foreach var int d (weekdays()) {
+		"""
+					<td width="14%"><div class="bigday">$*lang_dayname_short[$d]</div></td>
+		""";
+	}
+	"""
+				</tr>
+	""";
+	foreach var YearWeek w ($m.weeks) {
+		$w->print();
+	}
+	"""
+			</table>
+			</div>
+			</div>
+			<div class="backtop"><a href="#top">back to top</a></div>
+	""";
+
+}
+
+function YearWeek::print() {
+	"""
+				<tr>
+	""";
+	if ($.pre_empty > 0) {
+	"""
+					<td colspan="$.pre_empty"></td>
+	""";
+	}
+
+	foreach var YearDay d ($.days) {
+		var string day = zeropad($d.day, 2);
+	"""
+					<td>
+						<div class="bigday">$day</div>
+	""";
+		if ($d.num_entries > 0) {
+			var string num = $d.num_entries < 10 ? "&nbsp;" + string($d.num_entries) : string($d.num_entries);
+			"""
+						<div class="calactitem"><a href="$d.url">$num</a></div>
+			""";
+		}
+	"""
+					</td>
+	""";
+	}
+	"""
+				</tr>
+	""";
+}
+
+
+
+
+################################################################################
+#
+# MonthPage
+# 
+
+
+function MonthPage::view_title : string {
+    return $.date->date_format($*lang_fmt_month_long);
+}
+
+function MonthPage::print_body {
+	"<form method='post' action='$.redir.url'>";
+	$.redir->print_hiddens();
+	var string back;
+	var string forward;
+	if ($.prev_url != "") { $back = """<a href="$.prev_url">$*text_back</a>"""; }
+	if ($.next_url != "") { $forward = """<a href="$.next_url">$*text_forward</a>"""; }
+	var string select;
+	if (size $.months > 1) {
+		$select = "<select name='redir_key'>\n";
+		foreach var MonthEntryInfo mei ($.months) {
+		    var string sel;
+		    if ($mei.date.year == $.date.year and $mei.date.month == $.date.month) {
+			$sel = " selected='selected'";
+		    }
+		    $select = $select + "<option value='$mei.redir_key'$sel>" + $mei.date->date_format($*lang_fmt_month_long) + "</option>";
+		}
+		$select = $select + "</select>\n<input type='submit' value='View' />";
+	}
+
+	"""
+					<div class="messageholder"><div class="systemmessage">
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td width="15%">$back</td>
+								<td align="center" width="70%">$select</td>
+								<td align="right" width="15%">$forward</td>
+							</tr>
+						</table>
+					</div></div>
+	""";
+	"</form>";
+	foreach var MonthDay d ($.days) {
+		if ($d.has_entries) {
+			"""
+					<a name="anchor$d.day"></a>
+					<div class="entry">
+						<div class="entrydivider"></div>
+						<div class="entrylinks"><a href=\"$d.url\"> &nbsp; <b>
+			""";
+			print lang_ordinal($d.day);
+			"""
+						</b> &nbsp; </a></div>
+						<div class="entries">
+						<div class="entrytext">
+			""";
+			$d->print_subjectlist();
+			"""
+						</div>
+						</div>
+					</div>
+					<div class="backtop"><a href="#top">back to top</a></div>
+			""";
+		}
+	}
+}
+
+function MonthDay::print_subjectlist() {
+    # Too many tables...
+    foreach var Entry e ($.entries) {
+        print $e.time->time_format("short") + ": ";
+        if ($e.poster.username != $e.journal.username) {
+            $e.poster->print(); " ";
+        }
+        "$e.security_icon";
+        if ($e.subject != "") {
+            " <a href=\"$e.permalink_url\">$e.subject</a>";
+        } else {
+            """ <a href="$e.permalink_url"><i class="nosubject">$*text_nosubject</i></a>""";
+        }
+        if ($e.comments.count > 0) {
+            " - " + get_plural_phrase($e.comments.count, "text_read_comments");
+        }
+        if ($e.comments.screened) {
+            " <b>$*text_month_screened_comments</b>";
+        }
+        "<br />\n";
+    }
+}
+
+
+################################################################################
+#
+# DayPage
+# 
+
+function DayPage::print_body() {
+
+	"""<div class="entries">""";
+	if ($.has_entries) {
+		foreach var Entry e ($.entries) {
+		    $this->print_entry($e);
+		}
+
+	} else {
+		"<p>$*text_noentries_day</p>";
+	}
+	"""</div>""";
+}
+
+################################################################################
+#
+# Page
+# 
+
+function Page::print ()  {
+
+	var string title = $this->title();
+
+	"""
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		<link rel="stylesheet" href="$.stylesheet_url" type="text/css" />
+	""";
+	
+	$this->print_head();
+	
+	"""
+	</head>
+	<body>
+	<a name="top"></a>
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td>
+	<div class="border3">
+		<div class="border2">
+			<div id="bodycontent">
+	""";
+	
+	$this->lay_print_userpic();
+	$this->lay_print_username();
+	$this->lay_print_header();
+
+	"""
+				<div id="content">
+					<table cellspacing="10" cellpadding="0" border="0">
+						<tr>
+							<td valign="top" class="sidetd">
+							<div id="sidecolumn">
+	""";
+	
+	$this->lay_print_sidebar();
+
+	"""
+							</div>
+							</td>
+							
+							<td valign="top" width="100%">
+	""";
+
+	$this->lay_print_subnav();
+	$this->print_body();
+	$this->lay_print_subnav();
+
+	"""
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+			</td>
+		</tr>
+	</table>
+	</body>
+	</html>
+	""";
+}
+
+
+
+function print_theme_preview() {
+
+	var Color color_bg_lt = getAltColor($*color_bg, "light", 30);
+	var Color color_fg_dk = getAltColor($*color_fg, "dark", 20);
+	var Color color_fg_dk_font = getAltColor($*color_fg_font, "dark", 20);
+	var Color color_divider = getAltColor($color_fg_dk, "dark", 30);
+	var Color color_fg_dk_dk_font = getAltColor($color_fg_dk, "dark", 50);
+	var Color color_border = getAltColor($*color_bg, "light", 90);
+
+	"""
+		<div style="background-color: $*color_fg; border: 1px solid $color_fg_dk; padding: 4px; width: 210px;">
+			<div style="border-top: 1px solid $color_divider; border-bottom: 1px solid $*color_fg;"></div>
+			<div style="background-color: $color_fg_dk; font-size: $*static_font_size$*static_font_measurement; padding: 4px; width: 200px;">Username - Title</div>
+			<div style="border-top: 1px solid $color_divider; border-bottom: 1px solid $*color_fg;"></div>
+			<br />
+		<div style="border: 1px solid $*color_bg; width: 200px;"><div style="border: 1px solid $*color_fg;"><div style="border: 2px solid $color_border;">
+		<div style="background-color: $color_bg_lt; border: 1px solid $*color_bg; padding: 3px; font-size: $*static_font_size$*static_font_measurement; color: $*color_bg_font;">
+			<strong>Welcome</strong>
+			<div style="background-color: $color_fg_dk; padding: 3px; margin-top: 5px; color: $*color_fg_font; border-top: 1px solid $color_divider; border-bottom: 1px solid $color_divider;">This is my new journal using a cool new style!</div>
+		</div></div></div></div>
+		</div>
+	""";
+	
+}

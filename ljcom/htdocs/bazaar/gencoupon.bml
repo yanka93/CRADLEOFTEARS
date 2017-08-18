@@ -1,0 +1,46 @@
+<?page
+title=>Generate Coupon
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%POST %GET);
+    my $dbh = LJ::get_db_writer();
+    my $remote = LJ::get_remote();
+    unless ($remote) { return $ML{'error.noremote'}; }
+    LJ::load_user_props($dbh, $remote, "legal_assignagree");
+    return BML::redirect("/bazaar/balance.bml") unless $remote->{'legal_assignagree'};
+
+    if ($GET{'cpid'}) {
+        my $cp = $dbh->selectrow_hashref("SELECT * FROM coupon WHERE cpid=? AND rcptid=?",
+                                         undef, $GET{'cpid'}, $remote->{'userid'});
+        return "<b>Error:</b> Coupon not found" unless $cp;
+        return "<?h1 Success h1?><?p The following coupon has been generated for <b>\$$cp->{'arg'}</b>:<center><span style='font-size: 20pt'>$cp->{'cpid'}-$cp->{'auth'}</span></center> p?><?p You'll be able to find this coupon back at any time from your <a href='balance.bml'>payment history</a>. p?>";
+    }
+
+    my $amt = $POST{'amt'};
+    unless ($amt =~ /^(\d+)(\.(\d\d))?$/) {
+        return "<b>Error:</b>  Invalid format.";
+    }
+    if ($amt < 5 || $amt > 25) {
+        return "<b>Error:</b>  Amount must be between \$5.00 and \$25.00.";
+    }
+
+    if (LJ::Pay::bazaar_remove_balance($remote, $amt)) {
+        my $auth = LJ::make_auth_code(10);
+        $dbh->do("INSERT INTO coupon (auth, type, arg, rcptid, locked, payid) VALUES (?, 'dollaroff', ?, ?, '0', 0)",
+                 undef, $auth, $amt, $remote->{'userid'});
+        die $dbh->errstr if $dbh->err;
+        my $id = $dbh->{'mysql_insertid'};
+        my $coupon = "$id-$auth";
+        $dbh->do("INSERT INTO bzrpayout (userid, date, amt, method, note) VALUES (?, NOW(), ?, 'coupon', ?)",
+                 undef, $remote->{'userid'}, $amt, "coupon: $coupon");
+        return BML::redirect("gencoupon.bml?cpid=$id");
+    } else {
+        return "You don't have \$$amt in your balance.  If you did a double submit, you can get your coupon code on your <a href='balance.bml'>payment history</a>.";
+    }
+
+}
+_code?>
+<=body
+page?>

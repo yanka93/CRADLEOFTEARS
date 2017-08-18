@@ -1,0 +1,72 @@
+﻿<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+  LJ::set_active_crumb('import');
+  return;
+_code?>
+
+<?_code
+{
+
+  my $err = sub {
+    my $txt = shift;
+
+    return "<?inerr " . $txt . " inerr?><br/>";
+  };
+  
+  use strict;
+  use vars qw(%POST %GET);
+  
+  return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+  my $remote = LJ::get_remote();
+  return LJ::bad_input("You must be logged in to access import page.")
+    unless $remote;
+
+  my $authas = $GET{'authas'} || $remote->{'user'};
+  my $u = LJ::get_authas_user($authas);
+  return LJ::bad_input("You could not be authenticated as the specified user.")
+      unless $u;
+
+  my $iremote = $remote->{'user'};
+
+  return $LJ::MSG_READONLY_USER if $u->readonly;
+
+  my $ret;
+  my $e = 0;
+  my $dbr;
+
+
+  $ret = "<?h1 ﻿Импорт пользователя " . $remote->{'user'}  . " h1?>\n<br/>";
+  $ret .= "<br/>Вы можете <a href=import-enqueue.bml>добавить заявку на импорт</a> или ";
+  $ret .= "<a href=import-queue.bml>просмотреть статус своих заявок</a>.";
+  $ret .= "<br/><br/>";
+
+  $ret .= <<'$LJR$DESC';
+<?h1 Особенности импорта при использовании /interface/flat/ h1?><ul>
+<li> Не импортируются удаленные/замороженные дневники
+<li> Импорт происходит медленно
+<li> Не больше 50 записей в день (дни с количеством записей больше 50 не импортируются)
+</ul>
+<?h1 Особенности импорта при использовании /export.bml h1?><ul>
+<li> Импортируются удаленные/замороженные дневники
+<li> Импорт происходит быстро
+<li> Из-за ограничений, накладываемых движком LiveJournal.org, не импортируются следущие атрибуты записей:
+<ul><li>Форматированиe текста
+<li>Метки (тэги)
+<li>Отключение отправки комментариев на e-mail, отключение комментариев
+<li>Скрытие комментариев (скрин)
+<li>Картинка пользователя
+</ul>
+</ul><br/><br/>
+См. также: <a href=import-faq.bml>Частые вопросы про импорт</a>
+$LJR$DESC
+
+  return $ret;
+}
+_code?>
+
+
+<=body
+page?>

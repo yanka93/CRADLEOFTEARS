@@ -1,0 +1,39 @@
+################################################################
+# LiveJournal.com's non-free (not GPL) layers.  You can use the 
+# source to learn from, but not copy.
+################################################################
+# base filename         layer type      parent
+
+3column/layout          layout          core1
+3column/themes          theme+          3column/layout
+
+anovelconundrum/layout  layout          core1
+anovelconundrum/themes  theme+          anovelconundrum/layout
+
+boxer/layout            layout          core1
+boxer/themes            theme+          boxer/layout
+
+component/layout        layout          core1
+component/themes        theme+          component/layout
+
+cuteness/layout         layout          core1
+
+flexiblesquares/layout  layout          core1
+flexiblesquares/themes  theme+          flexiblesquares/layout
+
+nebula/layout           layout          core1
+nebula/themes           theme+          nebula/layout
+
+opal/layout             layout          core1
+opal/themes             theme+          opal/layout
+
+smoothsailing/layout    layout          core1
+smoothsailing/themes    theme+          smoothsailing/layout
+
+tranquilityii/layout    layout          core1
+tranquilityii/themes    theme+          tranquilityii/layout
+
+unearthed/layout        layout          core1
+unearthed/themes        theme+          unearthed/layout
+
+s2layers-ljcomint.dat   INCLUDE

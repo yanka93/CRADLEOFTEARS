@@ -1,0 +1,42 @@
+// gets playing music from WinAmp, and returns
+BOOL CPostOptionsDlg::GetPlayingMusic(CString &song)
+{
+	// is WinAMP open?
+	HWND hwndWinamp = ::FindWindow("Winamp v1.x",NULL); 
+	if (hwndWinamp == NULL) return FALSE;
+	
+	// in WinAMP playing?
+	int ret = ::SendMessage(hwndWinamp, WM_USER, 0, 104); 
+	if (ret != 1) return FALSE;
+
+	// it is, let's find out what the title bar is:
+	char this_title[2048],*p;
+	::GetWindowText(hwndWinamp,this_title,sizeof(this_title));
+	p = this_title+strlen(this_title)-8;
+	while (p >= this_title)
+	{
+		if (!strnicmp(p,"- Winamp",8)) break;
+		p--;
+	}
+	if (p >= this_title) p--;
+	while (p >= this_title && *p == ' ') p--;
+	*++p=0;
+
+	char *iter, *start;
+	start = this_title;
+	iter = start;
+	
+	// remove leading s/^\d+\. //;
+	int numhead = 0;
+	while (*iter) {
+		if (isdigit(*iter)) { iter++; numhead++; }
+		else break;
+	}
+	if (numhead && *iter=='.' && *(iter+1)==' ') {
+		start = iter+2;
+	}
+
+	song = start;
+	return TRUE;
+}
+

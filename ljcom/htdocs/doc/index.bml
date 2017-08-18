@@ -1,0 +1,35 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?h1 <?_ml .about.header _ml?> h1?>
+<?p  <?_ml .about        _ml?>  p?>
+<?h1 <?_ml .docs.header  _ml?> h1?>
+<ul>
+  <li>
+    <?h2 <a href="/doc/tour/"><?_ml .docs.tour.title _ml?></a> h2?>
+    <?p <?_ml .docs.tour.about _ml?> p?>
+  </li>
+  <li>
+    <?h2 <a href="/support/faq.bml"><?_ml .docs.faq.title _ml?></a> h2?>
+    <?p <?_ml .docs.faq.about _ml?> p?>
+  </li>
+  <li>
+    <?h2 <a href="/doc/guide"><?_ml .docs.guides.title _ml?></a> h2?>
+    <?p <?_ml .docs.guides.about _ml?> p?>
+  <li>
+    <?ljuser howto ljuser?>
+    <?p <?_ml .docs.howto.about _ml?> p?>
+  </li>
+  <li>
+    <?h2 <a href="/doc/server/"><?_ml .docs.server.title _ml?></a> h2?>
+    <?p <?_ml .docs.server.about _ml?> p?>
+  </li>
+</ul>
+<?h1 <?_ml .volunteering.header _ml?> h1?>
+<?p  <?_ml .volunteering.about  _ml?> p?>
+<ul>
+  <li><?ljcomm lj_userdoc ljcomm?> - <?_ml .volunteering.ljuserdoc _ml?></li>
+  <li><?ljcomm lj_sysdoc ljcomm?> - <?_ml .volunteering.ljsysdoc  _ml?></li>
+</ul>
+<=body
+page?>

@@ -1,0 +1,889 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=Om du vil slette eller angre sletting av din dagbok, så gjøres det her. Om du sletter dagboken har du 30 dager på deg å angre slettingen. Etter 30 dager vil dagboken forsvinne for godt og det vil ikke være mulig å få den tilbake.
+
+/accountstatus.bml.journalstatus.head=Status for dagbokaktivering
+
+/accountstatus.bml.journalstatus.select.activated=Aktivert
+
+/accountstatus.bml.journalstatus.select.deleted=Slettet
+
+/accountstatus.bml.journalstatus.select.suspended=Fryst
+
+/accountstatus.bml.title=Kontostatus
+
+/allpics.bml.current=Gjeldende ikoner
+
+/allpics.bml.default=<u>Standard</u>
+
+/allpics.bml.edit2=Du er kanskje interessert i å <a href='[[editlink]]'>redigere dine nøkkelord</a> eller <a href='[[uploadlink]]'>laste opp et nytt bilde</a>.
+
+/allpics.bml.error.noparam=Du må skrive et brukernavn.
+
+/allpics.bml.keywords=Nøkkelord:
+
+/allpics.bml.nopics.text.other=Denne brukeren har ikke lastet opp noen ikoner.
+
+/allpics.bml.nopics.text2=Du har ikke lastet opp noen ikoner. For å laste opp et, <a href='[[link]]'>gå hit</a>.
+
+/allpics.bml.nopics.title=Ingen ikoner
+
+/allpics.bml.pics=Her er ikonene til [[bruker]].
+
+/allpics.bml.title=Ikoner
+
+/changepassword.bml.btn.proceed=Fortsett
+
+/changepassword.bml.changepassword.header=Bytt passord
+
+/changepassword.bml.changepassword.instructions=Fyll ut skjemaet nedenfor for å bytte passord. Om du ønsker hjelp til å velge et godt passord og holde kontoen din trygg, les <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">denne OBS-artikkelen</a>.
+
+/changepassword.bml.email.body<<
+Ditt passord har blitt byttet for [[sitename]].
+
+Om du skulle miste det, gå til:
+
+  [[siteroot]]/lostinfo.bml
+
+Vennlig hilsen,
+[[sitename]] sine utviklere
+
+[[siteroot]]
+.
+
+/changepassword.bml.email.subject=Byttet passord
+
+/changepassword.bml.error.badcheck=Passordbytte feilet: [[error]]
+
+/changepassword.bml.error.badnewpassword=De to passordene du skrev for å bekrefte byttet stemmer ikke overens. Du kan ha skrevet feil bekreftelsesfeltet. Prøv å skrive passordet og bekreftelsen inn på ny.
+
+/changepassword.bml.error.badoldpassword=Ditt nåværende passord er ikke riktig.
+
+/changepassword.bml.error.blankpassword=Ditt nye passord kan ikke være tomt.
+
+/changepassword.bml.error.changetestaccount=Kan ikke endre testkontoets passord.
+
+/changepassword.bml.error.characterlimit=Passord kan ikke ha flere enn 30 tegn.
+
+/changepassword.bml.error.invaliduser=Brukeren <B>[[user]]</B> eksisterer ikke. Er du sikker på at du skrev brukernavnet rett?
+
+/changepassword.bml.error.mustenterusername=Du må skrive inn ditt brukernavn.
+
+/changepassword.bml.error.nonascii=Passord kan kun inneholde ASCII-tegn (latinsk alfabet). Vennligst bruk kun ASCII-godkjente tegn.
+
+/changepassword.bml.error.notvalidated|staleness=1
+/changepassword.bml.error.notvalidated=Du kan ikke bytte passord før din e-postadresse er bekreftet.
+
+/changepassword.bml.newpassword=Nytt passord:
+
+/changepassword.bml.newpasswordagain=Nytt passord (bekreftelse):
+
+/changepassword.bml.oldpassword=Nåværende passord:
+
+/changepassword.bml.proceed.instructions=Trykk knappen nedenfor og passordet blir endret til det nye passordet. Du vil motta en bekreftelse per e-post.
+
+/changepassword.bml.success.text=Ditt passord er endret til ditt nye passord, og en e-post er sendt med bekreftelse.
+
+/changepassword.bml.title=Endre passord
+
+/community/index.bml.title=Samfunnsenter
+
+/community/join.bml.button.join=Melde inn i samfunn
+
+/community/join.bml.label.addtofriends=Legg "[[maintainer]]" til din venneliste.<br>
+
+/community/join.bml.label.allowposting=Dette samfunnet tillater posting fra alle dets medlemmer, så du har nå lov å poste i det.  Hvis du allerede har en LiveJournal-klient åpen må du logge ut og inn igjen for at listen over dagbøker og samfunn du kan poste i, skal oppdateres.
+
+/community/join.bml.label.auth=Selv om du nå er listet som et medlem, tillater dette samfunnet kun posting av tillatte brukere. Kontakt en av bestyrerene dersom du ønsker å skrive egne oppføringer. Nedenfor er en liste over bestyrere for dette samfunnet: [[admins]]
+
+/community/join.bml.label.banned=Dette samfunnets bestyrer(e) har nektet deg fra å delta.
+
+/community/join.bml.label.closed=Dette samfunnet er lukket. Om du ønsker å melde deg inn må du kontakte en bestyrer. Neden er en liste over bestyrere for dette samfunnet: [[admins]]
+
+/community/join.bml.label.commlogged=Du er pålogget som en delt konto/samfunn, og ikke din personlige konto.
+
+/community/join.bml.label.errorcomminfo=Angitt informasjon for samfunnet ditt er ugyldig.
+
+/community/join.bml.label.expls=Trykk på knappen nedenfor for å melde deg inn i "[[maintainer]]"-samfunnet.  Fjern haken fra boksen nedenfor dersom du ønsker å delta i samfunnet uten å legge det til din venneliste.
+
+/community/join.bml.label.loginfirst=For å melde deg inn i et samfunn må du først <a href="/login.bml?ret=1">logge på</a>.
+
+/community/join.bml.label.membernow=Du er nå et medlem i <a href="/userinfo.bml?user=[[username]]">[[commname]]</a>
+
+/community/join.bml.label.sure=Er du sikker?
+
+/community/join.bml.success=Vellykket
+
+/community/join.bml.title=Melde inn i samfunn
+
+/community/leave.bml.button.leave=Melde ut av samfunn
+
+/community/leave.bml.label.buttontoleave=Trykk knappen nedenfor for å forlate "[[commname]]".
+
+/community/leave.bml.label.infoerror=Angitt informasjon for samfunnet er ugyldig.
+
+/community/leave.bml.label.logoutfirst=For å melde deg ut av et samfunn må du først <a href="/login.bml?ret=1">logge på</a>.
+
+/community/leave.bml.label.removed=Du har nå forlatt <a href="/userinfo.bml?user=[[commuser]]">[[commname]]</a>
+
+/community/leave.bml.label.removefromfriends=Også fjerne "[[user]]" fra din venneliste.
+
+/community/leave.bml.success=Vellykket
+
+/community/leave.bml.sure=Er du sikker?
+
+/community/leave.bml.title=Forlat samfunn
+
+/community/manage.bml.commlist.actions=<b>Handlinger</b>
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Medlemmer</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Medlemmer
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Valg</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Valg
+
+/community/manage.bml.commlist.header=Dine samfunn
+
+/community/manage.bml.commlist.none=<i>Du er ikke bestyrer av noen samfunn.</i>
+
+/community/manage.bml.commlist.text=Her er samfunnene du bestyrer eller assisterer i:
+
+/community/manage.bml.commlist.title=<b>Navn:</b>
+
+/community/manage.bml.commlist.username=<b>Brukernavn</b>
+
+/community/manage.bml.create.header=Opprett et samfunn
+
+/community/manage.bml.create.text=Du kan også <a href='[[link]]'><b>opprette et nytt samfunn</b></a>.
+
+/community/manage.bml.title=Samfunnstyring
+
+/community/members.bml.error.alreadyadded=[[user]] ble ikke lagt til fordi de allerede hadde tilgang til dette samfunnet.
+
+/community/members.bml.error.alreadysent=[[user]] kunne ikke legges til fordi de ikke har svart på bekreftelsen som ble sendt som e-post den <i>[[datetime]]</i>. Vennligst vent til de har svart.
+
+/community/members.bml.error.invaliduser=Kan ikke legge til samfunn eller syndicated konto: [[user]]
+
+/community/members.bml.error.noaccess=Kun samfunnsbestyrere kan tilpasse medlemskapslister. Du er ikke en bestyrer i samfunn [[comm]].
+
+/community/members.bml.error.noattr=Ingen atributter valgt for bruker: [[user]]
+
+/community/members.bml.error.nocomm=Samfunnet finnes ikke.
+
+/community/members.bml.error.nouser=Brukeren eksisterer ikke: <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>Bestyrer</b>
+
+/community/members.bml.key.member=<b>Medlem</b>
+
+/community/members.bml.key.moderate=<b>Moderatør</b>
+
+/community/members.bml.key.post=<b>Tilgang til å oppdatere</b>
+
+/community/members.bml.key.preapprove=Ikke moderert
+
+/community/members.bml.manage2=Tilpass samfunn
+
+/community/members.bml.name=<b>Samfunnets navn:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(Neste side...)</i>
+
+/community/members.bml.prevlink=<i>(Forrige side...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>Valg</a>]
+
+/community/members.bml.success.header=Vellykket
+
+/community/members.bml.success.message=Dine tilpasninger ble vellykket lagret.
+
+/community/members.bml.success.return=<a href='[[link]]'>Gå tilbake til listen</a>
+
+/community/members.bml.title=Samfunnsmedlemmer
+
+/community/members.bml.update=Oppdater valg
+
+/community/moderate.bml.approve.button=Ja, godta
+
+/community/moderate.bml.approve.header=Godta denne oppføringen?
+
+/community/moderate.bml.approve.preapprove=Legg også [[user]] til listen av forhåndsgodkjente brukere for dette samfunnet.
+
+/community/moderate.bml.approve.text=Er du sikker på at du vil godkjenne denne oppføringen?
+
+/community/moderate.bml.brlist.actions=Handlinger
+
+/community/moderate.bml.brlist.subject=Emnet begynner
+
+/community/moderate.bml.brlist.time=Tid
+
+/community/moderate.bml.brlist.view=Vis
+
+/community/moderate.bml.browse.empty=Moderasjonskøen er tom.
+
+/community/moderate.bml.browse.header=Moderer samfunn
+
+/community/moderate.bml.browse.text=Her er moderasjonskøen for samfunnet [[link]]
+
+/community/moderate.bml.choice.approve=Godkjenn
+
+/community/moderate.bml.choice.reject=Avvis
+
+/community/moderate.bml.error.noaccess=Du modererer ikke samfunn [[comm]].
+
+/community/moderate.bml.error.noentry=Oppføringen finnes ikke (den er kanskje allerede håndtert av en annen moderatør).
+
+/community/moderate.bml.error.nolist=Du modererer ingen samfunn.
+
+/community/moderate.bml.error.notfound=Samfunnskontoen finnes ikke.
+
+/community/moderate.bml.manage=Tilpass samfunn
+
+/community/moderate.bml.moderate=Moderer dette samfunnet
+
+/community/moderate.bml.modlist.actions=Handlinger
+
+/community/moderate.bml.modlist.actmodempty=[Moderer]
+
+/community/moderate.bml.modlist.actmoderate=Moderer
+
+/community/moderate.bml.modlist.count=Kølengde
+
+/community/moderate.bml.modlist.header=Moderer samfunn
+
+/community/moderate.bml.modlist.title=Tittel
+
+/community/moderate.bml.modlist.username=Brukernavn
+
+/community/moderate.bml.posted.appheader=Forhåndsgodjent
+
+/community/moderate.bml.posted.apptext=Brukeren [[user]] ble også lagt til listen over forhåndsgodkjente brukere av dette samfunnet.
+
+/community/moderate.bml.posted.header=Vellykket
+
+/community/moderate.bml.posted.proterror=Denne oppføringen ble ikke postet grunnet protokoll-feil: [[err]]
+
+/community/moderate.bml.posted.text=Oppdateringen var vellykket.
+
+/community/moderate.bml.reject.button=Ja, avvis
+
+/community/moderate.bml.reject.header=Avvis denne oppføringen?
+
+/community/moderate.bml.reject.reason|staleness=1
+/community/moderate.bml.reject.reason=Du kan også beskrive til innsenderen hvorfor du avviste oppføringen. Forklaringen vil bli sendt per e-post.
+
+/community/moderate.bml.reject.text=Er du sikker på at du vil avvise denne oppføringen?
+
+/community/moderate.bml.rejected.header=Avvist
+
+/community/moderate.bml.rejected.text=Oppføringen er avvist.
+
+/community/moderate.bml.title=Moderer samfunn
+
+/community/search.bml.button.clear=Tilbakestill
+
+/community/search.bml.button.search=Søk!
+
+/community/search.bml.checkbox.onlywithpics=Kun samfunn med bilder
+
+/community/search.bml.label.byinterest=Etter interesse
+
+/community/search.bml.label.bylocation=Etter område
+
+/community/search.bml.label.bytime=Etter sist oppdatert i dagbok
+
+/community/search.bml.label.city=By:
+
+/community/search.bml.label.country=Land:
+
+/community/search.bml.label.displayoptions=Visningsalternativer
+
+/community/search.bml.label.hasmember=Har medlem
+
+/community/search.bml.label.othercriteria=Andre kriterier
+
+/community/search.bml.label.outputformat=Visningsformat
+
+/community/search.bml.label.records=Oppføringer per side:
+
+/community/search.bml.label.searchcomm=Søk gjennom samfunn
+
+/community/search.bml.label.selecriteria=Fyll ut kriterier nedenfor som du ønsker å bruke for å søke etter samfunn.  Resultatene du får er krysningspunktet mellom alle søkekriterier.  Med andre ord så betyr hvert avkrysningsfelt "AND", ikke "OR".
+
+/community/search.bml.label.sortmethod=Sorteringsmetode:
+
+/community/search.bml.label.stateprovince=Stat/fylke:
+
+/community/search.bml.label.updated=Sist oppdatert i
+
+/community/search.bml.sel.bypicture=Etter bilde
+
+/community/search.bml.sel.communityname=Samfunnsnavn
+
+/community/search.bml.sel.commview=Samfunnsvisning
+
+/community/search.bml.sel.day=dag
+
+/community/search.bml.sel.month=måned
+
+/community/search.bml.sel.simple=Enkel
+
+/community/search.bml.sel.updatetime=Oppdater tiden
+
+/community/search.bml.sel.username=Brukernavn
+
+/community/search.bml.sel.week=uke
+
+/community/search.bml.title=Samfunnsøk
+
+/community/settings.bml.button.changecommunity=Oppdater valg
+
+/community/settings.bml.button.createcommunity=Opprett samfunn
+
+/community/settings.bml.error.badpassword=Ugyldig passord for samfunnet
+
+/community/settings.bml.error.hasentries=Denne kontoen har allerede oppføringer og kan ikke gjøres om.
+
+/community/settings.bml.error.maintainertype=Bestyrerkonto må være en person, ikke en annen delt konto.
+
+/community/settings.bml.error.noaccess=Kun samfunnsbestyrere kan tilpasse samfunnet. Du er ikke en bestyrer av samfunn [[comm]].
+
+/community/settings.bml.error.notcomm=Ikke en samfunnskonto.
+
+/community/settings.bml.error.notfound=Samfunnskontoen finnes ikke.
+
+/community/settings.bml.error.samenames=Bestyrerkonto og samfunnskonto kan ikke være den samme.
+
+/community/settings.bml.label.anybodycan=<b>Alle medlemmer</b><br />Alle kan poste øyeblikkelig når de har meldt seg inn.
+
+/community/settings.bml.label.changeheader=Tilpass samfunnsvalg
+
+/community/settings.bml.label.changetext=Her kan du tilpasse valgene for samfunn du bestyrer eller eier.
+
+/community/settings.bml.label.commchanged=Dine samfunnsvalg er lagret.
+
+/community/settings.bml.label.commcreate=Dette er kontoen du ønsker å gjøre om til et samfunn. Det må <a href="/create.bml">allerede være opprettet</a>, men bør ikke være i bruk av noen, siden mange forskjellige personer potensielt kan poste i den i fremtiden.
+
+/community/settings.bml.label.commcreated=Ditt samfunn er nå opprettet.
+
+/community/settings.bml.label.commheader=Samfunnskonto
+
+/community/settings.bml.label.comminfo=Samfunnsinfo
+
+/community/settings.bml.label.commopts=Samfunnsvalg
+
+/community/settings.bml.label.commsite=Samfunnsvevsted
+
+/community/settings.bml.label.community=Samfunn:
+
+/community/settings.bml.label.createheader=Opprett samfunn
+
+/create.bml.age.check.question=Er du under 13 år?
+
+/create.bml.age.check.yes=Ja, jeg er under 13 år.
+
+/create.bml.age.head=Alder
+
+/create.bml.btn.create=Opprett dagbok
+
+/create.bml.btn.proceed=Fortsett...
+
+/create.bml.clusterselect.cluster=Cluster:
+
+/create.bml.clusterselect.clusternum=Gruppe [[number]]
+
+/create.bml.clusterselect.head=Gruppe Valg
+
+/create.bml.clusterselect.nocluster=Ingen Gruppe
+
+/create.bml.clusterselect.text=Vennligst velg den gruppen du ønsker å lage denne kontoen i. <b>Merk:</b> Dette er kun en debugging/test funksjon. I bruk, vil brukere ikke velge dette eller vite noe om det.
+
+/create.bml.create.head=Opprett en Ny Dagbok
+
+/create.bml.create.text=Å opprette en ny Livejournal-konto er enkelt, bare følg instruksjonene nedenfor!
+
+/create.bml.email.head=Din epost adresse
+
+/create.bml.email.input.head=Epost Adresse:
+
+/create.bml.error.coppa.under13=Beklager, på grunn av COPPA restriksjoner, kan du ikke bruke Livejournal tjenester når du er under 13 år. Vennligst kom tilbake på din 13nde bursdag.
+
+/create.bml.error.email.blank=Du må skrive inn din epost adresse.
+
+/create.bml.error.email.lj_domain=Du kan ikke bruke et [[domain]] alias når du lager en konto. Vennligst bruk en annen epost addresse.
+
+/create.bml.error.email.nospaces=Du kan ikke ha mellomrom i din epost adresse. Om du bruker AOL, husk på at din Internet Epost adresse er ditt skjermnavn med alle mellomrom tatt vekk, og at den ender med <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=Du kan kun bruke ASCII symboler i passord.
+
+/create.bml.error.password.blank=Du må velge et passord.
+
+/create.bml.error.password.nomatch=Passordene er ikke de samme.
+
+/create.bml.error.postrequired=POST påkrevd
+
+/create.bml.error.username.blank=Vennligst skriv inn et navn og kallenavn/alias.
+
+/create.bml.error.username.inuse=Brukernavnet du valgte er allerede tatt, vennligst velg et annet.
+
+/create.bml.error.username.iscode=Brukernavn ser ut til å være en invitasjons kode, ikke et brukernavn.
+
+/create.bml.error.username.mustenter=Du må velge et brukernavn.
+
+/create.bml.error.username.reserved=Beklager, dette brukernavnet er reservert.
+
+/create.bml.initial.friend.news=LiveJournal nyheter og hendelser
+
+/create.bml.initialfriends=Legg disse dagbøkene til din venneliste for å holde deg oppdatert rundt nyheter på nettstedet.
+
+/create.bml.name.head=Ditt Navn
+
+/create.bml.name.input.head=Navn:
+
+/create.bml.name.text=Hva er navnet ditt eller et kallenavn? Dette vil komme opp på toppen av dagboken din, og i bruker katalogen om du skulle velge å være oppført i den. Du trenger ikke bruke fullt navn eller ditt ordentlige navn.
+
+/create.bml.password.head=Passord
+
+/create.bml.password.input.head1=Passord:
+
+/create.bml.password.input.head2|staleness=1
+/create.bml.password.input.head2=Passord igjen:
+
+/create.bml.password.text=Velg et passord.
+
+/create.bml.proceed.btn.proceed=Fortsett...
+
+/create.bml.proceed.warning=Klikk <b>Fortsett</b> kun <i>en</i> gang!!
+
+/create.bml.success.btn.enterinfo=Skriv inn personlig informasjon
+
+/create.bml.success.head=Suksess!
+
+/create.bml.success.text1|staleness=1
+/create.bml.success.text1=Din dagbok har blitt lagd. Viktig registrasjons detaljer har blitt sent til <font face=Arial size=+1><b>[[email]]</b></font>, eposten inneholder instruksjoner. <b>Merk:</b>Du har <I>syv dager</i> til å bekrefte din dagbok konto. Om du ikke har satt den opp innen 7 dager vil brukernavnet <b>[[username]]</b> automatisk bli slettet og noen andre kan registrere det.
+
+/create.bml.success.text2=Din Dagbok vil komme på:
+
+/create.bml.success.text3=Vennligst ta deg tid til å fylle inn litt informasjon om deg selv. Mesteparten er valgfritt, men det gir oss en ide om hvem som bruker Livejournal.
+
+/create.bml.title=Lag ny Dagbok
+
+/create.bml.useacctcodes.entercode|staleness=1
+/create.bml.useacctcodes.entercode=For å lage en ny konto, skriv inn konto aktivasjons kode:
+
+/create.bml.useacctcodes.welcome=Velkommen
+
+/create.bml.username.box.head=Brukernavn:
+
+/create.bml.username.forpaidaccts=Eller, for betalte kontoer:
+
+/create.bml.username.head=Brukernavn:
+
+/create.bml.username.ljaddress=Din Dagbok vil komme på disse adressene:
+
+/create.bml.username.text=Hver [[sitename]] bruker må ha sitt eget unike brukernavn. Ditt brukernavn er det som vises i adressen til din dagbok, og som du også bruker til å logge inn til [[sitename]] server. Det vises også når du skriver kommentarer i andre folks dagbok.
+
+/create.bml.username.username=brukernavn
+
+/customize/index.bml.s1=Det gamle stilsystemet tilpasses gjennom <a href="/modify.bml">Tilpass dagboken</a>-siden.
+
+/customize/index.bml.title=Tilpass dagbok
+
+/editinfo.bml.allowshowcontact.about=Du bør ha dette alternativet aktivert.  Det lar andre mennesker kontakte deg ved å vise e-postadressen din, ICQ-nummeret ditt eller AOL Instant Messenger skjermnavnet ditt.
+
+/editinfo.bml.allowshowcontact.email=Om synlig, e-postadresse du vil vise:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Kun egentlig adresse
+
+/editinfo.bml.allowshowcontact.email.both=Begge (egentlig + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Kun LiveJournal-adressen
+
+/editinfo.bml.allowshowcontact.email.neither=Ingen.  Skjul min e-postadresse.
+
+/editinfo.bml.allowshowcontact.email.no_show=Ikke vis e-postadresse
+
+/editinfo.bml.allowshowcontact.email.show=Vis e-postadresse
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Med valget ovenfor, kan du også velge å skjule epost adressen din (men fremdeles vise annen kontakt informasjon), kun vise din Livejournal epost adresse (kun for <a href="/paidaccounts/">betalte kontoer</a>), kun vise din ordentelige adresse, eller vise begge.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Med valget ovenfor, kan du også velge å skjule din epost adresse (men fremdeles vise annen kontakt informasjon).
+
+/editinfo.bml.allowshowcontact.title=Vise din kontaktinformasjon på LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Skru på denne om du vil vise by/fylke/land og fødselsdato til andre brukere.
+
+/editinfo.bml.allowshowinfo.title=Vise område &amp; bursdag?
+
+/editinfo.bml.autotranslate.about<<
+Bruk dette alternativet for å fortelle LiveJournal hvilken koding vi skal anta tidligere poster er skrevet i, før vi byttet til Unicode.
+
+Dersom du skriver på norsk eller engelsk, kan du godt velge "Western European" her.
+.
+
+/editinfo.bml.autotranslate.header|staleness=1
+/editinfo.bml.autotranslate.header=Automatisk oversette eldre oppføringer fra:
+
+/editinfo.bml.bday.title=Bursdag
+
+/editinfo.bml.bday.year.opt=år er valgfritt
+
+/editinfo.bml.bdayreminders.about=Dersom du vil ha e-post som påminner deg om bursdagen til vennene dine på LiveJournal, sett hake her.
+
+/editinfo.bml.bdayreminders.header|staleness=1
+/editinfo.bml.bdayreminders.header=Send meg bursdagspåminnelser
+
+/editinfo.bml.bio.about|staleness=1
+/editinfo.bml.bio.about=Her kan du skrive en kort biografi om deg selv.  Denne vil dukke opp på brukerinformasjonssiden din.
+
+/editinfo.bml.bio.header=Om deg
+
+/editinfo.bml.blockrobots.about|staleness=1
+/editinfo.bml.blockrobots.about=Om du setter hake her, vil søkemotorer la din journal i fred.  Ikke alle søkemotorer respekterer reglene, men de mest populære gjør det.
+
+/editinfo.bml.blockrobots.header=Bloker roboter og søkemotorer fra å indeksere journalen din
+
+/editinfo.bml.city.title=By
+
+/editinfo.bml.country.choose=Velg et land
+
+/editinfo.bml.country.title=Land
+
+/editinfo.bml.donotlog=Ikke
+
+/editinfo.bml.email.title=E-post
+
+/editinfo.bml.enableboards.about|staleness=1
+/editinfo.bml.enableboards.about=Sett kryss her om du vil at andre skal kunne kommentere journaloppføringene du poster (stilen du har satt må også støtte dette).
+
+/editinfo.bml.enableboards.header=Aktiver diskusjonstavler
+
+/editinfo.bml.encoding.about=For brukere som skriver på flere språk og må ta internasjonale hensyn.
+
+/editinfo.bml.encoding.header=Alternativer for koding
+
+/editinfo.bml.error.email.lj_domain|staleness=1
+/editinfo.bml.error.email.lj_domain<<
+Du kan ikke anngi en @[[domain]] e-postadresse.
+Skriv din egentlige e-postadresse i dette feltet.
+Om du har en betalt konto, vil e-post sendt [[user]]@[[domain]] videresendes til din egentlige adresse.
+For å velge hvilken e-postadresse (eller begge) som vises offentlig, se alternativet nedenfor under "Vis kontaktinformasjon"
+.
+
+/editinfo.bml.error.email.no_space<<
+Ingen mellomrom er tillatt i en e-postadresse.
+Dersom du bruker AOL, husk at din e-postadresse for internett er skjermnavnet ditt med alle mellomrom fjernet, fulgt av <b>@aol.com</b>
+.
+
+/editinfo.bml.error.excessive_int<<
+Beklager, men du har angitt for mange interesser.  Høyeste antall er 150, men du har angitt [[intcount]].
+Endringer du gjorde i din interesseliste ble ikke lagret.  Gå tilbake, fjern noen interesser og prøv igjen.
+.
+
+/editinfo.bml.error.invalidbio=Din lagrede biografi inneholder ugyldige tegn.  Du må besøke <a href='/utf8convert.bml'><b>tegnoversettelse</b></a> for å konvertere til Unicode.
+
+/editinfo.bml.error.invalidints=Din interesseliste inneholder ugyldige tegn.  Du må besøke <a href='/utf8convert.bml'><b>tegnoversettelse</b></a> for å konverte til Unicode.
+
+/editinfo.bml.error.invalidname=Navnet ditt inneholder ugyldige tegn.  Du må besøke <a href='/utf8convert.bml'><b>tegnoversettelse</b></a> for å konvertere til Unicode.
+
+/editinfo.bml.error.locale.country_ne_state=Du valgte United States som land, men du skrev en ikke-amerikansk stat i "Annen stat"-feltet.
+
+/editinfo.bml.error.locale.invalid_country=På et eller annet hvis klarte du å velge et ugyldig land.
+
+/editinfo.bml.error.locale.state_ne_country=Du spesifiserte et annet land enn amerika, men valgte en amerikansk stat.
+
+/editinfo.bml.error.locale.zip_ne_state=Din ZIP-kode stemmer ikke med den staten du valgte.  Korriger eller ta vekk ugyldige verdier fra stat og postnummerfeltene.
+
+/editinfo.bml.error.locale.zip_requires_us|staleness=1
+/editinfo.bml.error.locale.zip_requires_us=Du fylte ut en ZIP-kode, men valgte ikke Amerika som ditt land.  Vi tar bare i mot ZIP-koder fra amerikanske borgere.  Vennligst gå tilbake og fjern ZIP-koden, eller velg Amerika som ditt land.
+
+/editinfo.bml.error.tm.require.number=Dersom du vil motta SMS eller Mobilpost må du anngi ditt telefonnummer.
+
+/editinfo.bml.error.tm.require_provider|staleness=1
+/editinfo.bml.error.tm.require_provider=Om du vil bruke SMS eller Mobilpost må du velge mobilleverandøren din.  Dersom din ikke finnes på listen, kontakt oss, så kan vil legge til støtte for den.
+
+/editinfo.bml.finished.about=Når du er ferdig, trykk "Lagre endringer" nedenfor.
+
+/editinfo.bml.finished.header=Ferdig?
+
+/editinfo.bml.finished.save_button=Lagre endringer
+
+/editinfo.bml.gender.title=Kjønn
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=Sett kryss her dersom du vil ha e-postvarsling når noen kommenterer dine journaloppføringer.
+
+/editinfo.bml.getreplies.header=Motta diskusjonstavlesvar
+
+/editinfo.bml.hidefriendof.about=Om du setter kryss her, skjuler du listen over hvem som lister deg som venn på din brukerinformasjonsside.
+
+/editinfo.bml.hidefriendof.header=Skjul "venn av"-liste
+
+/editinfo.bml.howhear.about<<
+Bare for nysgjerrighetens skyld, hvor hørte du om [[sitename]] fra?
+Var det en spesiell person fyller du ut brukernavnet deres.  Om det var fra en annen kilde/artikkel/lenke/nettside vær snill å beskrive den.
+.
+
+/editinfo.bml.howhear.header=Nysgjerrighet
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about<<
+Sett kryss her dersom e-postklienten din støtter HTML-formatert e-post.  Mange klienter prøver å støtte det, men feiler totalt.
+Om du fjerner krysset, vil LiveJournal bare sende e-post i ren tekst.
+.
+
+/editinfo.bml.htmlemail.header=Send HTML Eposter
+
+/editinfo.bml.int.about<<
+Om du ønsker at andre skal kunne søke i katalogen og finne deg  via interesse, skriv inn nedenfor alt du er interesert i, separer med komma.
+Korte En-ords setninger er best. <b>Tommelregel:</b> Du skulle kunne putte inn interessen i en setning som "Jeg liker _______". Når du referer til et adjektiv, bruk flertalls form. "Jeg liker DVDer" istedetfor "Jeg liker DVD".
+.
+
+/editinfo.bml.int.ex.bad=<font color=#FF0000><b>DÅRLIG</b></FONT> Eksempel:</b> Jeg liker masse forskjellige grupper og å se filmer og snakke med venner og gå på diskotek.</b> Den slags kan gå i bio'en din ovenfor.
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>GODT</b></font>Eksampel: <B> sykling, skigåing, datamaskiner, dvder, mp3er, ost, kvinner</b>
+
+/editinfo.bml.int.header=Interesser
+
+/editinfo.bml.login.enterinfo=Skriv inn brukernavn og passord for å endre din person informasjon:
+
+/editinfo.bml.login.forgot.header=Glemt noe?
+
+/editinfo.bml.login.forgot.recover=Om du har glemt ditt brukernavn eller passord, <a href='lostinfo.bml'>få det tilbake her!</a>.
+
+/editinfo.bml.logip.always=Alltid
+
+/editinfo.bml.logip.anon_only=Kun anonyme postere
+
+/editinfo.bml.logip.header=Logg IP adresse av folk som kommenterer?
+
+/editinfo.bml.mangleaddress.about|staleness=1
+/editinfo.bml.mangleaddress.about=Om du er redd for at spam-roboter vil finne din epost adresse på Livejournal, tikk av dette valget og din epost adresse vil bli modifisert slik at den ikke kan bli funnet av epost-søkende roboter.
+
+/editinfo.bml.name.title=Navn
+
+/editinfo.bml.optional=Valgfri
+
+/friends/index.bml.title=Vennelistetilpassing
+
+/index.bml.boldcreate=Opprett din egen LiveJournal!
+
+/index.bml.frank.image.alt=Frank, LiveJournal sin maskottgeit
+
+/index.bml.frank.logo=<b><i>"Bæææ",</i> sier <a href="/site/goat.bml">Frank</a>.</b>
+
+/index.bml.meta.desc=LiveJournal.com er et sted du kan dele dine tanker med verden.
+
+/index.bml.meta.keywords=dagbok, journal, online journal, dagbøker, skriving, online dagbok, nettbasert dagbok, elektronisk dagbok, personlig dagbok
+
+/interests.bml.findsim.searchwait=<b>Vennligst Merk:</b> Søk vil ta flere sekunder. Vennligst vent.
+
+/interests.bml.findsim_do.account.notallowed=Beklager, din konto type kan ikke bruke dette verktøyet.
+
+/interests.bml.findsim_do.magic=Magisk Liste
+
+/interests.bml.findsim_do.magic.head=Magisk Liste
+
+/lostinfo.bml.enter_username=Skriv inn ditt brukernavn:
+
+/lostinfo.bml.lostpassword.text|staleness=1
+/lostinfo.bml.lostpassword.text=Om du har mistet passordet ditt, skriv inn brukernavnet ditt og valgfritt også epost adressen du ønsker passordet sent til. Merk, denne epost adressen må være en du har brukt på Livejournal før og hatt bekreftet. Om du lar epost feltet være blankt, vil det bli sent til din nåværende adresse.
+
+/lostinfo.bml.lostpassword.title=Misted passordet ditt?
+
+/lostinfo.bml.lostusername.text=Om du har misted brukernavnet ditt, skriv inn epost adressen din og vi vil sende deg brukernavnet.
+
+/lostinfo.bml.lostusername.title=Mistet brukernavnet ditt?
+
+/lostinfo.bml.title=Mistet informasjon
+
+/lostinfo_do.bml.error.no_usernames_for_email=Ingen brukernavn for denne epost adressen: [[adress]].
+
+/lostinfo_do.bml.error1.text=Du brukte aldri denne epost adressen med denne kontoen, eller det var aldri bekreftet.
+
+/lostinfo_do.bml.lostpasswordmail.part1|staleness=1
+/lostinfo_do.bml.lostpasswordmail.part1<<
+*** Dette er en autogenerert epost. Du trenger ikke svare på den. ***
+
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=For å bekrefte din epost adresse, gå her:
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb eller navn)
+
+/modify_do.bml.colortheme.customcolors=Valgfrie farger
+
+/modify_do.bml.domainalias.domainname=Domene navn:
+
+/modify_do.bml.domainalias.example=Eksempel: <i>min-dagbok.com</i>
+
+/modify_do.bml.moodicons.select=Velg Humør Ikoner:
+
+/modify_do.bml.overrides.warning=DETTE ER <U>IKKE</U> HVOR DU OPPDATERER DAGBOKEN DIN!!
+
+/support/faqbrowse.bml.backfaq=Tilbake til <a href="faq.bml">OBS</a>-seksjonen.
+
+/support/faqbrowse.bml.backsupport=Tilbake til <a href="./">support-sidene</a>.
+
+/support/faqbrowse.bml.lastupdated=Sist Oppdatert:
+
+btn.search=Søk
+
+dystopia.btn.login=LOGG PÅ
+
+dystopia.hello_anonymous=Velkommen til LiveJournal!
+
+dystopia.hello_loggedin=Hei, [[username]]!
+
+dystopia.nav.createjournal=Opprett en journal
+
+dystopia.nav.developer=Utviklerområdet
+
+dystopia.nav.download=Last ned
+
+dystopia.nav.editentries=Rediger oppføringer
+
+dystopia.nav.editfriends=Dine venner
+
+dystopia.nav.editpassword=Ditt passord
+
+dystopia.nav.editpics=Dine ikoner
+
+dystopia.nav.editstyle=Tilpass stil
+
+dystopia.nav.faq=LiveJournal OBS
+
+dystopia.nav.findcomm=Etter gruppe
+
+dystopia.nav.finddir=Katalogsøk
+
+dystopia.nav.findint=Etter interesse
+
+dystopia.nav.findrandom=Tilfeldig
+
+dystopia.nav.findregion=Etter område
+
+dystopia.nav.home=Hjem
+
+dystopia.nav.journalcalendar=Kalender
+
+dystopia.nav.journalfriends=Venner
+
+dystopia.nav.journalinfo=Brukerinformasjon
+
+dystopia.nav.journalrecent=Siste
+
+dystopia.nav.legalcoppa=Barnevern
+
+dystopia.nav.legalprivacy=Personvern
+
+dystopia.nav.legaltos=Tjenestebetingelser
+
+dystopia.nav.login=Logg på
+
+dystopia.nav.logout=Logg ut
+
+dystopia.nav.lostinfo=Mistet passordet
+
+dystopia.nav.memories=Minner
+
+dystopia.nav.modifyjournal=Tilpass din journal
+
+dystopia.nav.news=Nyheter
+
+dystopia.nav.paidaccts=Betalkontoer
+
+dystopia.nav.personalinfo=Personinformasjon
+
+dystopia.nav.support=Har du et spørsmål?
+
+dystopia.nav.updatejournal=Oppdater dagbok
+
+dystopia.navhead.findusers=Finn brukere
+
+dystopia.navhead.help=Hjelp og support
+
+dystopia.navhead.journal=Din Journal
+
+dystopia.navhead.legal=Lovinformasjon
+
+dystopia.navhead.settings=Dine Valg
+
+dystopia.navhead.welcome=Velkommen!
+
+dystopia.search.icq=ICQ-nummer
+
+dystopia.search.int=Interesse
+
+dystopia.search.region=Område
+
+dystopia.searchlj=Søk i LiveJournal
+
+Email=E-post
+
+Help=Hjelp
+
+langname.da=Dansk
+
+langname.de=Tysk
+
+langname.en=Engelsk
+
+langname.en_GB=Engelsk (Storbritannia)
+
+langname.en_LJ=Engelsk - LJ
+
+langname.es=Spansk
+
+langname.fi=Finsk
+
+langname.fr=Fransk
+
+langname.ga=Irsk
+
+langname.gd=Gelisk
+
+langname.he=Hebraisk
+
+langname.is=Islandsk
+
+langname.ja=Japansk
+
+langname.nb=Norsk bokmål
+
+langname.nl=Nederlandsk
+
+langname.nn=Nynorsk
+
+langname.pl=Polsk
+
+langname.pt=Portugisisk
+
+langname.ru=Russisk
+
+langname.sv=Svensk
+
+Password=Passord
+
+talk.commentpermlink=lenke til denne kommentaren
+
+talk.commentpost=Kommenter denne
+
+talk.commentsread=Les kommentarer
+
+talk.parentlink=Forelder
+
+talk.replytothis=Svar på denne
+
+talk.somebodywrote=[[realname]] ([[userlink]]) skrev,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) skrev i [[commlink]],
+
+talk.threadlink=Tråd
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_norsk
+
+Username=Brukernavn
+

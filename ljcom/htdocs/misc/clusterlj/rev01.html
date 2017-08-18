@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Clustering LiveJournal</title>
+  </head>
+
+<body>
+<h1 align='center'>Clustering LiveJournal</h1>
+<p align='center'>Brad Fitzpatrick & lj_dev crew</p>
+
+<h2>Introduction</h2>
+<p>
+The problem is <a href="./">described here</a>.  The following solution is a rough draft.  Future refinements of this solution are posted below the aforelinked introduction.
+</p>
+
+<h2>The Plan; Revision 1</h2>
+<p>
+The ultimate ideal would be to have LiveJournal to scale linearly with the number of servers we buy.  And that's exactly what this aims to do.
+</p>
+<p>
+The new plan is to have a bunch of indepedent clusters, each with a pool of ~5 web servers and at least 2 database servers.  All of a user's data would be confined to one cluster.  A new 'clusterid' column in the user table would specify which cluster that user is on.  As new users join, we simply build a new cluster and start putting users there, keeping the old clusters running as they were.  If people stop using the service, older clusters will free up, so we can put users there.
+</p>
+<p>Before I go further, a picture I whipped up in ViSiO:</p>
+<p align='center'><img src='ljarch.png' width=500 height=300 alt='mad art skills'></p>
+<p>
+What's it all mean?
+<ul>
+<li><p><b>Cloud</b> -- this is the Internet.  It's always drawn as a cloud.</p>
+
+<li><p><b>Load Balancer</b> -- this is our pair of BIG/ips... it redirects requests places and monitors servers, etc, etc.</p>
+
+<li><p><b>BH: redir</b> -- the logic to redirect a request to a certain cluster is too much work for the BIG/ip.  We'll need to do database lookups and stuff from the given user field, which'll be in any one of 10 places.  Writing candidacy functions for mod_backhand is pretty easy and can be written in C or Perl.  Actually, these machines can be on any/all of the cluster web slaves.... there's no need to have them be physically seperate, but it makes for a prettier abstraction on the above picture.</p>
+
+<li><b>Controller Master</b> -- this is the master database, but now it'll hold a whole ton less than it did before.  No log info, no journal text, no comment info, no comment text, no journal styles, no memories, etc, etc.  The two important things it'll have will be the user table (for maintaining unique usernames and userids) and the userusage table, so all clusters will be able to know when a friend on a different cluster updated their journal.  All of this data is replicated down, but it's incredibly light.</p>
+
+<li><p><b>Cluster Master</b> -- all data about a user that isn't stored on the controller master (site global), will be put on that user's cluster master, where it'll replicate down to the cluster's slave(s).</p>
+
+<li><p><b>Cluster Slaves</b> -- will only ever need to:<ul><li>write to controller master<li>write to cluster master<li>read from cluster slave (or fallback to cluster master)</ul></p>
+</ul>
+
+Time for another picture:
+</p>
+<p align='center'><a href="usagepie-large.png"><img src="usagepie-large.png" width=300 height=200 alt='disk usage graph'></a></p>
+
+See that 1% slice for userinterests?  That's the largest thing that'll be stored on the controller master.  All the other larger stuff (and a bunch of the &lt;1% slices, even) will only be stored on the cluster masters.
+
+<h2>Notes</h2>
+
+<p><b>Maintaining globally unique AUTO values.</b>
+Without everything in one logical database, the <tt>AUTO_INCREMENT</tt>
+columns would have no coordination and multiple clusters could use the same
+unique IDs for posts, comments, pictures, memories, etc.  To prevent
+this, and to make it easier to delete & move users (move is copy + delete), we need to change all these unique primary key auto columns to be dual column primary keys:  (userid, autovalue).  You just insert the given userid and a NULL for the autovalue and each userid has its own count.  That means that people will no longer have itemids with 9 digits and such... everybody's numbers will unique and small to just them.
+</p>
+
+<p><b>Legacy ID snapshot</b>.  So as to not break links, we'll need a table to map old unique IDs to the (userid, unique) tuples.  When these requests are received, the backhander won't know where to throw it, so it'll throw it to any one, which'll then look up its userid, and HTTP redirect it, so the next request (to, say, /talkread.bml?user=test&itemid=32) will know which cluster to assign it to.
+</p>
+
+<p><b>Cache benefit.</b> The coolest thing about this is that the
+caches on every webserver process and every database server will be a
+lot more valid.  If MySQL needs to pull in 10 pages from disk to find
+4 records, we don't have to worry that all that other data on those
+pages is worthless.  Now we know that those other records we now have
+sitting in memory are also valid for somebody on our cluster.  And
+because we cap the number of users per cluster, we can ensure that the
+cache performance of a cluster stays the same over time.
+</p>
+
+<p><b>RPC between clusters.</b> Obivously there's going to need to be
+communication between clusters.  We started to play with this already,
+actually ... just wrap DB calls over HTTP.  We'll need this to get
+things like get_recent_items for friends view and getting the text
+from everything.
+</p>
+<p>
+It'll be important to request everything that'll be needed to each
+cluster in one transaction, so as to maintain round trip latencies
+from serializing a bunch of requests.  While the number of clusters is
+low (~3 - 6) we'll be able to get away with enumerating over the
+clusters we need to do RPC with and doing the requests one by one.
+In the future it might be nice to parallelize these requests.
+</p>
+<p>Actually, I'm probably worrying about this too much.  We already do
+dozens of DB calls serialized in places.  This'll be faster,
+as each DB call (albeit over HTTP) will execute faster due to better
+cache hits.</p>
+<p>
+Another concern you may be having:  <i>"But Brad, won't an increased 
+number of users across all the clusters cause a bunch more RPC
+requests to each cluster, thus diminishing the quality of a cluster,
+which this whole plan was supposed to address?"</i>  Ah, clever you
+are.  Yes, reads will increase to all clusters as total users and 
+total clusters grow.  But remember, reads are easy to load balance..
+all we have to do is buy more cluster db slaves and spread the
+reads evenly.  So initially we can start with only 1 or 2 cluster
+slaves per cluster.  Once our total number of clusters hits 5-6,
+it'd be wise to add another db slave to each cluster.
+</p>
+
+<p><b>Friends view logic.</b>  The <tt>userusage</tt> table is replicated everywhere, so each cluster will know when their friends updated, and which clusters
+to do RPC on.
+</p>
+
+<p><b>Backhander.</b> 
+The backhander will have to look several places in the HTTP request to determine which cluster to throw it to:<ul>
+<li>REQUEST_URI =~ m!^/(users|community|~)/<b>(\w+)</b>!
+<li>REQUEST_URI =~ m![\?\&amp;]user=<b>(\w+)</b>!
+<li>Post data: user
+</ul>
+Anything that doesn't match those, we'll need to make sure it does, or add other rules.
+</p>
+
+<p><b>Stats aggregation.
+</b>
+Each cluster will have to run its own statistics, and then something on mayor wil have to aggregate those.
+</p>
+
+<p><b>recent_* tables</b>.
+Recent tables could and should probably die.
+</p>
+
+<p><b>Moving users between clusters</b>.
+It'll be easy to move users between clusters.  Now that all data is prefixed with the itemid, finding it and deleting it is easy.  The only issue is locking which isn't too hard.  We can use GET/RELEASE_LOCK on the controller master as a global mutex mechanism.
+</p>
+<p>
+When might it be necessary to move users?  Imagine we're getting heavy growth and we must temporarily overload the newest cluster while we wait for parts from some slow vendor.  Once the new cluster is up, we'll want to move users over.  Or, consider that users stop using the site over time.  It'd be nice to be able to move users from the busiest cluster over to the ones that are dropping in traffic due to users quitting.  etc.., etc...
+</p>
+
+<p><b>What's where?</b>
+The major things, at least:
+<table align='center' border=1 width=400>
+<tr>
+<th>Cluster</th>
+<th>Everywhere</th>
+</tr>
+<tr>
+<td>
+log, logprop, talk, logtext, talktext, userpicblob (userpic images)
+</td>
+<td>
+user, userusuage, generic files, site images
+</td>
+</tr>
+</table>
+This isn't meant as a definitive list.  If you want to start hacking on some part (see the implementation plan below), then check with the code@ mailing list to see where the table/service in question will live.
+</p>
+
+<p><b>Directory implications.</b>
+<br>(22:39:01) <i>Foobar</i>: So here's a question that may or may not be relevant: how would the directory fit into this?
+<br>(22:39:30) <i>Foobar</i>: just query each cluster and aggregate and sort them after  they all return?
+<br>(22:39:35) <i>brad</i>: basically, yeah
+<br>(22:39:53) <i>Foobar</i>: sounds potentially ugly, but I guess it's workable
+</p>
+
+<p><b>What cluster do new users go to?</b>
+The least loaded/newest cluster.
+</p>
+
+<p><b>Are there still free/paid servers?</b>
+We <i>could</i> have a paid cluster, but it seems quite silly, since that paid cluster would have to RPC over to the free clusters.  Plus, having a paid cluster would involve moving tons of people each day both back and forth.  So the plan is to <b>NOT</b> have seperate clusters, and just make everything incredibly fast.  If bandwidth gets too expensive, we could force free users to have an obligatory 30ms latency, which would still be about 3870ms better than what it is now.  Please, don't compain about this ... we have no obligation to give away infinite CPU and bandwidth to everybody for free.  We realize that free users constitute the overwhelming majority, so free service will always be good (that's our goal), but we want to be able to give paid users a little bit extra always, so if we artificially limit the speed of free access while lower our costs, so be it.
+</p>
+<p>
+But won't this bring down paid account sales, if free servers are fast enough?  Perhaps, but who cares... having shitty service is a poor excuse to profit.  We'll make up for the lost sales due to fast servers by offering all the features we've been saying we're going to do forever.  Hell, a bunch of them are already 80% written but we've been too busy keeping the site alive.  Once the site is permanently alive we can focus on spending time writing fun stuff instead.
+</p>
+
+<p><b>So now the BIG/ips don't do much, huh?</b>  Yeah, not quite as much.  Right now we have a huge ruleset that gets run on the BIG/ip for each request.  That'd be simplified quite a bit and the mod_backhand code will do the work now.
+</p>
+
+
+<h2>Implementation Plan</h2>
+<p>
+This is a lot of tedious work, but it's all very trivial.  Luckily though, it's high parallelizable.
+</p>
+<ul>
+<li><p><b>Unique ID Split.</b> The first thing that needs to happen is splitting all the unique IDs into (userid, unique) tuples.  We can and should put this live after testing before we do the rest.  The side benefit is that we'll be able to delete users incredibly easy then, so we'll be able to delete a lot of data before we later move everybody onto their clusters.</p>
+
+<li><p><b>Backhander.</b> We need to write the backhander candidacy function.  It might be easiest to hire a backhand guru to do it.  I know two people that'd probably be down.  Otherwise it shouldn't be too hard.</p>
+
+<li><p><b>clusterid column.</b>  We need to add the clusterid column to the user table, set to 0 for everybody inititally.  0 will mean "the big monolithic cluster", which is how much LJ sites will run.  I haven't decided yet if we'll need to special-case 0 to mean no cluster (on the old system) or if it'll just be another cluster, much larger than the others at first.</p>
+
+<li><p><b>RPC code.</b>  Any code that depends on accessing data from table for a userid that doesn't exist on that cluster will need to be rewritten to do RPC to the appropriate cluster.  The main place is friends views.  There are a ton of smaller areas, but to begin with we'll replicate a bunch of the &lt;1% slice tables, even though they could later be cluster-only, just to make our lives easier at first.</p>
+
+<li><p><b>Ton of testing.</b>  We'll need to run test transitions over and over until we're sure it's perfect.  I'll be setting up a few machines to simulate different clusters (each with web & db server).</p>
+</ul>
+
+<h1>Conclusion</h1>
+<p>
+It's time to get serious.  I'm sick of dumb hacks.  All those dumb hacks were nice, and a large number of them will still be applicable and carry over and benefit us in the new code, but the root problem (dbs sucking over time) needs to be solved.
+</p>
+<p>
+Please help me out with this.  I can't wait until we can just buy 4-6 more machines and put a new cluster online, letting us grow with diminishing the quality of service for the other clusters.  I can't wait until I can spend my time programming fun new features instead of just keeping the site alive.
+</p>
+
+<hr>
+<address><a href="mailto:bradfitz@livejournal.com">Brad Fitzpatrick</a></address>
+<!-- Created: Mon Dec 10 15:41:42 PST 2001 -->
+<!-- hhmts start -->
+Last modified: Mon Jan 21 19:34:50 PST 2002
+<!-- hhmts end -->
+  </body>
+</html>

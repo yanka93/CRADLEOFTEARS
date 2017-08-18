@@ -1,0 +1,6 @@
+<h1 class="heading"><img src="logo.png"/> Lava Lamps</h1>
+
+<!-- This is a subheading, which naturally requires a chicken above it -->
+<img src="chicken.png" /><br />
+<h2 class="subheading">Oil-based Lava Lamps (and Chickens)</h2>
+

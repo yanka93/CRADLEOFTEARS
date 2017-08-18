@@ -1,0 +1,265 @@
+<?_info
+localblocks<=
+pof=>{s}<a href='/paidaccounts/'><img src='<?imgprefix?>/talk/md10_thumbup.gif' width='25' height='19' alt='&#10004;' style='vertical-align: middle; border: 0;' /></a>
+pef=>{s}<a href='/paidaccounts/'><img src='<?imgprefix?>/talk/sm08_star.gif' width='25' height='19' alt='&#9786;' style='vertical-align: middle; border: 0;' /></a>
+h1=>{D}<h1 bml='1'>%%data%%</h1>
+page<=
+{F}<html>
+<head><title>%%title%%</title></head>
+<body>
+%%body%%
+</body></html>
+<=page
+<=localblocks
+_info?><?page
+head<=
+<style type="text/css">
+<!--
+    li { font-weight: bold; }
+    li.header { font-weight: normal; }
+-->
+</style>
+<=head
+title=>Site Map
+body<=
+<?p foo p?>
+<?p bar p?>
+<?p baz <?p baznest p?> endbaz p?>
+
+<?pof?> = Paid Only Feature<br />
+<?pef?> = Enhanced for Paid Users
+<?h1 User Links <?h1 Inner h1?> <?h1?> h1?>
+<?h1?>
+<table style='margin-top: 10px' cellpadding="2" width="100%">
+<tr valign="top"><td>
+<ul>
+  <li class="header"><?h2 Your Account: h2?>
+    <ul>
+      <li><a href="/create.bml">Create an Account</a></li>
+      <li><a href="/login.bml">Login to your Account</a></li>
+      <li><a href="/update.bml">Update your Journal</a></li>
+      <li><a href="/editjournal.bml">Edit your Journal Entries</a></li>
+      <li><a href="/lostinfo.bml">Lost Password?</a></li>
+      <li><a href="/changepassword.bml">Change Account Password</a></li>
+      <li><a href="/tools/emailmanage.bml">Email Management</a></li>
+      <li><a href="/accountstatus.bml">Delete/Undelete your Journal</a></li>
+      <li><a href="/manage/files.bml">File Manager</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Your Settings: h2?>
+    <ul>
+      <li><a href="/manage/">Manage all Settings</a></li>
+      <li><a href="/editinfo.bml">Edit your Information</a> <?pef?></li>
+      <li><a href="/customize/">Customize your Journal</a> <?pef?></li>
+      <li><a href="/manage/links.bml">Create Link List</a> <?pef?></li>
+      <li><a href="/manage/siteopts.bml">Browse Preferences</a></li>
+      <li><a href="/editpics.bml">Edit and Upload User Picture Icons</a> <?pef?></li>
+      <li><a href="/manage/emailpost.bml">Email Gateway Settings</a> <?pof?></li>
+      <li><a href="/manage/phonepost.bml">Post by Phone Settings</a> <?pof?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Tools: h2?>
+    <ul>
+      <li><a href="/portal/">Portal</a></li>
+      <li><a href="/invite/">Invite a Friend</a> <?pef?></li>
+      <li><a href="/misc/whereami.bml">Where am I?</a></li>
+      <li><a href="/admin/console">Administrative Console</a> - <a href="/admin/console/reference.bml">Reference</a></li>
+      <li><a href="/tools/textmessage.bml">Text Message Tool</a> <?pof?></li>
+      <li><a href="/poll/create.bml">Poll Creator</a> <?pof?></li>
+      <li><a href="/tools/memories.bml">Memorable Posts</a></li>
+      <li><a href="/todo/">To-Do List</a> <?pef?></li>
+      <li><a href="/export.bml">Export your Journal</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Friends: h2?>
+    <ul>
+      <li><a href="/friends/edit.bml">Edit Your Friends</a></li>
+      <li><a href="/friends/editgroups.bml">Edit Your Friend Groups</a></li>
+      <li><a href="/friends/filter.bml">Friends Filter</a></li>
+      <li><a href="/birthdays.bml">Birthdays</a></li>
+      <li><a href="/friends/popwithfriends.bml">Popular Users Amongst Your Friends</a> <?pof?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Clients: h2?>
+    <ul>
+      <li><a href="/download/">Download A Client</a></li>
+      <li><a href="/update.bml">Web Update Client</a> - <a href="/update.bml?mode=full">(Full Mode)</a></li>
+      <li><a href="/phonepost/">Post by Phone <?pof?></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=clients">FAQ Category</a></li>
+    </ul>
+  </li>
+
+  <li class="header"><?h2 Communities: h2?>
+    <ul>
+      <li><a href="/community/">Community Center</a></li>
+      <li><a href="/community/settings.bml?mode=create">Create a Community</a></li>
+      <li><a href="/community/manage.bml">Manage Communities</a></li>
+      <li><?ljcomm community_promo ljcomm?></li>
+      <li><?ljcomm community_quest ljcomm?></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=community">FAQ Category</a></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=comm-manage">Community Management FAQ</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Legal / Abuse: h2?> 
+    <ul>
+      <li><a href="/legal/tos.bml">Terms Of Service</a></li>
+      <li><a href="/legal/privacy.bml">Privacy Policy</a></li>
+      <li><a href="/legal/coppa.bml">COPPA Policy</a></li>
+      <li><a href="/site/contract.bml">Our Social Contract</a></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=abuse">FAQ Category</a></li>
+      <li><a href="/abuse/report.bml">Report Violations</a></li>
+    </ul>
+  </li>
+</ul>
+</td><td>
+<ul>
+  <li class="header"><?h2 New to <?sitename?>? h2?>
+    <ul>
+      <li><a href="/site/about.bml">About <?sitename?></a></li>
+      <li><a href="/doc/tour">Take the LiveJournal Tour</a></li>
+      <li><a href="http://newbies.livejournal.com/">The Newbies Lounge</a></li>
+      <li><a href="/create.bml">Create an Account</a></li>
+      <li><a href="/support/">Have a Question?</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Paid Accounts: h2?>
+    <ul>
+      <li><a href="/paidaccounts/">Paid Accounts</a></li>
+      <li><a href="/site/accounts.bml">Features by Account Type</a></li>
+      <li><a href="/paidaccounts/status.bml">Paid Account Status</a></li>
+      <li><a href="/pay/history.bml">Payment History</a> - <a href="/pay/coupons.bml">Current Coupons</a></li>
+      <li><a href="/rename/">Rename Your Account</a></li>
+      <li><a href="/paidaccounts/friends.bml">Buy for Friends!</a></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=paidaccounts">FAQ Category</a></li>
+      <li><a href="/phonepost/">Post by Phone</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Style System 1: h2?>
+    <ul>
+      <li><a href="/developer/styles.bml">Style Reference</a></li>
+      <li><a href="/styles/create.bml">Create a Style</a> <?pof?></li>
+      <li><a href="/styles/edit.bml">Edit Styles</a> <?pof?></li>
+      <li><a href="/modify.bml">Modify your S1 Settings</a> <?pef?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Style System 2 h2?>
+    <ul>
+      <li><a href="/doc/s2/">S2 Manual</a></li>
+      <li><a href="/customize/">Customize your Journal</a></li>
+      <li><a href="/customize/advanced/layerbrowse.bml">Layer Browser</a></li>
+      <li><a href="/customize/advanced/">Advanced Customization</a> <?pof?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Syndication: h2?>
+    <ul>
+      <li><a href="/syn/">Syndicated Accounts</a> <?pef?></li>
+      <li><?ljcomm syn_promo ljcomm?></li>
+      <li><a href="/syn/raw.bml">Recently Updated Feeds</a></li>
+      <li><a href="/support/faqbrowse.bml?faqcat=syn">FAQ Category</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Technical Support: h2?> 
+    <ul>
+      <li><a href="/support/faq.bml">FAQ</a> - <a href="/support/faqpop.bml">Popular FAQs</a></li>
+      <li><a href="/support/submit.bml">Ask a Question</a></li>
+      <li><a href="/support/help.bml">Help Someone Out</a></li>
+      <li><a href="/support/highscores.bml">High Scores</a></li>
+      <li><a href="/support/changenotify.bml">Change Support Notifications</a></li> 
+    </ul>
+  </li>
+  <li class="header"><?h2 International: h2?>
+    <ul>
+      <li><a href="/manage/siteopts.bml">Set Language</a></li>
+      <li><a href="/utf8convert.bml">Conversion Tool</a></li>
+      <li><a href="/translate/">Tool for Translation Volunteers</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Fun Stuff: h2?>
+    <ul>
+      <li><a href="./goat.bml">Frank the Goat!</a></li>
+      <li><a href="/users/news/50307.html?mode=reply">LiveJournal &hellip; The Song!</a></li>
+      <li><a href="/singles/">Singles</a> <?pof?></li>
+      <li><a href="/meme.bml">Meme Tracker</a></li>
+      <li><a href="/banners.bml">Banners</a></li>
+      <li><?ljcomm lj_nifty ljcomm?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Search/Find Users: h2?>
+    <ul>
+      <li><a href="/random.bml">Random User</a></li>
+      <li><a href="/directory.bml">By Region</a> <?pof?></li>
+      <li><a href="/interests.bml">By Interest</a> <?pef?></li>
+      <li><a href="/directorysearch.bml">Directory Search</a> <?pof?></li> 
+    </ul>
+  </li>  
+</ul></td>
+</tr>
+</table>
+
+<?h1 Other Links h1?>
+<table style='margin-top: 10px' cellpadding="2" width="100%">
+<tr valign="top">
+<td>
+  <ul>
+  <li class="header"><?h2 Development: h2?>
+    <ul>
+      <li><a href="/developer/">Developer Info</a></li>
+      <li><a href="/site/contributors.bml">Contributors</a></li>
+      <li><?ljcomm lj_dev ljcomm?></li>
+      <li><a href="/users/changelog">Changelog</a></li>
+      <li><a href="http://www.livejournal.org">LiveJournal.org</a></li>
+      <li><a href="http://test.livejournal.org">Test Site</a> - <?ljcomm lj_test ljcomm?></li>
+      <li><a href="http://cvs.livejournal.org">CVS</a></li>
+      <li><a href="/doc/server/">LiveJournal Server Manual</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Service Status: h2?>
+    <ul>
+      <li><a href="/news.bml">News Page</a> - <?ljuser news ljuser?></li>
+      <li><a href="http://status.livejournal.org">The Status of LiveJournal</a></li>
+      <li><?ljcomm lj_maintenance ljcomm?></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Offsite Tools: h2?>
+    <ul>
+      <li><a href="http://www.petekrawczyk.com/lj_connect/">LiveJournal Connect</a></li>
+      <li><a href="http://marnanel.org/joule">Friends List Analysis, Past &amp; Present</a></li>
+      <li><a href="http://livejournal.meetup.com/">Meetup!</a></li>
+    </ul>
+  </li>
+</ul>
+</td><td>
+<ul>
+  <li class="header"><?h2 Feedback: h2?>
+    <ul>
+      <li><a href="/suggestions/">Suggestions</a></li>
+      <li><a href="/support/">Technical Support</a></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li class="header"><?h2 Press: h2?>
+    <ul>
+      <li><a href="/press/">Press Area</a></li>
+      <li><a href="/press/articles.bml">LiveJournal in the Press</a> - <?ljuser press ljuser?></li>
+      <li><a href="/press/staff.bml">Senior Staff</a></li>
+      <li><a href="/stats.bml">Statistics</a></li>
+    </ul>
+  </li>
+  <li class="header"><?h2 Documentation: h2?>
+    <ul>
+      <li><a href="/support/faq.bml">FAQ</a></li>
+      <li><a href="/doc/html/">Guides</a></li>
+      <li><a href="/doc/server">LiveJournal Server Manual</a></li>
+      <li><?ljcomm lj_sysdoc ljcomm?></li>
+      <li><?ljcomm lj_userdoc ljcomm?></li>
+    </ul>
+  </li>
+</ul>
+</td></tr></table>
+
+<?hr?>
+Thanks go to <?ljuser pinrad ljuser?> for the initial version of this page.
+
+<=body
+page?>

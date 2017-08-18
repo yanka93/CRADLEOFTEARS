@@ -1,0 +1,173 @@
+===============================
+  LIVEJOURNAL'S TIME PROBLEM
+===============================
+
+Brad Fitzpatrick
+brad@livejournal.com
+August 10, 2000
+
++------+
+| Goal |
++------+
+
+LiveJournal.com needs to handle time better, in particular to be aware of time
+zones.  There are too many problems that arise by neglecting them.  If I knew of
+an easy solution, I'd have  implemented it already.  This document is a plea for
+help.  All suggestions (however seemingly stupid) are likely to help, if only to
+spark ideas for others. 
+
+Confession:  I know very little about the details of time zones, daylight
+saving's time, etc... but I've read tons on the topic, enough to know there's
+a lot to know.  In other words, the solution is likely complex as well.
+
++---------------+
+| Current Setup |
++---------------+
+
+LiveJournal's servers, and the primary developers are all on the west coast of
+the United States, in the PST/PDT (Pacific Standard/Daylight Time) timezone, 
+which is -0800 GMT (and sometimes -0700 GMT, in daylight savings time, I 
+believe). Here is how LiveJournal currently stores the dates/time for different
+events:
+
+ * journal creation date, update date --- PST/PDT local time.
+
+ * comment post dates --- PST/PDT local time.
+
+ * journal entries: 
+
+     1) the "eventtime" is stored, whatever time you say it is wherever you're 
+        at. you specify the year, month, day, hour and minute.  no time zone 
+        is recorded.
+
+     2) the "logtime" ... the time LiveJournal logs it to the database, in 
+        PST/PDT  local time.
+
++-------------------------+
+| Description of problems |
++-------------------------+
+
+Outlined below are the problems that LiveJournal currently faces:
+
+      1.  Friends view ordering
+      2.  Incorrect user clocks
+      3.  Offline journaling/queueing
+      4.  Comments post times
+
+1. Friends view ordering
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The friends view is currently sorted according to the "logtime".  In other
+words, regardless of what time you said the journal event happened, the server
+will sort them in the reverse order they were received.  This has the advantages
+that if you have friends scattered all over different timezones the journal 
+entries will still show in the order they actually happened.
+
+The problem occurs though near midnight ... you can have friends in one 
+timezone posting entries on one day interleaved with friends in another
+timezone posting commments on the previous day.  The resultant friends view
+looks really messed up, going back and forth between days.
+
+This leads me to topic 2 ...
+
+2. Incorrect user clocks
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The friends view shows the time the user reported (the "eventtime"), even
+though it's sorted by the "logtime".  So if a friend in your same timezone
+is posting comments near the same time as you, it's possible their post
+that happened after you has an earlier displayed time, because their computer
+clock is messed up.
+
+The worst is when their computer clock is months/years behind/ahead (very very
+common because Windows users like to double-click their clock and use it as
+a calendar ... then hit "OK" instead of "Cancel").  Then, the users complain
+that "my journal entries are showing up on my friends page, but not on my
+recent events view".  This is because the recent events view (and the day 
+view, and the calendar) are all sorted by the "eventtime", the time the user
+said the event happened.
+
+3.  Offline journaling/queueing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Many people have been asking for and patiently awaiting the "offline journaling"
+feature ... being able to enter journal entries on your no-Internet laptop or
+PDA and HotSync (or whatever) them later to LiveJournal's servers.
+
+Now, how should the friends view be formatted?  Say the user submits 10 journal
+entries ranging over a two week vacation.  Should all 10 show up at once on
+all of that user's friends' friends views?  Because under the current scheme,
+the "logtime" of all those entries would be seconds apart, and that's what the
+friends view uses to sort.
+
+Should offline/queued entries not show up on friends lists?  Should posts
+with eventtimes more than 'n' days in the past not show up on friends lists?
+
+Both those solutions suck, because they're both ugly hacks that avoid fixing the
+real problem -- adding timezone support to livejournal.
+
+4. Comment times
+~~~~~~~~~~~~~~~~
+Blah.  You know the problem.  Keep reading ... time for solutions:
+
++----------------+
+| Ideal Solution |
++----------------+
+
+Ideally what would happen is that LiveJournal would store all posts with a
+GMT time (that doesn't have daylight savings time) and the friends views
+would sort by the GMT time of the eventtime ... so the user that went on 
+vacation and is dumping 10 entries into the system has them all intermixed
+with her friends' old entries.  Then, the friends view should display both
+the remote browsing users's time and the time it was when the user posted the
+item.
+
+So the problem turns into -- how do we convert the "eventtime" the user
+submits into a GMT time?  But ... let's assume the user's computer clock
+is wrong, or we don't want to use it because it's not perfectly synchronized.
+So then we need to pass along to LiveJournal a timezone field.
+
+So the problem is:
+
+    --- I need a list of all timezones.  What format are these in?
+        When does daylight savings time occur?  Each country and states
+        within those countries have different rules.  
+
+    --- given a timezone code, how do I convert it to GMT?  Are there
+        good packages already in existence (preferrably in Perl) to
+        do these conversions?  I've looked around a lot, but haven't
+        found anything perfect.
+
+    --- how do we deal with legacy clients?  it'll be some time
+        before all clients start sending timezone info.
+
+Once the database is storing the eventtime in GMT and the timezone
+code as well, then the style system needs to be updated to allow style
+authors to show times in both the poster's time, and the journal owner
+or remote user's time.
+
+But perhaps there's a better solution?  I really don't know.  I hate the
+dependency on users' system clocks, and I hate the misordering of friends
+items.  
+
++----------------------+
+| Good example problem |
++----------------------+
+
+I have a journal I wrote from 1990 that I typed up, but I don't want
+to post it, because it'll show up on all my friends' friends views.  I'd
+prefer it just went to my calendar, and I can make a single post to tell
+my friends to go read it (and link to the day it starts).
+
+Sure, I could add a meta-data flag or something new on the protocol that
+says, "don't add this to my friends view" but then people will start using
+that for other purposes, and start asking for stupid stuff like, "can I have
+it not show up on certain people's friends view?", not understanding the
+point of it.  It's just not clean.  :/
+
+
+_____________________________________________________________________________
+Feedback requested:  
+  brad@livejournal.com
+
+

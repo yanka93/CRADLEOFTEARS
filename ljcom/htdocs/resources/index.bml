@@ -1,0 +1,13 @@
+<?page
+title=>Writing Resources
+body<=
+
+<?_include
+file=>resources-index
+bml=>1
+_include?>
+
+<=body
+page?>
+
+

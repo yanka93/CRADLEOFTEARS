@@ -1,0 +1,112 @@
+﻿<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+  LJ::set_active_crumb('import');
+  return;
+_code?>
+
+<?_code
+{
+
+  my $err = sub {
+    my $txt = shift;
+
+    return "<?inerr " . $txt . " inerr?><br/>";
+  };
+  
+  use strict;
+  use vars qw(%POST %GET);
+  
+  return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+  my $remote = LJ::get_remote();
+  return LJ::bad_input("You must be logged in to access import page.")
+    unless $remote;
+
+  my $authas = $GET{'authas'} || $remote->{'user'};
+  my $u = LJ::get_authas_user($authas);
+  return LJ::bad_input("You could not be authenticated as the specified user.")
+      unless $u;
+
+  my $iremote = $remote->{'user'};
+
+  return $LJ::MSG_READONLY_USER if $u->readonly;
+
+  my $ret;
+  my $dbr;
+
+  $ret = "<?h1 ﻿Импорт пользователя " . $remote->{'user'}  . " h1?>\n<br>";
+
+  $ret .= "<form action='import-queue.bml' method='get'>";
+  $ret .= "<input type=submit value='&nbsp;Обновить&nbsp;'>";
+  $ret .= "</form>";
+
+  $ret .= "<br/><?h1 Ваши заявки, находящиеся в очереди на обработку h1?>\n<br/>";
+  $dbr = LJ::get_db_reader();
+  if (!$dbr) {
+    $ret .= $err->("Can't get database reader!");
+  }
+
+  my $sth1 = $dbr->prepare("SELECT * FROM ljr_iqueue WHERE local_user='$iremote'");
+  $sth1->execute();
+
+  $ret .= "<table border=0 cellpadding=5 cellspacing=0>";
+  $ret .= "<tr bgcolor=#DDDDDD>";
+  $ret .= "<td>Номер<br/>заявки</td>";
+  $ret .= "<td>Исходный<br/>сервер</td>";
+  $ret .= "<td>Пользователь<br/>на исходном сервере</td>";
+  $ret .= "<td>Протокол</td>";
+  $ret .= "<td>Пользователь<br/>LJ.Rossia.org</td>";
+  $ret .= "</tr>";
+
+  while (my $r = $sth1->fetchrow_hashref) {
+    $ret .= "<tr>";
+    $ret .= "<td>" . $r->{importid} . "</td>";
+    $ret .= "<td>" . $r->{remote_site} . "</td>";
+    $ret .= "<td>" . $r->{remote_user} . "</td>";
+    $ret .= "<td>" . $r->{remote_protocol} . "</td>";
+    $ret .= "<td>" . $r->{local_user} . "</td>";
+    $ret .= "</tr>";
+  }
+  $ret .= "</table>";
+
+  $ret .= "<br/>Вы можете добавить новую заявку на импорт <a href=import-enqueue.bml>здесь</a>.<br/><br/>";
+
+
+  $ret .= "<br/><?h1 Результаты обработки ваших заявок h1?>\n<br/>";
+  my $sth1 = $dbr->prepare("SELECT * FROM ljr_ihistory WHERE local_user='$iremote' order by local_user, importid desc");
+  $sth1->execute();
+
+  $ret .= "<table border=0 cellpadding=5 cellspacing=0>";
+  $ret .= "<tr bgcolor=#DDDDDD>";
+  $ret .= "<td>Номер</td>";
+  $ret .= "<td>Исходный<br/>сервер</td>";
+  $ret .= "<td>Пользователь<br/>на исходном сервере</td>";
+  $ret .= "<td>Протокол</td>";
+  $ret .= "<td>Пользователь<br/>LJ.Rossia.org</td>";
+  $ret .= "<td>Дата и время<br/>изменения<br/>статуса заявки</td>";
+  $ret .= "<td>Статус заявки</td>";
+  $ret .= "</tr>";
+
+  while (my $r = $sth1->fetchrow_hashref) {
+    $ret .= "<tr>";
+    $ret .= "<td>" . $r->{importid} . "</td>";
+    $ret .= "<td>" . $r->{remote_site} . "</td>";
+    $ret .= "<td>" . $r->{remote_user} . "</td>";
+    $ret .= "<td>" . $r->{remote_protocol} . "</td>";
+    $ret .= "<td>" . $r->{local_user} . "</td>";
+    $ret .= "<td>" . $r->{idate} . "</td>";
+    $ret .= "<td>" . $r->{istatus} . "</td>";
+    $ret .= "</tr>";
+    $ret .= "<tr bgcolor=#DDDDDD><td colspan=10></td></tr>";
+  }
+  $ret .= "</table>";
+
+  return $ret;
+}
+_code?>
+
+
+<=body
+page?>

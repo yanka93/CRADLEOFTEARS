@@ -1,0 +1,381 @@
+<?page
+head<=
+<script language='javascript'>
+function form_switch()
+{
+    var form = document.getElementById('preview');
+    form.action='send.bml?action=edit';
+    form.submit();
+}
+
+function fill_subject()
+{
+    var request = document.getElementById('request');
+    var subject = document.getElementById('subject');
+
+    var id = request.value;
+
+    subject.value = 'Your <?_code return LJ::ejs($LJ::SITENAMESHORT); _code?> Account [##-'+id+']';
+}
+</script>
+<=head
+
+body<=
+
+<?_code
+{
+    use strict;
+
+    my $body = "";
+
+    my $remote = LJ::get_remote();
+
+    my %cansend;
+    $cansend{'abuse'} = 1 if LJ::check_priv($remote, "supportread", "abuse");
+    $cansend{'support'} = 1 if LJ::check_priv($remote, "supportread", "support");
+
+    # Grouping this check for now, but leaving it so
+    # it could be split up in the future should a need
+    # arise
+    if (LJ::check_priv($remote, "supportread", "accounts")) {
+        $cansend{'accounts'} = 1;
+        $cansend{'coppa'} = 1;
+    }
+
+    unless (%cansend) {
+        return "<?p This tool is for members of our abuse and support teams.<br />
+             If you need to file an abuse request, please do so at:
+             <a href='/abuse/report.bml'>$LJ::SITEROOT/abuse/report.bml</a> <br />
+             If you need to file a support request, please do so at:
+             <a href='/support/submit.bml'>$LJ::SITEROOT/support/submit.bml</a> p?>";
+    }
+
+    my $compose = sub {
+        my $edit_mode = shift;
+
+        $body .= "<?h1 Compose Message h1?>\n";
+        $body .= "<form action='send.bml?action=preview' method='post'>\n";
+
+        $body .= "<table>\n";
+        $body .= "<tr><td><label for='from'>From:</label></td><td>";
+
+        my @from = ("", "-- Select One --");
+        push @from, ('abuse' => "abuse\@$LJ::DOMAIN") if $cansend{'abuse'};
+        push @from, ('accounts' => "accounts\@$LJ::DOMAIN") if $cansend{'accounts'};
+        push @from, ('coppa' => "coppa\@$LJ::DOMAIN") if $cansend{'coppa'};
+        push @from, ('support' => "support\@$LJ::DOMAIN") if $cansend{'support'};
+
+        my $selfrom = $edit_mode == 1 ? $POST{'from'} : $GET{'from'};
+        $selfrom = "abuse" if !$selfrom && $cansend{'abuse'};
+        $selfrom = "support" if !$selfrom && $cansend{'support'};
+        $selfrom = "accounts" if !$selfrom && $cansend{'accounts'};
+
+        $body .= LJ::html_select({ 'name' => 'from', 'selected' => $selfrom }, @from);
+        $body .= "<br /><br /></td></tr>";
+
+        $body .= "<tr><td>Mail to:</td><td>";
+        $body .= "<table><tr><td>";
+
+        # Since we expose the address we'd be sending to
+        # don't let them mail by user or community maints
+        # if they couldn't go look it up themselves
+        if (LJ::check_priv($remote, 'finduser')) {
+            $body .= "<label for='user'>User:</label></td><td>";
+
+            my $user = $edit_mode == 1 ? $POST{'user'} : $GET{'user'};
+            $body .= LJ::html_text({ 'name' => 'user', 'type' => 'text',
+                                     'raw' => 'style="background: url('.$LJ::IMGPREFIX.'/userinfo.gif) no-repeat; background-position: 0px 1px; padding-left: 18px;" size="37"',
+                                     'value' => $user});
+            $body .= "<font color='gray'> (OR)</font>";
+            $body .= "</td></tr>";
+
+            $body .= "<tr><td><label for='user'>Maints:</label></td><td>";
+
+            my $maints = $edit_mode == 1 ? $POST{'maints'} : $GET{'maints'};
+            $body .= LJ::html_text({ 'name' => 'maints', 'type' => 'text',
+                                     'raw' => 'style="background: url('.$LJ::IMGPREFIX.'/community.gif) no-repeat; background-position: 0px 1px; padding-left: 18px;" size="37"',
+                                     'value' => $maints});
+            $body .= "<font color='gray'> (OR)</font>";
+            $body .= "</td></tr><tr><td>";
+        }
+
+        $body .= "<label for='email'>Email:</label></td><td>";
+
+        my $email = $edit_mode == 1 ? $POST{'email'} : $GET{'email'};
+        $body .= LJ::html_text({ 'name' => 'email', 'type' => 'text',
+                                 'raw' => 'size="40"', 'value' => $email});
+        $body .= "</td></tr></table>";
+        $body .= "<br /></td></tr>";
+
+        $body .= "<tr><td><label for='bcc'>BCC:</label></td><td>";
+
+        my $bcc = $edit_mode == 1 ? $POST{'bcc'} : $GET{'bcc'};
+        if ($edit_mode == 0 && ! $bcc) {
+            $bcc = $remote->{'email'};
+        }
+        $body .= LJ::html_text({'name' => 'bcc', 'type' => 'text',
+                                'raw' => "size='45' maxlength='100'",
+                                'value' => $bcc});
+        $body .= " <font color='gray'>Limit One</font></td></tr>";
+
+        $body .= "<tr><td><label for='request'>Request #:</label></td><td>";
+            my $request = $edit_mode == 1 ? $POST{'request'} : $GET{'request'};
+        $body .= LJ::html_text({'name' => 'request', 'type' => 'text',
+                                'raw' => "size='45' maxlength='100'",
+                                'value' => $request,
+                                'id' => 'request'});
+        $body .= " <input type='button' value='Fill Subject' onclick='fill_subject()' />";
+        $body .= "</td></tr>";
+
+        $body .= "<tr><td><label for='subject'>Subject:</label></td><td>";
+        my $subject = $edit_mode == 1 ? $POST{'subject'} : $GET{'subject'};
+        $body .= LJ::html_text({'name' => 'subject', 'type' => 'text',
+                                'raw' => "size='45' maxlength='100'",
+                                'value' => $subject,
+                                'id' => 'subject'});
+        $body .= "</td></tr>";
+
+        $body .= "<tr><td valign='top'><label for='body'>Message:</label></td><td>";
+        my $message = $edit_mode == 1 ? $POST{'message'} : $GET{'message'};
+        $body .= LJ::html_textarea({'name' => 'message',
+                                    'raw' => "rows='20' cols='80' wrap='soft'",
+                                    'value' => $message});
+        $body .= "</td></tr>";
+
+        $body .= "<tr><td>&nbsp;</td><td>";
+        my $extra = $edit_mode == 1 ? $POST{'extra'} : $GET{'extra'};
+        $body .= LJ::html_hidden('extra', $extra) if $extra;
+        $body .= LJ::html_submit ('reset', '<- Reset', {'type' => 'reset'});
+        $body .= "&nbsp;&nbsp;";
+        $body .= LJ::html_submit ('submit', 'Preview ->');
+        $body .= "</td></tr>";
+
+        $body .= "</table>";
+        $body .= "</form>";
+    };
+
+    my $preview = sub {
+
+        my $errors = 0;
+
+        $body .= "<table style='border-spacing: 5px'>";
+        $body .= "<tr><th style='text-align: left'>From:</th><td>";
+
+        my $from = LJ::trim($POST{'from'});
+        if ($cansend{$from}) {
+            $body .= "$from\@$LJ::DOMAIN";
+        } else {
+            $errors = 1;
+            $body .= "<font color='red'>Invalid address chosen</font>";
+        }
+
+        $body .= "</tr><tr><th style='text-align: left'>To:</th><td>";
+
+        my @to;
+        if (LJ::trim($POST{'user'}) ne '') {
+            my $u = LJ::load_user($POST{'user'});
+            unless ($u) {
+                $errors = 1;
+                $body .= "<font color='red'>Invalid username $POST{user}</font>";
+            } else {
+                push @to, $u->{'email'};
+                $body .= LJ::ljuser($u) . " ($u->{email})";;
+            }
+        } elsif (LJ::trim($POST{'maints'}) ne '') {
+            my $u = LJ::load_user($POST{'maints'});
+            if ($u->{journaltype} ne 'C') {
+                $body .= "<font color='red'>Community specified is not a community</font>";
+            } else {
+                my $ids = LJ::load_rel_user($u->{userid}, 'A');
+                foreach (@$ids) {
+                    my $maint = LJ::load_userid($_);
+                    push @to, $maint->{'email'}
+                }
+                $body .= "Maintainers of ";
+                $body .= LJ::ljuser($u) . " (";
+                $body .= join(", ", @to) . ")";
+            }
+        } elsif (LJ::trim($POST{'email'}) ne '') {
+            my $addr = LJ::trim($POST{'email'});
+            my @email_errors;
+            LJ::check_email($addr, \@email_errors);
+            if (@email_errors) {
+                $errors = 1;
+                $body .= "<font color='red'>";
+                $body .= join(", ", @email_errors);
+                $body .= "</font>";
+            } else {
+                push @to, $addr;
+                $body .= $addr;
+            }
+        } else {
+            $errors = 1;
+            $body .= "<font color='red'>You must enter a recipient</font>";
+        }
+
+        my $bcc = LJ::trim($POST{'bcc'});
+        if ($bcc ne '') {
+            $body .= "<tr><th style='text-align: left'>Bcc:</th><td>";
+
+            my @bcc_errors;
+            LJ::check_email($bcc, \@bcc_errors);
+            if (@bcc_errors) {
+                $errors = 1;
+                $body .= "<font color='red'>";
+                $body .= join(", ", @bcc_errors);
+                $body .= "</font>";
+            } else {
+                $body .= $bcc;
+            }
+
+            $body .= "</td></tr>";
+        }
+
+        my $request = LJ::trim($POST{'request'});
+        $body .= "<tr><th style='text-align: left; white-space: nowrap'>Request #:</th><td>";
+            if ($request ne '') {
+                unless ($request =~ /^\d+$/) {
+                    $body .= "<font color='red'>Request id must be numeric</font>";
+                    $errors = 1;
+                } else {
+                    $body .= $request;
+                }
+            } else {
+                $body .= "<font color='orange'>No request specified</font>";
+            }
+        $body .= "</td></tr>";
+
+        my $subject = LJ::trim($POST{'subject'});
+        $body .= "<tr><th style='text-align: left'>Subject:</th><td>";
+        if ($subject eq '') {
+            $body .= "<font color='red'>You must specify a subject</font>";
+            $errors = 1;
+        } else {
+            $body .= $subject;
+        }
+        $body .= "</td></tr>";
+
+        my $message = LJ::trim($POST{'message'});
+        $body .= "<tr><th style='vertical-align: top; text-align: left'>Message:</th><td>";
+        if ($message eq '') {
+            $body .= "<font color='red'>You must specify a message</font>";
+            $errors = 1;
+        } else {
+            my $tmp_mess = $message;
+            $tmp_mess =~ s/\r?\n/<br \/>\n/g;
+            $body .= $tmp_mess;
+        }
+        $body .= "</td></tr>";
+
+        $body .= "<tr><td colspan='2'>";
+
+        $body .= "<form action='send.bml?action=send' method='post' id='preview'>";
+        $body .= LJ::html_hidden('from', $from, 'to', join(',', @to), 'bcc', $bcc,
+                                 'subject', $subject, 'message', $message, 'email', $POST{'email'},
+                                 'maints', $POST{'maints'}, 'user', $POST{'user'}, 'request',
+                                 $request);
+        $body .= LJ::html_hidden('extra', $POST{'extra'}) if $POST{'extra'};
+        $body .= LJ::form_auth();
+
+        $body .= '<br />';
+
+        $body .= LJ::html_submit('edit', '<- Edit', {'raw' => "onclick='form_switch()'"});
+        $body .= LJ::html_submit('send', 'Send ->', {'disabled' => $errors});
+
+        $body .= "</form>";
+        $body .= "</table>";
+
+    };
+
+    my $send = sub {
+        my @errors;
+        my $dbh = LJ::get_db_writer();
+        return $body = LJ::bad_input('No database connection present.  Please go back and try again.')
+            unless $dbh;
+
+        return $body = LJ::bad_input($ML{'error.invalidform'})
+            unless LJ::check_form_auth();
+
+        return $body = LJ::bad_input('Invalid sender')
+            unless $cansend{$POST{'from'}};
+
+        # Already did sanity checking in the previous step
+        my @addrs = split(',', $POST{'to'});
+
+        my %prettynames;
+        $prettynames{'abuse'} = "$LJ::SITENAMESHORT Abuse Team";
+        $prettynames{'accounts'} = "$LJ::SITENAMESHORT Accounts";
+        $prettynames{'coppa'} = "$LJ::SITENAMESHORT COPPA Enforcement";
+        $prettynames{'support'} = "$LJ::SITENAMESHORT Support Team";
+
+        my $fromname = $prettynames{$POST{'from'}};
+
+        foreach my $email (@addrs) {
+            my $status  = "S";
+            # status "S" means send_mail returned true, but this does *not* guarantee
+            # that the message didn't bounce, only that the sendmail process didn't croak
+
+            if(!LJ::send_mail({
+                'to' => $email,
+                'bcc' => $POST{'bcc'},
+                'from' => "$POST{'from'}\@$LJ::DOMAIN",
+                'fromname' => $fromname,
+                'charset' => "utf-8",
+                'subject' => $POST{'subject'},
+                'body' => $POST{'message'},
+            }))
+            {
+                $status = "F";
+                push @errors, "<strong>Error:</strong><br />Mail not sent to $email";
+            }
+
+            my $query = "INSERT INTO abuse_mail (mailid, userid, spid, status, timesent, mailto, " .
+                "subject, message, type) " .
+                "VALUES (NULL, ?, ?, ?, NOW(), ?, ?, ?, ?)";
+
+            $dbh->do($query, undef, $remote->{'userid'}, $POST{'request'}, $status,
+                     $email, $POST{'subject'}, $POST{'message'}, $POST{'from'});
+
+            if ($dbh->err) {
+                my $error = $dbh->errstr;
+                push @errors, "<strong>Error:</strong> Unable to record mailing to $email<br />$error";
+            }
+
+            # take extra actions if necessary
+            if ($POST{'extra'} =~ /^spam-notification;(\d+)$/) {
+                my $u = LJ::load_userid($1+0);
+
+                push @errors, "<?h1 Error h1?><?p Invalid userid passed.  " .
+                    "<b>Email was sent, statushistory not logged.</b> p?>"
+                    unless $u;
+
+                LJ::statushistory_add($u->{userid}, $remote->{userid}, 'spam_warning', 'Sent email warning')
+                    if $u;
+            }
+        }
+
+        if (@errors) {
+            $body .= join("<br /><br />", @errors);
+        } else {
+            $body .= "Email(s) sent succesfully";
+        }
+    };
+
+
+    # What to do aka "What it is"
+    if (LJ::did_post()) {
+        if ($GET{'action'} eq 'preview') {
+            $preview->();
+        } elsif ($GET{'action'} eq 'edit') {
+            $compose->(1);
+        } elsif ($GET{'action'} eq 'send') {
+            $send->();
+        }
+    } else {
+        $compose->(0);
+    }
+}
+_code?>
+<=body
+title=>Send User Mail
+page?>

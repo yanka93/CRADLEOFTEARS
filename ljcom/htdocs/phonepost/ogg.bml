@@ -1,0 +1,28 @@
+<?page
+title=>Ogg Vorbis
+body<=
+<?h1 What is Ogg Vorbis? h1?>
+<?p <a href="http://www.vorbis.com/">Ogg Vorbis</a> is an audio compression format, comparable to other formats like mp3, aac, wma, and ra. Ogg is different from others however, because it is an open specification, is free to use by any person or business, and is not encumbered by any patent. p?>
+<?p We offer your phone posts as <tt>.ogg</tt> files because Ogg Vorbis is an open source project, an ideal we strongly believe in. p?>
+<?h1 How do I listen to <tt>.ogg</tt> files? h1?>
+<?p Ogg decoders, the software library that allows you to listen to <tt>.ogg</tt> files, are <a href="http://www.vorbis.com/download.psp">available for a variety of media players on various operating systems</a>, including: p?>
+<?h2 <a href="http://www.vorbis.com/software.psp?pid=2">Windows</a> h2?>
+<ul>
+  <li><a href="http://www.winamp.com/">Winamp 2 &amp; 3</a></li>
+  <li><a href="http://sonique.lycos.com/">Sonique</a></li>
+  <li><a href="http://www.zinf.org/">Zinf</a></li>
+</ul>
+<?h2 <a href="http://www.vorbis.com/software.psp?pid=3">MacOS</a> / <a href="http://www.vorbis.com/software.psp?pid=4">MacOS X</a> h2?>
+<ul>
+  <li><a href="http://www.panic.com/audion/">Audion 3</a></li>
+  <li><a href="http://mint.unsanity.com/">Mint Audio</a></li>
+  <li><a href="http://www.videolan.org/vlc/">vlc</a></li></ul>
+<?h2 <a href="http://www.vorbis.com/software.psp?pid=1">Linux / BSD</a> h2?>
+<ul>
+  <li><a href="http://www.xmms.org/">XMMS</a></li>
+  <li><a href="http://www.zinf.org/">Zinf</a></li>
+  <li><a href="http://sourceforge.net/projects/ovplayer/">ovplayer</a></li>
+</ul>
+<?p We are also maintaining <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=184">a list of instructions on achieving Ogg Vorbis playback</a> in other media players. p?>
+<=body
+page?>

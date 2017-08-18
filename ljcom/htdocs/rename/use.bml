@@ -1,0 +1,365 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+
+<?_code
+{
+    use strict;
+    use vars qw(%FORM);
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input(BML::ml('.error.login', {'aopts' => 'href="/login.bml?ret=1"'}))
+        unless $remote;
+    
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+
+    return "<?p $ML{'.error.type'} p?>"
+        unless $u->{'journaltype'} =~ /[PCS]/;
+    
+    my %err;
+    
+    my ($ren, $newuser);
+
+    my $ret = '';
+
+    # authas switcher form
+    $ret .= "<form method='get' action='use.bml'>\n";
+    $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+    $ret .= "</form>\n\n";
+
+    $ret .= BML::ml('.intent', {'aopts0' => 'href="./"', 'aopts1' => 'href="/pay/?item=rename"'});
+
+    my $err = sub {
+        my $area = shift;
+        return unless defined $err{$area};
+        $ret .= "<br /><font color='<?hotcolor?>'><b>$err{$area}</b></font>";
+    };
+
+    my $form = sub {
+        $ret .= "<?hr?><form method='post'>";
+        $ret .= LJ::html_hidden("userid", $u->{'userid'});
+        
+        $ret .= "<p>$ML{'.label.username'} <b>$u->{'user'}</b>";
+        $err->("user");
+        
+        $ret .= "<p><label for=\"newuser\">$ML{'.label.desired'}</label> ";
+        $ret .= LJ::html_text({ 'name' => 'newuser',
+                                'value' => $FORM{'newuser'}, 
+                                'size' => 18, 'maxlength' => 15,
+                                'raw' => 'id="newuser"' });
+        $err->("newuser");
+        
+        $ret .= "<p><label for=\"token\">$ML{'.label.token'}</label> ";
+        $ret .= LJ::html_text({ 'name' => 'token',
+                                'value' => $FORM{'token'}, 
+                                'size' => 18, 'maxlength' => 16,
+                                'raw' => 'id="token"' });
+        $err->("token");
+
+        # these options don't apply to communities
+        if ($u->{journaltype} eq 'P') {
+            $ret .= "<p>$ML{'.options'}<blockquote>";
+            $ret .= "<p>";
+            $ret .= LJ::html_check({ 'name' => 'opt_delfriends',
+                                     'type' => 'radio',
+                                     'selected' => $FORM{'opt_delfriends'},
+                                     'value' => '1',
+                                     'raw' => 'id="del_yes"' });
+            $ret .= " <label for=\"del_yes\">$ML{'.options.delfriends'}</label><br />";
+            $ret .= LJ::html_check({ 'name' => 'opt_delfriends',
+                                     'type' => 'radio',
+                                     'selected' => ! LJ::did_post() || ! $FORM{'opt_delfriends'},
+                                     'value' => '0',
+                                     'raw' => 'id="del_no"' });
+            $ret .= " <label for=\"del_no\">$ML{'.options.keepfriends'}</label>";
+
+            $ret .= "</p><p>";
+            $ret .= LJ::html_check({ 'name' => 'opt_delfriendofs',
+                                     'type' => 'radio',
+                                     'selected' => $FORM{'opt_delfriendofs'},
+                                     'value' => '1',
+                                     'raw' => 'id="rem_no"' });
+            $ret .= " <label for=\"rem_no\">$ML{'.options.removeself'}</label><br />";
+            $ret .= LJ::html_check({ 'name' => 'opt_delfriendofs',
+                                     'type' => 'radio',
+                                     'selected' => ! LJ::did_post() || ! $FORM{'opt_delfriendofs'},
+                                     'value' => '0',
+                                     'raw' => 'id="rem_yes"' });
+            $ret .= " <label for=\"rem_yes\">$ML{'.options.keepself'}</label>";
+
+            $ret .= "</p><p>";
+            $ret .= LJ::html_check({ 'name' => 'opt_redir',
+                                     'type' => 'radio',
+                                     'selected' => LJ::did_post() && ! $FORM{'opt_redir'},
+                                     'value' => '0',
+                                     'raw' => 'id="keep_no"' });
+            $ret .= " <label for=\"keep_no\">" . BML::ml('.options.unlink', {'oldname' => LJ::ljuser($u->{'user'})}) . "</label><br />";
+            $ret .= LJ::html_check({ 'name' => 'opt_redir',
+                                     'type' => 'radio',
+                                     'selected' => ! LJ::did_post() || $FORM{'opt_redir'},
+                                     'value' => '1',
+                                     'raw' => 'id="keep_yes"' });
+            $ret .= " <label for=\"keep_yes\">" . BML::ml('.options.forward', {'oldname' => LJ::ljuser($u->{'user'})}) . "</label><br />";
+        }
+
+        $ret .= "<p>" . LJ::html_submit($ML{'.label.proceed'}) . "</p>";
+
+        $ret .= "</blockquote></p>";
+                
+        $ret .= "</form>";
+        return $ret;
+    };
+
+    return $form->() unless LJ::did_post();
+
+    my $dbh = LJ::get_db_writer();
+
+    unless ($FORM{'userid'} == $u->{'userid'}) {
+        $err{'user'} = $ML{'.error.differentusername'};
+    }
+    $newuser = LJ::canonical_username($FORM{'newuser'});
+    if (! $newuser) {
+        $err{'newuser'} = $ML{'.error.username'};
+    } elsif ($newuser eq $u->{'user'}) {
+        $err{'newuser'} = $ML{'.error.same'};
+    }
+    $ren;
+    if ($FORM{'token'} =~ /^([0-9a-f]{6,6})(\w{10,10})$/) {
+        $ren = $dbh->selectrow_hashref("SELECT * FROM renames WHERE renid=? AND token=?",
+                                       undef, hex $1, $2);
+        if (! $ren) {
+            $err{'token'} = $ML{'.error.token'};
+        } elsif ($ren->{'rendate'}) {
+            if ($ren->{'fromuser'} eq $u->{'user'} &&
+                $ren->{'touser'} eq $newuser) {
+                return $ML{'.success.usernamerenamed'};
+            } else {
+                $err{'token'} = $ML{'.error.usedtoken'};
+            }
+        }
+    } else {
+        $err{'token'} = $ML{'.error.token'};
+    }
+    return $form->() if %err;
+
+    my $tou = LJ::load_user($newuser);
+    my $move_away = 0;
+    my $exname = undef;
+    if ($tou) {
+        # decide if we can move away the existing destination username 
+                
+        if ($tou->{'statusvis'} eq "X") {
+            # expunged usernames can be moved away. they're already deleted.
+            $move_away = 1;
+        } elsif (lc($tou->{'email'}) eq lc($u->{'email'}) &&
+                 $tou->{'statusvis'} eq "V" &&
+                 $tou->{'journaltype'} eq "P") {
+            if ($tou->{'password'} eq $u->{'password'}) {
+                if ($tou->{'status'} ne 'A' || $u->{'status'} ne 'A') {
+                    $err{'newuser'} = $ML{'.error.notvalidated'};
+                } else {
+                    $move_away = 1;
+                }
+            } else {
+                $err{'newuser'} = $ML{'.error.badpass'};
+            }
+        } else {
+            $err{'newuser'} = $ML{'.error.usernametaken'};
+        }
+
+        # if we will be moving the destination username away,
+        # we need to allocate a name for it
+        if ($move_away) {
+            my $tempname = $tou->{'user'};
+            $tempname = substr($tempname, 0, 9) if length($tempname) > 9;
+            for (1..10) {
+
+                # if it exists, first try the exname found on the
+                # previous (confirmation) page
+                if ($_ == 1 && $FORM{'exname'}) {
+                    $exname = $FORM{'exname'};
+
+                # otherwise we either didn't have one or it's been
+                # taken in the meantime?
+                } else {
+                    $exname = "ex_$tempname" . int(rand(999));
+                }
+
+                # check to see if this exname already exists
+                unless ($dbh->selectrow_array("SELECT COUNT(*) FROM user WHERE user=?",
+                                              undef, $exname)) {
+                    # name doesn't already exist, use this one
+                    last;
+                }
+                # name existed, try and get another
+
+                if ($_ >= 10) {
+                    return $ML{'.error.allocating'};
+                }
+            }
+        }
+    }
+    return $form->() if %err;
+
+    my $confirm = sub {
+        $ret .= "<?hr?><form method='post'>";
+
+        # carry on submitted data in hidden elements
+        $ret .= LJ::html_hidden("userid" => $u->{'userid'},
+                                "exname" => $exname, 
+                                map { $_, $FORM{$_} }
+                                qw(newuser token opt_delfriends opt_delfriendofs
+                                   opt_redir));
+
+        $ret .= "<?h1 $ML{'.heading.change'} h1?>";
+        $ret .= "<?p $ML{'.changes'} p?><ul>";
+        $ret .= "<li>" . BML::ml('.changes.move', {'newuser' => $newuser, 'exname' => $exname}) . "</li>"
+            if $move_away;
+        $ret .= "<li>" . BML::ml('.changes.rename', {'newuser' => $newuser, 'oldname' => $u->{'user'}}) . "</li>";
+        $ret .= "</ul>";
+        
+        $ret .= "<?h1 $ML{'.heading.sure'} h1?>";
+        $ret .= "<?p " . BML::ml('.confirm2', {'confirmword' => 'YES'}) . " <blockquote>";
+        $ret .= LJ::html_text({ 'name' => 'yes', 'size' => 10, 'maxlength' => 3 });
+        $err->("yes");
+        $ret .= "</blockquote> $ML{'.confirm.click'} p?>";
+        
+        $ret .= "<p>" . LJ::html_submit($ML{'.label.rename'}) . "</p>";
+        $ret .= "</form>";
+        return $ret;
+    };
+
+    # display confirmation page if "form" is okay and no confirmation sent
+    return $confirm->() if LJ::did_post && ! exists $FORM{'yes'};
+
+    # error check confirmation
+    unless ($FORM{'yes'} eq "YES") {
+        $err{'yes'} = $ML{'.error.readit'};
+    }
+    return $confirm->() if %err;
+
+    my $do_rename = sub {
+        my ($from, $to) = map { LJ::canonical_username($_) } @_;
+        return 0 unless $from ne "" && $to ne "";
+        my $u = LJ::load_user($from);
+        return 0 unless $u;
+        foreach my $table (qw(user useridmap overrides style))
+        {
+            $dbh->do("UPDATE $table SET user=? WHERE user=?",
+                     undef, $to, $from);
+            return 0 if $dbh->err;
+        }
+
+        LJ::memcache_kill($u, "userid");
+        LJ::MemCache::delete("uidof:$from");
+        LJ::MemCache::delete("uidof:$to");
+
+        LJ::infohistory_add($u, 'username', $from);
+
+        # tell all web machines to clear their caches for this userid/name mapping
+        LJ::procnotify_add("rename_user", { 'userid' => $u->{'userid'},
+                                            'user' => $u->{'user'} });
+        return 1;
+    };
+        
+    if ($tou && $move_away) {
+        # time to move this one out of the way we already
+        # have a valid $exname from above
+        unless ($exname && $do_rename->($tou->{'user'}, $exname) &&
+                $dbh->do("INSERT INTO renames (token, payid, userid, fromuser, touser, rendate) " .
+                         "VALUES (?,?,?,?,?,NOW())",
+                         undef, "[moveaway]", 0, $tou->{'userid'}, $tou->{'user'}, $exname))
+        {
+            return $ML{'.error.reserved'};
+        }
+    }
+
+    unless ($do_rename->($u->{'user'}, $newuser)) {
+        return $ML{'.error.unknown'};
+    }
+
+    $dbh->do("UPDATE renames SET userid=?, fromuser=?, touser=?, rendate=NOW() WHERE renid=?",
+             undef, $u->{'userid'}, $u->{'user'}, $newuser, $ren->{'renid'});
+    
+    if ($u->{journaltype} eq 'P') {
+        if ($FORM{'opt_delfriends'}) {
+            # delete friends
+            my $friends = LJ::get_friends($u, undef, undef, 'force') || {};
+            LJ::remove_friend($u, [ keys %$friends ]);
+        
+            # delete access to post to communities
+            LJ::clear_rel('*', $u, 'P');
+        
+            # delete friend-ofs that are communities
+            # TAG:fr:bml_rename_use:get_member_of
+            my $users = $dbh->selectcol_arrayref(qq{
+                SELECT u.userid FROM friends f, user u 
+                    WHERE f.friendid=$u->{'userid'} AND 
+                    f.userid=u.userid and u.journaltype <> 'P'
+            });
+            if ($users && @$users) {
+                my $in = join(',', @$users);
+                $dbh->do("DELETE FROM friends WHERE friendid=$u->{'userid'} AND userid IN ($in)");
+                LJ::memcache_kill($_, "friends") foreach @$users;
+            }
+        }
+    
+        if ($FORM{'opt_delfriendofs'}) {
+            # delete people (only people) who list this user as a friend
+            my $users = $dbh->selectcol_arrayref(qq{
+                SELECT u.userid FROM friends f, user u 
+                    WHERE f.friendid=$u->{'userid'} AND 
+                    f.userid=u.userid and u.journaltype = 'P'
+            });
+            if ($users && @$users) {
+                my $in = join(',', @$users);
+                $dbh->do("DELETE FROM friends WHERE friendid=$u->{'userid'} AND userid IN ($in)");
+                LJ::memcache_kill($_, "friends") foreach @$users;
+            }
+        }
+
+        # delete friend of memcaching, as either path might have done it
+        LJ::MemCache::delete([ $u->{userid}, "friendofs:$u->{userid}" ]);
+    }
+    
+    my $id = LJ::create_account({
+        'user' => $u->{'user'},
+        'password' => '',
+        'name' => '[renamed acct]',
+    });
+    
+    my $alias_changed = $dbh->do("UPDATE email_aliases SET alias=? WHERE alias=?",
+                                 undef, "$newuser\@$LJ::USER_DOMAIN",
+                                 "$u->{'user'}\@$LJ::USER_DOMAIN");
+    if ($u->{journaltype} ne 'P' || $FORM{'opt_redir'}) {
+        LJ::update_user($id, { raw => "journaltype='R', statusvis='R', statusvisdate=NOW()" });
+        LJ::set_userprop($dbh, $id, "renamedto", $newuser);
+        if ($alias_changed > 0) {
+            $dbh->do("INSERT INTO email_aliases VALUES (?,?)", undef,
+                     "$u->{'user'}\@$LJ::USER_DOMAIN", 
+                     $u->{'email'});
+        }
+    } else {
+        LJ::update_user($id, { journaltype => $u->{journaltype}, raw => "statusvis='D', statusvisdate=NOW()" });
+    }
+
+    $u->kill_session;
+
+    # overwrite $ret and give success page
+    $ret = "<?h1 $ML{'.heading.success'} h1?><ul>";
+    $ret .= "<li>" . BML::ml('.success.moved', {'newuser' => $newuser, 'exname' => $exname}). "</li>"
+        if $move_away;
+    $ret .= "<li>" . BML::ml('.success.renamed', {'newuser' => $newuser, 'olduser' => $u->{'user'}}) . "</li>";
+    $ret .= "</ul>";
+    $ret .= "<?p " . BML::ml('.success.login', {'aopts' => 'href="/login.bml"'}) . "p?>"
+        if $u->{userid} == $remote->{userid};
+    return $ret;
+
+}
+_code?>
+
+<=body
+page?>

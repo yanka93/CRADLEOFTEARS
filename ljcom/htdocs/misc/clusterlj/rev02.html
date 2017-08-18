@@ -1,0 +1,90 @@
+<html>
+
+<head><title>Clustering LiveJournal Take 2</title></head>
+
+<body>
+
+<h2>Differences from Revision 1</h2>
+<p>The following are the major differences from <a href="rev01.html">revision 1</a> of our clustering plan.
+</p>
+
+<h3>No clustering of web slaves; no backhand redirection</h3>
+<p>
+This is the main difference.  We're only clustering databases.
+This means we don't need the backhand redirector machines to look at URIs
+and redirect requests to the right pool of webslaves.  And this also means
+we can still have premium faster paid servers.
+</p>
+
+<h3>No RPC between clusters</h3>
+<p>
+Each webslave will talk directly to the DB it needs to using DBI,
+rather than doing some HTTP wrapper kludge.  The point of the RPC
+wrapper before was to prevent the cluster master DBs from having five
+billion connections from a half billion web slaves.  But really, MySQL
+handles insane numbers of connections anyway (if thy're mostly idle,
+as they will be).  If we need to serialize requests later between a
+smaller number of db connections, we'll just do that, making each
+machine have a pool of connections they have to share.
+</p>
+<p>
+Why all idle you say?  Well, web slaves continues to grow over time,
+but we limit the number of users/traffic/load per db cluster.  So
+divide.  Each web slave will eventually get a master connection, and
+the master traffic is fixed, so over time, a smaller number of those
+connections will be active.  When it gets too extreme, we either
+cluster web slaves or make the DB connection pool.  But we can deal
+with this later.  Both solutions are easy enough, but they're boring
+to care about now.
+</p>
+
+<h3>Cluster Tables</h3>
+
+Tables that can be found on each cluster are as follows:
+
+<code>
+<ul>
+<li>talk2</li>
+<li>talktext2</li>
+<li>talkprop2</li>
+<li>log2</li>
+<li>logsec2</li>
+<li>logtext2</li>
+<li>logsubject2</li>
+<li>logprop2</li>
+<li>syncupdates2</li>
+<li>userbio</li>
+<li>talkleft</li>
+</ul>
+</code>
+
+These tables will replace the tables on the original master server with the
+similar names (i.e. without the 2 appended.)  <code>userbio</code> is the same.
+
+<p>Currently, a user can conceivably be on either the original master database
+or in one of the myriad clusters available.  To detect what the case may be,
+examine the <code>clusterid</code> element of the user's entry in the <code>user</code>
+table.  If <code>clusterid == 0</code> then the user is located on the old
+master database and their data needs to be loaded from the old tables; otherwise,
+the data is located on cluster #<code>clusterid</code> using the new table names
+above.</p>
+
+<p>For future expansion, the element <code>dversion</code> is also added to
+the <code>user</code> table.  If <code>dversion == 0</code> then the user is not
+on a cluster, i.e. they're on the original master system.  <code>dversion == 1</code>
+implies that the user is located on a cluster.  As more of the user's data is
+moved to the clusters, dversion will increase.  Note that any dversion >= 1 means
+the user is on a cluster.  The plan is for higher dversion numbers to indicate
+that more per user data is moved from the original setup to the clustering system.</p>
+
+<p>Conversion from dversion 0 to dversion 1 will be a lazy conversion.  This
+involves the READ_ONLY capability code.  Basically, the user's READ_ONLY 
+capability bit will be set and then the code will pause for a minute or 
+two to allow any pending transactions to go through.  After this, all 
+data will be copied from the old database system into the appropriate 
+cluster.  After everything is copied, the data is deleted from the old
+system and the users's READ_ONLY capability bit is toggled off.</p>
+
+</body>
+
+</html>

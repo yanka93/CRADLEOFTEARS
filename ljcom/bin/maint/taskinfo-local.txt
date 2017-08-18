@@ -1,0 +1,56 @@
+ljadmin.pl:
+  apgrace - gracefully restart apache
+  appss - stops apache-perl, waits, and starts again
+  sshkick - restarts ssh
+  appgrace - gracefully restart apache-perl
+  aprestart - restart apache
+  exposeconf - OLD: shows server's configuration to public
+  hupcaches - sends HUP signals to fastcgi processes so they clear their caches
+  load - prints load (the output of 'w')
+  date - prints date/time (the output of 'date')
+  restartapps - slowly restarts fastcgi processes
+  echo - echo arguments back
+  echosleep - sleeps for first arg seconds after echoing rest arguments back
+  debug - prints debug info
+  statscaster_restart - restart the ljstatscasterd
+
+expiring.pl:
+  expiring - Expire un-renewed paid accounts, and remind users with accounts soon to expire.
+
+interests.pl:
+  clean_intcounts - OLD: Migration tool.  Used to define intcount when it was null.
+  clean_intdups - OLD: Remove duplicate interests (fixed. shouldn't happen anymore)
+
+dirsync.pl:
+  dirsync - Copies files from FTP area to web root
+
+aliases.pl:
+  makealiases - Adds the fixed aliases to the email_aliases table
+
+moods.pl:
+  makemoodindexes - Generate the index.html files in all the mood directories.
+
+pay.pl:
+  pay_mail - Sends out the email thanking people for their payment
+  pay_updateaccounts - Sets people's accounts to 'paid' if it's not already.
+  pay_lookupstates - Looks up and sets country/state info based on userprops
+  pay_unreserve - Unreserve inventory items that are over 3 days old and unclaimed
+  pay_shipping_notify - Notify third party shipping agent of new orders
+
+xplanet.pl:
+  stats_makemarkers - Make the markers.txt file to feed to xplanet
+
+syncweb.pl:
+  syncmodules - Install new local perl modules if needed, on master or slaves
+  syncweb - rsync files from master server (if given arg of "now", does it immediately)
+  syncsoon - set a flag so that the next syncweb actually syncs
+
+xfers.pl:
+  xfers_do - FTPs/SCPs people's journals to their webservers.
+
+stats-local.pl:
+  genstatslocal - Daily stats for ljcom code
+
+clean_caches-local.pl:
+  clean_caches_local - cleans old caches
+

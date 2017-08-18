@@ -1,0 +1,70 @@
+<?page
+title=>LiveJournal Support Tools
+body<=
+<?_code
+{
+    use strict;
+
+    my $remote = LJ::get_remote();
+    my $canhelp = LJ::check_priv($remote, 'supporthelp') ||
+	LJ::check_priv($remote, 'supportviewscreened'); 
+
+    return "This page is intended for LiveJournal Support" .
+	" Volunteer use only. If you need support, please" .
+	" visit <a href='http://www.livejournal.com/support/'>" .
+	"http://www.livejournal.com/support/</a>." unless $remote && $canhelp;
+
+    my $ret;
+
+    $ret .= "<?p This is a collection of various tools and communities used by LiveJournal Support Volunteers.  You may not have privileges for all tools listed. p?>";
+
+    $ret .= "<?h2 General Tools h2?>";
+    $ret .= "<ul>";
+    $ret .= "<li><a href='/support/help.bml?state=youreplied'>You Replied Filter</a></li>";
+    $ret .= "<li><a href='/admin/console/'>Admin Console</a> (<a href='/admin/console/reference.bml'>Reference</a>)</li>";
+    $ret .= "<li><a href='/support/changenotify.bml'>Change Notification Options</a></li>";
+    $ret .= "<li><a href='/support/see_overrides.bml'>See Overrides</a></li>";
+    $ret .= "<li><a href='/support/history.bml'>User Request History</a></li>";
+    $ret .= "<li><a href='/betatest.bml'>Beta Test Options</a></li>";
+    $ret .= "<li><a href='/admin/faq/index.bml'>FAQ Edit</a></li>";
+    $ret .= "<li><a href='/admin/memcache_purge.bml'>Memcache Purge</a></li>";
+    $ret .= "<li><a href='/admin/clusterstatus.bml'>Cluster Status</a></li>";
+    $ret .= "<li><a href='/tools/recent_emailposts.bml'>Email Post History</a></li>";
+    $ret .= "</ul>";
+
+
+    my @scomms = (
+		  'lj_support', 'helpscreening', 'support_interim',
+		  'support_clients', 'support_comms', 'support_embed',
+		  'support_general', 'support_mobile', 'support_ssystem',
+		  'support_syn', 'support_upi', 'support_web', 'web_ui',
+		  'web_training', 'lj_supportadmin'
+		  );
+
+    $ret .= "<?h2 Support Communities h2?>";
+    $ret .= "<ul>";
+
+    foreach (@scomms) {
+	$ret .= "<li>" . LJ::ljuser("$_") .
+	    " (<a href='/update.bml?usejournal=$_'>Post</a>)</li>";
+    }
+    $ret .= "</ul>";
+
+
+    $ret .= "<?h2 Support Admin Tools h2?>";
+    $ret .= "<ul>";
+    $ret .= "<li><a href='/admin/priv/index.bml'>Privilege Management</a></li>";
+    $ret .= "<li><a href='/support/stock_answers.bml'>Manage Stock Answers</a></li>";
+    $ret .= "<li><a href='/admin/statushistory.bml'>Status History</a></li>";
+    $ret .= "<li><a href='/admin/fileedit/index.bml?file=support-currentproblems'>Edit BBB</a></li>";
+    $ret .= "<li><a href='/admin/sendmail/send.bml?from=support'>Send Support Note</a></li>";
+    $ret .= "<li><a href='/admin/sendmail/query.bml?restrict=support'>Query Support Notes</a></li>";
+    $ret .= "</ul>";
+
+    return $ret;
+
+
+}
+_code?>
+<=body
+page?>

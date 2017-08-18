@@ -1,0 +1,14 @@
+<?_code
+
+ if ($FORM{'mail'} == 1) {
+     LJ::send_mail({ 'to' => 'bradfitz@bradfitz.com',
+                     'from' => 'lj_dontreply@livejournal.com',
+                     'fromname' => 'Happy Happy Place',
+                     'subject' => 'this is but a test',
+                     'body' => 'this is all.'
+                     });
+     return "mailed";
+ }
+ return "enter code.";
+
+_code?>

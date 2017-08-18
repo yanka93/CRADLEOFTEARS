@@ -1,0 +1,60 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    LJ::set_active_crumb('seeoverrides');
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $user = LJ::canonical_username($GET{'user'} || $remote->{'user'});
+    return LJ::bad_input(BML::ml("error.malformeduser"))
+        unless $user;
+
+    # check for privs
+    unless ($remote->{'user'} eq $user || 
+            LJ::check_priv($remote, "supportviewscreened") ||
+            LJ::check_priv($remote, "supporthelp")) {
+
+        return LJ::bad_input(BML::ml(".error.noprivs"));
+    }
+
+    # remote is authenticated, now load $u
+    my $u = $remote->{'user'} eq $user ? $remote : LJ::load_user($user);
+    return LJ::bad_input($ML{'error.username_notfound'})
+        unless $u;
+
+    # see if they're using s2
+    LJ::load_user_props($u, "stylesys");
+    return LJ::bad_input(BML::ml(".error.nos1", { 'user' => $user }))
+        if $u->{'stylesys'} == 2;
+
+    ### no errors
+
+    # no overrides?
+    return "<?p " . BML::ml(".nooverrides", {'user' => $user}) . " p?>"
+        unless $u->{'useoverrides'} eq "Y";
+
+    # first, load the overrides if they use 'em:
+    my $overrides = LJ::S1::get_overrides($u);
+    LJ::text_out(\$overrides);
+
+    # textarea
+    my $ret;
+    $ret .= "<?h1 " . BML::ml(".header", {'user' => $user}) . " h1?>";
+    $ret .= "<br /><form action='#'>";
+    $ret .= LJ::html_textarea({ 'name' => 'overrides', 'style' => 'width: 100%',
+                                 'cols' => '60', 'rows' => '16', 'wrap' => 'off',
+                                 'value' => $overrides });
+    $ret .= "</form>";
+
+    return $ret;
+}
+_code?>
+<=body
+page?>

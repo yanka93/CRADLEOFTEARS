@@ -1,0 +1,154 @@
+<?page
+title=>LiveJournal Protocol
+body<=
+
+<?h1 Introduction h1?>
+<?p
+The following information is intended for developers interested in writing their own 
+LiveJournal clients to talk to the LiveJournal server.  End users <I>do not</I> need
+to know any of this, and are probably better off not knowing it.&nbsp;&nbsp; ;)
+p?>
+<?h1 Prerequisites h1?>
+<?p
+Before reading this document, it is assumed you know at least some basics about network programming,
+at least the whole idea of opening sockets and reading/writing to them.  If not, this might
+be kinda confusing.
+p?>
+<?h1 It's really HTTP h1?>
+<?p
+If you already know the HTTP protocol, this is going to be really easy.  For those of you
+who don't know, HTTP is the protocol that web browsers talk to web servers with.  For simplicity 
+of writing the LiveJournal server, we've decided to just use HTTP as our protocol transport.
+This way, we can also go through proxies at schools and corporations really easily and 
+without drawing any attention.
+p?>
+<?h1 The Basics h1?>
+<?p
+Basically, sending a LiveJournal request is like this:
+p?>
+<OL>
+<LI>Open a socket to <B>www.livejournal.com</B> on port <B>80</B>
+<LI>Send an HTTP POST request, containing the request variables (mode, user, password, etc...)
+<LI>Read the socket to get the response.  The response is really easy to parse.
+<LI>Close the socket.  Do any approriate action based on the server's response.
+</OL>
+
+<?h1 Encoding the request h1?>
+<?p
+As mentioned previously, the request is sent as an HTTP POST request.  Open your socket, and send a request looking like:
+p?>
+<UL>
+<FONT COLOR=#0000FF><B>
+<XMP>
+POST /interface/flat HTTP/1.0
+Host: www.livejournal.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 34
+
+mode=login&user=test&password=test
+</XMP>
+</B></FONT>
+</UL>
+As you can pretty easily see, the variables TO the webserver are encoded in the form <B>var1=val1&var2=val2&....</B>.  Note
+that you <B>must quote all values</B> or the values can interfere with the encoding form.  For example, what if somebody's
+password was "blah&=2+&something=yeah".  It's an ugly password, sure, but somebody may have it.  And if they do, it'll mess
+up the pretty format of the encoding format.  So, here are the rules on how to encode values:
+<UL>
+<LI>Leave all values from a-z, A-Z, and 0-9 alone.  These are fine.
+<LI>Convert spaces to a <B>+</B> sign.
+<LI>Convert everything else to <B>%<I>hh</I></B> where <I>hh</I> is the hex representation of the character's ASCII value.
+</UL>
+So, for example, the phrase "I'm going to the mall" could encoded as "I%27m+going+to+the+mall".  There should
+be CGI libraries for all major languages which do this encoding for you.  If not, it isn't that hard to do it yourself.
+<?p
+After you construct the big long ugly string of variables/values, find the length of it and send it in the
+<I>Content-length</I> field, as in the example above.  Then send a blank line, then the big long ugly string.
+p?>
+<?p
+<B>Note about line endings: </B> Please note that the end of lines should be a carriage return (ASCII 13, 0x0D) and then a newline (ASCII 10, 0x0A).
+In Perl, C/C++ or Java this is "\r\n".  In Basic, this is Chr(13) & Chr(10).  Sending just the newline may work too, but
+it's generally better to send both.
+p?>
+
+<?p
+Here is a typical response from the web server after sending your request:
+
+<UL>
+<FONT COLOR=#0000FF><B>
+<XMP>
+HTTP/1.1 200 OK
+Date: Sat, 23 Oct 1999 21:32:35 GMT
+Server: Apache/1.3.4 (Unix)
+Connection: close
+Content-Type: text/plain
+
+name
+Mr. Test Account
+success
+OK
+message
+Hello Test Account!
+</XMP></B></FONT>
+</UL>
+
+The top stuff is headers from the HTTP request.  There may be a lot of other stuff in there too.
+First thing to do is make sure the first lines <B>ends with "200 OK"</B>.  If the first line
+does not end with 200 OK, tell the user that an error occured on the server and that it's not their fault.  
+If you see 200 OK at the end, proceed with parsing the output.  The format is as follows:
+<UL>
+<XMP>
+variable
+value
+someothervariable
+someothervalue
+</XMP>
+</UL>
+The ordering of the variable/value pairs does not matter.  As you read them in, read them into a hash
+structure.  (associative array, dictionary, collection... whatever it's called in your language.  Just
+a data structure that links one string variable key to another string variable value.)
+p?>
+<?p
+After your hash is loaded, proceed with the logic of reporting errors if needed, as governed by the 
+variables and logic above.
+p?>
+
+<?h1 Protocol modes h1?>
+<?p
+Of course, knowing all the above isn't useful unless you actually know what operations
+the server supports....
+p?>
+<P><CENTER>
+<A HREF="modelist.bml"><FONT SIZE=+1>Protocol Mode Documentation</FONT></A>
+</CENTER>
+
+<?h1 Proxies h1?>
+<?p
+As a final feature, once you get that stuff working, is to implement support for HTTP proxies.  This
+is <I>very</I> easy.  Give the user a checkbox if they want to use a proxy or not, and if so, ask
+the proxy host and proxy port.  Now, if they selected to use a proxy, do not connect to
+www.livejournal.com and port 80, but instead connect to their proxy host on whatever proxy
+port they specified.  The rest is basically the same, except for one difference.  Instead of doing:
+<UL>
+<XMP>
+POST /interface/flat HTTP/1.0
+</XMP>
+</UL>
+<p>You would do...
+<UL>
+<FONT COLOR=#0000FF><B><XMP>
+POST http://www.livejournal.com/interface/flat HTTP/1.0
+</XMP></B></FONT>
+</UL>
+<p>That's it!  That line tells the proxy what host it needs to connect to in order to make the real request.
+The rest of the HTTP you should leave just as you did before. 
+This should be all you need to know to make a LiveJournal client.
+p?>
+
+
+<?h1 Need more help?  h1?>
+<?p
+If anything is unclear, join the <?ljuser lj_clients ljuser?> community, where all the client authors hang out.
+p?>
+
+<=body
+page?>

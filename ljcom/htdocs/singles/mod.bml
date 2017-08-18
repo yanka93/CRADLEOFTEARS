@@ -1,0 +1,129 @@
+<?page
+title=>Your Availability
+body<=
+
+<?h1 Disclaimer h1?>
+<?p
+LiveJournal.com is not responsible for verifying that anybody who finds you using this service isn't entirely psycho.  (In all likelihood, they are.)  So please, be aware of that before listing yourself.
+p?>
+
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    LJ::set_active_crumb('singlesopts');
+
+    my $u = LJ::get_remote();
+    unless ($u) {
+        return "<?h1 Login Required h1?><?p You must first <a href='/login.bml?ret=1'>login</a> to proceed. p?>";
+    }
+
+    LJ::load_user_props($u, "single_status", "single_pickw", "city", "country", "state");
+
+    my %countries;
+    my %states;
+    LJ::load_codes({ "country" => \%countries, "state" => \%states });
+
+    my $ret;
+
+    # save mode:
+    if (LJ::did_post()) 
+    {
+        unless ($POST{'status'}) {
+            LJ::set_userprop($u, "single_status", "");
+            return "Saved.  You won't show up as available.";
+        }
+
+        if ($POST{'country'} eq "US" && length($POST{'state'}) > 2) {
+            foreach (keys %states) {
+                $POST{'state'} = $_
+                    if (lc($states{$_}) eq $POST{'state'});
+            }
+        }
+
+        # clean/verify
+        $POST{'age'} += 0;
+        return "You need to provide an age." unless
+            $POST{'age'};
+        return "Sorry, you're too young to use this service." unless
+            $POST{'age'} >= 18;
+        return $ML{'Error'} unless ($POST{'status'} =~ /^[MF][MF]$/);
+
+        LJ::set_userprop($u, "single_status",
+                         join("|", map { $POST{$_} } qw(status country state city age)));
+        LJ::set_userprop($u, "single_pickw",
+                         $POST{'single_pickw'});
+
+        $ret .= "Saved.  Now, <a href='search.bml'>go search</a> for somebody!";
+        return $ret;
+    }
+
+    $ret .= "<form method='post'>";
+
+    # edit mode:
+    my ($status, $country, $state, $city, $age) = split(/\|/, $u->{'single_status'});
+
+    my $dbr = LJ::get_db_reader();
+
+    $country ||= $u->{'country'};
+    $state ||= $u->{'state'};
+    $city ||= $u->{'city'};
+    if (! $age && $u->{'bdate'} =~ /^(\d\d\d\d)-(\d\d)-(\d\d)$/ && $3) {
+        $age = int($dbr->selectrow_array("SELECT (unix_timestamp()-unix_timestamp('$u->{'bdate'}'))/(60*60*24*365)"));
+        $age = "" unless $age;
+    }
+
+
+    $ret .= "<?h1 Your Status h1?><?p I am: ";
+    $ret .= LJ::html_select({ 'name' => 'status',
+                              'selected' => $status, },
+                            "", "Not Available", 
+                            "MF", "Male; seeking female",
+                            "FM", "Female; seeking male",
+                            "MM", "Male; seeking male",
+                            "FF", "Female; seeking female",
+                            );
+    $ret .= " <input type='submit' value='Save'> p?>\n";
+    
+    $ret .= "<?h1 Region h1?><?p Specify the city/area you live nearby, if you're in the suburbs. p?>";
+
+    $ret .= "<?p <b>Country:</b> ";
+    $ret .= LJ::html_select({ 'name' => 'country',
+                              'selected' => $country },
+                            '', '(Select Country)',
+                            map { $_, $countries{$_} }
+                            "US", sort { $countries{$a} cmp $countries{$b} } keys %countries);
+    $ret .= " p?>";
+    my $estate = LJ::ehtml($state);
+    $ret .= "<?p <b>State:</b> <input name='state' size='30' value='$estate'> p?>\n";
+
+    my $ecity = LJ::ehtml($city);
+    $ret .= "<?p <b>City:</b> <input name='city' size='30' value='$ecity'> p?>\n";
+
+    $ret .= "<?h1 Age h1?><?p Your age: ";
+    my $eage = LJ::ehtml($age);
+    $ret .= "<input name='age' size='4' value='$eage'> p?>\n";
+
+    # sexiest userpic
+    my $upinf = LJ::get_userpic_info($u);
+    my %keywords = ("" => "(Default Picture)",
+                    map { $_ => $_ } keys %{$upinf->{kw}} );
+
+    $ret .= "<?h1 Sexiest Picture h1?><?p Which <a href='/allpics.bml' target='_blank'>userpic keyword</a> do you want to try to seduce people with? p?><blockquote>";
+    $ret .= LJ::html_select({ 'name' => 'single_pickw',
+                              'selected' => $u->{'single_pickw'} },
+                            map { $_, $keywords{$_} } sort keys %keywords);
+    $ret .= "</blockquote>\n";
+
+    # done
+    $ret .= "<?h1 That's all! h1?><?p Click \"Save\" and watch the dates come in.  <tt>:)</tt> p?>";
+    $ret .= "<p align='center'><input type='submit' value='Save'></p>";
+
+    $ret .= "</form>";
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

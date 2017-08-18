@@ -1,0 +1,29 @@
+<?page
+title=>Advanced Customization
+body<=
+<?_code
+    LJ::set_active_crumb('advcustomize');
+return;
+_code?>
+
+<?h1 Disclaimer h1?>
+<?p
+Unless you're a programmer or web designer, most users should stay away from this area and use 
+the <a href="/customize/">main customization area</a>, which is designed for anybody to use.
+p?>
+
+<?h1 Documentation h1?>
+<?p Before you jump into tweaking/programming S2, you should understand how it works.  p?>
+<ul>
+<li><a href="/doc/s2/">S2 Documentation</a> -- under construction, but some good content</li>
+<li><a href="layerbrowse.bml">Public Layers</a> -- system layers (good reference &amp; place to learn)</li>
+</ul>
+
+<?h1 Advanced Options h1?>
+<ul>
+<li><a href="layers.bml">Your Layers</a> -- create/manage your layers</li>
+<li><a href="styles.bml">Your Styles</a> -- create/manage your styles</li>
+</ul>
+
+<=body
+page?>

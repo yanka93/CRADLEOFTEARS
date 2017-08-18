@@ -1,0 +1,155 @@
+<?page
+title=>Suggestion Proposal Generator
+body<=
+
+<?_code
+
+ LJ::set_active_crumb('suggestions');
+
+ return "<?badinput?>" unless LJ::text_in(\%FORM);
+
+ my $remote = LJ::get_remote();
+
+ my $post_comm = 'suggestions';
+
+ unless ($remote) {
+     return "<?h1 Login first h1?><?p To submit a suggestion, you must first <a href=\"/login.bml?ret=1\">login</a>. p?>";
+ }
+
+ if ($FORM{'completed'}) {
+     my $ret = "";
+     my @errors = ();
+     my @fields = ("title","description","fulldescription","benefits","issues","sugglist");
+     my $CRLF = "\x0D\x0A";
+     unless (LJ::did_post()) {
+         return "<?h1 Error h1?><?p Requires post. p?>";
+     }
+
+     foreach $field (@fields) {
+         if (! $FORM{$field} ) { 
+             push(@errors,"You forgot to fill out the $field field.");
+         }
+     }
+
+     return LJ::bad_input(@errors) if @errors;
+
+     my $out = "";
+     $out .= "<p><span style='font-weight: bold; font-style: italic;'>Title</span>\n";
+     $out .= "$FORM{'title'}</p>";
+     $out .= "<p><span style='font-weight: bold; font-style: italic;'>Short, concise description of the idea</span>\n";
+     $out .= "$FORM{'description'}</p>";
+     $out .= "<p><span style='font-weight: bold; font-style: italic;'>Full description of the idea</span>\n";
+     $out .= "$FORM{'fulldescription'}</p>";
+
+     $out .= "<span style='font-weight: bold; font-style: italic;'>An ordered list of benefits</span>";
+     my @benefits = split(/$CRLF$CRLF/, $FORM{'benefits'});
+     $out .= "<lj-raw><ul>\n";
+     foreach my $benefit (@benefits) {
+         $benefit =~ s!$CRLF!<br />!g;
+         $out .= "<li>$benefit</li>\n";
+     }
+     $out .= "</ul></lj-raw>";
+
+     $out .= "<br /><span style='font-weight: bold; font-style: italic;'>An ordered list of problems/issues involved</span>";
+     my @issues = split(/$CRLF$CRLF/, $FORM{'issues'});
+     $out .= "<lj-raw><ul>\n";
+     foreach my $issue (@issues) {
+         $issue =~ s!$CRLF!<br />\n!g;
+         $out .= "<li>$issue</li>\n";
+     }
+     $out .= "</ul></lj-raw>";
+
+     $out .= "<br /><span style='font-weight: bold; font-style: italic;'>An organized list, or a few short paragraphs detailing suggestions for implementation</span>";
+     my @suggs = split(/$CRLF$CRLF/, $FORM{'sugglist'});
+     $out .= "<lj-raw><ul>\n";
+     foreach my $sugg (@suggs) {
+         $sugg =~ s!$CRLF!<br />\n!g;
+         $out .= "<li>$sugg</li>\n";
+     }
+     $out .= "</ul></lj-raw>";
+
+     # post it
+     {
+         my ($sec,$min,$hour,$mday,$mon,$year) = localtime(time());
+         $year = $year + 1900;
+         $mon=sprintf("%02d", $mon+1);
+         $mday=sprintf("%02d", $mday);
+         my $rs = LJ::Protocol::do_request("postevent", { 
+             'ver'  => $LJ::PROTOCOL_VER,
+             'year' => $year,
+             'mon' => $mon, 
+             'day' => $mday,
+             'hour' => $hour, 
+             'min' => $min,
+             'username' => $remote->{'user'}, 
+             'event' => $out,
+             'usejournal' => $post_comm,
+             'props' => { 'opt_preformatted' => 0 },
+             'subject' => $FORM{'title'},
+         }, \$err, {
+             'noauth' => 1,
+             'usejournal_okay' => 1,
+         });
+         if ($err) {
+             my $errstr = LJ::Protocol::error_message($err);
+             $ret .= "<?h1 Error h1?><?p $errstr p?>";
+         } else {
+             $ret .= "<?h1 Success! h1?>\n";
+
+             my $user = LJ::ljuser($post_comm);
+
+             if ($rs->{'itemid'}) {
+                 my $u = LJ::load_user($post_comm);
+                 my $link = LJ::item_link($u, $rs->{'itemid'}, $rs->{'anum'});
+
+                 $ret .= "<?p Your suggestion has been sucessfully posted to $user and you may now <a href='$link'>view your suggestion</a>. p?>";
+              } else {
+                 $ret .= "<?p Your suggestion has been submitted to the maintainers of $user for approval. If approved, your suggestion will then appear in the community. p?>";
+              }
+         }
+     }
+
+     return $ret;
+ } else {
+     return <<__EOF__
+<?h1 The Generator h1?>
+<?p
+Use this form enter all the details of your suggestion that you would like to submit, and it will then post the suggestion to the suggestion community.
+p?>
+
+<?hr?>
+
+<form method='post'>
+<?h2 Title h2?>
+<?p <blockquote><input type='text' name='title' value="" size='60'></blockquote> p?>
+<?h2 Short, concise description of the idea h2?>
+<?p Briefly explain your idea, being as clear and concise as possible, and using terminology that the average person can understand. <br /><blockquote><textarea name='description' rows='2' cols='58' wrap='virtual'></textarea></blockquote> p?>
+<?h2 Full description of the idea h2?>
+<?p If the space above isn't enough to describe your suggestion, you may write a more thorough and detailed explanation here. <br /><blockquote><textarea name='fulldescription' rows='7' cols='58' wrap='virtual'></textarea></blockquote> p?>
+<?h2 An ordered list of benefits h2?>
+<?p Create a list of the benefits of your suggestion in the box below. This may be used by a reader as a reference. <b>List each item, pressing &lt;Enter&gt; twice after each one</b> <br /><blockquote><textarea name='benefits' rows='7' cols='58' wrap='virtual'></textarea></blockquote> p?>
+<?h2 An ordered list of problems/issues involved h2?>
+<?p Almost all suggestions will have some drawbacks. In the box below, list all possible drawbacks to your suggestion in the same manner that you have listed the benefits above. <b>List each item, pressing &lt;Enter&gt; twice after each one.</b> <br /><blockquote><textarea name='issues' rows='7' cols='58' wrap='virtual'></textarea></blockquote> p?>
+<?h2 An organized list, or a few short paragraphs detailing suggestions for implementation h2?>
+<?p List some helpful hints or clarifications on your idea as to how to get it going. What might need to be changed or fixed to make this implementation/feature? Try not to get too technical, just enough detail to direct readers is good. <b>List each item, pressing &lt;Enter&gt; twice after each one.</b> <br /><blockquote><textarea name='sugglist' rows='7' cols='58' wrap='virtual'></textarea></blockquote> p?>
+<?p Click the "Post Suggestion" button and your suggestion will be sent off to the <?ljuser $post_comm ljuser?> community. p?>
+<?hr?>
+<?standout
+<table>
+<tr><td colspan='2' align='center'>
+<input type='hidden' name="completed" value="1">
+<input type='submit' value="Post Suggestion">
+</td></tr>
+</table>
+standout?>
+</form>
+__EOF__
+  }
+
+_code?>
+
+<=body
+page?><?_c <LJDEP>
+post: htdocs/suggestions/generator.bml
+link: htdocs/talkread.bml
+</LJDEP> _c?>

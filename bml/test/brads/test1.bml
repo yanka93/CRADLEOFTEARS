@@ -1,0 +1,16 @@
+<?_info
+localblocks<=
+
+foo=>[foo]%%DATA%%[/foo]
+
+<=localblocks
+_info?><?page
+title=>Test1
+body<=
+
+Test of local block foo: <?foo?>
+
+Another test of local block foo: <?foo with data this time foo?>
+
+<=body
+page?>

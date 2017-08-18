@@ -1,0 +1,269 @@
+#NEWLAYER: nebula/ohblue
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh blue";
+layerinfo "redist_uniq" = "nebula/ohblue";
+
+set col_entry_bg = "#44366d";
+set col_stronger_fg = "#1b0c66";
+set col_cmtbarscrn_bg = "#ffffff";
+set col_cmtbarone_bg = "#9f9cfd";
+set col_neutral_fg = "#2f2e55";
+set col_cmtbartwo_bg = "#adb3e5";
+set col_sidebar_link = "#2f2e55";
+set col_weaker_bg = "#d9dcff";
+set col_strong_fg = "#2f2e55";
+set col_neutral_bg = "#ab5c90";
+set col_cmtbarscrn_fg = "#1b0c66";
+set col_stronger_bg = "#b8bef8";
+set col_cmtbartwo_fg = "#000000";
+set col_weak_bg = "#404380";
+set col_cmtbarone_fg = "#000000";
+set col_weaker_fg = "#04025a";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_strong_bg = "#7e7cb1";
+set col_weak_fg = "#9ba2e8";
+set col_sidebar_vlink = "#1f1d46";
+
+#NEWLAYER: nebula/ohgreen
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh green";
+layerinfo "redist_uniq" = "nebula/ohgreen";
+
+set col_entry_bg = "#4ca65b";
+set col_stronger_fg = "#12661a";
+set col_cmtbarscrn_bg = "#ffffff";
+set col_cmtbarone_bg = "#bffdbe";
+set col_neutral_fg = "#12661a";
+set col_cmtbartwo_bg = "#72e580";
+set col_sidebar_link = "#12661a";
+set col_weaker_bg = "#0d6315";
+set col_strong_fg = "#12661a";
+set col_neutral_bg = "#000000";
+set col_cmtbarscrn_fg = "#000000";
+set col_stronger_bg = "#9df89f";
+set col_cmtbartwo_fg = "#000000";
+set col_weak_bg = "#08390b";
+set col_cmtbarone_fg = "#000000";
+set col_weaker_fg = "#0e2a05";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_strong_bg = "#4f9f58";
+set col_weak_fg = "#08390b";
+set col_sidebar_vlink = "#12661a";
+
+#NEWLAYER: nebula/ohpurple
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh purple";
+layerinfo "redist_uniq" = "nebula/ohpurple";
+
+set col_cmtbartwo_bg = "#D89EE5";
+set col_cmtbarscrn_fg = "#000000";
+set col_entry_bg = "#eebfed";
+set col_weaker_bg = "#eebfed";
+set col_stronger_bg = "#efd5f8";
+set col_cmtbartwo_fg = "#000000";
+set col_sidebar_link = "#592b7d";
+set col_strong_bg = "#9c6e9f";
+set col_cmtbarone_bg = "#EECCFD";
+set col_stronger_fg = "#c459d1";
+set col_weaker_fg = "#0e2a05";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_sidebar_vlink = "#2d1e41";
+set col_strong_fg = "#614a62";
+set col_weak_bg = "#614a62";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#000000";
+set col_cmtbarscrn_bg = "#ffffff";
+set col_weak_fg = "#a1319a";
+set col_neutral_fg = "#614a62";
+
+#NEWLAYER: nebula/ohblack
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh black";
+layerinfo "redist_uniq" = "nebula/ohblack";
+
+set col_cmtbartwo_bg = "#ffffff";
+set col_cmtbarscrn_fg = "#000000";
+set col_entry_bg = "#ffffff";
+set col_weaker_bg = "#ffffff";
+set col_stronger_bg = "#ffffff";
+set col_cmtbartwo_fg = "#000000";
+set col_sidebar_link = "#606060";
+set col_strong_bg = "#ffffff";
+set col_cmtbarone_bg = "#ffffff";
+set col_stronger_fg = "#000000";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#606060";
+set col_entry_vlink = "#606060";
+set col_sidebar_vlink = "#606060";
+set col_strong_fg = "#000000";
+set col_weak_bg = "#ffffff";
+set col_neutral_bg = "#ffffff";
+set col_cmtbarone_fg = "#000000";
+set col_cmtbarscrn_bg = "#ffffff";
+set col_weak_fg = "#000000";
+set col_neutral_fg = "#000000";
+
+#NEWLAYER: nebula/ohcontrast
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh contrast";
+layerinfo "redist_uniq" = "nebula/ohcontrast";
+
+set col_cmtbartwo_bg = "#000000";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_entry_bg = "#000000";
+set col_weaker_bg = "#000000";
+set col_stronger_bg = "#000000";
+set col_cmtbartwo_fg = "#ffffff";
+set col_sidebar_link = "#c0c0c0";
+set col_strong_bg = "#000000";
+set col_cmtbarone_bg = "#000000";
+set col_stronger_fg = "#ffffff";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#c0c0c0";
+set col_entry_vlink = "#c0c0c0";
+set col_sidebar_vlink = "#c0c0c0";
+set col_strong_fg = "#ffffff";
+set col_weak_bg = "#000000";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#000000";
+set col_weak_fg = "#ffffff";
+set col_neutral_fg = "#ffffff";
+
+#NEWLAYER: nebula/ohbedtime
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh bed time";
+layerinfo "redist_uniq" = "nebula/ohbedtime";
+
+set col_cmtbartwo_bg = "#5c60b6";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_entry_bg = "#ffffff";
+set col_weaker_bg = "#5e5b7d";
+set col_stronger_bg = "#8381da";
+set col_cmtbartwo_fg = "#ffffff";
+set col_sidebar_link = "#000000";
+set col_strong_bg = "#8381da";
+set col_cmtbarone_bg = "#605f9a";
+set col_stronger_fg = "#ffffff";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_sidebar_vlink = "#000000";
+set col_strong_fg = "#ffffff";
+set col_weak_bg = "#ffffff";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#879afa";
+set col_weak_fg = "#3c3c60";
+set col_neutral_fg = "#080255";
+
+#NEWLAYER: nebula/ohgreenywhite
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh greeny white";
+layerinfo "redist_uniq" = "nebula/ohgreenywhite";
+
+set col_entry_bg = "#ffffff";
+set col_stronger_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#93f390";
+set col_cmtbarone_bg = "#7fe278";
+set col_neutral_fg = "#550301";
+set col_cmtbartwo_bg = "#4a8f41";
+set col_sidebar_link = "#000000";
+set col_weaker_bg = "#546847";
+set col_strong_fg = "#ffffff";
+set col_neutral_bg = "#000000";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_stronger_bg = "#69ac59";
+set col_cmtbartwo_fg = "#ffffff";
+set col_weak_bg = "#ffffff";
+set col_cmtbarone_fg = "#ffffff";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_strong_bg = "#69ac59";
+set col_weak_fg = "#366030";
+set col_sidebar_vlink = "#000000";
+
+#NEWLAYER: nebula/ohchocchip
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh choc chip";
+layerinfo "redist_uniq" = "nebula/ohchocchip";
+
+set col_cmtbartwo_bg = "#4A8F41";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_entry_bg = "#977e3b";
+set col_weaker_bg = "#546847";
+set col_stronger_bg = "#69ac59";
+set col_cmtbartwo_fg = "#ffffff";
+set col_sidebar_link = "#000000";
+set col_strong_bg = "#69ac59";
+set col_cmtbarone_bg = "#7FE278";
+set col_stronger_fg = "#5b4b26";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_sidebar_vlink = "#000000";
+set col_strong_fg = "#5b4b26";
+set col_weak_bg = "#5b4b26";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#93F390";
+set col_weak_fg = "#ffffff";
+set col_neutral_fg = "#550301";
+
+#NEWLAYER: nebula/ohcoffee
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh coffee";
+layerinfo "redist_uniq" = "nebula/ohcoffee";
+
+set col_cmtbartwo_bg = "#AFB13E";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_entry_bg = "#977e3b";
+set col_weaker_bg = "#effe8f";
+set col_stronger_bg = "#fbe46a";
+set col_cmtbartwo_fg = "#ffffff";
+set col_sidebar_link = "#000000";
+set col_strong_bg = "#fbe46a";
+set col_cmtbarone_bg = "#E2C956";
+set col_stronger_fg = "#5b4b26";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_sidebar_vlink = "#000000";
+set col_strong_fg = "#5b4b26";
+set col_weak_bg = "#5b4b26";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#FCDA3E";
+set col_weak_fg = "#ffffff";
+set col_neutral_fg = "#550301";
+
+#NEWLAYER: nebula/ohred
+layerinfo "type" = "theme";
+layerinfo "name" = "Oh red";
+layerinfo "redist_uniq" = "nebula/ohred";
+
+set col_cmtbartwo_bg = "#983035";
+set col_cmtbarscrn_fg = "#ffffff";
+set col_entry_bg = "#d90d12";
+set col_weaker_bg = "#fe0410";
+set col_stronger_bg = "#dd6568";
+set col_cmtbartwo_fg = "#ffffff";
+set col_sidebar_link = "#000000";
+set col_strong_bg = "#dd6568";
+set col_cmtbarone_bg = "#d25c64";
+set col_stronger_fg = "#ffffff";
+set col_weaker_fg = "#000000";
+set col_entry_link = "#000000";
+set col_entry_vlink = "#000000";
+set col_sidebar_vlink = "#000000";
+set col_strong_fg = "#ffffff";
+set col_weak_bg = "#bc0811";
+set col_neutral_bg = "#000000";
+set col_cmtbarone_fg = "#ffffff";
+set col_cmtbarscrn_bg = "#D38086";
+set col_weak_fg = "#ffffff";
+set col_neutral_fg = "#550301";

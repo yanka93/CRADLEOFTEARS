@@ -1,0 +1,70 @@
+
+body, html {
+padding: 0;
+margin: 0;
+background: #FFFFFF none;
+color: #000000;
+}
+
+#top {
+margin: 0;
+padding: 0;
+background: #6666CC none;
+color: #FFFFFF;
+}
+
+#top img {
+margin: 0; border: 0; padding: 0;
+}
+
+#top #feedtitle {
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+
+#middle {
+margin: 0.5em;
+}
+
+.entry {
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+}
+
+.entry h2 {
+font-size: 1.1em; font-weight: bold;
+margin: 0;
+}
+.entry .dateline {
+font-size: 0.9em;
+}
+
+.entry .entrylinks {
+font-size: 0.75em;
+text-align: right;
+}
+.entry .entrylinks:before {
+content: "\BB\ ";
+}
+
+.entry .entryheading {
+background: #C0C0FF none;
+color: #000000;
+padding: 0.25em;
+margin-bottom: 0.5em;
+}
+.entry .entryheading a {
+background: #C0C0FF none;
+color: #000000;
+text-decoration: underline;
+}
+
+#bottom {
+margin: 0;
+padding: 0.5em;
+background: #6666CC none;
+color: #FFFFFF;
+}
+#bottom p {
+margin: 0;
+}

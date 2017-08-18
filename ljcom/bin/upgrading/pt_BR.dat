@@ -1,0 +1,36 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.journalstatus.about=Se você quiser deletar ou recuperar seu journal deletado, o lugar para fazê-lo é aqui. Assim que você deletar seu journal, você terá 30 dias para recuperá-lo, se por acaso mudar de idéia. Após 30 dias, o journal será permanentemente deletado e não haverá maneira de recuperá-lo.
+
+/allpics.bml.edit2=Você pode estar interessado em <a href='[[editlink]]'>editar as palavras-chave da sua imagem</a> ou <a href='[[uploadlink]]'>fazer upload de uma nova imagem</a>.
+
+/allpics.bml.error.noparam=Você precisa especificar um usuário como parâmetro.
+
+/allpics.bml.nopics.text.other=Este usuário ainda não fez upload de nenhuma imagem.
+
+/allpics.bml.nopics.text2=Você não tem nenhuma imagem. Para fazer upload de uma, clique <a href='[[link]]'>aqui</a>.
+
+/approve.bml.comm.text<<
+Você foi adicionado à comunidade [[comm]].
+Clique <a [[aopts]]>aqui</a> para adicionar a comunidade à sua lista de amigos.
+.
+
+/approve.bml.error.actionperformed=Essa ação já foi executada
+
+/approve.bml.error.internerr.invalidaction=Erro Interno: ação inválida
+
+/approve.bml.error.invalidargument=Argumento inválido
+
+/approve.bml.error.unknownactiontype=Tipo de ação desconhecido
+
+/approve.bml.title=Ação Aprovada
+
+/birthdays.bml.description=Abaixo estão as datas de aniversário de todas as pessoas na sua lista de amigos.
+
+/changepassword.bml.btn.proceed=Prosseguir
+
+/changepassword.bml.changepassword.instructions=Preencha o formulário abaixo para mudar sua senha. Para obter ajuda ao escolher uma boa senha e manter sua conta segura, veja <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">este FAQ</a>.
+
+/changepassword.bml.email.subject=Troca de Senha
+
+/changepassword.bml.error.badcheck=Nova senha inválida: [[error]]
+

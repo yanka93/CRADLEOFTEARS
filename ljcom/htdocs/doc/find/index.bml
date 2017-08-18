@@ -1,0 +1,35 @@
+<?_code
+
+ $title = $body = "";
+
+ my $guide = $FORM{'guide'};
+ 
+ unless ($guide) {
+     $title = "Not Found";
+     $body = qq{
+         To locate a Guide, use a URL of the form:
+         <blockquote>$LJ::SITEROOT/doc/find/?guide=<i>docname</i></blockquote>
+             where <i>docname</i> is a document ID consisting only of ASCII letters, digits,
+             underscores, and hyphens.
+         };
+     return;
+ }
+
+ if ($guide =~ /[^\w\-]/) {
+     $title = "Error";
+     $body = 'Illegal characters in identifier of requested guide.';
+     return;
+ }
+
+ my $location = "$LJ::SITEROOT/doc/html/$guide.html";  # temporary
+ return BML::redirect($location);
+
+_code?><?_info
+noheaders=>1
+_info?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c <LJDEP>
+link: htdocs/doc/find/index.bml
+</LJDEP> _c?>
+

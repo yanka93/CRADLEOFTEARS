@@ -1,0 +1,150 @@
+<?page
+title=>About LiveJournal
+head<=
+<style type="text/css">
+ul {
+    padding-left: 15px;
+    margin-left: 15px;
+}
+ul#features {
+    list-style: none;
+    font-weight: bold;
+}
+ul#features ul {
+    margin-bottom: 2ex;
+    font-weight: normal;
+}
+ul#features ul ul {
+    margin-bottom: 0;
+}
+</style>
+<=head
+body<=
+<?_code
+    LJ::set_active_crumb('about');
+    return;
+_code?>
+<?h1 Features h1?>
+<?p Here's an overview of the features that make LiveJournal interesting. Also, be sure to check out our <a href="./accounts.bml">Features by Account Type</a> comparison chart. p?>
+<table border="0"><tr valign="top"><td width="50%">
+<ul id="features">
+<li>Your Journal
+  <ul>
+  <li>Entries can include:
+    <ul>
+    <li>The basics:  subject, text, and date.
+    <li>Small pictures used to represent you.</li>
+    <li><a href="/moodlist.bml">Current mood
+    text/icon</a> and your current music.</li>
+    <li>Polls that automatically tabulate votes.</li>
+    </ul>
+  </li>
+  <li>Per-entry security lets you restrict entries to just yourself or groups
+  of your friends.</li>
+  <li>Comments on each entry support paging and threading (comments replying to other comments).</li>
+  <li>A user profile includes:
+    <ul>
+    <li>A mini-biography.
+    <li>A list of <a href="/interests.bml">your interests</a>, another way to
+    find other users</a>.</li>
+    <li>A link to our text message gateway that won't reveal your cell phone number.</li>
+    <li>Who you've befriended, who's befriended you.</li>
+    <li>What communities you read and participate in.</li>
+    </ul>
+  </li>
+  <li>Fully integrated <a href="http://pics.livejournal.com/">photo storage</a> with basic image and photo editing.</li>
+  </ul>
+</li>
+<li>Privacy
+  <ul>
+  <li>You control:
+    <ul>
+    <li>Who can see each individual entry.</li>
+    <li>Who can see your contact information.</li>
+    <li>Who can <a href="/tools/textmessage.bml">text message</a> you.</li>
+    <li>Who can leave comments, and whose comments are screened pending your approval.</li>
+    <li>Who can participate in individual polls.</li>
+    </ul>
+  </li>
+  <li>Ban other users from your journal or community.</li>
+  </ul>
+</li>
+<li>Customization
+  <ul>
+  <li>Easily modify the look of your journal, using either a template-based
+  style system or a higher-level customization wizard.</li>
+  <li>For more control, program your own style with the <a href="/doc/s2/">S2
+  programming language</a>.</li>
+  <li><a href="http://www.livejournal.com/developer/embedding.bml">Embed your
+  journal</a> into your own web page.</li>
+  </ul>
+</li>
+</ul>
+</td>
+
+<td>
+
+<ul id="features">
+<li>Friends
+  <ul>
+  <li>A built-in aggregator (called the "friends view") shows all of
+  your friends' entries in one page.</li>
+  <li><a href="/friends/editgroups.bml">Friend groups</a> let you classify
+  people for both filtering and security.</li>
+  <li><a href="/syn/">Syndication</a> lets you read offsite news sources (RSS)
+  just like they were other users.</li>
+  </ul>
+</li>
+<li>Software
+  <ul>
+  <li><a href="/download/">Client programs</a> (for Windows, MacOS, Linux, and more) let you update
+  journals without opening a web browser.</li>
+  </ul>
+</li>
+<li>Social Networking
+  <ul>
+  <li><a href="/community/">Communities</a> get groups of people with a shared interest together.</li>
+  <li>Use the directory to find people by <a href="/directory.bml">region</a> or 
+  <a href="/directorysearch.bml">other criteria</a>.</li>
+  <li>There are <a href="/stats.bml">over three million other users</a> to interact with.</li>
+  </ul>
+</li>
+<li>Interoperability
+  <ul>
+  <li>The <a
+  href="http://www.livejournal.com/support/faqbrowse.bml?faqid=149">RSS
+  feed</a> of every journal lets other sites/tools aggregate your content.</li>
+  <li>Full Unicode support allows you to write in any language.</li>
+  <li>Our site is available in <a href="/manage/siteopts.bml">many languages</a>.
+  </ul>
+</li>
+<li>Open Process
+  <ul>
+  <li>Our <a href="http://www.livejournal.org/">open source code</a> means
+  anyone can start their own LiveJournal-derived site.</li>
+  <li>Our <a href="/community/lj_dev/">open development process</a> lets anyone
+  contribute or just watch and learn.</li>
+  <li><a href="/support/">Support</a> is self-managed by volunteers who care
+  about the site.</li>
+  <li>No advertisements, etc.  (See our <a href="/legal/principles.bml">guiding principles</a>.)</li>
+  </ul>
+</li>
+</ul>
+</td></tr></table>
+
+<?p This site was started for use amongst a small group of friends.
+The fact that it got so popular without any advertising just goes to
+show how cool it is.  Try it out .... if you have any problems or
+suggestions on how it could be made better, <a
+href="/suggestions/">let us know</a>!  p?>
+
+<?h1 Frequently Asked Questions h1?>
+<?p Some <a href="/support/faqbrowse.bml?faqcat=about">frequently asked questions (and answers!)</a> about LiveJournal can be found on <a href="/support/faq.bml">our FAQ page</a>. p?>
+
+<=body
+page?><?_c
+<LJDEP>
+link: htdocs/site/contributors.bml, htdocs/support/submit.bml
+link: htdocs/paidaccounts/index.bml
+</LJDEP>
+_c?>

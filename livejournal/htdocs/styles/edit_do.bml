@@ -1,0 +1,316 @@
+<?page
+title=>Edit Style
+body<=
+
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    LJ::set_active_crumb('editstyle');
+
+    return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+    # authenticate user
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input("You could not be authenticated as the specified user")
+        unless $u;
+
+    # check styles cap
+    return LJ::bad_input("Your account type doesn't permit you to modify styles.")
+        unless LJ::get_cap($u, "styles");
+
+    # get a style object
+    my $styleid = $POST{'styleid'}+0;
+    my $style = LJ::S1::get_style($styleid);
+    return LJ::bad_input("The requested style does not exist.")
+        unless $style;
+
+    # some static data
+    my @style_opts = (
+        { 'code' => "is_public",
+          'title' => 'Public?',
+          'des' => "Mark this style public if you want other people to be able to use it or copy it." },
+        { 'code' => "is_embedded", 
+          'title' => 'Embedded?',
+          'des' => "Is this style designed to be embedded in somebody's homepage?  Check if so, otherwise it's a full page style." },
+        { 'code' => "is_colorfree",
+          'title' => 'Color Free?',
+          'des' => "A style is color-free if it does not contain any hard-coded color tags, but only uses the generic color codes listed in the table below." },
+    );
+    my @style_transforms = (
+        { 'trans' => 'lc',
+          'des' => "Lower case." },
+        { 'trans' => 'uc',
+          'des' => "Upper case." },
+        { 'trans' => 'ue',
+          'des' => "URL-Encode.  Turn spaces to +, and all weird characters to <tt>%hh</tt>, the hex representation.  This is useful for building data files to be used in Flash-4 movies." },
+        { 'trans' => 'xe', 
+          'des' => "XML-Encode.  Makes value acceptable for use in an XML attribute or element.  Escapes ampersands, angle brackets, and both types of quotes.  Does <i>not</i> however, escape ]]&gt;, so don't use CDATA elements." },
+        { 'trans' => 'color',
+          'des' => "A weird transform that handles color codes.  See the color code table." },
+        { 'trans' => 'cons', 
+          'des' => "Access site constants.  Currently supported are 'siteroot', 'sitename', and 'img' (the image root).  Example use: %%cons:img%%/icon_protected.gif" },
+        { 'trans' => 'ljuser',
+          'des' => "Transform the variable as if it were surrounded by &lt;lj user=%%variable%%&gt;.  ex: %%ljuser:username%%" },
+        { 'trans' => 'ljcomm',
+          'des' => "Transform the variable as if it were surrounded by &lt;lj comm=%%variable%%&gt;.  ex: %%ljcomm:username%%" },
+        { 'trans' => 'userurl',
+          'des' => 'Takes in a username and transforms it into a link to their journal.' },
+    );
+    
+    # construct ide and mode variables
+    my $ide = $POST{'ide'};
+    my $mode = $POST{'mode'} || 'editstyle';
+    if ($mode eq 'editstyle') {
+        if ($ide eq 'delete') {
+            $mode = 'delete';
+        } else {
+            $ide = $ide eq 'v1' ? 'v1' : 'v2';
+            $mode = 'editstyle';
+        }
+    }
+
+    ### start of output
+
+    my $ret = "";
+
+    # pass authas arguments in forms if necessary
+    my $getextra = "?authas=$authas" if $authas ne $remote->{'user'};
+
+    # delete confirmation
+    if ($mode eq "delete") {
+        $ret .= "<?h1 Are you sure? h1?><?p Are you sure you want to delete <b>$style->{'styledes'}</b>?  If so, press the button below.  This will temporarily break your journal if you're using this style, until you select a different style to use. p?>";
+
+        $ret .= "<form method='post' action='edit_do.bml$getextra'>";
+        $ret .= LJ::html_hidden("mode", "delete_confirm", "styleid", $styleid);
+        $ret .= "<p align='center'>" . LJ::html_submit(undef, "Yes, delete it!") . "</p></form>\n";
+        return $ret;
+    }
+
+    # process delete
+    if ($mode eq "delete_confirm") {
+
+        LJ::S1::delete_style($styleid);
+        return "<?h1 Deleted h1?><?p The style has been deleted. You can view your current list of styles " .
+               "<a href='edit.bml$getextra'>here</a>. p?>";
+    }
+
+    # editing a style
+    if ($mode eq "editstyle") {
+        $ret .= "<?h1 Edit Style h1?><?p Make any desired changes and press \"Save\" when done. p?>\n";
+        $ret .= "<div style='width: 90%'><form method='post' action='edit_do.bml$getextra'>";
+        $ret .= LJ::html_hidden("mode", "savechanges", "styleid", $styleid, "ide", $ide);
+        
+        $ret .= "<table border='1' cellspacing='1' cellpadding='2' style='margin-bottom: 20px;'>\n";
+        $ret .= "<tr><td bgcolor='#d0d0d0'><b>Style View Type:</b></td><td><i>$LJ::viewinfo{$style->{'type'}}->{'des'}</i> -- <b>$style->{'type'}</b></td></tr>\n";
+        $ret .= "<tr><td bgcolor='#d0d0d0'><b>Style ID Number:</b></td><td><b>$style->{'styleid'}</b>";
+
+        my $extravars = "&amp;nocache=1" if $style->{'opt_cache'} eq "Y";
+        if ($style->{'type'} eq 'day') {
+            my ($curmday, $curmon, $curyear) = (localtime(time))[3..5]; 
+            $extravars .= sprintf("&amp;day=%02d&amp;month=%02d&amp;year=%04d",
+                                  $curmday, $curmon+1, $curyear+1900);
+        }
+        $ret .= " <a target='preview' href=\"$LJ::SITEROOT/customview.cgi?username=$u->{'user'}&amp;styleid=$styleid$extravars\">[Preview Current Style]</a> (must save below to see your changes, keep this window open and reload it whenever you save)";
+        $ret .= "</td></tr>\n";
+        
+        $ret .= "<tr><td bgcolor='#d0d0d0'><b>Style Description:</b></td><td>";
+        $ret .= LJ::html_text({ 'name' => 'styledes', 'value' => $style->{'styledes'},
+                                'size' => '50', 'maxlength' => '50' });
+        $ret .= "</td></tr>\n";
+
+        $ret .= "<tr><td bgcolor='#d0d0d0'><b>Style Options:</b></td><td><table>\n";
+        foreach my $opt (@style_opts) {
+            $ret .= "<tr valign='top'><td>";
+            $ret .= LJ::html_check({ 'type' => 'check','name' => $opt->{'code'}, 'id' => $opt->{'code'},
+                                     'selected' => $style->{$opt->{'code'}} eq 'Y' });
+
+            $ret .= "</td><td><b><label for='$opt->{'code'}'>$opt->{'title'}</label></b><br />$opt->{'des'}</td></tr>";
+        }
+        $ret .= "</table></td></tr>\n";
+
+        $ret .= "</table>\n";
+
+        # color code instructions
+        $ret .= "<?h1 Color Codes h1?><?p When designing a style, it's always best to avoid hard-coding colors in if possible.  That way, if you get bored of your colors you can change them at one place (the modify journal page) and it'll affect all your styles where you use that color code.  Obviously, if you need to use special images in your style, you may have to hard-code certain colors, but try to use them when you can.  It's your call.  <b>The following color codes can be used in any variable below that contains HTML:</b> p?>";
+
+        $ret .= "<p align='center'><table cellpadding='2' border='1' cellspacing='1'><tr bgcolor='#d0d0d0'><td>Code</td><td>Description</td></tr>\n";
+        foreach my $col (@LJ::S1::themecoltypes) {
+            $ret .= "<tr><td><tt>%%color:<b>$col->[0]</b>%%</tt></td><td>$col->[1]</td></tr>\n";
+        }
+        $ret .= "</table></p>\n";
+
+        # transform instructions
+        $ret .= "<?h1 Transforms h1?><?p What if you want to use a property but don't like its formatting?  Any property can be transformed 0 or more times by transform rules.  Say you want to use <tt>%%monlong%%</tt> (March, April, May, etc...) but you don't like that the default has those upper case initial letters.  You can apply the <b><tt>lc</tt></b> (lowercase) transform to it:  <b><tt>%%lc:monlong%%</tt></b>.  Transform are applied in order from the right to the left, so if you went <tt>%%a:b:c:d:property%%</tt>, <i>d</i> would be applied first.  Here are a list of the supported transforms: p?>";
+        
+        $ret .= "<p align='center'><table width='75%' cellpadding='2' border='1' cellspacing='1'><tr bgcolor='#d0d0d0'><td>Transform</td><td>Description</td></tr>\n";
+        foreach (@style_transforms) {
+            $ret .= "<tr><td><tt>$_->{'trans'}</tt></td><td>$_->{'des'}</td></tr>\n";
+        }
+        $ret .= "</table></p>\n";
+
+        ### customizable vars section
+
+        # load variables from file
+        my @vars;
+        LJ::load_objects_from_file("vars.dat", \@vars);
+
+        # build hash of relevant variables
+        my %var;
+        foreach my $v (sort { $a->{'name'} cmp $b->{'name'} } @vars) {
+            next unless ($v->{'props'}->{'scope'} =~ /\b$style->{'type'}\b/);
+            $var{$v->{'name'}} = $v;
+        }
+
+        # ide version 2 section
+        if ($ide eq "v2") {
+
+            # closure to make variable edit fields
+            my $make_edit_fields = sub {
+                my ($self, $vars, $marked, @fields) = @_;
+                foreach my $f (@fields) {
+                    next if ($marked->{$f}++);
+                    my $prop = $vars->{$f}->{'props'};
+                    $self->($self, $vars, $marked, split(/\s*,\s*/, $prop->{'deps'}));
+                    my $des = $prop->{'des'};
+                    $des =~ s/\[var\[(\S+?)\]\]/<a href="#$1">$1<\/a>/g;
+                    $des =~ s/\[view\[(\S+?)\]\]/$1/g;
+                    $des =~ s/%%\S+?%%/<tt>$&<\/tt>/g;
+        
+                    $ret .= "<p><a name='$f'><font size='+1'><tt><b>$f</b></tt></font><br />$des</p>\n";
+
+                    if (defined $prop->{'props'}) {
+                        $ret .= "<p><table cellspacing='1' border='1' cellpadding='2'>\n";
+                        foreach my $p (@{$prop->{'props'}}) {
+                            $p->{'props'}->{'des'} =~ s/\[var\[(\S+?)\]\]/<a href="#$1">$1<\/a>/g;
+                            $p->{'props'}->{'des'} =~ s/\[view\[(\S+?)\]\]/$1/g;
+                            $p->{'props'}->{'des'} =~ s/%%\S+?%%/<tt>$&<\/tt>/g;
+                            $ret .= "<tr valign='top'><td bgcolor='#d0d0d0' align='right'><b>$p->{'name'}</b></td>\n";
+                            $ret .= "<td>$p->{'props'}->{'des'} ";
+                            if ($p->{'props'}->{'min'} > 0) {
+                                $ret .= "<font color='#ff0000'>[required]</font>";
+                            }
+                            $ret .= "</td></tr>\n";
+                        }
+                        $ret .= "</table></p>\n";
+                    }
+        
+                    my $editrows = $prop->{'editrows'} || 5;
+                    my $editcols = $prop->{'editcols'} || 70;
+
+                    $ret .= "<p>";
+                    if ($vars->{$f}->{'props'}->{'override'} eq "only") {
+                        $ret .= "<span style='background-color: #ffff00'><b>Override only.</b></span>  Only end-users may override this.  You cannot define it in a style.";
+                    } else {
+                        my %stylevar = ();
+                        LJ::parse_vars(\$style->{'formatdata'}, \%stylevar);
+
+                        if ($editrows == 1) {
+                            $ret .= LJ::html_text({ 'name' => "var:$f", 'value' => $stylevar{$f},
+                                                    'size' => $editcols, 'maxlength' => '255' });
+                        } else {
+                            $ret .= LJ::html_textarea({ 'name' => "var:$f", 'value' => $stylevar{$f},
+                                                        'wrap' => 'soft', 'rows' => $editrows, 'cols' => $editcols,
+                                                        'style' => 'width: 100%;' });
+                        }
+                    }
+                    $ret .= "</p>";
+                    $ret .= "<?hr?>\n";
+                }
+            }; # end closure
+
+            # display edit form
+            $ret .= "<?h1 Customizable Variables h1?>";
+            my %mark = ();
+            $make_edit_fields->($make_edit_fields, \%var, \%mark, uc("$style->{'type'}_PAGE"), keys %var);
+        }
+
+        # ide version 1 section
+        if ($ide eq "v1") {
+
+            # show a big textarea for them to use
+            $ret .= "<p><b>Style Variables:</b> <a target='_blank' href='/developer/views.bml#$style->{'type'}'>(reference information)</a></p>\n";
+            $ret .= LJ::html_textarea({ 'name' => 'formatdata', 'value' => $style->{'formatdata'}, 
+                                        'rows' => '30', 'cols' => '80', 'wrap' => 'off',
+                                        'style' => 'width: 100%;' }) . "\n";
+        }
+
+        # save button
+        $ret .= "<p align='center'>" . LJ::html_submit(undef, 'Save Style') . "</p>\n";
+
+        $ret .= "</form></div>";
+
+        # convenience links at bottom
+        if ($ide eq 'v2') {
+            $ret .= "<?h1 Convenience Links h1?><?p You can use these links to scroll the page up to where the variable is declared... p?> <ul>";
+            foreach my $v (sort { $a->{'name'} cmp $b->{'name'} } @vars) {
+                next unless ($v->{'props'}->{'scope'} =~ /\b$style->{'type'}\b/);
+                $ret .= "<li><a href=\"#$v->{'name'}\">$v->{'name'}</a>";
+            }
+            $ret .= "</ul>";
+        }
+
+        return $ret;
+    }
+
+    # save changes from a previous edit form
+    if ($mode eq "savechanges") {
+
+        my $formatdata;
+
+        # process form from ide v1
+        if ($ide eq "v1") {
+            $POST{'formatdata'} =~ s/\r//;   # carriage returns shouldn't be necessary
+            $formatdata = $POST{'formatdata'};
+
+        # process form from ide v2
+        } elsif ($ide eq "v2") {
+            $formatdata = "";
+            foreach (grep { /^var:.+/ } keys %POST) {
+                /^var:(.+)$/;
+                my ($key, $var) = ($&, $1);
+                $POST{$key} =~ s/\r//;   # carriage returns shouldn't be necessary
+                if ($POST{$key} =~ /\n/) {
+                    $formatdata .= "$var<=\n$POST{$key}\n<=$var\n\n";
+                } else {
+                    $formatdata .= "$var=>$POST{$key}\n\n";
+                }
+            }
+        }
+    
+        # update style
+        LJ::S1::update_style($styleid, 
+                             { 'formatdata' => $formatdata,
+                               'styledes' => $POST{'styledes'},
+                               map { $_->{'code'} => $POST{$_->{'code'}} ? "Y" : "N" } @style_opts });
+
+        my $extravars;
+        if ($style->{'type'} eq 'day') {
+            my ($curmday, $curmon, $curyear) = (localtime(time))[3..5]; 
+            $extravars = sprintf("&amp;day=%02d&amp;month=%02d&amp;year=%04d",
+                                 $curmday, $curmon+1, $curyear+1900);
+        }
+        # all good
+        return "<?h1 Success h1?><?p Style has been updated.  You can view it " .
+            "<a target='preview' href=\"$LJ::SITEROOT/customview.cgi?user=$u->{'user'}" .
+            "&amp;styleid=$styleid$extravars\">here</a>. p?>";
+    }
+
+    # this should never happen
+    return LJ::bad_input("Unknown mode: $mode.");
+
+}
+_code?>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/styles/edit.bml, htdocs/developer/views.bml, htdocs/customview.cgi
+file: htdocs/vars.dat
+post: htdocs/styles/edit_do.bml
+</LJDEP> _c?>

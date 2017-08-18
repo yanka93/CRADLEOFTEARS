@@ -1,0 +1,68 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET $title $body);
+
+    $title = "Retrieve Coupons";
+    $body = "";
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return $err->($ML{'error.invalidauth'})
+        unless $u;
+
+    # authas switcher form
+    $body .= "<form method='get' action='coupons.bml'>\n";
+    $body .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+    $body .= "</form>\n\n";
+
+    $body .= "<?h1 Your Coupons h1?>";
+    $body .= "<?p Below are all of the coupons associated with your account. ";
+    $body .= "You can redeem unused coupons at the <a href='$LJ::SITEROOT/pay/'>";
+    $body .= "$LJ::SITENAMESHORT Store</a>. Used coupons are marked out, but ";
+    $body .= "still appear in the table. p?>";
+
+    my $tbl;
+    $tbl .= "<table border='0' cellspacing='5' align='center'>";
+    $tbl .= "<tr><th align='left'>Item</th><th align='left'>Amount</th>";
+    $tbl .= "<th align='left'>Code</th></tr>";
+
+    # print dollars
+    my $damt = sub { sprintf("\$%.02f", shift()) };
+
+    my $dbh = LJ::get_db_writer();
+    my $sth = $dbh->prepare("SELECT * FROM coupon WHERE rcptid=?");
+    $sth->execute($u->{'userid'});
+    my $ct = 0;
+    while (my $row = $sth->fetchrow_hashref) {
+        my $str = sub { $row->{'payid'} ? "<strike>$_[0]</strike>" : $_[0] };
+        $tbl .= "<tr><td>";
+        $tbl .= $str->(LJ::Pay::product_name('coupon', $row->{'type'}));
+        $tbl .= "</td><td>" . $str->($damt->($row->{'arg'})) . "</td><td>";
+        $tbl .= $str->($row->{'cpid'} . "-" . $row->{'auth'});
+        $tbl .= "</td></tr>";
+        $ct++;
+    }
+    if ($ct) {
+        $tbl .= "</table>";
+        $body .= $tbl;
+    } else {
+        $body .= "<div style='margin: 10px 0 0 30px;'><i>No Coupons</i></div>";
+    }
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

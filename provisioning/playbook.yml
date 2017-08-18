@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: yes
+  pre_tasks:
+    # Installs simplejson, since Ansible requires it, and 16.04 does not have it preinstalled.
+    - raw: sudo yum install -y python-simplejson
+
+  roles:
+    - epel
+    - mysql
+    - ljr
+  post_tasks:
+    - raw: 'echo "cd /opt/LJR/" >> /home/vagrant/.zshrc'

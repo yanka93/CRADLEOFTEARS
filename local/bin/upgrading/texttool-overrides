@@ -1,0 +1,84 @@
+#
+# texttool.pl newitems override
+# format:
+# <code calculated by texttool.pl><space><actual code which should be used>
+#
+
+/modify.bml.colortheme.defaulttheme /modify_do.bml.colortheme.defaulttheme
+/modify.bml.colortheme.color.head2 /modify_do.bml.colortheme.color.head2
+/modify.bml.colortheme.customcolors /modify_do.bml.colortheme.customcolors
+/modify.bml.overrides.warning /modify_do.bml.overrides.warning
+/modify.bml.moodicons.head /modify_do.bml.moodicons.head
+/modify.bml.availablestyles.userstyles /modify_do.bml.availablestyles.userstyles
+/modify.bml.overrides.head /modify_do.bml.overrides.head
+/modify.bml.moodicons.personal /modify_do.bml.moodicons.personal
+/modify.bml.domainalias.example /modify_do.bml.domainalias.example
+/modify.bml.friends.opt.usesharedpic.about /modify_do.bml.friends.opt.usesharedpic.about
+/modify.bml.overrides.note /modify_do.bml.overrides.note
+/modify.bml.colortheme.about /modify_do.bml.colortheme.about
+/modify.bml.done.text /modify_do.bml.done.text
+/modify.bml.success.head /modify_do.bml.success.head
+/modify.bml.pagelayoutstyle.warning /modify_do.bml.pagelayoutstyle.warning
+/modify.bml.friends.head /modify_do.bml.friends.head
+/modify.bml.error.stylenotavailable /modify_do.bml.error.stylenotavailable
+/modify.bml.colortheme.color.head1 /modify_do.bml.colortheme.color.head1
+/modify.bml.friends.opt.usesharedpic.head /modify_do.bml.friends.opt.usesharedpic.head
+/modify.bml.pagelayoutstyle.about /modify_do.bml.pagelayoutstyle.about
+/modify.bml.domainalias.head /modify_do.bml.domainalias.head
+/modify.bml.moodicons.opt.forcefriends.about /modify_do.bml.moodicons.opt.forcefriends.about
+/modify.bml.colortheme.head /modify_do.bml.colortheme.head
+/modify.bml.moodicons.preview /modify_do.bml.moodicons.preview
+/modify.bml.pagelayoutstyle.head /modify_do.bml.pagelayoutstyle.head
+/modify.bml.moodicons.about /modify_do.bml.moodicons.about
+/modify.bml.friends.about /modify_do.bml.friends.about
+/modify.bml.colortheme.area.head /modify_do.bml.colortheme.area.head
+/modify.bml.availablestyles.head /modify_do.bml.availablestyles.head
+/modify.bml.success.text /modify_do.bml.success.text
+/modify.bml.domainalias.about /modify_do.bml.domainalias.about
+/modify.bml.error.dupdomainalias /modify_do.bml.error.dupdomainalias
+/modify.bml.journaloptions.about /modify_do.bml.journaloptions.about
+/modify.bml.moodicons.select /modify_do.bml.moodicons.select
+/modify.bml.domainalias.domainname /modify_do.bml.domainalias.domainname
+/modify.bml.done.head /modify_do.bml.done.head
+/modify.bml.overrides.about /modify_do.bml.overrides.about
+/modify.bml.overrides.box.head /modify_do.bml.overrides.box.head
+/modify.bml.journaloptions.head /modify_do.bml.journaloptions.head
+/modify.bml.availablestyles.disabledstyles /modify_do.bml.availablestyles.disabledstyles
+/modify.bml.domainalias.helptext /modify_do.bml.domainalias.helptext
+/modify.bml.done.btn.savechanges /modify_do.bml.done.btn.savechanges
+
+/friends/edit.bml.opt.delete /friends/edit_do.bml.opt.delete
+/friends/edit.bml.name /friends/edit_do.bml.name
+/friends/edit.bml.friend /friends/edit_do.bml.friend
+/friends/edit.bml.needmore /friends/edit_do.bml.needmore
+/friends/edit.bml.success.text /friends/edit_do.bml.success.text
+/friends/edit.bml.btn.toggle /friends/edit_do.bml.btn.toggle
+/friends/edit.bml.success.head /friends/edit_do.bml.success.head
+/friends/edit.bml.error.updating /friends/edit_do.bml.error.updating
+/friends/edit.bml.yourfriends.text /friends/edit_do.bml.yourfriends.text
+/friends/edit.bml.user /friends/edit_do.bml.user
+/friends/edit.bml.nofriends.head /friends/edit_do.bml.nofriends.head
+/friends/edit.bml.fellowfriends.head /friends/edit_do.bml.fellowfriends.head
+/friends/edit.bml.foreground /friends/edit_do.bml.foreground
+/friends/edit.bml.done.text /friends/edit_do.bml.done.text
+/friends/edit.bml.addfriends.text /friends/edit_do.bml.addfriends.text
+/friends/edit.bml.addfriends.head /friends/edit_do.bml.addfriends.head
+/friends/edit.bml.fellowfriends.text /friends/edit_do.bml.fellowfriends.text
+/friends/edit.bml.btn.save /friends/edit_do.bml.btn.save
+/friends/edit.bml.hover /friends/edit_do.bml.hover
+/friends/edit.bml.opt.addtolist /friends/edit_do.bml.opt.addtolist
+/friends/edit.bml.yourfriends.head /friends/edit_do.bml.yourfriends.head
+/friends/edit.bml.background /friends/edit_do.bml.background
+/friends/edit.bml.done.head /friends/edit_do.bml.done.head
+/friends/edit.bml.nofriends.text /friends/edit_do.bml.nofriends.text
+
+.opt.bannedfrom /talkpost.bml.opt.bannedfrom
+.opt.loggedin /talkpost.bml.opt.loggedin
+.label.picturetouse2 /talkpost.bml.label.picturetouse2
+.noaccount /talkpost.bml.noaccount
+
+/editjournal.bml.pickentry.head /editjournal_do.bml.pickentry.head
+/editjournal.bml.error.modify /editjournal_do.bml.error.modify
+/editjournal.bml.pickentry.text /editjournal_do.bml.pickentry.text
+/editjournal.bml.error.nofind /editjournal_do.bml.error.nofind
+/editjournal.bml.error.getting /editjournal_do.bml.error.getting

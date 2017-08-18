@@ -1,0 +1,62 @@
+<?page
+TITLE=><?sitename?>
+HEAD<=
+<meta name="description" content="<?sitename?> ... words words.">
+<meta name="keywords" content="diary,journal">
+<meta name="rating" content="General"> 
+<meta name="ROBOTS" content="All">
+<meta name="revisit-after" Content="14 days">
+<=HEAD
+BODYOPTS<=<?_code
+#  return "onLoad=\""";
+	   _code?>
+<=BODYOPTS
+BODY<=
+
+<?h1 Что такое <?sitename?>? h1?>
+<?p
+<a href="http://lj.rossia.org"><?sitename?> (LJR)</a> - некоммерческий проект, созданный для поддержки
+свободы слова, развития гражданского общества и поощрения свободного
+обмена мнениями. Проект действует на основе <a
+href="tos.html">Правил</a>, <a href="ustav.html">Устава</a> и <a
+href="guidelines.html">Руководящих Принципoв</a>. С технической
+точки зрения, lj.rossia.org это сервер, на котором стоит программное
+обеспечение <a href="http://www.livejournal.com/">LiveJournal</a>
+(слегка улучшенное), и предоставляющий те же услуги (в обстановке,
+чуть более свободной от цензуры). Вы можете создать свой дневник,
+читать чужие дневники, прокомментировать то, что вам понравилось или
+то, что вас взбесило...и так далее, и так по порядку. Анонимные
+жалобы начальству сервисом не предусмотрены.
+p?>
+<?p
+Relax and enjoy!
+p?>
+
+<?h1 С чего начать h1?>
+<?choices
+ITEMS<=
+<?choice Создать дневник|create.bml|Создайте свой собственный
+дневник на <?sitename?>! choice?>
+<=ITEMS
+ITEMSB<=
+<?choice Писать|update.bml|Добавить запись в дневник через
+веб-интерфейс. choice?>
+<=ITEMSB
+choices?>
+
+<?h1 Кроме того h1?>
+<?choices
+ITEMS<=
+<?choice Настройки/личная информация|editinfo.bml|Отредактировать
+личную информацию, изменить настройки.  choice?>
+<?choice Редактировать дневник|editjournal.bml|Отредактировать или
+удалить старые записи.  choice?>
+<=ITEMS
+ITEMSB<=
+<?choice Список друзей|/friends/edit.bml|Отредактировать ваш список
+друзей на <?sitename?>.  choice?>
+<=ITEMSB
+choices?>
+
+<=BODY
+page?>

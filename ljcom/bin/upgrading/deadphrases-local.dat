@@ -1,0 +1,137 @@
+# ljcom version of deadphrases.dat
+#
+
+general dystopia.nav.setscheme
+
+general /index.bml.getstarted.create.caption
+general /index.bml.getstarted.create.title
+general /index.bml.getstarted.download.caption
+general /index.bml.getstarted.download.title
+general /index.bml.getstarted.header
+general /index.bml.getstarted.modify.caption
+general /index.bml.getstarted.modify.title
+general /index.bml.getstarted.update.caption
+general /index.bml.getstarted.update.title
+general /index.bml.howuse.create
+general /index.bml.howuse.exp
+general /index.bml.howuse.header
+general /index.bml.otheropts.editfriends.caption
+general /index.bml.otheropts.editfriends.title
+general /index.bml.otheropts.editinfo.caption
+general /index.bml.otheropts.editinfo.title
+general /index.bml.otheropts.editjournal.caption
+general /index.bml.otheropts.editjournal.title
+general /index.bml.otheropts.header
+general /index.bml.support.contrib.caption
+general /index.bml.support.contrib.title
+general /index.bml.support.dev.caption
+general /index.bml.support.dev.title
+general /index.bml.support.faq.caption
+general /index.bml.support.faq.title
+general /index.bml.support.header
+general /index.bml.support.web.caption
+general /index.bml.support.web.title
+general /index.bml.text.1
+general /index.bml.text.2
+general /index.bml.text.3
+general /index.bml.text.4
+general /index.bml.text.5
+general /index.bml.whatis.def
+general /index.bml.whatis.dev
+general /index.bml.whatis.header
+general /index.bml.whatis.uses
+
+general ljcom.login.fastservers
+
+general /code/index.bml.title
+general /code/index.bml.opensource.header
+general /code/index.bml.opensource
+general /code/index.bml.servercode.header
+general /code/index.bml.servercode
+general /code/index.bml.libraries.header
+general /code/index.bml.libraries
+general /code/index.bml.name
+general /code/index.bml.description
+general /code/index.bml.LJCache.name
+general /code/index.bml.LJCache.description
+general /code/index.bml.LJTextMessage.name
+general /code/index.bml.LJTextMessage.description
+general /code/index.bml.LJSpellCheck.name
+general /code/index.bml.LJSpellCheck.description
+general /code/index.bml.HTMLCleaner.name
+general /code/index.bml.HTMLCleaner.description
+general /code/index.bml.BML.name
+general /code/index.bml.BML.description
+
+general /manage/phonepost.bml.introduction
+general /manage/phonepost.bml.phone.explanation
+
+general /paidaccounts/index.bml.deliverydate.details
+general /paidaccounts/index.bml.deliverydate.label
+general /paidaccounts/index.bml.existingpaidaccount.choose_one
+general /paidaccounts/index.bml.existingpaidaccount.header
+general /paidaccounts/index.bml.existingpaidaccount.months
+general /paidaccounts/index.bml.existingpaidaccount.use_this_form
+general /paidaccounts/index.bml.existingpaidaccount.your_password
+general /paidaccounts/index.bml.existingpaidaccount.your_username
+general /paidaccounts/index.bml.features.available
+general /paidaccounts/index.bml.features.available.domain_email.about
+general /paidaccounts/index.bml.features.available.domain_email.header
+general /paidaccounts/index.bml.features.available.domain_name.about
+general /paidaccounts/index.bml.features.available.domain_name.header 
+general /paidaccounts/index.bml.features.available.fast_servers.about
+general /paidaccounts/index.bml.features.available.fast_servers.header
+general /paidaccounts/index.bml.features.available.polls.about
+general /paidaccounts/index.bml.features.available.polls.header
+general /paidaccounts/index.bml.features.available.styles.about
+general /paidaccounts/index.bml.features.available.styles.header    
+general /paidaccounts/index.bml.features.available.text_messaging.about
+general /paidaccounts/index.bml.features.available.text_messaging.header
+general /paidaccounts/index.bml.features.available.userpics.about
+general /paidaccounts/index.bml.features.available.userpics.header
+general /paidaccounts/index.bml.features.planned.about
+general /paidaccounts/index.bml.features.planned.counters.about
+general /paidaccounts/index.bml.features.planned.counters.header
+general /paidaccounts/index.bml.features.planned.custom_comment_style.about
+general /paidaccounts/index.bml.features.planned.custom_comment_style.header 
+general /paidaccounts/index.bml.gift.anonymous
+general /paidaccounts/index.bml.gift.proceed
+general /paidaccounts/index.bml.gift.question
+general /paidaccounts/index.bml.gift.recipient
+general /paidaccounts/index.bml.newpaidaccount.about
+general /paidaccounts/index.bml.newpaidaccount.header
+general /paidaccounts/index.bml.otherpay.alsopayby
+general /paidaccounts/index.bml.otherpay.check_or_mo
+general /paidaccounts/index.bml.otherpay.header
+general /paidaccounts/index.bml.otherpay.phone_num
+general /paidaccounts/index.bml.otherthings.header
+general /paidaccounts/index.bml.otherthings.howtogive
+general /paidaccounts/index.bml.paypal.about
+general /paidaccounts/index.bml.paypal.header
+
+general /press/staff.bml.back
+general /press/staff.bml.deviant
+general /press/staff.bml.evan.title
+general /press/staff.bml.evan.quip
+general /press/staff.bml.kevin.title
+general /press/staff.bml.nick.title
+general /press/staff.bml.brett.title
+
+general /rename/index.bml.cost
+
+general /rename/use.bml.confirm
+general /rename/use.bml.error.usedtoke
+general /rename/use.bml.error.color
+
+general xcolibur.nav.setscheme
+
+general ljcom.account.feature.full
+
+general xcolibur.nav.about.invite
+general dystopia.nav.invite
+
+general /legal/coppa.bml.title
+general /legal/index.bml.docs.coppa.about
+general /legal/index.bml.docs.privacy.about
+
+general dystopia.nav.legalcoppa

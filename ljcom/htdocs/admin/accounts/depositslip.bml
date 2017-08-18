@@ -1,0 +1,88 @@
+<html>
+<head><title>Deposit Slip</title>
+<style>
+    body, td { font-size: 10pt; font-family: arial, helvetica; }
+</style>
+</head>
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $dbh = LJ::get_db_writer();
+
+    my ($ret, $sth);
+    
+    my $remote = LJ::get_remote();
+
+    unless (LJ::remote_has_priv($remote, "moneyview")) {
+        if ($remote) {
+            return "You don't have access to see this.";
+        } else {
+            return "You must first <a href=\"/login.bml?ret=1\">log in</A>.";
+        }
+    }
+
+    my $from = $GET{'from'};
+    unless (defined $from) {
+	$ret .= "<form method='get'>after (yyyy-mm-dd[ hh:mm[:ss]]): <input name='from' size='20'> Opt. end: <input name='to' size='20'> <input type='submit' value='Make Report'> </form>";
+	return $ret;
+    }
+
+    my $to = $GET{'to'} || $dbh->selectrow_array("SELECT NOW()");
+
+    $sth = $dbh->prepare("SELECT p.payid, u.user, p.daterecv, p.amount, p.months, p.forwhat, p.used, p.mailed, p.method FROM payments p LEFT JOIN useridmap u ON u.userid=p.userid WHERE  p.mailed<>'C' AND method IN ('cash', 'check', 'moneyorder') AND p.daterecv > ? AND p.daterecv <= ? ORDER BY p.daterecv");
+    $sth->execute($from, $to);
+    my @pays;
+    push @pays, $_ while $_ = $sth->fetchrow_hashref;
+
+    return "(none)" unless @pays;
+
+    my $in = join(',', map { $_->{'payid'} } @pays);
+    $sth = $dbh->prepare("SELECT payid, pval FROM payvars WHERE payid IN ($in) AND pkey='notes'");
+    $sth->execute;
+    my %notes;
+    while (my ($id, $v) = $sth->fetchrow_array) {
+	$notes{$id} .= ", " if $notes{$id};
+	$notes{$id} = $v;
+    }
+
+    $ret .= "<h1>Received Payments</h1><span style='font-size: 13pt'><b>" . $pays[0]->{'daterecv'} . " to " . 
+	$pays[-1]->{'daterecv'} . "</b></span>";
+
+    $ret .= "<p><table cellpadding='4' cellspacing='1' border='1'>\n";
+    $ret .= "<tr><td><b>Order#</b></td>";
+    $ret .= "<td><b>Date</b></td>";
+    $ret .= "<td><b>Type</b></td>";
+    $ret .= "<td><b>User</b></td>";
+    $ret .= "<td><b>Notes</b></td>";
+    $ret .= "<td><b>Amount</b></td></tr>\n";
+    
+    my $tot = 0;
+
+    foreach my $p (@pays)
+    {
+        my $amount = sprintf("\$%.02f", $p->{'amount'});
+	$tot += $p->{'amount'};
+        my $date = substr($p->{'daterecv'}, 0, 10);
+
+	$ret .= "<tr valign='top'><td>$p->{'payid'}</td>";
+	$ret .= "<td><nobr>$date</nobr></td>";
+	$ret .= "<td>$p->{'method'}</td>";
+	$ret .= "<td>$p->{'user'}</td>";
+	$ret .= "<td>$notes{$p->{'payid'}}</td>";
+	$ret .= "<td align='right'>$amount</td>";
+	$ret .= "</tr>\n";
+	
+    }
+
+    $ret .= "<tr><td colspan='5'></td><td align='right'><b>\$" . sprintf("%.02f", $tot) . "</b></td></tr>\n";
+    $ret .= "</table>";
+
+    return $ret;
+
+} 
+_code?>
+</body>
+</html>

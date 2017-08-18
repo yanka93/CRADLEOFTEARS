@@ -1,0 +1,47 @@
+<?h1 How do I get an account creation code? h1?>
+
+<?p
+To join LiveJournal, you need an account creation code. There are two ways to get one:
+<ol>
+<li><b>From an existing LiveJournal user</b> -- many people hear about LiveJournal because their friends are using the site. If this is the case for you, go ask one of your friends for a code. They can get one <a href="/invite/">here</a>. This will get you a basic free account.</li>
+<br>
+<li><b>Purchasing one</b> -- you can purchase a <a href="/paidaccounts/">paid account</a> and get access to all the features of LiveJournal.</li>
+</ol>
+<p align="center"><big>
+[ <a href="/pay/?item=paidacct-2"><strong>2 months ($5.00)</strong></a> ]  
+[ <a href="/pay/?item=paidacct-6"><strong>6 months ($15.00)</strong></a> ]  
+[ <a href="/pay/?item=paidacct-12"><strong>12 months ($25.00)</strong></a> ]
+</big></p>
+After your paid account expires, your account remains active and you can use it indefinitely. The only thing you lose is access to the <a href="/paidaccounts/">extra paid user features</a>.  If you're new to LiveJournal and don't want to pay $25 right away, try it out first with a 2 month account.
+p?>
+
+<?h1 This is lame. Just let me join! h1?>
+<?p
+If you're totally new to the site and just want to sign-up without paying, we understand your frustration. However, many people who find us sign up because a friend referred them.
+p?>
+
+<?p
+Please understand our position, too: LiveJournal is a community-run website. All of our code is <a href="http://www.livejournal.com/code/">open source</a> and we discuss all business and development discussions in communities like <?ljcomm lj_biz ljcomm?> and <?ljcomm lj_dev ljcomm?>. Everybody pitches in. Artists make art in <?ljcomm lj_art ljcomm?>, writers write documentation in <?ljcomm lj_userdoc ljcomm?>, etc.
+p?>
+
+<?p
+As we've grown, we've encountered a number of problems which this account code scheme addresses:
+<ul>
+<li><b>Fewer people understand the site philosophy now</b> and take everybody else's hard work for granted without contributing anything back themselves (code, documentation, art, money, etc.). This extra step in becoming a member of the site helps ensure that people understand the community they're joining.</li>
+<br>
+<li><b>Abusive users</b> create accounts for the sole purpose of leaving one slanderous comment on somebody's journal, only to get banned by that user and never use the account again. This account code process prevents that sort of abuse.</li>
+</ul>
+
+We hope you understand why this is all necessary.
+p?>
+
+
+<?h1 Alternatives h1?>
+<?p
+If you can't find anybody to give you an account code and you lack the desire or resources to pay, the following alternatives exist:
+<ul>
+<li><b>Run your own LiveJournal site</b> -- go <a href="http://www.livejournal.com/code/">download the code</a> for this site and run your own journaling site.</li>
+<br>
+<li><b>Use another LiveJournal site</b> -- there are a number of other sites running the LiveJournal code out there, some of which don't require account creation codes.</li>
+</ul>
+p?>

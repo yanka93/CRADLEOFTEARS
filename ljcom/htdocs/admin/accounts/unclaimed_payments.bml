@@ -1,0 +1,29 @@
+<?_code
+
+ my $dbh = LJ::get_db_writer();
+
+ my ($ret, $sth);
+
+ my $remote = LJ::get_remote();
+
+ unless (LJ::remote_has_priv($remote, "moneysearch") ||
+         LJ::remote_has_priv($remote, "moneyview"))
+ {
+     if ($remote) {
+         return "You don't have access to see this.";
+     } else {
+         return "You must first <A HREF=\"/login.bml?ret=1\">log in</A>.";
+     }
+ }
+
+ $sth = $dbh->prepare("SELECT p.payid, a.acid, ac.auth FROM acctcode ac, acctpay a, payments p WHERE p.userid=0 AND a.payid=p.payid AND ac.acid=a.acid");
+ $sth->execute;
+ while (my ($payid, $acid, $auth) = $sth->fetchrow_array) 
+ {
+     my $code = LJ::acct_code_encode($acid, $auth);
+     $ret .= "<p><a href=\"paiddetails.bml?payid=$payid&userid=0\">#$payid</a> - $code\n";
+ }
+
+ return $ret;
+ 
+_code?>

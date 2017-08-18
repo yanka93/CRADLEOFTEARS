@@ -1,0 +1,9 @@
+Return a BML construct:
+<?_code return "<?tag Foo tag?>" _code?>
+
+Inside-out from above:
+<?exec return "[This is it.]" exec?>
+
+Recurse:
+<?exec return '<?_code return "[Foo.]" _code?>' exec?>
+

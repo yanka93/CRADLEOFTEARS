@@ -1,0 +1,9 @@
+<?page
+title=>About Post by Phone
+body<=
+<?h1 What is Post by Phone? h1?>
+<?p Post by Phone is a new feature on LiveJournal that allows a person to call up a phone number and record a post for their journal. Post by Phone is a <a href="/paidaccounts/">paid account</a> perk; paying members can make up to 15 posts a month.  p?>
+<?h1 How do I listen to an audio post? h1?>
+<?p Audio posts are recorded and compressed into <a href="http://www.vorbis.com/">Ogg Vorbis</a> files. There are a lot of <a href="./ogg.bml">media players for different operating systems</a> that will play <tt>.ogg</tt> files, and most are free to download and use. p?>
+<=body
+page?>

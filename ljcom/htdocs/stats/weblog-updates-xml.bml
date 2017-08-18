@@ -1,0 +1,34 @@
+<?_code
+{
+    use strict;
+
+    BML::set_content_type("text/xml");
+
+    my $recent = LJ::MemCache::get("blob:ljcom_latestposts2") || [];
+    my $ret;
+
+    $ret .= "<?xml version='1.0' encoding='utf-8'?>\n";
+    $ret .= <<"EOT";
+<!-- You can poll this feed often, but spider smartly.  We watch
+     and ban stupid bots.  Your user agent should have contact/project info.
+     See $LJ::SITEROOT/bots/ -->
+EOT
+
+    $ret .= "<weblogUpdates version='1'>\n";
+
+    # retrieve posts.
+    my @postids;
+    my %done;  # journalid -> 1
+    foreach my $p (@$recent) {
+        next unless $p->{security} eq 'public';
+	my $u = $p->{journalu} or next;
+        next if $done{$u->{userid}}++;
+	my $base = LJ::journal_base($u);
+	$ret .= "<weblog url='$base/' rss='$base/data/rss' when='$p->{timepost}' />\n";
+    }
+
+    $ret .= "</weblogUpdates>\n";
+
+    return BML::noparse($ret);
+}
+_code?>

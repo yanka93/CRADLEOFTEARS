@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Clustering LiveJournal</title>
+  </head>
+
+<body>
+<h1 align='center'>Clustering LiveJournal</h1>
+<p align='center'>Brad Fitzpatrick & lj_dev crew</p>
+
+<h2>Introduction</h2>
+<p>
+LiveJournal was originally designed to be used by 10 people, myself
+and a few friends.  Over time the design has been tweaked to let it
+scale further, but the basic design is still the same.  We're fast
+approaching the time when there's nothing left to optimize, other than
+the architecture itself.  That's what this page is about.
+</p>
+
+<h2>Current Architecture</h2>
+<p>
+Currently, there is one master database, 5 slave databases, and a ton
+of web servers.  A request comes in to the load balancer where it is
+then given to the "best" web server.  Each web server runs tons of
+processes which all maintain a database connection to the master and
+to a slave.  All update operations go to the master.  Read operations
+go to a slave, or fall through to the master if the slave is behind.
+</p>
+<p>
+The problem with this setup is that we're evenly dividing our reads
+between slaves but each slave db has to do every write.  Imagine that each database server has <i>t</i> units of time.  Further imagine that a write takes 2 units of time and a read takes 1 unit.  Say we're doing <i>n</i> reads & writes.  Now, let us have <i>s</i> slaves.  As <i>n</i> increases, each slave is requiring <i>n*2 + (n/s)</i> units of time.  Even if we keep increasing <i>s</i>, the number of slave databases, the real problem is that <i>n*2</i> keeps growing, taking away time those database servers could be serving read requests.
+</p>
+<p>
+Worse, each slave won't have the disk capacity to hold the entire database.  Even if it did, though, the bigger problem is that the machines' memory is finite, so if the db size on disk is growing and the memory size is fixed (all our slaves have a 2GB or 4GB limit... only our master can go up to 16GB), then as the on-disk size grows, the cache hit rate drops incredibly fast.  Once you're not hitting the cache, things start to suck with a quickness.  The speed of a disk seek compared to a fetch from memory is astronomical.  Disks suck.
+</p>
+<h3>Tricks</h3>
+<p>
+Right now, we do some tricks to get by with the above
+architecture.  The largest tables we only replicate (from master to
+slave) a subset of the data.  That's why we have the
+<tt>recent_logtext</tt> and <tt>recent_talktext</tt> tables.  A cron
+job deletes everything older than 2 weeks from this table every day.
+The web servers try the recent tables on the slave dbs first, then
+fall back to using the master tables.
+</p>
+<p>
+The next thing we did was have one database that replicated nothing but the recent tables, then all the web servers had 3 db connections open... text slave, general slave, and master.  This improved the cache hits everywhere, since the dbs were now specialized.  The general slaves even improved, since they didn't have all that text getting in the way of the selects from the <tt>log</tt> table, notably.
+</p>
+
+<h2>The Plan</h2>
+<p>
+The plan has undergone modification over time as we refine it.
+<ul>
+<li><a href="rev01.html">Revision 1</a></li>
+<li><a href="rev02.html">Revision 2</a> (assumes you've read/skimmed rev 1)</li>
+</ul>
+</p>
+
+<hr>
+<address><a href="mailto:bradfitz@livejournal.com">Brad Fitzpatrick</a></address>
+<!-- Created: Mon Dec 10 15:41:42 PST 2001 -->
+<!-- hhmts start -->
+Last modified: Wed Dec 12 09:32:13 PST 2001
+<!-- hhmts end -->
+  </body>
+</html>

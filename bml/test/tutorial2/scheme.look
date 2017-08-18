@@ -1,0 +1,13 @@
+page<=
+{F}<html>
+<head>
+  <title>%%title%%</title>
+</head>
+<body>
+%%body%%
+</body>
+</html>
+<=page
+header=>{D}<div class="header"><strong>%%DATA%%</strong></div>
+h1=>{D}<h1 class="header">%%DATA%%</h1>
+

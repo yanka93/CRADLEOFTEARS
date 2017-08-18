@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head><title></title>
+<style>
+ @media print {
+   @page {
+      size: 8.5in 11in;  /* width height */
+//    margin: 0.5in;
+   }
+
+   body { margin: 0; }
+
+   a { color: black; }
+
+   div.page, div.newpage {
+       width: 7.0in;
+       border: 0; margin: 0; padding: 0;
+       position: relative;
+   }
+
+   div.newpage {
+       page-break-before: always;
+   }
+
+div.littlelabel {
+//  border: 1px solid black;
+  background: transparent;
+  font-size: 25pt; font-weight: bold;
+  position: absolute;
+  left:  1.6in;
+  width: 3.75in;
+  top:  5.7in;
+  height: 0.75in;
+  text-align: center;
+}
+
+   div.littlelabel p {
+       margin-top: 0.2in;
+   }
+
+div.returnaddr {
+//  border: 1px solid black;
+  background: transparent;
+  position: absolute;
+  left:  1.6in;
+  top: 6.8in;
+  width: 3.75in;
+  height: 1.5in;
+  font-family: sans-serif;  
+  font-size: 11pt;
+}
+
+div.toaddr {
+//  border: 1px solid black;
+  background: transparent;
+  position: absolute;
+  left:  2.25in;
+  top: 7.85in;
+  width: 3.1in;
+  height: 1.5in;
+  font-size: 15pt;
+  font-weight: bold;
+  font-family: sans-serif;  
+ }
+
+   div.lilorder {
+       font-size: 8pt;
+       font-family: sans-serif;
+       position: absolute;
+       left:  1.6in;
+       top: 9.3in;
+   }
+
+   div.shdate { display: none; }
+}
+
+@media screen {
+    a { color: black; }
+    h1 { border: 2px solid black; }
+    div.shdate { color: blue; font-size: 10pt; font-family: sans-serif; margin-top: 0; }
+    div.returnaddr, div.littlelabel, 
+       div.lilorder {  display: none; }
+    div.toaddr {  margin-left: 2in; font-size: 15pt; font-weight: bold; }
+
+}
+
+</style>
+</head>
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+    
+    my $remote = LJ::get_remote();
+    return "You must first <a href=\"/login.bml?ret=1\">log in</a>."
+        unless $remote;
+
+    return "You don't have access to see this."
+        unless LJ::remote_has_priv($remote, "moneyview") || LJ::remote_has_priv($remote, "shipping");
+
+    my $ret;
+
+    unless (LJ::did_post()) {
+        $ret .= "<form method='post'>";
+        $ret .= "All labels past date: <input name='date' value='0000-00-00 00:00:00' size='20' /> <input type='submit' value='Generate' />";
+        $ret .= "<p>(be sure to set printer margins to 0.5\" at top and left, with no header or footer.)</p>";
+        $ret .= "</form>";
+        return $ret;
+    }
+
+    my $dbh = LJ::get_db_writer();
+    my $sth;
+
+    my %country;
+    LJ::load_codes($dbh, { "country" => \%country });
+
+    $sth = $dbh->prepare("SELECT payid, dateready FROM shipping ".
+			 "WHERE dateready > ? AND status='needs' ".
+			 "ORDER BY dateready");
+    $sth->execute($POST{'date'});
+    my @ship;
+    push @ship, $_ while $_ = $sth->fetchrow_hashref;
+
+    my $ct;
+    foreach my $sh (@ship) {
+        $ct++;
+        my $cartobj = $dbh->selectrow_hashref("SELECT * FROM payments WHERE payid=?",
+                                              undef, $sh->{'payid'});
+        next unless $cartobj;
+        # load all the cart
+        my $cart = "$cartobj->{'payid'}-$cartobj->{'anum'}";
+        $cartobj = LJ::Pay::load_cart($cart);
+        next unless $cartobj;
+
+        if ($ct == 1) {
+	    $ret .= "<div class='page'>";
+        } else {
+            $ret .= "<div class='newpage'>";
+        }
+
+	$ret .= "<h1>Order \#$cart</h1>";
+	$ret .= "<div class='shdate'>$sh->{'dateready'}</div>";
+
+        $ret .= "<p style='margin-bottom: 20px'>Enclosed are the items you ordered.  If you have any questions, email accounts\@livejournal.com and reference the order number above.</p>";
+
+        LJ::Pay::render_cart($cartobj, \$ret, { shipping_labels => 1 });
+
+
+        $ret .= "<div class='littlelabel'><p>$cart</p></div>";
+
+
+        $ret .= "<div class='returnaddr'>" . LJ::Pay::postal_address_html() . "</div>\n";
+
+        $ret .= "<div class='toaddr'>";
+
+        my %payvar;
+        my $sth = $dbh->prepare("SELECT pkey, pval FROM payvars WHERE payid=? AND pkey LIKE 'ship%'");
+        $sth->execute($cartobj->{'payid'});
+        while (my ($k, $v)= $sth->fetchrow_array) { $payvar{$k} = $v; }
+
+        my $ctry = uc($payvar{'ship_country'});
+
+        # Canadian shipping labels need to be printed in all caps, ugh
+        if ($ctry eq 'CA') {
+            $payvar{$_} = uc($payvar{$_})
+                foreach grep { $_ =~ /^ship_/ } keys %payvar;
+            $country{'CA'} = uc($country{'CA'});
+        }
+
+        $ret .= "$payvar{'ship_name'}<br />";
+        $ret .= "$payvar{'ship_addr1'}<br />";
+        $ret .= "$payvar{'ship_addr2'}<br />" if $payvar{'ship_addr2'};
+        $ret .= "$payvar{'ship_city'}, $payvar{'ship_state'} $payvar{'ship_zip'}<br />";
+        if ($ctry ne "US") {
+            $ret .= $country{$ctry};
+        }
+
+        $ret .= "</div>";
+        $ret .= "<div class='lilorder'>[$cart]</div>";
+
+
+	$ret .= "</div>";  # end page
+    }
+
+    $ret .= "no orders found past $POST{'date'}" unless $ct;
+
+    return $ret;
+
+} 
+_code?>
+</body>
+</html>

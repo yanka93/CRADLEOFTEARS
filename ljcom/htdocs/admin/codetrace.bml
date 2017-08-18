@@ -1,0 +1,172 @@
+<?_code
+
+ use strict;
+ use vars qw(%FORM);
+
+ my $dbr = LJ::get_db_reader();
+
+ my ($ev, $sth, $ret);
+ my $mode = "intro";
+
+ sub p { $ret .= join('', @_); }
+
+ my $remote = LJ::get_remote();
+
+ return "<b>Error:</b> You don't have finduser(codetrace) priv."
+     unless LJ::check_priv($remote, "finduser", "codetrace");
+
+ if ($FORM{'user'} ne "") { $mode = "user"; $FORM{'code'} = ""; }
+ elsif ($FORM{'code'}) { $mode = "code"; }
+
+ p("<h1>code tracer</h1>\n");
+ p("<form method='get'>");
+ $ev = LJ::ehtml($FORM{'user'});
+ p("User: <input name='user' size='15' value='$ev'> or ");
+ $ev = LJ::ehtml($FORM{'code'});
+ p("Code: <input name='code' size='15' value='$ev'> <input type='submit' value=\"Trace\">");
+ p("</form>");
+ return $ret if $mode eq "intro";
+
+ my $do_how = sub {
+     my $self = shift;
+     my $u = shift;
+
+     my $whyhere = $dbr->selectrow_hashref(qq{
+         SELECT acid, userid FROM acctcode WHERE rcptid=$u->{'userid'} LIMIT 1
+     });
+     $whyhere->{'user'} = LJ::get_username($whyhere->{'userid'})
+         if $whyhere && $whyhere->{'userid'};
+
+     p("How $u->{'user'} joined: ");
+     unless ($whyhere) {
+         p("<i>No invite code</i>");
+     } else {
+	 my $acid = LJ::acid_encode($whyhere->{'acid'});
+	 p("<a href='codetrace.bml?code=$acid'>$acid</a>");
+
+	 my $reason = $dbr->selectrow_array(qq{
+	     SELECT reason FROM acctinvite WHERE acid=$whyhere->{'acid'}
+	 });
+	 p(" ($reason)") if defined $reason;
+
+         if (exists $whyhere->{'user'}) {
+             p(" from <a href='codetrace.bml?user=$whyhere->{'user'}'><b>$whyhere->{'user'}</b></a>.");
+	     p("<br />");
+	     $self->($self, $whyhere);
+	     return;
+         }
+     }
+     p("<br />");
+ };
+
+ if ($mode eq "user")
+ {
+     my $user = LJ::canonical_username($FORM{'user'});
+     my $u = LJ::load_user($user) if $user;
+     return "Unknown user" unless $u;
+     $do_how->($do_how, $u);
+
+     my %invite;
+     $sth = $dbr->prepare(qq{
+         SELECT acid, reason, dateadd FROM acctinvite WHERE userid=$u->{'userid'}
+         LIMIT 5000
+     });
+     $sth->execute;
+     $invite{$_->{'acid'}} = $_ while $_ = $sth->fetchrow_hashref;
+
+     my $total_children = 0;
+
+     # limit recursion
+     my %did_userid;
+     my $total_calls = 0;
+
+     my $rec_user = sub {
+	 my $self = shift;
+	 my $userid = shift;
+	 my $unused = shift;
+
+         # limit recursion (we were seeing runaways)
+         return if ++$total_calls > 50;
+         return if $did_userid{$userid}++;
+
+	 my $sth = $dbr->prepare(qq{
+             SELECT a.acid, a.rcptid, u.user FROM acctcode a LEFT JOIN useridmap u ON a.rcptid=u.userid
+             WHERE a.userid=$userid
+             LIMIT 5000
+	 });
+	 $sth->execute;
+	 my $open;
+	 while (my ($acid, $rcptid, $user) = $sth->fetchrow_array)
+	 {
+	     next unless $unused || $user;
+	     $total_children++ if defined $user;
+	     unless ($open++) { p("<ul>"); }
+	     my $acide = LJ::acid_encode($acid);
+	     p("<li>");
+	     p("<a href='codetrace.bml?user=$user'><b>$user</b></a> ") if $user;
+	     p("(<a href='codetrace.bml?code=$acide'>$acide</a>)");
+	     if ($invite{$acid}) {
+		 p(" ($invite{$acid}->{'reason'}; $invite{$acid}->{'dateadd'})");
+	     }
+	     $self->($self, $rcptid, 0) if $rcptid;
+	     p("</li>");
+	 }
+	 p("</ul>") if $open;
+     };
+
+     p("<p>Codes made/used by $user:");
+     $rec_user->($rec_user, $u->{'userid'}, 1);
+     p("<p><b>Total children:</b> $total_children");
+
+     return $ret;
+ }
+
+ if ($mode eq "code")
+ {
+     my $code = $FORM{'code'};
+     my $acid;
+     if ($code =~ /^\#(\d+)$/) {
+	 $acid = $1;
+	 $code = LJ::acid_encode($acid);
+     } else {
+	 return "Bogus code." if length($code) != 7 && length($code) != 12;
+	 $code =~ s/^.....(.......)$/$1/;
+	 $acid = LJ::acid_decode($code);
+     }
+     p("Code: $code = $acid<br />");
+
+     my $ac = $dbr->selectrow_hashref("SELECT userid, rcptid FROM acctcode WHERE acid=$acid");
+     unless ($ac) {
+	 p("Code doesn't exist");
+	 return $ret;
+     }
+     my $ai = $dbr->selectrow_hashref("SELECT reason, dateadd FROM acctinvite WHERE acid=$acid");
+     $ac->{'user'} = LJ::get_username($ac->{'userid'})
+	 if $ac->{'userid'};
+     $ac->{'ruser'} = LJ::get_username($ac->{'rcptid'})
+	 if $ac->{'rcptid'};
+
+     p("Creator of code: <a href='codetrace.bml?user=$ac->{'user'}'>$ac->{'user'}</a> ($ai->{'reason'}, $ai->{'dateadd'})<br />")
+	 if $ac->{'user'};
+     unless ($ac->{'userid'}) {
+	 my $ap = $dbr->selectrow_hashref(qq{
+	     SELECT p.userid, p.payid FROM payments p, acctpay ap
+	     WHERE ap.payid=p.payid AND ap.acid=$acid
+	 });
+         $ap ||= $dbr->selectrow_hashref(qq{
+		 SELECT p.userid, p.payid FROM payments p, payitems pi, acctpayitem api
+		 WHERE api.piid=pi.piid AND api.acid=$acid AND pi.payid=p.payid
+             });
+	 if ($ap) {
+	     p("Payment which generated code: <a href='/admin/accounts/paiddetails.bml?payid=$ap->{'payid'}&amp;userid=$ap->{'userid'}'>$ap->{'payid'}</a><br />");
+	 }
+     }
+
+     p("Code recipient: <a href='codetrace.bml?user=$ac->{'ruser'}'>$ac->{'ruser'}</a><br />");
+
+     return $ret;
+ }
+
+ $ret;
+
+_code?>

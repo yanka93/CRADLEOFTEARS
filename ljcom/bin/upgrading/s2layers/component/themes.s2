@@ -1,0 +1,187 @@
+#NEWLAYER: component/aquatic
+layerinfo "type" = "theme";
+layerinfo "name" = "Aquatic";
+layerinfo redist_uniq = "component/aquatic";
+layerinfo "source_viewable" = 0;
+set entry_fgcolor = "#515151";
+set comp_bgcolor = "#51ada6";
+set header_link = "#ffffff";
+set entry_link = "#0C5D57";
+set entry_bgcolor = "#ffffff";
+set header_fgcolor = "#c7d1cc";
+set main_bgcolor = "#51ada6";
+set calendar_active = "#318D86";
+set header_bgcolor = "#0e3b4a";
+set calendar_inactive = "#ffffff";
+set comp_fgcolor = "#F7FEFF";
+
+#NEWLAYER: component/bluetiful
+layerinfo "type" = "theme";
+layerinfo "name" = "Bluetiful";
+layerinfo redist_uniq = "component/bluetiful";
+layerinfo "source_viewable" = 0;
+set entry_fgcolor = "#606060";
+set comp_bgcolor = "#f4f4f4";
+set header_link = "#f7fcfb";
+set entry_link = "#2d3679";
+set entry_bgcolor = "#eff5ff";
+set header_fgcolor = "#327192";
+set main_bgcolor = "#a2c5e3";
+set header_bgcolor = "#6da6c4";
+set comments_bgcolor = "#84b5d2";
+
+#NEWLAYER: component/darkness
+layerinfo "type" = "theme";
+layerinfo "name" = "Darkness";
+layerinfo redist_uniq = "component/darkness";
+layerinfo "source_viewable" = 0;
+set comments_screened_bgcolor = "#22620e";
+set calendar_fgcolor = "#5b6c7a";
+set calendar_active = "#5b6c7a";
+set calendar_inactive = "#adbac5";
+set comp_fgcolor = "#dadde0";
+set entry_fgcolor = "#dddcd6";
+set comp_bgcolor = "#758491";
+set entry_link = "#adb6be";
+set header_link = "#c7ccd1";
+set entry_bgcolor = "#32343d";
+set main_bgcolor = "#71837A";
+set header_fgcolor = "#c7d1cc";
+set header_bgcolor = "#728d80";
+set comments_bgcolor = "#5a5a5a";
+
+#NEWLAYER: component/jedicloak
+layerinfo "type" = "theme";
+layerinfo "name" = "Jedi Cloak";
+layerinfo redist_uniq = "component/jedicloak";
+layerinfo "source_viewable" = 0;
+set entry_fgcolor = "#F1EDE5";
+set comp_bgcolor = "#988b67";
+set header_link = "#dddbd6";
+set entry_link = "#615020";
+set entry_bgcolor = "#ada386";
+set comments_screened_bgcolor = "#a29f97";
+set header_fgcolor = "#bcb59f";
+set main_bgcolor = "#6e5845";
+set calendar_active = "#817452";
+set header_bgcolor = "#6e6449";
+set calendar_inactive = "#988b67";
+set comp_fgcolor = "#383325";
+set comments_bgcolor = "#948B6F";
+
+#NEWLAYER: component/mellow
+layerinfo "type" = "theme";
+layerinfo "name" = "Mellow";
+layerinfo redist_uniq = "component/mellow";
+layerinfo "source_viewable" = 0;
+set comments_screened_bgcolor = "#D6C8CC";
+set page_background_image = "";
+set calendar_active = "#D9E1D9";
+set calendar_inactive = "#A2B2B1";
+set comp_fgcolor = "878D8D";
+set entry_fgcolor = "#355351";
+set comp_bgcolor = "#C6CFD5";
+set entry_link = "#6B7F8D";
+set header_link = "6B7F8D";
+set entry_bgcolor = "#A2B2B1";
+set main_bgcolor = "#D6C8CC";
+set header_fgcolor = "#96A891";
+set header_bgcolor = "#D9E1D9";
+set comments_bgcolor = "#BCC4C3";
+
+#NEWLAYER: component/mocha
+layerinfo "type" = "theme";
+layerinfo "name" = "Mocha";
+layerinfo redist_uniq = "component/mocha";
+layerinfo "source_viewable" = 0;
+set page_background_image = "";
+set entry_fgcolor = "#807C75";
+set comp_bgcolor = "#b1bbb4";
+set comp_fgcolor = "#78746e";
+set header_link = "#716C53";
+set entry_link = "#67716a";
+set entry_bgcolor = "#ebe6d1";
+set comments_screened_bgcolor = "#b2c9b9";
+set header_fgcolor = "#7a6f43";
+set main_bgcolor = "#d8d0ae";
+set calendar_active = "#8da193";
+set header_bgcolor = "#d8d0ae";
+set calendar_inactive = "#d3e1d7";
+set comments_bgcolor = "#dbdedc";
+
+#NEWLAYER: component/orangesoda
+layerinfo "type" = "theme";
+layerinfo "name" = "Orange Soda";
+layerinfo redist_uniq = "component/orangesoda";
+layerinfo "source_viewable" = 0;
+set entry_fgcolor = "#8a5b33";
+set comp_bgcolor = "#c4bd8e";
+set header_link = "#FFFFFF";
+set entry_link = "#613815";
+set entry_bgcolor = "#dbd7b9";
+set comments_screened_bgcolor = "#cbc9b9";
+set header_fgcolor = "#d7d2af";
+set main_bgcolor = "#cd9338";
+set calendar_active = "#cd9338";
+set header_bgcolor = "#c6710a";
+set calendar_inactive = "#dbd7b9";
+set comments_bgcolor = "#e4deb5";
+
+#NEWLAYER: component/pinkelephants
+layerinfo "type" = "theme";
+layerinfo "name" = "Pink Elephants";
+layerinfo redist_uniq = "component/pinkelephants";
+layerinfo "source_viewable" = 0;
+set comments_screened_bgcolor = "#e29994";
+set page_background_image = "";
+set calendar_active = "#a8a8a7";
+set calendar_inactive = "#e29994";
+set comp_fgcolor = "#ad5a55";
+set entry_fgcolor = "#ffffff";
+set comp_bgcolor = "#f7b3ae";
+set entry_link = "#777776";
+set header_link = "#FFFFFF";
+set entry_bgcolor = "#a8a8a7";
+set main_bgcolor = "#e29994";
+set header_fgcolor = "#ad5a55";
+set header_bgcolor = "#e29994";
+set comments_bgcolor = "#9c9c9c";
+
+#NEWLAYER: component/sugarspice
+layerinfo "type" = "theme";
+layerinfo "name" = "Sugar and Spice";
+layerinfo redist_uniq = "component/sugarspice";
+layerinfo "source_viewable" = 0;
+set entry_fgcolor = "#927DAD";
+set comp_bgcolor = "#D5EBFA";
+set header_link = "#6e5593";
+set entry_link = "#759EBA";
+set entry_bgcolor = "#D5E9D7";
+set comments_screened_bgcolor = "#BEC9BF";
+set header_fgcolor = "#6E5593";
+set main_bgcolor = "#FCD9C4";
+set calendar_active = "#FCD9C4";
+set header_bgcolor = "#D4CAE1";
+set calendar_inactive = "#D4CAE1";
+set comp_fgcolor = "AA9ABF";
+set comments_bgcolor = "#B9DABC";
+
+#NEWLAYER: component/greensuperhero
+layerinfo "type" = "theme";
+layerinfo "name" = "That Green Superhero";
+layerinfo redist_uniq = "component/greensuperhero";
+layerinfo "source_viewable" = 0;
+set comments_screened_bgcolor = "#c99bd7";
+set page_background_image = "";
+set calendar_active = "#bc6ed4";
+set calendar_inactive = "#c99bd7";
+set comp_fgcolor = "#bc87cb";
+set entry_fgcolor = "#424242";
+set comp_bgcolor = "#efefe1";
+set entry_link = "#027040";
+set header_link = "#ffffff";
+set entry_bgcolor = "#e4ede9";
+set main_bgcolor = "#16b16c";
+set header_fgcolor = "#d0efe2";
+set header_bgcolor = "#049957";
+set comments_bgcolor = "#bed8cc";

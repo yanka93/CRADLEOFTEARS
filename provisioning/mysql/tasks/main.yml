@@ -1,0 +1,72 @@
+- name: install MySQL packages
+  become: true
+  yum: name="{{item}}" state=present
+  with_items:
+    - mysql-devel
+    - mysql-server
+    - mysql
+    - MySQL-python
+    - perl-DBD-MySQL
+
+- name: bind mysql address to 0.0.0.0 (allow connections from outside the vagrant)
+  become: true
+  lineinfile:
+    dest: /etc/my.cnf
+    regexp: '^socket'
+    line: bind-address  = 0.0.0.0
+
+- name: start mysql
+  become: true
+  service:
+    name: mysqld
+    state: restarted
+    enabled: true
+
+- name: test passwordless root access
+  shell: mysql -u root -e"quit"
+  register: mysql_passwordless
+  ignore_errors: yes
+
+- name: set root password
+  become: true
+  mysql_user: name=root password="{{mysql_root_password}}" host="{{item}}" priv=*.*:ALL,GRANT state=present
+  with_items:
+    - "{{ansible_hostname}}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: mysql_passwordless.rc==0
+
+- name: flush privileges
+  become: true
+  command: "mysql -uroot -p{{ mysql_root_password }} -e\"FLUSH PRIVILEGES;\""
+
+- name: create dev user
+  become: true
+  command: "mysql -uroot -p{{ mysql_root_password }} -e \"DELETE FROM mysql.user where user='{{ mysql_user }}'; GRANT ALL ON `ljr`.* TO '{{ mysql_user }}'@'localhost' IDENTIFIED BY '{{ mysql_password }}'; SET PASSWORD FOR '{{ mysql_user }}'@'localhost' = PASSWORD('{{ mysql_password }}');FLUSH PRIVILEGES;\""
+
+- name: restart mysql
+  become: true
+  service:
+    name: mysqld
+    state: restarted
+    enabled: true
+
+- name: remove the MySQL test database
+  become: true
+  action: mysql_db db=test state=absent login_password="{{ mysql_root_password }}"
+
+- name: create database
+  become: true
+  mysql_db: name="{{ item }}" state=present collation=utf8_general_ci encoding=utf8 login_password="{{ mysql_root_password }}"
+  with_items: "{{ mysql_databases }}"
+
+- name: add  DB users and allow access to databases
+  become: true
+  command: "mysql -uroot -p{{ mysql_root_password }} -e \"GRANT ALL ON `{{ item }}`.* TO '{{ mysql_user }}'@'localhost';FLUSH PRIVILEGES;\""
+  with_items:
+    "{{ mysql_databases }}"
+
+- name: restart the MySQL service
+  become: true
+  action: service name=mysqld state=restarted enabled=true

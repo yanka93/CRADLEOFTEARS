@@ -1,0 +1,90 @@
+<?page
+title=>Latest Posts
+head<=
+<style>
+ div.entry { margin-left: 20px; }
+</style>
+<=head
+body<=
+<?_code
+{
+    use strict;
+
+    LJ::set_active_crumb('latestposts');
+
+    my $recent;
+    my $stat;
+
+    $recent = LJ::MemCache::get("blob:ljcom_latestposts2");
+    $stat = LJ::MemCache::get("blob:ljcom_latestposts_stats");
+    return "No posts found." unless ref $recent eq "ARRAY";
+
+    my $ret;
+
+    if (ref $stat eq 'ARRAY' and my $delta = $stat->[1] - $stat->[2]) {
+
+        my $rate_sec = $stat->[0] / $delta;
+
+        my $rate_min = $rate_sec * 60;
+        my $fmt_min = $rate_min > 10 ? "%.0f" : "%.2f";
+
+        my $rate_hour = $rate_min * 60;
+        my $fmt_hour = $rate_hour > 10 ? "%.0f" : "%.2f";
+
+        my $post_min  = sprintf($fmt_min, $rate_min);
+        my $post_hour = sprintf($fmt_hour, $rate_hour);
+
+        $ret .= "Current posting stats: <b>$post_hour</b> per hour, <b>$post_min</b> per minute\n";
+    }
+
+    my @postids;
+    foreach my $p (@$recent) {
+        next unless $p->{security} eq 'public';
+        $p->{ditemid} = $p->{itemid}*256 + $p->{anum};
+        push @postids, [ $p->{clusterid}, $p->{journalu}{userid}, $p->{itemid} ];
+    }
+    my $rawposts = LJ::get_posts_raw({memcache_only=>1}, @postids);
+
+    $ret .= "<a href='latest-rss.bml'><img src=\"$LJ::IMGPREFIX/xml.gif\" width='36' height='14' alt='RSS version' align='right' border='0' /></a>";
+    $ret .= "<table border='0' cellpadding='4' style='margin-top: 10px;'>\n";
+    foreach my $p (@$recent) {
+        next unless $p->{security} eq 'public';
+        my $uj = $p->{'journalu'};
+        my $up = $p->{'journalp'};
+        my $id = "$uj->{userid}:$p->{itemid}";
+
+        # we shouldn't expect every post to be in the memcache.
+        next unless $rawposts->{text}{$id};
+
+        # this sucks, but we can't load users here.
+        next if $rawposts->{prop}{$id}{unknown8bit};
+
+        my $url = LJ::journal_base($uj) . "/$p->{'ditemid'}.html";
+        my ($subject, $body) = @{$rawposts->{text}{$id}};
+
+        $ret .= "<tr valign='top'><td nowrap='nowrap'><a href=\"$url\">" . substr(scalar(gmtime($p->{timepost})), 4, 12) . "</a></td>";
+        $ret .= "<td>\n";
+
+        $ret .= LJ::ljuser($up->{user});
+        if ($up->{userid} != $uj->{userid}) {
+            $ret .= " (in " . LJ::ljuser($uj->{user}, {type => $uj->{journaltype}}) . ")";
+        }
+        $ret .= ":<br />\n";
+
+        $ret .= "<div class='entry'>";
+        LJ::CleanHTML::clean_subject(\$subject);
+        LJ::CleanHTML::clean_event(\$body, {'cuturl' => LJ::item_link($uj, $p->{'itemid'}, $p->{'anum'})});
+        $ret .= "$subject<br />\n" if $subject;
+        $ret .= $body;
+        $ret .= "</div></td></tr>\n";
+
+    }
+    $ret .= "</table>\n";
+
+    BML::noparse();
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

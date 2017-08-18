@@ -1,0 +1,62 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET $title $body);
+
+    $title = "Order History";
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    $body .= "<?p Below are all of your previously completed orders, along with ";
+    $body .= "pending carts created within the last month. p?>";
+
+    $body .= "<?p Click on the Order ID to view the cart.  For pending carts which haven't ";
+    $body .= "been checked out, you will be able to add and remove items. For pending carts ";
+    $body .= "which have been checked out, you will only be able to modify the payment type. p?>";
+
+    # print dollars
+    my $damt = sub { sprintf("\$%.02f", shift()) };
+
+    my $dbh = LJ::get_db_writer();
+    my $sth = $dbh->prepare("SELECT * FROM payments " .
+                            "WHERE userid=? AND anum IS NOT NULL AND (used='Y' OR used='N' " .
+                            "OR (used='C' AND datesent>(NOW() - INTERVAL 1 MONTH)))");
+    $sth->execute($remote->{'userid'});
+    my @rows = ();
+    push @rows, $_ while $_ = $sth->fetchrow_hashref;
+
+    unless (@rows) {
+        $body .= "<div style='margin: 10px 0 0 30px;'><i>No Orders</i></div>";
+        return;
+    }
+
+    $_->{'datesent'} = substr($_->{'datesent'}, 0, 10) foreach @rows;
+
+    $body .= "<table border='0' cellspacing='5' align='center'>";
+    $body .= "<tr><th align='left'>Date</th><th align='left'>Status</th>";
+    $body .= "<th align='left'>Amount</th><th align='left'>Order ID</th></tr>";
+
+    foreach my $row (sort { $b->{'datesent'} cmp $a->{'datesent'} } @rows) {
+        $body .= "<tr><td>$row->{'datesent'}</td>";
+        $body .= "<td>" . ($row->{'used'} eq 'C' ? "pending" : "completed") . "</td>";
+        $body .= "<td>" . $damt->($row->{'amount'}) . "</td>";
+        my $id = "$row->{'payid'}-$row->{'anum'}";
+        $body .= "<td>[<a href='./?c=$id'>$id</a>]</td></tr>";
+    }
+
+    $body .= "</table>";
+
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

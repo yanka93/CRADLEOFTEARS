@@ -1,0 +1,9 @@
+Return a BML construct:
+[Tag: Foo]
+
+Inside-out from above:
+[This is it.]
+
+Recurse:
+[Error: <b>_CODE block failed to execute by permission settings</b>]
+

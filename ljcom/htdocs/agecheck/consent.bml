@@ -1,0 +1,58 @@
+<?page
+title=>Age Verification (for COPPA Compliance)
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $c = $GET{c};
+    unless ($c =~ /^(\d+)[;\.](.+)$/) {
+        return "<?h1 Error h1?><?p You did not get here with a valid authorization code.  Please try clicking the link in your email again. p?>";
+    }
+
+    my ($aaid, $auth) = ($1, $2);
+    my $aa = LJ::is_valid_authaction($aaid, $auth);
+    unless ($aa) {
+        return "<?h1 Error h1?><?p The authorization code provided does not appear valid or has expired.  If it has been more than 72 hours since you verified your child's account, you will need to do so again. p?>";
+    }
+
+    # so, it's verified
+    my $u = LJ::load_userid($aa->{userid});
+    unless ($u) {
+        return "<?h1 Error h1?><?p The account specified for this authorization was not found.  You will need to perform the age verification for your child's account again. p?>";
+    }
+
+    # now do the work
+    LJ::mark_authaction_used($aa);
+    LJ::set_userprop($u, 'parent_email', $aa->{arg1});
+    $u->underage(0, undef, "parent email verification; email=$aa->{arg1}");
+
+    # and now we have to send an email validation notice to the child's email
+    my $aa = LJ::register_authaction($u->{userid}, "validateemail", $u->{email});
+
+    my $body = BML::ml('email.newacct2.body', {
+        "email" => $u->{email},
+        "regurl" => "$LJ::SITEROOT/confirm/$aa->{'aaid'}.$aa->{'authcode'}",
+        "username" => $u->{user},
+        "sitename" => $LJ::SITENAME,
+        "siteroot" => $LJ::SITEROOT,
+        "admin_email" => $LJ::ADMIN_EMAIL,
+        "bogus_email" => $LJ::BOGUS_EMAIL,
+    });
+
+    LJ::send_mail({
+        'to' => $u->{email},
+        'from' => $LJ::ADMIN_EMAIL,
+        'fromname' => $LJ::SITENAME,
+        'charset' => 'utf-8',
+        'subject' => BML::ml('email.newacct.subject', {'sitename' => $LJ::SITENAME}),
+        'body' => $body,
+    });
+
+    # queue up a message
+    return "<?h1 Success h1?><?p Thank you for verifying your child's access.  Their account has been activated and they can start using it now. p?><?p Additionally, we have sent a welcome email to your child welcoming them to the site. p?>";
+}
+_code?>
+<=body
+page?>

@@ -1,0 +1,9 @@
+<?_info
+localblocks<=
+bracketed=>[ %%DATA%% ]
+braced=>{ %%DATA%% }
+grouped=>( %%DATA%% )
+<=localblocks
+_info?>
+
+<?bracketed <?braced <?bracketed <?grouped fish grouped?> bracketed?> braced?> bracketed?>

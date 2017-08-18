@@ -1,0 +1,34 @@
+Escape HTML tags:
+<?_ea In structural HTML, the <b> tag should be replaced with <strong> and the
+<i> tag with <em>. _ea?>
+
+Escape a code example:
+<pre><code><?_ea
+# Overload Apache::FakeRequest's print to append output to a variable.
+{
+	no warnings 'redefine';
+	*Apache::FakeRequest::print = sub {
+		my $r = shift;
+		$Output .= join('', @_)
+	};
+	*Apache::FakeRequest::log_error = sub {
+		my $r - shift;
+		print STDERR @_, "\n"; $Errout .= join('', @_)
+	};
+	*Apache::FakeRequest::pnotes = sub {
+		my ( $r, $key ) = @_;
+		$Pnotes->{ $key } = shift if @_;
+		$Pnotes->{ $key };
+	};
+}
+_ea?></code></pre>
+
+Escape old-style syntax:
+<?_ea Tags in BML used to be like (=this=), but that format has since been
+deprecated. _ea?>
+
+Escape new-style syntax:
+<?_ea Now tags in BML look like: <?foo?>. _ea?>
+
+
+

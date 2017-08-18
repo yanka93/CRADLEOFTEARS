@@ -1,0 +1,91 @@
+<?page
+title=>LiveJournal News
+body<=
+
+<?h1 Introduction h1?>
+<?p
+What I want to tell everybody with this announcement is what the current state of LiveJournal is, where it's going, the new people that have been helping, who your contacts should now be, etc..
+p?>
+<?p
+This is going to be a long news entry, so I'm putting it here instead of putting it all in my journal entry.  In the future there will be a feature that limits the length of displayed entries to a certain length and you'll be able to click a "Read more..." link to see all of it.  That would be good for this news entry, but I haven't written it yet.
+p?>
+
+<?h1 So many helpful people, so little structure... h1?>
+<?p
+Currently the biggest problem with LiveJournal isn't that the servers get slow sometimes... it isn't that the site organization is confusing as hell.... no, those are nothing in comparison with how poorly organized the LiveJournal "staff" is.  (I say "staff" because none of us get paid.)
+p?>
+<?p
+There are so many helpful people that want to make LiveJournal successful, but unless we organize ourselves well, nothing's going to get done.
+p?>
+
+<?h2 Now h2?>
+<?p
+I'm going to attempt to illustrate the problem by use of, well, illustrations.  Here is the current structure of LiveJournal:
+<CENTER>
+<IMG SRC="now.gif" WIDTH=457 HEIGHT=273>
+</CENTER>
+The two most organized areas are the <A HREF="/support/">support area</A> run by <A HREF="/userinfo.bml?user=dakus">dakus</A> and the <A HREF="/topics/">topic directory</A> run by <A HREF="/userinfo.bml?user=patrick">patrick</A>.  Those guys are doing a wonderful job.  User <A HREF="/userinfo.bml?user=pdxseraph">pdxseraph</A> is also helping a lot in the support area, keeping the FAQ up-to-date when I change things around.
+p?>
+<?p
+With the exception of the support area, topic area, and <A HREF="/userinfo.bml?user=revjim"><B>revjim</B></A> helping me with system maintenance things from time to time, I deal with everything.  That really sucks, for two reasons:
+<OL>
+<LI>No time.  See all the arrows coming in to me but not going back?  Those represent the hundreds of emails I get from people asking for help that I end up just deleting because I don't have time to get back to them.
+<LI>I suck.  I'm not that good at dealing with people.  Worse, I don't like to.  I'd prefer to sit in my little dark room and just program all day and all night.  I can't help but fear that I'm risking LiveJournal's future success by trying to handle it all myself.
+</OL>
+As much as I don't like business and marketing, I realize its importance.  Just look at Microsoft ... they don't always have wonderful products but they market them all very well.  Does this mean I want LiveJournal to becoming a business and marketing machine?  No.  However, we have to do more than we're doing right now, which is essentially zero.
+p?>
+
+<?h2 The Future h2?>
+<?p
+Here is my proposal of what the new LiveJournal structure will look like...
+<CENTER>
+<IMG SRC="proposed.gif" WIDTH=498 HEIGHT=366>
+</CENTER>
+Many things are the same, but here are the biggest changes:
+<UL>
+<LI><B>Mark Kraft</B>, user <A HREF="/userinfo.bml?user=insomnia">insomnia</A>. and <B>lj_biz</B> (user <A HREF="/userinfo.bml?user=lj_biz">lj_biz</A>)<BR>
+Mark is going to be the new all-things-business manager, essentially.  Basically, I'm handing over all the stuff I hate to him, because he can do it a lot better than I can.  Whatever he doesn't want to do I'll either still do, or he'll find somebody else to do it.  Mark's a damn cool guy ... whenever I ask a question on one of the <A HREF="http://lists.livejournal.com/">mailing lists</A> he always replies with a several page reply, filled with nothing but good ideas.
+<P>Mark's now in charge of the <A HREF="/users/lj_biz"><B>lj_biz</B></A> discussion area, where users can go and discuss the business aspects of the site.
+
+<P><LI><B>Evan Martin</B>, user <A HREF="/userinfo.bml?user=evan">evan</A><BR>
+Evan's a friend of mine at school, and a wonderful programmer.  He currently develops the Linux LiveJournal client, but we've been meeting up every so often to work on LiveJournal server stuff... he's a fun guy to work with.
+
+<P><LI><B>More development</B><BR>Now that Mark will be dealing with more stuff, I'll have more free time to work on the code, along with Evan.  This is what I'm good at (when I have enough time) and is what I like to do.  Unstressed Brad --&gt; Happy Brad --&gt; Better LiveJournal.  :-)  Another good thing -- I'm only taking 12 credits next quarter at school, the minimum.  Only 5 of those are even "real" classes, too, as opposed to my 17 real credits this quarter.  In other words, I'll have a ton of free time.
+</UL>
+p?>
+
+<?h1 Thanks to... h1?>
+<?p
+The graphs above do not come close to showing everybody that's been involved in contibuting to LiveJournal.  I wish I could thank everybody that's been helping, but I don't know where to start.  :-(  Seriously, though.... thanks.  I appreciate all the help.  I want LiveJournal to kick ass, and the more help the better.
+p?>
+
+<?h1 Upcoming Features & Improvements h1?>
+
+<?h2 Servers & System Performance h2?>
+<?p
+Probably the most important issue to everybody is the system performance and when we're getting the new servers.  They were supposed to ship out on Fri, Nov. 24th (tomorrow), but there was a shortage on the RAID controller cards, so Dell delayed the shipment until Fri, Dec. 1st.  Once those arrive it's just a matter of setting them up and placing them at a colo facility.  Also, user <A HREF="/userinfo.bml?user=ekashp"><B>ekashp</B></A> has offered to let me use some hardware of his so we can have servers all over the country, and you'll automatically use the one that's closest to you.  Best, if one goes down, you'll automatically use the next closest one in under a minute.  More on that later, though.
+p?>
+
+<?h2 Site re-design h2?>
+<?p
+User <A HREF="/userinfo.bml?user=colin">colin</A> is redesigning the entire site... check out his <A HREF="http://www.livejournal.com/talkread.bml?itemid=839049">design survey</A>.  I can't wait!
+p?>
+
+<?h2 Search engine h2?>
+<?p
+The search engine is coming back.  I just need to make sure it's ultra fast, first, otherwise it slows down the rest of the site.
+p?>
+
+<?h2 Comments posted/received h2?>
+<?p
+This is also coming back.  Again, it's a matter of redesigning parts of it so it doesn't lock up the database.
+p?>
+
+<?h2 The style system h2?>
+<?p
+The current style and color system has tons of problems.  The most noticable one is that you can't customize the look of the userinfo page, or the comment pages.  That'll all change soon enough.  I'm working on a new style system that absolutely rocks... plus, it's very easy to customize things from somebody else's style.
+p?>
+
+
+<=body
+page?>

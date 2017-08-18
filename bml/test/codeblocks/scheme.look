@@ -1,0 +1,4 @@
+tag=>{D}[Tag: %%DATA%%]
+exec=>{D}<?_code %%DATA%% _code?>
+
+

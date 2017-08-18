@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Alternate Age Verification (for COPPA Compliance)</title>
+<style>
+   @media screen {
+       body {
+          background-color: #ffffff;
+          color: #000000;
+       }
+       #Directions { margin-bottom: 0; }
+       #AffixDirections { margin-bottom: 0; }
+       h1 {
+          text-align: right;
+       }
+       p#Affix {
+          margin-top: 0.2in;
+          border: 1px solid #000000;
+          height: 4.9in;
+       }
+       .Label { 
+          font-weight: bold; 
+       }
+       #Info {
+          margin: 0;
+       }
+       #Info th, #Info td {
+          margin-top: 1pt;
+          line-height: 14pt;
+       }
+       #Info th {
+          text-align: left;
+          width: 4em;
+       }
+       #Username td, #Time td, #Notes td, .Notes td {
+          margin-top: 0;
+          margin-bottom: .125in;
+          border-bottom: 1px solid #000000;
+       }
+       table, p, h1 {
+          width: 6.5in;
+       }
+       .Label { font-weight: bold; }
+       #ContactAddress { display: none; }
+       #Print { display: inline; }
+   }
+
+   @media print {
+       @page {
+          size: 8.5in 11in;  /* width height */
+          margin: 0.5in;
+       }
+       body {
+          background-color: #ffffff;
+          color: #000000;
+          font: 12pt "Times", "Times New Roman", serif;
+          margin: 0;
+       }
+       #AffixDirections { margin-bottom: 0; }
+       h1 {
+          text-align: right;
+       }
+       p#Affix {
+          margin-top: 0.2in;
+          border: 1px solid #000000;
+          height: 4.9in;
+       }
+       .Label { 
+          font-weight: bold; 
+       }
+       #Info {
+          margin: 0;
+       }
+       #Info th, #Info td {
+          margin-top: 1pt;
+          line-height: 14pt;
+       }
+       #Info th {
+          text-align: left;
+          width: 4em;
+       }
+       #Username td, #Time td, #Notes td, .Notes td {
+          margin-top: 0;
+          margin-bottom: .125in;
+          border-bottom: 1px solid #000000;
+       }
+       #ContactInfo a {
+          color: #000000;
+          text-decoration: none;
+       }
+       table, p, h1 {
+          width: 6.5in;
+       }
+       #Print { display: none; }
+   }
+
+</style>
+</head>
+
+<body>
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $remote = LJ::get_remote();
+    return BML::redirect("$LJ::SITEROOT/agecheck/")
+        unless $remote && $remote->underage;
+
+    my $ljuser = LJ::ljuser($remote);
+    my $datetime = LJ::time_to_http();
+    my $postal_addr = LJ::Pay::postal_address_html('Attention: COPPA Verifications');
+
+    return qq{
+<h1>Alternate Age Verification</h1>
+<span id="Directions">Please mail, fax, or scan & email this form using the contact information below.</span>
+<form id="Print"><input type="button" onclick="javascript:window.print()" Value="Print now" /></form>
+
+<p id="Address">
+   <b>Fax:</b> 415-294-5054<br />
+   <b>Email:</b> <a href='mailto:coppa\@$LJ::DOMAIN'>coppa\@$LJ::DOMAIN</a> <small>(Please attach either PNG or JPG)</small><br /><br />
+
+   $postal_addr
+</p>
+
+<table id="Info" cellspacing="0" cellpadding="0">
+<tr id="Username">
+   <th class="Label">User:</th><td>$ljuser</td><td align='right'><b style='font-size: 1.5em;'>$remote->{user}</b></td>
+</tr>
+<tr id="Time">
+   <th class="Label">Time:</th><td colspan='2'>$datetime</td>
+</tr>
+<tr id="Notes">
+   <th class="Label">Notes:</th><td colspan='2'>&nbsp;</td>
+</tr>
+<tr class="Notes">
+   <th class="Label"></th><td colspan='2'>&nbsp;</td>
+</tr>
+<tr class="Notes">
+   <th class="Label"></th><td colspan='2'>&nbsp;</td>
+</tr>
+<tr class="Notes">
+   <th class="Label"></th><td colspan='2'>&nbsp;</td>
+</tr>
+</table>
+
+<p id="AffixDirections"><span class="Label">Affix a <u>copy</u> of your government-issued photo ID or birth certificate here:</span></p>
+<p id="Affix"></p>
+<p id="ContactInfo">Please direct all inquiries to <a href="http://www.livejournal.com/support/">$LJ::SITENAME Support</a>. <span id="ContactAddress">(http://www.livejournal.com/support/)</span></p>
+
+}; # end qq{}
+}
+_code?>
+</body>
+</html>

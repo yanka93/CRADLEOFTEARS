@@ -1,0 +1,7 @@
+rtag=>{D}<?rtag %%DATA%% rtag?>
+outer=>{D}[outer: <?inner %%DATA%% inner?>]
+inner=>{D}[inner: %%DATA%%]
+1tag=>{D}<?2tag %%DATA%% 2tag?>
+2tag=>{D}<?redtag %%DATA%% redtag?>
+redtag=>{D}<?bluetag %%DATA%% bluetag?>
+bluetag=>{D}<?1tag %%DATA%% 1tag?>

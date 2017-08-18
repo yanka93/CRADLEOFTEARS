@@ -1,0 +1,87 @@
+<?page
+title=>Beta Test Page
+body<=
+
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    my $betatext;
+    my $set;
+    my $capname;
+    my $remote = LJ::get_remote();
+    my $is_admin = $remote && LJ::check_rel(LJ::get_userid("lj_core"), $remote->{'userid'}, "P");
+
+    if (LJ::did_post()) {
+        my $u;
+        if ($POST{fb_on} || $POST{pb_off}) {
+            return "Not allowed." unless $is_admin;
+            $u = LJ::load_user($POST{fbbeta});
+            $betatext = "<p><font color='red'>No such user <i>$POST{fbbeta}</i>.</font></p>" unless $u;
+            $capname = '_fbbeta';
+            if ($u && $POST{fb_on}) {
+                $set = 1;
+                $betatext = "<p><font color='green'>" . LJ::ljuser($u) . " is now in the beta.</font>";
+            } elsif ($u && $POST{fb_off}) {
+                $set = 0;
+                $betatext = "<p><font color='green'>" . LJ::ljuser($u) . " is no longer in the beta.</font>";
+            }
+        } else {
+            $capname = '_betatest';
+            if ($POST{'no'}) {
+                BML::set_cookie("betatest", "", undef, $LJ::COOKIE_PATH, $LJ::COOKIE_DOMAIN);
+                $set = 0;
+            }
+            if ($POST{'yes'}) {
+                BML::set_cookie("betatest", "1", time()+60*60*24, $LJ::COOKIE_PATH, $LJ::COOKIE_DOMAIN);
+                $set = 1;
+            }
+            $u = $remote;
+         }
+
+         # now set any sort of cap needed
+         if (defined $set) {
+             return "No such user to set cap for." unless $u;
+             my @cap = grep { $LJ::CAP{$_}->{'_name'} eq $capname } keys %LJ::CAP;
+             if ($u && scalar @cap == 1) {
+                 my $capnum = $cap[0]+0;
+                 if ($set) {
+                     LJ::update_user($u, { raw => "caps=caps|(1<<$capnum)" });
+                     return "<a href='betatest.bml'>Beta-test mode</a> is now <b>ON</b>.";
+                 } else {
+                     LJ::update_user($u, { raw => "caps=caps&~(1<<$capnum)" });
+                     return "<a href='betatest.bml'>Beta-test mode</a> is now off.";
+                 }
+             }
+         }
+    }
+
+    my $ret = <<EOF;
+<table width="100%"><tr><td valign='top'>
+<?h1 Want to beta-test? h1?>
+<form method='post'>
+<p><input type='submit' name='yes' value='Yes' /> - Turn me on.
+<p><input type='submit' name='no' value='No' /> - No, stop the pain!
+</form>
+</td><td valign='top'>
+EOF
+
+   if ($is_admin) {
+       $ret .= <<EOF;
+<?h1 FotoBilder Beta Test h1?>
+<form method='post'>
+<p>Username: <input type='text' name='fbbeta' value='' />
+<p><input type='submit' name='fb_on' value='Turn On' /> <input type='submit' name='fb_off' value='Turn Off' />
+$betatext
+</form>
+EOF
+    }
+
+    $ret .= "</td></tr></table>";
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

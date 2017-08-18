@@ -1,0 +1,3983 @@
+;; -*- coding: utf-8 -*-
+/accountstatus.bml.btn.status|notes=Submit button for form
+/accountstatus.bml.btn.status=Changez de statut
+
+/accountstatus.bml.error.db=Il y a eu une erreur dans la base de donnée en effectuant votre requête.
+
+/accountstatus.bml.error.invalid=Statut inaproprié
+
+/accountstatus.bml.error.nochange.expunged=Ce compte a été supprimé.
+
+/accountstatus.bml.error.nochange.suspend|notes=You can't change a journal to be unsuspended. This message is for users who attempt to do so.
+/accountstatus.bml.error.nochange.suspend=Vous ne pouvez pas changez le statut de votre journal lorsqu'il est suspendu.
+
+/accountstatus.bml.header.success=Réussi
+
+/accountstatus.bml.journalstatus.about=Si vous voulez activer ou désactiver votre journal, c'est ici qu'il faut le faire. Lorsque vous aurez désactivé votre journal, vous aurez 30 jours pour le réactiver au cas où vous changeriez d'idée, faute de quoi le contenu de votre journal sera effacé en permanence et il n'y aura aucun moyen de le réactiver.
+
+/accountstatus.bml.journalstatus.head=Statut d'activation du journal
+
+/accountstatus.bml.journalstatus.select.activated=Activé
+
+/accountstatus.bml.journalstatus.select.deleted=Désactivé
+
+/accountstatus.bml.journalstatus.select.head=Statut :
+
+/accountstatus.bml.journalstatus.select.suspended=Suspendu
+
+/accountstatus.bml.message.nochange=Le statut de votre journal est demeuré <b>[[statusvis]]</b>.
+
+/accountstatus.bml.message.success=Le statut de votre journal à été changé à <b>[[statusvis]]</b> avec succès.
+
+/accountstatus.bml.title=État du compte
+
+/allpics.bml.current=Icônes actuelles
+
+/allpics.bml.default=<u>Par défaut</u>
+
+/allpics.bml.edit2=Peut être seriez vous interessé à <a href='[[editlink]]'>éditer les mots clés de vos icônes</a>  ou à <a href='[[uploadlink]]'>télécharger une nouvelle icône</a>.
+
+/allpics.bml.error.noparam=Vous devez spécifier un paramètre d'utilisateur.
+
+/allpics.bml.keywords=Mots clés :
+
+/allpics.bml.nopics.text.other=Cet utilisateur n'a pas téléchargé d'icônes.
+
+/allpics.bml.nopics.text2=Vous n'avez aucune icône téléchargée. Pour en télécharger une, allez <a href='[[link]]'>ici</a>.
+
+/allpics.bml.nopics.title=Pas d'icônes
+
+/allpics.bml.pics=Voici les icônes de [[user]].
+
+/allpics.bml.title=Icônes de l'utilisateur
+
+/approve.bml.comm.success=Succès
+
+/approve.bml.comm.text<<
+Vous avez été ajouté à [[comm]]
+Cliquez <a [[aopts]]>ici</a> pour ajouter la communauté à votre liste d'amis.
+.
+
+/approve.bml.commjoin.text<<
+Vous avez approuvé la demande d'adhésion à la communauté [[comm]] de [[user]].
+Cliquez <a [[aopts]]>ici</a> afin de voir la liste des membres de cette communauté et d'ajouter d'autres options pour cet utilisateur.
+.
+
+/approve.bml.error.actionperformed=Cette action a déjà été éffectuée
+
+/approve.bml.error.approving=Il y a eu une erreur en approuvant la demande d'adhésion.
+
+/approve.bml.error.internerr.invalidaction=Erreur interne: action non valide
+
+/approve.bml.error.invalidargument=L'argument suggéré n'est pas valide
+
+/approve.bml.error.unknownactiontype=Type d'action inconnu
+
+/approve.bml.shared.success=Succès
+
+/approve.bml.shared.text<<
+Vous avez reçu la permission de poster sur [[shared]].
+Cliquez <a [[aopts]]>ici</a> pour ajouter le journal partagé à votre liste d'amis.
+.
+
+/approve.bml.title=Permission d'agir
+
+/birthdays.bml.description=Ci-dessous se trouvent les anniversaires de tous ceux que vous listez comme amis.
+
+/birthdays.bml.title=Anniversaires
+
+/changepassword.bml.btn.proceed=Procédez
+
+/changepassword.bml.changepassword.header=Changez votre mot de passe
+
+/changepassword.bml.changepassword.instructions=Remplissez le formulaire ci-dessous pour changer votre mot de passe. Pour de l'aide à choisir un bon mot de passe pour garder la sécurité de votre compte, allez à <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=71">cette FAQ</a>.
+
+/changepassword.bml.email.body<<
+Votre mot de passe à été changé chez [[sitename]].
+
+À l'avenir, pour le récupérer allez à :
+
+[[siteroot]]/lostinfo.bml
+
+Sincèrement, 
+L'équipe de [[sitename]]
+.
+
+/changepassword.bml.email.subject=Changement du mot de passe
+
+/changepassword.bml.error.badcheck=Mauvais nouveau mot de passe [[error]]
+
+/changepassword.bml.error.badnewpassword=Le confirmation de votre nouveau mot de passe n'est pas identique à votre nouveau mot de passe. Peut-être avez vous fait une erreur en l'écrivant. Veuillez recommencer et confirmer votre nouveau mot de passe à nouveau.
+
+/changepassword.bml.error.badoldpassword=Votre ancien mot de passe est incorrect.
+
+/changepassword.bml.error.blankpassword=Votre nouveau mot de passe ne peut pas être vide.
+
+/changepassword.bml.error.changetestaccount=Le mot de passe du compte d'essai ne peut être modifié.
+
+/changepassword.bml.error.characterlimit=Les mots de passes sont limités à 30 caractères.
+
+/changepassword.bml.error.invaliduser=Nom d'utilisateur invalide <B>[[user]]</B>. Cet utilisateur n'existe pas. Êtes-vous sûr de l'avoir bien écrit?
+
+/changepassword.bml.error.mustenterusername=Vous devez enter un nom d'utilisateur.
+
+/changepassword.bml.error.nonascii=Les mots de passe sont restreints aux symboles ASCII. Veuillez choisir un mot de passe qui n'utilise pas d'autres symboles.
+
+/changepassword.bml.error.notvalidated=Vous ne pouvez pas changer votre mot de passe si votre courriel actuel n'a pas été validé. Veuillez voir <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=11">la FAQ</a> pour obtenir des informations supplémentaires.
+
+/changepassword.bml.newpassword=Nouveau mot de passe :
+
+/changepassword.bml.newpasswordagain=Nouveau mot de passe (encore) :
+
+/changepassword.bml.oldpassword=Ancien mot de passe :
+
+/changepassword.bml.proceed.instructions=Appuyez sur le bouton ci-dessous et votre mot de passe sera changé. Vous recevrez aussi un courriel qui vous avertira du changement de mot de passe. 
+
+/changepassword.bml.relogin=De plus, toutes vos sessions existantes ont été fermées. Vous devriez <a [[aopts]]>vous ré-enregistrer</a> avant de continuer.
+
+/changepassword.bml.success.text=Votre mot de passe à été changé et un courriel vous a été envoyé avec un message de rappel.
+
+/changepassword.bml.title=Changez votre mot de passe
+
+/community/index.bml.main<<
+<?h1 Bienvenue! h1?>
+<?p
+Bienvenue au centre communautaire de LiveJournal. C'est ici que vous découvrirez où et comment entrer en contact avec d'autres utilisateurs mordus de LiveJournal! LiveJournal n'est pas seulement un endroit génial pour garder un journal, c'est aussi un endroit où les gens se rencontrent, interagissent, partagent des intérêts communs, et passent du bon temps. Voici quelques caractéristiques pour vous gardez au courant. 
+p?>
+
+<?h1 Nouveau? h1?>
+<?p Vous êtes nouveau à LiveJournal et ne savez pas encore vraiment quoi faire? Si c'est le cas, peut-être voudrez vous aller au <a href="/community/newbies"><strong>Salon des nouveaux</strong></a>. Vous y trouverez des réponses à plusieurs de vos questions. Visitez <?ljcomm newbies ljcomm?>, explorez un peu, et vous serez un pro en un rien de temps! 
+p?>
+
+<?h1 Restez informés! h1?>
+<?p
+Restez informé de ce qui se passe dans le monde de LiveJournal. Plusieurs communautés officielles de LiveJournal existent que vous trouverez utiles. Celles-ci sont particulièrement utiles: 
+<br /><br />
+Ajoutez <?ljuser news ljuser?> à votre liste d'amis afin de rester au courant des derniers événements concernant tous les utilisateurs de LiveJournal. <br />
+Ajoutez <?ljcomm lj_maintenance ljcomm?> à votre page d'amis pour avoir accès à tous les développements techniques, incluant les problèmes techniques et des rapports sur les problèmes avec le service. 
+p?>
+
+<?h1 Parlez! h1?>
+<?p
+Les utilisateurs de LiveJournal parlent entre eux à n'en plus finir. Plusieurs d'entres eux utilisent des programmes de messagerie instantanée, incluant <a href="http://www.aim.com/index.adp"><strong>AIM</strong></a>, <a href="http://web.icq.com/"><strong>ICQ</strong></a>, <a href="http://messenger.yahoo.com/"><strong>Yahoo!</strong></a>, <a href="http://messenger.msn.com/"><strong>MSN</strong></a>, ou <a href="http://www.jabber.org/"><strong>Jabber</strong></a>. Si vous utilisez aussi certains de ces programmes, n'oubliez pas de partager comment vous joindre sur votre page de profil, en mettant à jour votre <a href="/editinfo.bml"><strong>page d'informations personnelles</strong></a>. Si vous avez un <a href="/paidaccounts/"><strong>compte payant</strong></a>,  vous pouvez aussi <a href="/support/faqbrowse.bml?faqid=30"><strong>recevoir de la messagerie texte</strong></a> sur votre téléphone sans-fil ou votre paget. 
+p?>
+
+<?h1 Bénévolat! h1?>
+<?p
+Ne soyez pas gêné! Aidez-nous! La façon la plus facile et rapide de nous aider est d'acheter <a href="/paidaccounts/"><strong>un compte payant</strong></a>. Il existe, bien sûr, plusieurs autres façons d'aider. 
+<br /><br />
+LiveJournal est un projet a source ouverte; si vous avez de l'expérience en programmation ou avec des applications de serveurs vous pouvez allez à la <strong>Communauté de dévelopement</strong> <?ljcomm lj_dev ljcomm?>. Si vous avez des idées pour améliorer LiveJournal, n'hésitez pas à visiter la <strong>section des suggestions</strong> <?ljcomm suggestions ljcomm?>. Si vous aimeriez aider avec un peu de tout, visitez la communauté <strong>affaires</strong> <?ljcomm lj_biz ljcomm?>. Si vous aimez aider les gens, visitez le support technique. Si vous avez des talents en graphisme, visitez <strong>La Communauté d'Art de LiveJournal</strong><?ljcomm lj_art ljcomm?>. 
+p?>
+
+<?h1 Qu'est-ce qu'une communauté? h1?>
+<?p
+Une communauté est simplement un journal qui est administré par un membre de LiveJournal pour des gens qui partagent des intérêts communs. Les communautés sont gratuites à utiliser et à créer.... n'importe qui peut en avoir une. Elles sont aussi très faciles à gérer! Les communautés de LiveJournal peuvent avoir des intérêts tels que <a href="/community/anime/"><strong>Anime</strong></a>, le <a href="/community/zen_within/"><strong>Bouddhisme Zen</strong></a>, l'<a href="/community/astronomy/"><strong>Astronomie</strong></a> ou <a href="/community/invader_zim/"><strong>Invader Zim</strong></a>. Vous trouverez aussi des communautés régionales. Il y a sûrement une communauté pour votre propre région! 
+p?>
+
+<?h1 Comment est-ce que je crée ma propre communauté? h1?>
+<?p
+Il y a une <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=78"><strong>question dans la FAQ</strong></a> qui vous expliquera comment créer votre propre communauté. Il y a aussi deux catégories de FAQ (<a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=community"><strong>FAQ générales de LiveJournal</strong></a> et des <a href="http://www.livejournal.com/support/faqbrowse.bml?faqcat=comm-manage"><strong>FAQs  de gérance des communautés</strong></a>) qui couvrent à peu près tout ce que vous voudrez jamais savoir à propos des communautés. Si vous avez besoin de plus d'informations, n'hésitez pas à <a href="http://www.livejournal.com/support/submit.bml"><strong>soumettre une demande d'aide</strong></a>.
+p?>
+
+<?h1 Comment est-ce que je trouve des communautés? h1?>
+<?p
+Il existe actuellement certaines communautés pour vous aider à trouver d'autres communautés:
+p?>
+
+<ul>
+<li><strong>La communauté de promotion de communautés (<?ljcomm community_promo ljcomm?>)</strong></li>
+<li><strong>La communauté de recherche de communautés (<?ljcomm community_quest ljcomm?>)</strong></li>
+</ul>
+
+<?p
+Avez-vous remarqué quelque chose qui manque?<br />
+Envoyez un courriel à <a href="mailto:jproulx-(a)-livejournal-dot-com">Jesse Proulx</a>, (<?ljuser jproulx ljuser?>) le directeur des communautés.
+p?>
+
+.
+
+/community/index.bml.title=Centre communautaire
+
+/community/join.bml.button.join=Joignez la communauté
+
+/community/join.bml.error.already.member=Vous êtes déjà membre de cette communauté.
+
+/community/join.bml.error.closed=Cette communauté n'est pas ouverte aux nouveaux membres. Si vous voulez y adhérer, veuillez contacter les administrateurs suivants: [[admins]]
+
+/community/join.bml.error.statusvis.body=Le compte avec lequel vous êtes connecté n'est pas un compte actif.
+
+/community/join.bml.error.statusvis.title=Incapable d'adhérer aux communautés.
+
+/community/join.bml.label.addtofriends=Ajouter '[[maintainer]]' à votre liste d'amis.<br>
+
+/community/join.bml.label.allowposting=Cette communauté permet à tout les membres de faire des entrées, vous pouvez donc faire de même maintenant. Si vous avez déjà un client de Live Journal en marche sur votre ordinateur, vous devrez vous déconnecter et vous reconnecter pour que la communauté apparaisse dans votre liste de journaux dans lesquels vous pouvez écrire.
+
+/community/join.bml.label.auth=Bien que vous êtes maintenant un membre de cette communauté, celle-ci ne permet qu'aux utilisateurs autorisés à faire des entrées. Contactez un des administrateurs si vous désirez y avoir accès. Voici une liste des administrateurs de cette communauté: [[admins]]
+
+/community/join.bml.label.banned=Le modérateur de cette communauté vous a banni et vous ne pouvez vous joindre à la communauté. 
+
+/community/join.bml.label.closed=Cette communauté est fermée. Si vous êtes interessé à la joindre, s'il-vous-plaît contactez un des administrateurs. Voici une liste des administrateurs de cette communauté: [[admins]]
+
+/community/join.bml.label.commlogged=Vous êtes connecté avec un compte partagé ou une communauté, et non avec votre journal personnel. 
+
+/community/join.bml.label.errorcomminfo= L'information spécifié pour la communauté n'est pas valide. 
+
+/community/join.bml.label.expls=Clicker sur le bouton ci-dessous pour joindre la communauté "[[maintainer]]". Enlever le crochet de la boîte ci-dessous si vous voulez joindre la communauté sans l'ajouter à votre page d'amis. 
+
+/community/join.bml.label.loginfirst= Pour joindre une communauté, vous devez d'abord <a href="/login.bml?ret=1">vous connecter</a>.
+
+/community/join.bml.label.membernow=Vous êtes maintenant membre de la <a href="/userinfo.bml?user=[[username]]">communauté [[commname]]</a>.
+
+/community/join.bml.label.sure=En êtes-vous certain?
+
+/community/join.bml.reqsubmitted.body=Votre demande d'adhésion à la communauté à été envoyée aux administrateurs:
+
+/community/join.bml.reqsubmitted.title=Votre demande d'adhésion à la communauté est envoyée.
+
+/community/join.bml.request.body=La communauté [[comm]] n'est pas à inscription ouverte. Veuillez vérifier que vous voulez joindre cette communauté en cliquant ci-dessous.
+
+/community/join.bml.request.reason=<i>Optionellement</i>, entrez une raison pour laquelle vous voulez joindre cette communauté:
+
+/community/join.bml.request.title=Requête pour joindre la communauté
+
+/community/join.bml.success=Succès
+
+/community/join.bml.title=Joignez la communauté
+
+/community/leave.bml.button.leave=Quittez la communauté
+
+/community/leave.bml.label.buttontoleave=Cliquer sur le bouton plus bas pour quitter la communauté '[[commname]]". 
+
+/community/leave.bml.label.infoerror=L'information spécifiée pour la communauté n'est pas valable
+
+/community/leave.bml.label.logoutfirst=Avant de quitter une communauté, vous devez être <a href="/login.bml?ret=1">connecté</a>.
+
+/community/leave.bml.label.removed=Vous n'êtes plus membre de la <a href="/userinfo.bml?user=[[commuser]]">communauté [[commname]]</a>
+
+/community/leave.bml.label.removefromfriends=Retirer aussi "[[user]]" de ma liste d'amis.
+
+/community/leave.bml.success=Succès
+
+/community/leave.bml.sure=En êtes vous certain?
+
+/community/leave.bml.title=Quitter la communauté
+
+/community/manage.bml.commlist.actinfo=Profil
+
+/community/manage.bml.commlist.actmembers=<b>[<a href='[[link]]'>Membres</a>]</b>
+
+/community/manage.bml.commlist.actmembers2=Membres
+
+/community/manage.bml.commlist.actpending|notes=This is appended to /community/manage.bml.commlist.actmembers2 when there are pending people.
+/community/manage.bml.commlist.actpending=, <a [[aopts]]>[[num]] en attente </a>
+
+/community/manage.bml.commlist.actsettings=<b>[<a href='[[link]]'>Options</a>]</b>
+
+/community/manage.bml.commlist.actsettings2=Paramètres
+
+/community/manage.bml.commlist.header=Vos communautés
+
+/community/manage.bml.commlist.moderation=En attente de changements
+
+/community/manage.bml.commlist.moderation.num=[<a href='[[link]]'>[[num]] en queue</a>]
+
+/community/manage.bml.commlist.none=<i>Vous n'administrez aucune communauté.</i>
+
+/community/manage.bml.commlist.text=Voici une liste des communautés que vous administrez ou co-administrez:
+
+/community/manage.bml.commlist.title=<b>Titre</b>
+
+/community/manage.bml.commlist.username=<b>Nom d'utilisateur</b>
+
+/community/manage.bml.create.header=Créez une communauté
+
+/community/manage.bml.create.text=Vous pouvez aussi <a href='[[link]]'><b>créer une nouvelle communauté</b></a>.
+
+/community/manage.bml.joinmail.body=Pour les communautés avec des inscriptions fermés, vous avez plusieurs options de courriel:
+
+/community/manage.bml.joinmail.email.all=Recevoir un courriel chaque fois que quelqu'un demande à joindre la communauté
+
+/community/manage.bml.joinmail.email.digest=Recevoir un courriel par jour avec une liste de toutes les requêtes en attente
+
+/community/manage.bml.joinmail.email.none=Aucun courriel. Vous devrez alors utiliser cette page-ci pour vérifier les requêtes.
+
+/community/manage.bml.joinmail.save=Sauvegarder les paramètres
+
+/community/manage.bml.joinmail.title=Options d'administration
+
+/community/manage.bml.title=Administration des communautés
+
+/community/members.bml.error.alreadyadded=[[user]] n'a pas été ajouté parce qu'il ou elle a déjà accès à la communauté.
+
+/community/members.bml.error.alreadysent=[[user]] n'a pu être ajouté parce qu'il ou elle a déjà reçu un courriel de confirmation à la date suivante : <i>[[datetime]]</i>. Veuillez attendre leur réponse.
+
+/community/members.bml.error.invaliduser=La communauté ou le compte syndiqué [[user]] ne peut être ajouté.
+
+/community/members.bml.error.noaccess=Il n'est permis qu'aux administrateurs d'éditer la liste de membres de la communauté. Vous n'êtes pas un administrateur de la communauté [[comm]].
+
+/community/members.bml.error.noattr=Pas d'attributs sélectionnés pour cet utilisateur : [[user]]
+
+/community/members.bml.error.nocomm=Communauté non trouvée.
+
+/community/members.bml.error.nouser=Cet utilisateur n'existe pas : <b>[[user]]</b>
+
+/community/members.bml.key.admin=<b>Administrateur</b>
+
+/community/members.bml.key.member=<b>Membre</b>
+
+/community/members.bml.key.moderate=<b>Modérateur</b>
+
+/community/members.bml.key.post=<b>Autorisation de l'envoi</b>
+
+/community/members.bml.key.preapprove=Pas supervisées
+
+/community/members.bml.key.user=<b>Utilisateur</b>
+
+/community/members.bml.manage2=S'occuper des communautés
+
+/community/members.bml.name=<b>Nom de la communauté:</b> [[name]]
+
+/community/members.bml.nextlink=<i>(Page suivante...)</i>
+
+/community/members.bml.prevlink=<i>(Page précédente...)</i>
+
+/community/members.bml.settings=[<a href='[[link]]'>Options</a>]
+
+/community/members.bml.success.header=Succès
+
+/community/members.bml.success.message=Vos modifications ont étés sauvegardées.
+
+/community/members.bml.success.return=<a href='[[link]]'>Retournez à la liste</a>
+
+/community/members.bml.title=Membres de la communauté
+
+/community/members.bml.update=Sauvegarder
+
+/community/moderate.bml.approve.button=Oui, je l'accepte
+
+/community/moderate.bml.approve.header=Accepter cette entrée?
+
+/community/moderate.bml.approve.preapprove=Ajouter aussi l'utilisateur [[user]] à la liste d'utilisateurs autorisés pour cette communauté.
+
+/community/moderate.bml.approve.text=Êtes-vous sur de vouloir accepter cette entrée?
+
+/community/moderate.bml.brlist.poster=Auteur
+
+/community/moderate.bml.brlist.subject=Le sujet commence
+
+/community/moderate.bml.brlist.time=Heure
+
+/community/moderate.bml.brlist.view=Affichage
+
+/community/moderate.bml.browse.empty=La liste de supervision est vide.
+
+/community/moderate.bml.browse.header=Superviser la communauté
+
+/community/moderate.bml.browse.text=Voici la liste de supervision pour la communauté [[links]]
+
+/community/moderate.bml.choice.approve=Accepter
+
+/community/moderate.bml.choice.reject=Rejeter
+
+/community/moderate.bml.error.noaccess=Vous ne supervisez pas la communauté [[comm]].
+
+/community/moderate.bml.error.noentry=Entrée introuvable (peut être déjà effacée par un autre modérateur)
+
+/community/moderate.bml.error.nolist=Vous ne supervisez aucune communauté.
+
+/community/moderate.bml.error.notfound=Compte de la communauté introuvable.
+
+/community/moderate.bml.manage=Pour s'occuper des comunautés
+
+/community/moderate.bml.moderate=Superviser cette commuanuté
+
+/community/moderate.bml.modlist.actmodempty=[Supervisé(e)]
+
+/community/moderate.bml.modlist.actmoderate=Superviser
+
+/community/moderate.bml.modlist.count=Longueur de la file d'attente
+
+/community/moderate.bml.modlist.header=Superviser les communautés
+
+/community/moderate.bml.modlist.title=Titre
+
+/community/moderate.bml.modlist.username=Nom d'utilisateur
+
+/community/moderate.bml.posted.appheader=Déjà accepté
+
+/community/moderate.bml.posted.apptext=De plus, l'utilisateur [[user]] a été ajouté à la liste d'utilisateurs déjà acceptés dans cette communauté.
+
+/community/moderate.bml.posted.header=Succès
+
+/community/moderate.bml.posted.proterror=L'entrée n'a pas été affichée à cause de cette erreur de protocole : [[err]]
+
+/community/moderate.bml.posted.text=L'entrée a été affichée avec succès.
+
+/community/moderate.bml.reject.button=Oui, rejetez-la
+
+/community/moderate.bml.reject.header=Rejeter cette entrée?
+
+/community/moderate.bml.reject.reason=Vous pouvez aussi expliquer à l'utilisateur vos raisons de rejeter l'entrée. Elles seront envoyées à l'utilisateur par courriel. 
+
+/community/moderate.bml.reject.text=Êtes-vous sûr de vouloir rejeter cette entrée?
+
+/community/moderate.bml.rejected.header=Rejetée
+
+/community/moderate.bml.rejected.text=Cette entrée à été rejetée.
+
+/community/moderate.bml.title=Administration de la communauté
+
+/community/pending.bml.approve.title=<b>Accepter l'inscription?</b>
+
+/community/pending.bml.no=Non
+
+/community/pending.bml.nopending.body=Il n'y a pas de requête d'inscription en attente pour cette communauté.
+
+/community/pending.bml.nopending.title=Personne n'est en attente.
+
+/community/pending.bml.success.added=Vous avez ajouté [[num]] [[?num|personne|personnes]] à cette communauté.
+
+/community/pending.bml.success.ignored=[[num]] [[?num|requête est|requêtes sont]] encore en attente.
+
+/community/pending.bml.success.previous=[[num]] [[?num|requête a|requêtes ont]] été [[?num|passée|passées]], puisqu'[[?num|elle n'est|elles ne sont]] plus en attente. Un autre administrateur s'en est peut être occupé.
+
+/community/pending.bml.success.rejected=Vous avez rejeté [[num]] [[?num|requête|requêtes]] d'adhérer à cette communauté.
+
+/community/pending.bml.title=Requêtes d'inscription en attente
+
+/community/pending.bml.yes=Oui
+
+/community/search.bml.button.clear=Recommencer
+
+/community/search.bml.button.search=Chercher!
+
+/community/search.bml.checkbox.onlywithpics=Seulement les communautés avec des images
+
+/community/search.bml.label.byinterest=Par intérêt
+
+/community/search.bml.label.bylocation=Par endroit
+
+/community/search.bml.label.bytime=Selon l'heure de mise à jour du journal
+
+/community/search.bml.label.city=Ville
+
+/community/search.bml.label.country=Pays
+
+/community/search.bml.label.displayoptions=Afficher les options
+
+/community/search.bml.label.hasmember=A ce membre
+
+/community/search.bml.label.othercriteria=Autres critères
+
+/community/search.bml.label.outputformat=Mode d'afffichage
+
+/community/search.bml.label.records=Entrées par page:
+
+/community/search.bml.label.searchcomm=Chercher dans les communautés
+
+/community/search.bml.label.selecriteria=Choisissez un critère avec lequel vous ferez une recherche. Les résultats contiendront tous les critères. En d'autres termes, chaque boîte à cocher veut dire "ET", et non "OU".
+
+/community/search.bml.label.sortmethod=Méthode d'assemblage
+
+/community/search.bml.label.stateprovince=État/Province
+
+/community/search.bml.label.updated=Mis à jour dans les derniers
+
+/community/search.bml.sel.bypicture=Par icône
+
+/community/search.bml.sel.communityname=Nom de la communauté
+
+/community/search.bml.sel.commview=Vue de la communauté
+
+/community/search.bml.sel.day=jour
+
+/community/search.bml.sel.month=mois
+
+/community/search.bml.sel.updatetime=Heure de mise à jour
+
+/community/search.bml.sel.username=Nom d'usager
+
+/community/search.bml.sel.week=semaine
+
+/community/search.bml.title=Recherche par communauté
+
+/community/settings.bml.button.changecommunity=Sauvegarder
+
+/community/settings.bml.button.createcommunity=Créez une communauté
+
+/community/settings.bml.error.badpassword=Mot de passe de la communauté invalide
+
+/community/settings.bml.error.hasentries=Ce compte a déjà des entrées et ne peut être convertis.
+
+/community/settings.bml.error.maintainertype=Le compte de l'administrateur doit être un compte individuel, pas un autre compte partagé.
+
+/community/settings.bml.error.noaccess=Seulement les administrateurs d'une communauté peuvent modifier les options de la communauté. Vous n'êtes pas administrateur de la communauté [[comm]].
+
+/community/settings.bml.error.notcomm=Ce compte n'est pas une communauté.
+
+/community/settings.bml.error.notfound=Compte de la communauté non trouvé.
+
+/community/settings.bml.error.samenames=Le compte de l'administrateur et le compte de la communauté ne peuvent être les mêmes.
+
+/community/settings.bml.label.anybodycan=<b>Tous les membres</b><br />N'importe qui peut envoyer des entrées s'il est un membre.
+
+/community/settings.bml.label.changeheader=Modifier les préférences de la communauté
+
+/community/settings.bml.label.changetext=Ici vous pouvez modifier les préférences pour la communauté que vous possédez ou administrez.
+
+/community/settings.bml.label.closedmemb2=<b> Inscription fermée</b><br/> Personne ne peut adhérer à la communauté.
+
+/community/settings.bml.label.commchanged=Vos modifications ont étés sauvegardées.
+
+/community/settings.bml.label.commcreate=Ceci est le compte que vous voulez changer en communauté. Il faut qu'il est <a href="/create.bml">déjà été créé</a>, mais il ne doit pas déjà être utilisé par un individu, parce qu'après ce changement, beaucoup d'utilisateurs pourraient potentiellement faire des entrées dans cette communauté.
+
+/community/settings.bml.label.commcreated=Votre communauté a été créée.
+
+/community/settings.bml.label.commheader=Compte de la communauté
+
+/community/settings.bml.label.comminfo=Profil de la communauté
+
+/community/settings.bml.label.commopts=Options de la communauté
+
+/community/settings.bml.label.commsite=Site web de la communauté
+
+/community/settings.bml.label.community=Communauté:
+
+/community/settings.bml.label.createheader=Créez une communauté
+
+/community/settings.bml.label.createtext=Ici il vous sera possible de créer une communauté. Une communauté est un type de compte spécial que d'autres utilisateurs peuvent joindre et auquel ils peuvent faire des entrées. Pour un exemple d'une communauté, visitez la communauté <a href="/userinfo.bml?user=france">France</a>.
+
+/community/settings.bml.label.howoperates=Choisissez comment votre communauté doit fonctionner. Il vous sera possible de changer ces options plus tard.
+
+/community/settings.bml.label.maintainer=Administrateur:
+
+/community/settings.bml.label.maintainer.login=Si cela n'est pas le compte de l'administrateur, <a href='/login.bml?ret=1'>connectez-vous</a> comme quelqu'un d'autre.
+
+/community/settings.bml.label.managepage=<a [[aopts]]>Administration de la communnauté</a> - pour ajouter des membres, permettre de faire des entrées, ajouter des modérateurs, etc.
+
+/community/settings.bml.label.membership=Inscription
+
+/community/settings.bml.label.moderatedmemb=<b>Inscriptions Contrôlées</b>>br/> Les requêtes pour adhérer à la communauté vous sont envoyées par courriel pour que vous les acceptiez.
+
+/community/settings.bml.label.modheader=Supervision
+
+/community/settings.bml.label.modis=<b>Supervisée</b><br />Les nouvelles entrées doivent être approuvées par un modérateur.
+
+/community/settings.bml.label.modisnt=<b>Pas supervisée</b><br />Les nouvelles entrées sont affichées immédiatement.
+
+/community/settings.bml.label.modtext=Est-ce que les soumissions à la communauté sont supervisées?
+
+/community/settings.bml.label.nmcan=<b>Les non-membres peuvent faire des entrées</b><br />N'importe quel utilisateur peut faire des entrées à la communauté sans la joindre.
+
+/community/settings.bml.label.nmcant=<b>Les non-membres ne peuvent pas faire d'entrées</b><br />Il faut joindre la communauté pour y faire des entrées.
+
+/community/settings.bml.label.nmheader=Messages des non-membres 
+
+/community/settings.bml.label.nmtext=Est-ce qu'il faut joindre cette communauté pour faire des entrées?
+
+/community/settings.bml.label.openmemb=<b>Admission ouverte</b><br />N'importe qui peut joindre sans autorisation.
+
+/community/settings.bml.label.password=Mot de passe:
+
+/community/settings.bml.label.postaccess=Autorisation de faire des entrées
+
+/community/settings.bml.label.rellinks=Liens utiles:
+
+/community/settings.bml.label.selcan=<b>Membres autorisés</b><br />Seulement certains membres peuvent faire des entrées qui ont étés autorisés par l'administrateur de la communauté.
+
+/community/settings.bml.label.username=Nom d'utilisateur:
+
+/community/settings.bml.label.whocanjoin=Qui peut joindre votre communauté?
+
+/community/settings.bml.label.whocanpost=Qui peut faire des entrées à la communauté?
+
+/community/settings.bml.manage2=Administrer les communautés
+
+/community/settings.bml.members=[<a href='[[link]]'>Membres</a>]
+
+/community/settings.bml.name=<b>Nom de la communauté:</b> [[name]]
+
+/community/settings.bml.success=Succès
+
+/community/settings.bml.title.create=Créez une communauté
+
+/community/settings.bml.title.modify=Options de la communauté
+
+/create.bml.age.check.question= Avez-vous moins de 13 ans?
+
+/create.bml.age.check.yes= Oui, j'ai moins de 13 ans.
+
+/create.bml.age.check2.question=Avez-vous plus de 13 ans?
+
+/create.bml.age.check2.yes=Oui, j'ai plus de 13 ans.
+
+/create.bml.age.head=Âge
+
+/create.bml.btn.create=Créez un journal
+
+/create.bml.btn.proceed=Procéder...
+
+/create.bml.captcha.answer=Réponse:
+
+/create.bml.captcha.audiodesc=Tapez les chiffres que vous entendez pour prouver que vous n'êtes pas un robot publicitaire: 
+
+/create.bml.captcha.desc=Tapez les lettres et les chiffres que vous voyez ci-dessous pour prouver que vous n'êtes pas un robot publicitaire. Si vous ne pouvez pas lire le texte, écrivez "AUDIO" et faites le test sonore à la place.
+
+/create.bml.captcha.invalid=Vous avez raté le test précédent. Essayez-en un autre.
+
+/create.bml.captcha.play=Jouez le son
+
+/create.bml.captcha.prove=Prouvez que vous êtes humain
+
+/create.bml.clusterselect.head=Sélection de cluster
+
+/create.bml.clusterselect.nocluster=Pas de cluster
+
+/create.bml.clusterselect.text=Veuillez selectionner le cluster que voius voulez pour créer votre compte.  
+
+/create.bml.create.head=Créer un nouveau journal
+
+/create.bml.create.text=Créer un nouveau LiveJournal est facile, suivez les instructions ci-dessous.
+
+/create.bml.email.head=Votre adresse courriel.
+
+/create.bml.email.input.head=Adresse courriel:
+
+/create.bml.email.text2=Pour des raisons de sécurité, votre adresse courriel nous est nécessaire. En aucun cas celle-ci ne sera divulguée ou distribuée à des services de publicités. Nous avons horreur de cela. Pour plus d'informations, lisez notre <a [[aopts]]>charte sur la vie privée</a>.
+
+/create.bml.error.coppa.under13=Désolé, due à des restrictions de COPPA, vous ne pouvez utiliser LiveJournal avant l'age de 13 ans. Revenez à votre 13e anniversaire!
+
+/create.bml.error.email.blank=Vous devez soumettre une adresse de courriel.
+
+/create.bml.error.email.lj_domain=Vous ne pouvez pas utiliser un alias de [[domain]] lorsque vous créez un compte. Veuillez utiliser une autre adresse électronique.
+
+/create.bml.error.email.nospaces=Aucun espace n'est permit dans une adresse de courriel. Si vous êtes un usager de AOL, souvenez-vous que votre courriel est constitué de votre non d'usager sans les espaces, suivi de <b>@aol.com</b>.
+
+/create.bml.error.password.asciionly=Vous ne pouvez utiliser que des symboles ASCII dans votre mot de passe.
+
+/create.bml.error.password.blank=Vous devez entrer un mot de passe.
+
+/create.bml.error.password.nomatch=Les mots de passe ne correspondent pas.
+
+/create.bml.error.postrequired=ENTRÉE requise
+
+/create.bml.error.username.blank=Veuillez soumettre un nom ou un alias
+
+/create.bml.error.username.inuse=Ce nom d'usager est déjà pris; veuillez en choisir un nouveau.
+
+/create.bml.error.username.iscode=Ce nom d'usager semble être un code d'invitation, et non un nom d'usager. 
+
+/create.bml.error.username.mustenter=Vous devez soumettre un nom d'usager.
+
+/create.bml.error.username.reserved=Désolé, ce nom d'usager est réservé.
+
+/create.bml.errors.label=Veuillez noter les problèmes suivants et réessayer: 
+
+/create.bml.initial.friend.lj_maintenance=Rapports des périodes d'entretien et d'inaccès au site prévues et imprévues
+
+/create.bml.initial.friend.news=Nouvelles et événements de LiveJournal
+
+/create.bml.initialfriends=Ajouter ces journaux à votre liste d'amis pour rester à jour des nouvelles et des informations concernant le site.
+
+/create.bml.initialfriends.heading=Premiers amis
+
+/create.bml.name.head=Votre nom
+
+/create.bml.name.input.head=Nom:
+
+/create.bml.name.text=uel est votre nom ou votre surnom? Ceci apparaîtra en haut de votre journal, et dans le répertoire des utilisateurs si vous décidez d'en faire parti. Vous n'ête pas obligé de donner votre nom au complet, ni votre vrai nom.
+
+/create.bml.password.head=Mot de passe
+
+/create.bml.password.input.head1=Mot de passe:
+
+/create.bml.password.input.head2=Confirmez votre mot de passe.
+
+/create.bml.password.text=Choississez un mot de passe.
+
+/create.bml.proceed.btn.proceed=Allez-y...
+
+/create.bml.proceed.warning=N'appuyez sur <b>Allez-y</b> qu'<i>une seule fois</i>!!
+
+/create.bml.success.btn.enterinfo=Entrer votre information personelle
+
+/create.bml.success.head=Succès!
+
+/create.bml.success.text1=Votre journal à été créé. De l'information importante, contenant des instructions pour continuer l'inscription vous à été envoyée au courriel <font size="+1"><b>[[email]]</b></font>. Confirmez la création de votre journal en cliquant sur le lien qui vous a été envoyé par courriel.
+
+/create.bml.success.text2=Votre journal sera disponible à:
+
+/create.bml.success.text3=Prenez le temps de remplir quelques informations à propos de vous. C'est optionel, mais ça nous donne une idée de qui utilise LiveJournal.
+
+/create.bml.title=Créez un nouveau journal
+
+/create.bml.tos.error=Vous devez lire et approuver les Conditions du service avant de créer un compte.
+
+/create.bml.tos.haveread=J'ai lu et j'approuve des Conditions du service
+
+/create.bml.tos.heading=Conditions du service
+
+/create.bml.tos.p1.2=Pour continuer, veuillez lire et accepter nos <a [[aopts]]>Conditions d'utilisation.</a>
+
+/create.bml.useacctcodes.entercode=Pour créer un nouveau compte, veuillez entrer votre code de création de compte. Pour plus d'informations, voyez <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=104">Comment est-ce que je crée un compte?</a>
+
+/create.bml.useacctcodes.welcome=Bienvenue
+
+/create.bml.username.box.head=Nom d'utilisateur:
+
+/create.bml.username.charsallowed=Votre nom d'utilisateur ne peut contenir que des lettres minuscules (a à z), des chiffres (0 à 9) et un trait (_). <br/> De plus, il ne doit pas dépasser 15 caractères.
+
+/create.bml.username.forpaidaccts=Ou, pour les comptes payants:
+
+/create.bml.username.head=Nom d'utilisateur
+
+/create.bml.username.ljaddress=Votre journal sera aux adresses suivantes:
+
+/create.bml.username.text=Chaque utilisateur de [[sitename]] doit avoir son propre nom d'utilisateur. Votre nom d'utilisateur apparaît dans l'adresse de votre journal et est utilisé pour se connecter sur le serveur de [[sitename]]. Il est également affiché quand vous postez des commentaires sur le journal de quelqu'un.
+
+/create.bml.username.username=nom d'utilisateur
+
+/customize/index.bml.change=Changez
+
+/customize/index.bml.choose=Voulez-vous utiliser l'ancien système, ou le nouveau?
+
+/customize/index.bml.choose.header=Choississez un système de style
+
+/customize/index.bml.choose.s1=Ancien Système (S1)
+
+/customize/index.bml.choose.s2=Nouveau Système (S2)
+
+/customize/index.bml.error.cant_generate_user_layer=N'a pu créer une l'interface de l'utilisateur
+
+/customize/index.bml.error.fail_create_style=La création du nouveau style a échouée.
+
+/customize/index.bml.error.not_your_layout=Ceci n'est pas votre disposition.
+
+/customize/index.bml.error.not_your_theme=Ceci n'est pas votre thème.
+
+/customize/index.bml.error.no_core_parent=Vous n'avez pas de noyau de base?
+
+/customize/index.bml.previews=(Aperçus)
+
+/customize/index.bml.s1=L'ancien système de style est configuré en utilisant la page de <a href="/modify.bml">modification de journal</a> .
+
+/customize/index.bml.s1.header=Vous utilisez S1
+
+/customize/index.bml.s2.advanced.denied=Seul les utilisateurs avec des comptes payants, permanents et précurseurs peuvent utiliser la section de paramètres avancés. <a href="/paidaccounts/">Découvrez les bénéfices des comptes payants</a>.
+
+/customize/index.bml.s2.advanced.header=Paramètres avancés
+
+/customize/index.bml.s2.advanced.permitted=Pour créer de nouvelles dispostitions et styles du tout début, visitez le centre <a href='./advanced/'>de paramètres avancés</a>.
+
+/customize/index.bml.s2.customize=Les paramètres suivants dépendent de la disposition de votre style.
+
+/customize/index.bml.s2.customize.header=Étape 2: Personnaliser la dispostion
+
+/customize/index.bml.s2.customize.language=Les langues suivantes sont partiellement ou complètement supportées par cette disposition.
+
+/customize/index.bml.s2.customize.language.custom=(Personalisation)
+
+/customize/index.bml.s2.customize.language.header=langue
+
+/customize/index.bml.s2.customize.settings=Si vous voulez personnaliser votre journal encore plus, ici vous pouvez jouer avec les paramètres individuels pour que votre journal aie l'apparence que vous voulez lui donner.
+
+/customize/index.bml.s2.customize.settings.delete=Enlevez les personnalisations
+
+/customize/index.bml.s2.customize.settings.delete.confirm=Êtes-vous sûr de vouloir supprimer ces personalisations?
+
+/customize/index.bml.s2.customize.settings.edit=Éditer les personnalisations
+
+/customize/index.bml.s2.customize.settings.header=Changer les paramètres individuels
+
+/customize/index.bml.s2.customize.settings.new=Personnalisez
+
+/customize/index.bml.s2.customize.themes=Choississez parmis les thèmes optionnels pour cette disposition.
+
+/customize/index.bml.s2.customize.themes.default=(Disposition par défaut)
+
+/customize/index.bml.s2.customize.themes.header=Thèmes
+
+/customize/index.bml.s2.layout=Choississez votre disposition. Parce que la sélection des thèmes et des modifications personnalisées depend de votre disposition, changer cette option efface toutes les modifications précédentes.
+
+/customize/index.bml.s2.layout.header=Étape 1: Dispostition
+
+/customize/index.bml.s2.related.editinfo.about=Fixez le titre de votre journal ainsi que plusieurs options.
+
+/customize/index.bml.s2.related.header=Pages apparentées
+
+/customize/index.bml.s2.related.links.about=Certain styles peuvent inclure votre liste de liens.
+
+/customize/index.bml.s2.related.modify.about=Fixez votre série d'icônes d'humeur.
+
+/customize/index.bml.title=Personnalisez votre journal
+
+/delcomment.bml.changeoptions=<strong> NB:</strong> À partir de la page [[link]], vous pouvez choisir de laisser soit <em>tout le monde</em>, <em>les utilisateurs enregistrés</em>, ou <em>seulement vos amis</em> faire des commentaires dans votre journal.
+
+/delcomment.bml.confirm.banuser=Empêcher [[user]] de faire des commentaires dans votre journal.
+
+/delcomment.bml.confirm.body=Êtes-vous sûr de vouloir supprimer ce commentaire?
+
+/delcomment.bml.confirm.head=Supprimer ce commentaire?
+
+/delcomment.bml.confirm.spam=Notez ce commentaire comme étant du pourriel
+
+/delcomment.bml.confirm.submit=Supprimer le commentaire
+
+/delcomment.bml.error.alreadydeleted=Le commentaire spécifié à déjà été supprimé.
+
+/delcomment.bml.error.cantdelete=Un commentaire ne peut être supprimé que par l'auteur ou le propriétaire du journal.
+
+/delcomment.bml.error.cantdelete.comm=Un commentaire ne peut être supprimé que par son auteur, l'auteur de l'entrée, ou le modérateur de la communauté.
+
+/delcomment.bml.error.invalidtype=Commentaire non valide. Cette page sert seulement à commenter les entrées d'un journal.
+
+/delcomment.bml.error.nocomment=Le commentaire spécifié n'existe pas.
+
+/delcomment.bml.success.andban=Le commentaire a été effacé et l'utilisateur ne pourra plus écrire de commentaires dans votre journal.
+
+/delcomment.bml.success.head=Effacé
+
+/delcomment.bml.success.noban=Le commentaire a été effacé.
+
+/delcomment.bml.success.spam=De plus, les administrateurs de ce site ont été prévenus que ce commentaire était du pourriel. Merci de l'avoir rapporté.
+
+/delcomment.bml.title=Effacer le commentaire
+
+/developer/index.bml.clients=Vous voulez créer ou améliorer un client de LiveJournal? Merveilleux! Vous trouverez les ressources nécéssaires afin de savoir comment LiveJournal fonctionne plus bas.
+
+/developer/index.bml.clients.header=Pour écrire des clients de LiveJournal
+
+/developer/index.bml.clients.links<<
+<dl>
+  <dt><a href="/doc/server/ljp.csp.guide.html"><b>Protocole de communication entre le serveur et les clients</b></a></dt>
+  <dd>Apprenez comment le client de LiveJournal sur votre ordinateur communique avec le serveur de LiveJournal, et vice-versa. Comprendre ceci est primordial et c'est la première chose que vous devez savoir avant de développer ou d'améliorer un client. </dd>
+  <dt><a href="/doc/server/ljp.csp.protocol.html"><b>Documents complet du protocole</b></a></dt>
+  <dd>Tout les modes de protocoles &amp; méthodes.</dd>
+  <dt><a href="/download/"><b>Liste des clients</b></a></dt>
+  <dd>Voici une liste de la plupart des clients utilisés pour se connecter à LiveJournal. La plupart de ceux-ci sont à source ouverte, et ils sont tous gratuits à utiliser. C'est un endroit parfait pour avoir des exemples pour votre client.</dd>
+</dl>
+.
+
+/developer/index.bml.code=Pour voir ce qui fait sauter LiveJournal, et pour voir le codage de quelques-uns des clients disponibles, allez à la page du <a href="/code/">code source</a>.
+
+/developer/index.bml.code.header=Dépôt du code source de LiveJournal
+
+/developer/index.bml.dbschema=Curieux à propos du <a href="/doc/server/ljp.dbschema.ref.html">schema de la base de données</a>? Le code SQL pour créer toutes les tables et pour les remplir est inclus avec le code source du serveur.
+
+/developer/index.bml.dbschema.header=Schéma de la base de données
+
+/developer/index.bml.embedding=Voulez-vous inclure votre journal dans votre page web? Il y a <a href="./embedding.bml">plusieurs façons</a> de faire ceci, en fonction de quel type de contrôle vous avez sur votre serveur. Vous n'avez à vous inquiéter de ceci seulement si vous n'aimez pas voir <tt>www.livejournal.com</tt> apparaître dans le lien de votre journal.
+
+/developer/index.bml.embedding.header=Pour inclure votre LiveJournal
+
+/developer/index.bml.notice.header=Notez
+
+/developer/index.bml.notice1=L'information qui suit est pour les programmeurs et les utilisateurs avancés seulement. Si vous voulez utiliser LiveJournal simplement pour y garder votre journal, parfait! La plupart des utilisateurs n'ont pas à se préoccuper de ceci.
+
+/developer/index.bml.notice2=Cela dit, le contenu ci-dessous est divisé en deux sections: les informations sur comment personnaliser l'apparence des pages de LiveJournal, et l'information sur comment écrire des clients pour communiquer avec le serveur de LiveJournal.
+
+/developer/index.bml.styles=Vous n'aimez pas l'apparence de votre journal? Ne vous inquiétez pas, tout est flexible et si vous lisez la documentation ci-dessous vous saurez tout ce qu'il faut savoir pour tout personaliser. 
+
+/developer/index.bml.styles.header=Personaliser l'apparence d'un LiveJournal
+
+/developer/index.bml.styles.s1.header=Système de style 1
+
+/developer/index.bml.styles.s1.system=Système de style
+
+/developer/index.bml.styles.s1.system.about=Aperçu général de la façon dont le système de style 1 est configuré.
+
+/developer/index.bml.styles.s1.varlist=Liste des variables
+
+/developer/index.bml.styles.s1.varlist.about=Liste alphabétique de toutes les variables qui peuvent être modifiées.
+
+/developer/index.bml.styles.s1.views=Voir les types
+
+/developer/index.bml.styles.s1.views.about=Une liste des différents façons dont vous pouvez voir votre journal, et des détails de chacun.
+
+/developer/index.bml.styles.s2.header=Système de style 2
+
+/developer/index.bml.styles.s2.layerbrowse=Navigateur de couche S2
+
+/developer/index.bml.styles.s2.layerbrowse.about=Une liste complète des couches publiques S2 incluant le système de style S2. L'important ici sont les couches du noyau qui définissent les variables de base, les fonctions et les classes qui font de S2 un système de style puissant.
+
+/developer/index.bml.styles.s2.manual=Le manuel de S2
+
+/developer/index.bml.styles.s2.manual.about=Information complète sur comment utiliser S2 sur LiveJournal.
+
+/developer/index.bml.title=Informations pour les développeurs
+
+/directory.bml.browse.country.desc=Sélectionnez un pays pour en lire les journaux.
+
+/directory.bml.browse.country.title=Parcourez les journaux par pays
+
+/directory.bml.browse.usa.desc=Cliquez sur un état des États-Unis ci-dessous pour en lire les journaux, ou cliquez sur un nom de pays sur la carte ci-dessous pour lire les journaux de ce pays.
+
+/directory.bml.browse.usa.title=Parcourez les journaux par état (É-U.)
+
+/directory.bml.error.accounttype=Désolé, votre type de compte ne vous permet pas d'utiliser le répertoire, ou vous n'êtes pas présentement <a href='/login.bml'>connecté</a>. Si votre type de compte vous permet d'utiliser le répertoire, assurez-vous d'être connecté et essayez de nouveau.
+
+/directory.bml.navcrap.matches=[[count]] résultats
+
+/directory.bml.navcrap.xofy=Page [[curpage]] de [[totpages]] (archives [[reca]]-[[recb]])
+
+/directory.bml.open=Ouvrir
+
+/directory.bml.post=Envoyez
+
+/directory.bml.search.monkey=Des centaines de singes malins sont et train de chercher une réponse à votre requête. Soyez patient.
+
+/directory.bml.search.new=Nouvelle recherche
+
+/directory.bml.search.overflow=<b>Résultats de la recherche limités à [[count]] résultats. Veuillez affiner votre recherche.</b>
+
+/directory.bml.search.title=Recherche en cours
+
+/directory.bml.update=Mise-à-jour:
+
+/directory.bml.user=Utilisateur
+
+/doc/index.bml.about=Bienvenue aux archives de documentation de LiveJournal. Vous trouverez ici des informations sur la plupart des sujets concernants les services de LiveJournal ou le logiciel du serveur. Veuillez choisir un sujet ci-dessous:
+
+/doc/index.bml.about.header=Bienvenue
+
+/doc/index.bml.docs.faq.about=Foire aux questions de LiveJournal.com
+
+/doc/index.bml.docs.guides.about=Informations supplémentaires à propos de la FAQ 
+
+/doc/index.bml.docs.howto.about=Conseils et trucs pour vous aider à personaliser votre compte LiveJournal
+
+/doc/index.bml.docs.server.about=Tout ce que vous devez savoir pour installer, administrer, et programmer une installation de LiveJournal
+
+/doc/index.bml.docs.server.title=Manuel du serveur de LiveJournal
+
+/doc/index.bml.docs.tour.about=Créé pour aider les nouveaux visiteurs à se familisariser avec le site
+
+/doc/index.bml.docs.tour.title=Visite
+
+/doc/index.bml.volunteering.about=Si vous aimeriez aider avec la documentation de LiveJournal, veuillez visiter les forums qui suivent:
+
+/doc/index.bml.volunteering.header=Bénévolat
+
+/doc/index.bml.volunteering.ljsysdoc=Discussions à propos du système de documentation de LiveJournal
+
+/doc/index.bml.volunteering.ljuserdoc=Finir les discussions de la documentation de l'utilisateur
+
+/doc/tour/index.bml.clients.caption=Les clients LiveJournal sont des petits programmes qui marchent sur votre ordinateur et qui vous permettent de mettre à jour votre journal quand vous êtes en ligne, sans avoir à ouvrir un navigateur. Des clients sonts disponibles pour presque toutes les plate-formes, et beaucoup d'entre eux peuvent être personalisés.
+
+/doc/tour/index.bml.comms.caption=LiveJournal est une grande communauté interactive, donc il ne faut pas vous étonner que beaucoup de membres ont des intérêts en communs. Pour leur utilisation, LiveJournal offre l'abilité de créer des «&nbsp;communautés&nbsp;», c'est-à-dire des journaux que plusieurs personnes peuvent actualiser.
+
+/doc/tour/index.bml.comms.title=Communautés
+
+/doc/tour/index.bml.create.caption=LiveJournal est une communauté de journaux basée sur l'inscription. Cette page explique les implications de l'abonnement&nbsp;: qu'est-ce c'est, pourquoi c'est important, et les bénéfices que cela apporte. Il y a aussi un formulaire pour créer son propre compte.
+
+/doc/tour/index.bml.create.title=Pour créer un compte
+
+/doc/tour/index.bml.friends.caption=Vous pouvez aussi suivre les vies de vos amis avec LiveJournal, en utilisant la fonction d'amis. Si vous trouvez un journal que vous trouvez intéressant, ajoutez-le à votre liste d'amis, et il vous sera alors possible de lire toutes les entrées de vos amis sur une seule page.
+
+/doc/tour/index.bml.friends.title=Amis
+
+/doc/tour/index.bml.intro.caption=Cette visite a pour but de permettre aux nouveaux visiteurs de devenir familiers avec le site. Elle vous montrera où se trouvent les pages les plus importantes ainsi que certaines des fonctions les plus intéressantes.
+
+/doc/tour/index.bml.intro.title=Bienvenue
+
+/doc/tour/index.bml.modify.caption=Il est aussi possible de formater votre journal de plusieurs façons en utilisant les styles et les couleurs prédéfinies. Rendez votre journal aussi unique que vous le voulez!
+
+/doc/tour/index.bml.modify.title=Personnalisation
+
+/doc/tour/index.bml.nav.next=Suivant --&gt;
+
+/doc/tour/index.bml.nav.prev=&lt;-- Précédent
+
+/doc/tour/index.bml.profile.caption=Les membres de LiveJournal sont encouragés à fournir des informations sur eux-mêmes dans leur profils, afin que nous puissions avoir une idée de qui utilise le site et comment mieux les servir. Il n'est pas nécessaire d'inscrire des informations &mdash; les seules informations qui sont requises pour commencer à utiliser LiveJournal sont un nom, un courriel et un mot de passe.
+
+/doc/tour/index.bml.profile.title=Profils
+
+/doc/tour/index.bml.sitemap.caption=Nous espèrons bien que cette visite vous a donné quelques informations utiles sur le site et le service LiveJournal. Si vous avez besoin d'aide, sentez vous libres de contacter le <a href="/support/">départment du support</a>. Explorez  LiveJournal d'avantage sur le <a href="/site/">plan du site</a> qui liste toutes les pages sur ce site.
+
+/doc/tour/index.bml.sitemap.title=Plan du site
+
+/doc/tour/index.bml.support.caption=La page du support technique liste les régions du site qui vous expliqueront qu'est-ce que LiveJournal, la foire aux questions (FAQ) du site, et d'autres informations utiles sur le service, la compagnie, et la commaunté en général.
+
+/doc/tour/index.bml.support.title=Recevoir de l'aide
+
+/doc/tour/index.bml.title=La visite - [[title]]
+
+/doc/tour/index.bml.update.caption=Mettre à jour un LiveJournal c'est l'essentiel du service&nbsp;; c'est ainsi que les membres ont l'opportunité de parler de leur vie et de ce qu'ils pensent. Mettre à jour un journal c'est simple. Écrivez une entrée dans la boîte et appuyez sur le bouton marqué «&nbsp;Mettre à jour votre journal&nbsp;». Certes, il y a aussi sur cette page des fonctions plus avancées, telle que la capacité de mettre des renseignements supplémentaires, telles que votre humeur ou votre musique actuelle.
+
+/doc/tour/index.bml.update.title=Mise à jour d'un journal
+
+/editinfo.bml.advanced.about=Ne vous inquiétez pas de ces choses là si vous ne savez pas ce que c'est.
+
+/editinfo.bml.advanced.title=Options avancées
+
+/editinfo.bml.allowshowcontact.about=Vous devriez garder cette option activée. Elle permet aux autres usagers de vous contacter en leur donnant accès à votre courriel, votre numéro ICQ, et votre nom d'utilisateur pour la Messagerie Instantanée de AOL à partir de votre Livejournal.
+
+/editinfo.bml.allowshowcontact.email=Si visible, l'adresse courriel sera affichée.
+
+/editinfo.bml.allowshowcontact.email.actual_only=Adresse actuelle seulement
+
+/editinfo.bml.allowshowcontact.email.both=Les deux (actuelle + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Adresse de LiveJournal seulement
+
+/editinfo.bml.allowshowcontact.email.neither=Ni l'une, ni l'autre. Ne pas montrer aucune des adresses courriel.
+
+/editinfo.bml.allowshowcontact.email.no_show=Ne pas montrer d'adresse courriel 
+
+/editinfo.bml.allowshowcontact.email.show=Montrer l'adresse courriel.
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Avec l'option ci-dessus, vous pouvez choisir de cacher votre adresse courriel (tout en montrant le reste de vos informations), de montrer seulement votre courriel de LiveJournal (<a href="/paidaccounts/">comptes payants</a> seulement), de montrer votre vraie adresse ou de montrer les deux.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=L'option ci-dessus vous permet de choisir de cacher votre adresse courriel (tout en montrant le reste de vos informations.)
+
+/editinfo.bml.allowshowcontact.title=Afficher les informations pour vous contacter sur LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Activer ceci pour que votre ville/état ou province/pays et votre anniversaire soient visible pour les autres usagers. 
+
+/editinfo.bml.allowshowinfo.title= Montrer où vous habitez &amp; votre anniversaire?
+
+/editinfo.bml.autotranslate.about<<
+Utilisez cette option pour dire à LiveJournal quelle sorte de format utiliser pour vos entrées et vos commentaires faits avant que le site ne soit modifié en Unicode. 
+Si vous écrivez en français, choisissez "Western European" ici.
+.
+
+/editinfo.bml.autotranslate.header=Convertir automatiquement les ancienes entrées à partir de:
+
+/editinfo.bml.bday.title=Anniversaire
+
+/editinfo.bml.bday.year.opt=l'année est optionelle
+
+/editinfo.bml.bdayreminders.about=Si vous voulez recevoir des courriels vous rappellant des anniversaires de vos amis sur Livejournal, cocher cette boîte.
+
+/editinfo.bml.bdayreminders.header=Envoyez-moi les rappels pour les anniversaires (désactivé en ce moment)
+
+/editinfo.bml.bio.about=Ici vous pouvez entrer une mini-biographie à propos de vous qui sera sur votre page de profil.
+
+/editinfo.bml.bio.header=À propos de vous
+
+/editinfo.bml.blockrobots.about=Si vous cocher cette option, les robots seront repoussés. Tous les robots ne respectent pas les règles.
+
+/editinfo.bml.blockrobots.header=Empêcher l'indexation de votre journal par les robots publicitaires.
+
+/editinfo.bml.chat.icquin.title=Numéro ICQ
+
+/editinfo.bml.chat.msnusername.title=Nom d'utilisateur MSN
+
+/editinfo.bml.chat.yahooid.title=Identification Yahoo!
+
+/editinfo.bml.city.title=Ville
+
+/editinfo.bml.country.choose=Choississez un pays
+
+/editinfo.bml.country.title=Pays
+
+/editinfo.bml.donotlog=Non
+
+/editinfo.bml.email.title=Courriel
+
+/editinfo.bml.enableboards.about=Cocher ceci si vous voulez que les autres usagers puissent répondre aux entrées que vous affichez.
+
+/editinfo.bml.enableboards.header=Activer les forums.
+
+/editinfo.bml.encoding.about=Ne vous inquiétez pas pour ce qui suit. En général, seul les utilisateurs internationaux qui écrivent dans plusieurs langues différentes auront à changer quelque chose ici. 
+
+/editinfo.bml.encoding.header=Options de codification.
+
+/editinfo.bml.error.day.notinmonth=Ce jour n'existe pas pour ce mois.
+
+/editinfo.bml.error.day.outofrange=Ce n'est pas le bon jour de fête (anniversaire). Entrez un jour entre 1 et 31.
+
+/editinfo.bml.error.email.lj_domain<<
+Vous ne pouvez entrer un courriel @[[domain]]. 
+Entrez votre vrai courriel ici.
+Si vous êtes un membre payant, votre adresse [[user]]@[[domain]] transfèrera tout à votre vraie adresse. 
+Pour choisir quelle adresse (ou les deux) est affichée publiquement, aller à l'option "Montrer vos information pour vous contacter" plus bas. 
+.
+
+/editinfo.bml.error.email.none=Vous devez fournir votre adresse courriel.
+
+/editinfo.bml.error.email.no_space<<
+Aucun espace n'est permit dans une adresse courriel. 
+Si vous utiliser AOL, souvenez-vous que votre Courriel Internet est votre nom d'usager, sans les espaces, suivi de <b>@aol.com</b>.
+.
+
+/editinfo.bml.error.excessive_int<<
+Désolé, vous avez ajouté trop d'intérêts La limite est de 150, mais vous en avez ajouté [[intcount]]. 
+Tout les changements apportés à vos intérêts n'ont pas été sauvegardés. Retourner pour rapetisser la liste et sauvegarder à nouveau. 
+.
+
+/editinfo.bml.error.invalidbio=Votre biographie contient des caractères non valable. Vous devez aller à la <a href='/utf8convert.bml'><b>page de conversion</b></a> pour convertir en Unicode.
+
+/editinfo.bml.error.invalidints=Votre liste d'intérêts contient des caractères non valable. Vous devez aller à la <a href='/utf8convert.bml'><b>page de conversion</b></a> pour convertir en Unicode.
+
+/editinfo.bml.error.invalidname=Votre nom contient des caractères non valable. Vous devez aller à la <a href='/utf8convert.bml'><b>page de conversion</b></a> pour convertir en Unicode.
+
+/editinfo.bml.error.locale.country_ne_state=Vous avez spécifié les États-Unis comme étant votre pays, mais vous avez écrit un état non-américain dans " autre état".
+
+/editinfo.bml.error.locale.invalid_country=Vous avez sélectionner un pays non-disponible.
+
+/editinfo.bml.error.locale.state_ne_country=Vous avez spécifié un pays autre que les États-Unis, mais sélectionné un état américain.
+
+/editinfo.bml.error.locale.zip_ne_state<<
+Votre code postal ne correspond pas à l'état que vous avez spécifié. 
+Corrigez l'information ou effacez soit l'état ou le code postal, ou les deux. 
+.
+
+/editinfo.bml.error.locale.zip_requires_us<<
+Vous avez entré un code postal, mais vous n'avez pas sélectionné les États-Unis comme pays. 
+Nous ne collectons que les codes postaux des États-Unis. 
+Veuillez retourner pour effacer le code postal ou sélectionner les États-Unis comme pays. 
+.
+
+/editinfo.bml.error.month.outofrange=Ce n'est pas le bon jour de fête (anniversaire). Veuillez entrer un mois entre 1 et 12. (Jan-Dec)
+
+/editinfo.bml.error.noname=Votre nom est requis. Veuillez au moins écrire votre prénom, ou un surnom.
+
+/editinfo.bml.error.tm.require.number=Si vous voulez utiliser la messagerie texte, vous devez donner votre numéro de téléphone. 
+
+/editinfo.bml.error.tm.require_provider<<
+Si vous utilisez la messagerie texte, vous devez donner votre fournisseur de service. 
+
+si le vôtre n'est pas listé,informez nous du fonctionnement de votre service de messagerie texte pour que nous l'ajoutions à la liste supportée. 
+.
+
+/editinfo.bml.error.year.notenoughdigits=Année de naissance non valable. Veuillez entrer 4 chiffres pour l'année.
+
+/editinfo.bml.error.year.outofrange=Année de naissance non valable.
+
+/editinfo.bml.finished.about=Lorsque vous aurez fini, cliquez sur le bouton  "Sauvegarder" ci-dessous:
+
+/editinfo.bml.finished.header=Fini?
+
+/editinfo.bml.finished.save_button=Sauvegarder
+
+/editinfo.bml.foafurl.about=Si vous ne voulez pas utiliser la page par défaut de type "FOAF" que nous suggérons, tapez un URL ci-dessus et celui-ci sera utilisé comme source FOAF. Nous redirigerons toutes les demandes FOAF à ce URL.
+
+/editinfo.bml.foafurl.title=Lien (URL) externe FOAF: 
+
+/editinfo.bml.gender.title=Sexe
+
+/editinfo.bml.getreplies.about=Cochez ceci si vous voulez recevoir des courriels vous avertissant lorsque d'autres usagers répondent à vos entrées dans les forums.
+
+/editinfo.bml.getreplies.header=Recevoir les réponses des forums.
+
+/editinfo.bml.getselfemails.about=Cochez ceci si vous désirez recevoir un courriel chaque fois que vous faites un commentaire dans un journal ou une communauté. Vous ne recevrez pas de courriel pour des commentaires anonymes que vous faites. 
+
+/editinfo.bml.getselfemails.header=Recevez les commentaires que vous faites par courriel
+
+/editinfo.bml.hidefriendof.about=Si vous cochez ceci, la liste d'utilisateurs qui vous listent comme ami sera cachée sur votre page de profil. 
+
+/editinfo.bml.hidefriendof.header=Cacher la liste d' "Ami de".
+
+/editinfo.bml.howhear.about=Par curiosité, où avez-vous entendu parler de [[sitename]]? Si c'était quelqu'un en particulier, veuillez entrer son nom d'utilisateur; si c'était d'un(e) autre source/article/lien/site internet, entrez l'information appropriée.
+
+/editinfo.bml.howhear.header=Curiosité
+
+/editinfo.bml.htmlemail.about<<
+Cochez ceci si votre programe de courriel supporte complètement le HTML.
+Plusieurs fournisseurs essaient de le faire, mais échouent horriblement. 
+Si vous décochez la case, LiveJournal n'enverra que des courriels de texte. 
+.
+
+/editinfo.bml.htmlemail.header=Envoyer des courriels en HTML
+
+/editinfo.bml.imagelinks.about=Les "placeholders" sont utiles si vous visitez le site du travail ou en utilisant une connexion lente car il remplacent les images par des liens. Pour quelle grandeur d'image voulez vous que les "placeholders" soient utilisés?
+
+/editinfo.bml.imagelinks.header=Utilisez les "placeholders" sur votre page d'amis
+
+/editinfo.bml.imagelinks.size.all=Utilisez les "placeholders" pour toutes les images
+
+/editinfo.bml.imagelinks.size.custom=Personalisation:  utilisez des "placeholders" pour les images plus grandes que [[width]]x[[height]] 
+
+/editinfo.bml.imagelinks.size.medium=Utiliser les "placeholders" pour les images de grand format( plus de [[width]]x[[height]])
+
+/editinfo.bml.imagelinks.size.small=Utiliser les "placeholders" pour les images de format moyen (plus de [[width]]x[[height]])
+
+/editinfo.bml.int.about<<
+Si vous voulez que d'autres utilisateurs puissent vous trouver dans le répertoire à partir de votre liste d'intérêts, entrer tout ce qui vous interesse ci-dessous, séparé par des virgules. 
+Le mieux est d'utiliser des mots seuls. <b>La règle d'or:</b> Vouz devriez toujours pouvoir insérer vos intérêts dans la phrase "J'aime le/la/les _______". Lorsque vous faites une référence à un nom commun, utilisez le pluriel pour rester consistant. 
+.
+
+/editinfo.bml.int.ex.bad=<FONT COLOR=#FF0000><B>MAUVAIS</B></FONT> exemple: <b>J'aime plusieurs groupes musicaux et regarder des films et parler à mes amis et sortir dans des clubs.</B> Ce genre de chose va dans votre biographie au-dessus.
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>BON</B></FONT> exemple: <B>ordinateurs, dvds, mp3s, fromage, femmes, nager, écrire</b>
+
+/editinfo.bml.int.header=Intérêts
+
+/editinfo.bml.login.enterinfo=Entrez votre nom d'usager et votre mot de passe pour modifier vos informations personnelles. 
+
+/editinfo.bml.login.forgot.header=Avez-vous oublié quelque chose?
+
+/editinfo.bml.login.forgot.recover=Si vous avez oublié votre nom d'utilisateur ou votre mot de passe, <a href='lostinfo.bml'>retrouvez les ici!</a>
+
+/editinfo.bml.logip.always=Toujours
+
+/editinfo.bml.logip.anon_only=Commentaires anonymes seulement. 
+
+/editinfo.bml.logip.header=Voulez-vous voir l'adresse IP des personnes qui répondent?
+
+/editinfo.bml.mangleaddress.about=Si vous avez peur que des robots publicitaires trouvent votre adresse courriel sur LiveJournal, sélectionner cette option. Votre courriel sera modifié pour qu'il ne soit pas trouvé par ces robots.
+
+/editinfo.bml.mangleaddress.header=Modifier le courriel que vous afficher?
+
+/editinfo.bml.mutualfriends.about=Cette option ajoute une nouvelle liste à votre page de profil: la liste des amis mutuels. Les utilisateurs qui vous listent comme amis et que vous listez comme ami seront ajoutés à cette liste.
+
+/editinfo.bml.mutualfriends.header=Affichez la liste d'amis mutuels sur ma page de profil
+
+/editinfo.bml.name.title=Nom
+
+/editinfo.bml.newemail.body2<<
+Vous venez tout juste de changer votre addresse courriel pour votre compte "[[username]]" sur [[sitename]]. Pour valider ces changements, veuillez aller à cette adresse:
+
+[[conflink]]
+
+Sincèrement, 
+L'équipe de [[sitename]]
+[[sitelink]]
+.
+
+/editinfo.bml.newemail.subject=Adresse de courriel modifiée
+
+/editinfo.bml.numcomments.about=Cochez cette case si vous voulez ajouter le compte de commentaires aux URL pour que votre explorateur puisse afficher les liens d'une couleur différente.
+
+/editinfo.bml.numcomments.header=Ajouter &amp;nc=xx aux URL de commentaires.
+
+/editinfo.bml.optional=Optionnel
+
+/editinfo.bml.opt_in.about<<
+Si vous voulez savoir quand nous ajoutons des nouvelles choses à LiveJournal, cochez cette case. 
+Les courriels que vous recevrez seront rares, soit une ou deux fois par mois, pas plus. 
+Votre adresse courriel ne sera pas visible aux autres utilisateurs, et vous pouvez désactiver cette fonction n'importe quand. 
+.
+
+/editinfo.bml.opt_in.header=Envoyez-moi des nouvelles de LiveJournal. 
+
+/editinfo.bml.persinfo.disclaimer<<
+Remplissez quelques informations personelles, pour notre propre curiosité et pour des données statistiques. 
+Nous ne ferons rien de maléfique ou de déplaisant avec ces informations, nous aimerions seulement voir qui et où sont nos utilisateurs. Veuillez s'il-vous-plaît le remplir correctement. Si vous êtes inquiet, lisez notre <a href="/legal/privacy.bml">police de respect de la vie privée</a>.
+.
+
+/editinfo.bml.persinfo.header=Information personelle
+
+/editinfo.bml.screen.all=Tout
+
+/editinfo.bml.screen.anon=Anonyme
+
+/editinfo.bml.screen.header=Quels commentaires voulez-vous filtrer par défaut?
+
+/editinfo.bml.screen.none=Aucun
+
+/editinfo.bml.screen.nonfriends=Ceux qui ne sont pas de mes amis
+
+/editinfo.bml.screen.nonmembers=Ceux qui ne sont pas membres
+
+/editinfo.bml.security.header=Qui peut voir vos informations pour vous contacter?
+
+/editinfo.bml.security.visibility.anybody=N'importe qui
+
+/editinfo.bml.security.visibility.everybody=Tout le monde
+
+/editinfo.bml.security.visibility.friends=Mes amis seulement
+
+/editinfo.bml.security.visibility.regusers=Membres inscrits
+
+/editinfo.bml.settings.friendspage.title=Titre de la page d'amis :
+
+/editinfo.bml.settings.friendspage.title.optional=Entrez un titre pour votre page d'amis <i>optionnellement</i>. (pas de HTML)
+
+/editinfo.bml.settings.header=Options de LiveJournal
+
+/editinfo.bml.settings.journal.subtitle=Sous-titre de votre journal :
+
+/editinfo.bml.settings.journal.subtitle.optional=Entrez un titre et un sous-titre pour votre journal <i>optionnellement</i> (pas de HTML)
+
+/editinfo.bml.settings.journal.title=Titre de votre journal :
+
+/editinfo.bml.settings.privacy.about=Sélectionnez ci-dessous vos options de vie privée et vos préférences.
+
+/editinfo.bml.settings.privacy.header=Options de vie privée
+
+/editinfo.bml.state.other=Ou, tapez un autre état/province/territoire
+
+/editinfo.bml.state.title=État
+
+/editinfo.bml.state.us=État américain
+
+/editinfo.bml.stylemine.about=Sélectionner cette option pour voir les pages de commentaires en utilisant votre style de journal lorsque vous faites des commentaires dans les journaux de vos amis.
+
+/editinfo.bml.stylemine.header=Voulez-vous voir les pages de commentaires avec votre style de journal?
+
+/editinfo.bml.success.header=Réussi!
+
+/editinfo.bml.success.message=Vos informations, vos ajustements de <a href="/users/[[user]]/">journal</a> ainsi que votre <a href="/userinfo.bml?user=[[user]]">profil</a> ont étés mis à jour.
+
+/editinfo.bml.switch.button=Changer
+
+/editinfo.bml.switch.header=Changer de journal
+
+/editinfo.bml.switch.workwith=Travailler avec le journal: 
+
+/editinfo.bml.title=Éditez vos informations personnelles
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">détails</a>
+
+/editinfo.bml.tm.phonenum=Numéro de téléphone complet:
+
+/editinfo.bml.tm.sec.about=Activer la messagerie texte par les autres utilisateurs.
+
+/editinfo.bml.tm.sec.title=Niveau de sécurité
+
+/editinfo.bml.tm.servprov=Fournisseur de service
+
+/editinfo.bml.tm.title=Messagerie texte
+
+/editinfo.bml.translatemailto.about=Si vous avez choisi de recevoir les commentaires faits sur le forum par courriel, et que votre fournisseur à quelques difficultés avec les messages en  Unicode (UTF-8), utiliser cette option  pour spécifier une autre méthode d'encodage que LiveJournal utilisera pour traduire les commentaires qui vous seront envoyés.
+
+/editinfo.bml.translatemailto.header=Traduire les notifications par courriel en:
+
+/editinfo.bml.unbanusers.about=Les utilisateurs suivants sont bannis de votre journal et ne peuvent plus y faire de commentaires. Cochez la case à côté de leur nom pour les retirer de la liste d'utilisateurs excluts.
+
+/editinfo.bml.unbanusers.header=Accepter à nouveau l'utilisateur
+
+/editinfo.bml.userpic.about=Ci-dessous se trouve l'icône que vous avez chargée pour vous représenter partout sur le site, sur votre journal, et dans le journal de vos amis.
+
+/editinfo.bml.userpic.edit=Pour effacer cette icône, ou en charger une nouvelle, <a href="/editpics.bml#upload" target="_blank">allez ici</a>.
+
+/editinfo.bml.userpic.header=Votre icône
+
+/editinfo.bml.userpic.none=Aucune image n'est chargée
+
+/editinfo.bml.weblogscom.about=Choississez cette option si vous voulez que Weblogs.com liste votre journal lorsque vous faites de nouvelles entrées publiques.
+
+/editinfo.bml.weblogscom.header=Notifier Weblogs.com des mises à jour
+
+/editinfo.bml.webpagename.title=Nom de votre page web
+
+/editinfo.bml.webpageurl.title=URL de votre page web
+
+/editinfo.bml.whoreply.header=Qui peut répondre à vos entrées?
+
+/editinfo.bml.zip.title=Code postal
+
+/editinfo.bml.zip.usonly=Code postal à 5 unités; pour les résidents des États-Unis seulement
+
+/editjournal.bml.btn.proceed=Procédez...
+
+/editjournal.bml.certainday=Jour spécifique:
+
+/editjournal.bml.desc=Veuillez utiliser le formulaire ci-dessous pour trouver l'entrée que vous voulez éditer.
+
+/editjournal.bml.in=Dans une communauté:
+
+/editjournal.bml.recententries=entrées les plus récentes
+
+/editjournal.bml.recententry=Entrée la plus récente
+
+/editjournal.bml.title=Éditez vos entrées
+
+/editjournal.bml.viewwhat=Voir quelles entrées:
+
+/editjournal_do.bml.body=Éditez les champs de votre journal que vous aimeriez changer et cliquez sur le bouton "sauvegarder les paramètres" au bas de la page. Vous pouvez aussi cliquer sur le bouton "supprimer l'entrée" pour effacer l'entrée.
+
+/editjournal_do.bml.btn.delete=Supprimer l'entrée
+
+/editjournal_do.bml.btn.edit=Éditez l'entrée sélectionnée
+
+/editjournal_do.bml.btn.preview=Aperçu de votre entrée
+
+/editjournal_do.bml.btn.save=Sauvegarder cette entrée
+
+/editjournal_do.bml.continue.head=Cliquez pour continuer...
+
+/editjournal_do.bml.continue.text=Lorsque vous aurez choisi une entrée à éditer ou effacer, cliquez sur le bouton Éditer ci-dessous.
+
+/editjournal_do.bml.currmood=<a href="/moodlist.bml">Humeur</a> actuelle&nbsp;:
+
+/editjournal_do.bml.currmusic=Musique actuelle:
+
+/editjournal_do.bml.default=Par défaut
+
+/editjournal_do.bml.delete.confirm=Êtes-vous sûr de vouloir supprimer cette entrée?
+
+/editjournal_do.bml.edit.text=Voici l'entrée que vous avez choisi d'éditer. Éditez les parties de votre entrée que vous voulez modifier et cliquez sur le bouton "Sauvegardez" au bas de la page pour sauvegarder. .<br /><br />Pour effacer cette entrée, vous n'avez qu'à tout effacer le texte et appuyer sur le bouton "Sauvegardez".
+
+/editjournal_do.bml.error.getting=Il y a eu une erreur en éditant l'entrée.
+
+/editjournal_do.bml.error.modify=Il y a eu une erreur lors de la modification de votre journal:
+
+/editjournal_do.bml.error.nofind=L'entrée sélectionnée n'a pu être trouvée.
+
+/editjournal_do.bml.event=Entrée&nbsp;:
+
+/editjournal_do.bml.localtime=Heure locale:
+
+/editjournal_do.bml.noneother=Aucune, ou une autre:
+
+/editjournal_do.bml.opt.backdate=Antidater l'entrée&nbsp;:
+
+/editjournal_do.bml.opt.backdate.about=ne sera pas visible sur les pages d'amis
+
+/editjournal_do.bml.opt.nocomments=Désactiver les commentaires&nbsp;:
+
+/editjournal_do.bml.opt.noemail=Ne pas envoyer les commentaires par courriel&nbsp;:
+
+/editjournal_do.bml.opt.noformat=Ne pas mettre en forme automatiquement&nbsp;:
+
+/editjournal_do.bml.other=Autre&nbsp;:
+
+/editjournal_do.bml.pickentry.head=Choisissez une entrée à éditer
+
+/editjournal_do.bml.pickentry.text=Sélectionnez l'entrée que vous voulez éditer et cliquez sur le bouton pour éditer au bas de la page.
+
+/editjournal_do.bml.picture=<a href="[[url]]">Icône</a>à utiliser&nbsp;:
+
+/editjournal_do.bml.preview.header=Aperçu de votre entrée
+
+/editjournal_do.bml.preview.text=Voici à quoi ressemblera votre entrée lorsqu'elle sera affichée. En utilisant les options ci-dessous vous pouvez continuer à l'éditer, ou vous pouvez l'afficher telle qu'elle.
+
+/editjournal_do.bml.save.head=Cliquez pour sauvegarder...
+
+/editjournal_do.bml.save.text=Lorsque vous aurez fini d'éditer votre entrée, cliquez sur Sauvegarder.
+
+/editjournal_do.bml.subject=<B>Sujet:</B> <I>(facultatif)</i>
+
+/editjournal_do.bml.success.delete=L'entrée a été effacée.
+
+/editjournal_do.bml.success.edit=L'entrée a été modifiée. Vous pouvez la voir <a href="[[url]]">ici</a>.
+
+/editjournal_do.bml.success.head=Succès
+
+/editjournal_do.bml.timeformat=Temps de 24 heures
+
+/editjournal_do.bml.title=Éditez des entrées
+
+/editpics.bml.btn.proceed=Procédez
+
+/editpics.bml.btn.save=Sauvegarder les paramètres
+
+/editpics.bml.curpics=Icônes actuelles
+
+/editpics.bml.curpics.desc=Voici les icônes que vous avez déjà téléchargé. Vous pouvez leur assigner des mots clés pour faciliter leur utilisation, sélectionner celle que vous utilisez par défaut, ou effacer celles dont vous ne voulez plus. Pour en télécharger une nouvelle, utilisez le formulaire au bas de la page.
+
+/editpics.bml.error.badurl=L'adresse pour l'image que vous voulez télécharger ne semble pas correcte. Elle devrait débuter par <b>http://</b>
+
+/editpics.bml.error.filetoolarge=L'image téléchargée est trop grande. Le fichier ne peut pas dépasser [[maxsize]].
+
+/editpics.bml.error.imagetoolarge=Les dimensions de votre image ([[imagesize]]) dépassent la grandeur maximum. Votre icône ne peut pas dépasser 100x100 pixels. Utilisez un éditeur d'images ou de photos pour en réduire la taille.
+
+/editpics.bml.error.invalidimage=Fichier image non valable.
+
+/editpics.bml.error.keywords=Vous avez utilisé le mot clé "[[ekw]]" pour plusieurs icônes. Un mot clé à été choisi au hasard, mais  pas celui que vous vouliez.Vous pouvez revenir en arrière et corriger cette erreur.
+
+/editpics.bml.error.toomanypics2=Vous avez déjà atteint votre limite de [[maxpics]] icônes. Vous ne pouvez pas télécharger cette icône tant que vous n'effacerez pas une icône existante.
+
+/editpics.bml.error.toomanypics3=Vous avez atteint votre limite d'icônes de [[max]] sur [[?max|picture|pictures]]. Vous ne pourrez ajouter une nouvelle icône tant que vous n'aurez pas effacé une ou plus de vos icônes actuelles.
+
+/editpics.bml.error.unsupportedtype=Les fichiers de type [[filetype]] ne sont pas supportés. Vous ne pouvez uniquement utiliser des fichiers de types GIF, PNG ou JPG. Presque tous les programmes d'édition d'images ou de photos peuvent faire cette conversion pour vous.
+
+/editpics.bml.error.urlerror=Une erreur a eu lieu pendant la recherche de votre image.
+
+/editpics.bml.fromfile=Du <u>F</u>ichier :
+
+/editpics.bml.fromurl=Du U<u>R</u>L :
+
+/editpics.bml.label.default=Par défaut:
+
+/editpics.bml.label.delete=Supprimer:
+
+/editpics.bml.label.keywords=Mots-clés:
+
+/editpics.bml.makedefault=Faire de cette image votre image par <u>d</u>éfaut
+
+/editpics.bml.nodefault=Aucune icône par défaut
+
+/editpics.bml.noneupload=Vous n'avez pas téléchargé d'icône. Veuillez en télécharger une en utilisant le formulaire ci-dessous.
+
+/editpics.bml.nopics=Aucune icône
+
+/editpics.bml.piclimitstatus=Actuellement téléchargé: [[current]] sur un maximum de [[max]]. 
+
+/editpics.bml.restriction.fileformat=Le type de fichier doit être PNG, GIF ou JPG
+
+/editpics.bml.restriction.filesize=Le fichier doit être inférieur à 40k
+
+/editpics.bml.restriction.imagesize=Les dimensions de l'image ne peuvent dépasser 100x100 pixels
+
+/editpics.bml.title=Éditez vos icônes
+
+/editpics.bml.uploaddesc=Utilisez le formulaire ci-dessous pour télécharger une nouvelle icône.
+
+/editpics.bml.uploadheader=Télécharger une nouvelle icône
+
+/export.bml.btn.proceed=Continuez...
+
+/export.bml.description=Cette option vous permet de télécharger votre journal en entier en un format personnalisé pour des raisons de sécurité. Pour plus d'informations sur comment faire une copie de votre journal, voyez <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=8">cette FAQ</a>. 
+
+/export.bml.fields=Champs:
+
+/export.bml.format.csv=CSV (Valeurs Séparées par des Virgules)
+
+/export.bml.label.encoding=Code: 
+
+/export.bml.label.field.allowmask=Permettre de masquer
+
+/export.bml.label.field.currents=Humeur &amp; musique actuelles
+
+/export.bml.label.field.event=<b>Événement</b>
+
+/export.bml.label.field.eventtime=Heure de l'événement (selon l'heure de l'utilisateur)
+
+/export.bml.label.field.itemid=Numéro d'identification
+
+/export.bml.label.field.logtime=Heure de connection (selon l'horloge de l'utilisateur)
+
+/export.bml.label.field.security=Niveau de sécurité
+
+/export.bml.label.field.subject=Sujet
+
+/export.bml.label.format=Format :
+
+/export.bml.label.header=En-tête
+
+/export.bml.label.month=Choisissez le mois :
+
+/export.bml.label.month.month=mm :
+
+/export.bml.label.month.year=aaaa :
+
+/export.bml.label.notranslation=Ne pas traduire entre les codes
+
+/export.bml.label.what=Exporter quoi :
+
+/export.bml.title=Exporter le journal
+
+/export.bml.what.entries=Entrées du journal
+
+/export_do.bml.error.encoding=Code sélectionné non valable
+
+/friends/add.bml.add.header=Succès
+
+/friends/add.bml.add.text=L'utilisateur [[user]] a été ajouté à votre liste d'amis. Vous pouvez voir votre page d'amis <a href="[[url]]">ici</a>.
+
+/friends/add.bml.add.title=Ami ajouté!
+
+/friends/add.bml.btn.add=Ajouter [[user]]
+
+/friends/add.bml.btn.modify=Modifier
+
+/friends/add.bml.btn.remove=Enlever
+
+/friends/add.bml.colors.bg=Arrière-plan
+
+/friends/add.bml.colors.fg=Avant-plan
+
+/friends/add.bml.colors.header=Couleurs
+
+/friends/add.bml.colors.hover=(Passez votre souris sur une couleur pour en voir le nom.)
+
+/friends/add.bml.colors.text=Vous pouvez aussi sélectionner optionellement les couleurs qui représenteront [[user]] dans votre liste d'amis.
+
+/friends/add.bml.confirm.header=Ajouter <b>[[user]]</b> comme ami(e)?
+
+/friends/add.bml.confirm.syn.header=Ajouter la source syndiquée <b>[[user]]</b> comme ami?
+
+/friends/add.bml.confirm.syn.title=Ajouter la source syndiquée
+
+/friends/add.bml.confirm.text=Pour ajouter <b>[[user]]</b> à votre liste d'amis, cliquer le bouton ci-dessous.
+
+/friends/add.bml.confirm.title=Ajouter un ami
+
+/friends/add.bml.error1.header=Connectez-vous avant
+
+/friends/add.bml.error1.text=Pour ajouter un ami à votre liste d'amis vous devez d'abord aller vous <A HREF="/login.bml?ret=1">connecter</A>. Si vous n'avez pas encore de compte vous pouvez en <a href="/create.bml">créer un</a> pour suivre les journaux de vos amis. 
+
+/friends/add.bml.error1.title=Ajouter un ami
+
+/friends/add.bml.error2.text= Nom d'utilisateur non-valable ou manquant. Pour ajouter un ami, allez à la page pour <a href="/friends/edit.bml">éditez vos amis</a>.
+
+/friends/add.bml.error3.text=<b>[[user]]</b> est déjà sur votre liste d'amis. Mais, vous pouvez modifier les couleurs que vous avez choisi pour le représenter.
+
+/friends/add.bml.error3.title=Modifiez vos amis
+
+/friends/add.bml.groups.header=Groupes d'amis
+
+/friends/add.bml.groups.nogroup=Aucun groupe d'amis.
+
+/friends/add.bml.groups.text=Dans quel groupe d'amis voulez vous mettre cet utilisateur? Les groupes d'amis sont utlisés pour filtrer votre page d'amis et la sécurité des entrées.
+
+/friends/add.bml.remove.header=Succès
+
+/friends/add.bml.remove.text=L'utilisateur <?ljuser [[user]] ljuser?> a été retiré de votre liste d'amis. Vous pouvez voir votre page d'amis <a href="[[url]]">ici</a>.
+
+/friends/add.bml.remove.title=Ami retiré!
+
+/friends/edit.bml.title=Éditez vos amis
+
+/friends/editgroups.bml.btn.ge.del=Effacez
+
+/friends/editgroups.bml.btn.ge.new=Nouveau
+
+/friends/editgroups.bml.btn.ge.ren=Renommez
+
+/friends/editgroups.bml.btn.gs.private=Privé
+
+/friends/editgroups.bml.btn.mv.down=Descendre
+
+/friends/editgroups.bml.btn.mv.up=Monter
+
+/friends/editgroups.bml.confirm.delete=Êtes-vous sûr(e) de vouloir effacer ce groupe d'amis?
+
+/friends/editgroups.bml.done.btn=Sauvegardez
+
+/friends/editgroups.bml.done.header=Fini?
+
+/friends/editgroups.bml.done.text=Quand vous êtes prêt(e), appuyez sur le bouton ci-dessous pour sauvegarder vos modifications.
+
+/friends/editgroups.bml.error.max30|notes=It is important for the JavaScript on this page to work that this string remains a single line without linebreaks. Additionally, it must not contain any quotation marks.
+/friends/editgroups.bml.error.max30=Vous êtes arrivé(e) au maximum de 30 groupes d'amis. Si vous avez effacé quelques groupes, mais vous n'avez pas encore sauvegardé cette modification, faites-le maintenant. Retournez ici après et rechargez cette page. Il vous sera alors possible de créer de nouveaux groupes d'amis.
+
+/friends/editgroups.bml.error.text=Le serveur a retourné l'erreur suivante:
+
+/friends/editgroups.bml.ingroup=Dans le groupe:
+
+/friends/editgroups.bml.ingroup.not=Pas dans le groupe:
+
+/friends/editgroups.bml.prompt.newname=Donnez le nom pour le nouveau groupe d'amis:
+
+/friends/editgroups.bml.prompt.rename=Renommer le groupe d'amis à:
+
+/friends/editgroups.bml.saved.header=Sauvegardé
+
+/friends/editgroups.bml.saved.text=Vos goupes d'amis ont étés sauvegardés.
+
+/friends/editgroups.bml.text<<
+Cette page vous permet d'éditer vos groupes d'amis. Ces groupes d'amis sont utiles pour contrôler la sécurité des entrées et pour filtrer votre page d'amis. Pour plus d'informations voyez <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=102">Comment est-ce que les groupes d'amis personnalisés fonctionnent? Comment est-ce que je les utilisent? </a> 
+
+
+Cette page a besoin de JavaScript pour fonctionner correctement.
+.
+
+/friends/editgroups.bml.text.sec=<strong>Note de sécurité:</strong> Si vous voulez effacer un groupe et en créer un autre, ne faites <strong>pas</strong> cela en renommant un groupe et en l'éditant. Si vous faites cela, toutes vos anciennes entrées qui étaient accessibles à l'ancien groupe deviendront accessible aux utilisateurs dans le nouveau groupe.
+
+/friends/editgroups.bml.title=Modifiez vos groupes d'amis
+
+/friends/editgroups.bml.yourgroups=Vos groupes d'amis:
+
+/friends/edit_do.bml.addfriends.head=Ajoutez un ami
+
+/friends/edit_do.bml.addfriends.text=Entrez le nom d'utilisateur de vos amis dans les boîtes ci-dessous, et choississez quelles couleurs d'arrière-plan et d'avant-plan  vous voulez associer avec eux...
+
+/friends/edit_do.bml.background=Arrière-plan
+
+/friends/edit_do.bml.bgcolor=Couleur d'arrière-plan
+
+/friends/edit_do.bml.btn.close=Fermer
+
+/friends/edit_do.bml.btn.save=Sauvegarder
+
+/friends/edit_do.bml.btn.toggle=Basculer vers la fenêtre d'aperçu
+
+/friends/edit_do.bml.done.head=Fini?
+
+/friends/edit_do.bml.done.text=Lorsque vous aurez fini, cliquer sur le bouton "Sauvegarder" plus bas.
+
+/friends/edit_do.bml.error.updating=Il y a eu une erreur pendant la mise à jour de votre liste d'amis:
+
+/friends/edit_do.bml.fellowfriends.head=Compagnons 
+
+/friends/edit_do.bml.fellowfriends.text=Les utilisateurs suivants vous ont ajouté comme ami... Peut être voulez-vous les ajouter aussi. Nous fournissons ceci seulement comme référence pour que vous puissiez savoir leur nom d'utilisateur LiveJournal. Vous n'êtes sous aucune obligation de les ajouter à votre liste d'amis.
+
+/friends/edit_do.bml.foreground=Avant-plan
+
+/friends/edit_do.bml.friend=Ami
+
+/friends/edit_do.bml.hover=Passez votre curseur sur une couleur pour en savoir le nom. 
+
+/friends/edit_do.bml.mrcolor=M. Démonstrateur de Couleurs
+
+/friends/edit_do.bml.needmore=Si vous avez besoin d'ajouter plus d'amis que vous n'avez de place pour le faire sur cette page, sauvegarder les changements plus bas, et revenez pour en rajouter.
+
+/friends/edit_do.bml.nofriends.head=Aucun ami?
+
+/friends/edit_do.bml.nofriends.text=Présentement, vous n'avez aucun ami de défini. Mais nous sommes sûrs que vous devez bien en avoir quelques-uns! <tt>:)</tt> Vous n'avez qu'à entrer leurs nom d'utilisateurs ci-dessous....
+
+/friends/edit_do.bml.opt.addtolist=Ajoutez un ami
+
+/friends/edit_do.bml.opt.delete=Effacer?
+
+/friends/edit_do.bml.success.head=Succès
+
+/friends/edit_do.bml.success.text=Votre liste d'amis à été mise à jour. Vous pouvez voir votre nouvelle page d'amis <a href="[[url]]">ici</a>.
+
+/friends/edit_do.bml.textcolor=Couleur du texte:
+
+/friends/edit_do.bml.title=Éditez vos amis
+
+/friends/edit_do.bml.user=Utilisateur
+
+/friends/edit_do.bml.viewer=Visionneur de couleurs
+
+/friends/edit_do.bml.yourfriends.head=Vos amis
+
+/friends/edit_do.bml.yourfriends.text=Voici vos amis actuels:
+
+/friends/filter.bml.editgroups=Si vous voulez éditer vos groupes d'amis, allez à la page [[link]].
+
+/friends/filter.bml.error.nogroups=Vous ne pouvez filter votre liste d'amis parce que vous devez tout d'abord avoir <a href="/friends/editgroups.bml">défini des groupes d'amis</a>. 
+
+/friends/filter.bml.error.nogroups.header=Aucun groupe de défini
+
+/friends/filter.bml.reset=Recommencer
+
+/friends/filter.bml.select=Sélectionner le(s) groupe(s) d'amis que vous voulez voir sur votre liste d'amis.
+
+/friends/filter.bml.select.header=Sélectionnez un/des groupe(s)
+
+/friends/filter.bml.submit=Afficher
+
+/friends/filter.bml.title=Filtre d'amis
+
+/friends/index.bml.about<<
+Cette page vous permet de gérer votre liste d'amis.
+En ajoutant d'autres utilisateurs à votre liste d'amis, vous pouvez facilement lire leur entrées sur votre page d'amis. Vous pouvez aussi ajouter des communautés et des comptes associés à votre liste d'amis afin de voir leur entrées sur votre page d'amis.
+.
+
+/friends/index.bml.edit.about=Ajouter ou retirer des utilisateurs de votre liste d'amis, ou éditez les couleurs utilisées pour ls représenter.
+
+/friends/index.bml.editgroups.about=Créez, éditez, ou effacez des groupes d'amis.
+
+/friends/index.bml.filter=Ces groupes d'amis peuvent être utilisés pour filtrer votre page d'amis: si vous le désirez, vous pouvez voir seulement les entrées d'un groupe en particulier. Ils peuvent aussi être utilisés comme moyen de sécurité (voir plus bas).
+
+/friends/index.bml.filter.about=Filtrez votre liste d'amis selon certain sous-groupes.
+
+/friends/index.bml.groups=En plus de cela, des sous-groupes d'amis peuvent être spécifiés.
+
+/friends/index.bml.security=Votre liste d'amis est aussi utilisée pour les entrées avec un accès restreint. Vous pouvez trouver plus d'informations sur la sécurité reliée à votre liste d'amis à <cite><a href="/support/faqbrowse.bml?faqcat=security">Amis &amp; niveaux de sécurité</a></cite>.
+
+/friends/index.bml.security.custom=Avec des entrées te type "personalisé", vous pouvez spécifiez quel groupe d'amis peut voir votre entrée. Mais ce ne sont pas tout les <a href="/download/">clients</a> qui utilisent présentement cette fonction.
+
+/friends/index.bml.security.header=Sécurité
+
+/friends/index.bml.security.only=Avec les entrées de type "Amis seulement", tout les utilisateur sur votre liste d'amis peuvent voir l'entrée.
+
+/friends/index.bml.title=Outils pour les amis
+
+/friends/index.bml.tools=Outils
+
+/friends/popwithfriends.bml.account_type=Désolé, votre type de compte ne vous permet pas d'utiliser cet outil.
+
+/friends/popwithfriends.bml.count=Compte
+
+/friends/popwithfriends.bml.exclude_own=Vous pouvez optionnellement <a href='popwithfriends.bml'>exclure vos amis</a>.
+
+/friends/popwithfriends.bml.include_own=Vous pouvez optionnellement <a href='popwithfriends.bml?own=1'>inclure vos amis</a>.
+
+/friends/popwithfriends.bml.intro=Les utilisateurs suivants sont souvent listés par vos amis, mais pas par vous.
+
+/friends/popwithfriends.bml.intro_own=Les utilisateurs suivants sont souvent listés par vos amis. Cette liste contient aussi vos propres amis.
+
+/friends/popwithfriends.bml.no_users=Pas d'utilisateurs
+
+/friends/popwithfriends.bml.title=Utilisateurs populaires parmis vos amis
+
+/friends/popwithfriends.bml.user=Utilisateur
+
+/go.bml.defaultbody=Aucun paramètre indiqué.
+
+/go.bml.defaulttitle=Erreur
+
+/go.bml.error.noentry.next=Il n'y a pas d'entrée après celle-ci.
+
+/go.bml.error.noentry.prev=Il n'y a pas d'entrée avant celle-ci.
+
+/go.bml.error.noentrytitle=Aucune entrée
+
+/go.bml.error.redirkey=Faux redir_key.
+
+/go.bml.error.usernotfound=Utilisateur introuvable.
+
+/index.bml.about.header=À propos de LiveJournal
+
+/index.bml.about.joining=Joidre le site est gratuit. Les utilisateurs peuvent néanmoins choisir d' <a [[aopts1]]>améliorer</a> leur compte pour avoir <a [[aopts2]]>plus d'options</a>.
+
+/index.bml.about.us=LiveJournal est un outil de publication personnelle ("blogging") très simple à utiliser (mais néanmoins très puissant et personnalisable). Il est basé sur un <a [[aopts]]>logiciel open source</a>.
+
+/index.bml.boldcreate=Créez votre propre LiveJournal!
+
+/index.bml.frank.image.alt=Frank, la chèvre mascotte de LiveJournal.
+
+/index.bml.frank.logo=<b><i>"Bêhhh",</i> dit <a href="/site/goat.bml">Frank</a>.</b>
+
+/index.bml.learnmore.header=Vous voulez en savoir plus?
+
+/index.bml.learnmore.text=Veuillez lire notre <a [[aopts1]]>présentation</a>. Convaincu? <b><a [[aopts2]]>Créez</a></b> votre propre LiveJournal!
+
+/index.bml.meta.desc=Chez LiveJournal.com, on peut révéler ses pensées au monde.
+
+/index.bml.meta.keywords=journal intime, journaux, journal en ligne, écriture, journal de web
+
+/index.bml.news.text=Les <a [[aopts]]>dernières nouvelles</a>:
+
+/index.bml.news.title=Dernières nouvelles
+
+/index.bml.post=Statistiques en direct
+
+/index.bml.post.hour=Par heure:
+
+/index.bml.post.latest=Dernières entrées
+
+/index.bml.post.min=Par minute:
+
+/interests.bml.add.added.head=Ajouté!
+
+/interests.bml.add.added.text=L'intérêt a été ajouté à votre liste
+
+/interests.bml.add.btn.text=Ajouter [[interest]]
+
+/interests.bml.add.confirm.head=Confirmez
+
+/interests.bml.add.confirm.text=Pour ajouter <b>[[interest]]</b> comme un intérêt, cliquez sur le bouton ci-dessous
+
+/interests.bml.add.toomany.head=Désolé
+
+/interests.bml.add.toomany.text=Vous avez déjà défini [[maxinterests]] intérêts
+
+/interests.bml.addint=Si vous êtes aussi intéressé par ceci et que vous souhaitez être ajouté à cette liste, <a href="/interests.bml?mode=add&amp;intid=[[qintid]]">cliquez ici</A>.
+
+/interests.bml.btn.switch=Changez
+
+/interests.bml.communities.head=Communautés pertinentes
+
+/interests.bml.communities.text=Les communautés suivantes sont aussi intéressées par <b>"[[interest]]"</b>.
+
+/interests.bml.count=Compte
+
+/interests.bml.enmasse.body.other=Ci-dessous se trouvent les intérêts de [[user]]. Cochez les cases à côté des intérêts que vous aimeriez ajouter à votre liste, et décochez celles que vous voudriez enlever de votre liste. Lorsque ce sera fini, cliquez sur "Sauvegarder les changements".
+
+/interests.bml.enmasse.body.other_authas=Ci-dessous se trouvent les intérêts de [[user]]. Cochez les cases à côté des intérêts que vous aimeriez ajouter à la liste de [[target]], et décochez celles que vous voudriez enlever de votre liste. Lorsque ce sera fini, cliquez sur "Sauvegarder les changements".
+
+/interests.bml.enmasse.body.you=Décochez les cases près des intérêts que vous aimeriez enlever de votre liste. Lorsque ce sera fini, cliquez sur "Sauvegarder les changements".
+
+/interests.bml.enmasse.btn=Montrer la liste
+
+/interests.bml.enmasse.header=Ajouter/enlever des intérêts
+
+/interests.bml.enmasse.intro=Modifiez vos intérêts selon ceux de :
+
+/interests.bml.error.add.mustlogin=Vous devez être enregistré pour ajouter un intérêt ainsi
+
+/interests.bml.error.enmasse.mustlogin=Vous devez être <a href='/login.bml?ret=1'>connecté(e)</a> pour utiliser cette fonction.
+
+/interests.bml.error.enmasse.noaccess=Vous ne semblez pas avoir accès au journal [[user]].
+
+/interests.bml.error.findsim_do.intnotfound=L'intérêt n'a pas été trouvé.
+
+/interests.bml.error.nointerests=L'utilisateur sélectionné n'existe pas ou n'a pas spécifié d'intérêts.
+
+/interests.bml.findsim.searchwait=<b>Attention:</b> La recherche prendra du temps. Soyez patient.
+
+/interests.bml.findsim_do.account.notallowed=Désolé, votre type de compte ne vous permet pas d'utiliser cet outil.
+
+/interests.bml.findsim_do.magic=Index<br/>Magic
+
+/interests.bml.findsim_do.magic.head=Index Magique?
+
+/interests.bml.findsim_do.magic.text=Chaque utilisateur concerné reçoit un index magique calculé, qui est un mélange de deux facteurs: le nombre d'intérêts et des points ajoutés correspondant à des intérêts partagés peu communs.
+
+/interests.bml.findsim_do.nomatch.head=Aucun résultat
+
+/interests.bml.findsim_do.nomatch.text=Pas d'utilisateur semblable à [[user]].
+
+/interests.bml.findsim_do.notdefined=L'utilisateur [[user]] n'a pas défini d'intérêt.
+
+/interests.bml.findsim_do.similar.head=Utilisateurs semblables
+
+/interests.bml.findsim_do.similar.text=Les utilisateurs suivants sont les plus reliés à [[user]]
+
+/interests.bml.finished.about=Lorsque vous aurez terminé, appuyez sur le bouton "Sauvegarder les changements" ci-dessous :
+
+/interests.bml.finished.header=Fini?
+
+/interests.bml.finished.save_button=Sauvegarder les changements
+
+/interests.bml.interest=Intérêt
+
+/interests.bml.interested.btn.find=Trouver
+
+/interests.bml.interested.in=Trouver des personnes et des communautés partageant l'intérêt suivant:
+
+/interests.bml.interests.findsim=Trouver des utilisateurs avec des intérêts similaires à ceux de :
+
+/interests.bml.interests.head=Intérêts
+
+/interests.bml.interests.text=Il y a ici des choses amusantes à faire avec les intérêts.
+
+/interests.bml.interests.viewpop=Voyez les intérêts populaires
+
+/interests.bml.login.enterinfo=Entrez votre nom d'utilisateur et votre mot de passe pour modifier vos intérêts.
+
+/interests.bml.login.proceed=Procédez
+
+/interests.bml.match=[[count]] résultat
+
+/interests.bml.matches=[[count]] résultats
+
+/interests.bml.morestuff=Vous trouverez plus de trucs amusants à la <a href="/interests.bml">page d'intérêts</a>.
+
+/interests.bml.nointerests.text=Vous n'avez pas de liste d'intérêts? Ajoutez en à la page <A HREF=*/editinfo.bml*>Editez vos informations personnelles & réglages</A>
+
+/interests.bml.popular.disabled=Désolé, les centres d'intérêts populaires ne sont pas disponibles.
+
+/interests.bml.popular.head=Intérêts populaires
+
+/interests.bml.popular.text=Les suivants sont les intérêts les plus populaires.
+
+/interests.bml.results.added=Les intérêts que vous avez sélectionnés ont étés ajoutés à votre liste d'intérêts avec succès.
+
+/interests.bml.results.both=Les intérêts que vous avez sélectionnés ont étés ajoutés à votre liste d'intérêts avec succès, et ceux que vous avez voulu retirer le furent avec succès.
+
+/interests.bml.results.deleted=Les intérêts que vous vouliez retirer de votre liste d'intérêts le furent avec succès.
+
+/interests.bml.results.del_and_toomany=Les intérêts que vous vouliez retirer de votre liste d'intérêts le furent avec succès. Mais vous avez choisi trop d'intérêts à ajouter. Vous ne pouvez avoir que [[intcount]] intérêts en tout. Aucun des intérêts sélectionnés n'ont été ajoutés à votre liste. Vous pouvez retourner à la page précédente et réessayer en ajoutant moins d'intérêts.
+
+/interests.bml.results.goback=Peut être voulez-vous retourner au <a href='[[url]]'>profil</a> de [[user]] que vous regardiez précédemment.
+
+/interests.bml.results.header=Résultats
+
+/interests.bml.results.message=Voyez votre <a href='[[url]]'>page de profil</a> mise à jour.
+
+/interests.bml.results.nothing=Vous n'avez fait aucun changement.
+
+/interests.bml.results.toomany=Vous avez sélectionné trop d'intérêts à ajouter. Vous ne pouvez avoir que [[intcount]] intérêts en tout. Aucun des intérêts sélectionnés n'a été ajouté à votre liste d'intérêts. Retournez à la page précédente et réessayez, en choisissant moins d'intérêts à ajouter.
+
+/interests.bml.title=Intérêts
+
+/interests.bml.toomany.body=Il y a [[intcount]] personnes et/ou communautés qui ont ceci comme intérêt. Il n'y aura pas de liste montrée.
+
+/interests.bml.toomany.head=Beaucoup de résultats
+
+/interests.bml.users.head=Utilisateurs intéressés
+
+/interests.bml.users.text=Les utilisateurs suivants sont aussi intéressés à <b>[[interest]]</b>. 
+
+/invite/index.bml.code=Code
+
+/invite/index.bml.error=Erreur
+
+/invite/index.bml.genmore=Générez plus de codes
+
+/invite/index.bml.how_detail=Dépendamment de certains <a href="[[factors_url]]">facteurs</a>, les utilisateurs actuels ont la possibilité d'inviter un certain nombre de nouveaux utilisateurs. Pour inviter quelqu'un, vous devez générer de nouveau codes d'invitation et le leur donner. 
+
+/invite/index.bml.how_header=Comment ça marche ?
+
+/invite/index.bml.invite_header=Invitations?
+
+/invite/index.bml.none=Aucune
+
+/invite/index.bml.redeemed=Utilisé par
+
+/invite/index.bml.title=Invitez d'autres personnes à LiveJournal...
+
+/invite/index.bml.unused=Inutilisés
+
+/invite/index.bml.use=utilisez 
+
+/invite/index.bml.why_codes=Il est maintenant requis d'acheter un compte payant ou d'être invité par un utilisateur existant pour créer un nouveau compte de communauté, en contrôler la croissance et prévenir les abus. Notre motivation pour faire ceci est d'améliorer la communauté pour les gens qui l'utilisent déjà, bien que ce soit un léger inconvénient pour les nouveaux utilisateurs.
+
+/legal/index.bml.about<<
+LiveJournal se voue à offrir une expérience stable et significative aux membres de toutes les origines et de toutes les nations. Nous devons donc avoir quelques règles pour procurer ceci. 
+Les documents trouvés ici contiennent des termes raisonnables et de l'information sur les manières que nous utiliserons pour vous servir le mieux possible, et sur comment nous nous attendons que les membres agissent envers nous et envers les autres membres. LiveJournal fonctionne mieux lorsque ces règles sont respectées.
+En voici quelques-unes importantes à retenir :
+<ul> 
+<li>N'abusez pas, ni n'agressez, ni ne menacez les autres.</li> 
+<li>Ne blessez les mineurs en aucune façon.</li> 
+<li>N'utilisez pas le site ou un compte pour faire de la publicité.</li> 
+<li>n'utilisez pas de matériel protégé par les droits d'auteurs sans permission.</li> 
+<li>N'envahisez pas la vie privée des autres.</li> 
+<li>Ne violez pas les lois des États-Unis, ni celles de votre région.</li> 
+</ul> 
+La liste complète des règles peut être trouvée plus bas :  
+.
+
+/legal/index.bml.about.header=Vue d'ensemble
+
+/legal/index.bml.docs.coppa.about<<
+La " Children's Online Privacy Protection Act " (COPPA) filtre les documents et l'utilisation des informations personnelles fournie par et concernant des enfants de moins de treize ans. Notre page sur COPPA explique notre position face à cette loi, et définit comment s'y prendre avec les complications face à COPPA. 
+
+.
+
+/legal/index.bml.docs.privacy.about<<
+La Politique de la Vie Privée définit quelles informations nous amassons de nos membres et explique à quelles fins nous utilisons ces informations.
+
+.
+
+/legal/index.bml.docs.tos.about<<
+Les Termes du Service définissent nos politiques d'utilisation, ainsi que les termes généraux et les conditions pour être membre. Le fait d'être membre et/ou l'utilisation du système constitue un accord à respecter et se conformer à ces termes, ainsi qu'à tous les autres. 
+
+.
+
+/legal/index.bml.title=Information Légale
+
+/legal/privacy.bml.title=Vie Privée
+
+/legal/tos.bml.title=Conditions du service
+
+/login.bml.bindip.label=Lié à l'adresse IP:
+
+/login.bml.bindip.no=Non (fonctionne avec toutes les ISP)
+
+/login.bml.bindip.yes=Oui (plus sûr)
+
+/login.bml.error.mustenterusername=Vous devez <a href='/login.bml'>entrer un nom d'utilisateur</a>
+
+/login.bml.expire.btn.neverexpire=Changer le mode d'expiration à JAMAIS
+
+/login.bml.expire.btn.sessiononly=Changer le mode d'expiration à SESSION SEULEMENT
+
+/login.bml.expire.neverexpire.text=Votre connection <b>ne prendra jamais fin</b>, alors si vous êtes sur un ordinateur public, où d'autres utilisateurs pourraient utiliser cet ordinateur bientôt, soyez certain de vous déconnecter lorsque vous aurez fini! Ou changez votre mode de connection pour qu'elle expire aussitôt que vous fermer votre explorateur:
+
+/login.bml.expire.sessiononly.text=Votre connexion expirera quand vous fermerez votre explorateur. Si vous êtes le seul à utiliser votre propre ordinateur, vous pouvez changer votre connexion pour qu'elle ne se périme pas.
+
+/login.bml.links.head=Liens
+
+/login.bml.links.link1=Votre <a href='/users/[[username]]/friends'>page d'amis</a>.
+
+/login.bml.links.link2=Votre <a href='/todo/'>liste des choses à faire</a>.
+
+/login.bml.links.text=Plus tard cette page contiendra toutes sortes de liens et d'informations pertinentes, mais pour le moment voici les quelques endroits où vous pouvez aller:
+
+/login.bml.loggedin.head=Connecté!
+
+/login.bml.loggedin.text=Vous êtes à présent connecté.
+
+/login.bml.login.btn.changeopts=Modifier
+
+/login.bml.login.btn.login=Connectez vous...
+
+/login.bml.login.forget=Oublié?
+
+/login.bml.login.head=Connectez-vous
+
+/login.bml.login.never=Jamais
+
+/login.bml.login.otheropts=Autres options:
+
+/login.bml.login.password=Mot de passe:
+
+/login.bml.login.text1=Pour vous connecter à [[sitename]], entrez votre nom d'utilisateur et votre mot de passe ci-dessous. <b>Nouvel utilisateur&nbsp;:</b> Pour créer un compte, <a href='/create.bml'>c'est ici</a>. 
+
+/login.bml.login.text2<<
+Vous devez spécifier quand votre connexion expire. Par défaut elle expire lorsque vous fermez votre explorateur, ce qui est le mieux pour des ordinateurs publics. Cependant si vous êtes l'unique utilistateur de votre ordinateur et que personne d'autre n'y a accès, vous pouvez choisir d'être connecté en permanence. Pour plus d'informations et d'autres options, voyez <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=135">Quelles sont les options lorsque je me connecte?</a>
+
+.
+
+/login.bml.login.text3=[[username]], vous êtes maintenant connecté à [[sitename]]. Vous pouvez naviguer sur le site en utilisant notre <a href="/site/">plan du site</a>.
+
+/login.bml.login.username=Nom d'utilisateur:
+
+/login.bml.login.whenbrowsercloses=Quand l'explorateur se ferme
+
+/login.bml.logout.btn=Déconnectez-vous
+
+/login.bml.title=Connectez-vous
+
+/login.bml.whylogin.benefit1=Vous n'aurez plus besoin d'entrer votre nom d'utilisateur/mot de passe nulle part sur le site.
+
+/login.bml.whylogin.benefit2=Vous serez capable de voir les entrées "protégées" de vos amis qui vous en donneront la permission.
+
+/login.bml.whylogin.benefit3=Un tas de choses ne sont visibles ou accessibles que si vous êtes connecté.
+
+/login.bml.whylogin.head=Pourquoi se connecter?
+
+/login.bml.whylogin.text=Voici les principaux avantages d'être connecté:
+
+/logout.bml.already.head=Déjà déconnecté
+
+/logout.bml.already.text=Vous êtes déjà déconnecté.
+
+/logout.bml.killall.btn=Terminer toutes mes sessions
+
+/logout.bml.killall.head=Autres sessions
+
+/logout.bml.killall.text=Vous avez d'autres sessions actives. Voulez-vous fermer toutes vos sessions plutôt que juste celle-ci&nbsp;? (Veuillez voir <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=159">cette question de la FAQ</a> pour plus d'informations.)
+
+/logout.bml.loggedout.already=Déjà déconnecté.
+
+/logout.bml.loggedout.head=Déconnecté
+
+/logout.bml.loggedout.killedall=Toutes vos sessions sont terminées
+
+/logout.bml.loggedout.success=Déconnecté
+
+/logout.bml.loggedout.text=Vous êtes maintenant déconnecté.
+
+/logout.bml.logout.btn=Déconnectez-vous
+
+/logout.bml.logout.head=Voulez-vous vous déconnecter?
+
+/logout.bml.logout.text=Cliquer sur le bouton ci-dessous pour vous déconnecter.
+
+/logout.bml.title=Sortie
+
+/lostinfo.bml.btn.proceed=Allez-y
+
+/lostinfo.bml.enter_email=Entrez votre adresse de courriel:
+
+/lostinfo.bml.enter_email_optional=Adresse de courriel: (facultatif)
+
+/lostinfo.bml.enter_username=Entrez votre nom d'utilisateur:
+
+/lostinfo.bml.error.no_email=Vous devez entrez une adresse courriel afin de récupérer votre nom d'utilisateur.
+
+/lostinfo.bml.error.purged=Nous ne pouvons récupérer le mot de passe d'un compte lorsqu'il a été effacé.
+
+/lostinfo.bml.error.renamed=Nous ne pouvons récupérer le mot de passe d'un compte qui à été renommé.
+
+/lostinfo.bml.error.syndicated=Le compte duquel vous essayez de récupérer le mot de passe est un compte syndiqué. Ce type de compte n'a pas de mot de passe.
+
+/lostinfo.bml.error.sysbanned=Votre compte ne permet pas d'envoyer les mot de passe par courriel.
+
+/lostinfo.bml.lostpassword.text=Si vous avez perdu votre mot de passe, entrez votre nom d'utilisateur et optionnellement l'adresse de courriel où vous voudriez recevoir votre mot de passe. Afin de recevoir votre mot de passe à votre courriel, celui-ci doit avoir été confirmée. Si vous laissez le champ d'adress vide, il sera envoyé à votre adresse actuelle.
+
+/lostinfo.bml.lostpassword.title=Avez-vous perdu votre mot de passe?
+
+/lostinfo.bml.lostusername.text=Si vous avez perdu votre nom d'utilisateur, entrez votre adresse de courriel et nous vous enverrons votre nom d'utilisateur.
+
+/lostinfo.bml.lostusername.title=Avez-vous perdu votre nom d'utilistateur?
+
+/lostinfo.bml.title=Information perdue
+
+/lostinfo_do.bml.error.no_usernames_for_email=Pas de nom(s) d'utilistateur pour cette adresse courriel: [[address]]
+
+/lostinfo_do.bml.error1.text=Vous n'avez jamais utiilisé cette adresse courriel avec ce compte ou elle n'a jamais été validée.
+
+/lostinfo_do.bml.lostpasswordmail.part1<<
+***Ceci est une réponse automatique. Vous n'avez pas besoin d'y répondre. ***
+
+Voici le rappel de mot de passe que vous avez demandé de [[sitename]].
+Ci-dessous se trouve votre nom d'utilisateur, votre mot de passe, et le courriel auquel est enregistré votre journal.
+
+Nom d'utilisateur : [[username]]
+Mot de passe : [[password]]
+Courriel : [[emailadr]]
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part2=Pour valider votre courriel, allez ici :
+
+/lostinfo_do.bml.lostpasswordmail.part3<<
+Ces informations ont étés demandées sur le site Internet de [[remoteip]].
+
+Si vous n'avez pas demandé de recevoir votre mot de passe, ne paniquez pas. Après tout, vous êtes la seule personne qui peut recevoir ce courriel. Il est possible que la personne qui a fait la demande ce soit trompée et croit qu'il ou elle contrôle ce nom d'utilisateur. Il est aussi possible que quelqu'un ait fait une erreur en entrant le nom d'utilisateur ou le courriel. 
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.part4|notes=Site-local text.  For 'en', it's blank.
+/lostinfo_do.bml.lostpasswordmail.part4<<
+Si vous croyez vraiment que votre compte n'est pas sécure, lisez    
+  http://www.livejournal.com/support/faqbrowse.bml?faqid=117 
+pour plus d'informations sur comment le rendre plus sécure. 
+.
+
+/lostinfo_do.bml.lostpasswordmail.part5<<
+Liens utiles :
+
+Votre LiveJournal :
+[[journalurl]]
+
+Mettez à jour votre journal en ligne :
+[[updateurl]]
+
+Nos estimes, 
+L'Équipe de LiveJournal
+
+[[rooturl]]
+
+.
+
+/lostinfo_do.bml.lostpasswordmail.subject=Mot de passe perdu
+
+/lostinfo_do.bml.password_mailed.text=Réussi. Votre mot de passe a été envoyé.
+
+/lostinfo_do.bml.password_mailed.title=Mot de passe envoyé!
+
+/lostinfo_do.bml.title=Information perdue
+
+/lostinfo_do.bml.username_mailed.text=Réussi. Votre nom d'utlisateur a été envoyé.
+
+/lostinfo_do.bml.username_mailed.title=Nom d'utilisateur envoyé!
+
+/manage/index.bml.about=S'occuper des réglages d'un compte est facile. Vous n'avez qu'à choisir une des sections ci-dessous:
+
+/manage/index.bml.communities=Créez et gérez vos propres communautés:
+
+/manage/index.bml.communities.create.about=Créez une nouvelle communauté
+
+/manage/index.bml.communities.header=Communautés
+
+/manage/index.bml.communities.manage.about=Gérez les options de votre communauté et ses membres
+
+/manage/index.bml.customization=Personnalisez l'apparence de votre journal:
+
+/manage/index.bml.customization.advanced=Personnalisation avancée
+
+/manage/index.bml.customization.advanced.about=Regardez, créez et choississez vos dispositions et vos styles S2
+
+/manage/index.bml.customization.customize=Personnalisez votre journal
+
+/manage/index.bml.customization.customize.about=Changez l'apparence de votre journal et alternez entre les systèmes de style S1 et S2
+
+/manage/index.bml.customization.header=Personnalisation
+
+/manage/index.bml.customization.links=Liste de liens
+
+/manage/index.bml.customization.links.about=Créez une liste de liens qui apparaîtra dans votre journal
+
+/manage/index.bml.customization.modify.about=Modifiez les options d'affichage de votre journal
+
+/manage/index.bml.customization.s1.header=Système de style S1
+
+/manage/index.bml.customization.s2.header=Système de style S2
+
+/manage/index.bml.entries=Travaillez avec des entrées que vous avez faites dans votre journal:
+
+/manage/index.bml.entries.edit.about=Éditez et effacez des entrées de votre journal
+
+/manage/index.bml.entries.header=Entrées journalières
+
+/manage/index.bml.entries.memories.about=Visionnez et travaillez avec vos entrées mémorables
+
+/manage/index.bml.friends=Gérez vos amis et vos groupes d'amis, ou filtrez votre page d'amis selon vos groupes d'amis sauvegardés:
+
+/manage/index.bml.friends.edit.about=Ajoutez ou retirez des utilisateurs de votre liste d'amis, ou changez les couleurs choisies pour les représenter
+
+/manage/index.bml.friends.filter=Filtrez votre page d'amis
+
+/manage/index.bml.friends.filter.about=Filtrez votre liste d'amis afin d'afficher un groupe d'amis bien spécifique
+
+/manage/index.bml.friends.groups.about=Créez, éditez ou effacez des sous-groupes de votre liste d'amis
+
+/manage/index.bml.friends.header=Amis
+
+/manage/index.bml.information=Choisissez quelles informations sont affichées sur votre compte:
+
+/manage/index.bml.information.changepass=Changer le mot de passe du compte
+
+/manage/index.bml.information.changepass.about=Changer le mot de passe de votre compte
+
+/manage/index.bml.information.editinfo.about=Éditez les informations de votre compte et d'autres options
+
+/manage/index.bml.information.emailpost=Réglages du portail courriel
+
+/manage/index.bml.information.emailpost.about=Gérez vos adresses courriel et votre code confidentiel pour supporter l'affichage par courriel
+
+/manage/index.bml.information.header=Informations de compte
+
+/manage/index.bml.information.siteopts.about=Sélectionnez votre mise en page et votre langue préférée
+
+/manage/index.bml.information.status=État du compte
+
+/manage/index.bml.information.status.about=Choisissez l'état d'activation de votre compte (effacez ou rétablissez votre compte)
+
+/manage/index.bml.login=Les liens ci-dessous vous conduiront vers des pages où vos informations d'enregistrement sont nécessaires. Pour économiser du temps, vous pouvez <a href="/login.bml?ret=1">vous enregistrer</a> à l'avance.
+
+/manage/index.bml.title=Gérez les comptes
+
+/manage/index.bml.userpictures=Téléchargez et gérez les icônes de votre compte:
+
+/manage/index.bml.userpictures.edit.about=Téléchargez et gérez vos icônes
+
+/manage/index.bml.userpictures.header=Icônes
+
+/manage/links.bml.about=Utilisez le formulaire ci-dessous pour créer une liste de liens qui apparaîtra sur votre journal. Les liens apparaîtront seulement si cette option est supportée par votre style S2.
+
+/manage/links.bml.about.blank=Afin de créer une ligne vide, tapez un "-" comme titre.
+
+/manage/links.bml.about.heading=Pour créer une entête, tapez un titre sans URL (adresse web).
+
+/manage/links.bml.about.reorder=Pour réorganiser les liens dans la liste, modifiez le numéro d'ordre à gauche (nombres décimaux acceptés).
+
+/manage/links.bml.error.s2required=La liste de liens est disponible seulement pour les styles S2 supportés. Afin de changer pour S2, voyez la page [[link]].
+
+/manage/links.bml.error.s2required.header=S2 requis
+
+/manage/links.bml.success=Réussi ! Vos liens ont été enregistrés.
+
+/manage/links.bml.title=Liste de liens
+
+/manage/phonepost.bml.delete=Effacer les réglages
+
+/manage/phonepost.bml.deleted=Vos données téléphoniques ont été effacées.
+
+/manage/phonepost.bml.deleted.header=Effacé
+
+/manage/phonepost.bml.error.inuse=Code confidentiel invalide, essayez-en un autre SVP
+
+/manage/phonepost.bml.error.phone.length=Votre numéro de téléphone doit être d'au moins 10 chiffres.
+
+/manage/phonepost.bml.error.pin=Votre NIP doit être numérique.
+
+/manage/phonepost.bml.error.transcription=Groupe d'amis invalide pour la transcription
+
+/manage/phonepost.bml.intro.loggedin<<
+<?p Si vous aimeriez pouvoir faire des <a href='/phonepost/'>entrées par téléphone</a>, entrez votre numéro de téléphone ainsi que votre NIP ci-dessous. p?>
+<?p Nous n'utiliserons votre numéro de téléphone que pour identifiez les appels entrant (voyez notre <a href='/legal/privacy.bml'>politique de la vie privée</a> pour plus d'information).
+Les appels venant de numéros de téléphone autres que ceux que vous autorisez seront acceptés, mais vous devrez entrer votre numéro de téléphone pré autorisé avant de pouvoir enregistrer votre entrée. p?>
+<?p Nous acceptons tous les numéros de téléphones, qu'ils soient nationaux ou internationaux, si le numéro de téléphone est composé d'au moins 10 chiffres. Les espaces, la ponctuation et les lettres sont automatiquement enlevés du numéro de téléphone lorsque vous sauvegardez. p?>
+.
+
+/manage/phonepost.bml.intro.loggedout=Les membres de <?sitename?> peuvent <a href='/login.bml?ret=1'>se connecter</a> et changer leur paramètres pour faire des <a href='/phonepost/'>entrées par téléphone</a> ici: 
+
+/manage/phonepost.bml.phone=Numéro de téléphone autorisé:
+
+/manage/phonepost.bml.pin=Numéro d'identification personnel: 
+
+/manage/phonepost.bml.pin.help=Il est recommandé d'utiliser 4 à 6 chiffres
+
+/manage/phonepost.bml.save=Sauvegarder les paramètres
+
+/manage/phonepost.bml.saved=Sauvegardé
+
+/manage/phonepost.bml.transcribers=Transcripteurs permis: 
+
+/modify.bml.title=Modifiez votre journal
+
+/modify_do.bml.availablestyles.head=Styles disponibles
+
+/modify_do.bml.availablestyles.userstyles=Styles
+
+/modify_do.bml.colortheme.about=Vous pouvez sélectionner ici le thème de couleur qui sera appliqué à l'ensemble d'options que vous avez choisi ci-dessus. Ou si vous n'aimez pas les couleurs proposées, déterminez la vôtre! 
+
+/modify_do.bml.colortheme.area.head=Espace d'utilisation
+
+/modify_do.bml.colortheme.color.head1=Couleur
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb ou le nom)
+
+/modify_do.bml.colortheme.customcolors=Couleurs personnalisées
+
+/modify_do.bml.colortheme.defaulttheme=Thème par défaut
+
+/modify_do.bml.colortheme.head=Thème de couleur
+
+/modify_do.bml.domainalias.about=Si vous avez un nom de domaine déjà enregistré (ou que vous envisagez d'enregister) et que vous aimiriez qu'il démarre automatiquement votr LiveJournal, entrez le ici:
+
+/modify_do.bml.domainalias.domainname=Nom de domaine:
+
+/modify_do.bml.domainalias.example=Exemple: <i>mon-journal.com</i>
+
+/modify_do.bml.domainalias.head=Pseudo en cours du domaine
+
+/modify_do.bml.domainalias.helptext=Pour que ça marche, arrangez vous pour que votre DNS de nom de domaine pointe la même adresse IP que [[sitename]]. Pour plus d'informations, voyez <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=129">cette FAQ</a>. 
+
+/modify_do.bml.done.btn.savechanges=Sauvegarder les changements
+
+/modify_do.bml.done.head=Fini?
+
+/modify_do.bml.done.text=Lorsque vous avez fini, cliquez sur le bouton "Sauvegarder les changements" ci-dessous...
+
+/modify_do.bml.error.dupdomainalias=Un autre utilisateur a déjà enregistré le pseudo de domaine que vous avez choisi.
+
+/modify_do.bml.error.stylenotavailable=Un des styles que vous avez choisi n'est pas disponible. Soit quelqu'un l'a effacé, ou vous essayez d'en choisir un auquel vous n'avez pas accès.
+
+/modify_do.bml.friends.about=Vous trouverez ici les options qui contrôlent l'apparence de votre page d'amis.
+
+/modify_do.bml.friends.head=Voyez vos amis 
+
+/modify_do.bml.friends.opt.usesharedpic.about=Cette option contôle quelle image vous voyez sur votre page d'amis lorsqu'un utilisateur écrit dans un journal partagé ou une communauté. Si vous la cochez, vous verez l'icône de la communauté. Si vous ne la cochez pas, vous verez l'icône personnelle de la personne qui écrit.
+
+/modify_do.bml.friends.opt.usesharedpic.head=Utiliser les icônes des journaux partagés ou des communautés au lieu de celles des utilisateurs. 
+
+/modify_do.bml.journaloptions.about=D'ici vous pouvez personnaliser l'apparence de vos pages LiveJournal. Si vous voulez savoir comment ça marche, lisez les <a href="/developer/" target="_blank">informations pour les developpeurs</a>. Autrement nous présumerons que vous êtes satisfait des options de base ci-dessous.
+
+/modify_do.bml.journaloptions.head=Options de votre journal
+
+/modify_do.bml.journalstatus.about=Si vous voulez désactiver ou réactiver votre journal, c'est ici qu'il faut le faire. Une fois que vous l'aurez désactivé, vous aurez 30 jours pour le réactiver si vous changez d'idée. Après 30 jours, le journal sera effacé de façon permanente et il n'y aura aucun moyen de le retrouver.
+
+/modify_do.bml.journalstatus.head=Statut de l'activation du journal
+
+/modify_do.bml.journalstatus.select.activated=Activé
+
+/modify_do.bml.journalstatus.select.deleted=Effacé
+
+/modify_do.bml.journalstatus.select.head=Statut&nbsp;:
+
+/modify_do.bml.journalstatus.select.suspended=Suspendu
+
+/modify_do.bml.moodicons.about=Quand vous postez des entrées, vous pouvez aussi préciser votre humeur actuelle. Des utilisateurs ont soumis différents ensembles d'icônes que vous pouvez utiliser. Ou bien sélectionnez *aucun* si vous ne voulez pas d'image à côté de votre humeur. (ou bien n'utilisez pas la commande Humeur Actuelle).).
+
+/modify_do.bml.moodicons.head=Icônes d'humeur
+
+/modify_do.bml.moodicons.opt.forcefriends.about=Toujours utiliser ce thème pour les entrées de votrte page d'amis.
+
+/modify_do.bml.moodicons.personal=Thèmes personnels:
+
+/modify_do.bml.moodicons.preview=Aperçu
+
+/modify_do.bml.moodicons.select=Choisir un ensemble d'icônes d'humeur&nbsp;:
+
+/modify_do.bml.overrides.about|staleness=1
+/modify_do.bml.overrides.about=Vous pouvez ignorer cette partie. Elle sert à établir des éléments spécifiques à propos de votre mise en page. Voyez la <A HREF="/developer/" TARGET=_blank>section des développeurs</A> pour plus de détails.Notez aussi que les réécritures ne servent qu'à réécrire un ou deux éléments d'un style. Si vous préférez tout réécrire, vous devez  <A HREF="/styles/create.bml" TARGET=_blank>créer votre propre style</A>.          
+
+/modify_do.bml.overrides.box.head=Réécritures:
+
+/modify_do.bml.overrides.head=Réécritures de style
+
+/modify_do.bml.overrides.note=Notez, s'il vous plaît qu'on ne peut réécrire toutes les variables de style. Voyez la <a href="/developer/varlist.bml">documentation</a> pour plus de détails. Soyez aussi conscient que si vous essayez d'éditer en utilisant une expression non autorisée en tête du document,comme &lt;DIV&gt;, &lt;SPAN&gt;, &lt;IMG&gt;, cette expression sera omise. Les seuls éléments HTML qui peuvent être utilisés en tête de réécriture sont ceux acceptés dans une en-tête de document HTML. Ils sont limités à: &lt;title&gt;, &lt;base&gt;, &lt;style&gt;, &lt;link&gt;, et &lt;meta&gt;,.
+
+/modify_do.bml.overrides.warning=CECI N'EST <U>PAS</U> L'ENDROIT OÙ VOUS ÉCRIVEZ VOTRE JOURNAL!!
+
+/modify_do.bml.pagelayoutstyle.about=Ce réglage contrôle la façon dont votre journal est disposé à l"écran.
+
+/modify_do.bml.pagelayoutstyle.head=Style de mise en page
+
+/modify_do.bml.pagelayoutstyle.warning=Votre style de compte ne vous permet de sélectionner qu'un petit nombre de styles par défaut.
+
+/modify_do.bml.success.head=Réussi
+
+/modify_do.bml.success.text=Les réglages de votre journal ont été mis à jour. Vous pouvez voir votre journal <A HREF="[[url]]">ici</A>. 
+
+/paidaccounts/index.bml.costs.header=Bon, combien ça coûte?
+
+/paidaccounts/index.bml.costs.rates=Les tarifs sont les suivants:
+
+/paidaccounts/index.bml.costs.rates.amount.header=Montant
+
+/paidaccounts/index.bml.costs.rates.inexpensive<<
+Ca fait un peu plus de <b>2$/mois</b> pour le plan annuel.
+C'est pas la ruine.
+Le plus ennuyeux c'est que vous devrez trouver votre portefeuille pour en sortir votre carte de crédit, et écrire vos informations.
+
+.
+
+/paidaccounts/index.bml.costs.rates.time.header=Heure
+
+/paidaccounts/index.bml.features.header=Alors, quelles fonctions cool est-ce que j'aurai?
+
+/paidaccounts/index.bml.title=À propos des comptes payants
+
+/paidaccounts/index.bml.whypay.argument<<
+Bien sûr que non. Payer pour des services sur l'internet est agaçant, nous sommes d'accord. 
+C'est pourquoi presque toutes les fonctions sur LiveJournal sont accessibles sans frais. 
+Mais, si vous aimez le service que vous recevez, montrez votre soutien et procurez-vous un compte payant.
+.
+
+/paidaccounts/index.bml.whypay.header=Je dois payer pour utiliser LiveJournal&nbsp;?
+
+/paidaccounts/index.bml.whypay.no_ads=Ça prend de l'argent pour faire fonctionner un site web (pour les serveurs, la bande passante, etc), et nous trouvons que c'est mieux de vous donner l'option de payer que de vous bombarder de publicités. 
+
+/paidaccounts/index.bml.your_username=nom_d'utilisateur
+
+/paidaccounts/usepaypal.bml.delivery.badformat=Format de la date de livraison incorrecte. Elle doit être comme suit : <i>aaaa-mm-jj</i> ou<i> aaaa-mm-jj hh :mm.</i>
+
+/paidaccounts/usepaypal.bml.delivery.past=La date de livraison ne peut être dans le passé. Pour envoyer immédiatement, laissez l'espace pour la date de livraison vide. 
+
+/paidaccounts/usepaypal.bml.delivery.toofuture=La date de livraison ne peut être dans plus qu'un mois.
+
+/pay/index.bml.deliverydate.details=Format: <i>aaaa-mm-jj hh:mm</i> (heure GMT)<br />(laissez vide pour livraison instantanée)
+
+/pay/index.bml.deliverydate.label=Date de livraison&nbsp;:
+
+/pay/index.bml.gift.anonymous=Cadeau anonyme
+
+/press/staff.bml.administration.about=LiveJournal à fait ses débuts en 1999 en tant que projet de Brad Fitzpatrick. Durant les deux premières années, le projet était entretenu par une <a href="/site/contributors.bml">équipe de volontaires importante et loyale</a>. Bien que la majorité des tâches sur LiveJournal.com soit encore sous la tutelle de volontaires, nous avons maintenant un petit groupe d'initiés qui supervisent les opérations. 
+
+/press/staff.bml.avva.title=Développeur en chef
+
+/press/staff.bml.back2=Retournez à la page de la presse
+
+/press/staff.bml.bradfitz.quip=Concentrez-vous sur votre produit, et non sur l'entrée d'argent.
+
+/press/staff.bml.bradfitz.title=Président / Développeur principal
+
+/press/staff.bml.contact=Si vous devez entrer en contact avec un de nous, veuillez envoyer un courriel à <a href="mailto:webmaster@livejournal.com">webmaster@livejournal.com</a>.
+
+/press/staff.bml.denisep.quip=J'aurais ça pour vous jeudi prochain
+
+/press/staff.bml.denisep.title=Volontaire des relations / Spécialiste de l'utilisation
+
+/press/staff.bml.jproulx.quip=Geek des liaisons d'utilisateur
+
+/press/staff.bml.jproulx.title=Superviseur du site / Relations publiques
+
+/press/staff.bml.lisa.title=Administrateur du service
+
+/press/staff.bml.ryanfitz.title=Service des paiements
+
+/press/staff.bml.sandy.title=Comptabilité et Administration
+
+/press/staff.bml.title=Cadres Supérieurs
+
+/press/staff.bml.whitaker.quip=Quoi d'autre?
+
+/press/staff.bml.whitaker.title|staleness=1
+/press/staff.bml.whitaker.title=L'interne
+
+/rename/use.bml.error.username=Nom d'utilisateur non valide.
+
+/rename/use.bml.error.usernametaken=Ce nom d'utilisateur est déjà pris.
+
+/rename/use.bml.heading.changes=Changements
+
+/rename/use.bml.heading.success=Réussi
+
+/rename/use.bml.heading.sure=Êtes-vous sûr?
+
+/rename/use.bml.label.desired=Nom d'utilisateur souhaité:
+
+/rename/use.bml.label.proceed=En cours...
+
+/rename/use.bml.label.rename=Renommez
+
+/rename/use.bml.label.username=Nom d'utilisateur actuel :
+
+/rename/use.bml.options.delfriends=Enlevez tous les utilisateurs de votre page d'amis et quittez toutes les communautés.
+
+/rename/use.bml.options.forward=Transférer automatiquement tous les utilisateurs de [[oldname]] au nouveau nom d'utilisateur.
+
+/rename/use.bml.options.keepfriends=Conserver tous les utilisateurs et les communautés sur votre liste d'amis.
+
+/rename/use.bml.success.login=Vous devez maintenant vous <a [[aopts]]>reconnecter</a>.
+
+/rename/use.bml.success.renamed="[[olduser]]" a été renommé "[[newuser]]"
+
+/rename/use.bml.success.usernamerenamed=Nom d'utilisateur changé.
+
+/site/contract.bml.promise=Nous tenons ferme à:
+
+/site/contract.bml.promise.account=Honorer le statut de chaque compte
+
+/site/contract.bml.promise.account.about=Les comptes permanents seront honorés aussi longtemps que le site existera. Les comptes payants le resteront jusqu'à leur échéance, à moins d'être renouvelés avant cette date. Les comptes précurseurs auront accès aux options qui étaient gratuites au tout début du site lorsqu'ils ont créé leur journaux. (Le statut des comptes demeurent valide à moins d'une violation des termes des <a href="/legal/tos.bml">Conditions du Service</a>.)
+
+/site/contract.bml.promise.ads=Rester un site sans publicité
+
+/site/contract.bml.promise.ads.about=C'est peut être parce que c'est quelque chose qui nous agace beaucoup, ou peut être est-ce parce qu'ils n'en valent pas la peine, mais nous promettons de ne jamais offir de place pour de la publicité dans notre service ou sur nos pages.
+
+/site/contract.bml.promise.community=Travailler avec la communauté, pour la communauté
+
+/site/contract.bml.promise.community.about<<
+Nous promettons de vous garder informés de tous les changements au mieux de nos capacités sans être envahissants. Nous promettons de nous occuper de notre entreprise en fonction des demandes des membres, et avec 
+le plus grand souci de leurs intérêts.
+.
+
+/site/contract.bml.promise.opensource=Supporter le mouvement de logiciels gratuit
+
+/site/contract.bml.promise.opensource.about<<
+Tout le code qui est utilisé pour faire marcher le système complet de LiveJournal, tout en laissant place à la personnalisation est disponible au public. Nous promettons de garder cette source gratuite et accessible, ainsi nous
+pourrons donner quelque chose en retour à la communauté des
+logiciels gratuits.
+.
+
+/site/contract.bml.promise.spam=Ne jamais vous envoyer de courriel non sollicité.
+
+/site/goat.bml.image.alt=Frank, la mascotte chèvre de LiveJournal.
+
+/site/goat.bml.image.caption=<i>Bèèèèè</i> dit Frank.
+
+/site/goat.bml.meet.body=Voici Frank. Frank est la mascotte de LiveJournal. Il nous aide avec de la <a href="/code/">programmation</a> diverse lorsque nous prenons du retard, et parfois il répond même à des requêtes au <a href="/support/">support technique</a>. Frank est très polyvalent.... il fait même les tâches jardinières parfois. Quand le gazon devient trop haut nous lui disons: <i>"Hey Frank! C'est l'heure du dîner... va manger le gazon!"</i> C'est une situation où tout le monde est gagnant.
+
+/site/goat.bml.meet.header=Voici Frank
+
+/site/goat.bml.title=Frank la chèvre
+
+/suggestions/index.bml.howto.title=Comment faire une suggestion&nbsp;?
+
+/suggestions/index.bml.info.title=D'autres informations
+
+/suggestions/index.bml.title=Section des suggestions
+
+/suggestions/index.bml.welcome.text=Les suggestions des utilisateurs sont une partie importante de LiveJournal. S'il vous trouvez une bonne idée, vous pouvez suivre ces instructions pour attirer l'attention de ceux qui dirigent ce site.
+
+/suggestions/index.bml.welcome.title=Bienvenue&nbsp;!
+
+/support/encodings.bml.edit.header=Je suis incapable d'éditer mes entrées sur le web!
+
+/support/encodings.bml.edit.text<<
+<?p <b>Réponse courte</b>:<i>(Seulement si vous écrivez votre journal en Anglais)</i>: Aller à la <a href="/editinfo.bml">page d'édition de vos informations personnelles</a>. Au bas de la page vous trouverez l'option <b>Traduire automatiquement les anciennes entrées à partir de: </b>. Choisissez "Western European (Windows)" dans le menu et sauvegardez les changements. Vos entrées devraient maintenant être éditable. p?>
+
+<?p<b>Réponse longue</b>: Pour pouvoir éditer une entrée qui n'est pas en mode Unicode, LiveJournal a besoin de savoir quelle sorte de codage à été utilisé pour l'entrée. Pour les utilisateurs de l'anglais et des autres langues européennes de l'est, c'est généralement "Western European (Windows)", même si ça ne marche pas bien pour certains caractères, "Western European (ISO)" est le plus approprié. Les utilisateurs écrivant dans d'autres langues devraient choisir le type de codage approprié; s'il n'est pas dans la liste fournie, contactez notre <a href="/support/">support technique</a> et expliquez-nous le problème. p?>
+
+<?p Veuillez prendre en note que les entrées faîtes avec d'autres modes de code que Unicode peuvent avoir été faites avant que LiveJournal ne se convertisse à Unicode ou avec un programme de mise à jour qui n'est pas compatible avec Unicode. p?>
+.
+
+/support/encodings.bml.editcl.header=Je suis incapable d'éditez mes entrées dans le client!
+
+/support/encodings.bml.editcl.text=<?p S'il y a une version plus récente de votre client qui supporte Unicode, mettez-le à jour. Sinon, vous ne pourrez éditer que des entrées qui contiennent des symboles ASCII (soit l'alphabet latin de base et les signes de ponctuations normaux.) Pour les entrées avec d'autres symboles ou d'autres langues vous devrez éditer à partir du site web, ce qui fonctionne aussi bien. p?>
+
+/support/encodings.bml.groups.header=Je suis incapable d'éditez ma liste d'amis avec le client!
+
+/support/encodings.bml.groups.text=<?p La cause de ce problème est sûrement que vous avez des groupes d'amis dont le nom ne contient pas seulement des symboles ASCII (Par exemple, écrit avec des accents ou dans des langues qui ne sont pas latines.) Pour pouvoir travailler avec de tels noms de groupes, vous devrez utiliser un client qui supporte Unicode. Vous pourriez aussi renommer vos groupes avec des noms qui ne contiennent que des symboles ASCII sur votre <a href="/friends/editgroups.bml">page d'édition des groupes d'amis</a> et par la suite utiliser votre client. p?>
+
+/support/encodings.bml.overview.header=Qu'est-ce que c'est?
+
+/support/encodings.bml.overview.text<<
+<?p LiveJournal utilise Unicode pour tout: texte, commentaires, noms et informations personnelles... tout. Uni code est un système très puissant pour travailler avec du texte. Par exemple, il permet aux utilisateurs d'utiliser plusieurs langues à la fois. Il supporte aussi l'intrastructure de la traduction et la maintenance de l'utilisation avec d'autres langues que l'anglais. p?>
+
+<?p Les entrées et les commentaires qui ont été faits avant que LiveJournal ne change pour Unicode ont besoin d'être convertis à Unicode pour que l'utilisateur puisse voir et éditer ce qu'il à déjà fait. Cette page explique comment traiter avec les problèmes communs. p?>
+.
+
+/support/encodings.bml.still.header=Toujours coincé?
+
+/support/encodings.bml.still.text=<?p Vous pouvez toujours essayer de poser votre question au <a href="/support/"support technique</a>. p?>
+
+/support/encodings.bml.title=Codage
+
+/support/faqbrowse.bml.backfaq=Retournez à la <a href="faq.bml">FAQ</a>.
+
+/support/faqbrowse.bml.backsupport=Retournez au <a href="./">support technique</a>. 
+
+/support/faqbrowse.bml.error.nofaq=La FAQ demandée n'existe pas.
+
+/support/faqbrowse.bml.lastupdated=Dernière mise à jour:
+
+/support/faqbrowse.bml.title_num=Question FAQ #[[num]]
+
+/support/see_overrides.bml.error.noprivs=Seuls les utilisateurs ayant le privilège "supportviewscreened" ou "supporthelp" peuvent voir les réécritures d'autres utilisateurs.
+
+/support/see_overrides.bml.error.nos1=Cet utilisateur n'utilise pas S1.
+
+/support/see_overrides.bml.header=Réécritures de <?ljuser [[user]] ljuser?>&nbsp;:
+
+/support/see_overrides.bml.nooverrides=Aucunes réécritures trouvés pour <?ljuser [[user]] ljuser?>.
+
+/support/see_overrides.bml.title=Réécritures d'utilisateur
+
+/talkmulti.bml.deleted.body=Les commentaires ont étés effacés. Vous pouvez voir le fil restant <a href="[[link]]">ici</a>.
+
+/talkmulti.bml.deleted.title=Commentaires effacés
+
+/talkmulti.bml.error.comms_deleted=Un des commentaires a été effacé pendant ce temps. Pour des raisons de sécurité, veuillez retourner à la page précedente et réessayer.
+
+/talkmulti.bml.error.inconsistent_data=Les données fournies sont inconsistantes.
+
+/talkmulti.bml.error.invalid=Les paramètres specifiés ne sont pas valides.
+
+/talkmulti.bml.error.invalid_mode=Vous n'avez choisi aucune action. Veuillez retourner et choisir si vous voulez filtrer, rendre public ou effacer les commentaires sélectionnés.
+
+/talkmulti.bml.error.login=Vous n'êtes pas connecté.
+
+/talkmulti.bml.error.none_selected=Vous n'avez choisi aucun commentaire.
+
+/talkmulti.bml.error.privs.delete=Vous n'avez pas la permission d'effacer ces commentaires.
+
+/talkmulti.bml.error.privs.screen=Vous n'avez pas la permission de filtrer ces commentaires.
+
+/talkmulti.bml.error.privs.unscreen=Vous n'avez pas la permission de rendre public ces commentaires.
+
+/talkmulti.bml.screened.body=Les commentaires ont été filtrés. Vous pouvez les voir <a href="[[link]]">ici</a>.
+
+/talkmulti.bml.screened.title=Commentaires filtrés
+
+/talkmulti.bml.title.delete=Effacez plusieurs commentaires
+
+/talkmulti.bml.title.screen=Filtrez plusieurs commentaires
+
+/talkmulti.bml.title.unscreen=Rendez public plusieurs commentaires
+
+/talkmulti.bml.unscreened.body=Les commentaires ont été rendus publics. Vous pouvez les voir <a href="[[link]]">ici</a>.
+
+/talkmulti.bml.unscreened.title=Commentaires rendus publics
+
+/talkpost.bml.allowedhtml=HTML permis
+
+/talkpost.bml.error.cannotreplynopost=Vous ne pouvez pas faire de commentaires à une entrée inexistante
+
+/talkpost.bml.error.nocommentsjournal= L'utilisateur a désactivé les commentaires dans son journal
+
+/talkpost.bml.error.nocommentspost=L'utilisateur a désactivé les commentaires pour cette entrée
+
+/talkpost.bml.error.noreplypost=L'entrée à laquelle vous avez fait un commentaire n'a pas été trouvée (effacée?)
+
+/talkpost.bml.error.noreply_deleted=Ce commentaire a été effacé. Vous ne pouvez y faire une réponse.
+
+/talkpost.bml.error.noreply_screened=Ce commentaire est filtré et vous n'avez pas la permission de le voir ou d'y faire des commentaires.
+
+/talkpost.bml.label.picturetouse=<a href='/allpics.bml?user=[[username]]'>Icône</a> à utiliser&nbsp;:
+
+/talkpost.bml.loganonip=<b>Notez!</b> Cet utilisateur a activé l'option qui prends en note l'adresse IP des commentaires anonymes.
+
+/talkpost.bml.loginq=Connectez-vous?
+
+/talkpost.bml.logyourip=<b>Notez!</b> Cet utilisateur a activé l'option qui prend en note votre adresse IP lorsque vous faites des commentaires.
+
+/talkpost.bml.nosubjecthtml=Le HTML n'est pas permis dans le sujet. 
+
+/talkpost.bml.opt.anonymous=Anonyme
+
+/talkpost.bml.opt.defpic=(par défault)
+
+/talkpost.bml.opt.friendsonly=- Cet utilisateur interdit les commentaires anonymes et ceux des utilisateurs qu'il n'a pas inclus dans sa liste d'amis. Vous pouvez écrire ici si [[username]] vous a inclus dans sa liste d'amis.
+
+/talkpost.bml.opt.from=De:
+
+/talkpost.bml.opt.ljuser=Utilisateur de LiveJournal
+
+/talkpost.bml.opt.loggedin=Utilisateur connecté: [[username]]
+
+/talkpost.bml.opt.noanonpost=- Cet utilisateur interdit les commentaires anonymes
+
+/talkpost.bml.opt.noautoformat=Ne pas mettre en forme automatiquement&nbsp;:
+
+/talkpost.bml.opt.noimage=Pas d'image
+
+/talkpost.bml.opt.preview=Aperçu
+
+/talkpost.bml.opt.spellcheck=Vérifier l'orthographe avant d'afficher l'entrée.
+
+/talkpost.bml.opt.subject=Sujet:
+
+/talkpost.bml.opt.submit=Envoyer un commentaire
+
+/talkpost.bml.opt.willscreen=(sera filtré)
+
+/talkpost.bml.opt.willscreenfriend=(sera filtré si vous n'êtes pas un ami)
+
+/talkpost.bml.paraformat=Les paragraphes seront automatiquement mis en forme.
+
+/talkpost.bml.postresponse=Envoyer un commentaire pour répondre:
+
+/talkpost.bml.title=Faire un commentaire
+
+/talkpost.bml.usermismatch<<
+Vous avez entré un nom d'utilisateur, mais vous avez désélectionné l'option d'"utilisateur de LiveJournal".
+
+Veuillez soit vider la boîte du nom d'utilisateur, soit sélectionner le bon mode pour faire une entrée et essayer de nouveau.
+.
+
+/talkpost.bml.warnscreened=<b>Notez!</b> Ce commentaire est filtré. Y répondre enlèvera cette option et le rendra visible à tous.
+
+/talkpost_do.bml.error.badpassword=Mot de passe erroné pour le nom d'utilisateur spécifié. Vous pouvez récupérer votre mot de passe <a href='/lostinfo.bml'>ici</a> si vous l'avez oublié.
+
+/talkpost_do.bml.error.badusername=Le nom d'utilisateur LiveJournal que vous avez spécifié n'existe pas. Vous pouvez récupérer votre nom d'utilisateur <a href='/lostinfo.bml'>ici</a> si vous l'avez oublié, ou vous pouvez répondre comme " anonyme ".
+
+/talkpost_do.bml.error.banned=Vous n'êtes pas autorisé à répondre dans ce journal.
+
+/talkpost_do.bml.error.blankmessage=Vous n'avez rien écrit. S'il vous plaît, tapez au moins quelque chose dans la zone de message.
+
+/talkpost_do.bml.error.confused_identity=Vous avez entré un nom d'utilisateur, mais avez choisi de faire soit un commentaire anonyme, soit un commentaire avec le nom d'utilisateur déjà connecté. Veuillez retourner et décider ce que vous voulez vraiment faire.
+
+/talkpost_do.bml.error.deleted=Votre journal à été détruit. Vous ne pouvez pas y faire d'entrées.
+
+/talkpost_do.bml.error.friendsonly=Seulement les amis de [[user]] peuvent faire des entrées dans ce journal. 
+
+/talkpost_do.bml.error.lostcookie= Votre cookie de connection semble avoir disparu?
+
+/talkpost_do.bml.error.manybytes=Désolé, votre commentaire de [[current]] dépasse le maximum de bytes alloué de [[limit]]. Veuillez retourner, raccourcir votre commentaire, et essayer de nouveau.
+
+/talkpost_do.bml.error.manychars=Désolé, votre commentaire de [[current]] caractères dépassela longueur maximum de [[limit]]. Veuillez retourner, raccourcir votre commentaire, et essayer de nouveau.
+
+/talkpost_do.bml.error.mustlogin=Vous devez soit être connecté, soit utiliser un nom d'utilisateur et un mot de passe pour répondre à cette entrée protégée.
+
+/talkpost_do.bml.error.noanon=Vous ne pouvez pas laisser un commentaire anonyme sur ce journal.
+
+/talkpost_do.bml.error.noauth=Vous n'êtes pas autorisé à répondre à cette entrée protégée.
+
+/talkpost_do.bml.error.nocomments=L'utilisateur interdit les commentaires sur cette entrée.
+
+/talkpost_do.bml.error.noparent=Vous ne pouvez répondre à un commentaire qui n'existe pas.
+
+/talkpost_do.bml.error.notafriend=Désolé, l'utilisateur [[user]]ne vous a pas inclus dans sa liste d'amis, et il a coché l'option " amis seulement " pour ceux qui peuvent répondre à son journal.
+
+/talkpost_do.bml.error.nousername=Vous n'avez pas entré votre nom d'utilisateur LiveJournal. Vous pouvez décider de répondre comme " anonyme " si vous n'avez pas un compte d'utilisateur LiveJournal.
+
+/talkpost_do.bml.error.noverify=Désolé, vous n'êtes pas autorisé à envoyer des commentaires dans les journaux d'autres utilisateurs jusqu'à ce que votre adresse courriel ne soit vérifiée. Si vous avez perdu le courriel de confirmation pour faire cette opération, vous pouvez vous le faire envoyer de nouveau par la <a href='/lostinfo.bml'>page des information perdue</a>.
+
+/talkpost_do.bml.error.postshared=Vous ne pouvez pas écrire en tant que compte partagé ou une communauté. Les comptes partagés representent des groupes de personnes, pas un individu.
+
+/talkpost_do.bml.error.screened=Vous n'avez pas le droit de répondre à ce commentaire filtré.
+
+/talkpost_do.bml.error.suspended=Votre journal a été suspendu. Vous ne pouvez pas poster de messages.
+
+/talkpost_do.bml.error.testacct=Les comptes d'essai peuvent seulement être utilisés dans les journaux d'essai.
+
+/talkpost_do.bml.opt.preview=Aperçu
+
+/talkpost_do.bml.preview=Vous pouvez voir ici à quoi ressemblera votre commentaire. En utilisant le formulaire ci-dessous, vous pouvez faire une modification ou l'envoyer.
+
+/talkpost_do.bml.preview.subject=<b>Sujet: </b>
+
+/talkpost_do.bml.preview.submit=Soumettre
+
+/talkpost_do.bml.preview.title=Aperçu
+
+/talkpost_do.bml.success.loggedin=Vous êtes maintenant connecté.
+
+/talkpost_do.bml.success.message=Votre réponse a été ajoutée. Vous pouvez la voir <a href="[[link]]">ici</a>.
+
+/talkpost_do.bml.success.screened.comm=Votre commentaire à été ajouté. Selon le fonctionnement de cette communauté, il est automatiquement filtré, et seuls vous et le(s) modérateur(s) de la communauté peuvent le voir jusqu'à ce qu'ils choississent de le rendre public. Vous pouvez voir votre commentaire <a href="[[link]]">ici</a>.
+
+/talkpost_do.bml.success.screened.user=Votre commentaire à été ajouté. Selon les options de ce journal, il est filtré et ne sera visible qu'à vous et au propriétaire du journal, jusqu'à ce que ce dernier le rende public. Vous pouvez voir votre commentaire <a href="[[link]]">ici</a>.
+
+/talkpost_do.bml.success.title=Réussi
+
+/talkpost_do.bml.success.unscreened=Le commentaire filtré auquel vous avez répondu à été défiltré et est maintenant visible.
+
+/talkpost_do.bml.title=Commentaire affiché 
+
+/talkread.bml.anonuser=<i>Anonyme</i>
+
+/talkread.bml.confirm.action=Êtes-vous sûr de vouloir supprimer les commentaires sélectionnés?
+
+/talkread.bml.deletedpost=<b>(Message effacé)</b>
+
+/talkread.bml.deleteduser=<i>(compte désactivé: [[username]])</i>
+
+/talkread.bml.fromip=(de [[ip]])
+
+/talkread.bml.noreplies=Pas de réponses
+
+/talkread.bml.nosubject=(aucun sujet) 
+
+/talkread.bml.replysuspended=<b>(Réponse d'un compte suspendu)</b>
+
+/talkread.bml.screenedpost=<b>(Entrée filtrée)</b>
+
+/talkread.bml.select=Sélectionner
+
+/talkread.bml.subjectdeleted=[effacé]
+
+/talkread.bml.talkmulti.delete=Effacez
+
+/talkread.bml.talkmulti.des=Faisez <b>action en masse</b> avec les commentaires selectionés&nbsp;:
+
+/talkread.bml.talkmulti.screen=Filtrez
+
+/talkread.bml.talkmulti.submit=Faire l'action
+
+/talkread.bml.talkmulti.unscreen=Rendre public
+
+/talkread.bml.title=Lire les commentaires
+
+/talkscreen.bml.error.login=Vous devez être connecté pour pouvoir utiliser des commentaires filtrés.
+
+/talkscreen.bml.error.privs.screen=Vous n'avez pas la permission de filtrer ce commentaire.
+
+/talkscreen.bml.error.privs.unscreen=Vous n'avez pas la permission de rendre public ce commentaire.
+
+/talkscreen.bml.screen.doit=Oui, filtrer ce commentaire.
+
+/talkscreen.bml.screen.sure.body=Êtes-vous certain de vouloir filtrer ce commentaire?
+
+/talkscreen.bml.screen.sure.title=Filtrer ce commentaire?
+
+/talkscreen.bml.screened.body|staleness=1
+/talkscreen.bml.screened.body=Ce commentaire à été filtré.
+
+/talkscreen.bml.screened.title=Succès
+
+/talkscreen.bml.title=Commentaire filtré
+
+/talkscreen.bml.unscreen.doit=Oui, rendre public ce commentaire.
+
+/talkscreen.bml.unscreen.sure.body=Êtes-vous sur de vouloir rendre public ce commentaire?
+
+/talkscreen.bml.unscreen.sure.title=Rendre ce commentaire public?
+
+/talkscreen.bml.unscreened.body|staleness=1
+/talkscreen.bml.unscreened.body=Le commentaire à été rendu public.
+
+/talkscreen.bml.unscreened.title=Succès
+
+/tools/emailmanage.bml.address.current.title=Courriel Actuel
+
+/tools/emailmanage.bml.address.old.title=Couriel précédent
+
+/tools/emailmanage.bml.desc.notfirst=Cette page vous permet de supprimer seulement les adresses courriel utilisées pour valider votre compte la première fois. En particulier, cela signifie que quelqu'un attaquant votre compte ne peut pas supprimer votre adresse courriel d'origine.
+
+/tools/emailmanage.bml.desc.text=Cette page vous permet de supprimer les adresses courriel précédemment utilisées pour votre compte. Si vous supprimez une adresse, il ne sera plus possible d'utiliser votre mot de passe pour cette adresse. C'est utile si quelqu'un découvrait votre mot de passe et piratait votre journal. Envoyez simplement votre nouveau mot de passe à votre adresse précédente. Changez ensuite votre mot de passe et supprimez l'adresse courriel de la personne vous attaquant.
+
+/tools/emailmanage.bml.log.deleted=Effacé [[email]] @ [[time]]
+
+/tools/emailmanage.bml.log.deleted.title=Changements sauvegardés
+
+/tools/emailmanage.bml.notvalidated.text=Pour utiliser cet outil, votre adresse courriel actuelle , [[email]], doit être validée. Si vous avez perdu le message de confirmation pour faire cela, vous pouvez <a href='/register.bml'>vous le faire envoyer de nouveau</a>. Après avoir validé votre adresse courriel, revenez sur cette page.
+
+/tools/emailmanage.bml.notvalidated.title=L'adresse courriel n'a pas été validée
+
+/tools/emailmanage.bml.title=Gestion de courriel
+
+/tools/memadd.bml.add_previous<<
+<?h1 Ajouter aux souvenirs... h1?>
+<?p Pour ajouter l'entrée que vous venez de lire aux "souvenirs", remplissez le formulaire ci-dessous. p?>
+.
+
+/tools/memadd.bml.body.added.body=Votre liste d'entrées mémorables a été mise à jour.
+
+/tools/memadd.bml.body.added.header=Succès
+
+/tools/memadd.bml.description.text<<
+Donnez à cete entrée une description par laquelle vous pourrez vous en souvenir.
+ Pour effacer cette entrée de votre liste d'entrées mémorables, ne faites aucune descriptions.
+.
+
+/tools/memadd.bml.error.deleted.body=L'entrée qui était auparavent décrit comme suit: "[[desc]]", à été enlevée de votre liste d'entrées mémorables. 
+
+/tools/memadd.bml.error.deleted.title=Souvenir effacé
+
+/tools/memadd.bml.error.entry_deleted=L'entrée n'existe plus. Le souvenir a été effacé.
+
+/tools/memadd.bml.error.fivekeywords=Seulement 5 mot-clés/catégories sont permis par entrée mémorable.
+
+/tools/memadd.bml.error.invalid_security=Option de sécurité manquante ou non-valide.
+
+/tools/memadd.bml.error.login=Vous devez être <a href="/login.bml?ret=1">connecté</a> pour utiliser cette fonction. Allez vous connecter et vous reviendrez ici automatiquement par la suite.
+
+/tools/memadd.bml.error.maxsize=Ce mot clé dépasse la longueur permise: "[[keyword]]"
+
+/tools/memadd.bml.error.nodescription.body<<
+Pour ajouter une entrée à votre liste d'entrées mémorables, vous devez lui donner une description.
+Pour effacer un souvenir, vous pouvez l'éditez et en enlever la description, mais vous n'aviez pas encore cette entrée dans vos souvenirs.
+.
+
+/tools/memadd.bml.error.nodescription.title=Pas de description
+
+/tools/memadd.bml.form.reset=Recommencer
+
+/tools/memadd.bml.form.submit=Soumettre
+
+/tools/memadd.bml.keywords=Mots clés
+
+/tools/memadd.bml.keywords.example=Exemple: <B>Amusant, débile, romantique</B>
+
+/tools/memadd.bml.keywords.select=Ou bien, vous pouvez aussi choisir des mots clés que vous avez utilisé antérieurement.
+
+/tools/memadd.bml.keywords.text<<
+Pourquoi cette entrée est-elle mémorable&nbsp;?
+Entrez au plus cinq mots clés ou catégories pour la retrouver plus tard.
+.
+
+/tools/memadd.bml.login.enterinfo=Entrez le nom d'utilisateur et le mot de passe du compte où vous voulez sauvegarder le souvenir.
+
+/tools/memadd.bml.login.forgot.header=Avez-vous oublié quelque chose ?
+
+/tools/memadd.bml.login.forgot.recover=Si vous avez perdu votre nom d'utilisateur ou votre mot de passe,  <a href='lostinfo.bml'>retrouvez le ici!</a>.
+
+/tools/memadd.bml.multiple_selections=Pour choisir plusieurs mot-clés, appuyez sur 'Control' sur votre clavier en clickant sur les mot-clés désirés.
+
+/tools/memadd.bml.security=Sécurité:
+
+/tools/memadd.bml.security.friendsonly=Amis seulement
+
+/tools/memadd.bml.security.private=Privé
+
+/tools/memadd.bml.security.public=Public
+
+/tools/memadd.bml.title=Ajouter aux souvenirs
+
+/tools/memadd.bml.title.added=Ajouté
+
+/tools/memadd.bml.title.add_memory=Ajouter une entrée mémorable
+
+/tools/memadd.bml.title.deleted=Effacé
+
+/tools/memadd.bml.title.edit_memory=Éditez une entrée mémorable
+
+/tools/memadd.bml.whocansee<<
+Qui peut voir que vous avez marqué cette entrée comme mémorable?
+Tout le monde, seulement ceux que vous avez sur votre liste d'amis, ou juste vous ?
+.
+
+/tools/memories.bml.back=Retourner
+
+/tools/memories.bml.body.keyword<<
+<?h1 [[keyword]] h1?> 
+<?p La liste suivante est une liste d'entrées associées à "[[keyword]]" que <b>[[user]]</b> a trouvé mémorables. p?>
+.
+
+/tools/memories.bml.body.list_categories<<
+<?h1 Entrées mémorable h1?>
+<?p La liste suivante est une liste des catégories dans lequelles l'utilisateur [[user]] a mis des entrées mémorables. p?>
+.
+
+/tools/memories.bml.body.memorable=La liste suivante est une liste d'entrées non classées que l'utilisateur <b>[[user]]</b> a trouvé mémorables.
+
+/tools/memories.bml.edit=éditer
+
+/tools/memories.bml.error.noentries.body<<
+C'est peut-être parce que <ol>
+<li>l'utilisateur n'a pas défini d'entrées mémorables,</li>
+<li>les entrées mémorables de l'utilisateur sont protégées et vous n'y avez pas accès, </li>
+<li>l'utilisateur n'a pas d'entrées mémorables selon vos critères.</li>
+.
+
+/tools/memories.bml.error.noentries.title= Aucune entrée mémorable trouvée.
+
+/tools/memories.bml.filter.all=Toutes les entrées mémorables
+
+/tools/memories.bml.filter.other=Seulement les autres entrées
+
+/tools/memories.bml.filter.own=Seulement les entrées de "[[user]]"
+
+/tools/memories.bml.form.filter=Filtrer les entrées par&nbsp;:
+
+/tools/memories.bml.form.sort=Trier les entrées&nbsp;:
+
+/tools/memories.bml.form.switch=Changer
+
+/tools/memories.bml.login=Afin de voir vos propres entrées mémorables, veuillez <a [[aopts]]>vous enregistrer</a>
+
+/tools/memories.bml.plur_entry=[[num]] [[?num|entrée|entrées]]
+
+/tools/memories.bml.sort.description=par description
+
+/tools/memories.bml.sort.journal=par nom de journal
+
+/tools/memories.bml.sort.orderadded=Ordre ajouté
+
+/tools/memories.bml.title.keyword=Entrées mémorables "[[keyword]]"
+
+/tools/memories.bml.title.memorable=Entrées mémorables
+
+/tools/memories.bml.uncategorized=Sans catégorie
+
+/update.bml.altpost=Journal où poster:
+
+/update.bml.btn.update=Mettre à jour votre journal
+
+/update.bml.currmood=<a href="/moodlist.bml">Humeur</a> actuelle:
+
+/update.bml.currmusic=Musique actuelle:
+
+/update.bml.default=par défault
+
+/update.bml.defaultjournal=([[user]]) -- par défaut
+
+/update.bml.error.cantpost=Désolé, vous ne pouvez pas poster en ce moment.
+
+/update.bml.error.disabled=Votre type de compte de permet pas de poster
+
+/update.bml.error.disabled.title=Autorisation de poster désactivée
+
+/update.bml.error.login=Erreur lors de la connection:
+
+/update.bml.error.nopass=Entrez votre mot de passe
+
+/update.bml.error.update=Erreur lors de la mise à jour de votre journal:
+
+/update.bml.event=Événement:
+
+/update.bml.full=Page de mise à jour complète
+
+/update.bml.htmlokay.norich=(HTML autorisé; par défaut, les nouvelles lignes seront formatées automatiquement en <tt>&lt;br&gt;</tt>)
+
+/update.bml.htmlokay.rich=(HTML autorisé; par défaut, les nouvelles lignes seront formatées automatiquement en <tt>&lt;br&gt;</tt> - ou, utilisez le mode <a [[opts]]>texte enrichi</a>.)
+
+/update.bml.htmlokay.rte_nosupport=(Désolé, votre navigateur ne supporte pas encore l'environnement de texte enrichi)
+
+/update.bml.localtime=Heure locale:
+
+/update.bml.loggedinas=Vous êtes actuellement enregistré comme étant l'utilisateur <b>[[user]]</b>.<br/>Pour poster avec un autre nom d'utilisateur, <a href="update.bml[[altget]]">cliquez ici</a>
+
+/update.bml.loggingin=Connection au serveur...
+
+/update.bml.noneother=Aucun, ou autre:
+
+/update.bml.note=<b>Notez:</b>  La date et l'heure ci-dessus sont celles de notre serveur. Corrigez les en fonction de votre heure locale avant de faire une entrée.
+
+/update.bml.opt.backdate=Entrée antidatée.
+
+/update.bml.opt.backdate.about=ne sera pas sur la page d'amis
+
+/update.bml.opt.defpic=(par défaut)
+
+/update.bml.opt.nocomments=Interdire les commentaires:
+
+/update.bml.opt.noemail=Ne pas envoyer les commentaires par courriel:
+
+/update.bml.opt.noformat=Ne pas mettre en forme automatiquement:
+
+/update.bml.opt.spellcheck=Vérifier l'orthographe
+
+/update.bml.options=Options
+
+/update.bml.other=Autre:
+
+/update.bml.password=Mot de passe:
+
+/update.bml.picture=<a href="[[url]]">Icône</a>à utiliser:
+
+/update.bml.security.custom=Personnaliser...
+
+/update.bml.security.friends=Amis
+
+/update.bml.security.head=Niveau de sécurité:
+
+/update.bml.security.private=Privé
+
+/update.bml.servermsg=Le serveur a aussi un message pour vous:
+
+/update.bml.simple=Vous voyez la page simple. Pour plus d'options, <a href="[[url]]">cliquez ici</a>.
+
+/update.bml.spellchecked=Votre entrée corrigée:
+
+/update.bml.subject=<b>Sujet</b> <i>(facultatif)</i>
+
+/update.bml.timeformat=Temps sur 24 heures
+
+/update.bml.title=Mettez à jour votre journal
+
+/update.bml.title.readonly=Mode de lecture seulement
+
+/update.bml.update.head=Mettez à jour votre journal...
+
+/update.bml.update.success=Mise à jour réussie. Vous pouvez voir votre journal <a href="[[uri]]">ici</a>.
+
+/update.bml.updating=Journal mis à jour...
+
+/update.bml.username=Nom d'utilisateur:
+
+/uploadpic.bml.error.unsupportedtype=Les fichiers de type [[filetype]] ne sont pas supportés. Vous ne pouvez télécharger que des fichiers GIF, PNG ou JPG. Presque tous les programmes d'édition d'images peuvent faire cette conversion pour vous.
+
+/userinfo.bml.about.comm=À propos :
+
+/userinfo.bml.about.user=Bio :
+
+/userinfo.bml.body.leave=Vous pouvez <a href="/community/leave.bml?comm=[[commname]]">quitter la communauté</a> quand vous voulez.
+
+/userinfo.bml.comminfo.body=Ci-dessous se trouve l'information à propos de la communauté "[[commname]]" sur LiveJournal.
+
+/userinfo.bml.comminfo.name=Profil de la communauté
+
+/userinfo.bml.date.never=<i>Jamais.</i>
+
+/userinfo.bml.error.malfname|staleness=1
+/userinfo.bml.error.malfname=Nom d'utilisateur déformé.
+
+/userinfo.bml.error.notloggedin=Vous devez <a href='/login.bml?ret=1'>être connecté</a> pour regarder votre propre profil.
+
+/userinfo.bml.friendof.comm=Regardé par: 
+
+/userinfo.bml.friendof.hidden=(caché)
+
+/userinfo.bml.friendof.syndreadcount=Nombre de lecteurs
+
+/userinfo.bml.friendof.user=Ami(e) de:
+
+/userinfo.bml.friends.comm=Membres
+
+/userinfo.bml.friends.user=Amis 
+
+/userinfo.bml.label.addbuddy=Ajouter un copain
+
+/userinfo.bml.label.adduser=Ajouter l'utilisateur
+
+/userinfo.bml.label.aolim=AOL IM :
+
+/userinfo.bml.label.birthdate=Anniversaire
+
+/userinfo.bml.label.clientsused= <a href="[[siteroot]]/download/">Clients</a> utilisés:
+
+/userinfo.bml.label.comments=Commentaires:
+
+/userinfo.bml.label.composted=<b>Envoyé:</b> [[num]] - 
+
+/userinfo.bml.label.comreceived=<b>Reçu:</b> [[num]]
+
+/userinfo.bml.label.datecreated=Date de création:
+
+/userinfo.bml.label.dateupdated=Date de mise à jour:
+
+/userinfo.bml.label.email=Courriel :
+
+/userinfo.bml.label.icquin=ICQ :
+
+/userinfo.bml.label.interests=Intérêts
+
+/userinfo.bml.label.interests.modifyyours=Modifiez&nbsp;les&nbsp;vôtres
+
+/userinfo.bml.label.interests.removesome=Supprimez&nbsp;en
+
+/userinfo.bml.label.intsnotshown=<b>... [[intnotshown]] intérêt caché</b>
+
+/userinfo.bml.label.jabber=Jabber :
+
+/userinfo.bml.label.journalentrs=Entrées:
+
+/userinfo.bml.label.location=Endroit:
+
+/userinfo.bml.label.memberof=Membre de
+
+/userinfo.bml.label.memories=Souvenirs:
+
+/userinfo.bml.label.moredetails=(plus de détails...)
+
+/userinfo.bml.label.msnusername=MSN :
+
+/userinfo.bml.label.name=Nom:
+
+/userinfo.bml.label.nofriends=<i>Aucun listé.</i>
+
+/userinfo.bml.label.post=Postez dans "[[journal]]"
+
+/userinfo.bml.label.postalt=Mettez à jour votre journal
+
+/userinfo.bml.label.reqfinduser=Seuls les utilisateurs avec des droits de 'finduser' peuvent chercher des utilisateurs par identification d'utilisateur. 
+
+/userinfo.bml.label.searchjournal=Cherchez dans ce journal
+
+/userinfo.bml.label.sendmessage=Envoyer un message
+
+/userinfo.bml.label.shared=Accès au journal:
+
+/userinfo.bml.label.supportpoints=Points de supports
+
+/userinfo.bml.label.syndicatedfrom=Associé de:
+
+/userinfo.bml.label.syndicatedstatus=Etat des associations
+
+/userinfo.bml.label.textmessage=<nobr> Message<br>texte</nobr>:
+
+/userinfo.bml.label.todo=Liste des choses à faire
+
+/userinfo.bml.label.user=Utilisateur:
+
+/userinfo.bml.label.viewfriends=Voir vos amis
+
+/userinfo.bml.label.viewmembers=Voir les membres
+
+/userinfo.bml.label.website=Site web:
+
+/userinfo.bml.label.yahooid=Yahoo!:
+
+/userinfo.bml.membership.body=Cliquez <a href="/community/join.bml?comm=[[commname]]">ici</a> pour joindre cette communauté.
+
+/userinfo.bml.membership.paidmembers=Un fois que votre <a href="/paidaccounts/">compte payant</a> sera établi, vous pourrez <a href="/paidaccounts/joincommunity.bml">vous joindre à la communauté des membres payants</a>
+
+/userinfo.bml.memories.entries=[[count]] entrées
+
+/userinfo.bml.memories.entry=[[count]] entrée
+
+/userinfo.bml.monitor.comm=Contrôlez la communauté
+
+/userinfo.bml.monitor.user=Ajoutez cet utilisateur à votre liste d&#39;amis
+
+/userinfo.bml.nonexist.body=Le nom d'utilisateur <b>[[user]]</b> n'est pas présentement enregistré. 
+
+/userinfo.bml.nonexist.name=Utilisateur inconnu
+
+/userinfo.bml.sendmessage.body=<a href="[[link]]">Envoyez un message texte à<b> [[user]]</b> </a><br /> sur son cellullaire ou son téléavertisseur.
+
+/userinfo.bml.syn.last.never=Jamais
+
+/userinfo.bml.syn.lastcheck=Dernier appelé
+
+/userinfo.bml.syn.nextcheck=Prochain appelé
+
+/userinfo.bml.syn.parseerror=Message d'erreur:
+
+/userinfo.bml.syndinfo.body<<
+Si vous aimeriez voir dans votre liste d'amis des articles du site associé, vous pouvez <a href="[[addtofriends]]">ajouter ce journal à votre liste d'amis</a>.
+
+.
+
+/userinfo.bml.syndinfo.name=Journal associé
+
+/userinfo.bml.tellafriend=Dites le à un(e) ami(e)!
+
+/userinfo.bml.timeupdate.dayago=il y a 1 jour
+
+/userinfo.bml.timeupdate.daysago=il y a [[num]] jours
+
+/userinfo.bml.timeupdate.hourago=il y a 1 heure
+
+/userinfo.bml.timeupdate.hoursago=il y a [[num]] heures
+
+/userinfo.bml.timeupdate.minuteago=il y a 1 minute
+
+/userinfo.bml.timeupdate.minutesago=il y a [[num]] minutes
+
+/userinfo.bml.timeupdate.secondago=il y a 1 seconde
+
+/userinfo.bml.timeupdate.secondsago=il y a [[num]] secondes
+
+/userinfo.bml.timeupdate.weekago=il y a 1 semaine
+
+/userinfo.bml.timeupdate.weeksago=il y a [[num]] semaines
+
+/userinfo.bml.title=Profil
+
+/userinfo.bml.title.communityinfo=Profil de la communauté
+
+/userinfo.bml.title.syndicated=Compte associé
+
+/userinfo.bml.userinfo.body=Ci-dessous se trouve l'information de [[username]]. Si vous êtes cet utilisateur, vous pouvez éditer votre profil (ou choisir les informations qui seront publiques) à votre page <a href="[[siteroot]]/editinfo.bml">de profil.</a>
+
+/userinfo.bml.userinfo.name=Profil
+
+BML.parse_multipart.parse=Erreur de syntaxe lors du téléchargement
+
+BML.parse_multipart.toolarge=Mise à jour trop grande
+
+BML.parse_multipart.unknowntype=Contenu inconnu
+
+btn.search=Chercher
+
+crumb.about=À propos de LiveJournal
+
+crumb.acctfeatures=Caractéristiques par type de compte
+
+crumb.acctstatus=État du compte
+
+crumb.addfriend=Ajoutez un ami
+
+crumb.addtodo=Ajoutez une chose à faire
+
+crumb.advcustomize=Personnalisez vos réglages S2 avancés
+
+crumb.advsearch=Avancés
+
+crumb.banners=Bannières publicitaires
+
+crumb.birthdays=Anniversaires
+
+crumb.changepass=Changez votre mot de passe
+
+crumb.contract=Notre contrat social
+
+crumb.contributors=Collaborateurs
+
+crumb.createcommunity=Créez une communauté
+
+crumb.createjournal=Créez un journal
+
+crumb.customize=Personnalisez vos réglages S2
+
+crumb.delcomment=Effacez le commentaire
+
+crumb.download=Téléchargez un client
+
+crumb.editentries=Éditez les entrées
+
+crumb.editentries_do=Éditez l'entrée
+
+crumb.editfriendgrps=Éditez les groupes d'amis
+
+crumb.editfriends=Éditez les amis
+
+crumb.editinfo=Informations personnelles
+
+date.day.friday.long=Vendredi
+
+date.day.friday.short=Ven
+
+date.day.monday.long=Lundi
+
+date.day.monday.short=Lun
+
+date.day.saturday.long=Samedi
+
+date.day.saturday.short=Sam
+
+date.day.sunday.long=Dimanche
+
+date.day.sunday.short=Dim
+
+date.day.thursday.long=Jeudi
+
+date.day.thursday.short=Jeu
+
+date.day.tuesday.long=Mardi
+
+date.day.tuesday.short=Mar
+
+date.day.wednesday.long=Mercredi
+
+date.day.wednesday.short=Mer
+
+date.month.april.long=Avril
+
+date.month.april.short=Avr
+
+date.month.august.long=Août
+
+date.month.august.short=Aoû
+
+date.month.december.long=Décembre
+
+date.month.december.short=Déc
+
+date.month.february.long=Février
+
+date.month.february.short=Fév
+
+date.month.january.long=Janvier
+
+date.month.july.long=Juillet
+
+date.month.july.short=Juil
+
+date.month.june.long=Juin
+
+date.month.june.short=Juin
+
+date.month.march.long=Mars
+
+date.month.may.long=Mai
+
+date.month.may.short=Mai
+
+date.month.november.long=Novembre
+
+date.month.october.long=Octobre
+
+date.month.september.long=Septembre
+
+dystopia.btn.login=CONNECTEZ-VOUS
+
+dystopia.hello_anonymous=Bienvenue sur LiveJournal!
+
+dystopia.hello_loggedin=Bonjour, [[username]]!
+
+dystopia.nav.createjournal=Créer un journal
+
+dystopia.nav.developer=Section des développeurs
+
+dystopia.nav.download=Télécharger
+
+dystopia.nav.editentries=Éditer vos entrées
+
+dystopia.nav.editfriends=Vos amis
+
+dystopia.nav.editpassword=Votre mot de passe
+
+dystopia.nav.editpics=Vos icônes
+
+dystopia.nav.editstyle=Editez votre style
+
+dystopia.nav.faq=FAQ de LiveJournal
+
+dystopia.nav.findcomm=Par communauté
+
+dystopia.nav.finddir=Recherche par répertoire
+
+dystopia.nav.findint=Par intérêt
+
+dystopia.nav.findrandom=Aléatoire
+
+dystopia.nav.findregion=Par région
+
+dystopia.nav.home=Accueil
+
+dystopia.nav.journalcalendar=Calendrier
+
+dystopia.nav.journalfriends=Amis
+
+dystopia.nav.journalinfo=Profil
+
+dystopia.nav.journalrecent=Récent
+
+dystopia.nav.legalprivacy=Privé
+
+dystopia.nav.legaltos=Conditions du service
+
+dystopia.nav.login=Connectez-vous
+
+dystopia.nav.logout=Déconnectez-vous
+
+dystopia.nav.lostinfo=Mot de passe perdu
+
+dystopia.nav.memories=Souvenirs
+
+dystopia.nav.modifyjournal=Modifiez votre journal
+
+dystopia.nav.news=Nouvelles
+
+dystopia.nav.paidaccts=Comptes payants
+
+dystopia.nav.paymentarea=Endroit pour payer
+
+dystopia.nav.personalinfo=Profil
+
+dystopia.nav.sitemap=Plan du site
+
+dystopia.nav.support=Avez-vous une question?
+
+dystopia.nav.updatejournal=Mettez à jour votre journal
+
+dystopia.navhead.findusers=Trouver des utilisateurs
+
+dystopia.navhead.help=Aide & support
+
+dystopia.navhead.journal=Votre journal
+
+dystopia.navhead.legal=Légal
+
+dystopia.navhead.settings=Vos réglages
+
+dystopia.navhead.welcome=Bienvenue!
+
+dystopia.search.icq=Numéro ICQ
+
+dystopia.search.int=Intérêt
+
+dystopia.search.msn=Nom MSN
+
+dystopia.search.region=Région
+
+dystopia.search.yahoo=ID Yahoo!
+
+dystopia.searchlj=Chercher sur LiveJournal:
+
+Email=Courriel
+
+email.newacct.body<<
+Félicitations, vous avez un compte LiveJournal!
+
+Pour completer la création de votre journal et vérifier votre courriel, allez ici : 
+
+   [[regurl]]
+
+L'adresse virtuelle de votre nouveau journal est la suivante :
+
+   [[siteroot]]/users/[[username]]/
+
+et aussi :
+
+   [[siteroot]]/~[[username]]/
+
+Ci-dessous se trouvent votre nom d'utilisateur de LiveJournal, et votre mot de passe :
+
+   Nom d'utilisateur: [[username]]
+   mot de passe: [[password]]
+
+Vous pouvez aller à [[siteroot]]/ pour avoir accès à votre compte, créer de nouvelles entrées pour votre journal, et modifier vos options, mais nous recommandons que vous téléchargiez un client. C'est la façon la plus facile de mettre à jour votre journal,et il a plusieurs clients disponibles pour plusieurs plateformes! Trouvez-en un à:
+
+   [[siteroot]]/download/
+
+Faire ses débuts sur LiveJournal peut être difficile lorsqu'on ne connait personne. Visitez http://newbies.livejournal.com pour de l'aide intelligente et utile. Avec un peu de chance, vous serez un pro de LiveJournal en peu de temps!
+
+Nous espèrons que vous apprécierez LiveJournal autant que nous apprécions vous le présenter. Si vous avez des questions sur l'utilisation de LiveJournal, veuillez
+visiter le support technique à :
+
+   [[siteroot]]/support/ 
+
+Vous y trouverez les réponses à presque toutes les questions que vous pourriez vous poser à propos de LiveJournal.
+
+Notre but est de rendre LiveJournal génial... si nous pouvons faire n'importe quoi pour le rendre plus facile, plus puissant, plus personnel, peu importe, laissez nous savoir. Notre but n'est pas de faire de l'arget avec le site. Ce site est dirigé par les gens qui l'utilisent. Faites nous savoir ce que vous voulez y trouver.
+
+Si vous avez des questions, l'équipe du support technique vous répondra généralement dans les 24 heures.
+
+Amusez-vous!
+
+L'équipe [[sitename]]
+[[siteroot]]/
+
+.
+
+email.newacct.subject=Bienvenue à LiveJournal
+
+Error|notes=typically used inside an H1 tag to announce an error.
+Error=Erreur
+
+error.badpassword=Mot de passe incorrect.
+
+error.dberror=Erreur de base de données:
+
+error.deleted.name=Effacé
+
+error.deleted.text=Ce journal a été effacé. Si vous êtes [[user]], vous avez 30 jours pour revenir sur votre décision. Après ces 30 jours, nous effacerons son contenu de nos serveurs.
+
+error.deleted.title=Compte effacé
+
+error.ipbanned=Votre adresse IP est temporairement exclue pour avoir dépassé le nombre d'erreurs de connexion.
+
+error.malformeduser=Nom d'utilisateur malformé.
+
+error.nobutton=Vous n'avez appuyé sur aucun bouton?
+
+error.nodb=Base de données temporairement indisponible
+
+error.nodbmaintenance=Cette partie de la base de données est temporairement fermée pour maintenance. Essayez à nouveau dans quelques minutes
+
+error.noentry=Pas d'entrée de ce genre.
+
+error.nojournal=Journal inconnu
+
+error.noremote=Vous devez <a href="/login.bml">vous connecter</a> pour utiliser cette page. 
+
+error.procrequest=Une erreur est survenue en traitant votre demande:
+
+error.purged.name=Effacé
+
+error.purged.text=Ce journal a été effacé et purgé. 
+
+error.purged.title=Compte purgé
+
+error.suspended.name=Suspendu
+
+error.suspended.text=Ce journal a été suspendu temporairement ou définitivement. Si vous êtes [[user]], référez vous s'il vous plaît à la FAQ <cite><a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=106"> Mon compte a été suspendu ! Comment le récupérer ??</a></cite> pour plus d'informations. Notez que pour préserver la vie privée de nos utilisateurs, [[sitename]] ne peut discuter d'aucune suspension de compte avec quelqu'un d'autre que le propriétaire du compte.
+
+error.suspended.title=Compte suspendu
+
+error.tempdisabled=Temporairement indisponible.
+
+error.unknownmode=Mode inconnu.
+
+error.usernameinvalid=Le nom d'utilisateur contient des caractères non valables.
+
+error.usernamelong=Le nom d'utilisateur est trop long, 15 caractères au plus.
+
+error.username_notfound=Nom d'utilisateur non trouvé
+
+Help=Aide
+
+label.security.custom=Personnalisé
+
+label.security.friends=Amis
+
+label.security.head=Niveau de sécurité:
+
+label.security.private=Privé
+
+label.switch.button=Changer
+
+label.switch.header=Changer de journal
+
+label.switch.workwith=Travailler avec le journal:
+
+langname.be=Biélorusse
+
+langname.da=Danois
+
+langname.de=Allemand
+
+langname.en=Anglais
+
+langname.en_GB=Anglais (RU)
+
+langname.en_LJ=Anglais
+
+langname.es=Espagnol
+
+langname.et=Estonien
+
+langname.fi=Finnois
+
+langname.fr=Français
+
+langname.ga=Irlandais
+
+langname.gd=Gaélique
+
+langname.he=Hébreu
+
+langname.hu=Hongrois
+
+langname.is=Islandais
+
+langname.it=Italien
+
+langname.ja=Japonais
+
+langname.lv=Letton
+
+langname.ms=Malais
+
+langname.nb=Norvégien
+
+langname.nl=Hollandais
+
+langname.nn=Norvégien
+
+langname.pl=Polonais
+
+langname.pt=Portugais
+
+langname.ru=Russe
+
+langname.sv=Suédois
+
+langname.tr=Turc
+
+langname.zh=Chinois simplifié
+
+ljlib.pageofpages=Page [[page]] de [[total]]
+
+lostinfo.head=Avez-vous oublié quelque chose ?
+
+lostinfo.text=Si vous avez perdu votre nom d'utilisateur ou votre mot de passe, <a href="lostinfo.bml">retrouvez le ici</a>.
+
+Password=Mot de passe
+
+password.max30=Les mots de passes ne peuvent avoir plus de 30 caractères.
+
+portal.bdays.count.des=Par défaut, vous verrez les 5 amis aux anniversaires les plus proches.
+
+portal.bdays.count.name=Anniversaires à afficher
+
+portal.bdays.portalname=Anniversaires
+
+portal.bdays.portaltitle=Anniversaires
+
+portal.goat.name=Mascotte du site
+
+portal.goattext.des=Que voulez-vous que votre chèvre dise? La seule chose que les chèvres sachent dire c'est "Bêêêhh", mais vous pouvez faire semblant que la vôtre peut dire autre chose si ça vous fait plaîsir.
+
+portal.goattext.name=Texte de la chèvre
+
+portal.login.portalname=Boîte de connection
+
+portal.memories.entriesnoun=entrées
+
+portal.memories.entrynoun=entrée
+
+portal.memories.portalname=Entrées mémorables
+
+portal.memories.portaltitle=Entrées mémorables
+
+portal.ministats.active=Actifs&nbsp;:
+
+portal.ministats.title=Statistiques
+
+portal.ministats.total=Utilisateurs&nbsp;:
+
+portal.misbehaved.des=Vous voulez vraiment laisser ceci décoché. Les chèvres non-domestiques sont capricieuses.
+
+portal.misbehaved.name=Chèvre mal élevée
+
+portal.newtolj.name=Liens du site
+
+portal.popfaq.portalname=10 FAQ les plus lues
+
+portal.popfaq.portaltitle=10 FAQ les plus lues
+
+portal.randuser.count.des=Par défaut, 1 utilisateur apparaît, mais vous pourriez avoir jusqu'à 10 utilisateurs dans des colonnes minces verticales, ou 5 dans des colonnes plus larges horizontalement.
+
+portal.randuser.count.name=Nombre aléatoire d'utilisateurs à montrer
+
+portal.randuser.error.tableempty=Il n'y a pas d'utilisateurs aléatoires. Veuillez contacter les administrateurs.
+
+portal.randuser.hidename.des=Par défaut, le nom d'utilisateur aléatoire est montré. Cochez ceci pour le cacher.
+
+portal.randuser.hidename.name=Cacher le nom
+
+portal.randuser.hidepic.des=Par défaut, l'icône aléatoire de l'utilisateur est montrée, lorsque c'est possible. Cochez ceci pour la cacher.
+
+portal.randuser.hidepic.name=Cacher l'icône de l'utilisateur
+
+portal.randuser.portalname=Utilisateur aléatoire
+
+portal.randuser.portaltitle=Utilisateur aléatoire
+
+portal.randuser.portaltitleplural=Utilisateurs aléatoires
+
+portal.recent.error.noentries=Désolé. Pas d'entrées.
+
+portal.recent.error.notsetup=Vous devez configurer cette boîte. Cochez le symbole "plus" pour déterminer le journal que vous aimeriez regarder ici.
+
+portal.recent.error.userstatus=L'utilisateur a effacé ou suspendu son compte.
+
+portal.recent.items.description=Par défaut, seulement les entrées les plus récentes sont montrées.
+
+portal.recent.items.name=Items à afficher
+
+portal.recent.journal.description=De quel journal voudriez-vous voir les derniers items?
+
+portal.recent.nosubject=(Aucun sujet)
+
+portal.recent.permlink=Lien
+
+portal.recent.portalname=Affichage des entrées récentes
+
+portal.recent.portaltitle=Boîte des entrées récentes
+
+portal.recent.showtext.description=Par défaut, seul les sujets seront affichés.
+
+portal.recent.showtext.name=Inclure le texte
+
+portal.stats.journalentyest=Entrées d'hier du journal
+
+portal.stats.portalname=Statistiques du site
+
+portal.stats.portaltitle=Statistiques
+
+portal.stats.totalusers=Nombre total d'utilisateurs
+
+portal.update.mode.des=Le mode complet vous permet d'avoir une multitude d'options supplémentaires lorsque vous faites vos entrées... y compris l'accès aux communautés et l'affichage de votre humeur et musique actuelles, ainsi que le choix d'une icône. Le mode simple est utile lorsque vous n'utilisez pas ces fonctions et ne voulez pas les voir.
+
+portal.update.mode.full=Complet
+
+portal.update.portalname=Mise à jour du journal
+
+portal.update.portaltitle=Mettez à jour votre journal
+
+protocol.bad_password=Votre mot de passe est trop facile à deviner. Changez le, autrement votre journal risque d'être piraté. Allez à [[siteroot]]/changepassword.bml pour changer votre mot de passe.
+
+protocol.hello_test=Hello Compte Test!
+
+protocol.mail_bouncing=Vous utilisez actuellement une mauvaise adresse courriel.  Le courriel que nous essayons de vous envoyer revient. [[sitename]] a besoin d'une adresse valable pour être utilisé. Allez à [[siteroot]]/support/faqbrowse.bml?faquid=19 pour modifier votre adresse de courriel.
+
+protocol.modpost=Votre entrée a été ajoutée à la liste d'attente de supervision. Elle sera acceptée ou rejetée par un des superviseurs de la communauté.
+
+protocol.must_revalidate=Vous devez valider votre nouvelle adresse. Votre précédente était valable, mais comme vous l'avez changée, vous devez valider la nouvelle. Si vous ne le faites pas, vous n'aurez pas accès à toutes les fonctions de [[sitename]]. Voyez [[siteroot]]/support/faqbrowse.bml?faqid=11 pour plus d'informations.
+
+protocol.not_validated=Votre adresse de courriel n'a pas été validée. Vous pouvez continuer à utiliser [[sitename]], mais si vous ne validez pas votre adresse vous n'aurez pa accès à toutes les fonctions du site. Voyez les instructions que vous avez reçu par courriel lorsque vous avez créé votre journal, ou allez à [[siteroot]]/support/faqbrowse.bml?faqid=11 pour en savoir plus.
+
+protocol.old_win32_client=Il y a des clients Windows pour LiveJournal plus récents, et nous vous recommandons de faire une mise à jour. Allez à [[siteroot]]/download/  pour télécharger un nouveau client.
+
+protocol.readonly=Votre compte est temporairement en mode lire-seulement. Certaines opérations seront impossibles pendant quelques minutes.
+
+Sorry|notes=typically used to announce that the requested action can't be done.
+Sorry=Désolé
+
+talk.anonwrote=Quelqu'un a écrit,
+
+talk.anonwrote_comm=Quelqu'un a écrit dans [[commlink]],
+
+talk.btn.preview=Aperçu
+
+talk.commentpermlink=lien
+
+talk.commentpost=Envoyez un nouveau commentaire
+
+talk.commentsread=Lire les commentaires
+
+talk.curname_Mood=<b>Humeur actuelle:</b>
+
+talk.curname_Music=<b>Musique actuelle:</b>
+
+talk.error.bogusargs=Information incohérente
+
+talk.error.comm_deleted=Ce commentaire a été effacé.
+
+talk.error.deleted=Ce journal est effacé.
+
+talk.error.deleted.title=Effacé
+
+talk.error.mustlogin=Vous devez être connecté pour voir cette entrée protégée.
+
+talk.error.nocomment=Le commentaire n'existe pas.
+
+talk.error.noentry=Pas d'entrée de cette sorte.
+
+talk.error.nojournal=Erreur: n'a pu déterminer le journal à partir de l'information
+
+talk.error.nosuchjournal=Pas de journal de ce genre
+
+talk.error.notauthorised=Vous n'êtes pas autorisé à voir cette entrée protégée.
+
+talk.error.suspended=Ce journal/auteur est suspendu.
+
+talk.error.suspended.title=Suspendu
+
+talk.parentlink=Précédent
+
+talk.readsimilar=Lire des entrées semblables:
+
+talk.replytothis=Répondre
+
+talk.somebodywrote=[[realname]] ([[userlink]]) a écrit,
+
+talk.somebodywrote_comm=[[realname]] ([[userlink]]) a écrit dans [[commlink]],
+
+talk.spellcheck=Vérifier l'orthographe pendant l'aperçu
+
+talk.threadlink=Fil
+
+thislang.community|notes=Name of community you use to discuss the translation for this language.
+thislang.community=lj_francais
+
+Username=Nom d'utilisateur
+
+userpic.inactive=Inactif
+
+xcolibur.greeting.anon=Bienvenue à LiveJournal!
+
+xcolibur.greeting.logged_in=Bienvenue, [[name]]! [[logout]]
+
+xcolibur.login=Connectez-vous
+
+xcolibur.logout=Déconnectez-vous
+
+xcolibur.nav.about=À propos
+
+xcolibur.nav.about.download=Télécharger
+
+xcolibur.nav.about.general=Informations générales
+
+xcolibur.nav.about.paidaccounts=Compte payants
+
+xcolibur.nav.about.press=La presse
+
+xcolibur.nav.about.sitenews=Nouveautés
+
+xcolibur.nav.about.stats=Statistiques
+
+xcolibur.nav.footer.sitemap=Plan du site
+
+xcolibur.nav.help=Aide
+
+xcolibur.nav.help.ask=Posez une question
+
+xcolibur.nav.help.faq=<abbr title="Foire aux questions">FAQ</abbr>
+
+xcolibur.nav.help.lostpassword=Mot de passe perdu
+
+xcolibur.nav.home=Accueil
+
+xcolibur.nav.journal.archive=Archives
+
+xcolibur.nav.journal.edit.entries=Éditer vos entrées
+
+xcolibur.nav.journal.friends=Amis
+
+xcolibur.nav.journal.info=Profil
+
+xcolibur.nav.journal.memories=Souvenirs
+
+xcolibur.nav.journal.recent=Entrées récentes
+
+xcolibur.nav.journal.update=Mettez à jour
+
+xcolibur.nav.manage=Réglages
+
+xcolibur.nav.manage.community=Communautés
+
+xcolibur.nav.manage.customize=Personalisation
+
+xcolibur.nav.manage.entries=Entrées
+
+xcolibur.nav.manage.friends=Amis
+
+xcolibur.nav.manage.info=Profil
+
+xcolibur.nav.manage.password=Mot de passe
+
+xcolibur.nav.manage.pics=Icônes
+
+xcolibur.nav.search=Recherche
+
+xcolibur.nav.search.directory=Par région
+
+xcolibur.nav.search.directory.search=Avancée
+
+xcolibur.nav.search.interests=Par intérêts
+
+xcolibur.nav.search.random=Aléatoire
+
+xcolibur.nav.title=Navigation&nbsp;:
+
+xcolibur.nav.welcome=Bienvenue
+
+xcolibur.nav.welcome.create=Créez un compte
+
+xcolibur.nav.welcome.login=Connectez-vous
+
+xcolibur.nav.welcome.update=Mettez à jour vote journal
+
+xcolibur.search=Recherche&nbsp;:
+
+xcolibur.search.category=Catégorie&nbsp;:
+
+xcolibur.search.icq=Numéro ICQ
+
+xcolibur.search.int=Intérêts
+
+xcolibur.search.msn=Nom d'utilisateur MSN
+
+xcolibur.search.region=Région
+
+xcolibur.search.yahoo=ID Yahoo!
+
+xcolibur.upgrade=Améliorez votre compte
+

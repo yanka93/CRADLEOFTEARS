@@ -1,0 +1,18 @@
+<?page
+title=>FooBar Enterprises - Page
+body<=
+<?h1 FooBar Enterprises - Page h1?>
+<hr />
+<?header Headers - What good are they? header?>
+<p class="para" style="text-align: justify">
+This is just an introductory text. The normal way to include text like this 
+is to write it in Latin, but since I don't know Latin, you'll have to settle
+with this little paragraph.
+</p>
+<?header Templates are for Wimps! header?>
+<p class="para">
+I'd rather have to edit all of my pages by hand when I decide to change the
+unified look of my site!
+</p>
+<=body
+page?>

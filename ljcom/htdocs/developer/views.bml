@@ -1,0 +1,51 @@
+<?_info
+nocache=>1
+_info?><?page
+title=>View Types
+body<=
+<?h1 Introduction h1?>
+<?p
+A <B>view</B> is just our terminology for a page type, or a mode.  There are a lot of different ways to look at one's journal --- the default way is the "lastn" view, where it shows the last 'n' most recent events, in reverse order.  However, there's also a calendar view, a day view when you click a day on the calendar, and more coming soon (a search page, and a search results page).  Each and every view type is customizable through the <A HREF="styles.bml">style system</A>, which you should read up on if you haven't already.
+p?>
+<?p
+Below is a list of all the view types, descriptions of them, and the <A HREF="varlist.bml">variables</A> that affect them.
+p?>
+
+<?_code
+
+ my @views;
+ my @vars;
+
+ LJ::load_objects_from_file("views.dat", \@views);
+ LJ::load_objects_from_file("vars.dat", \@vars);
+
+ my $ret = "";
+
+ foreach my $vi (@views)
+ {
+     $ret .= "<P><A NAME=\"$vi->{'name'}\"><TABLE WIDTH=100% BGCOLOR=#C0C0C0><TR><TD><FONT FACE=\"Arial,Helvetica\" SIZE=+1><B>$vi->{'name'}: <I>$vi->{'props'}->{'name'}</B></I></FONT></TD></TR></TABLE>\n\n";
+     LJ::xlinkify(\$vi->{'props'}->{'des'});
+     $ret .= $vi->{'props'}->{'des'};
+
+     $ret .= "  <A HREF=\"$vi->{'props'}->{'url'}\">Example page</A>.\n"
+        if (defined $vi->{props}->{url});
+
+     $ret .= "<P><B>Variables affecting this view:</B><UL>\n";
+        foreach my $v (sort { $a->{'name'} cmp $b->{'name'} } @vars)
+        {
+          next unless ($v->{'props'}->{'scope'} =~ /\b$vi->{'name'}\b/);
+          $ret .= "<LI><A HREF=\"varinfo.bml?$v->{'name'}\"><B>$v->{'name'}</B></A>\n";
+        }
+
+     $ret .= "</UL>\n";
+
+ }
+ return $ret;
+
+_code?>
+
+<?hr?>
+Back to <A HREF="/developer/">Developer Area</A>.
+
+<=body
+page?>

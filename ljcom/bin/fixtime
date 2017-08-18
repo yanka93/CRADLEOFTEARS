@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# <LJDEP>
+# prog: ntpdate
+# </LJDEP>
+
+/usr/sbin/ntpdate -s tick.nyc.pnap.net tock.pnap.net
+
+
+

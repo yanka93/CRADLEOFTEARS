@@ -1,0 +1,43 @@
+<?_code
+{
+    use strict;
+    use vars qw(%POST);
+
+    my $remote = LJ::get_remote();
+    return "You must first <a href=\"/login.bml?ret=1\">log in</a>."
+        unless $remote;
+
+    return "You don't have access to use this tool."
+        unless LJ::remote_has_priv($remote, "moneyenter");
+
+    if ($POST{'payid'} && $POST{'piid'}) {
+        my $dbh = LJ::get_db_writer();
+
+        my ($piid, $status) = 
+            $dbh->selectrow_array("SELECT piid, status FROM payitems " .
+                                  "WHERE piid=? AND payid=?",
+                                  undef, $POST{'piid'}, $POST{'payid'});
+
+        return "<b>Error:</b> Payid/Piid pair not found!"
+            unless $piid;
+
+        return "<b>Error:</b> Status = '$status' (not 'pending')"
+            unless $status eq 'pend';
+
+        $dbh->do("UPDATE payitems SET giveafter=NULL " .
+                 "WHERE piid=? AND payid=? AND status='pend'",
+                 undef, $POST{'piid'}, $POST{'payid'});
+
+        return "<b>Success:</b> Delivery date set to now. " .
+               "(PAYID: $POST{'payid'}, PIID: $POST{'piid'})";
+    }
+
+    return "This tool will will set an item's delivery date to be now." .
+           "<form method='post' action='delivernow.bml'>\n" .
+           "<p>Payid: " . LJ::html_text({ 'name' => 'payid', 'size' => 10 }) . "\n" .
+           "Piid: " . LJ::html_text({ 'name' => 'piid', 'size' => 10 }) . "</p>\n" .
+           LJ::html_submit(undef, 'Change');
+           "</form>\n";
+
+}
+_code?>

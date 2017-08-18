@@ -1,0 +1,56 @@
+<?page
+title=>Post by Phone
+head<=
+<style type="text/css">
+  dt {font-weight: bold; }
+</style>
+<=head
+body<=
+<?p Post by Phone support is a new LiveJournal feature that allows you to post audio files straight from your phone. It's easy: p?>
+<ol>
+    <li>Call one of <a href="./numbers.bml">our designated numbers</a></li>
+    <li>Use your PIN to authorize your phone number</li><li>Record your post</li>
+</ol>
+<?p Our system will <a href="./ogg.bml">compress</a> and post the audio file to your journal as a new entry. p?>
+<?p You can choose from MP3, Ogg Vorbis, or WAV format at the <a href="/manage/phonepost.bml">Settings</a> page. p?><br />
+
+<?_code
+{
+    use strict;
+    my $remote = LJ::get_remote();
+    return unless $remote;
+
+    my $phonemax = LJ::get_cap($remote, 'phonepost_monthquota') || 0;
+    if ($phonemax > 0) {
+        my $dbcr       = LJ::get_cluster_reader($remote);
+        my $phoneusage = $dbcr->selectrow_array
+            ("SELECT COUNT(*) FROM phonepostentry ".
+             "WHERE userid=? AND ".
+             "MONTH(FROM_UNIXTIME(posttime)) = MONTH(NOW()) AND ".
+             "YEAR(FROM_UNIXTIME(posttime)) = YEAR(NOW())",
+             undef, $remote->{userid});
+
+        my $diskmax    = LJ::get_cap($remote, 'disk_quota');
+        my $diskusage  = sprintf("%0.2f", LJ::Blob::get_disk_usage($remote, 'phonepost') / 1024**2);
+        return "<?standout <table><tr><th colspan='2' style='text-align: center'>Status</td></tr>".
+            "<th style='text-align: right'>Disk Space:</th>".
+                "<td>You are currently using $diskusage MB out of $diskmax MB</td></tr>".
+                    "<tr><th style='text-align: right'>Phone Posts:</th><td>You have made $phoneusage posts out of $phonemax</td></tr></table> standout?>";
+    } else {
+        return "<?standout <a href='/paidaccounts/'>Purchase a paid account</a> to start using Post by Phone standout?>";
+    }
+}
+_code?>
+<?h1 Links h1?>
+<dl>
+  <dt><a href="/manage/phonepost.bml"><?_ml /manage/phonepost.bml.title _ml?></a></dt>
+  <dd>Manage your authorized phone number and post by phone identification number</dd>
+
+  <dt><a href="/manage/files.bml">File Manager</a></dt>
+  <dd>Manage your available disk space &amp; phone posts</dd>
+
+  <dt><a href="./encodings.bml">Audio encodings</a></dt>
+  <dd>The different audio formats we support for your posts</dd>
+</dl>
+<=body
+page?>

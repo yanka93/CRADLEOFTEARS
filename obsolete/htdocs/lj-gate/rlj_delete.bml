@@ -1,0 +1,104 @@
+<?_info
+nocache=>1
+_info?>
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?h1 Remove LJR -> LJ live export. h1?>
+<br/>
+<?_code
+  use strict;
+  use DBI;
+  use vars qw(%POST);
+
+  # copied from update.bml
+  if ($LJ::SERVER_DOWN) {
+    return LJ::server_down_html();
+  }
+  my $remote = LJ::get_remote();
+  # Errors that are unlikely to change between starting
+  # to compose an entry and submitting it.
+  if ($remote) {
+    if ($remote->underage) {
+      return BML::redirect("$LJ::SITEROOT/agecheck/?s=1");
+    }
+    if ($remote->identity) {
+      return "Non-$LJ::SITENAME users can't post, as they don't actually have journals here.\n";
+    }
+    if (! LJ::get_cap($remote, "can_post")) {
+      return $LJ::MSG_NO_POST || $ML{'.error.cantpost'};
+    }
+  }
+  else {
+    return "Please login.\n";
+  }
+
+  my $qhost = $LJ::DBINFO{'master'}->{'host'};
+  my $quser = $LJ::DBINFO{'master'}->{'user'};
+  my $qpass = $LJ::DBINFO{'master'}->{'pass'};
+  my $qsock = $LJ::DBINFO{'master'}->{'sock'};
+  my $qport = $LJ::DBINFO{'master'}->{'port'};
+  #my $qdb = $LJ::DBINFO{'master'}->{'dbname'};
+  my $qdb = "prod_ljgate";
+
+  my $dbh = DBI->connect(
+    "DBI:mysql:mysql_socket=$qsock;hostname=$qhost;port=$qport;database=$qdb",
+    $quser, $qpass,
+    ) || die  localtime(time) . ": Can't connect to database\n";
+  my $sqh;
+
+  #ID удаляемого пользователя LJR
+  my $user_id;
+  #ID удаляемого пользователя LiveJournal
+  my $alien_id;
+
+  #Выводим форму или добавляем пользователя в базу?
+  my $mode=$POST{'mode'};
+
+  #Вывод
+  my $ret;
+
+  #Если нам уже передали параметры, удаляем пользователя...
+  if ($mode eq "del") {
+    #Забираем из таблицы our_user ID, логин и пароль удаляемого пользователя
+    my $sqh=$dbh->prepare("SELECT userid FROM our_user WHERE our_user=?");
+    $sqh->execute($remote->{'user'});
+    $user_id = $sqh->fetchrow_array;
+  
+    #Забираем из таблицы rlj2lj ID пользователя чужого ресурса
+    $sqh = $dbh->prepare("SELECT alienid FROM rlj2lj WHERE userid=?");
+    $sqh->execute ($user_id);
+    $alien_id = $sqh->fetchrow_array;
+   
+    #Удаляем запись из таблицы rlj2lj
+    $sqh = $dbh->prepare("DELETE FROM rlj2lj WHERE userid=?");
+    $sqh->execute($user_id);
+   
+    #Удаляем данные о чужом пользователе
+    $sqh = $dbh->prepare("DELETE FROM alien WHERE alienid=?");
+    $sqh->execute($alien_id);
+
+    #Удаляем данные о нашем пользователе
+    $sqh = $dbh->prepare("DELETE FROM our_user WHERE userid=?");
+    $sqh->execute($user_id);
+
+    #Удаляем данные о постингах        
+    $sqh = $dbh->prepare("DELETE FROM rlj_lj_id WHERE userid=?");
+    $sqh->execute($user_id);
+
+    $ret .= "<br/>Live LJR -> LJ export removed.";
+    $ret .= "<br/><br/><a href=/lj-gate/>LJ-gate root</a>";
+  }
+  #...в противном случае выводим форму
+  else {
+     $ret .= "<form method=\"post\" action=\"rlj_delete.bml\">\n";
+     $ret .= LJ::html_hidden(mode => 'del');
+     $ret .= LJ::html_submit('confirm', 'Remove export!');
+  };
+ 
+  $dbh->disconnect;
+  return $ret;
+
+_code?>
+<=body
+page?>

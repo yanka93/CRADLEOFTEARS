@@ -1,0 +1,12 @@
+LookRoot $LJHOME/cgi-bin/bml/scheme
+ForceScheme xcolibur_ssl
+DefaultLanguage en_LJ
+IncludePath $LJHOME/htdocs/inc
+
+ExtraConfig $LJHOME/cgi-bin/lj-bml-init.pl
+AllowCode 1
+AllowTemplateCode 1
+
+
+
+

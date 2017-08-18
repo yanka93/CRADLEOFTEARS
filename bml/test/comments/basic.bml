@@ -1,0 +1,22 @@
+Comment:
+<?_c This shouldn't show up _c?>
+
+Comment full:
+<?_comment This shouldn't show up _comment?>
+
+Embedded:
+<?_c This shouldn't show up: <?_code  something _code?> _c?>
+
+Embedded full:
+<?_comment This shouldn't show up: <?_code  something _code?> _comment?>
+
+Multiline:
+<?_c
+
+	This shouldn't show up: <?_code  something _code?>
+
+_c?>
+
+
+
+

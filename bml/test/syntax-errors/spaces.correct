@@ -1,0 +1,11 @@
+Tag with spurious space:
+[Tag: Foo t ag?>
+
+Tag with leading padding:
+<? tag Foo]
+
+Tag with padding on both sides:
+<? tag Foo tag ?>
+
+Tag with trailing padding:
+[Error: <b>BML block 'TAG' has no close</b>]

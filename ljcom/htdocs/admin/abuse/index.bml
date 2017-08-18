@@ -1,0 +1,30 @@
+<?_code
+ use strict;
+ use vars qw($body $title);
+
+ $title = "Abuse Center";
+
+ my $remote = LJ::get_remote();
+ unless (LJ::check_priv($remote, "supportread", "abuse")) {
+     $title = "Restricted";
+     $body .= "<?p This tool is for members of our abuse team.<br />
+             If you need to file an abuse request, please do so at:
+             <a href='/abuse/report.bml'>http://www.livejournal.com/abuse/report.bml</a> p?>";
+ } else {
+     $body .= <<"BLURB";
+<strong>Current Tools:</strong><br />
+<ul>
+ <li><a href="./send_mail.bml">Send an Email</a></li>
+ <li><a href="./query.bml">Query Sent Emails</a></li>
+</ul>
+BLURB
+ }
+
+ return;
+_code?><?page
+title=><?_code return $title; _code?>
+body=> <?_code return $body;  _code?>
+page?><?_c <LJDEP>
+link: htdocs/admin/abuse/mail.bml
+link: htdocs/support/submit.bml
+</LJDEP> _c?>

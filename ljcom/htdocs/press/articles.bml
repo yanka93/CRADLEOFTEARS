@@ -1,0 +1,24 @@
+<?page
+title=>LiveJournal in the Press
+body<=
+<?h1 Archives  h1?>
+<?p
+Here at LiveJournal we try to keep up with all of our press mentions, by
+archiving them in the account <?ljuser press ljuser?>. On this page we list the 5 latest
+press mentions for your convenience.
+p?>
+<?h1 Listing: h1?>
+<?_code
+{
+    LJ::set_active_crumb('pressarticles');
+
+    my $ret;
+    $ret .= LJ::make_journal("press", "", undef, { 'vhost' => 'customview', 'styleid' => 137396 });
+    $ret .= "<?h1 Snippets: h1?> <?hr?>";
+    $ret .= LJ::make_journal("press", "", undef, { 'vhost' => 'customview', 'styleid' => 137833 });
+    $ret .= "<?p " . BML::ml("Backlink", { link => "./", text => "Back to the Press Area" }) . " p?>";
+    return $ret;
+}
+_code?>
+<=body
+page?>

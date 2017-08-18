@@ -1,0 +1,164 @@
+#!/usr/bin/perl -w
+#
+# LiveJournal Remote Procedure Call Client (ljrpc)
+# Copyright 2001 Dormando (dormando@rydia.net)
+# Going to add a license (GPL?) later.
+#
+#
+# This client runs commands you give it at the prompt through the RPC
+# system. By default, first it sends out a 'ping', then sends the
+# command to any machine that replies to it. Prints out replies it
+# gets, too.  It can also be invoked with --now, in which case it
+# broadcasts the command and exits immediately.
+#
+# <LJDEP>
+# lib: IO::Socket, Getopt::Long
+# </LJDEP>
+
+use strict;
+use IO::Socket;
+use Getopt::Long;
+use constant SEC_SLAVE_WAIT => 4;
+use lib "$ENV{'LJHOME'}/cgi-bin";
+require "ljconfig.pl";
+
+$SIG{CHLD} = 'IGNORE';
+
+my $MAXLEN = 512;
+my $PORTNO = 6100;
+
+if ($LJ::BCAST_ADDR) {  } # shutup warning
+my $bcastaddr = $LJ::BCAST_ADDR || '10.0.0.255';
+
+my ($cmdmsg, $remhost, @hosts);
+
+### option processing
+my $timeout = 0;
+my $quick = 0;
+my $server = "web";
+my $ping = 0;
+my $delay = 0;
+my $serialized = 0;
+
+exit 1 unless
+GetOptions('timeout=i' => \$timeout,
+           'now' => \$quick,
+           'server=s' => \$server,
+           'ping' => \$ping,
+           'serialized|s' => \$serialized,
+	   'dest=s' => \$bcastaddr,
+	   'delay|d=i' => \$delay,
+           );
+
+my $msg = "@ARGV";
+$msg = "cmd: " . $msg;
+
+# Creat socket.  Shoot the broadcast off.
+my $sock = IO::Socket::INET->new(Proto => 'udp')        or die "Creating socket: $!\n";
+$sock->sockopt(SO_BROADCAST, 1);
+
+my $ipaddr = inet_aton($bcastaddr);
+my $portaddr = sockaddr_in($PORTNO, $ipaddr);
+print STDERR "Broadcasting.\n";
+if ($quick) {
+    $sock->send($msg, 0, $portaddr)     or die "send: $!\n";
+    exit 0;
+} else {
+    $sock->send("marco $server", 0, $portaddr)  or die "send: $!\n";
+}
+
+my $count = 0;
+$| = 1;
+
+# First loop, grabs machines that are up.
+
+my %mark;
+if ($server eq "web") {
+    open (O, "$ENV{LJHOME}/cgi-bin/pool_int_web.txt");
+    while (<O>) {
+        chomp;
+        $mark{$_} = 1;
+    }
+    close O;
+}
+
+eval {
+  local $SIG{ALRM} = sub { die "timeout" };
+  alarm(SEC_SLAVE_WAIT);
+  while ($sock->recv($cmdmsg, $MAXLEN)) {
+    my ($port, $ipaddr) = sockaddr_in($sock->peername);
+    $remhost = gethostbyaddr($ipaddr, AF_INET) || "";
+    my $remip = inet_ntoa($ipaddr);
+    if ($cmdmsg eq "pollo") {
+      alarm(SEC_SLAVE_WAIT);
+      $count++;
+      print "$count: $remhost [$remip]\n";
+      delete $mark{$remip};
+      push(@hosts, $remhost);
+    }
+  }
+  alarm(0);
+};
+
+print "\n";
+
+if ($ping) {
+    print "Unreported int_web nodes:\n" if %mark;
+    foreach (keys %mark) {
+        print "  $_\n";
+    }
+    exit;
+}
+
+if ($serialized) {
+    foreach my $host (@hosts) {
+        printf "Sending: %-30s", "$host ...";
+        my $ipaddr = inet_aton($host);
+        my $portaddr = sockaddr_in($PORTNO, $ipaddr);
+        if ($sock->send($msg, 0, $portaddr)) {
+            print "sent.\n";
+        } else {
+            print "failed.\n";
+        }
+
+	if ($delay) {
+	    sleep $delay;
+	} else {
+	    $sock->recv($cmdmsg, $MAXLEN);
+	    my ($port, $remipaddr) = sockaddr_in($sock->peername);
+	    $remhost = gethostbyaddr($remipaddr, AF_INET);
+	    
+	    print "Server $remhost:\n===============================\n";
+	    print $cmdmsg;
+	    print "\n\n";
+	}
+    }
+
+    exit;
+}
+
+foreach my $host (@hosts) {
+    printf "Sending: %-30s", "$host ...";
+    my $ipaddr = inet_aton($host);
+    my $portaddr = sockaddr_in($PORTNO, $ipaddr);
+    if ($sock->send($msg, 0, $portaddr)) {
+        print "sent.\n";
+    } else {
+        print "failed.\n";
+    }
+    sleep $timeout;
+}
+
+print "\n\n";
+
+# Loop receiving command stuffs.
+for (my $i = 0; $i < @hosts; $i++) {
+  $sock->recv($cmdmsg, $MAXLEN);
+  my ($port, $ipaddr) = sockaddr_in($sock->peername);
+  $remhost = gethostbyaddr($ipaddr, AF_INET);
+
+  # Parse thing.
+  print "Server $remhost:\n===============================\n";
+  print $cmdmsg;
+  print "\n\n";
+}

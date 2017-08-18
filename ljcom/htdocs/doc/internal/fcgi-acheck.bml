@@ -1,0 +1,9 @@
+<?_code
+
+ my $dbr = LJ::get_dbh("slave");
+ my $r = LJ::get_remote($dbr, $r);
+ unless (LJ::check_priv($dbr, $r, "siteadmin", "internaldocs")) {
+     return BML::http_response(401, "You don't get access")
+ }
+
+_code?>

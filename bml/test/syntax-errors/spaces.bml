@@ -1,0 +1,12 @@
+Tag with spurious space:
+<?tag Foo t ag?>
+
+Tag with leading padding:
+<? tag Foo tag?>
+
+Tag with padding on both sides:
+<? tag Foo tag ?>
+
+Tag with trailing padding:
+<?tag Foo tag ?>
+

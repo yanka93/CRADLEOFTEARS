@@ -1,0 +1,679 @@
+<?page
+title=>File Manager
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST);
+
+    LJ::set_active_crumb('filemanager');
+
+    my $remote = LJ::get_remote();
+    return LJ::bad_input($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return LJ::bad_input($ML{'error.invalidauth'})
+        unless $u;
+
+    # KiB vs MiB byte conversions / printing
+    my %shift = ( MiB => 1 << 20, KiB => 1 << 10 );
+    my $size = sub {
+        my $bytes = shift;
+        # Display in Mb or Kb?
+        return sprintf("%.2f MiB", $bytes / $shift{MiB}) if $bytes >= $shift{MiB};
+        return sprintf("%.2f KiB", $bytes / $shift{KiB});
+    };
+
+    # for reporting error
+    my $err = sub { return "<?h1 $ML{'Error'} h1?><?p $_[0] p?>" };
+
+    # what type of blob to show
+    my $showtype = $GET{'showtype'};
+
+    # extra arguments for get requests
+    # how to make links back to this page
+    my $self_link = sub {
+        my $page = shift || $GET{'page'};
+        my $sort = shift || $GET{'sort'};
+
+        my $uri = "files.bml?";
+        $uri .= "authas=$authas&" if $authas ne $remote->{'user'};
+        $uri .= "showtype=$showtype&" if $showtype;
+        $uri .= "page=$page&" if $page > 1;
+        $uri .= "sort=$sort&" if $sort;
+        chop $uri;
+
+        return $uri;
+    };
+
+    # how to make a sort link back to this page,
+    # given a sort type and name
+    my $sort_link = sub {
+        my ($sort, $name) = @_;
+        return $name unless $sort;
+
+        my $type = $GET{'sort'} eq "${sort}_asc"
+            ? "${sort}_desc" : "${sort}_asc";
+        return "<a href='" . $self_link->(undef, $type) . "'>$name</a>";
+    };
+
+    # declare these up here so closures below can use them
+    my %blobs = ();          # { 'blobid' => blob object }, references into @blobs
+    my @blobs = ();          # [ { blob object }, { ... }, ... ]
+    my ($domain, $domainid); # blob domain/id
+    my ($dbh, $dbcm);
+
+    my %btype = ();
+
+    ###
+    ### Userpic handler functions
+    ###
+    $btype{'userpic'} = {
+        'name' => "Userpics",
+
+        # how to sort various columns
+        'sort' => sub {
+            my $sort = $GET{'sort'};
+            my $cmp = sub { $b->{'length'} <=> $a->{'length'} };
+
+            # numeric <=> comparison
+            if ($sort =~ /^(kw_ct|width|height|length)_(asc|desc)$/) {
+                my ($meth, $dir) = ($1, $2);
+                
+                if ($dir eq 'desc') {
+                    $cmp = sub { $b->{$meth} <=> $a->{$meth} };
+                } elsif ($dir eq 'asc') {
+                    $cmp = sub { $a->{$meth} <=> $b->{$meth} };
+                }
+
+            # string 'cmp' comparison
+            } elsif ($sort =~ /^(picdate|ext)_(asc|desc)$/) {
+                my ($meth, $dir) = ($1, $2);
+
+                if ($dir eq 'desc') {
+                    $cmp = sub { $b->{$meth} cmp $a->{$meth} };
+                } elsif ($dir eq 'asc') {
+                    $cmp = sub { $a->{$meth} cmp $b->{$meth} };
+                }
+            }
+
+            return sort $cmp @blobs;
+        },
+                     
+        # how to fetch userpic objects from the database
+        'fetch' => sub {
+            my @ids = map { $_->{'blobid'} } @blobs;
+            my $bind = join(",", map { "?" } @ids);
+            my $sth;
+            if ($u->{'dversion'} > 6) {
+                my $dbcr = LJ::get_cluster_def_reader($u);
+                $sth = $dbcr->prepare("SELECT picid, fmt, width, height, " .
+                                      "state, picdate FROM userpic2 " .
+                                      "WHERE userid=$u->{'userid'} AND picid IN ($bind)");
+            } else {
+                $sth = $dbh->prepare("SELECT picid, contenttype, width, height, " .
+                                     "state, picdate FROM userpic " .
+                                     "WHERE picid IN ($bind)");
+            }
+            $sth->execute(@ids);
+            while (my $row = $sth->fetchrow_hashref) {
+                my $picid = $row->{'picid'};
+                $row->{'length'} = $blobs{$picid}->{'length'};
+                $blobs{$picid} = $row;
+            }
+            @blobs = values %blobs;
+
+            # add in keywords
+            my $upicinf = LJ::get_userpic_info($u);
+            while (my ($k, $v) = each %{$upicinf->{'kw'}}) {
+                push @{$blobs{$v->{'picid'}}->{'kw'}}, $k;
+            }
+
+            # don't need keyword array though,
+            # 'kw_str' => comma separated keywords
+            # 'kw_ct'  => count of keywords, for sorting
+            foreach my $bl (@blobs) {
+                $bl->{'kw_str'} = join(", ", @{$bl->{'kw'}||[]});
+                $bl->{'kw_ct'} = scalar(@{$bl->{'kw'}||[]});
+                delete $bl->{'kw'};
+
+                # convert mime type to filetype (ext)
+                if ($u->{'dversion'} > 6) {
+                    $bl->{'ext'} = {
+                        'G' => 'gif',
+                        'J' => 'jpg',
+                        'P' => 'png',
+                    }->{$bl->{'contenttype'}};
+                } else {
+                    $bl->{'ext'} = {
+                        'image/gif' => 'gif',
+                        'image/jpeg' => 'jpg',
+                        'image/png' => 'png',
+                    }->{$bl->{'contenttype'}};
+                }
+                delete $bl->{'contenttype'};
+            }
+        },
+               
+        # deletes blobs which need to be deleted based on %POST
+        'delete' => sub {
+
+            # find picids to delete
+            my @del = ();
+            foreach my $id (map { $_->{'picid'} } @blobs) {
+                push @del, $id if $POST{"del_${id}"};
+            }
+            return 0 unless @del;
+
+            # try and delete from either the blob server or database,
+            my $deleted = 0;
+            my $bind = join(",", map { "?" } @del);
+            if ($LJ::USERPIC_BLOBSERVER) {
+
+                # delete blobs from blobserver
+                foreach my $picid (@del) {
+                    LJ::Blob::delete($u, $domain, $blobs{$picid}->{'ext'}, $picid);
+                }
+                $deleted = 1;
+                
+            } elsif ($u->do("DELETE FROM userpicblob2 WHERE ".
+                            "userid=? AND picid IN ($bind)", undef,
+                            $u->{userid}, @del) > 0) {
+                $deleted = 1;
+            }
+            if ($deleted) {
+                if ($u->{'dversion'} > 6) {
+                    $u->do("DELETE FROM userpic2 WHERE userid=? IN ($bind)",
+                           undef, $u->{'userid'}, @del);
+                } else {
+                    $dbh->do("DELETE FROM userpic WHERE picid IN ($bind)",
+                             undef, @del);
+                }
+                $u->do("DELETE FROM userblob WHERE journalid=? AND domain=? " .
+                       "AND blobid IN ($bind)", undef, $u->{'userid'},
+                       $domain, @del);
+
+                # userpics changed, need to reactivate
+                LJ::activate_userpics($u);
+            }
+            
+            return scalar(@del);
+        },
+      
+        # renders userpic rows in the table (including column headings)
+        'render' => sub {
+            my $ret;
+           
+            $ret .= "<tr><td class='tablehead'>&nbsp;</td>";
+
+            my $eff_sort = 
+                $GET{'sort'} =~ /^(kw_ct|picdate|width|height|length|ext)_(asc|desc)$/
+                ? $GET{'sort'} : "length_desc";
+
+            # display column headings
+            foreach ([undef, "Image"], ['kw_ct', "Keywords"], ['picdate', "Date Uploaded"],
+                     ['width', "Width"], ['height', "Height"], ['length', "Filesize"],
+                     ['ext', "Type"]) {
+
+                $ret .= "<td class='tablehead'";
+                $ret .= " width='40%'" if $_->[0] eq 'subject';
+                $ret .= ">" . $sort_link->(@$_);
+
+                if ($eff_sort =~ /^$_->[0]_(asc|desc)$/) {
+                    my $pref = $1 eq 'asc' ? "down" : "up";
+                    $ret .= "<img src='$LJ::IMGPREFIX/${pref}arrow.gif' width='16' ";
+                    $ret .= "height='15' alt='' border='0' />";
+                }
+
+                $ret .= "</td>";
+            }
+
+            $ret .= "<td class='tablehead'>&nbsp;</td></tr>";
+            
+            # fill in rows
+            foreach my $bl (@blobs) {
+                my $picid = $bl->{'picid'};
+
+                # delete checkbox
+                $ret .= "<tr><td class='tablecontent'>";
+                $ret .= LJ::html_check({ 'type' => 'check', 'name' => "del_${picid}",
+                                         'id' => "del_${picid}", 'value' => 1 }) . "</td>";
+                
+                # display userpic
+                $ret .= "<td class='tablecontent'><label for='del_${picid}'>";
+                $ret .= "<img src='$LJ::USERPIC_ROOT/$bl->{'picid'}/$u->{'userid'}'";
+                $ret .= " width='$bl->{'width'}' height='$bl->{'height'}' alt='$bl->{'kw_str'}'";
+                $ret .= " title='$bl->{'kw_str'}'></label></td>";
+                
+                # keywords, date/time
+                $bl->{'kw_str'} ||= "<i>none</i>";
+                foreach (qw(kw_str picdate)) {
+                    $ret .= "<td class='tablecontent'>$bl->{$_}</td>";
+                }
+
+                # width/height
+                foreach (qw(width height)) {
+                    $ret .= "<td class='tablecontent'>$bl->{$_}px</td>";
+                }
+                
+                # file size
+                my $len = sprintf("%.1fk", $bl->{'length'} / 1000);
+                $ret .= "<td class='tablecontent' align='center'>$len</td>";
+                
+                # typs
+                $ret .= "<td class='tablecontent' align='center'>";
+                $ret .= uc($bl->{'ext'}) . "</td></tr>";
+            }
+
+            # delete button
+            $ret .= "<tr><td colspan='4' align='left'>";
+            $ret .= LJ::html_submit('action:delete', "Delete Selected") . "</td>";
+            $ret .= "<td colspan='4' align='right'>[<a href='$LJ::SITEROOT/editpics.bml#upload'>";
+            $ret .= "Upload new userpics</a>]";
+            
+            return $ret;
+        },
+    };
+         
+    ###
+    ### PhonePost handler functions
+    ###
+    $btype{'phonepost'} = {
+        'name' => "Phone Posts",
+
+        # how to sort phonepost rows, for each column type
+        'sort' => sub {
+            my $sort = $GET{'sort'};
+            my $cmp = sub { $b->{'length'} <=> $a->{'length'} };
+
+            # numeric <=> comparison
+            if ($sort =~ /^(length|lengthsecs|posttime)_(asc|desc)$/) {
+                my ($meth, $dir) = ($1, $2);
+                
+                if ($dir eq 'desc') {
+                    $cmp = sub { $b->{$meth} <=> $a->{$meth} };
+                } elsif ($dir eq 'asc') {
+                    $cmp = sub { $a->{$meth} <=> $b->{$meth} };
+                }
+
+            # string 'cmp' comparison
+            } elsif ($sort =~ /^subject_(asc|desc)$/) {
+                if ($1 eq 'desc') {
+                    $cmp = sub { $b->{'subject'} cmp $a->{'subject'} };
+                } else {
+                    $cmp = sub { $a->{'subject'} cmp $b->{'subject'} };
+                }
+            }
+
+            return sort $cmp @blobs;
+        },
+
+        # populates @/%blobs from database
+        'fetch' => sub {
+                 
+            # get data from phonepostentry
+            my $bind = join(",", map { "?" } @blobs);
+            my $sth = $dbcm->prepare("SELECT blobid, jitemid, anum AS pp_anum, " .
+                                     "lengthsecs, posttime, filetype FROM phonepostentry " .
+                                     "WHERE userid=? AND blobid IN ($bind)");
+            $sth->execute($u->{'userid'}, map { $_->{'blobid'} } @blobs);
+            while (my $row = $sth->fetchrow_hashref) {
+                my $bid = $row->{'blobid'};
+                $row->{'length'} = $blobs{$bid}->{'length'};
+
+                # convert filetype to extension
+                $row->{'ext'} = $row->{'filetype'} == 1 ? "ogg" : "mp3";
+                delete $row->{'filetype'};
+                
+                $blobs{$bid} = $row;
+            }
+            @blobs = values %blobs;
+            
+            # now get subject from logtext2
+            my $logtext = LJ::get_logtext2($u, map { $_->{'jitemid'} } @blobs);
+            foreach my $bl (@blobs) {
+                my $jitemid = $bl->{'jitemid'};
+                next unless ref $logtext->{$jitemid} eq 'ARRAY';
+
+                # subject and has_entry keys
+                $bl->{'subject'} = $logtext->{$jitemid}->[0];
+                $bl->{'has_entry'} = 1;
+
+                # also get log2 row so we can see security
+                my $log = LJ::get_log2_row($u, $jitemid);
+                if (ref $log eq 'HASH') {
+                    $bl->{'security'} = $log->{'security'};
+                    $bl->{'l_anum'} = $log->{'anum'};
+                }
+            }
+
+            return;
+        },
+             
+        # deletes blobs which need to be deleted based on %POST
+        'delete' => sub {
+
+            # find picids to delete
+            my @del = ();
+            foreach my $id (map { $_->{'blobid'} } @blobs) {
+                push @del, $id if $POST{"del_${id}"};
+            }
+            return 0 unless @del;
+            
+            return 0 unless $u->writer;
+            
+            # delete from userblob (journalid, domain, blobid)
+            my $bind = join(",", map { "?" } @del);
+            $u->do("DELETE FROM userblob WHERE journalid=? AND domain=? " .
+                   "AND blobid IN ($bind)", undef, $u->{'userid'},
+                   $domainid, @del);
+            
+            # delete blobs from blobserver
+            foreach my $bid (@del) {
+                my $ppe = LJ::PhonePost::get_phonepost_entry($u, $bid);
+                if ($ppe->{location} eq 'mogile') {
+                    LJ::mogclient()->delete("pp:$u->{userid}:$bid");
+                } else {
+                    LJ::Blob::delete($u, $domain, $blobs{$bid}->{'ext'}, $bid);
+                }
+            }
+
+            # update phonepost entry locations to be 'none'
+            $u->do("UPDATE phonepostentry SET location='none' WHERE userid=? AND blobid IN ($bind)",
+                   undef, $u->{userid}, @del);
+           
+            return scalar(@del);
+        },
+        
+        # generate phonepost table rows
+        'render' => sub {
+            my $ret;
+            
+            $ret .= "<tr><td class='tablehead'>&nbsp;</td>";
+
+            my $eff_sort =
+                $GET{'sort'} =~ /^(subject|length|lengthsecs|posttime)_(asc|desc)$/
+                ? $GET{'sort'} : "length_desc";
+
+            # table heading
+            foreach ([undef, "Audio"], ['subject', "Subject"], ['posttime', "Date/Time"],
+                     ['lengthsecs', "Duration"], ['length', "Filesize"]) {
+
+                $ret .= "<td class='tablehead'";
+                $ret .= " width='40%'" if $_->[0] eq 'subject';
+                $ret .= ">" . $sort_link->(@$_);
+
+                if ($eff_sort =~ /^$_->[0]_(asc|desc)$/) {
+                    my $pref = $1 eq 'asc' ? "down" : "up";
+                    $ret .= "<img src='$LJ::IMGPREFIX/${pref}arrow.gif' width='16' ";
+                    $ret .= "height='15' alt='' border='0' />";
+                }
+
+                $ret .= "</td>";
+            }
+
+            $ret .= "<td class='tablehead'>&nbsp;</td></tr>";
+            
+            # table rows
+            foreach my $bl (@blobs) {
+                my $blobid = $bl->{'blobid'};
+
+                # delete checkbox
+                $ret .= "<tr><td class='tablecontent'>";
+                $ret .= LJ::html_check({ 'type' => 'check', 'name' => "del_${blobid}",
+                                         'value' => 1, 'selected' => 0 }) . "</td>";
+                
+                # link to phonepost
+                {
+                    $ret .= "<td class='tablecontent'>";
+                    $ret .= LJ::PhonePost::make_link($remote, $u, $bl->{'blobid'}, 'bare');
+                }
+
+                # link to original entry
+                my $subject = "<i>No associated journal entry</i>";
+                if ($bl->{'has_entry'}) {
+                    $subject = "<a href='" . LJ::item_link($u, $bl->{'jitemid'}, $bl->{'l_anum'});
+                    $subject .= "'>" . ($bl->{'subject'} || "<i>no subject</i>") . "</a>";
+                }
+                $ret .= "<td class='tablecontent'>$subject</td>";
+                
+                # date/time
+                my $datetime = LJ::mysql_time($bl->{'posttime'});
+                $ret .= "<td class='tablecontent'>$datetime</td>";
+                
+                # length
+                my $secs = int($bl->{'lengthsecs'} / 60) . ":";
+                $secs .= sprintf("%02ds", $bl->{'lengthsecs'} % 60);
+                $ret .= "<td class='tablecontent' align='center'>$secs</td>";
+                
+                # file size
+                my $len = sprintf("%.1fk", $bl->{'length'} / 1000);
+                $ret .= "<td class='tablecontent' align='center'>$len</td>";
+                
+                # security
+                $ret .= "<td class='tablecontent' align='center'>";
+                if ($bl->{'security'} && $bl->{'security'} ne 'public') {
+                    $ret .= "<img src='$LJ::IMGPREFIX/icon_protected.gif' width='14' ";
+                    $ret .= "height='15' border='0'alt='Protected' />";
+                }
+                $ret .= "</td></tr>";
+            }
+
+            # delete button
+            $ret .= "<tr><td colspan='6' align='left'>";
+            $ret .= LJ::html_submit('action:delete', "Delete Selected") . "</td>";
+            
+            return $ret;
+        }
+    };
+
+    # All of this is managed on the FotoBilder side of things, so just give total
+    # usage info, and a link to where they can manage it.
+    if (LJ::get_cap($u, 'fb_account')) {
+        $btype{'fotobilder'} = {
+            'name' => "Photo Hosting",
+            'sort' => sub {},
+            'delete' => sub {},
+            'fetch' => sub {},
+            'render' => sub
+            {
+                my $ret;
+
+                my $pp_bytes = LJ::Blob::get_disk_usage($u, 'fotobilder');
+                my $pp_display = $size->($pp_bytes);
+
+                my $max_size = LJ::get_cap($u, "disk_quota") * $shift{MiB};
+                my $ret;
+
+                $ret .= '<tr>';
+                foreach ('&nbsp;', 'Images', 'Filesize Totals') {
+                    $ret .= "<td class='tablehead'>$_</td>";
+                }
+                $ret .= '</tr>';
+
+                $ret .= "<tr><td class='tablecontent'>&nbsp;</td>";
+                $ret .= "<td class='tablecontent' valign='top'>";
+                $ret .= "<img src='$LJ::IMGPREFIX/imageplaceholder2.png' width='35' ";
+                $ret .= "height='35' alt='' border='0' /></td>";
+
+                $ret .= "<td class='tablecontent' valign='top'>";
+                $ret .= "$pp_display (";
+                $ret .= sprintf("%.2f%%", ($pp_bytes / $max_size) * 100);
+                $ret .= " of your total) <br />";
+
+                $ret .= "Please visit <a href='$LJ::FB_SITEROOT'>$LJ::FB_DOMAIN</a> to manage your images.";
+                $ret .= '</td></tr>';
+                return $ret;
+            },
+        };
+    }
+
+
+    ###
+    ### START OF OUTPUT
+    ###
+    my $ret;
+
+    # authas switcher form
+    $ret .= "<form method='get' action='files.bml'>\n";
+    $ret .= LJ::html_hidden('showtype' => $showtype) if $showtype;
+    $ret .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+    $ret .= "</form>\n\n";
+
+    # domain type selector
+    $ret .= "<form method='get' action='files.bml'>File Type: ";
+    $ret .= LJ::html_hidden('authas' => $authas) if $authas ne $remote->{'user'};
+    $ret .= LJ::html_select({ 'name' => 'showtype', 'selected' => $showtype },
+                            '' => '---',
+                            map { $_ => $btype{$_}->{'name'} } sort keys %btype) . " ";
+    $ret .= LJ::html_submit("Show") . "</form>";
+
+    # show quota info
+    my $used_size = LJ::Blob::get_disk_usage($u);
+    my $max_size = LJ::get_cap($u, "disk_quota") * $shift{MiB};
+
+    if ($max_size) {
+
+        $ret .= "<?h2 Quota Usage h2?>";
+        $ret .= "<p>You are currently using " . $size->($used_size) . " (";
+        $ret .= sprintf("%.2f%%", ($used_size / $max_size) * 100);
+        $ret .= ") of your " . $size->($max_size) . " quota.</p>";
+    }
+
+    return $ret unless defined $btype{$showtype};
+
+    ###
+    ### LOAD DATA
+    ###
+
+    # now we have a showtype
+    $domain = $showtype;
+    $domainid = LJ::get_blob_domainid($domain);
+    my $bobj = $btype{$showtype};
+
+    # get db handle now
+    $dbh = LJ::get_db_writer();
+    $dbcm = LJ::get_cluster_master($u);
+    return $err->($ML{'error.nodb'}) unless $dbh && $dbcm;
+
+    # fetch data from userblob
+    my $sth = $dbcm->prepare("SELECT blobid, length FROM userblob " .
+                             "WHERE journalid=? AND domain=?");
+    $sth->execute($u->{'userid'}, $domainid);
+    while (my $row = $sth->fetchrow_hashref) {
+        push @blobs, $row;
+    }
+
+    # no blobs?
+    unless (@blobs) {
+        $ret .= "<?h1 No Files h1?>";
+        $ret .= "<?p You do not have any files of the specified type.  Please select a ";
+        $ret .= "different type from the list above and try again. p?>";
+        return $ret;
+    }
+
+    # generate paging object and make a navbar
+    my $page_size = 25;
+    my %items = BML::paging(\@blobs, $GET{'page'}, $page_size);
+    my $navbar = LJ::paging_bar($items{'page'}, $items{'pages'}, 
+                                { 'self_link' => $self_link });
+    @blobs = @{$items{'items'}};
+
+    # get only this page of blobids
+    $blobs{$_->{'blobid'}} = $_ foreach @blobs;
+
+    # call data-getter to fill in the rest of blob data
+    $bobj->{'fetch'}->();
+
+    # sort blobs into specified order
+    @blobs = $bobj->{'sort'}->();
+
+
+    # if a blob's id is in the blobid list, but we got nothing from the
+    # database, then we'll remove its entry from userblob because we 
+    # forgot to remove the row in editpics.bml
+    if ($showtype eq 'userpic') {
+        my @del;
+        foreach my $bl (@blobs) {
+
+            # see if required 'picdate' column was added in
+            push @del, $bl->{'blobid'} unless
+                $bl->{'picdate'};
+        }
+        if (@del) {
+            return $err->($ML{'error.nodb'}) unless $u->writer;
+               
+            my $bind = join(",", map { "?" } @del);
+            $u->do("DELETE FROM userblob WHERE journalid=? AND domain=? " .
+                   "AND blobid IN ($bind)", undef, $u->{'userid'}, $domainid, @del);
+
+            return BML::redirect($self_link->());
+        }
+    }
+
+    ###
+    ### Perform actions
+    ###
+    if (LJ::did_post() && $POST{'action:delete'}) {
+
+        my $res = $bobj->{'delete'}->();
+        if ($res) {
+            # now the database has been modified and deleted, but our current
+            # memory state isn't accurate, so we'll have to redirect and start
+            # over before displaying anything below
+            return BML::redirect($self_link->());
+        }
+    }
+
+    ###
+    ### Generate page
+    ###
+
+    # output table
+    $ret .= $navbar;
+    $ret .= "<form method='post' action='" . $self_link->() . "'>";
+
+    $ret .= "<table border='0' width='100%' cellspacing='1' cellpadding='4'>";
+    $ret .= $bobj->{'render'}->();
+    $ret .= "</table></form>";
+
+    $ret .= $navbar;
+
+    return $ret;
+}
+_code?>
+<=body
+head<=
+  <style type='text/css'>
+    dt { font-weight: bold }
+	.tablecontent {  
+		border-top: 1px solid #dfdfdf; 
+		border-bottom: 1px solid #dfdfdf;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	
+	.tablehead {
+		border-bottom: 1px solid #dfdfdf;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		font-weight: bold;
+		white-space: nowrap;
+	}
+
+        .tablehead A {
+                color: #000;
+                text-decoration: none;
+                vertical-align: bottom;
+        }
+	
+	.tablebottom {
+		border-top: 1px solid #dfdfdf;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+</style>
+<=head
+page?>

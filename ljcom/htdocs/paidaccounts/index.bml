@@ -1,0 +1,50 @@
+<?page
+title=><?_ml .title _ml?>
+head<=
+<style type='text/css'>
+#featureslist dt { margin-top: 10px; font-weight: bold}
+</style>
+<=head
+body<=
+<?_code
+{
+    use strict;
+    my $ret;
+
+    LJ::set_active_crumb('paidaccounts');
+
+    $ret .= "<?h1 <?_ml .whypay.header _ml?> h1?>";
+    $ret .= "<?p <?_ml .whypay.argument _ml?> p?>";
+    $ret .= "<?p <?_ml .whypay.no_ads _ml?> p?>";
+
+    $ret .= "<?h1 <?_ml .costs.header _ml?> h1?> ";
+    $ret .= "<?p <?_ml .costs.rates _ml?> p?>";
+    $ret .= "<table cellpadding='5' cellspacing='1' border='1' style='margin: 1em 0 1em 30px' class='edged'><tr bgcolor='<?emcolorlite?>'>";
+    $ret .= "<td><b><?_ml .costs.rates.time.header _ml?></b></td><td><b><?_ml .costs.rates.amount.header _ml?></b></td><td>&nbsp;</td></tr>";
+
+    foreach my $prid (sort { $b <=> $a } keys %LJ::Pay::account) {
+        $ret .= "<tr valign='middle'><td><a href='/pay/?item=paidacct-$prid'>$LJ::Pay::account{$prid}->{'name'}</a></td><td align='right'>\$$LJ::Pay::account{$prid}->{'amount'}.00 US</td><td><form style='display:inline' action='/pay/'><input type='hidden' name='item' value='paidacct-$prid' /><input type='submit' value='Order' /></form></td></tr>";
+    }
+    $ret .= "</table>";
+    $ret .= "<?p <?_ml .costs.rates.inexpensive _ml?> p?>";
+
+    $ret .= "<?h1 What's the status of my paid account? h1?>";
+    $ret .= "<?p You can review the status of any of your paid accounts by checking the <a href='./status.bml'>Paid Account Status</a> page. p?>";
+
+    my $remote = LJ::get_remote(); my $ru;
+    if ($remote) {
+        $ru = $remote->{'user'}
+    } else {
+        $ru = "<var><?_ml .your_username _ml?></var>";
+    }
+    $ret .= "<?h1 <a name='features'>$ML{'.features.header'}</a> h1?>";
+    $ret .= "<?p Check out our <a href='/site/accounts.bml'>Features by Account Type</a> comparison chart. p?>";
+    $ret .= "<dl id='featureslist'>";
+    $ret .= BML::ml('.features', { 'username' => $ru, });
+    $ret .= "</dl>";
+
+    return $ret;
+}
+_code?>
+<=body
+page?>

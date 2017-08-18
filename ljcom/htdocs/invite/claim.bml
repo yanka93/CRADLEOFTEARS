@@ -1,0 +1,119 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET $title $body);
+
+    $title = "Exchange Invitation codes";
+    $body = "";
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return $err->($ML{'error.invalidauth'})
+        unless $u;
+
+    if ($u->{'statusvis'} eq "S") {
+        $title = "Suspended Account";
+        $body = "<?h1 Suspended h1?><?p This journal has been either temporarily or permanently suspended by $LJ::SITENAME for policy violation.  You are unable to exchange invite until this journal is unsuspended. p?>";
+        return;
+    }
+
+    # find out how much we owe them
+    my $get_amt = sub {
+        my $rowct = shift;
+
+        my $amt = 0;
+        if ($rowct > 10) {
+            $amt += 0.50*10;
+            $amt += 0.25*($rowct-10);
+        } else {
+            $amt += 0.50*$rowct;
+        }
+        $amt = 25.00 if $amt > 25.00;
+
+        return $amt;
+    };
+
+    # print dollars
+    my $damt = sub { sprintf("\$%.02f", shift()) };
+
+    my $dbh = LJ::get_db_writer();
+
+    unless (LJ::did_post()) {
+        # authas switcher form
+        $body .= "<form method='get' action='claim.bml'>\n";
+        $body .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+        $body .= "</form>\n\n";
+
+        my $rowct = $dbh->selectrow_array("SELECT COUNT(*) FROM acctcode WHERE userid=? AND rcptid=0",
+                                          undef, $u->{'userid'});
+        unless ($rowct > 0) {
+            $body .= "<?h1 No Codes h1?><?p You have no unused invite codes. p?>";
+            return;
+        }
+
+        my $amt = $get_amt->($rowct);
+
+        $body .= "<?h1 Exchange Invite Codes h1?>";
+        $body .= "<?p You can use this tool to exchange your unused invite codes for a ";
+        $body .= "coupon which you can then use at the <a href='$LJ::SITEROOT/pay/'>LiveJournal ";
+        $body .= "Store</a>. p?>";
+
+        $body .= "<?p You will receive \$0.50 for each of your first 10 invite codes, then \$0.25 ";
+        $body .= "for each additional code, with a maximum of \$25.00. Since you have a total of ";
+        $body .= "$rowct unused invite codes, the final amount will be " . $damt->($amt) . ". p?>";
+
+        $body .= "<?p The coupon will be emailed to <b>$u->{'email'}</b>.  Please be sure this email ";
+        $body .= "address is correct. p?>";
+
+        my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+        $body .= "<form method='post' action='claim.bml$getextra'>";
+        $body .= "<p align='center'>";
+        $body .= LJ::html_submit(undef, "Generate Coupon",
+                                 { 'disabled' => $amt <= 0 });
+        $body .= "</p></form>";
+
+        return;
+    }
+
+
+    my $system_id = LJ::get_userid("system") or die;
+    my $rowct = $dbh->do("UPDATE acctcode SET rcptid=? WHERE userid=? AND rcptid=0",
+                         undef, $system_id, $u->{'userid'});
+    unless ($rowct > 0) {
+        $body = "<?h1 No Codes h1?><?p You have no unused invite codes. p?>";
+        return;
+    }
+
+    my $amt = $get_amt->($rowct);
+    
+    my ($tokenid, $token) =
+      LJ::Pay::new_coupon('dollaroffint', $amt, $u->{'userid'}, 0);
+    return "<?h1 Error h1?><?p Error generating coupon. p?>"
+        unless $tokenid && $token;
+
+    # send the coupon to the user in an email
+    LJ::Pay::send_coupon_email($u, $token, $amt, "int");
+
+    # log to statushistory
+    LJ::statushistory_add($u->{'userid'}, $remote->{'userid'}, "invitecp",
+                          "generated " . $damt->($amt) . " intangible coupon ($token) for " .
+                          "$rowct invite codes");
+
+    $body = "<?h1 Success! h1?><?p You have been emailed a coupon for " . $damt->($amt) .
+        " in exchange for your $rowct invite codes. p?>";
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

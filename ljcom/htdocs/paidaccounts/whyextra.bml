@@ -1,0 +1,26 @@
+<?page
+title=>Philosophy
+body<=
+
+<?h1 Why paid accounts can do more... h1?>
+<?p
+Here's our strategy on paid accounts and site functionality:  We don't want to make any feature on the site that not everybody will be able to use --- that's just stupid.  It's a waste of our time, and the feature won't improve because there won't be many people giving us feedback.  On the other hand, we don't want to let everybody do everything, otherwise there would be no incentive for users to buy <a href="/paidaccounts/">paid accounts</a> and support the project.
+p?>
+<?p
+So, our plan so far as been to let all users use every part of the site, but remove some little part of the feature, or limit how much it can be used.
+p?>
+<?p 
+Examples:
+<ul>
+<li>Users with paid accounts can make private and friends-only <a href="/todo/">to-do items</a>, but regular users can only make public items, and are limited to 25 to-do items at a time.
+<li>Users with paid accounts can have 10 mini pictures to represent themselves in various parts of the site, while regular users can only have 3.
+</ul>
+In the future we'll probably continue this strategy.  If you buy a paid account now, you'll be able to use future features as they become available.  However, if you don't feel like buying an account, then don't ... we'll still make everything available to you, albeit in a slightly crippled fashion.
+p?>
+<?p
+We hope you understand our decision.  $2.00-$2.50/month isn't that much to spend on a paid account, but if everybody helps out, it makes the site run a lot nicer as we can afford to upgrade our servers and afford our colocation fees without dipping into our own pockets.
+p?>
+
+
+<=body
+page?>

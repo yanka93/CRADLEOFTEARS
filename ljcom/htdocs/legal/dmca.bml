@@ -1,0 +1,86 @@
+<?page
+title=>DMCA Information
+
+body<=
+<?_code
+    LJ::set_active_crumb('dmca');
+_code?>
+<?h1 What is DMCA? h1?>
+<?p
+The Digital Millenium Copyright Act (DMCA) was passed by Congress in October 1998.  The purpose of DMCA is two-fold: it limits the liability of service providers whose users are infringing upon the copyright of others, and defines the procedures necessary to report such infringement.
+p?>
+
+<?h1 LiveJournal and DMCA h1?>
+<?p
+LiveJournal strives to protect the rights of copyright holders.  For the purposes of compliance with the DMCA, LiveJournal's Designated Agent is the LiveJournal Abuse Team.
+p?>
+
+<?h1 Someone on LiveJournal is infringing upon my copyright! h1?>
+<?p
+Should you discover that a LiveJournal user is infringing upon your copyright, you may file official notification of such infringement.  Upon receipt of a valid notification, LiveJournal will promptly take steps to disable access to the infringing material. 
+p?>
+
+<?p
+In order to be valid, a notification must include the following elements:
+p?>
+
+<ul>
+    <li>An electronic signature (your full legal name) of a person authorized to act on behalf of the copyright holder;</li>
+    <li>Identification of the copyrighted work claimed to have been infringed, in the form of the original URL of the image or work being infringed upon;</li>
+    <li>Identification of the material that is infringing upon your copyright, with reasonable information for LiveJournal to locate the material (you must include the username of the person who is infringing upon your copyright, and links to the allegedly infringing material);</li>
+    <li>Information reasonably sufficient for LiveJournal to contact you (a valid email address);</li>
+    <li>A statement that you in good faith believe that the material is not authorized for use in such a manner;</li>
+    <li>And finally, a statement, made under penalty of perjury, that the information given is accurate and you are authorized to act on behalf of the copyright holder.</li>
+</ul>
+
+<?p
+This notification must be sent to the LiveJournal Abuse Team (LiveJournal's Designated Agent under the DMCA) to be processed.  You may do so by visiting the <a href="http://www.livejournal.com/abuse/report.bml">Report Abuse</a> form and following the directions given there.  Further information regarding LiveJournal's DMCA procedures may be found in <a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=136">this FAQ</a>.
+p?>
+
+<?p 
+Please be aware that you could be liable for damages (which could also
+include attorneys' fees) if you materially misrepresent a claim that
+content is infringing upon your copyright.  Note that in a recent case
+(see <cite><a href="http://www.onlinepolicy.org/action/legpolicy/opg_v_diebold/">Online 
+Policy Group v. Diebold, Inc.</a></cite> for more details), 
+a company claimed their copyrighted material was being
+infringed upon and sent notification requiring the removal of this
+material.  It was determined in court that the company knowingly and
+materially misrepresented the claim, and as such was ordered to pay
+damages and attorneys fees; the company has agreed to pay $125,000 in
+total.
+p?>
+
+<?p
+If you are not absolutely certain as to whether material present on
+LiveJournal infringes upon your copyright, for example, if it may be
+protected under exceptions to the copyright law, like fair use, it is
+strongly recommended that you contact an attorney prior to submitting
+any claim of copyright infringement.
+p?>
+
+<?p
+Furthermore, if it comes to the attention of LiveJournal that any
+material misrepresentation has occurred or is evident, LiveJournal
+reserves the right to take any action it deems appropriate, in its sole
+discretion, including, without limitation, suspending your account.
+p?>
+
+<?h1 What happens next? h1?>
+<?p
+Upon receipt of notification, the LiveJournal Abuse Team will take steps to disable access to the infringing material.  However, if the user posting the content in violation believes they are authorized to use the material, they are entitled to file a counter-notification indicating this.  In order to be valid, the counter-notification must include the following elements:
+p?>
+
+<ul>
+    <li>Your electronic signature (your full legal name);</li>
+    <li>Identification of the material in question, including the location at which the material appears;</li>
+    <li>A statement, made under penalty of perjury, that you have a good faith belief that the material in question was identified as a copyright violation as a result of mistake or misidentification, including the reasons why you believe this;</li>
+    <li>Your full name, address, and telephone number, along with a statement that you consent to the jurisdiction of Federal District Court for the judicial district in which your address is located, and that you will accept service of process from the person who provided the initial notification.</li>
+</ul>
+
+<?p
+Following receipt of a counter-notification, the original notifier will be provided with a copy of the counter-notification.  Access to the content will remain disabled.  Unless the original notifier informs the LiveJournal Abuse Team that an action has been filed seeking a court order to restrict access to the content, the content will be replaced after 14 business days.
+p?>
+
+<=body
+page?>

@@ -1,0 +1,13 @@
+Single line:
+<?user_comment This shouldn't be rendered user_comment?>
+
+Multiline:
+<?user_comment
+
+	This is a comment, too, so it shouldn't be renderered.
+
+user_comment?>
+
+Indirect:
+<?indirect This shouldn't be rendered indirect?>
+

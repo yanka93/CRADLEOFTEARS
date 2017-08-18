@@ -1,0 +1,7 @@
+Escape old-style syntax:
+<?_eb Tags in BML used to be like (=this=), but that format has since been
+deprecated. _eb?>
+
+Escape new-style syntax:
+<?_eb Now tags in BML look like: <?foo?>. _eb?>
+

@@ -1,0 +1,270 @@
+<?_code
+{
+    use strict;
+    use vars qw(%FORM $title $body);
+
+    $title = "GoatVote";
+    $body = "";
+
+    my $limit = 10; # 10 items per list
+
+    my $remote = LJ::get_remote();
+    my $pollid = ($FORM{id} || $FORM{pollid})+0;
+
+    # error sub, since it's so common
+    my $err = sub {
+        $title = 'Error';
+        $body = shift;
+        return undef;
+    };
+
+    return $err->("This is the address to view information from a GoatVote poll.  It doesn't seem like you got here in the normal way.  You should go to the GoatVote poll you're interested in viewing and click the link to view the GoatVote results.") unless $pollid;
+
+    my $dbr = LJ::get_db_reader();
+    my $po = $dbr->selectrow_hashref("SELECT * FROM poll WHERE pollid=?", undef, $pollid);
+    return $err->('Poll not found.') unless $po;
+
+    # verify they can be here
+    my ($can_vote, $can_view) = LJ::Poll::find_security($po, $remote);
+    return $err->('You don\'t have access to view these poll results.')
+        unless $can_view;
+
+    my $u = LJ::load_userid($po->{journalid});
+    my $jarg = $u->{clusterid} ? "journal=$u->{user}&amp;" : "";
+    
+    # temporary: verify the author of the poll is allowed to post GoatVote polls
+    return $err->('The poll you have specified is not a GoatVote poll.')
+        unless LJ::check_priv($u, 'siteadmin', 'goatvote');
+
+    # load the item being shown to verify the post is still around
+    my $log = LJ::get_log2_row($u, $po->{itemid} >> 8);
+    $log->{ownerid} = $log->{journalid};
+    return $err->('Owning post deleted, so poll is no longer accessible.') unless $log;
+
+    # verify that the user can see this poll
+    return $err->('Sorry, you\'re not permitted to see this poll.')
+        unless LJ::can_view($remote, $log);
+
+    # at this point we need to gather the data we need to compute things...
+    my @qs;
+    my $sth = $dbr->prepare("SELECT pollqid, type FROM pollquestion WHERE pollid=?");
+    $sth->execute($pollid);
+    push @qs, $_ while $_ = $sth->fetchrow_hashref;
+    @qs = sort { $a->{pollqid} <=> $b->{pollqid} } @qs;
+
+    # make sure it IS a goatvote poll
+    return $err->('This poll is not a GoatVote poll.')
+        unless LJ::LJcom::is_goatvote_poll($po, \@qs);
+
+    # put in a link to go discuss the goatvote results
+    $body .= "<?p When you're done, you can go back to the <a href='" . LJ::item_link($u, $log->{jitemid}, $log->{anum}) . "'>discussion</a>. p?>";
+    $body .= "<?p <b>Disclaimer:</b> GoatVotes are for the gathering of opinions on the issues.  This isn't technically voting, but it's close enough. p?>";
+
+    # this might be useful for some kinds of polls, but not usually
+    my $filter = 0;
+    if (LJ::check_priv($remote, 'siteadmin', 'goatvote')) {
+        # get filter
+        $filter = $FORM{filter}+0;
+
+        # now put in demographic links
+        $body .= "<?p View results from demographic: ";
+        $body .= $filter ? "<a href=\"goatvote.bml?id=$pollid\">all</a>, " : 'all, ';
+        $body .= $filter ? 'paid users' : "<a href=\"goatvote.bml?id=$pollid&filter=1\">paid users</a>";
+        $body .= ". p?><br/>";
+    }
+
+    # now we need to pitch out anything that's not a text input or our first radio so as
+    # not to confuse us later in the process
+    my $i = @qs;
+    while ($i > 1) {
+        # shame you can't do postfix notation on a line with postfix notation...
+        delete $qs[$i] if 
+            $qs[--$i]->{type} ne 'text';
+    }
+
+    # get all of the choices for these questions
+    my $ids = join(',', map { $_->{pollqid}+0 } @qs);
+    my $sql = "SELECT pollqid, userid, value FROM pollresult WHERE pollid=? AND pollqid IN ($ids)";
+    my $choices = $dbr->selectall_arrayref($sql, undef, $pollid);
+    return $err->($dbr->errstr) if $dbr->err;
+    
+    # get all of the poll submission times...but only for the past day
+    my $sql = 'SELECT userid, datesubmit FROM pollsubmission '.
+              'WHERE pollid=? AND datesubmit > DATE_SUB(NOW(), INTERVAL 1 DAY)';
+    my $times = $dbr->selectall_arrayref($sql, undef, $pollid);
+    return $err->($dbr->errstr) if $dbr->err;
+    my %submits = (submittime => {}, urls => {});
+    $submits{submittime}{$_->[0]} = $_->[1] foreach (@$times); # assemble, my minion hashrefs!
+
+    # now calculate the choices that users made
+    my @urls;
+    my %voters;
+    my %votecount;
+    my $rqid = $qs[0]->{pollqid};
+    foreach my $choice (@$choices) {
+        my ($cqid, $userid, $val) = @$choice;
+        if ($cqid == $rqid) {
+            # radio, so count a vote towards one item
+            $voters{$userid} = $val+0;
+            $votecount{$val+0}++;
+        } else {
+            # url, push for later parsing once we know who voted for what
+            push @urls, [ $userid+0, $val ];
+        }
+    }
+
+    # now we need to load all the users
+    my %users;
+    LJ::load_userids_multiple([ map { $_, \$users{$_} } keys %voters ]);
+
+    # if we're viewing only data from one demographic of user, then we want to
+    # delete anybody who doesn't fit into that mold ... demographics are either
+    # all people or paid users (paid+permanent)
+    if ($filter) {
+        foreach my $uid (keys %users) {
+            next unless $voters{$uid};
+            next if ($users{$uid}{caps}+0) & (1 << 3 | 1 << 4);
+            $votecount{$voters{$uid}}--; # retract their vote
+            delete $voters{$uid};
+        }
+    }
+
+    # sub to fix our URLs
+    my $fix_url = sub {
+        # throw out anything that isn't a URL, then escape any HTML and trim any
+        # spaces around the edges
+        my $url = shift;
+        return unless $url =~ m!^https?://[^\s\'\"\<\>]+[a-zA-Z0-9_/&=\-]$!;
+        return LJ::ehtml(LJ::trim($url));
+    };
+
+    # let's take a moment to do some quick explaining of the hashes we're using
+    # in various spots in this file, above and below.
+    #
+    # %voters{ $userid } = $pollitid; # from pollitem -- what the user has voted for
+    # 
+    # %votecount{ $val } = #; number of votes for $val, another pollitid
+    # 
+    # %votes{
+    #   $val => { -- again, $val is pollitid
+    #     urls => {
+    #       $url => #; the number of votes for $url
+    #     },
+    #     text => string; the text of the item $val
+    #   }
+    # }
+    # 
+    # %recent_votes is the same as %votes, just only includes information that
+    #   is from the past 24 hours.
+    #   
+    # %submits{
+    #   byurl => {
+    #     $url => {
+    #       $userid => 1; says $userid referenced $url at least once, this is used to
+    #                     track duplicate URLs, which are ignored
+    #     }
+    #   },
+    #   urls => {
+    #     $userid => []; array containing all the URLs that $userid has referenced
+    #   },
+    #   submittime => {
+    #     $userid => string; string representing the date the user submitted (but only if
+    #                        the user has submitted in the last 24 hours)
+    #   }
+    # }
+
+    # now we go back through the urls and stack those up in all of our hashes
+    my %votes;
+    my %recent_votes;
+    foreach my $url (@urls) {
+        my $val = $voters{$url->[0]};
+        next unless $val; # they might provide a URL and not actually vote above... rejected!
+
+        # can't vote up the same URL twice
+        my $fixed = $fix_url->($url->[1]);
+        next unless $fixed;
+        next if $submits{byurl}{$fixed}{$url->[0]};
+
+        # increment the vote
+        $votes{$val}{urls}{$fixed}++;
+
+        # was it recent?
+        $recent_votes{$val}{urls}{$fixed}++ if $submits{submittime}{$url->[0]};
+
+        # now we list the URL that this person voted for with their time voted
+        $submits{byurl}{$fixed}{$url->[0]} = 1;
+        push @{$submits{urls}{$url->[0]}}, $fixed;
+    }
+
+    # now we can get all of these items
+    my $items = $dbr->selectall_arrayref('SELECT item, pollitid FROM pollitem '.
+                                         'WHERE pollid=? AND pollqid=?', undef, $pollid, $rqid);
+    return $err->($dbr->errstr) if $dbr->err;
+    foreach my $item (@$items) {
+        $votes{$item->[1]}{text} = $item->[0];
+    }
+
+    # print out the data
+    foreach my $val (sort keys %votes) {
+        my $count = $votecount{$val}+0;
+        my $s = $count == 1 ? '' : 's';
+        $body .= '<?hr?>' if $val > 1;
+        $body .= "<?h2 Option $val - $votes{$val}{text} ($count vote$s) h2?>\n";
+
+        # maybe nobody's voted for it
+        unless ($votes{$val}{urls}) {
+            $body .= "No votes for this choice.";
+            next;
+        }
+
+        # most popular, total
+        $body .= "<b>Most Popular (Total)</b><ol>\n";
+        my $count = 0;
+        foreach my $url (sort { $votes{$val}{urls}{$b} <=> $votes{$val}{urls}{$a} } 
+                         keys %{$votes{$val}{urls}}) {
+            last if ++$count > $limit;
+            my $s = $votes{$val}{urls}{$url} == 1 ? '' : 's';
+            my $link = LJ::auto_linkify($url);
+            $body .= "<li>$link (" . $votes{$val}{urls}{$url} . " mention$s)</li>\n";
+        }
+        $body .= "</ol>\n";
+
+        # most popular, recent
+        $body .= "<b>Most Popular (Last 24 Hours)</b><ol>\n";
+        $count = 0;
+        foreach my $url (sort { $recent_votes{$val}{urls}{$b} <=> $recent_votes{$val}{urls}{$a} } 
+                         keys %{$recent_votes{$val}{urls}}) {
+            last if ++$count > $limit;
+            my $s = $votes{$val}{urls}{$url} == 1 ? '' : 's';
+            my $link = LJ::auto_linkify($url);
+            $body .= "<li>$link (" . $recent_votes{$val}{urls}{$url} . " mention$s)</li>\n";
+        }
+        $body .= "</ol>\n";
+        
+        # most recent, period ... but only in the last 24 hours, as that's the only data
+        # we gathered into the submittime hash
+        $body .= "<b>10 Most Recent Submissions (Last 24 Hours Only)</b><ol>\n";
+        $count = 0;
+        foreach my $userid (sort { $submits{submittime}{$b} cmp $submits{submittime}{$a} }
+                            grep { $voters{$_} == $val } # make sure they voted for THIS item ;)
+                            keys %{$submits{submittime}}) {
+            # check if they had URLs
+            next unless @{$submits{urls}{$userid} || []};
+            last if ++$count > $limit;
+            $body .= "<li>";
+            foreach my $url (@{$submits{urls}{$userid}}) {
+                my $link = LJ::auto_linkify($url);
+                $body .= "$link<br>";
+            }
+            $body .= "</li>";
+        }
+        $body .= "</ol>\n";
+    }
+
+    # whew... all done
+    return;
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?>

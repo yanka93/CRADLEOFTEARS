@@ -1,0 +1,873 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET %POST $title $body @errors);
+
+    LJ::set_active_crumb('editpics');
+
+    $body = "";
+    @errors = ();
+
+    my $err = sub {
+        $title = "Error";
+        $body = LJ::bad_input(@_);
+        return;
+    };
+ 
+    unless (LJ::text_in(\%POST)) {
+        return $err->("Invalid UTF-8 Input");
+    }
+
+    my $remote = LJ::get_remote();
+    return $err->($ML{'error.noremote'})
+        unless $remote;
+
+    if ($remote->underage) {
+        return BML::redirect("$LJ::SITEROOT/agecheck/?s=1");
+    }
+    
+    my $authas = $GET{'authas'} || $remote->{'user'};
+    my $u = LJ::get_authas_user($authas);
+    return $err->($ML{'error.invalidauth'})
+        unless $u;
+
+    # extra arguments for get requests
+    my $getextra = $authas ne $remote->{'user'} ? "?authas=$authas" : '';
+
+    my $returl = LJ::CleanHTML::canonical_url($POST{'ret'});
+    my $picurl = LJ::CleanHTML::canonical_url($POST{'urlpic'});
+    my $fotobilder = index($returl, $LJ::FB_SITEROOT) == 0 &&
+                     $picurl =~ m!^$LJ::FB_SITEROOT/~?$remote->{'user'}/pic/!;
+
+    if ($fotobilder &&
+        (LJ::check_referer($returl) || LJ::check_referer('/editpics.bml'))) {
+
+        return $err->('Invalid referring site or redirection not allowed')
+            unless $returl =~ /$LJ::FB_DOMAIN/ && LJ::get_cap($u, 'fb_account');
+    }
+
+    if (LJ::get_cap($u, "readonly")) {
+        $title = "Read-only mode";
+        $body = $LJ::MSG_READONLY_USER;
+        return;
+    }
+
+    # update this user's activated pics
+    LJ::activate_userpics($u);
+
+    my ($dbh, $dbcm, $dbcr, $sth);
+
+    # Put $count and $max in larger scope so they can be used in output
+    my $count;
+    $dbcm = LJ::get_cluster_master($u);
+    return $err->($ML{'error.nodb'}) unless $dbcm;
+
+    if ($u->{'dversion'} > 6) {
+        $dbcr = LJ::get_cluster_def_reader($u);
+        return $err->($ML{'error.nodb'}) unless $dbcr;
+        $count = $dbcr->selectrow_array("SELECT COUNT(*) FROM userpic2 " .
+                                        "WHERE userid=? AND state <> 'X'", undef, $u->{'userid'});
+    } else {
+        $dbh = LJ::get_db_writer();
+        return $err->($ML{'error.nodb'}) unless $dbh;
+        $count = $dbh->selectrow_array("SELECT COUNT(*) FROM userpic " .
+                                       "WHERE userid=? AND state <> 'X'", undef, $u->{'userid'});
+    }
+    my $max = LJ::get_cap($u, "userpics");
+
+    ### save mode
+    if (LJ::did_post()) {
+
+        ### save changes to existing pics
+        if ($POST{'action:save'}) {
+            # form being posted isn't multipart, since we were able to read from %POST
+
+            my %exist_kwids;
+            if ($u->{'dversion'} > 6) {
+                $sth = $dbcr->prepare("SELECT kwid, picid FROM userpicmap2 WHERE userid=?");
+            } else {
+                $sth = $dbh->prepare("SELECT kwid, picid FROM userpicmap WHERE userid=?");
+            }
+            $sth->execute($u->{'userid'});
+            while (my ($kwid, $picid) = $sth->fetchrow_array) {
+                push @{$exist_kwids{$picid}}, $kwid;
+            }
+
+            my @inactive_picids;
+            my @delete;
+            my %picid_of_kwid;
+            my %ctype;  # picid -> contenttype, for delete mode
+            my %states; # picid -> state, for setting new default
+            my %locations; # picid -> location, for deleting
+            my @comments;
+            my %exist_comments;
+
+            # select all of their userpics and iterate through them
+            if ($u->{'dversion'} > 6) {
+                $sth = $dbcr->prepare("SELECT picid, width, height, state, fmt, comment, location " .
+                                     "FROM userpic2 WHERE userid=?");
+            } else {
+                $sth = $dbh->prepare("SELECT picid, width, height, state, contenttype " .
+                                     "FROM userpic WHERE userid=?");
+            }
+            $sth->execute($u->{'userid'});
+            while (my $pic = $sth->fetchrow_hashref)
+            {
+                # ignore anything expunged
+                next if $pic->{state} eq 'X';
+                
+                # store picture information
+                $states{$pic->{picid}} = $pic->{state};
+                $locations{$pic->{picid}} = $pic->{location}
+                    if $u->{dversion} > 6;
+                $exist_comments{$pic->{picid}} = $pic->{comment};
+
+                # delete this pic
+                if ($POST{"delete_$pic->{'picid'}"}) {
+                    push @delete, $pic->{'picid'};
+                    $ctype{$pic->{picid}} = ($u->{'dversion'} > 6) ? $pic->{'fmt'} : $pic->{'contenttype'};
+                    next;
+                }
+                
+                # make a list of inactive picids
+                if ($pic->{'state'} eq 'I') {
+                    push @inactive_picids, $pic->{'picid'};
+                    next;
+                }
+
+                # we're going to modify keywords on active pictures
+                my $c = 1;
+                my @kw_errors;
+
+                my @keywords = split(/\s*,\s*/, $POST{"kw_$pic->{'picid'}"});
+                @keywords = grep { s/^\s+//; s/\s+$//; $_; } @keywords;
+                foreach my $kw (@keywords) {
+                    my $kwid = ($u->{'dversion'} > 6) ? LJ::get_keyword_id($u, $kw) : LJ::get_keyword_id($kw);
+                    next unless $kwid;
+
+                    if ($c > $LJ::MAX_USERPIC_KEYWORDS) {
+                        my $ekw = LJ::ehtml($kw);
+                        push @kw_errors, $ekw;
+                        next;
+                    }
+
+                    if ($picid_of_kwid{$kwid}) {
+                        my $ekw = LJ::ehtml($kw);
+                        push @errors, BML::ml(".error.keywords", {'ekw' => $ekw});
+                    }
+                    $picid_of_kwid{$kwid} = $pic->{'picid'};
+                    $c++;
+                }
+
+                # Let the user know about any we didn't save
+                if (@kw_errors) {
+                    my $num_words = scalar(@kw_errors);
+                    my $kws = join (", ", @kw_errors);
+                    push @errors, BML::ml(".error.toomanykeywords", {'numwords' => $num_words, 'words' => $kws, 'max' => $LJ::MAX_USERPIC_KEYWORDS});
+                }
+
+                # Find if they changed the comment and then save the new one
+                if ($u->{'dversion'} > 6 && $POST{"com_$pic->{'picid'}"} ne $exist_comments{$pic->{'picid'}}) {
+                    my $comment = LJ::text_trim($POST{"com_$pic->{'picid'}"}, LJ::BMAX_UPIC_COMMENT, LJ::CMAX_UPIC_COMMENT);
+                    $u->do("UPDATE userpic2 SET comment=? WHERE userid=? AND picid=?",
+                           undef, $comment, $u->{'userid'}, $pic->{'picid'});
+                }
+            }
+
+            # now, reapply the existing picids to the inactive pics, unless
+            # that picid has already been assigned to a new active one
+            foreach my $picid (@inactive_picids) {
+                next unless $exist_kwids{$picid};
+                
+                foreach (@{$exist_kwids{$picid}}) {
+                    $picid_of_kwid{$_} ||= $picid;
+                }
+            }
+
+            if (@delete) {
+                my $id_in;
+                if ($u->{'dversion'} > 6) {
+                    $id_in = join(", ", map { $dbcm->quote($_) } @delete);
+                } else {
+                    $id_in = join(", ", map { $dbh->quote($_) } @delete);
+                }
+                
+                # delete data from user cluster
+                foreach my $picid (@delete) {
+                    my $fmt;
+                    if ($u->{'dversion'} > 6) {
+                        $fmt = {
+                            'G' => 'gif',
+                            'J' => 'jpg',
+                            'P' => 'png',
+                        }->{$ctype{$picid}};
+                    } else {
+                        $fmt = {
+                            'image/gif' => 'gif',
+                            'image/jpeg' => 'jpg',
+                            'image/png' => 'png',
+                        }->{$ctype{$picid}};
+                    }
+
+                    my $deleted = 0;
+
+                    # try and delete from either the blob server or database,
+                    # and only after deleting the image do we delete the metadata.
+                    if ($locations{$picid} eq 'mogile') {
+                        $deleted = 1
+                            if LJ::mogclient()->delete($u->mogfs_userpic_key($picid));
+                    } elsif ($LJ::USERPIC_BLOBSERVER &&
+                        LJ::Blob::delete($u, "userpic", $fmt, $picid)) {
+                        $deleted = 1;
+                    } elsif ($u->do("DELETE FROM userpicblob2 WHERE ".
+                                    "userid=? AND picid=?", undef,
+                                    $u->{userid}, $picid) > 0) {
+                        $deleted = 1;
+                    }
+
+                    # now delete the metadata if we got the real data
+                    if ($deleted) {
+                        if ($u->{'dversion'} > 6) {
+                            $u->do("DELETE FROM userpic2 WHERE picid=? AND userid=?",
+                                   undef, $picid, $u->{'userid'});
+                        } else {
+                            $dbh->do("DELETE FROM userpic WHERE picid=?", undef, $picid);
+                        }
+                        $u->do("DELETE FROM userblob WHERE journalid=? AND blobid=? " .
+                               "AND domain=?", undef, $u->{'userid'}, $picid,
+                               LJ::get_blob_domainid('userpic'));
+
+                        # decrement $count to reflect deletion
+                        $count--;
+                    }
+                    
+                    # if we didn't end up deleting, it's either because of 
+                    # some transient error, or maybe there was nothing to delete
+                    # for some bizarre reason, in which case we should verify
+                    # that and make sure they can delete their metadata
+                    if (! $deleted) {
+                        my $present;
+                        if ($locations{$picid} eq 'mogile') {
+                            my $blob = LJ::mogclient()->get_file_data($u->mogfs_userpic_key($picid));
+                            $present = length($blob) ? 1 : 0;
+                        } elsif ($LJ::USERPIC_BLOBSERVER) {
+                            my $blob = LJ::Blob::get($u, "userpic", $fmt, $picid);
+                            $present = length($blob) ? 1 : 0;
+                        }
+                        $present ||= $dbcm->selectrow_array("SELECT COUNT(*) FROM userpicblob2 WHERE ".
+                                                            "userid=? AND picid=?", undef, $u->{'userid'},
+                                                            $picid);
+                        if (! int($present)) {
+                            if ($u->{'dversion'} > 6) {
+                                $u->do("DELETE FROM userpic2 WHERE picid=? AND userid=?",
+                                       undef, $picid, $u->{'userid'});
+                            } else {
+                                $dbh->do("DELETE FROM userpic WHERE picid=?", undef, $picid);
+                            }
+                        }
+                    }
+                }
+                
+                # if any of the userpics they want to delete are active, then we want to 
+                # re-run LJ::activate_userpics() - turns out it's faster to not check to 
+                # see if we need to do this
+                LJ::activate_userpics($u);
+            }
+
+            if (%picid_of_kwid) {
+                if ($u->{'dversion'} > 6) {
+                    $u->do("REPLACE INTO userpicmap2 (userid, kwid, picid) VALUES " .
+                           join(",", map { "(" .
+                                               join(",",
+                                                    $dbcm->quote($u->{'userid'}),
+                                                    $dbcm->quote($_),
+                                                    $dbcm->quote($picid_of_kwid{$_})) .
+                                                    ")"
+                                                }
+                                keys %picid_of_kwid)
+                           );
+                } else {
+                    $dbh->do("REPLACE INTO userpicmap (userid, kwid, picid) VALUES " .
+                             join(",", map { "(" .
+                                                 join(",", 
+                                                      $dbh->quote($u->{'userid'}),
+                                                      $dbh->quote($_),
+                                                      $dbh->quote($picid_of_kwid{$_})) .
+                                                      ")"
+                                                  }
+                                  keys %picid_of_kwid)
+                             );
+                }
+            }
+
+            # Delete keywords that are no longer being used
+            my @kwid_del;
+
+            foreach my $kwids (values %exist_kwids) {
+                foreach my $kwid (@$kwids) {
+                    if (! $picid_of_kwid{$kwid}) {
+                        push @kwid_del, $kwid+0;
+                    }
+                }
+            }
+
+            if (@kwid_del) {
+                my $kwid_del = join(",", @kwid_del);
+                if ($u->{'dversion'} > 6) {
+                    $u->do("DELETE FROM userpicmap2 WHERE userid=$u->{userid} " .
+                           "AND kwid IN ($kwid_del)");
+                } else {
+                    $dbh->do("DELETE FROM userpicmap WHERE userid=$u->{userid} " .
+                             "AND kwid IN ($kwid_del)");
+                }
+            }
+
+            my $new_default = $POST{'defaultpic'}+0;
+            if ($POST{"delete_$POST{'defaultpic'}"}) {
+                # deleting your default
+                $new_default = 0;
+            }
+            if ($new_default != $u->{'defaultpicid'}) {
+
+                # see if they are trying to make an inactive userpic their default
+                if ($states{$new_default} eq 'N' || !$new_default) {
+                    LJ::update_user($u, { defaultpicid => $new_default });
+                    $u->{'defaultpicid'} = $new_default;
+                  }
+            }
+
+            my $memkey = [$u->{'userid'},"upicinf:$u->{'userid'}"];
+            LJ::MemCache::delete($memkey);
+            $memkey = [$u->{'userid'},"upiccom:$u->{'userid'}"];
+            LJ::MemCache::delete($memkey);
+            $memkey = [$u->{'userid'},"upicurl:$u->{'userid'}"];
+            LJ::MemCache::delete($memkey);
+        }
+
+        ### no post, so we'll parse the multipart data
+        unless (%POST) {
+
+            my $MAX_UPLOAD = 40960;
+
+            my $error;
+            # Add some slop to account for the size of the form headers etc.
+            BML::parse_multipart(\%POST, \$error, $MAX_UPLOAD + 2048);
+
+            # was there an error parsing the multipart form?
+            if ($error) {
+                if ($error =~ /^\[(\S+?)\]/) { 
+                    my $code = $1;
+                    if ($code eq "toolarge") {
+                        return $err->(BML::ml('.error.filetoolarge',
+                                              { 'maxsize' => int($MAX_UPLOAD / 1024) .
+                                                    $ML{'.kilobytes'} }));
+                    }
+                    $error = BML::ml("BML.parse_multipart.$code");
+                }
+                return $err->($error) if $error;
+            }
+
+            # error check input contents
+            if ($POST{'src'} eq "url" && $POST{'urlpic'} !~ /^http:\/\//) {
+                return $err->($ML{'.error.badurl'});
+            }
+        
+            if ($POST{'src'} eq "file")  {
+                
+                # already loaded from multipart parse earlier
+                
+            } elsif ($POST{'src'} eq "url") {
+                require LWPx::ParanoidAgent;
+                my $ua = LWPx::ParanoidAgent->new(
+                                                  timeout => 10,
+                                                  max_size => $MAX_UPLOAD + 1024,
+                                                  );
+                my $res = $ua->get($POST{urlpic});
+                $POST{userpic} = $res->content if $res && $res->is_success;
+                return $err->($ML{'.error.urlerror'}) unless $POST{userpic};
+            }
+            
+            if (length($POST{'userpic'}) > $MAX_UPLOAD) {
+                return $err->(BML::ml('.error.filetoolarge',
+                                      { 'maxsize' => int($MAX_UPLOAD / 1024) .
+                                            $ML{'.kilobytes'} }));
+            }
+            
+            my ($sx, $sy, $filetype) = Image::Size::imgsize(\$POST{'userpic'});
+            unless (defined $sx) {
+                return $err->($ML{'.error.invalidimage'});
+            }
+            
+            unless ($filetype eq "GIF" || $filetype eq "JPG" || $filetype eq "PNG") {
+                return $err->(BML::ml(".error.unsupportedtype",
+                                      { 'filetype' => $filetype }));
+            }
+            
+            if ($sx > 100 || $sy > 100) {
+                return $err->( BML::ml(".error.imagetoolarge",
+                                       { 'imagesize' => "${sx}$ML{'.imagesize.by'}${sy}",
+                                         'maxsize'   => "100$ML{'.imagesize.by'}100" }) );
+            }
+
+            my $base64 = Digest::MD5::md5_base64($POST{'userpic'});
+            
+            ## see if they have too many pictures uploaded
+            if ($count >= $max) {
+                return $err->( BML::ml(".error.toomanypics2",
+                                       { 'maxpics'  => $max }) .
+                             LJ::help_icon('userpics', " ", ""));
+            }
+            
+            # see if it's a duplicate
+            my $picid;
+            my $contenttype;
+            if ($u->{'dversion'} > 6) {
+                if ($filetype eq "GIF") { $contenttype = 'G'; }
+                elsif ($filetype eq "PNG") { $contenttype = 'P'; }
+                elsif ($filetype eq "JPG") { $contenttype = 'J'; }
+
+                $picid = $dbcr->selectrow_array("SELECT picid FROM userpic2 " .
+                                                "WHERE userid=? AND fmt=? " .
+                                                "AND md5base64=?",
+                                                undef, $u->{'userid'}, $contenttype, $base64);
+            } else {
+                if ($filetype eq "GIF") { $contenttype = "image/gif"; }
+                elsif ($filetype eq "PNG") { $contenttype = "image/png"; }
+                elsif ($filetype eq "JPG") { $contenttype = "image/jpeg"; }
+
+                $picid = $dbh->selectrow_array("SELECT picid FROM userpic " .
+                                               "WHERE userid=? AND contenttype=? " .
+                                               "AND md5base64=?",
+                                               undef, $u->{'userid'}, $contenttype, $base64);
+            }
+            # if picture isn't a duplicate, insert it
+            if ($picid == 0) {
+
+                # insert the meta-data
+                # Make a new global picid
+                $picid = LJ::alloc_global_counter('P') or
+                    return $err->('Unable to allocate new picture id');
+
+                # see where we're inserting this
+                my $target;
+                if ($u->{dversion} > 6 && $LJ::USERPIC_MOGILEFS) {
+                    $target = 'mogile';
+                } elsif ($LJ::USERPIC_BLOBSERVER) {
+                    $target = 'blob';
+                }
+
+                my $dberr = 0;
+                if ($u->{'dversion'} > 6) {
+                    $u->do("INSERT INTO userpic2 (picid, userid, fmt, width, height, " .
+                           "picdate, md5base64, location) VALUES (?, ?, ?, ?, ?, NOW(), ?, ?)",
+                           undef, $picid, $u->{'userid'}, $contenttype, $sx, $sy, $base64, $target);
+                    if ($u->err) {
+                        push @errors, $err->($u->errstr);
+                        $dberr = 1;
+                    }
+                } else {
+                    $dbh->do("INSERT INTO userpic (picid, userid, contenttype, width, height, " .
+                             "picdate, md5base64) VALUES (?, ?, ?, ?, ?, NOW(), ?)",
+                             undef, $picid, $u->{'userid'}, $contenttype, $sx, $sy, $base64);
+                    if ($dbh->err) {
+                        push @errors, $err->($dbh->errstr);
+                        $dberr = 1;
+                    }
+                }
+
+                my $clean_err = sub {
+                    if ($u->{'dversion'} > 6) {
+                        $u->do("DELETE FROM userpic2 WHERE userid=? AND picid=?",
+                               undef, $u->{'userid'}, $picid) if $picid;
+                    } else {
+                        $dbh->do("DELETE FROM userpic WHERE picid=?", undef, $picid) if $picid;
+                    }
+                    return $err->(@_);
+                };
+
+                ### insert the blob
+                if ($target eq 'mogile' && !$dberr) {
+                    my $fh = LJ::mogclient()->new_file($u->mogfs_userpic_key($picid), 'userpics');
+                    if (defined $fh) {
+                        $fh->print($POST{'userpic'});
+                        my $rv = $fh->close;
+                        push @errors, $clean_err->("Error saving to storage server: $@") unless $rv;
+                    } else {
+                        # fatal error, we couldn't get a filehandle to use
+                        push @errors, $clean_err->("Unable to contact storage server.  Your picture has not been saved.");
+                    }
+                } elsif ($target eq 'blob' && !$dberr) {
+                    my $et;
+                    my $fmt = lc($filetype);
+                    my $rv = LJ::Blob::put($u, "userpic", $fmt, $picid, $POST{'userpic'}, \$et);
+                    push @errors, $clean_err->("Error saving to media server: $et") unless $rv;
+                } elsif (!$dberr) {
+                    my $dbcm = LJ::get_cluster_master($u);
+                    return $err->($ML{'error.nodb'}) unless $dbcm;
+                    $u->do("INSERT INTO userpicblob2 (userid, picid, imagedata) " .
+                           "VALUES (?, ?, ?)",
+                           undef, $u->{'userid'}, $picid, $POST{'userpic'});
+                    push @errors, $clean_err->($u->errstr) if $u->err;
+                } else { # We should never get here!
+                    push @errors, "User picture uploading failed for unknown reason";
+                }
+
+                # Not a duplicate, so increment $count
+                $count++;
+            }
+                
+            # make it their default pic?
+            if ($POST{'make_default'}) {
+                LJ::update_user($u, { defaultpicid => $picid });
+                $u->{'defaultpicid'} = $picid;
+            }
+
+            # set default keywords?
+            if ($POST{'keywords'} ne '') {
+                if ($u->{'dversion'} > 6) {
+                    $sth = $dbcr->prepare("SELECT kwid, picid FROM userpicmap2 WHERE userid=?");
+                } else {
+                    $sth = $dbh->prepare("SELECT kwid, picid FROM userpicmap WHERE userid=?");
+                }
+                $sth->execute($u->{'userid'});
+
+                my @exist_kwids;
+                while (my ($kwid, $picid) = $sth->fetchrow_array) {
+                    $exist_kwids[$kwid] = $picid;
+                }
+
+                my @keywords = split(/\s*,\s*/, $POST{'keywords'});
+                @keywords = grep { s/^\s+//; s/\s+$//; $_; } @keywords;
+
+                my (@bind, @data, @kw_errors);
+                my $c = 0;
+
+                foreach my $kw (@keywords) {
+                    my $kwid = ($u->{'dversion'} > 6) ? LJ::get_keyword_id($u, $kw) : LJ::get_keyword_id($kw);
+                    next unless $kwid; # Houston we have a problem!  This should always return an id.
+
+                    if ($c > $LJ::MAX_USERPIC_KEYWORDS) {
+                        my $ekw = LJ::ehtml($kw);
+                        push @kw_errors, $ekw;
+                        next;
+                    }
+
+                    if ($exist_kwids[$kwid]) { # Already used on another picture
+                        my $ekw = LJ::ehtml($kw);
+                        push @errors, BML::ml(".error.keywords", {'ekw' => $ekw});
+                        next;
+                    } else { # New keyword, so save it
+                        push @bind, '(?, ?, ?)';
+                        push @data, $u->{'userid'}, $kwid, $picid;
+                    }
+                    $c++;
+                }
+
+                # Let the user know about any we didn't save
+                if (@kw_errors) {
+                    my $num_words = scalar(@kw_errors);
+                    my $kws = join (", ", @kw_errors);
+                    push @errors, BML::ml(".error.toomanykeywords", {'numwords' => $num_words, 'words' => $kws, 'max' => $LJ::MAX_USERPIC_KEYWORDS});
+                }
+
+                if (@data && @bind) {
+                    my $bind = join(',', @bind);
+
+                    if ($u->{'dversion'} > 6) {
+                        $u->do("INSERT INTO userpicmap2 (userid, kwid, picid) VALUES $bind",
+                               undef, @data);
+                    } else {
+                        $dbh->do("INSERT INTO userpicmap (userid, kwid, picid) VALUES $bind",
+                                 undef, @data);
+                    }
+                }
+            }
+
+            # set default comments and the url
+            if ($u->{'dversion'} > 6) {
+                my (@data, @set);
+                if ($POST{'comments'} ne '') {
+                    push @set, 'comment=?';
+                    push @data, LJ::text_trim($POST{'comments'}, LJ::BMAX_UPIC_COMMENT, LJ::CMAX_UPIC_COMMENT);
+                }
+
+                if ($POST{'url'} ne '') {
+                    push @set, 'url=?';
+                    push @data, $POST{'url'};
+                }
+
+                if (@set) {
+                    my $set = join(',', @set);
+
+                    $u->do("UPDATE userpic2 SET $set WHERE userid=? AND picid=?",
+                           undef, @data, $u->{'userid'}, $picid);
+                }
+            }
+
+            my $memkey = [$u->{'userid'},"upicinf:$u->{'userid'}"];
+            LJ::MemCache::delete($memkey);
+
+            $returl = LJ::CleanHTML::canonical_url($POST{'ret'});
+            if ($returl) {
+                my $redir_host = $1 if $returl =~ m#^http://([\.:\w-]+)#i;
+                return BML::redirect($returl) if $LJ::REDIRECT_ALLOWED{$redir_host};
+            }
+        }
+
+        # now fall through to edit page and show the updated userpic info
+    }
+
+    if ($fotobilder && $POST{'md5sum'}) {
+        my $id;
+        if ($u->{'dversion'} > 6) {
+            $id = $dbcm->selectrow_array("SELECT picid FROM userpic2 WHERE userid=? " .
+                                         "AND md5base64=?", undef, $u->{'userid'}, $POST{'md5sum'});
+        } else {
+            $id = $dbh->selectrow_array("SELECT picid FROM userpic WHERE userid=? " .
+                                        "AND md5base64=?", undef, $u->{'userid'}, $POST{'md5sum'});
+        }
+
+        $fotobilder = 0 if $id;
+    }
+
+    # show the form to let people edit
+    $title = "Edit User Pictures";
+
+    # Fixme: Make this work with Fotobilder
+    if (!$fotobilder) {
+        # authas switcher form
+        $body .= "<form method='get' action='editpics.bml'>\n";
+        $body .= LJ::make_authas_select($remote, { 'authas' => $GET{'authas'} }) . "\n";
+        $body .= "</form>\n\n";
+    }
+
+    if (@errors) {
+        $body .= LJ::error_list(@errors);
+    }
+
+    if (!$fotobilder) {
+        my %keywords = ();
+        my $dbcr = LJ::get_cluster_def_reader($u);
+        if ($u->{'dversion'} > 6) {
+            $sth = $dbcr->prepare("SELECT m.picid, k.keyword FROM userpicmap2 m, userkeywords k ".
+                                  "WHERE m.userid=? AND m.kwid=k.kwid AND m.userid=k.userid");
+        } else {
+            $sth = $dbh->prepare("SELECT m.picid, k.keyword FROM userpicmap m, keywords k ".
+                                 "WHERE m.userid=? AND m.kwid=k.kwid");
+        }
+        $sth->execute($u->{'userid'});
+        while (my ($pic, $keyword) = $sth->fetchrow_array) {
+            LJ::text_out(\$keyword);
+              push @{$keywords{$pic}}, $keyword;
+          }
+
+        if ($u->{'dversion'} > 6) {
+            $sth = $dbcr->prepare("SELECT picid, width, height, state, comment " .
+                                  "FROM userpic2 WHERE userid=?");
+        } else {
+            $sth = $dbh->prepare("SELECT picid, width, height, state " .
+                                 "FROM userpic WHERE userid=?");
+        }
+        $sth->execute($u->{'userid'});
+        my @sortedpics;
+        push @sortedpics, $_ while $_ = $sth->fetchrow_hashref;
+
+
+        # See if they have any without keywords before we output the display table
+        foreach (@sortedpics) {
+            unless ($keywords{$_->{'picid'}}) {
+                my @w;
+                if (defined $LJ::HELPURL{'upic_keywords'}) {
+                    push @w, BML::ml('.warning.keywords.faq', {'aopts' => "href='$LJ::HELPURL{'upic_keywords'}'"});
+                } else {
+                    push @w, $ML{'.warning.keywords'};
+                }
+
+                $body .= LJ::warning_list(@w);
+                last;
+            }
+        }
+
+        my $piccount = 0;
+        foreach my $pic (sort { $a->{picid} <=> $b->{picid} } @sortedpics)
+        {
+            my $pid = $pic->{'picid'};
+
+            if ($piccount++ == 0) {
+                $body .= "<?h1 $ML{'.curpics'} h1?><?p $ML{'.curpics.desc'} p?>";
+                $body .= "<?p <strong>". BML::ml('.piclimitstatus', {current => $count, max => $max}) . "</strong> p?>";
+
+                $body .= "<form method='post' action='editpics.bml$getextra'>";
+                $body .= "<table cellpadding='5' border='0' cellspacing='1' " .
+                    "style='margin-left: 30px'>";
+            }
+            $body .= "<tr valign='middle'>";
+            $body .= "<td align='center'><img src='$LJ::USERPIC_ROOT/$pid/$u->{'userid'}' width='$pic->{'width'}' height='$pic->{'height'}'></td>";
+            $body .= "<td>\n<table>";
+
+            my ($dis, $distxt);
+            {
+                $body .= "<tr><td align='right'><b><label for='$pid-def'>$ML{'.label.default'}</label></b></td><td> ";
+                $body .= LJ::html_check({ 'type' => 'radio', 'name' => 'defaultpic', 'value' => $pid, 
+                                          'selected' => $u->{'defaultpicid'} == $pid,
+                                          'disabled' => $pic->{'state'} eq 'I' });
+
+                $body .= "&nbsp;&nbsp;&nbsp;<b><label for='$pid-del'>$ML{'.label.delete'}</label></b> ";
+                $body .= LJ::html_check({ 'type' => 'checkbox', 'name' => "delete_$pid",
+                                          'id' => "$pid-del", 'value' => 1 });
+
+                if ($pic->{'state'} eq 'I') {
+                    $body .= " &nbsp;<i>[$ML{'userpic.inactive'}]</i> " . LJ::help_icon('userpic_inactive');
+                }
+
+                $body .= "</td></tr>\n";
+            }
+
+            {
+                my $keywords;
+                $keywords = join(", ", sort { lc($a) cmp lc($b) } @{$keywords{$pic->{'picid'}}})
+                    if $keywords{$pid};
+
+                $body .= "<tr><td align='right'><b><label for='$pid-key'>$ML{'.label.keywords'}</label></b></td><td> ";
+                $body .= LJ::html_text({'name' => "kw_$pid", 'id' => "$pid-key",
+                                        'size' => '30', 'value' => $keywords,
+                                        'disabled' => $pic->{'state'} eq 'I' });
+
+                $body .= "</td></tr>\n";
+
+                if ($u->{'dversion'} > 6) {
+                    $body .= "<tr><td align='right'><b><label for='$pid-com'>$ML{'.label.comment'}</label></b></td><td> ";
+                    $body .= LJ::html_text({ 'name' => "com_$pid", 'id' => "$pid-com",
+                                             'size' => '30', 'value' => $pic->{'comment'},
+                                             'maxlength' => LJ::CMAX_UPIC_COMMENT,
+                                             'disabled' => $pic->{'state'} eq 'I' });
+
+                    $body .= "</td></tr>\n";
+                }
+            }
+
+            $body .= "</table>\n</td></tr>\n";
+        }
+
+        if ($piccount) {
+            $body .= "<tr><td></td><td align=left>&nbsp;<b><label for='nodefpic'>$ML{'.nodefault'}</label></b>&nbsp;";
+            $body .= LJ::html_check({ 'name' => 'defaultpic', 
+                                      'value' => 0,
+                                      'type' => 'radio',
+                                      'selected' => ! $u->{'defaultpicid'}, 
+                                      'raw' => "id='nodefpic'" });
+
+            $body .= "</td><td>&nbsp;</td></tr>\n";
+            $body .= "<tr><td></td><td>&nbsp;" . LJ::html_submit('action:save', $ML{'.btn.save'}) . "</td></tr>\n";
+            $body .= "</table>";
+            $body .= "</form>";
+        } else {
+            $body .= "<?h1 $ML{'.nopics'} h1?><?p $ML{'.noneupload'} p?>";
+        }
+    }
+
+    # let users upload more pics
+    $body .= "<a name='upload'></a>";
+
+    if ($count < $max) {
+        if ($fotobilder) {
+            $body .= "<?h1 $ML{'.uploadheader.fb'} h1?>\n";
+            $body .= "<?p " . BML::ml('.uploaddesc.fb', {'aopts' => "href='$LJ::FB_SITEROOT'", 'sitename' => $LJ::FB_SITENAME}) . " p?>\n\n";
+        } else {
+            $body .= "<?h1 $ML{'.uploadheader'} h1?>\n";
+            $body .= "<?p $ML{'.uploaddesc'} p?>\n\n";
+
+            $body .= "<ul>\n";
+            foreach (qw(filesize imagesize fileformat)) {
+                $body .= "<li>" . $ML{".restriction.$_"} . "</li>\n";
+            }
+
+            # Keywords is a little different
+            $body .= "<li>";
+            if (defined $LJ::HELPURL{'upic_keywords'}) {
+                $body .= BML::ml('.restriction.keywords.faq', {'aopts' => "href='$LJ::HELPURL{'upic_keywords'}'"});
+            } else {
+                $body .= $ML{'.restriction.keywords'};
+            }
+
+            $body .= "</li>";
+            $body .= "</ul>\n";
+        }
+
+        # upload form
+        $body .= "<?standout \n";
+        $body .= "<form action='editpics.bml$getextra' method='post' " .
+                 "enctype='multipart/form-data' style='display: inline;'>\n";
+
+        $body .= "<table>\n";
+
+        if ($fotobilder) {
+            $body .= "<tr><td colspan='3' align='center'>\n";
+            $body .= "<img src='$picurl' />";
+            my $url = LJ::CleanHTML::canonical_url($POST{'url'});
+            $body .= LJ::html_hidden('src', 'url', 'urlpic', $picurl, 'url', $url, 'ret' => $returl);
+        } else {
+            $body .= "<tr><td align='right'>\n";
+            $body .= LJ::html_check({ 'type' => 'radio', 'name' => 'src', 'id' => 'radio_file',
+                                      'value' => 'file', 'selected' => '1',
+                                      'accesskey' => $ML{'.fromfile.key'} });
+            $body .= "</td><td align='right'>";
+            $body .= "<label for='radio_file'>$ML{'.fromfile'}</label></td>";
+            $body .= "<td align='left'><input type='file' name='userpic' size='28' /></td></tr>\n";
+
+            $body .= "<tr><td align='right'>";
+            $body .= LJ::html_check({ 'type' => 'radio', 'name' => 'src', 'value' => 'url',
+                                      'id' => 'radio_url', 'accesskey' => $ML{'.fromurl.key'} });
+            $body .= "</td><td align='right'>";
+            $body .= "<label for='radio_url'>$ML{'.fromurl'}</label></td><td align='left'>";
+            $body .= LJ::html_text({ 'name' => 'urlpic', 'size' => '40' }) . "</td></tr>\n";
+        }
+
+        $body .= "<tr><td colspan='3' align='center'><hr></td></tr>";
+
+        $body .= "<tr><td align='right'>";
+        $body .= LJ::help_icon('upic_keywords');
+        $body .= "</td><td align='right'><label for='keywords'>";
+        $body .= "$ML{'.label.keywords'}</label></td><td align='left'>";
+        $body .= LJ::html_text({ 'name' => 'keywords', 'size' => '40' });
+        $body .= "</td></tr>";
+
+        if ($u->{'dversion'} > 6) {
+            $body .= "<tr><td align='right'>";
+            $body .= LJ::help_icon('upic_comments');
+            $body .= "</td><td align='right'><label for='comments'>$ML{'.label.comment'}</label></td><td align='left'>";
+            my $comments = $POST{'comments'} if $fotobilder;
+            $body .= LJ::html_text({ 'name' => 'comments', 'size' => '40', 'maxlength' => LJ::CMAX_UPIC_COMMENT, 'value', $comments });
+            $body .= "</td></tr>";
+        }
+
+        $body .= "<tr><td colspan='2'>&nbsp;</td><td align='left'>";
+        $body .= LJ::html_check({ 'type' => 'checkbox',
+                                  'name' => 'make_default',
+                                  'id' => 'make_default',
+                                  'selected' => '1', 'value' => '1',
+                                 'accesskey' => $ML{'.makedefault.key'} });
+
+        $body .= "<label for='make_default'>$ML{'.makedefault'}</label></td></tr>\n";
+
+        $body .= "<tr><td colspan='3' align='center'><br />" .LJ::html_submit(undef, $ML{'.btn.proceed'}) . "</td></tr>\n";
+        $body .= "</table>\n</form>\n";
+    } else {
+        $body .= "<?standout \n";
+        $body .= BML::ml(".error.toomanypics3", { 'max'  => $max });
+    }
+    
+    $body .= " standout?>\n\n";
+
+
+ 
+    return;
+
+}
+_code?><?page
+title=><?_code return $title; _code?>
+body=><?_code return $body; _code?>
+page?><?_c <LJDEP>
+link: htdocs/login.bml, htdocs/allpics.bml
+post: htdocs/editpics.bml
+</LJDEP> _c?>

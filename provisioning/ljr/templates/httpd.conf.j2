@@ -1,0 +1,45 @@
+
+LoadModule log_config_module /etc/httpd/modules/mod_log_config.so
+
+ServerRoot /etc/httpd/
+ServerName CRADLEOFTEARS
+#ServerAlias {{ ljr_host }}
+
+PidFile /tmp/APACHE.pid
+Timeout 30
+KeepAlive Off
+
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined
+CustomLog /var/log/LJR/access_log combined
+ErrorLog /var/log/LJR/error_log
+
+Listen {{ ljr_host }}:{{ ljr_port }}
+User vagrant
+
+MinSpareServers 1
+MaxSpareServers 2
+StartServers 2
+
+
+UseCanonicalName off
+SendBufferSize 163840
+
+DocumentRoot /var/www/html
+<Directory "{{ ljr_lj_root }}htdocs">
+    Options FollowSymLinks MultiViews
+    # "AllowOverride All" has been removed as nobody was using .htaccess files.
+    # If you need it, override it in your local httpd.conf.
+    Require all granted
+</Directory>
+
+#LoadModule apreq_module /etc/httpd/modules/mod_apreq2.so
+LoadModule perl_module /etc/httpd/modules/mod_perl.so
+LoadModule dir_module /etc/httpd/modules/mod_dir.so
+
+PerlWarn On
+PerlSetEnv   LJHOME {{ ljr_lj_root }}
+PerlSetEnv PERL5LIB {{ ljr_lj_root }}cgi-bin/
+PerlRequire  /usr/local/lib64/perl5/modperl.pl
+
+LoadModule mime_module /etc/httpd/modules/mod_mime.so
+TypesConfig /etc/mime.types

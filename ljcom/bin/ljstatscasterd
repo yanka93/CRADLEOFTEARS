@@ -1,0 +1,167 @@
+#!/usr/bin/perl
+
+use strict;
+use Getopt::Long;
+use IO::Socket::INET;
+use IO::Select;
+use Time::HiRes qw(time ualarm);
+use POSIX ();
+
+my $opt_pidfile;
+my $opt_stop;
+my $opt_foreground;
+
+exit 1 unless GetOptions('pidfile=s' => \$opt_pidfile,
+                         'stop' => \$opt_stop,
+                         'foreground' => \$opt_foreground,
+                         );
+
+$opt_pidfile ||= "/var/run/ljstatscasterd.pid";
+
+$SIG{TERM} = sub {
+    unlink($opt_pidfile);
+    exit 1;
+};
+
+my $pid;
+if (-e $opt_pidfile) {
+    open (PID, $opt_pidfile);
+    chomp ($pid = <PID>);
+    close PID;
+    if ($pid) {
+        if ($opt_stop) {
+            kill 15, $pid;
+            print "Stopped.\n";
+            exit;
+        }
+        if (kill(0,$pid)) {
+            die "Already running as pid: $pid\n";
+        }
+    }
+}
+
+if ($opt_stop) {
+    print "already stopped.\n";
+    exit;
+}
+
+require "$ENV{'LJHOME'}/cgi-bin/ljlib.pl";
+
+my ($host, $port, $ipaddr, $portaddr, $sock);
+my $TIMEOUT = 1.0;  # transmit at least every 1 sec.
+
+if ($LJ::FREECHILDREN_BCAST &&
+    $LJ::FREECHILDREN_BCAST =~ /^(\S+):(\d+)$/) {
+    ($host, $port) = ($1, $2);
+} else {
+    die "\$LJ::FREECHILDREN_BCAST not defined, nowhere to send";
+}
+
+die "Can't write to $opt_pidfile" unless open(PID, ">>$opt_pidfile");
+close PID;
+
+unless ($opt_foreground) {
+    fork && exit 0;
+    POSIX::setsid() or die "Couldn't become session leader: $!";
+    fork && exit 0;
+}
+
+# Parent, log pid and exit.
+unless (open(PID, ">$opt_pidfile")) {
+    die "Couldn't open $opt_pidfile for writing: $!\n";
+}
+print PID $$;
+close(PID);
+print "Started with pid $$\n";
+
+unless ($opt_foreground) {
+    # Change working dir to the filesystem root, clear the umask
+    chdir "/";
+    umask 0;
+
+    # Close standard file descriptors and reopen them to /dev/null
+    close STDIN && open STDIN, "</dev/null";
+    close STDOUT && open STDOUT, "+>&STDIN";
+    close STDERR && open STDERR, "+>&STDIN";
+}
+
+$sock = IO::Socket::INET->new(Proto => 'udp');
+$sock->sockopt(SO_BROADCAST, 1);
+$ipaddr = inet_aton($host);
+$portaddr = sockaddr_in($port, $ipaddr);
+
+my $insock = IO::Socket::INET->new(Proto=>'udp',
+                                   LocalAddr=>"127.0.0.1:$port");
+    or die "couldn't create socket\n";
+$insock->blocking(0);
+
+my $sel = IO::Select->new();
+$sel->add($insock);
+
+my ($buf, $last_message);
+my $no_servers = 1;  # true if there are no servers available
+my $last_send;
+my $last_free;
+
+
+my ($type, $message);
+
+sub transmit {
+    #print "transmitting...\n";
+    $sock->send($last_message, 0, $portaddr)
+        if $last_message;
+}
+
+my $MAXLEN = 512;
+SEL:
+while(1) {
+    my @ready = $sel->can_read($TIMEOUT);
+    unless (@ready) {
+        # we got here via a timeout.  check to make sure apache-perl
+        # is still running before actually deciding to transmit more
+        open (PID, "/var/run/apache-perl.pid") or next;  # debian-specific
+        my $pid = <PID>;
+        chomp $pid;
+        close PID;
+        if (readlink("/proc/$pid/exe") =~ /apache/) {
+            transmit();
+        }
+        next SEL;
+    }
+
+    # assume we shouldn't transmit, until we've decided we should
+    my $transmit = 0;
+
+    # only one handle selected, so we know it's the incoming UDP
+    my $message;
+    while ($sock->recv($message, $MAXLEN)) {
+        $last_message = $message if $message;
+    }
+    $message = $last_message;
+    
+    $message =~ m!free=(\d+)\n!;
+    my $free = $1;
+    next SEL if $free == $last_free;
+    
+    $now = time();
+    
+    if (defined $free && $now > $last_send + 0.2) {
+        $transmit = 1;
+    } elsif (defined $free) {
+        my $new_no_servers = ($free == 0);
+        if ($no_servers != $new_no_servers) {
+            $transmit = 1;
+            $no_servers = $new_no_servers;
+        }
+    } elsif ($message =~ m!shutdown=1!) {
+        $transmit = 1;
+    }
+    
+    if ($transmit) {
+        $last_send = $now;
+        $last_free = $free;
+        transmit();
+    }
+
+}
+

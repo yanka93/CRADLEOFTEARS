@@ -1,0 +1,287 @@
+# -*-perl-*-
+#
+#  Miscalleneous notes on S2, the 2nd major
+#  version of the LiveJournal style system.
+#
+#  Brad Fitzpatrick <bradfitz@livejournal.com>
+#  2001-02-03
+#
+###########
+## goals
+#
+#   1. flexible/extensible:
+#      - layers
+#      - full programming language (*)
+#        - allows for internationalization
+#      - not specific to one view:
+#        - describe how to format objects
+#        - makes new views automatically supported,
+#          at least mostly.
+#   2. safe:
+#      - (*) programming language has no unsafe
+#            looping/branching.  only foreach
+#            on finite lists, ifs, etc.
+#   3. fast:
+#     - precompiled
+#   4. easy:
+#     - wizards/tools to generate each layer
+#       of S2 
+#   
+#
+###########
+##  layers
+#
+#
+#   core (definitions, defaults)
+#   style   - the "style"
+#   colors  - tied to a style.
+#   i18n    - not tied to a style
+#   custom  - changing comment links, counters, 
+#             page.insert_html shit.
+#
+#  layers are parsed and compiled before use.
+#  compiled into native language of appserver
+#  this is perl now, but easy to change later:
+#     parser -> AST stays the same.
+#     just change AST -> pretty printer.
+#  S2 is not tied to perl, then.  can move to
+#  something faster later... C, anybody?
+#  S2 parser will be written in java, and
+#  tools will be provided for users to run and
+#  test styles on their own machines
+#
+###########
+##  core layer
+#
+# only layer where classes can be declared.
+
+set layertype  "core";
+set author "webmaster";
+
+class image {
+  var string url,
+  var int w,
+  var int h,
+  method void print (),   # allow trailing commas: so nice.
+};
+
+method image::print {
+  """<img src="$url" width=$w height=$h border=0>""";
+};
+
+class comment_read {
+  var string urlread,
+  var int comment_count,
+  method void print (),
+};
+
+method comment_read::print ()
+{
+   $noun = "Comments";
+   if ($comment_count ==1 ) {
+       $noun = "Comment";
+   }
+   """<a href="$urlread">Read $comment_count $noun</a>""";
+};
+
+class comment_post {
+  var string urlpost,
+  method void print (),    
+};
+
+method comment_post::print ()
+{
+    """<a href="$urlpost">Leave a comment!</a>""";
+}
+
+class comment_info {
+  var bool can_comment,
+  var comment_post post,
+  var comment_read read,
+  method void print (),
+};
+
+method comment_info::print () 
+{
+    if ($can_comment == false) {
+	return;
+    }
+    if ($comment_count != 0) {
+        call $read print;
+	print " | ";
+    } 
+    call $post print;
+}
+
+# ack!  There's English in there! ^^^^^^^^^
+#
+# English will be default, everywhere, since it
+# is anyway, right?  Later we can have our 
+# master team of translators make new i18n layers
+# that override these defaults.  still, users
+# can then override those i18n layers later, with
+# their own words.  users won't write in S2:
+# we'll have stupid little wizards that ask them
+# questions and generate/compile the S2 behind
+# the scenes for them.  for them, the process will
+# be like:
+#
+#   Pick Style:     [         \/ ]
+#   Pick Language:  [         \/ ]
+#
+#                [ Continue--> ]
+#
+#   Pick Style color theme: [           \/]
+#      or, enter your own:
+#
+#        [ Finish ] [ More Customization -->]   
+# 
+#   What do you want the comment links to say?
+#   ____________________
+#   How many items on a page at once? _______
+#   More stupid questions:  _____________
+
+
+class journal_entry {
+  var string event,
+  var string subject,
+  var datetime eventtime,
+  var string current_mood,
+  var string mood_image,
+  var string current_music,
+  var bool opt_nocomments,
+  var user userpost,
+  var user userjournal,
+  var image userpic,
+  var comment_info comments,
+  var string urlself,
+  var string head,
+  method void print,   
+};
+
+method journal_entry::print {
+    print "<p><table><tr><td>\n";
+    "<b>"; call $eventtime print_long; "</b><br>";
+    print $event;
+    if ($comments.can_comment) {
+	"<p>";
+	call $comments print;
+    }
+    "</td></tr></table>\n";
+};
+
+class page {
+    var string view,
+    var bool remote_logged_in,  # logged in user?
+    var bool remote_is_owner,   # is it the journal owner?
+    var journal_entry[] entries,  #    
+    method void print,
+};
+
+method page::print
+{
+    local string title;
+    if ($view == "lastn") {
+	
+    }
+    """<html><head><title>$title</title>$head""";
+    print "<body>\n";
+    
+       
+    print "</body></html>";
+}
+
+########
+###  style layer
+##  
+
+set layertype "style";
+set layername "Generator";
+set author "evan";
+
+var string colitemborder = "#00f033";
+var string colpageback = "#a0a0a0";
+
+
+########
+###  color layer
+##  
+
+set layertype "colors";
+set overlays "Generator";  # only for style layers
+set author "bradfitz";
+
+var string colitemborder = "#ff0000";
+var string colpageback = "#00cc00";
+
+########
+###  i18n layer
+##  
+
+set layertype "i18n";
+set layerlang "de";
+set author "mausal";
+
+method comment_read::print ()
+{
+   $noun = "Kommentar";  # warning: probably wrong.
+   if ($comment_count ==1 ) {
+       $noun = "Kommentar";  # probably wrong.
+   }
+   """<a href="$urlread">Lesen $comment_count $noun</a>""";
+};
+
+method comment_post::print ()
+{
+    """<a href="$urlpost">Schrieben eine Kommentar!</a>""";
+}
+
+######
+### custom layer
+##
+## - auto-generated from a wizard
+##      ... or written by hand. (unlikely)
+
+set layertype "custom";
+set author "ibrad";
+
+# ibrad-style popcorn links
+method comment_read::print ()
+{
+   $noun = "Kernels";
+   if ($comment_count ==1 ) {
+       $noun = "Kernel";
+   }
+   """<a href="$urlread">$comment_count $noun.</a>""";
+};
+
+# ibrad-style popcorn links
+method comment_post::print ()
+{
+    """<a href="$urlpost">Pop!</a>""";
+}
+
+########
+### implementation 
+#
+#
+
+request in: /users/bradfitz/
+
+make_journal("bradfitz", "lastn");
+
+my %methods;
+foreach $layers ("core", @user_layers) {
+   load_layer($layers, 
+}
+
+$pageob = new S2::ob::page;
+$pageob->setup_all_datastructures($dbh, $user, $view);
+$journal = $methods{'page'}->{'print'}->($pageob);
+
+   
+
+
+
+
+

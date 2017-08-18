@@ -1,0 +1,216 @@
+<?page
+title=>Search Singles
+body<=
+
+<?h1 Disclaimer h1?>
+<?p
+LiveJournal.com is not responsible for verifying that anybody you find using this service isn't entirely psycho.  (In all likelihood, they are.)  So please, use your discretion in who you contact or meet up with in real life.
+p?>
+
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    LJ::set_active_crumb('singlessearch');
+
+    my $dbr = LJ::get_db_reader();
+
+    my $ret;
+    my $remote = LJ::get_remote();
+
+    my %countries;
+    my %states;
+    LJ::load_codes({ "country" => \%countries, "state" => \%states });
+
+    # query page.
+    unless ($GET{'status'})
+    {
+        my ($status, $country, $state, $city, $age);
+        if ($remote) {
+            LJ::load_user_props($remote, "single_status", "single_pickw", "city", "country", "state");
+            ($status, $country, $state, $city, $age) = split(/\|/, $remote->{'single_status'});
+              $country ||= $remote->{'country'};
+              $state ||= $remote->{'state'};
+              $city ||= $remote->{'city'};
+              if (! $age && $remote->{'bdate'} =~ /^(\d\d\d\d)-(\d\d)-(\d\d)$/ && $3) {
+                  $age = int($dbr->selectrow_array("SELECT (unix_timestamp()-unix_timestamp('$remote->{'bdate'}'))/(60*60*24*365)"));
+                  $age = "" unless $age;
+              }
+          }
+
+        $ret .= "<form method='get'>";
+        $ret .= "<?h1 Search Mode h1?><?p I am: ";
+        $ret .= LJ::html_select({ 'name' => 'status',
+                                  'selected' => $status, },
+                                "", "(Select Search Mode)", 
+                                "MF", "Male; seeking female",
+                                "FM", "Female; seeking male",
+                                "MM", "Male; seeking male",
+                                "FF", "Female; seeking female",
+                                );
+        $ret .= "p?>";
+    
+        $ret .= "<?h1 Region h1?><?p Specify the city/area you live nearby, if you're in the suburbs. p?>";
+        
+        $ret .= "<?p <b>Country:</b> ";
+        $ret .= LJ::html_select({ 'name' => 'country',
+                                  'selected' => $country },
+                                '', '(Select Country)',
+                                map { $_, $countries{$_} }
+                                "US", sort { $countries{$a} cmp $countries{$b} } keys %countries);
+        $ret .= " p?>";
+        my $estate = LJ::ehtml($state);
+        $ret .= "<?p <b>State:</b> <input name='state' size='30' value='$estate'> p?>\n";
+
+        my $ecity = LJ::ehtml($city);
+        $ret .= "<?p <b>City:</b> <input name='city' size='30' value='$ecity'> p?>\n";
+        
+        $ret .= "<?h1 Age Range h1?><?p Between ages: ";
+        $ret .= "<input name='age1' size='4' value='$age'> and <input name='age2' size='4' value='$age'>p?>\n";
+
+        # search results
+        $ret .= "<?h1 Results Format h1?><?p How do you want to view the output? p?><blockquote>";
+        if (LJ::get_cap($remote, "paid")) { 
+            $ret .= "<input type='radio' name='mode' value='text'> Text ";
+            $ret .= "<input type='radio' name='mode' value='pics' checked> Pictures";
+        } else {
+            $ret .= "<input type='radio' name='mode' value='text' checked> Text ";
+            $ret .= "<input type='radio' name='mode' value='pics' disabled> Pictures (<a href='/paidaccounts'>paid users</a> only)";
+        }
+        
+        
+        $ret .= "</blockquote>";
+
+        # done
+        $ret .= "<?h1 That's all! h1?><?p Click \"Search\" and find singles in your area. p?>";
+        $ret .= "<p align='center'><input type='submit' value='Search'></p>";
+
+        $ret .= "</form>";
+        return $ret;
+    }
+
+    # verify/clean search data.
+    if ($GET{'country'} eq "US" && length($GET{'state'}) > 2) {
+        foreach (keys %states) {
+            $GET{'state'} = $_
+                if (lc($states{$_}) eq $GET{'state'});
+        }
+    }
+
+    return LJ::bad_input("Must enter min and max ages")
+        unless ($GET{'age1'} && $GET{'age2'});
+    return LJ::bad_input("LiveJournal Singles is for users 18 years of age and older.")
+        unless ($GET{'age1'} >= 18 && $GET{'age2'} >= 18);
+    
+    my $revstatus = {
+        'MF' => 'FM',
+        'FM' => 'MF',
+        'MM' => 'MM',
+        'FF' => 'FF',
+    }->{$GET{'status'}};
+
+    my $prefix = join("|", $revstatus, map { $GET{$_} } qw(country state city));
+    my $propid = $dbr->selectrow_array("SELECT upropid FROM userproplist WHERE name='single_status'");
+    return "Missing db lookup info" unless $propid;
+    my $matches = $dbr->selectcol_arrayref("SELECT userid FROM userprop WHERE upropid=$propid ".
+                                           "AND value BETWEEN ? AND ? LIMIT 5000", undef,
+                                           "$prefix|$GET{'age1'}", "$prefix|$GET{'age2'}");
+    unless ($matches && @$matches) {
+        return "<?p Sorry, no matches. p?>";
+    }
+
+    my %page = BML::paging($matches, $GET{'page'}, 100);
+    $ret .= "<p>&lt;&lt; <a href='search.bml'>New Search</a>";
+    $ret .= "<?standout $page{'backlink'} <b>Page $page{'page'} of $page{'pages'}</b> $page{'nextlink'} standout?>";
+
+    my @userids = @{$page{'items'}};  # who's on this page.
+    my $userid_in = join(",", @userids);
+    my %user;   # info on those people
+    my $sth;
+
+    # pics to load
+    my %userpic;
+
+    # base info.
+    $sth = $dbr->prepare("SELECT * FROM user WHERE userid IN ($userid_in) AND statusvis = 'V'");
+    $sth->execute;
+    while ($_ = $sth->fetchrow_hashref) {
+        $user{$_->{'userid'}} = $_;
+        $userpic{$_->{'defaultpicid'}} = undef if $_->{'defaultpicid'};
+    }
+
+    unless (%user) {
+        return "<?p Sorry, no matches. p?>";
+    }
+
+    # get ages of just this page
+    $sth = $dbr->prepare("SELECT userid, value FROM userprop WHERE upropid=$propid ".
+                         "AND userid IN ($userid_in)");
+    $sth->execute;
+    while (my ($id, $val) = $sth->fetchrow_array) {
+        next unless $val =~ /\|(\d+)$/;
+        next unless $user{$id};
+        $user{$id}->{'age'} = $1;
+    }
+
+    # preferred pictures?
+    $propid = $dbr->selectrow_array("SELECT upropid FROM userproplist WHERE name='single_pickw'");
+    return "Missing db lookup info" unless $propid;
+    $sth = $dbr->prepare(qq{
+        SELECT m.userid, m.picid FROM
+            userpicmap m,
+            userproplite u,
+            keywords k
+        WHERE
+           u.userid IN ($userid_in) AND upropid=$propid AND
+           u.value=k.keyword AND u.userid=m.userid AND m.kwid=k.kwid 
+       });
+    $sth->execute;
+    my @userpic_load;
+    while (my ($userid, $picid) = $sth->fetchrow_array) {
+        next unless $user{$userid};
+        delete $userpic{$user{$userid}->{'defaultpicid'}};
+        $user{$userid}->{'defaultpicid'} = $picid;
+        $userpic{$picid} = undef;
+        push @userpic_load, [ $user{$userid}, $picid ];
+    }
+
+    # load pictures
+    LJ::load_userpics(\%userpic, \@userpic_load);
+
+    my $with_pics = $GET{'mode'} eq "pics" && LJ::get_cap($remote, "paid");
+    if ($with_pics) {
+        $ret .= "<table>\n";
+    } else {
+        $ret .= "<ul>";
+    }
+
+    foreach my $userid (@userids) {
+        my $u = $user{$userid};
+        next unless $u;
+        if ($with_pics) {
+            $ret .= "<tr valign='middle'><td width='100'>";
+            if ($u->{'defaultpicid'}) {
+                my $id = $u->{'defaultpicid'};
+                $ret .= "<a href='/userinfo.bml?user=$u->{'user'}'><img src='$LJ::USERPIC_ROOT/$id/$u->{'userid'}' width='$userpic{$id}->{'width'}' height='$userpic{$id}->{'height'}' border='0'></a>";
+            }
+            $ret .= "</td><td>" . LJ::ljuser($u) . ", $u->{'age'} - " . LJ::ehtml($u->{'name'}) . "</td></tr>";
+        } else {
+            $ret .= "<li>" . LJ::ljuser($u) . ", $u->{'age'} - " . LJ::ehtml($u->{'name'}) . "</td></tr>";
+        }
+    }
+
+    if ($with_pics) {
+        $ret .= "</table>\n";
+    } else {
+        $ret .= "</ul>";
+    }
+    
+    return $ret;
+
+}
+_code?>
+
+<=body
+page?>

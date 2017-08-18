@@ -1,0 +1,35 @@
+<?page
+title=>LiveJournal Secure Server
+head<=
+<style>
+    ul.sslopts li { margin-top: 10px }
+</style>
+<=head
+body<=
+
+<?h1 Secure Server h1?>
+<?p
+This is the secure LiveJournal server, used for sensitive actions like
+credit card processing and password handling, where it's important
+that transactions be encrypted and not fly across the net unprotected.
+p?>
+
+<?h1 Available Options h1?>
+<?p
+The following encrypted services are available: p?>
+
+<ul class='sslopts'>
+
+<li><b>Payments</b> -- you <a href="<?siteroot?>/pay/">build your order</a> unencrypted first, then the "check out" action leads you into the secure server where you send your credit card info.</li>
+
+<li><b><a href="/login.bml">Logging in</a></b> -- you can log in with encryption so your password isn't sent across the net unprotected.  Alternatively, if you have JavaScript support in your browser and no SSL access (perhaps due to a corporate firewall) we also implement "challenge/response" logins, which does crytography in JavaScript to avoid sending your password in cleartext across the net.  Doing challenge/response only works when both parties (your browser and our server) already know your existing password.  It does not work for creating accounts or changing passwords, when you have to send a new password to our servers.  In those cases, you'll have to use SSL (the secure server) or risk a cleartext transmission.</li>
+
+<li><b><a href="/create.bml">Creating an account</a></b> -- you can create an account on the secure server, since creating an account requires a password which should be protected.</li>
+
+<li><b><a href="/changepassword.bml">Changing your password</a></b> -- you can change your password on the secure server, since changing your password involves both sending your old and new passwords across the net, which should both be protected.</li>
+
+</ul>
+
+
+<=body
+page?>

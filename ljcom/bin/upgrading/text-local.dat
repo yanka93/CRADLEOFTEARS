@@ -1,0 +1,221 @@
+# -*- coding: utf-8 -*-
+domain:100:faq
+domain:101:journal/news
+
+# EnglishLJ is child of English for general domain:
+lang:100:en_LJ:English (LJ):sim:en
+langdomain:en_LJ:general
+
+# EnglishLJ is root of FAQ & news journal:
+langdomain:en_LJ:faq:1
+langdomain:en_LJ:journal/news:1
+
+# German is child of EnglishLJ for all domains:
+lang:101:de:German:diff:en_LJ
+langdomain:de:general
+langdomain:de:journal/news
+langdomain:de:faq
+
+# Danish
+lang:102:da:Danish:diff:en_LJ
+langdomain:da:general
+langdomain:da:journal/news
+langdomain:da:faq
+
+# Spanish
+lang:103:es:Spanish:diff:en_LJ
+langdomain:es:general
+langdomain:es:journal/news
+langdomain:es:faq
+
+# French
+lang:104:fr:French:diff:en_LJ
+langdomain:fr:general
+langdomain:fr:journal/news
+langdomain:fr:faq
+
+# Japanese
+lang:105:ja:Japanese:diff:en_LJ
+langdomain:ja:general
+langdomain:ja:journal/news
+langdomain:ja:faq
+
+# Russian
+lang:106:ru:Russian:diff:en_LJ
+langdomain:ru:general
+langdomain:ru:journal/news
+langdomain:ru:faq
+
+# Esperanto
+lang:107:eo:Esperanto:diff:en_LJ
+langdomain:eo:general
+langdomain:eo:journal/news
+langdomain:eo:faq
+
+# Hebrew
+lang:108:he:Hebrew:diff:en_LJ
+langdomain:he:general
+langdomain:he:journal/news
+langdomain:he:faq
+
+# Norwegian Bokmål
+lang:109:nb:Norwegian Bokmål:diff:en_LJ
+langdomain:nb:general
+langdomain:nb:journal/news
+langdomain:nb:faq
+
+# Norwegian Nynorsk
+lang:110:nn:Norwegian Nynorsk:diff:en_LJ
+langdomain:nn:general
+langdomain:nn:journal/news
+langdomain:nn:faq
+
+# Dutch
+lang:111:nl:Dutch:diff:en_LJ
+langdomain:nl:general
+langdomain:nl:journal/news
+langdomain:nl:faq
+
+# Irish
+lang:112:ga:Irish:diff:en_LJ
+langdomain:ga:general
+langdomain:ga:journal/news
+langdomain:ga:faq
+
+# Icelandic
+lang:113:is:Icelandic:diff:en_LJ
+langdomain:is:general
+langdomain:is:journal/news
+langdomain:is:faq
+
+# European Portuguese
+lang:114:pt:Portuguese:diff:en_LJ
+langdomain:pt:general
+langdomain:pt:journal/news
+langdomain:pt:faq
+
+# Swedish
+lang:115:sv:Swedish:diff:en_LJ
+langdomain:sv:general
+langdomain:sv:journal/news
+langdomain:sv:faq
+
+# Polish
+lang:116:pl:Polish:diff:en_LJ
+langdomain:pl:general
+langdomain:pl:journal/news
+langdomain:pl:faq
+
+# Finnish
+lang:117:fi:Finnish:diff:en_LJ
+langdomain:fi:general
+langdomain:fi:journal/news
+langdomain:fi:faq
+
+# English - UK
+lang:118:en_GB:English (UK):sim:en_LJ
+langdomain:en_GB:general
+langdomain:en_GB:journal/news
+langdomain:en_GB:faq
+
+# Hungarian
+lang:119:hu:Hungarian:diff:en_LJ
+langdomain:hu:general
+langdomain:hu:journal/news
+langdomain:hu:faq
+
+# Malay
+lang:120:ms:Malay:diff:en_LJ
+langdomain:ms:general
+langdomain:ms:journal/news
+langdomain:ms:faq
+
+# Chinese Simplified
+lang:121:zh:Chinese (Simplified):diff:en_LJ
+langdomain:zh:general
+langdomain:zh:journal/news
+langdomain:zh:faq
+
+# Belarusian
+lang:122:be:Belarusian:diff:en_LJ
+langdomain:be:general
+langdomain:be:journal/news
+langdomain:be:faq
+
+# Italian
+lang:123:it:Italian:diff:en_LJ
+langdomain:it:general
+langdomain:it:journal/news
+langdomain:it:faq
+
+# Latvian
+lang:124:lv:Latvian:diff:en_LJ
+langdomain:lv:general
+langdomain:lv:journal/news
+langdomain:lv:faq
+
+# Greek
+lang:125:gr:Greek:diff:en_LJ
+langdomain:gr:general
+langdomain:gr:journal/news
+langdomain:gr:faq
+
+# Turkish
+lang:126:tr:Turkish:diff:en_LJ
+langdomain:tr:general
+langdomain:tr:journal/news
+langdomain:tr:faq
+
+# Chinese Traditional
+lang:127:zh_TR:Chinese (Traditional):diff:zh
+langdomain:zh_TR:general
+langdomain:zh_TR:journal/news
+langdomain:zh_TR:faq
+
+# Latin
+lang:128:la:Latin:diff:en_LJ
+langdomain:la:general
+langdomain:la:journal/news
+langdomain:la:faq
+
+# Estonian
+lang:129:et:Estonian:diff:en_LJ
+langdomain:et:general
+langdomain:et:journal/news
+langdomain:et:faq
+
+# Brazilian Portuguese
+lang:130:pt_BR:Brazilian Portuguese:diff:pt
+langdomain:pt_BR:general
+langdomain:pt_BR:journal/news
+langdomain:pt_BR:faq
+
+# Ukrainian
+lang:131:uk:Ukrainian:diff:en_LJ
+langdomain:uk:general
+langdomain:uk:journal/news
+langdomain:uk:faq
+
+# Lithuanian
+lang:132:lt:Lithuanian:diff:en_LJ
+langdomain:lt:general
+langdomain:lt:journal/news
+langdomain:lt:faq
+
+# Hindi
+lang:133:hi:Hindi:diff:en_LJ
+langdomain:hi:general
+langdomain:hi:journal/news
+langdomain:hi:faq
+
+# Basque
+lang:134:eu:Basque:diff:en_LJ
+langdomain:eu:general
+langdomain:eu:journal/news
+langdomain:eu:faq
+
+# Afrikaans
+lang:135:af:Afrikaans:diff:en_LJ
+langdomain:af:general
+langdomain:af:journal/news
+langdomain:af:faq

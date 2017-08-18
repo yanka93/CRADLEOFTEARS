@@ -1,0 +1,30 @@
+<?page
+title=>LiveJournal Press Area
+body<=
+<?_code
+    LJ::set_active_crumb('press');
+_code?>
+<table align="right" width="165" cellpadding="7"><tr><td align="center">
+<img src="<?siteroot?>/img/webby_winner.gif" 
+alt="Winner of two 2001 People's Choice Awards" border="0" />
+<br /><span style="text-align: center"><b>2004 &amp; 2001 People's Voice<br />Award Winner</b></span>
+</td></tr></table>
+<?h1 Media Relations h1?>
+<?p LiveJournal welcomes inquiries from the media. If you don't find the information you need here, feel free to contact us with any requests. p?>
+<?h2 General Information h2?>
+<ul>
+<li><strong><a href="./articles.bml">LiveJournal in the Press</a></strong></li>
+<li><strong><a href="/stats.bml">Statistics</a></strong></li>
+</ul>
+<?h2 The Company h2?>
+<ul>
+<li><strong><a href="./staff.bml">Senior Staff</a></strong></li>
+<li><strong><a href="/site/contributors.bml">Contributors</a></strong></li>
+</ul>
+<?h2 Contact Information h2?>
+<?p
+To contact a member of LiveJournal's staff regarding public relations or
+media relations activities, send an e-mail to <a href="mailto:press@livejournal.com">press@livejournal.com</a>. 
+p?>
+<=body
+page?>

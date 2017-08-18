@@ -1,0 +1,5 @@
+<?_code
+
+ return BML::redirect("http://www.livejournal.com/news.bml");
+
+_code?>

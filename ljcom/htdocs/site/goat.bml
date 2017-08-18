@@ -1,0 +1,19 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+
+<?_code
+    LJ::set_active_crumb('goat');
+_code?>
+
+<?h1 <?_ml .meet.header _ml?> h1?>
+<?p
+<table align="right" width="97" cellpadding="7"><tr><td align="center">
+<img src="<?imgprefix?>/goat.jpg" width="300" height="229" hspace="2" vspace="2" border="0" alt="<?_ml .image.alt _ml?>" />
+<br /><b><?_ml .image.caption _ml?></b>
+</td></tr></table>
+<?_ml .meet.body _ml?>
+p?>
+
+<=body
+page?>

@@ -1,0 +1,865 @@
+;; -*- coding: utf-8 -*-
+/allpics.bml.current=Esošās bildes
+
+/allpics.bml.default=<u>Pamatbilde</u>
+
+/allpics.bml.error.noparam=Lūdzu precizē lietotāja parametru.
+
+/allpics.bml.keywords=Atslēgas vārdi:
+
+/allpics.bml.nopics.title=Nav bilžu
+
+/allpics.bml.pics=Šīs ir [[user]] bildes.
+
+/allpics.bml.title=Lietotājbildes
+
+/community/index.bml.title=Kopienas centrs
+
+/community/join.bml.button.join=Pievienoties kopienai
+
+/community/join.bml.label.addtofriends=Pievieno "[[maintainer]]" draugu sarakstam.<br>
+
+/community/join.bml.label.allowposting=Šī kopiena atļauj rakstīt visiem tās biedriem, tātad tagad arī tev ir dota atļauja. Ja uz tava datora jau ir atvērta LJ programma, tev vajadzēs no tās iziet un vēlreiz iereģistrēties, lai šis žurnāls parādītos to žurnālu sarakstā, kuros tu vari rakstīt.
+
+/community/join.bml.label.banned=Šīs kopienas uzturētājs nav atļāvis tev pievienoties kopienai.
+
+/community/join.bml.label.commlogged=Tu esi piereģistrējies ar kopienas kontu, nevis ar savu personīgo kontu.
+
+/community/join.bml.label.errorcomminfo=Dotā kopienas informācija nav derīga.
+
+/community/join.bml.label.expls=Spied sekojošo pogu, lai pievienotos "[[maintainer]]" kopienai. Neatzīmē lodziņu, ja gribi pievienoties kopienai bet neredzēt kopienas žurnāla ierakstus savā draugu lapā.
+
+/community/join.bml.label.loginfirst=Lai pievienotos kopienai, tev vispirms ir <a href="/login.bml?ret=1">jāreģistrējas</a>.
+
+/community/join.bml.label.membernow=Tu tagad esi <a href="/userinfo.bml?user=[[username]]">[[commname]] kopienas</a> biedrs
+
+/community/join.bml.label.sure=Vai esi pārliecināts?
+
+/community/join.bml.success=Izdošanās
+
+/community/join.bml.title=Pievienojies kopienai
+
+/community/leave.bml.button.leave=Izstājies no kopienas
+
+/community/leave.bml.label.buttontoleave=Spied sekojošo pogu, lai izstātos no "[[commname]]" kopienas.
+
+/community/leave.bml.label.infoerror=Dotā kopienas informācija nav derīga.
+
+/community/leave.bml.label.logoutfirst=Lai izstātos no kopienas, tev vispirms ir <a href="/login.bml?ret=1">jāpiereģistrējas</a>.
+
+/community/leave.bml.label.removed=Tu tagad esi izstājies no <a href="/userinfo.bml?user=[[commuser]]">[[commname]] kopienas</a>
+
+/community/leave.bml.success=Izdošanās
+
+/community/leave.bml.sure=Vai esi pārliecināts?
+
+/community/leave.bml.title=Izstājies no kopienas
+
+/community/search.bml.button.clear=Nodzēst
+
+/community/search.bml.button.search=Meklē!
+
+/community/search.bml.checkbox.onlywithpics=Tikai kopienas ar bildēm
+
+/community/search.bml.label.byinterest=Pēc interesēm
+
+/community/search.bml.label.bylocation=Pēc atrašanās vietas
+
+/community/search.bml.label.bytime=Pēc žurnāla pēdējā ieraksta izdarīšanas laika
+
+/community/search.bml.label.city=Pilsēta:
+
+/community/search.bml.label.country=Valsts:
+
+/community/search.bml.label.displayoptions= Tavas iespējas
+
+/community/search.bml.label.hasmember=Ir biedrs
+
+/community/search.bml.label.othercriteria=Citi kritēriji
+
+/community/search.bml.label.outputformat=Izvades formāts:
+
+/community/search.bml.label.records=Ieraksti uz vienas lapas:
+
+/community/search.bml.label.searchcomm=Meklēt kopienas
+
+/community/search.bml.label.selecriteria=Izvēlies sekojošos kritērijus, pēc kuriem tu vēlies atrast kopienas. Rezultāti būs visu meklēšanas kritēriju kopsumma. Citiem vārdiem sakot, katrs iezīmētais lodziņš nozīmē "AND" vai "OR". 
+
+/community/search.bml.label.sortmethod=Kārtošanas metode:
+
+/community/search.bml.label.stateprovince=Pavalsts/province:
+
+/community/search.bml.label.updated=Izdarīts ieraksts pēdējās
+
+/community/search.bml.sel.bypicture=Pēc bildes
+
+/community/search.bml.sel.communityname=Kopienas nosaukums
+
+/community/search.bml.sel.commview=Kopienas skats
+
+/community/search.bml.sel.day=diena
+
+/community/search.bml.sel.month=mēnesis
+
+/community/search.bml.sel.simple=Vienkārši
+
+/community/search.bml.sel.updatetime=Pēdējā ieraksta laiks
+
+/community/search.bml.sel.username=Lietotāja vārds
+
+/community/search.bml.sel.week=nedēļa
+
+/community/search.bml.title=Kopienas meklēšana
+
+/create.bml.age.check.question=Vai tev ir mazāk nekā 13 gadi?
+
+/create.bml.age.check.yes=Jā, man vēl nav 13 gadu.
+
+/create.bml.age.head=Vecums
+
+/create.bml.btn.proceed=Turpināt...
+
+/create.bml.clusterselect.cluster=Klasteris:
+
+/create.bml.clusterselect.clusternum=Klasteris [[number]]
+
+/create.bml.clusterselect.head=Klastera izvēle
+
+/create.bml.clusterselect.nocluster=Nav klastera
+
+/create.bml.clusterselect.text=Lūdzu izvēlies to klasteri, uz kura tu vēlies izveidot šo kontu. <b>Piezīme:</b> Šī ir tikai testa opcija. Lietotāji to neredzēs un neko par to nezinās.
+
+/create.bml.create.head=Jauna žurnāla izveidošana
+
+/create.bml.create.text=Izveidot jaunu LiveJournal ir viegli, tikai seko instrukcijām!
+
+/create.bml.email.head=Tava e-pasta adrese
+
+/create.bml.email.input.head=E-pasta adrese:
+
+/create.bml.error.coppa.under13=Atvaino, sakarā ar COPPA ierobežojumiem, tu nevari lietot LiveJournal pirms tev paliek 13 gadi. Lūdzu atgriezies savā 13. dzimšanas dienā.
+
+/create.bml.error.email.blank=Tev jānorāda sava e-pasta adrese.
+
+/create.bml.error.email.nospaces=E-pasta adresē nav atļautas atstarpes. Ja tu esi AOL biedrs, atceries, ka tava interneta e-pasta adrese ir tavs screen name bez atstarpēm, kam seko <b>@aol.com</b>
+
+/create.bml.error.password.asciionly=Parolē tu vari lietot tikai ASCII simbolus.
+
+/create.bml.error.password.blank=Tev jāievada parole.
+
+/create.bml.error.password.nomatch=Paroles nesakrīt.
+
+/create.bml.error.postrequired=Nepieciešams POST.
+
+/create.bml.error.username.blank=Lūdzu norādi vārdu vai pieņemtu vārdu.
+
+/create.bml.error.username.inuse=Lietotāja vārds jau ir aizņemts; lūdzu izvēlies citu.
+
+/create.bml.error.username.iscode=Lietotāja vārds izskatās pēc ielūguma koda, nevis lietotāja vārda.
+
+/create.bml.error.username.mustenter=Tev jāievada lietotāja vārds.
+
+/create.bml.error.username.reserved=Atvaino, šis lietotāja vārds ir rezervēts.
+
+/create.bml.name.head=Tavs vārds
+
+/create.bml.name.input.head=Vārds:
+
+/create.bml.name.text=Kāds ir tavs vārds vai pieņemtais vārds? Tas parādīsies tava žurnāla augšdaļā un lietotāju reģistrā, ja tu izvēlēsies būt tajā ierakstīts. Tev nav jādod savs pilns vārds vai īstais vārds.
+
+/create.bml.password.head=Parole
+
+/create.bml.password.input.head1=Parole:
+
+/create.bml.password.input.head2|staleness=1
+/create.bml.password.input.head2=Atkārto paroli:
+
+/create.bml.password.text=Izvēlies paroli.
+
+/create.bml.proceed.btn.proceed=Turpināt...
+
+/create.bml.proceed.warning=Spied <b>Turpināt</b> <i>tikai vienu reizi</i>!!
+
+/create.bml.success.btn.enterinfo=Ievadi informāciju par sevi
+
+/create.bml.success.head=Izdošanās!
+
+/create.bml.success.text1|staleness=1
+/create.bml.success.text1=Tavs žurnāls ir izveidots. Svarīga reģistrācijas informācija ir aizsūtīta uz <FONT FACE=Arial SIZE=+1><B>[[email]]</B></FONT> ar turpmākām instrukcijām. <B>Piezīme: </B> Tev ir tieši <I>septiņas dienas</I> laika, lai apstiprinātu tava žurnāla izveidošanu. Ja pēc septiņām dienām tu vēl neesi to apstiprinājis, lietotāja vārds <B>[[username]]</B> tiks izdzēsts un to varēs lietot kāds cits.
+
+/create.bml.success.text2=Tavs LiveJournal būs atrodams:
+
+/create.bml.success.text3=Tagad, lūdzu, ievadi informāciju par sevi. Tā lielākoties nav obligāta, bet dod mums ieskatu par to, kas ir LiveJournal lietotāji.
+
+/create.bml.title=Izveido jaunu žurnālu
+
+/create.bml.useacctcodes.entercode|staleness=1
+/create.bml.useacctcodes.entercode=Lai izveidotu jaunu kontu, ievadi konta izveidošanas kodu:
+
+/create.bml.useacctcodes.welcome=Laipni lūdzam
+
+/create.bml.username.box.head=Lietotāja vārds:
+
+/create.bml.username.forpaidaccts=Vai, apmaksātiem kontiem:
+
+/create.bml.username.head=Lietotāja vārds
+
+/create.bml.username.ljaddress=Tavam žurnālam būs šādas adreses:
+
+/create.bml.username.text=Katram [[sitename]] lietotājam jābūt savam unikālam lietotāja vārdam. Tavs lietotāja vārds ir redzams tava žurnāla adresē un ar to tu piereģistrējies [[sitename]] serverī. Tas arī parādās, kad tu raksti komentārus citu cilvēku žurnālos.
+
+/create.bml.username.username=lietotāja vārds
+
+/editinfo.bml.allowshowcontact.about=Šo opciju vēlams iezīmēt. Tā ļauj citiem cilvēkiem kontaktēties ar tevi, parādot tavu e-pasta adresi, ICQ numuru un AOL lietotājvārdu tavā LiveJournal.
+
+/editinfo.bml.allowshowcontact.email=Publicējamā e-pasta adrese:
+
+/editinfo.bml.allowshowcontact.email.actual_only=Tikai īstā adrese
+
+/editinfo.bml.allowshowcontact.email.both=Abas (īstā + [[domain]])
+
+/editinfo.bml.allowshowcontact.email.lj_only=Tikai LiveJournal adrese
+
+/editinfo.bml.allowshowcontact.email.neither=Neviena. Nerādīt nevienu e-pasta adresi.
+
+/editinfo.bml.allowshowcontact.email.no_show=Nerādīt e-pasta adresi
+
+/editinfo.bml.allowshowcontact.email.show=Rādīt e-pasta adresi
+
+/editinfo.bml.allowshowcontact.email.withdomainaddr=Ar augšminēto opciju tu vari arī izvēlēties slēpt savu e-pasta adresi (tomēr parādot citu kontaktinformāciju), tikai rādīt savu LiveJournal e-pasta adresi (tikai <a href="/paidaccounts/">apmaksātiem kontiem</a>), tikai rādīt savu īsto e-pasta adresi, vai rādīt abas.
+
+/editinfo.bml.allowshowcontact.email.withoutdomainaddr=Ar augšminēto opciju tu vari arī izvēlēties slēpt savu e-pasta adresi (tomēr parādot citu kontaktinformāciju)
+
+/editinfo.bml.allowshowcontact.title=Parādīt tavu kontaktinformāciju LiveJournal?
+
+/editinfo.bml.allowshowinfo.about=Izvēlies šo, ja gribi lai tava pilsēta/pavalsts/valsts un dzimšanas diena būtu redzama citiem lietotājiem.
+
+/editinfo.bml.allowshowinfo.title=Parādīt vietu &amp; dzimšanas dienu?
+
+/editinfo.bml.autotranslate.about<<
+Lieto šo opciju, lai norādītu LiveJournal, kuru kodēšanas sistēmu (encoding) lietot taviem ierakstiem un komentāriem, kas izdarīti pirms šī tīkla lapa tika pārlikta uz Unicode.
+Ja tu raksti angliski, izvēlies "Western European".
+.
+
+/editinfo.bml.autotranslate.header|staleness=1
+/editinfo.bml.autotranslate.header=Automātiski tulkot vecākus ierakstus no:
+
+/editinfo.bml.bday.title=Dzimšanas diena
+
+/editinfo.bml.bday.year.opt=gadu var nenorādīt
+
+/editinfo.bml.bdayreminders.about=Ja tu vēlies saņemt e-pasta atgādinājumus par tavu LiveJournal draugu dzimšanas dienām, iezīmē šo lodziņu.
+
+/editinfo.bml.bdayreminders.header|staleness=1
+/editinfo.bml.bdayreminders.header=Sūtiet man dzimšanas dienu atgādinājumus
+
+/editinfo.bml.bio.about|staleness=1
+/editinfo.bml.bio.about=Šeit tu vari ierakstīt mini biogrāfiju par sevi, kas parādīsies tavā info lapā.
+
+/editinfo.bml.bio.header=Par tevi
+
+/editinfo.bml.blockrobots.about|staleness=1
+/editinfo.bml.blockrobots.about<<
+Ja tu atzīmē šo opciju, roboti tiks sūtīti prom.
+Ne visi roboti respektē noteikumus, bet populāro meklēšanas portālu roboti to dara.
+.
+
+/editinfo.bml.blockrobots.header=Neatļauj robotiem skatīt tavu žurnālu
+
+/editinfo.bml.city.title=Pilsēta
+
+/editinfo.bml.country.choose=Izvēlies valsti
+
+/editinfo.bml.country.title=Valsts
+
+/editinfo.bml.donotlog=Nē
+
+/editinfo.bml.email.title=E-pasts
+
+/editinfo.bml.enableboards.about|staleness=1
+/editinfo.bml.enableboards.about=Iezīmē šo, ja gribi lai citi var atbildēt uz taviem žurnāla ierakstiem. (nepieciešams atbilstošs žurnāla stils)
+
+/editinfo.bml.enableboards.header=Atļaut komentārus
+
+/editinfo.bml.encoding.about=Pamatā tikai lietotājiem, kas raksta vairākās valodās, vajadzēs izdarīt šeit izmaiņas.
+
+/editinfo.bml.encoding.header=Kodēšanas izvēlne
+
+/editinfo.bml.error.email.lj_domain|staleness=1
+/editinfo.bml.error.email.lj_domain<<
+Tu nevari norādīt @[[domain]] e-pasta adresi.
+Šajā lauciņā ieraksti savu īsto adresi.
+Ja tu esi maksājošs lietotājs, tava [[user]]@[[domain]] adrese pārsūtīs pastu uz tavu īsto adresi.
+Lai izvēlētos, kura e-pasta adrese (vai abas) tiks parādīta publiski, skaties opciju zem "Parādīt kontaktinformāciju".
+.
+
+/editinfo.bml.error.email.no_space<<
+E-pasta adresē nav atļautas atstarpes.
+Ja tu lieto AOL, atceries, ka tava interneta e-pasta adrese ir tavs lietotājvārds bez atstarpēm, kam seko <b>@aol.com</b>
+.
+
+/editinfo.bml.error.excessive_int=Atvaino, tu esi minējis pārāk daudz intereses. Limits ir 150, bet tu esi minējis [[intcount]]. Izmaiņas interešu sarakstā netika izdarītas. Ej atpakaļ un saīsini savu sarakstu, tad vēlreiz saglabā to.
+
+/editinfo.bml.error.invalidbio=Tava ierakstītā biogrāfija satur nederīgus simbolus. Tev jāiet uz <a href='/utf8convert.bml'><b>konvertēšanas lapu</b></a>, lai pārliktu to uz Unicode.
+
+/editinfo.bml.error.invalidints=Tavs pašreizējais interešu saraksts satur nederīgus simbolus. Tev jāiet uz <a href='/utf8convert.bml'><b>konvertēšanas lapu</b></a>, lai pārliktu to uz Unicode.
+
+/editinfo.bml.error.invalidname=Tavs vārds satur nederīgus simbolus. Tev jāiet uz <a href='/utf8convert.bml'><b>konvertēšanas lapu</b></a>, lai pārliktu to uz Unicode.
+
+/editinfo.bml.error.locale.country_ne_state=Tu esi izvēlējies Amerikas Savienotās Valstis kā savu valsti, bet esi ierakstījis neesošu ASV pavalsti "cita pavalsts" ailē.
+
+/editinfo.bml.error.locale.invalid_country=Kaut kā ir gadījies, ka tu esi izvēlējies nederīgu valsti.
+
+/editinfo.bml.error.locale.state_ne_country=Tu esi norādījis valsti kas nav ASV, bet izvēlējies ASV pavalsti.
+
+/editinfo.bml.error.locale.zip_ne_state<<
+Tavs pasta indekss neatbilst izvēlētajai pavalstij.
+Vai nu izlabo informāciju, vai arī izdzēs vienu vai abas ailes.
+.
+
+/editinfo.bml.error.locale.zip_requires_us|staleness=1
+/editinfo.bml.error.locale.zip_requires_us<<
+Tu esi norādījis pasta indeksu bet neesi izvēlējies ASV kā savu valsti.
+Mēs prasām pasta indeksu tikai no ASV iedzīvotājiem.
+Lūdzu ej atpakaļ un izdzēs pasta indeksu, vai arī izvēlies ASV kā savu valsti.
+.
+
+/editinfo.bml.error.tm.require.number=Ja tu vēlies lietot īsziņu sūtīšanu, tev jānorāda savs tālruņa numurs.
+
+/editinfo.bml.error.tm.require_provider<<
+Ja tu vēlies izmantot SMS sūtīšanu, tev jāizvēlas savs mobilo sakaru tīkls.
+
+Ja tas nav minēts, lūdzu atraksti mums informāciju par sava tīkla SMS iespējām, lai mēs to varam pievienot sarakstam.
+.
+
+/editinfo.bml.finished.about=Kad esi pabeidzis, spied "Saglabāt izmaiņas" pogu:
+
+/editinfo.bml.finished.header=Pabeigts?
+
+/editinfo.bml.finished.save_button=Saglabāt izmaiņas
+
+/editinfo.bml.gender.title=Dzimums
+
+/editinfo.bml.getreplies.about|staleness=1
+/editinfo.bml.getreplies.about=Iezīmē šo, ja gribi saņemt e-pastus, kad kāds atbild uz taviem žurnāla ierakstiem ziņu dēlī.
+
+/editinfo.bml.getreplies.header=Saņem ziņu dēļa atbildes
+
+/editinfo.bml.hidefriendof.about=Ja atzīmēsi šo, to cilvēku saraksts, kas ir pievienojuši tevi kā draugu, netiks parādīts tavā profila lapā.
+
+/editinfo.bml.howhear.about|staleness=1
+/editinfo.bml.howhear.about<<
+Tīri aiz ziņkārības, kur tu uzzināji par [[sitename]?
+Ja no kāda cilvēka, norādi viņa lietotājvārdu, bet ja
+no cita avota/raksta/saites/tīkla lapas, sniedz attiecīgo informāciju.
+.
+
+/editinfo.bml.htmlemail.about|staleness=1
+/editinfo.bml.htmlemail.about<<
+Iezīmē šo, ja tava e-pasta programma pilnībā atbalsta HTML.
+Daudzas programmas cenšas to atbalstīt, bet smagi izgāžas.
+Ja neiezīmēsi, LiveJournal sūtīs tev tikai teksta e-pastus.
+.
+
+/editinfo.bml.htmlemail.header=Sūtīt HTML e-pastus
+
+/editinfo.bml.int.about<<
+Ja vēlies lai citi var meklēt reģistrā un atrast tevi pēc tavām interesēm, norādi visu, par ko tu interesējies, atdalot ar komatiem.
+Vislabākās ir īsas viena vārda frāzes. Kā likums, tavām interesēm būtu jāiekļaujas teikumā "Man patīk ________". Minot lietvārdus, lieto daudzskaitli.
+.
+
+/editinfo.bml.int.ex.bad=<FONT COLOR=#FF0000><B>SLIKTS</B></FONT> piemērs: <B>Man patīk visādas grupas un skatīties filmas un pļāpāt ar draugiem un iet uz klubiņiem.</B> Tādā stilā tu vari rakstīt savā biogrāfijā, bet ne šeit.
+
+/editinfo.bml.int.ex.good=<FONT COLOR=#009000><B>LABS</B></FONT> piemērs: <B>slēpošana, datori, mp3s, siers, sievietes</B>
+
+/editinfo.bml.int.header=Intereses
+
+/editinfo.bml.login.enterinfo=Ievadi savu lietotājvārdu un paroli, lai izmainītu personīgo informāciju.
+
+/editinfo.bml.login.forgot.header=Vai esi ko aizmirsis?
+
+/editinfo.bml.login.forgot.recover=Ja esi aizmirsis savu lietotāja vārdu vai paroli, <a href='lostinfo.bml'>meklē to šeit!</a>.
+
+/editinfo.bml.logip.always=Vienmēr
+
+/editinfo.bml.logip.anon_only=Tikai anonīmus rakstītājus
+
+/editinfo.bml.logip.header=Reģistrēt atbilžu rakstītāju IP adreses?
+
+/editinfo.bml.mangleaddress.about|staleness=1
+/editinfo.bml.mangleaddress.about=Ja tu baidies, ka spam-roboti atradīs tavu e-pasta adresi LiveJournal, izvēlies šo opciju, un tava e-pasta adrese tiks izmainīta tā, ka to nevarēs atrast e-pasta meklētāji roboti.
+
+/editinfo.bml.mangleaddress.header=Izmainīt parādīto e-pasta adresi
+
+/editinfo.bml.name.title=Vārds
+
+/editinfo.bml.numcomments.about=Iezīmē šo, ja vēlies pielīdzināt komentāru skaitu URL, lai liktu tavai pārlūkprogrammai rādīt saites citā krāsā.
+
+/editinfo.bml.numcomments.header=Pievienot &amp;nc=xx komentāru URL
+
+/editinfo.bml.optional=Neobligāti
+
+/editinfo.bml.opt_in.header=Sūtiet man LiveJournal jaunumus.
+
+/editinfo.bml.persinfo.disclaimer=Ieraksti kādu informāciju par sevi, mūsu ziņkārības apmierināšanai un statistikai. Mēs ar šo informāciju nedarīsim neko ļaunu, mēs tikai vēlētos redzēt, kas un kur ir mūsu lietotāji. Lūdzu aizpildi to precīzi. Ja tevi māc raizes, izlasi mūsu <a href="/legal/privacy.bml">slepenības politiku</a>.
+
+/editinfo.bml.persinfo.header=Personīgā informācija
+
+/editinfo.bml.screen.all=Visi
+
+/editinfo.bml.screen.anon=Anonīmi
+
+/editinfo.bml.screen.none=Neviens
+
+/editinfo.bml.security.header|staleness=1
+/editinfo.bml.security.header=Drošība
+
+/editinfo.bml.security.visibility.anybody=Jebkurš
+
+/editinfo.bml.security.visibility.everybody=Visi
+
+/editinfo.bml.security.visibility.friends=Tikai draugi
+
+/editinfo.bml.security.visibility.regusers=Reģistrēti lietotāji
+
+/editinfo.bml.settings.header=LiveJournal izvēlne
+
+/editinfo.bml.state.other=Vai ieraksti citu pavalsti/provinci/teritoriju
+
+/editinfo.bml.state.title=Pavalsts
+
+/editinfo.bml.state.us=ASV pavalstis
+
+/editinfo.bml.success.header=Izdošanās!
+
+/editinfo.bml.success.message=Tava informācija un <a href="/users/[[user]]/">žurnāls</a> un <a href="/userinfo.bml?user=[[user]]">profils</a> ir izmainīti.
+
+/editinfo.bml.switch.button=Pārslēgt
+
+/editinfo.bml.switch.header=Pārslēgt žurnālu
+
+/editinfo.bml.switch.workwith=Strādāt ar žurnālu:
+
+/editinfo.bml.title=Izmainīt personīgo informāciju
+
+/editinfo.bml.tm.details=<a href="/tools/textmessage.bml?mode=details">detaļas</a>
+
+/editinfo.bml.tm.phonenum=Pilns tālruņa numurs:
+
+/editinfo.bml.tm.sec.about=Atļaut īsziņas no citiem lietotājiem.
+
+/editinfo.bml.tm.sec.title=Drošības līmenis:
+
+/editinfo.bml.tm.servprov=Mobīlo sakaru tīkls
+
+/editinfo.bml.tm.title=Īsziņas
+
+/editinfo.bml.whoreply.header=Kas var atbildēt uz taviem ierakstiem?
+
+/editinfo.bml.zip.title=Pasta indekss
+
+/editinfo.bml.zip.usonly=5 ciparu pasta indekss; tikai ASV iedzīvotājiem
+
+/editjournal.bml.btn.proceed=Turpināt...
+
+/editjournal.bml.certainday=Noteikta diena:
+
+/editjournal.bml.recententries=paši pēdējie ieraksti
+
+/editjournal.bml.recententry=Pēdējais ieraksts
+
+/editjournal.bml.title=Rediģēt žurnāla ierakstus
+
+/editjournal.bml.viewwhat=Kurus ierakstus skatīt:
+
+/editjournal_do.bml.btn.edit=Rediģēt izvēlēto ierakstu
+
+/editjournal_do.bml.btn.save=Saglabāt žurnāla ierakstu
+
+/editjournal_do.bml.continue.head=Spied, lai turpinātu...
+
+/editjournal_do.bml.continue.text=Pēc tam kad esi izvēlējies ierakstu, ko rediģēt vai izdzēst, spied Rediģēt pogu.
+
+/editjournal_do.bml.currmood|staleness=1
+/editjournal_do.bml.currmood=<A HREF="/moodlist.bml">Garastāvoklis</A>:
+
+/editjournal_do.bml.currmusic=Mūzika:
+
+/editjournal_do.bml.date=Datums:
+
+/editjournal_do.bml.default=pamata
+
+/editjournal_do.bml.edit.text|staleness=2
+/editjournal_do.bml.edit.text=Rediģē tās žurnāla ieraksta ailes, kuras tu vēlies izmainīt, un nospied Saglabāt pogu lapas apakšā. Lai izdzēstu ierakstu, vienkārši izdzēs visu tekstu un spied Saglabāt... viss ieraksts tiks izdzēsts.
+
+/editjournal_do.bml.error.getting=Žurnāla ieraksta izvēlē radusies kļūda:
+
+/editjournal_do.bml.error.modify=Izdarot izmaiņas žurnālā, radusies kļūda:
+
+/editjournal_do.bml.error.nofind=Izvēlētais žurnāla ieraksts nav atrodams.
+
+/editjournal_do.bml.event=Notikums:
+
+/editjournal_do.bml.localtime=Vietējais laiks:
+
+/editjournal_do.bml.noneother=Neviens, vai cits:
+
+/editjournal_do.bml.opt.backdate=Atpakaļejošs datums/laiks:
+
+/editjournal_do.bml.opt.backdate.about=neparādīsies draugu lapā
+
+/editjournal_do.bml.opt.nocomments=Neatļaut komentārus:
+
+/editjournal_do.bml.opt.noemail=Nesūtīt komentārus pa e-pastu:
+
+/editjournal_do.bml.opt.noformat=Automātiski neformatēt:
+
+/editjournal_do.bml.other=Cits:
+
+/editjournal_do.bml.pickentry.head=Izvēlies ierakstu rediģēšanai
+
+/editjournal_do.bml.pickentry.text=Izvēlies, ko tu gribi rediģēt, un nospied Rediģēt pogu lapas apakšā.
+
+/editjournal_do.bml.picture=Lietojamā <a href="[[url]]">bilde</a>:
+
+/editjournal_do.bml.save.head=Nospied, lai saglabātu...
+
+/editjournal_do.bml.save.text=Pēc tam, kad esi pabeidzis izdarīt izmaiņas savā žurnāla ierakstā, nospied Saglabāt.
+
+/editjournal_do.bml.subject|staleness=1
+/editjournal_do.bml.subject=<B>Temats:</B> <I>(nav obligāts, var lietot garākiem ierakstiem)</I>
+
+/editjournal_do.bml.success.delete=Žurnāla ieraksts ir izdzēsts.
+
+/editjournal_do.bml.success.edit|staleness=1
+/editjournal_do.bml.success.edit=Žurnāla ieraksts ir mainīts. Tu vari to skatīt <a href="[[url]]">šeit</a>.
+
+/editjournal_do.bml.success.head=Izdošanās
+
+/editjournal_do.bml.timeformat=24 stundu laiks
+
+/editjournal_do.bml.title=Rediģēt žurnāla ierakstus
+
+/friends/add.bml.add.header=Izdošanās
+
+/friends/add.bml.add.text|staleness=2
+/friends/add.bml.add.text=Lietotājs <?ljuser [[user]] ljuser?> ir pievienots tavam draugu sarakstam. Tu vari skatīt savu draugu lapu <a href="[[url]]">šeit</a>.
+
+/friends/add.bml.add.title=Draugs pievienots!
+
+/friends/add.bml.btn.add=Pievieno [[user]]
+
+/friends/add.bml.btn.modify=Izmainīt
+
+/friends/add.bml.btn.remove=Nodzēst
+
+/friends/add.bml.colors.bg=Pamatkrāsa
+
+/friends/add.bml.colors.fg=Teksta krāsa
+
+/friends/add.bml.colors.header=Krāsas
+
+/friends/add.bml.colors.hover=(Paturi peles kursoru virs krāsas, lai redzētu tās nosaukumu)
+
+/friends/add.bml.colors.text=Tu vari arī izvēlēties krāsas, kas apzīmēs [[user]] tavā draugu sarakstā.
+
+/friends/add.bml.confirm.header=Pievienot <b>[[user]]</b> kā draugu?
+
+/friends/add.bml.confirm.text=Lai pievienotu <b>[[user]]</b> savam draugu sarakstam, nospied pogu.
+
+/friends/add.bml.confirm.title=Pievieno draugu
+
+/friends/add.bml.error1.header|staleness=1
+/friends/add.bml.error1.header=Vispirms piereģistrējies
+
+/friends/add.bml.error1.text=Lai pievienotu lietotāju savam draugu sarakstam, tev vispirms <A HREF="/login.bml?ret=1">jāreģistrējas</A>. Ja tev vēl nav sava konta, tu vari to <a href="/create.bml">izveidot</a>, lai sekotu līdzi savu draugu žurnāliem.
+
+/friends/add.bml.error1.title=Pievieno draugu
+
+/friends/add.bml.error2.text|staleness=1
+/friends/add.bml.error2.text=Nepareizs vai neesošs lietotājvārds. :ai pievienotu draugu, ej uz <A HREF="/friends/edit.bml">rediģēt draugus</A> lapu.
+
+/friends/add.bml.error3.text=<b>[[user]]</b> jau ir tavā draugu sarakstā. Papildus tu vari mainīt viņam piešķirtās krāsas.
+
+/friends/add.bml.error3.title=Rediģēt draugus
+
+/friends/add.bml.groups.header=Draugu grupas
+
+/friends/add.bml.groups.nogroup|staleness=1
+/friends/add.bml.groups.nogroup=Draugu grupas nav uzstādītas.
+
+/friends/add.bml.groups.text=Kurās draugu grupās tu vēlies šo lietotāju iekļaut? Draugu grupas tiek lietotas tavas draugu lapas filtrēšanai un ierakstu drošībai. 
+
+/friends/add.bml.remove.header=Izdošanās
+
+/friends/add.bml.remove.text=Lietotājs <?ljuser [[user]] ljuser?> ir izņemts no tava draugu saraksta. Tu vari skatīt savu draugu lapu <a href="[[url]]">šeit</a>.
+
+/friends/add.bml.remove.title=Draugs nodzēsts!
+
+/friends/edit.bml.title=Rediģēt draugus
+
+/friends/edit_do.bml.addfriends.head=Pievienot draugus
+
+/friends/edit_do.bml.addfriends.text=Ievadi savu draugu LiveJournal lietotājvārdus sekojošajās ailēs un izvēlies pamata un teksta krāsas, kuras ar viņiem asociēt....
+
+/friends/edit_do.bml.background=Pamatkrāsa
+
+/friends/edit_do.bml.bgcolor=Pamatkrāsa:
+
+/friends/edit_do.bml.btn.close=Aizvērt
+
+/friends/edit_do.bml.btn.save=Saglabāt izmaiņas
+
+/friends/edit_do.bml.done.head=Darīts?
+
+/friends/edit_do.bml.done.text=Kad esi pabeidzis, spied sekojošo "Saglabāt izmaiņas" pogu...
+
+/friends/edit_do.bml.error.updating=Tava draugu saraksta papildināšanā atgadījusies kļūda:
+
+/friends/edit_do.bml.foreground=Teksta krāsa
+
+/friends/edit_do.bml.friend=Draugs
+
+/friends/edit_do.bml.hover=Paturi peles kursoru virs krāsas, lai redzētu tās nosaukumu
+
+/friends/edit_do.bml.name=Vārds
+
+/friends/edit_do.bml.nofriends.head=Nav draugu?
+
+/friends/edit_do.bml.opt.delete=Izdzēst?
+
+/friends/edit_do.bml.success.head=Izdošanās
+
+/friends/edit_do.bml.textcolor=Teksta krāsa:
+
+/friends/edit_do.bml.title=Rediģēt draugus
+
+/friends/edit_do.bml.user=Lietotājs
+
+/friends/edit_do.bml.yourfriends.head=Tavi draugi
+
+/friends/edit_do.bml.yourfriends.text=Tu esi minējis sekojošos draugus:
+
+/index.bml.boldcreate=Izveido pats savu LiveJournal!
+
+/index.bml.frank.image.alt=Āzis Franks, LiveJournal talismans.
+
+/index.bml.frank.logo=<b><i>"Bēēēēē",</i> saka <a href="/site/goat.bml">Franks</a>.</b>
+
+/index.bml.meta.desc=LiveJournal.com ir vieta, kur tu vari dalīties savās domās ar visu pasauli.
+
+/index.bml.meta.keywords=dienasgrāmata, žurnāls, online žurnāls, dienasgrāmatas, rakstīšana, online dienasgrāmata, web dienasgrāmata
+
+/interests.bml.add.added.head=Pievienots!
+
+/interests.bml.add.added.text=Interese pievienota tavam sarakstam.
+
+/interests.bml.add.btn.text=Pievienot [[interest]]
+
+/interests.bml.add.confirm.head=Apstiprināt
+
+/interests.bml.add.confirm.text=Lai pievienotu <b>[[interest]]</b> interesēm, spied sekojošo pogu.
+
+/interests.bml.add.toomany.head=Atvaino...
+
+/interests.bml.add.toomany.text=Tu jau esi norādījis [[maxinterests]] intereses.
+
+/interests.bml.addint=Ja tu arī par šo interesējies un vēlētos pievienoties šim sarakstam, <a href="/interests.bml?mode=add&amp;intid=[[qintid]]">ej šeit</A>.
+
+/interests.bml.communities.head=Saistītas kopienas
+
+/interests.bml.communities.text=Sekojošās kopienas arī interesējas par <b>"[[interest]]"</b>.
+
+/interests.bml.count=Skaits
+
+/interests.bml.error.add.mustlogin=Lai pievienotu interesi, tev ir jāiereģistrējas.
+
+/interests.bml.error.findsim_do.intnotfound=Interese nav atrasta.
+
+/interests.bml.findsim.searchwait=<b>Lūdzu ievēro:</b> Meklējot paies vairākas sekundes. Esi pacietīgs.
+
+/interests.bml.findsim_do.account.notallowed=Atvaino, tava konta veids neatļauj tev izmantot šo iespēju.
+
+/interests.bml.findsim_do.magic=Maģiskais<br />indekss
+
+/interests.bml.findsim_do.magic.head=Maģiskais indekss?
+
+/interests.bml.findsim_do.magic.text=Katrs līdzīgais lietotājs saņem maģisko indeksu, kas tiek aprēķināts no diviem faktoriem: sakrītošo interešu skaita un dažiem papildus punktiem par netipisku interešu sakritību.
+
+/interests.bml.findsim_do.nomatch.head=Nav rezultātu
+
+/interests.bml.findsim_do.nomatch.text=Neviens lietotājs nav līdzīgs [[user]].
+
+/interests.bml.findsim_do.notdefined=Lietotājs [[user]] nav minējis savas intereses.
+
+/interests.bml.findsim_do.similar.head=Līdzīgi lietotāji
+
+/interests.bml.findsim_do.similar.text=Sekojošie lietotāji ir vislīdzīgākie [[user]]
+
+/interests.bml.interest=Interese
+
+/interests.bml.interested.btn.find=Meklēt
+
+/interests.bml.interested.in|staleness=1
+/interests.bml.interested.in=Meklēt cilvēkus, kas interesējas par:
+
+/interests.bml.interests.head=Intereses
+
+/interests.bml.interests.text|staleness=1
+/interests.bml.interests.text=Te ir dažas interesantas lietas, ko var darīt ar interesēm...
+
+/interests.bml.interests.viewpop=Skatīt populāras intereses
+
+/interests.bml.match=[[skaits]] atbilst:
+
+/interests.bml.matches=[[skaits]] atbilst:
+
+/interests.bml.morestuff|staleness=1
+/interests.bml.morestuff=Vairākas interesantas lietas atrodamas <A HREF="/interests.bml">interešu lapā</A>.
+
+/interests.bml.nointerests.text=Vēl neesi norādījis savas intereses? Lai pievienotu tās, ej <A HREF="/editinfo.bml">Rediģēt personīgo informāciju un uzstādījumus</A>.
+
+/interests.bml.popular.head=Populāras intereses
+
+/interests.bml.popular.text=Sekojošās intereses ir vispopulārākās.
+
+/interests.bml.title=Intereses
+
+/interests.bml.toomany.body=[[intcount]] cilvēki un/vai kopienas ir minējuši šo interesi. Saraksts netiks parādīts.
+
+/interests.bml.toomany.head=Daudz rezultātu
+
+/interests.bml.users.text|staleness=1
+/interests.bml.users.text=Sekojošie lietotāji arī interesējas par <b>[[interest]]</b>.
+
+/login.bml.bindip.label=Piesaistīt IP adresei:
+
+/login.bml.bindip.no=Nē (strādā ar visiem ISP)
+
+/login.bml.login.forget=Aizmirsi?
+
+/login.bml.login.head=Reģistrēties
+
+/login.bml.login.never=Nekad
+
+/login.bml.login.otheropts=Citas iespējas
+
+/login.bml.login.password=Parole:
+
+/login.bml.login.text1=Lai iereģistrētos [[sitename]], ievadi savu lietotājvārdu un paroli. <b>Jauniem lietotājiem:</b> Lai izveidotu kontu, <a href='/create.bml'>ej šeit</a>.
+
+/login.bml.login.username=Lietotājvārds:
+
+/login.bml.login.whenbrowsercloses=Kad pārlūkprogramma aizveras
+
+/login.bml.title=Reģistrēties
+
+/login.bml.whylogin.benefit1=Tev nevajadzēs vēlreiz ievadīt savu lietotājvārdu/paroli.
+
+/login.bml.whylogin.head=Kāpēc jāreģistrējas?
+
+/login.bml.whylogin.text=Dažas reģistrēšanās priekšrocības:
+
+/lostinfo.bml.btn.proceed=Turpināt
+
+/lostinfo.bml.enter_email=Ievadi savu e-pasta adresi:
+
+/lostinfo.bml.enter_email_optional=E-pasta adrese: (neobligāti)
+
+/lostinfo.bml.enter_username=Ievadi savu lietotājvārdu:
+
+/lostinfo.bml.lostpassword.text|staleness=1
+/lostinfo.bml.lostpassword.text=Ja esi pazaudējis savu paroli, ievadi savu lietotājvārdu un, vēlams, e-pasta adresi, uz kuru tu vēlētos nosūtīt paroli. Ievēro, ka e-pasta adresei jāsakrīt ar to, ko tu esi lietojis iepriekš un apstiprinājis lietošanai LiveJournal. Ja atstāsi e-pasta aili tukšu, tā tiks aizsūtīta uz tavu esošo adresi.
+
+/lostinfo.bml.lostpassword.title|staleness=1
+/lostinfo.bml.lostpassword.title=Pazaudēji savu paroli?
+
+/lostinfo.bml.lostusername.text=Ja esi pazaudējis savu lietotājvārdu, ievadi savu e-pasta adresi, un mēs aizsūtīsim tev tavu lietotājvārdu.
+
+/lostinfo.bml.lostusername.title|staleness=1
+/lostinfo.bml.lostusername.title=Pazaudēji savu lietotājvārdu?
+
+/lostinfo.bml.title=Pazaudēta informācija
+
+/lostinfo_do.bml.error.no_usernames_for_email=Neviens lietotājvārds nav reģistrēts ar adresi: [[address]].
+
+/lostinfo_do.bml.error1.text=Tu neesi lietojis šo e-pasta adresi ar šo kontu, vai tā nav bijusi apstiprināta.
+
+/lostinfo_do.bml.password_mailed.text=Tava parole ir nosūtīta.
+
+/lostinfo_do.bml.password_mailed.title=Parole nosūtīta!
+
+/lostinfo_do.bml.title=Pazaudēta informācija
+
+/lostinfo_do.bml.username_mailed.text=Tavs lietotājvārds ir nosūtīts.
+
+/lostinfo_do.bml.username_mailed.title=Lietotājvārds nosūtīts!
+
+/modify.bml.title=Izmainīt žurnālu
+
+/modify_do.bml.availablestyles.head=Pieejamie stili
+
+/modify_do.bml.availablestyles.userstyles=Lietotāju stili:
+
+/modify_do.bml.colortheme.about|staleness=2
+/modify_do.bml.colortheme.about=Šeit tu vari izvēlēties krāsu motīvu tavam iepriekš izvēlētajam lapas izkārtojumam. Vai arī, ja tevi neapmierina dotās krāsas, norādi pats savas! Ja tu atrodi kādu īpaši seksīgu salikumu, paziņo mums, un mēs nosauksim motīvu tavā vārdā.
+
+/modify_do.bml.colortheme.color.head1=Krāsa
+
+/modify_do.bml.colortheme.color.head2=(#rrggbb vai vārds)
+
+/modify_do.bml.colortheme.customcolors=Citas krāsas
+
+/modify_do.bml.colortheme.defaulttheme=Pamatmotīvs
+
+/modify_do.bml.colortheme.head=Krāsu motīvs
+
+/modify_do.bml.domainalias.about=Ja tev ir savs domēna vārds (domain name), vai tu plāno to reģistrēt un vēlētos, lai tas automātiski norāda uz tavu žurnālu, ievadi to šeit:
+
+/modify_do.bml.domainalias.domainname=Domēna vārds:
+
+/modify_do.bml.domainalias.example=Piemērs: <i>my-journal.com</i>
+
+/modify_do.bml.done.btn.savechanges=Saglabāt izmaiņas
+
+/modify_do.bml.done.text=Kad esi pabeidzis, spied "Saglabāt izmaiņas" pogu...
+
+/modify_do.bml.error.dupdomainalias=Cits lietotājs jau reģistrējis sev tavu izvēlēto domēna vārdu.
+
+/modify_do.bml.error.stylenotavailable=Viens no izvēlētajiem stiliem nav pieejams. Tas noticis vai nu tādēļ, ka kāds šo stilu ir izdzēsis, vai arī tev nav dota atļauja izvēlēties šo stilu.
+
+/modify_do.bml.friends.about=Šeit tu vari izvēlēties savas draugu lapas izskatu.
+
+/modify_do.bml.friends.head=Draugu skats
+
+/modify_do.bml.friends.opt.usesharedpic.about=Šī opcija nosaka, kuru bildi tu redzēsi savā draugu lapā, kad lietotājs rakstījis kopīgā vai kopienas žurnālā. Ja tu to iezīmē, tad tu redzēsi kopienas bildi. Ja atstāsi to neiezīmētu, tad tu redzēsi rakstītāja personīgo bildi.
+
+/modify_do.bml.friends.opt.usesharedpic.head=Lietot kopīgās žurnāla bildes, personīgo vietā
+
+/modify_do.bml.journaloptions.about|staleness=2
+/modify_do.bml.journaloptions.about=Šeit tu vari pieskaņot savu LiveJournal lapu izskatu. Ja tev ļoti interesē, kā viss darbojas, izlasi <A HREF="/developer/" TARGET=_blank>programmētāju informāciju</A>. Pretējā gadījumā, mēs pieņemsim, ka tu esi apmierināts ar dotajām pamata izvēles iespējām.
+
+/modify_do.bml.journaloptions.head=Žurnāla izvēlne
+
+/modify_do.bml.journalstatus.about=Ja tu vēlies aizvērt vai atkal atvērt savu žurnālu, šī ir tā vieta, kur to izdarīt. Kad tu aizver savu žurnālu, tev tiek dotas 30 dienas laika to atvērt, gadījumā ja tu pārdomā. Pēc 30 dienām žurnāls tiks neatgriezeniski izdzēsts un nebūs atjaunojams.
+
+/modify_do.bml.journalstatus.head=Žurnāla aktivizācijas statuss
+
+/modify_do.bml.journalstatus.select.activated=Aktīvs
+
+/userinfo.bml.label.memories=Atmiņas
+
+/userinfo.bml.label.moredetails=(papildus info...)
+
+/userinfo.bml.label.name=Vārds:
+
+/userinfo.bml.label.nofriends=<i>Neviens nav minēts.</i>
+
+/userinfo.bml.label.sendmessage=Sūtīt ziņu
+
+talk.commentpermlink=saite
+
+talk.commentpost=Pievienot jaunu komentāru
+
+talk.commentsread=Lasīt komentārus
+

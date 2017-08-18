@@ -1,0 +1,111 @@
+<?_code
+{
+    use strict;
+    use vars qw(%FORM);
+
+    # generate a 500 server error (for paypal)
+    my $err500 = sub {
+        my $error = shift;
+        BML::set_status(500);
+        return "<h1>Payment Processing Error</h1>" . $error;
+    };
+
+    my $dbh = LJ::get_db_writer();
+
+    return $err500->("Couldn't connect to database.") unless $dbh;
+
+    my $body = "REMOTE_ADDR = " . BML::get_remote_ip() . "\n\n";
+    $body .= join("\n", map { "$_ = $FORM{$_}" } sort keys %FORM);
+
+    my $error;
+    my $ok = 0;
+
+    # FIXME: automatically call LJ::revoke_payitems on these in LJ::Pay::verify_paypal_transaction
+    if ($FORM{payment_status} eq 'Reversed') {
+        $body = "Paypal has reversed the following transaction, please revoke the items manually\n\n$body";
+        LJ::send_mail({ to => $LJ::PAYPAL_ERROR_EMAIL || $LJ::ACCOUNTS_EMAIL,
+                        from => $LJ::BOGUS_EMAIL,
+                        fromname => 'Paypal Reversal',
+                        subject => "Paypal Reversal: $FORM{custom}",
+                        body => $body,
+                    });
+        return "notified";
+    }
+
+    if ($FORM{payment_status} eq 'Canceled_Reversal') {
+        $body = "Paypal has canceled reversal of the following transaction, please take appropriate action\n\n$body";
+        LJ::send_mail({ to => $LJ::PAYPAL_ERROR_EMAIL || $LJ::ACCOUNTS_EMAIL,
+                        from => $LJ::BOGUS_EMAIL,
+                        fromname => 'Paypal Canceled Reversal',
+                        subject => "Paypal Canceled Reversal: $FORM{custom}",
+                        body => $body,
+                    });
+        return "notified";
+    }
+
+    if ($FORM{payment_status} eq 'Refunded') {
+        $body = "Paypal has refunded the following transaction, please revoke the items manually\n\n$body";
+        LJ::send_mail({ to => $LJ::PAYPAL_ERROR_EMAIL || $LJ::ACCOUNTS_EMAIL,
+                        from => $LJ::BOGUS_EMAIL,
+                        fromname => 'Paypal Refund',
+                        subject => "Paypal Refund: $FORM{custom}",
+                        body => $body,
+                    });
+        return "notified";
+    }
+
+    if (LJ::Pay::verify_paypal_transaction(\%FORM, { 'error' => \$error })) 
+    {
+        $ok = LJ::Pay::register_paypal_payment($dbh, \%FORM, 
+                                               { 'error' => \$error });    
+    }
+
+    if ($FORM{custom}) {
+        if (my $custom = LJ::Pay::paypal_parse_custom($FORM{custom})) {
+            if (my $cartobj = LJ::Pay::load_cart($custom->{cart})) {
+               LJ::Pay::send_fraud_email($cartobj);
+
+               if (my $u = LJ::load_userid($cartobj->{userid})) {
+                  LJ::Pay::note_payment_from_user($u);
+               }
+            }
+        }
+    }
+
+    my $errorsub;
+    unless ($ok) {
+
+        # paypal sends us duplicate notifications fairly often, so when one is received,
+        # send an email to $LJ::PAYPAL_ERROR_EMAIL and tell paypal everything's okay
+        if ($error =~ /already paid/i) {
+            $body = "Paypal has sent notification of the following transaction, which has already been paid for\n\n$body";
+            LJ::send_mail({ to => $LJ::PAYPAL_ERROR_EMAIL || $LJ::ACCOUNTS_EMAIL,
+                            from => $LJ::BOGUS_EMAIL,
+                            fromname => 'Paypal Duplicate Notification',
+                            subject => "Paypal Duplicate Notification: $FORM{custom}",
+                            body => $body,
+                        });
+            return "notified";
+        }
+
+        $errorsub = " (ERROR)";
+        $body = "ERROR: $error\n\n$body";
+    }
+
+    $FORM{'custom'} =~ /user=(\w+)/;
+    my $user = $1;
+
+    LJ::send_mail({ 'to' => $LJ::PAYPAL_ERROR_EMAIL || $LJ::ACCOUNTS_EMAIL,
+                    'from' => 'lj_dontreply@livejournal.com',
+                    'fromname' => 'LiveJournal',
+                    'subject' => "PayPal Notify - $user$errorsub",
+                    'body' => $body,
+                });
+    
+    if ($ok) {
+        return "notified";
+    } else {
+        return $err500->($error);
+    }
+}
+_code?>

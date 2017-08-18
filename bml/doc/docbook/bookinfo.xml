@@ -1,0 +1,35 @@
+<bookinfo>
+  <title>The Better Markup Language</title>
+  <titleabbrev><abbrev>BML</abbrev></titleabbrev>
+  <edition>BML Manual Version 1.0</edition>
+  <abstract>
+    <para>
+      Anyone's who's ever put together a large website or done a lot of server-side 
+      programming will know how hard and annoying it is to keep a consistent look 
+      through a site, and how painful it is to go back and change something globally 
+      later, once their site is up. In addition, looking at <abbrev>HTML</abbrev>
+      code is ugly and <abbrev>HTML</abbrev> editors don't always do what you want them to.
+    </para>
+    <para>
+      <abbrev>BML</abbrev> was designed to address a lot of these problems. 
+      <abbrev>BML</abbrev> is a server-side markup language that lets you define your own 
+      <abbrev>BML</abbrev> blocks and use them as templates within your <abbrev>BML</abbrev> pages. 
+      Your templates don't even have to be static. Because <abbrev>BML</abbrev> pages are 
+      converted to <abbrev>HTML</abbrev> on the server when users request them, this also 
+      enables you to embed live code within your <abbrev>BML</abbrev> pages, just like a 
+      <abbrev>CGI</abbrev> script.        
+    </para>
+    <para>
+      A lot is possible using <abbrev>BML</abbrev>. Whether you want to make a full blown
+      database driven website, enable a little dynamic content on your site, or just
+      make things on your site easier to maintain, <abbrev>BML</abbrev> can really help out.
+    </para>
+    <para>
+      The official website for <abbrev>BML</abbrev> is located at <ulink url="http://www.bradfitz.com/bml" />.
+    </para>
+  </abstract>
+  &bml.copyright;
+  &bml.legalnotice;
+</bookinfo>
+<title>The Better Markup Language</title>
+<titleabbrev><abbrev>BML</abbrev></titleabbrev>

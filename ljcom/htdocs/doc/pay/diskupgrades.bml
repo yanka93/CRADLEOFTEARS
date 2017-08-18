@@ -1,0 +1,85 @@
+<?page
+title=>Disk Space Upgrades
+body<=
+<?p As a part of our <a href="http://www.livejournal.com/paidaccounts/">Paid 
+Account</a> package, we offer a certain amount of 
+<a href="http://www.livejournal.com/manage/files.bml">disk space for 
+hosting things</a> like 
+<a href="http://pics.livejournal.com/">ScrapBook images</a>, 
+<a href="http://www.livejournal.com/phonepost/">Phone Posts</a>, and 
+<a href="http://www.livejournal.com/editpics.bml">User Picture Icons</a>. 
+Every paid account starts with 100 MiB of disk space, with the option 
+to purchase more later on.
+p?>
+<?p
+We offer upgrades at fixed sizes so it's easy to figure out which upgrade works
+for you, but you still have the option of purchasing more space. Our current 
+upgrade sizes are 250 MiB, 500 MiB, and 1 GiB of disk space.
+p?>
+<div style='text-align: justify; padding-right: -1em'>
+<?h2 Overlapping Upgrades h2?>
+<img src='<?imgprefix?>/overlap2.png' style='float: right; margin-left: 1em' alt='Disk space
+upgrades that overlap will receive a prorated rate for unused time.' />
+<?p You'll not likely purchase another upgrade on the same day that your current 
+upgrade expires, so we account for "overlaps" in upgrades. Upgrades that overlap
+are prorated based on the time unused before the current upgrade's expiration date 
+and disk space used.
+p?>
+<?p <strong>Note:</strong> We do not offer "downgrades" for accounts. You cannot 
+purchase a smaller amount of disk space (or more disk space for a shorter amount
+of time) until after your current upgrade expires.
+p?>
+<?p
+When paid accounts and/or upgrades expire, certain features are disabled over time.
+<a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=217">More 
+details</a> can be found in our 
+<a href="http://www.livejournal.com/support/">Frequently Asked Questions</a>.
+p?>
+</div>
+<div style='clear: both'>
+<?h2 Extensions h2?>
+<?p
+Multiple upgrades of the same amount of disk space (extensions) will accumulate 
+based on the upgrade's time. A 2 month 250 MiB upgrade purchased with a 6 month 
+250 MiB upgrade will result in an 8 month upgrade of 250 MiB. Disk space upgrades 
+can be extended by a maximum of 1 year.
+p?>
+</div>
+<?h2 Price Chart h2?>
+<?p The prices for disk space upgrades are as follows: p?>
+<dl style='width: 30em'>
+<?_code
+{
+    use strict;
+    my $ret;
+
+    foreach my $size (sort { $a <=> $b } keys %{$LJ::Pay::bonus{'diskquota'}->{'items'}} ) {
+        my $sizeit = $LJ::Pay::bonus{'diskquota'}->{'items'}->{$size};
+        $ret .= "<dt style='border-bottom: 3px solid #000;'>$sizeit->{'name'}</dt><dd style='margin-bottom: 1.5em'><ul>";
+        foreach my $qty (sort { $a <=> $b } keys %{$sizeit->{'qty'}}) {
+            # will be interpretted as item-subitem-qty
+            my $amt = $sizeit->{'qty'}->{$qty}->{'amount'};
+            $ret .= "<li><label style='float: left; text-align: left'>";
+            $ret .= $sizeit->{'qty'}->{$qty}->{'name'} . ":</label>";
+            $ret .= "<div style='text-align: right; font-weight: bold; font-size: .9em'>\$$amt.00 USD</div></li>";
+        }
+        $ret .= "</ul></dd>";
+    }
+    return $ret;
+}
+_code?>
+</dl>
+<?h2 Where to Purchase h2?>
+<?p All disk space upgrades require a <a href="http://www.livejournal.com/paidaccounts/">Paid Account</a>. Upgrades can be purchased directly from <a href="http://www.livejournal.com/pay/">our payment center</a>. p?>
+<=body
+head<=
+<style type="text/css">
+dl { color: #333333; }
+dt { font-weight: bold; }
+dd { margin-left: 0; }
+dd ul { list-style-type: none; margin-left: 0; padding-left: 2em; }
+dd ul li { border-bottom: 1px dotted #000000; }
+dd ul li label { margin-bottom: 0; padding-bottom: 0; display: inline; }
+</style>
+<=head
+page?>

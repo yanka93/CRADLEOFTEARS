@@ -1,0 +1,225 @@
+[ WARNING:  EXTREMELY PRELIMINARY! ]
+
+GearMan: A distributed job system
+Brad Whitaker <whitaker@danga.com>
+
+==================================
+
+TODO: error responses to malformed/unexpected packets?
+      priorities, expirations of old/irrelevant jobs
+      upper-layer handling of async system going down + reopulation of jobs
+
+Architecture:
+
+    [ job_server_1 ] \
+    [ job_server_2 ]  | <====> application
+    [ job_server_n ] /
+
+         \ | /
+          -*-    persistent tcp connections between job servers/workers
+         / | \ 
+
+      [ worker_1 ]
+      [ worker_2 ]
+      [ worker_n ]
+
+
+Guarantees: 
+
+1) Each job server will kill dups within that job server (not global)
+2) Jobs will be retried as specified, as long as the job server is running
+3) Each worker will have exactly one task at a time
+   ... ?
+
+Non-Guarantees:
+
+1) Global duplicate checking is not provided
+2) No job is guaranteed to complete
+3) Loss of any job server will lose any jobs registered with it
+   ... ?
+
+
+Work flow:
+
+1) Job server starts up, all workers connect and announce their 
+
+2) Application sends job to random job server, noting the job record so it can
+   be recreated in the future if necessary.
+
+   a) Synchronous: Application stays connected and waits for response
+   b) Asynchronous: 
+
+3) Job server handles job:
+
+   Possible messages:
+
+      [worker => job server]
+      "here's what i can do."
+      "goodbye."
+      "i'm about to sleep."
+      "got a job for me?"
+      "i'm 1/100 complete now."
+      "i've completed my job."
+
+      [job server => worker]
+      "noop." / "wake up."
+      "here's a job to do."
+
+      [application => job server]
+      "create this new job."
+      "how far along is this job?"
+      "is this job finished?"
+
+      [job server => application]
+      "okay (here is its handle)."
+      "job is 1/100 complete."
+      "job completed as follows: ..."
+
+
+   Request/Response cycles:
+
+      [ worker <=> job server ]
+      "here's what i can do"       => (announcement)
+      "goodbye"                    => (announcement)
+      "i'm about to sleep"         => (announcement)
+      "i'm 1/100 complete now"     => (announcement)
+      "i've completed my job"      => (announcement)
+      "got a job for me?"          => "here's a job to do."
+
+      [ application <=> job server ]
+      "create this new job."       => "okay (here is its handle)."
+      "how far along is this job?" => "job is 1/100 complete."
+      "is this job finished?"      => "job completed as follows: ..."   
+
+      [ job server <=> worker ]
+      "wake up."                   => (worker wakes up from sleep)
+      "here is a job to do" => "i'm 1/100 complete now."
+                            => "i've completed my job"
+
+      [ job server <=> application ]
+      (only speaks in response to application requests)      
+
+
+   Best case conversation example:
+
+      worker_n     => job_server_n: "got a job for me?"
+      job_server_n => worker_n:     "yes, here is a job i've locked for you"
+      worker_n     => job_server_n: "here is the result"
+
+   Worse case:
+
+      while ($time < $sleep_threshold) {
+         for $js (1..n) {
+            worker => job_server_$js: "got a job for me?"
+            job_server_$js => worker: "no, sorry"
+         }
+      }
+
+      worker => all_job_servers: "going to sleep"
+
+      [ worker receives wakeup packet ] or [ t seconds elapse ]
+
+      worker wakes up and resumes loop
+
+      
+Packet types:
+
+   Generic header:
+
+      [ 4 byte magic
+        4 byte packet type       
+        4 byte length ]
+
+      Magic:
+         4 opaque bytes to verify state machine "\0REQ" or "\0RES"
+
+      Packet type:
+         (see Gearman::Util)
+
+      Length:
+         Post-header data length
+
+
+Properties of a job:
+
+     func -- what function name
+     opaque scalar arg  (passed through end-to-end, no interpretation by libraries/server)
+     uniq key -- for merging  (default: don't merge, "-" means merge on opaque scalar)
+
+     retry count
+     fail after time  -- treat a timeout as a failure
+     do job if dequeued and no listeners ("submit_job_bg")
+     priority ("submit_job_high")
+     on_* handlers
+
+     behavior when there's no worker registered for that job type?
+
+
+Notes:
+
+   -- document whether on_fail gets called on all failures, or just last one, when retry_count is in use
+   -- document that uniq merging isn't guaranteed, just that it's permitted.  if two tasks must not run
+      at the same time, the task itself needs to do appropriate locking with itself / other tasks.
+   -- the uniq merging will generally work in practice with multiple Job servers because the client
+      hashes the (func + opaque_arg) onto the set of servers
+
+
+
+Task summary:
+
+1) mail
+   name    => mail
+   dupkey  => '' (don't check dups)
+   type    => async+handle
+   args    => storable MIME::Lite/etc
+
+2) gal resize
+   name    => resize
+   dupkey  => uid-gallid-w-h
+   type    => async+handle
+   args    => storable of images to resize/how   
+
+3) thumb pregen
+   name    => thumbgen
+   dupkey  => uid-upicid-w-h
+   type    => async+handle
+   args    => storable of images to resize
+
+4) LJ crons
+   name    => pay_updateaccounts/etc
+   dupkey  => '' (no dup checking)
+   type    => async
+   args    => @ARGV to pass to job?
+
+6) Dirty Flushing
+   name    => dirty
+   dupkey  => friends-uid, backup-uid, etc
+   type    => async+handle
+   args    => none
+
+7) CmdBuffer jobs
+   name    => weblogscom
+   dupkey  => uid
+   type    => async+throw-away
+   args    => none
+
+8) RSS fetching
+   name    => rss
+   dupkey  => uid
+   type    => async+handle
+   args    => none
+
+9) captcha generation
+   name    => captcha
+   dupkey  => dd-hh ? maybe '1' or something
+   type    => async+throw-away
+   args    => none
+
+10) birthday emails
+   name    => bday
+   dupkey  => yyyy-mm-dd
+   type    => async+handle
+   args    => none
+
+11) restart web nodes
+   -- ask brad about this?

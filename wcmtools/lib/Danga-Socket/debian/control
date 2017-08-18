@@ -1,0 +1,13 @@
+Source: libdanga-socket-perl
+Section: perl
+Priority: optional
+Maintainer: Jay Bonci <jaybonci@debian.org>
+Build-Depends-Indep: debhelper (>= 4.1.40), perl (>= 5.8.4)
+Standards-Version: 3.6.1.0
+
+Package: libdanga-socket-perl
+Architecture: all
+Depends: ${perl:Depends}
+Description: fast pure-perl asyncronous socket base class
+ Danga::Socket is an abstract base class which provides the basic framework for
+ event-driven asynchronous IO, designed to be fast. 

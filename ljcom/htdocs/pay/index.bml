@@ -1,0 +1,207 @@
+<?_info
+NOCACHE=>1
+_info?><?page
+title=>Payment Center
+body<=
+
+<?h1 LiveJournal Payment Center h1?>
+<?p
+Here you can assemble an order for paid <a href="/paidaccounts/">LiveJournal services</a> or <a href="/store/">clothing items</a>, and then pay using a credit card, PayPal account, or mailing in a check with your order number. You can review the current status of any of your paid accounts or services by checking the <a href="/paidaccounts/status.bml">Paid Account Status</a> page. 
+p?>
+
+<?_code
+{
+    use strict;
+    use vars qw(%COOKIE %GET);
+    my $cart = $GET{'c'} || $COOKIE{'cart'};
+    my $ret;
+    my $remote = LJ::get_remote();
+
+    if ($remote && $remote->identity) {
+        return "<?h1 Sorry h1?><?p Non-LiveJournal users can't upgrade their external identity accounts. p?>";
+    }
+
+    if (! $COOKIE{'cart'} && $cart =~ /^(\d+)-(\d+)$/) {
+        $COOKIE{'cart'} = $cart;
+    }
+
+    # FIXME: remove after ugly hack is gone
+    if ($LJ::PAY_INCLUDE_DISKQUOTA && $GET{include}) {
+        $COOKIE{'ljpayinclude'} = $GET{include};
+    }
+
+    my $cartobj = LJ::Pay::load_cart($cart);
+    if ($cartobj && $cartobj->{'userid'}) {
+        return "You must be logged in as this cart's owner to proceed with checkout."
+            unless $remote;
+        return "You do not own this cart.  If you'd like to start a new cart, please click " .
+            "<a href='./?c=new'>here</a>." 
+            unless $cartobj->{'userid'} == $remote->{'userid'};
+    }
+
+    if ($GET{'c'} eq "new") {
+        delete $COOKIE{'cart'};
+        undef $cart;
+    }
+
+    # see if cart's dead or c=new (invalid, so load new cart)
+    if (! $cartobj && $cart) {
+        delete $COOKIE{'cart'};
+        undef $cart;
+    }
+
+    # don't let them modify the cart if they've already started
+    # any sort of checkout process
+    my $can_mod = ! $cartobj || LJ::Pay::can_mod_cart($cartobj);
+
+    # display a configurable banner if it exists
+    $ret .= ref $LJ::PAY_MARQUEE_HTML eq 'CODE' ? $LJ::PAY_MARQUEE_HTML->() : $LJ::PAY_MARQUEE_HTML . '';
+
+    $ret .= "<form action='modify.bml' method='post' style='display: inline'>";
+    $ret .= LJ::html_hidden("cart", $cart);
+
+    $ret .= "<div style='margin-left: 20px; margin-top: 2em'>";
+    LJ::Pay::render_cart($cartobj, \$ret, { 
+        'checkout' => 1,
+        'pics' => 1,
+        'remove' => $can_mod,
+    });
+    $ret .= "</div>";
+
+    # let 'em know if cart is paid for (if they're actually viewing a cart)
+    if ($cartobj && $cartobj->{'mailed'} ne "C") {
+        $ret .= "<?h1 Paid for h1?><?p This order has been paid for on $cartobj->{'daterecv'}. p?>";
+        $ret .= "<ul><input type='submit' name='action:neworder' value='New Order'></ul>";
+        $ret .= "</form>";
+        return $ret;
+    }
+
+    # let 'em know if cart is locked
+    unless ($can_mod) {
+        $ret .= "<?h1 New Order? h1?>";
+        $ret .= "<?p The cart above has been checked out. Start a new order?";
+        $ret .= "<ul><input type='submit' name='action:neworder' value='New Order'></ul>";
+        $ret .= " p?></form>";
+        return $ret;
+    }
+
+    if (LJ::Pay::cart_needs_shipping($cartobj)) {
+        $ret .= "<?h1 Return Policy h1?><?p <b>Notice:</b> To minimize costs, we have a strict no return policy.  If you're buying clothing items, be sure to consult the <a href='/store/sizechart.bml'>size chart</a> first. p?>";
+    }
+
+    # current account summary
+    if ($remote) {
+        $ret .= "<?h1 Account Status h1?>";
+        $ret .= "<?p Below is a brief summary of current account status for " . LJ::ljuser($remote) .
+            ". For more information, see the full <a href='$LJ::SITEROOT/paidaccounts/status.bml'>account status page</a>. p?>";
+        $ret .= LJ::Pay::account_summary($remote);
+    }
+
+    # add items to order
+    $ret .= "<?h1 Add to Order... h1?><?p ";
+
+    my @items;
+
+    # coppa verification
+    if ($remote && $remote->underage) {
+        push @items, ("coppa", "Age Verification (for COPPA Compliance)");
+    }
+
+    # permanent account
+    if ($LJ::PERM_SALE) {
+        push @items, ("perm",
+                      LJ::Pay::product_name("perm") . " (\$150.00 USD)");
+    }
+
+    # paid accounts
+    foreach my $mo (sort { $b <=> $a } keys %LJ::Pay::account) {
+        next unless $mo && $LJ::Pay::account{$mo};
+        push @items, ("paidacct-$mo",
+                      LJ::Pay::product_name("paidacct", undef, $mo) .
+                      " (\$$LJ::Pay::account{$mo}->{'amount'}.00 USD)");
+    }
+
+    # bonus features
+
+    # FIXME: this is an ugly hack just so we can give out ?include=diskquota
+    #        urls for a limited beta of the disk quota purchase service.
+    #        should be removed later.
+    my @bonus_list = LJ::Pay::bonus_item_list($remote, $cartobj);
+    while (my ($k, $v) = splice(@bonus_list, 0, 2)) {
+        next unless ! $LJ::PAY_INCLUDE_DISKQUOTA || $COOKIE{'ljpayinclude'} eq 'diskquota' || $k !~ /diskquota/;
+
+        push @items, $k, $v;
+    }
+
+    # pre-hack code
+    #push @items, LJ::Pay::bonus_item_list($remote, $cartobj);
+    
+    # rename tokens
+    push @items, ("rename",
+                  LJ::Pay::product_name("rename") . " (\$15.00 USD)");
+
+    # coupons
+    foreach my $amt (@LJ::Pay::coupon) {
+        push @items, ("coupon-$amt", 
+		      LJ::Pay::product_name("coupon", "dollaroff", $amt) . " (\$$amt USD)");
+    }
+    
+    # item drop-down
+    $ret .= "<table>";
+    $ret .= "<tr><td align='right'>Item:</td><td>" . 
+        LJ::html_select({ name => 'item', 
+                          selected => $GET{'item'},
+                      }, @items) . 
+                      LJ::help_icon("pay_item", " ") .
+                      "</td></tr>";
+
+    # recipient
+    $ret .= "<tr><td align='right' valign='top'>Recipient:</td>";
+    $ret .= "<td>";
+    if ($remote) {
+        my $checked = $GET{'for'} ? "" : "checked='checked'";
+        $ret .= "<input type='radio' $checked name='for' value='remote' id='forremote' /> <label for='forremote'><b>Current user</b></label>: " . LJ::ljuser($remote->{'user'}) . "<br />";
+    } else {
+        $ret .= "<input type='radio' disabled='disabled' name='for' value='remote' id='forremote' /> <label for='forremote'><b>Current user</b></label>: <i>(you must first <a href='/login.bml?ret=1'>login</a>)</i><br />";
+    }
+
+    # other user
+    my $checked = $GET{'for'} ? "checked='checked'" : "";
+    my $val_otheruser = LJ::ehtml($GET{'for'});
+    $ret .= "<input type='radio' name='for' value='other' $checked id='forother' /> <label for='forother'><b>Gift for user/community:</b></label> <input name='otheruser' type='text' size='15' maxlength='15' value='$val_otheruser' /><br />";
+    $ret .= "<input type='radio' name='for' value='email' id='foremail' /> <label for='foremail'><b>Email redemption code to:</b></label> <input name='redemail' type='text' size='20' maxlength='80' /><br />";
+    $ret .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>(new users: use this last option)</small>";
+    
+    $ret .= "</td></tr>";
+
+    # gift options
+    $ret .= "<tr><td align='right' valign='top'>Other options:</td><td>";
+    $ret .= "<input type='checkbox' name='anongift' id='anongift' /> <label for='anongift'>$ML{'.gift.anonymous'}</label>\n";
+    $ret .= "<p style='margin-top: 5px'>$ML{'.deliverydate.label'} <input name='giveafter' size='16' maxlength='16' /><br />$ML{'.deliverydate.details'}";
+    $ret .= "</tr>";
+
+    # add
+    $ret .= "<tr><td></td><td align='left'><input type='submit' name='action:additem' value='Add to order...'></td></tr>";
+
+    $ret .= "</table> p?>";
+    $ret .= "</form>\n";  # close add form
+
+    $ret .= "<?h1 Have a coupon? h1?>";
+    $ret .= "<?p If you have a coupon, enter it here: p?>";
+    $ret .= "<form style='margin-left: 30px' method='post' action='modify.bml'>";
+    $ret .= LJ::html_hidden("action:coupon", 1);
+    $ret .= LJ::html_hidden("cart", $cart);
+    $ret .= "<input type='text' name='coupon' size='20' />";
+    $ret .= "<input type='submit' value='Use' />";
+    $ret .= "</form>";
+
+    # Tshirt stuff
+    $ret .= "<?h1 Add LiveJournal Clothing to Order... h1?>";
+    $ret .= "<?p To view the LiveJournal clothing, check out the <a href='/store/'>LiveJournal Store</a>. p?>";
+
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

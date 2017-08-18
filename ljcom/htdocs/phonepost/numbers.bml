@@ -1,0 +1,90 @@
+<?page
+title=>Post by Phone Access Numbers
+body<=
+<?_code
+{
+    use strict;
+    return LJ::server_down_html() if $LJ::SERVER_DOWN;
+
+    my $remote = LJ::get_remote();
+    my $quota  = LJ::get_cap($remote, 'phonepost_monthquota');
+    my $ret;
+
+    unless ( $quota > 0) {
+        if ($remote) {
+            $ret .= "<?p Your account is not permitted to use the <a href='/phonepost/'>Post by Phone</a> service, ".
+                    "so only the area code and city of each number is displayed. If you'd like to make ".
+                    "posts to your journal through your phone, see the <a href='/paidaccounts/'>Paid Accounts</a> ".
+                    "page for information on purchasing a paid account. p?>";
+        } else {
+            $ret .= "<?p Listed below are area codes and cities where we've established a ".
+                    "<a href='/phonepost/'>Post by Phone</a> number. <a href='/paidaccounts/'>Paid Accounts</a> can ".
+                    "<a href='/login.bml?ret=1'>log in</a> to see the complete set of phone numbers. p?>";
+        }
+    } else {
+        $ret .= "<?p The <a href='/phonepost/'>Post by Phone</a> interface can be reached by calling any of the following numbers: p?>";
+    }
+
+    my $nums = LJ::MemCache::get("phonepost_nums");
+    unless ($nums) {
+        my %sname;
+        LJ::load_codes({ "state" => \%sname });
+        $nums = {};  # state code -> [ [number, city]* ]
+        open (NUM, "$ENV{LJHOME}/other_sites/phonepost/numbers.csv");
+        while (<NUM>) {
+            next unless /^(\w\w+)\s*,\s*(\d\d\d\-\d\d\d)\s*[,\-]\s*(\d\d\d\d)\s*\,\s*(.+?)\s*\n/;
+            my ($state, $exch, $number, $city) = ($1, $2, $3, $4);
+            if ($city eq uc($city)) {
+                $city = lc($city);
+                $city =~ s/\b(\w)/\u$1/g;
+            }
+            my $sname = $sname{$state} || $state;
+            $city =~ s/\s*Zone.+//;
+            $nums->{$sname} ||= [];
+            push @{$nums->{$sname}}, [ "$exch-$number", $city ];
+        }
+        foreach my $st (keys %$nums) {
+            $nums->{$st} = [ sort { lc($a->[1]) cmp lc($b->[1]) } @{$nums->{$st}} ];
+        }
+        LJ::MemCache::set("phonepost_nums", $nums, 60*5);
+    }
+
+    my $tot = 0;
+    $tot += scalar(@{$nums->{$_}}) foreach (keys %$nums);
+
+    $ret .= "<b>Jump to:</b> " . join(" | ", map {
+        "<a href='#$_'>$_</a>" } sort { lc($a) cmp lc($b) } keys %$nums);
+
+
+    my $shown = 0;
+    my $col = 1;
+    $ret .= "<div style='background-color: #ffe680; float: right; width: 175px; font-size: 0.8em; border: 1px outset #333; padding: 2px;'>";
+    $ret .= "<strong style='text-decoration: underline'>Caution:</strong><br /> Some local telephone companies charge for local calls that are outside of your selected calling plan.";
+    $ret .= "<br /><br />If you are not sure that an access number is within your calling plan, contact your local telephone company.";
+    $ret .= "<br /><br />You are responsible for all charges associated with calling this service.</div>";
+
+    $ret .= "<?p <?de Note: We're in the process of adding more numbers. de?> p?>";
+
+    $ret .= "<table style='margin-left: 40px'><tr valign='top'><td>";
+    foreach my $sname (sort { lc($a) cmp lc($b) } keys %$nums) {
+        $ret .= "<div style='margin-top: 10px; white-space: nowrap'><a name='$sname'><b>$sname</b></a></div>\n";
+        foreach my $rec (@{$nums->{$sname}}) {
+            my $shownum = $rec->[0];
+            $shownum =~  s/^(\d{3})[-\s.](\d{3})[-\s.](\d{4})/$1-xxx-xxxx/ unless $quota > 0;
+            $ret .= "$shownum: $rec->[1]<br />\n";
+            $shown++;
+        }
+        if ($col == 1 && $shown > ($tot / 2)) {
+            $col++;
+            $ret .= "</td><td>";
+        }
+        
+    }
+    $ret .= "</tr></table>";
+
+    $ret .= "<?p We respectfully request that you not share these numbers with others, as we'd like to avoid unnecessary phone traffic. p?>" if $quota > 0;
+    return $ret;
+}
+_code?>
+<=body
+page?>

@@ -1,0 +1,55 @@
+<?_code
+
+ my $remote = LJ::get_remote();
+
+ $body = "";
+
+ unless ($remote) {
+     $title = "Join Paidmembers";
+     $body = "<?h1 Login First h1?><?p To join the paidmembers community, you must first go and <A HREF=\"/login.bml?ret=1\">log in</A>.  p?>";	
+     return;
+ }
+
+ my $u = LJ::load_userid($remote->{'userid'});
+ unless (LJ::get_cap($u, "paid")) {
+     $title = "Join Paidmembers";
+     $body = "<?h1 Sorry h1?><?p You have to have a <a href=\"/paidaccounts/\">paid account</a> to join the <?ljuser paidmembers ljuser?> community. p?>";
+     return;
+ }
+
+ if ($FORM{'mode'} eq "join") {
+     unless (LJ::did_post()) {
+         $title = "Error";
+         $body = "<?requirepost?>";
+         return;
+     }
+     my $puserid = LJ::get_userid("paidmembers");
+     if (LJ::is_friend($puserid, $remote->{'userid'}) ||
+         LJ::add_friend($puserid, $remote->{'userid'})) {
+         $title = "Joined";
+         $body = "<?h1 Success h1?><?p You are now a member of the <?ljuser paidmembers ljuser?> community p?>";
+     } else {
+         $title = "Error";
+         $body = "paidmembers community doesn't exist?";
+     }
+     return;
+ }
+
+ $title .= "Join Paidmembers?";
+ $body .= "<?h1 Confirm h1?><?p To join the <?ljuser paidmembers ljuser?> community, click the button below. p?>";
+ $body .= "<form method=\"post\">";
+ $body .= "<input type=\"hidden\" name=\"mode\" value=\"join\">";
+ $body .= "<center><input type=\"submit\" value=\"Join paidmembers!\"></center>";
+ $body .= "</form>";
+
+ return;
+     
+_code?>
+<?page
+title=><?_code return $title; _code?>
+body<=
+<?_code
+return $body;
+_code?>
+<=body
+page?>

@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# <LJDEP>  No dependencies.
+# </LJDEP>
+
+mysql -A livejournal
+
+

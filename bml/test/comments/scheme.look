@@ -1,0 +1,6 @@
+user_comment=><?_c %%DATA%% _c?>
+indirect<=
+(Indirect)
+<?user_comment %%DATA%% user_comment?>
+<=indirect
+

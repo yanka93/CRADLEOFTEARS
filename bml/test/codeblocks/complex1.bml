@@ -1,0 +1,15 @@
+<?_code
+
+	sub some_function { return "This is from the first codeblock"; }
+	$package = __PACKAGE__;
+
+	return "Returning from the first codeblock.";
+
+_code?>
+
+<?_code
+
+	$package->some_function();
+
+_code?>
+

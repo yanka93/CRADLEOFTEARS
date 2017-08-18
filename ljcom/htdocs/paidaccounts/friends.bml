@@ -1,0 +1,125 @@
+<?page
+title=>Buy for friends!
+body<=
+
+<?_code
+{
+    use strict;
+
+    my $dbr = LJ::get_db_reader();
+    my $remote = LJ::get_remote();
+    unless ($remote) {
+        return "This page requires you to first <a href='/login.bml?ret=1'>login</a>.";
+    }
+    my $ret;
+    $ret .= "<?h1 Give the gift of LiveJournal.... h1?>";
+    $ret .= "<?p Looking for an easy gift?  Buy a <a href='/paidaccounts/'>paid account</a> for one of the people on your friends list! p?>";
+    
+    # get status of all friends
+    # TAG:FR:bml_paidaccts_friends:get_friend_statuses
+    my $sth = $dbr->prepare("SELECT u.userid, u.user, u.name, u.caps, u.journaltype ".
+                            "FROM friends f, user u, userusage uu ".
+                            "WHERE f.userid=? AND u.userid=f.friendid AND uu.userid=f.friendid ".
+                            "AND   u.statusvis='V' LIMIT 500");
+    $sth->execute($remote->{'userid'});
+
+    my %f;
+    while (my $f = $sth->fetchrow_hashref) {
+        next unless $f->{'journaltype'} eq "P" || $f->{'journaltype'} eq "C";
+        $f{$f->{'userid'}} = $f;
+    }
+
+    # when are people's paid accounts expiring?
+    # TAG:FR:bml_paidaccts_friends:get_friend_expiring
+    $sth = $dbr->prepare("SELECT p.userid, UNIX_TIMESTAMP(p.paiduntil) AS 'paiduntil' ".
+                         "FROM friends f, paiduser p ".
+                         "WHERE f.userid=? AND f.friendid=p.userid");
+    $sth->execute($remote->{'userid'});
+    while (my $f = $sth->fetchrow_hashref) {
+        next unless $f{$f->{'userid'}};
+        $f{$f->{'userid'}}->{'paiduntil'} = $f->{'paiduntil'};
+    }
+
+    # who has pending gifts?
+    # TAG:FR:bml_paidaccts_friends:get_pending_gifts
+    $sth = $dbr->prepare("SELECT p.userid, p.months ".
+                         "FROM friends f, payments p ".
+                         "WHERE f.userid=? AND f.friendid=p.userid AND ".
+                         "      p.used='N' AND p.giveafter > 0");
+    $sth->execute($remote->{'userid'});
+    while (my $f = $sth->fetchrow_hashref) {
+        next unless $f{$f->{'userid'}};
+        $f{$f->{'userid'}}->{'pending'} += $f->{'months'};
+    }
+
+    unless (%f) {
+        $ret .= "<?p However, you have nobody on your friends list, so we can't make any recommendations. p?>";
+        return $ret;
+    }
+
+    my $now = time;
+    my $one_month = 60*60*24*30;
+
+    # separate users into two groups:  those needy and those who aren't
+    my (@needy_paid, @needy_free, @not);
+    foreach my $f (sort { $a->{'user'} cmp $b->{'user'} } values %f) 
+    {
+        my $paid_months;
+        if ($f->{'caps'} & 8) {
+            $paid_months += ($f->{'paiduntil'} - $now) / $one_month;
+            $paid_months = 0 if $paid_months < 0;
+        }
+
+        $paid_months += $f->{'pending'};
+
+        # permanent account holders or those with 6 months of real or pending gift payments
+        # aren't needy
+        if ($f->{'caps'} & 16 || $paid_months > 6) {
+            push @not, $f;
+            next;
+        }
+
+        # now, they're needy, but do they already have a paid account?
+        if ($f->{'caps'} & 8) {
+            push @needy_paid, $f;
+        } else {
+            push @needy_free, $f;
+        }
+    }
+
+    my $dump_table = sub {
+        my $list = shift;
+        $ret .= "<ul><table cellspacing='3'>\n";
+        foreach my $f (@$list) {
+            $ret .= "<tr><td>";
+            $ret .= LJ::ljuser($f->{'user'}, { 'type' => $f->{'journaltype'} });
+            $ret .= " - " . LJ::ehtml($f->{'name'});
+            unless ($f->{'caps'} & 16) { # unless a permanent account
+                $ret .= " [<a href='/pay/?item=paidacct-12&amp;for=$f->{'user'}'>buy gift</a>]";
+            }
+            $ret .= "</td></tr>\n";
+        }
+        $ret .= "</table></ul>";
+    };
+
+    if (@needy_free) {
+        $ret .= "<?h1 Free Users h1?><?p The following friends might appreciate a paid account. p?>";
+        $dump_table->(\@needy_free);
+    }
+
+    if (@needy_paid) {
+        $ret .= "<?h1 Expiring Soon h1?><?p The following friends have a paid account, but it's expiring soon. p?>";
+        $dump_table->(\@needy_paid);
+    }
+
+    if (@not) {
+        $ret .= "<?h1 Other Friends h1?><?p These friends have paid accounts that aren't due to expire for awhile.  (This includes time for gifts which are being held for surprise delivery.) p?>";
+        $dump_table->(\@not);
+    }
+
+    return $ret;
+}
+_code?>
+
+<=body
+page?>

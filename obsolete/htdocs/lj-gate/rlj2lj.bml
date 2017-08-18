@@ -1,0 +1,144 @@
+<?_info
+nocache=>1
+_info?>
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?h1 Update LJR -> LJ live export parameters. h1?>
+<br/>
+<?_code
+  use strict;
+  use DBI;
+  use vars qw(%POST);
+  use XMLRPC::Lite;
+  use Digest::MD5 qw(md5_hex); 
+
+  my $ret;
+
+  # copied from update.bml
+  if ($LJ::SERVER_DOWN) {
+    return LJ::server_down_html();
+  }
+  my $remote = LJ::get_remote();
+  # Errors that are unlikely to change between starting
+  # to compose an entry and submitting it.
+  if ($remote) {
+    if ($remote->underage) {
+      return BML::redirect("$LJ::SITEROOT/agecheck/?s=1");
+    }
+    if ($remote->identity) {
+      return "Non-$LJ::SITENAME users can't post, as they don't actually have journals here.\n";
+    }
+    if (! LJ::get_cap($remote, "can_post")) {
+      return $LJ::MSG_NO_POST || $ML{'.error.cantpost'};
+    }
+  }
+  else {
+    return "Please login.\n";
+  }
+
+  my $qhost = $LJ::DBINFO{'master'}->{'host'};
+  my $quser = $LJ::DBINFO{'master'}->{'user'};
+  my $qpass = $LJ::DBINFO{'master'}->{'pass'};
+  my $qsock = $LJ::DBINFO{'master'}->{'sock'};
+  my $qport = $LJ::DBINFO{'master'}->{'port'};
+  #my $qdb = $LJ::DBINFO{'master'}->{'dbname'};
+  my $qdb = "prod_ljgate";
+
+  my $alien=$POST{'alien'};
+  my $alienpass=$POST{'alienpass'};
+
+  my $mode=$POST{'mode'};
+
+  my $xmlrpc;
+  my $get_chal;
+  my $chal;
+  my $response;
+  my $login;
+
+  #Если нам уже передали параметры, добавляем пользователей...
+  if ($mode eq "add") {
+    $xmlrpc = new XMLRPC::Lite;
+    $xmlrpc->proxy("http://www.livejournal.com/interface/xmlrpc");
+    $get_chal = $xmlrpc->call("LJ.XMLRPC.getchallenge");
+    $chal = $get_chal->result->{'challenge'};
+    $response = md5_hex($chal . md5_hex($alienpass));
+    $login = $xmlrpc->call('LJ.XMLRPC.login', {
+      'username' => $alien,
+      'auth_method' => 'challenge',
+      'auth_challenge' => $chal,
+      'auth_response' => $response,
+      });
+      
+    if($login->fault){
+      $ret .= "Got error: " . $login->faultstring . "<br>";
+      $ret .= "<a href=rlj2lj.bml>Retry.</a>";
+      return $ret;
+    }
+
+    #Связываемся с базой
+    my $dbh = DBI->connect(
+      "DBI:mysql:mysql_socket=$qsock;hostname=$qhost;port=$qport;database=$qdb",
+      $quser, $qpass,
+      ) || die  localtime(time) . ": Can't connect to database\n";
+    my $sqh;
+
+    $sqh = $dbh->prepare("delete from our_user where our_user = ?");
+    $sqh->execute($remote->{'user'});
+
+    $sqh = $dbh->prepare("insert INTO our_user (our_user,our_pass) VALUES(?, ?)");
+    $sqh->execute($remote->{'user'}, $remote->{'password'});
+
+    $sqh = $dbh->prepare("INSERT INTO alien (alien,alienpass) VALUES(?, ?)");
+    $sqh->execute($alien, $alienpass);
+
+    #Узнаём ID свежедобавленных пользователей
+    #...на своём сервере
+    $sqh = $dbh->prepare("SELECT userid FROM our_user WHERE our_user=?");
+    $sqh->execute($remote->{'user'});
+
+    my $userid=$sqh->fetchrow_array;
+
+    #...и на чужом
+    $sqh = $dbh->prepare("SELECT alienid FROM alien WHERE alien=?");
+    $sqh->execute($alien);
+
+    my $alienid=$sqh->fetchrow_array;
+
+    #Добавляем новую запись в таблицу журналов,
+    #которые копируются с нашего сервера вовне
+    $sqh = $dbh->prepare("INSERT INTO rlj2lj(userid,alienid) VALUES (?,?)");
+    $sqh->execute($userid, $alienid);
+
+    $ret .= "<br/>Export parameters updated:&nbsp;";
+    $ret .= "<a href=http://lj.rossia.org/users/$remote->{'user'}>$remote->{'user'}</a> is exported to <a href=http://www.livejournal.com/users/$alien>$alien</a>.";
+    $ret .= "<br/><br/><a href=/lj-gate/>LJ-gate root</a>";
+
+    $dbh->disconnect;
+
+  } else {
+    $ret .= "<form method=\"post\" action=\"rlj2lj.bml\">\n";
+    $ret .= LJ::html_hidden(mode => 'add');
+    $ret .= "<br>";
+    $ret .= "<b>Livejournal.com</b><br>";
+    $ret .= "<div class='formitemDesc'>" . BML::ml('Username') . "</div>";
+    $ret .= LJ::html_text({'name' => 'alien',
+       'size' => 15,
+       'maxlength' => 15,
+        });
+    $ret .= "<div class='formitemDesc'>" . BML::ml('Password') . "</div>";
+    $ret .= LJ::html_text({'name' => 'alienpass',
+         'size' => 30,
+         'maxlength' => 31,
+         'type' => "password",});
+    $ret .= "<br>";
+    $ret .=  LJ::html_submit('confirm', $ML{'.confirm.submit'});
+    $ret .= "</form>\n";
+  };
+ 
+  return $ret;
+
+_code?>
+
+<=body
+page?>

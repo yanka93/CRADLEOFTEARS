@@ -1,0 +1,69 @@
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    my $cart = $GET{'c'};
+    my $cartobj = LJ::Pay::load_cart($cart);
+    return BML::redirect("/pay/") unless $cartobj;
+
+    if ($cartobj->{'userid'}) {
+
+        my $remote = LJ::get_remote();
+        return "You must be logged in as this cart's owner to proceed with checkout."
+            unless $remote;
+        return "You do not own this cart.  If you'd like to start a new cart, please click " .
+            "<a href='./?c=new'>here</a>." 
+            unless $cartobj->{'userid'} == $remote->{'userid'};
+    }
+
+    unless (LJ::Pay::is_valid_cart($cartobj)) {
+        return "The given cart contains items that are no longer valid.  This could be caused by conflicts with other " .
+            "carts created during the same time.  Please try again with a new cart.";
+    }
+
+    my $ret;
+    $ret .= "<html><head><title>Payment $cart</title></head>";
+    $ret .= "<style> a { color: black } </style>";
+    $ret .= "<body>";
+    $ret .= "<h1>Order ($cart)</h1>";
+    LJ::Pay::render_cart($cartobj, \$ret);
+
+    if ($cartobj->{'amount'} > 0) {
+        $ret .= "<h1 style='margin-bottom: 0px'>Pay</h1>";
+        $ret .= "If the above is correct, send your payment to:<blockquote>";
+        $ret .= "<pre>" . LJ::Pay::postal_address_text() . "</pre></blockquote>";
+
+        $ret .= "Please note the following guidelines:";
+        $ret .= "<ul>";
+        $ret .= "<li>Make checks or money orders payable to <b>LiveJournal.com</b>.</li>";
+        $ret .= "<li>Checks will only be accepted from the United States and Canada and must be made out in United States fund (Your bank will calculate the exchange rate if you suffix the amount field with \"US Funds\").</li>";
+        $ret .= "<li>Orders received later than 1 month from order creation date will not be accepted.</li>";
+        $ret .= "<li>Include with payment either a print-out of this page or a note referencing: <br /><b><font size='+1'>Payment $cart</font></b>.</li>";
+        $ret .= "</ul>";
+
+        $ret .= "<p>";
+        if (LJ::Pay::cart_needs_shipping($cartobj)) {
+            $ret .= "Your shipping address is on file, associated with your order number. ";
+        }
+
+        $ret .= "Thank you for your order!</p>";
+
+    } else {
+
+        # mark cart as 'free' and ready for processing
+        my $dbh = LJ::get_db_writer();
+        $dbh->do("UPDATE payments SET used='N', mailed='N', ".
+                 "method='free', daterecv=NOW() WHERE payid=?", undef,
+                 $cartobj->{'payid'});
+
+        $ret .= "<?h1 Order Completed h1?>";
+        $ret .= "<?p There is no charge for this order. p?>";
+    }
+    
+    $ret .= "</body></html>";
+    return $ret;
+
+
+}
+_code?>

@@ -1,0 +1,38 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+
+<?h1 <?_ml .heading.cost _ml?> h1?>
+<?p
+    <?_code
+    return BML::ml('.fee', {'fee' => '$15 USD'});
+    _code?>
+p?>
+
+<?h1 <?_ml .heading.details _ml?> h1?>
+<?p <?_ml .whatrename _ml?> p?>
+<?p <?_ml .does _ml?> p?>
+<?p <?_ml .option _ml?> p?>
+<?_code
+    return ($LJ::HELPURL{renaming}
+            ? "<?p " . BML::ml('.faqurl', {'aopts' => "href='$LJ::HELPURL{renaming}'"}) . "  p?>"
+            : "")
+_code?>
+
+<?h1 <?_ml .heading.how _ml?> h1?>
+<?p <?_ml .redeem _ml?> p?>
+<?p <?_ml .reserve _ml?> p?>
+
+<?choices
+items<=
+<?choice <?_ml .options.buy _ml?>|/pay/?item=rename|<?_ml .options.buy.desc _ml?> choice?>
+<=items
+itemsb<=
+<?choice <?_ml .options.use _ml?>|use.bml|<?_ml .options.use.desc _ml?> choice?>
+<=itemsb
+choices?>
+
+
+<=body
+page?>
+

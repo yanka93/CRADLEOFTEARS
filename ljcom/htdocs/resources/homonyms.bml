@@ -1,0 +1,11 @@
+<?page
+title=>Homonyms
+body<=
+
+<?_include
+bml=>1
+file=>resources-homonyms
+_include?>
+
+<=body
+page?>

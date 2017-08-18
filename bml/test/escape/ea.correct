@@ -1,0 +1,32 @@
+Escape HTML tags:
+In structural HTML, the &lt;b&gt; tag should be replaced with &lt;strong&gt; and the
+&lt;i&gt; tag with &lt;em&gt;.
+
+Escape a code example:
+<pre><code># Overload Apache::FakeRequest&#39;s print to append output to a variable.
+{
+	no warnings &#39;redefine&#39;;
+	*Apache::FakeRequest::print = sub {
+		my $r = shift;
+		$Output .= join(&#39;&#39;, @_)
+	};
+	*Apache::FakeRequest::log_error = sub {
+		my $r - shift;
+		print STDERR @_, &quot;\n&quot;; $Errout .= join(&#39;&#39;, @_)
+	};
+	*Apache::FakeRequest::pnotes = sub {
+		my ( $r, $key ) = @_;
+		$Pnotes-&gt;{ $key } = shift if @_;
+		$Pnotes-&gt;{ $key };
+	};
+}</code></pre>
+
+Escape old-style syntax:
+Tags in BML used to be like (= this =), but that format has since been
+deprecated.
+
+Escape new-style syntax:
+Now tags in BML look like: &lt;?foo?&gt;.
+
+
+

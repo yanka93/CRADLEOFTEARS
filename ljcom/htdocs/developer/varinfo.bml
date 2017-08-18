@@ -1,0 +1,79 @@
+<?_info
+nocache=>1
+_info?><?page
+title=><?_code $v = LJ::ehtml(BML::get_query_string()); return $v; _code?>
+body<=
+<?h1 Variable Details h1?>
+<?p
+The following are details on the <?_code return $v; _code?> variable.  For more information on modifying this variable, see the information about the <A HREF="styles.bml">style system</A>.
+p?>
+
+<?_code
+
+ my @vars;
+ LJ::load_objects_from_file("vars.dat", \@vars);
+ my $ret = "";
+
+ foreach my $v (grep { $_->{'name'} eq $v  } @vars)
+ {
+     LJ::xlinkify(\$v->{'props'}->{'des'});
+
+     $ret .= "<P><TABLE WIDTH=100% BGCOLOR=#C0C0C0><TR><TD><FONT FACE=\"Arial,Helvetica\" SIZE=+1><B>$v->{'name'}</B></FONT></TD></TR></TABLE>\n\n";
+     $ret .= "<TABLE CELLSPACING=2>\n";
+     $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT NOWRAP><I>view types:</I></TD><TD>";
+     foreach (split (/\s*\,\s*/, $v->{'props'}->{'scope'}))
+     {
+         $ret .= "<A HREF=\"/developer/views.bml#$_\">$_</A>, ";
+     }
+     chop $ret; chop $ret;
+     $ret .= "</TD></TR>\n";
+     $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT><I>description:</I></TD><TD>$v->{'props'}->{'des'}</TD></TR>\n";
+
+     # overrideable?
+     $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT NOWRAP><I>can override:</I></TD><TD>";
+     if ($v->{'props'}->{'override'} eq "yes") {
+         $ret .= "<B>Yes</B>; users of this style may override this";
+     } elsif ($v->{'props'}->{'override'} eq "only") {
+         $ret .= "<B>Only</B>; Only users of this style may override this, it cannot be defined in a style.";
+     } else {
+         $ret .= "<B>No</B>; users of the style cannot override this.  It may only be defined in the style.";
+     }
+     $ret .= "</TD></TR>\n";
+
+     if (defined $v->{'props'}->{'type'})
+     {
+         $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT NOWRAP><I>variable type:</I></TD><TD>$v->{'props'}->{'type'}</TD></TR>\n";
+     }
+     if (defined $v->{'props'}->{'default'})
+     {
+         $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT NOWRAP><I>default value:</I></TD><TD>$v->{'props'}->{'default'}</TD></TR>\n";
+     }
+     if (defined $v->{'props'}->{'props'})
+     {
+         $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT><I>properties:</I></TD><TD>\n";
+         $ret .= "<TABLE CELLSPACING=1 BORDER=1 CELLPADDING=2>\n";
+         foreach my $p (@{$v->{'props'}->{'props'}})
+         {
+           LJ::xlinkify(\$p->{'props'}->{'des'});
+           $ret .= "<TR VALIGN=TOP><TD ALIGN=RIGHT><B>$p->{'name'}</B></TD>\n";
+           $ret .= "<TD>$p->{'props'}->{'des'} ";
+           if ($p->{'props'}->{'min'} > 0)
+           {
+               $ret .= "<FONT COLOR=#FF0000>[required]</FONT>";
+           }
+           $ret .= "</TD></TR>\n";
+         }
+         $ret .= "</TABLE></TD></TR>\n";
+     }
+
+     $ret .= "</TABLE>\n";
+ }
+ return $ret;
+
+_code?>
+
+<?hr?>
+Back to <A HREF="/developer/">Developer Area</A>.
+
+<=body
+page?>

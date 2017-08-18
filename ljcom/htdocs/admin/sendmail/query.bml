@@ -1,0 +1,230 @@
+<?page
+title=>Query Sent Mail
+body<=
+<?_code
+ use strict;
+ use vars qw(%GET);
+
+ my ($ret, $sth, $where, $body);
+ my $status = {
+     'S' => "Sent (does not guarantee that the message didn't bounce)",
+     'F' => "Failed to send", };
+
+ my $remote = LJ::get_remote();
+
+ my %canview;
+ $canview{'abuse'} = 1 if (LJ::check_priv($remote, "supportread", "abuse"));
+ $canview{'support'} = 1 if (LJ::check_priv($remote, "supportread", "support"));
+
+ # Grouping this check for now, but leaving it so
+ # it could be split up in the future should a need
+ # arise
+ if (LJ::check_priv($remote, "supportread", "accounts")) {
+     $canview{'accounts'} = 1;
+     $canview{'coppa'} = 1;
+ }
+
+ unless ($canview{'abuse'} || $canview{'support'} || $canview{'accounts'}) {
+     return "<?p This tool is for members of our abuse and support teams.<br />
+             If you need to file an abuse request, please do so at:
+             <a href='/abuse/report.bml'>$LJ::SITEROOT/abuse/report.bml</a> <br />
+             If you need to file a support request, please do so at:
+             <a href='/support/submit.bml'>$LJ::SITEROOT/support/submit.bml</a> p?>";
+ }
+
+ if ($GET{'mode'} eq "view") {
+     my $dbr = LJ::get_db_reader();
+     my $qmailid = $dbr->quote($GET{'mailid'});
+     $sth = $dbr->prepare("SELECT mailid, userid, spid, status, timesent, mailto, " .
+			  "subject, message, type FROM abuse_mail " .
+			  "WHERE mailid=$qmailid");
+     $sth->execute;
+
+     my $mail = $sth->fetchrow_hashref;
+     if ($canview{$mail->{'type'}}) {
+         $ret .= "<?h1 Viewing Message #$mail->{'mailid'} h1?>";
+	     
+	 $ret .= "<table style='border-spacing: 5px'>";
+
+	 $ret .= "<tr><th style='text-align: left; white-space: nowrap'>Mail ID:</th>";
+	 $ret .= "<td>$mail->{'mailid'}</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left'>Status:</th>";
+	 $ret .= "<td>$status->{$mail->{'status'}}</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left; white-space: nowrap'>Request #:</th>";
+         if ($mail->{'spid'} != 0) {
+	     $ret .= "<td><a href='/support/see_request.bml?id=$mail->{'spid'}'>";
+	     $ret .= "$mail->{'spid'}</a></td>";
+	 } else {
+	     $ret .= "<td>N/A</td>";
+	 }
+	 $ret .= "</tr>";
+
+	 $ret .= "<tr><th style='text-align: left; white-space: nowrap'>Sent By:</th>";
+	 $ret .= "<td>" . LJ::ljuser(LJ::get_username($mail->{'userid'})) . "</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left'>From:</th>";
+	 $ret .= "<td>$mail->{'type'}\@$LJ::DOMAIN</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left'>Recipient:</th>";
+	 $ret .= "<td>$mail->{'mailto'}</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left'>Sent:</th>";
+	 $ret .= "<td>$mail->{'timesent'}</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left'>Subject:</th>";
+	 $ret .= "<td>$mail->{'subject'}</td></tr>";
+
+	 $ret .= "<tr><th style='text-align: left; vertical-align: top'>Message:</th>";
+         my $message = $mail->{message};
+         $message = LJ::auto_linkify($message);
+         $message =~ s/\r?\n/<br \/>\n/g;
+
+	 $ret .= "<td>$message</td></tr>";
+
+	 $ret .= "</table>";
+
+	 $ret .= "<?hr?><a href='/admin/sendmail/query.bml' onclick='history.back();return false;'>";
+	 $ret .= "&lt;&lt; View Results</a>";
+     } else {
+         $ret .= LJ::bad_input('You are not authorized to view this message');
+     }
+ } else {
+     $ret .= "<?h1 Search Sent Emails h1?>\n";
+     $ret .= '<form method="GET" action="query.bml">';
+     $ret .= '<input type="hidden" name="mode" value="list" />';
+
+     $ret .= "<table cellpadding='4' cellspacing='2'><tr valign='top'>";
+     $ret .= "<tr valign='top'><th align='right'>Restrict:</th><td>";
+
+     my @type = ("", "All");
+     push @type, ('abuse' => "abuse\@$LJ::DOMAIN") if $canview{'abuse'};
+     push @type, ('accounts' => "accounts\@$LJ::DOMAIN") if $canview{'accounts'};
+     push @type, ('coppa' => "coppa\@$LJ::DOMAIN") if $canview{'coppa'};
+     push @type, ('support' => "support\@$LJ::DOMAIN") if $canview{'support'};
+     $ret .= LJ::html_select({ 'name' => 'restrict', 'selected' => $GET{'restrict'} }, @type);
+
+
+     $ret .= "</td></tr><tr valign='top'><th align='right'>Method:</th><td>";
+     $ret .= LJ::html_select({'name' => 'method', 'selected' => $GET{'method'}},
+                              'sender' => "Username of Sender",
+                              'spid' => "Tied to Request #",
+                              'mailto' => "Sent to address or user",
+                             );
+     $ret .= "</td></tr><tr valign='top'><th align='right'>Value:</th><td>";
+     $ret .= LJ::html_text({ 'name' => 'value',
+                             'value' => $GET{'value'},
+                             'size' => 30 });
+     $ret .= "</td></tr>";
+     $ret .= "<tr><td align='right'>&nbsp;</td><td><input type='submit' value='Search'></td>";
+     $ret .= "</tr></table></form>";
+
+     return $ret unless $GET{'mode'};
+
+     if ($GET{'mode'} eq "list") {
+         my $dbr = LJ::get_db_reader();
+         $ret .= "<?hr?><?h1 Results h1?>";
+
+         # Default condition of nothing versus everything
+         my $where = "WHERE 0";
+
+         if ($GET{'method'} eq "sender") {
+             my $userid = LJ::get_userid($GET{'value'});
+             unless ($userid) {
+                 $ret .= "<?h2 Error: h2?> <?p The username '$GET{'value'}' is not currently in use. p?>";
+                 return $ret;
+             }
+             $where = "WHERE userid=$userid";
+         } elsif ($GET{'method'} eq "spid") {
+             $where = "WHERE spid=" .  $dbr->quote($GET{'value'});
+         } elsif ($GET{'method'} eq "mailto") {
+             my $email;
+
+             my $u = LJ::load_user($GET{'value'});
+             if ($u) {
+                 $email = $u->{'email'};
+             } else { # Assume we got an email address
+                 $email = $GET{'value'};
+                 my @email_errors;
+                 LJ::check_email($email, \@email_errors);
+                 if (@email_errors) {
+                     $ret .= "<?h2 Error: h2?> <?p " . join(', ', @email_errors) . " p?>";
+                     return $ret;
+                 }
+             }
+
+             $where = "WHERE mailto=" .  $dbr->quote($email);
+         }
+
+         # See if they are limiting the search and
+         # make sure they are able to view that type
+         if ($GET{'restrict'} ne '') {
+             return LJ::bad_input('Not authorized to view that type')
+                 unless $canview{$GET{'restrict'}};
+             my $r = $dbr->quote($GET{'restrict'});
+             $where .= " AND type=$r";
+         } else { #Limit them to the types they can see
+             $where .= " AND type IN(" . join(',', map { $dbr->quote($_) } keys %canview) . ')';
+         }
+
+         $sth = $dbr->prepare("SELECT mailid, userid, spid, status, " .
+			      "timesent, mailto, subject, type " .
+                              "FROM abuse_mail $where");
+         $sth->execute;
+
+         my $show_total = 50;
+         my $row_ct = 0;
+         my $row_show = 0;
+         my $row_skip = 0;
+         my $row_html;
+         while (my $row = $sth->fetchrow_hashref) {
+             $row_ct++;
+             next if $GET{'skip'} && ++$row_skip <= $GET{'skip'};
+
+             if ($row_show < $show_total) {
+                 $row_show++;
+                 $row_html .= "<tr><td><a href='./query.bml?mode=view&mailid=$row->{'mailid'}'>(link)</a></td>";
+
+                 my $username = LJ::get_username($row->{'userid'});
+                 $row_html .= "<td>" . LJ::ljuser($username) . "</td>";
+
+                 if ($row->{'spid'} != 0) {
+                     $row_html .= "<td><a href='/support/see_request.bml?id=$row->{'spid'}'>$row->{'spid'}</a></td>";
+                 } else {
+                     $row_html .= "<td>N/A</td>";
+                 }
+                 $row_html .= "<td>$row->{'status'}</td>";
+                 $row_html .= "<td>$row->{'type'}</td>";
+                 $row_html .= "<td>$row->{'timesent'}</td><td>$row->{'mailto'}</td>";
+                 $row_html .= "<td>$row->{'subject'}</td></tr>";
+             }
+         }
+         if ($row_ct eq 0) { $ret .= "<?p No Results Returned p?>"; return $ret; }
+
+         $ret .= "<?p <table cellpadding='4' cellspacing='1' border='1'>";
+         $ret .= "<tr><th>Details</th><th>Sent By</th><th>Request #</th>";
+         $ret .= "<th>Status</th><th>From</th><th>Sent</th><th>Recipient</th><th>Subject</th></tr>";
+         $ret .= $row_html;
+         my $slinks;
+         if ($GET{'skip'}) {
+             $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} - $show_total}) . "\">&lt;&lt; Back</a> ";
+         }
+         if ($row_show != $row_ct) {
+             my $from = $GET{'skip'}+1;
+             my $to = $row_show+$GET{'skip'};
+             $slinks .= "(Records $from-$to of $row_ct) ";
+         }
+         if ($GET{'skip'} + $row_show < $row_ct) {
+             $slinks .= "<a href=\"" . BML::self_link({ 'skip' => $GET{'skip'} + $show_total}) . "\">Forward &gt;&gt;</a> ";
+         }
+         $ret .= "</table> p?>";
+         if ($slinks ne "") { $ret .= "<?h1 Tally h1?> <?p $slinks p?>"; }
+     } else {
+         $ret .= "<?p Please select a search criteria p?>";
+     }
+ }
+ return $ret;
+_code?>
+<=body
+page?>

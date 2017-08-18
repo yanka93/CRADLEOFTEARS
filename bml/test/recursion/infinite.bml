@@ -1,0 +1,11 @@
+Simple infinite recursion:
+<?rtag Foo rtag?>
+
+Complex infinite recursion:
+<?1tag
+	 From there to here,
+	 from here to there,
+	 funny things
+	 are everywhere.
+ 1tag?>
+

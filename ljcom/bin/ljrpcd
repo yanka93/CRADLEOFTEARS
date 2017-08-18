@@ -1,0 +1,149 @@
+#!/usr/bin/perl -w
+# LiveJournal Remote Procedure Call Daemon (ljrpcd)
+# Copyright 2001 Dormando (dormando@rydia.net)
+# Going add a license (GPL?) later.
+# This daemon forks off into the background, logs if told to
+# waits for UDP messages on the given port, and executes
+# commands sent to it.
+#
+# <LJDEP>
+# lib: IO::Socket
+# prog: bin/ljmaint.pl
+# </LJDEP>
+
+use strict;
+use IO::Socket;
+
+# Max message length and port to bind.
+my $MAXLEN = 512;
+my $PORTNO = 6100;
+my $PIDFILE = '/var/run/ljrpcd.pid';
+my $LOGFILE = '/var/log/ljrpcd.log';
+my $TYPE = shift @ARGV;
+
+unless ($TYPE eq "web" || $TYPE eq "db") {
+    print "Unknown/unspecified machine type, quitting.\n";
+    exit 1;    
+}
+
+# Pid and pidfile.
+my $pid;
+my $is_parent = 1;
+# Socket. Needs to be here for the HUP stuff.
+my $sock;
+
+# In case we're shot, unlink the pidfile.
+$SIG{TERM} = sub {
+    unlink($PIDFILE);
+    exit 1;
+};
+
+if (-e $PIDFILE) {
+    open (PID, $PIDFILE);
+    my $tpid;
+    chomp ($tpid = <PID>);
+    close PID;
+
+    if ($tpid) {
+        # so Linux-specific, but Proc::ProcessTable 
+        #iterates over /dev forever, which sucks on a NetApp
+        if (open (CMD, "/proc/$tpid/cmdline")) {
+            my $cmdline = <CMD>;
+            close CMD;
+            if ($cmdline =~ /ljrpcd/) {
+                print "Process exists already, quitting.\n";
+                exit 1;
+            }
+        }
+    }
+}
+
+# Print a banner.
+print "LiveJournal RPC Daemon starting up into the background...\n";
+
+# Perhaps I should give it a command to not do this in the future.
+if ($pid = fork) {
+  # Parent, log pid and exit.
+  open(PID, ">$PIDFILE")   or die "Couldn't open $PIDFILE for writing: $!\n";
+  print PID $pid;
+  close(PID);
+  print "Closing ($pid) wrote to $PIDFILE\n";
+  $is_parent = 1;
+  exit;
+} else {
+  # This is the child, main loop-de-doo.
+  my($cmdmsg, $remaddr, $remhost);
+
+  # HUP signal handler.
+  $SIG{HUP} = \&restart_request;
+
+  open(LOG, ">>$LOGFILE")	or die "Couldn't open log file for appending: $!\n";
+  flock(LOG, 2)	or die "Couldn't flock log file for writing: $!\n";
+  select(LOG); # Why the hell not, eh?
+  $| = 1;
+
+  $sock = IO::Socket::INET->new(LocalPort => "$PORTNO", Proto => 'udp')	or die "socket: $@";
+  $sock->sockopt(SO_BROADCAST, 1);
+  print "Bound, awaiting UDP commands on port $PORTNO\n";
+
+  # Main loop, simple parser.
+  while ($sock->recv($cmdmsg, $MAXLEN)) {
+    my ($port, $ipaddr) = sockaddr_in($sock->peername);
+    my $ip_addy = inet_ntoa($ipaddr);
+
+    $remhost = gethostbyaddr($ipaddr, AF_INET);
+    print "Client $remhost sent command: $cmdmsg\n";
+
+    # If the command is 'marco' return 'pollo'
+    if ($cmdmsg =~ /^marco(\s+($TYPE|all))?$/) {
+      print "Returning 'pollo' to client $remhost\n";
+      $sock->send("pollo") or print "Couldn't scream pollo at $remhost\n";
+      next;
+    } elsif ($cmdmsg =~ s/^cmd:\s//) {
+	# Handle the command.
+	if ($cmdmsg eq "restart") {
+	    print "Restarting ljrpcd\n";
+	    $sock->send("Restarting ljrpcd...\n");
+	    restart_request();
+	}
+	my $return = handle_request($cmdmsg);
+	print "Returning $return to client $remhost\n";
+	$sock->send($return) or print "Couldn't return $return to $remhost\n";
+	next;
+    }
+  }
+  die "recv: $!\n";
+} #if
+
+# Sub to restart the daemon.
+sub restart_request {
+  $sock->close;
+  unlink($PIDFILE);
+  exec($0, $TYPE);
+}
+
+
+# Handle a request... Do further parsing, pass it appropriately.
+# Should return a discernable ok. Usually 'done' 'ok' or an
+# informative reply no longer than 500 characters.
+sub handle_request {
+  my $cmd = shift;
+  my $su = "";
+  if ($cmd =~ s/^(\w+?)://) {
+      my $user = $1;
+      my ($login,$pass,$uid,$gid) = getpwnam($user)
+	  or return "$user not in passwd file.";
+      $su = "su $user -c";
+  }
+  unless ($cmd =~ /[\|\>\<]/) {
+      my $home = $ENV{'LJHOME'} || "/home/lj";
+      $cmd =~ s/[;]/\\$&/;
+      if ($su) {
+	  return `$su \'$home/bin/ljmaint.pl $cmd\'`;
+      } else {
+	  return `$home/bin/ljmaint.pl $cmd`;
+      }
+  }
+
+  return 'bad command';
+}

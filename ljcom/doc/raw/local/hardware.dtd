@@ -1,0 +1,26 @@
+<!ELEMENT hardwarelist (machine*)>
+
+<!ELEMENT machine (physical, config, notes?)>
+  <!ATTLIST machine name ID #REQUIRED>
+
+<!ELEMENT physical (type, vendor?, size?, proc?, mem?, disk?, other*)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT vendor (#PCDATA)>
+<!ELEMENT size (#PCDATA)>
+<!ELEMENT proc (#PCDATA)>
+<!ELEMENT mem (#PCDATA)>
+<!ELEMENT disk (#PCDATA)>
+<!ELEMENT other (#PCDATA)>
+  <!ATTLIST other count NMTOKEN '1'>
+
+<!ELEMENT config (role*, os?, raid*, ip*, mysqlid?)>
+<!ELEMENT role (#PCDATA)>
+<!ELEMENT os (#PCDATA)>
+<!ELEMENT raid (#PCDATA)>
+  <!ATTLIST raid config NMTOKEN #REQUIRED>
+<!ELEMENT ip (#PCDATA)>
+<!ELEMENT mysqlid (#PCDATA)>
+
+<!ELEMENT notes (#PCDATA)>
+
+

@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+domain:100:faq
+domain:101:journal/news
+
+# EnglishLJ is child of English for general domain:
+#lang:100:en_LJ:English (LJ):sim:en
+#langdomain:en_LJ:general
+
+# EnglishLJ is root of FAQ & news journal:
+#langdomain:en_LJ:faq:1
+#langdomain:en_LJ:journal/news:1
+
+# Russian
+lang:106:ru:Russian:diff:en
+langdomain:ru:general
+langdomain:ru:journal/news
+langdomain:ru:faq
+
+# Ukrainian
+lang:131:uk:Ukrainian:diff:en
+langdomain:uk:general
+langdomain:uk:journal/news
+langdomain:uk:faq
+
+# Siberian
+lang:206:sb:Siberian:diff:en
+langdomain:sb:general
+langdomain:sb:journal/news
+langdomain:sb:faq

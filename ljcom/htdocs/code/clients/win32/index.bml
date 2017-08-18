@@ -1,0 +1,18 @@
+<?page
+title=>Windows Client Source
+body<=
+
+<?h1 Win32 client source h1?>
+<?p
+You can download the source to the windows client application here:
+<?dl code/clients/win32/ dl?>.
+p?>
+<?p
+It is licensed under the <A HREF="http://www.gnu.org/copyleft/gpl.html">GPL</A>.
+p?>
+<?p
+Send <?ljuser visions ljuser?> changes to include in the core distribution.  
+p?>
+
+<=body
+page?>

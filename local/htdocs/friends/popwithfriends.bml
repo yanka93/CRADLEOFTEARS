@@ -1,0 +1,96 @@
+<?page
+title=><?_ml .title _ml?>
+body<=
+<?_code
+{
+    use strict;
+    use vars qw(%GET);
+
+    # GET{own} = bool: include your own friends in the list
+
+
+    my $remote = LJ::get_remote();
+    unless ($remote) {
+#         return $ML{'error.noremote'};
+    }
+
+# $remote=20;
+
+    if ($LJ::DISABLED{'friendspopwithfriends'}) {
+         # FIXME: memcache this page.  (memcache friendof)
+#         return "This feature is disabled.";
+    }
+
+    unless (LJ::get_cap($remote, "friendspopwithfriends")) {
+#         return $ML{'.account_type'};
+    }
+
+    # load remote's friends
+    my @friends;
+    my %type;
+
+    # TAG:fr:bml_friends_popwith:get_friends
+    my $fr = LJ::get_friends($remote);
+    return "Error fetching your friends" unless $fr;
+
+    my $LIMIT = 500;
+    my @ids = keys %$fr;
+    splice(@ids, 0, $LIMIT) if @ids > $LIMIT;
+
+    my $fus = LJ::load_userids(@ids);
+    @ids = grep { $fus->{$_}{journaltype} eq "P" } @ids;
+
+    my %count;
+
+    my $MAX_DELAY = 4;
+
+    my $start = time();
+    while (@ids && time() < $start + $MAX_DELAY) {
+         my $fid = shift @ids;
+
+         my $fr = LJ::get_friends($fid);
+         next unless $fr;
+         $count{$_}++ foreach (keys %$fr);
+    }
+
+    my @pop = sort { $count{$b} <=> $count{$a} } keys %count;
+
+    my $ret = $GET{'own'} ? "<?p $ML{'.intro_own'} p?>" : "<?p
+    $ML{'.intro'} p?>";
+
+    my $rows;
+    my $MAX_DISPLAY = 50;
+    my $shown;
+    foreach my $popid (@pop) {
+         next if $fr->{$popid} && ! $GET{'own'};
+         last if ++$shown > $MAX_DISPLAY;
+         my $u = LJ::load_userid($popid);
+         my $count = $count{$popid};
+         $rows .= "<tr><td>" . LJ::ljuser($u) . " - "
+    . LJ::ehtml($u->{name}) .
+             "</td><td align='right'>$count</td></tr>\n";
+    }
+
+    if ($rows) {
+         $ret .= "<table cellpadding='3'>\n";
+         $ret .=
+         "<tr><td><b>$ML{'.user'}</b></td><td><b>$ML{'.count'}</b></td></tr>\n";
+         $ret .= $rows;
+         $ret .= "</table>\n";
+
+         $ret .= $GET{'own'} ? "<?p $ML{'.exclude_own'} p?>" : "<?p
+         $ML{'.include_own'} p?>";
+
+    } else {
+         $ret .= "<div style='margin-left:
+         30px;'><i>$ML{'.no_users'}</i></div>\n";
+
+         $ret .= "<?p $ML{'.include_own'} p?>" unless $GET{'own'};
+    }
+
+    return $ret;
+}
+_code?>
+<=body
+page?>
+

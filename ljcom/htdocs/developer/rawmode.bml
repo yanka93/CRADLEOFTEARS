@@ -1,0 +1,49 @@
+<?page
+title=>Raw Mode
+body<=
+
+<?h1 Raw mode? h1?>
+<?p
+Before LiveJournal had the currently fancy style editor it has now, users had to edit the style files by hand.  This is the old documentation on how that was done....
+p?>
+
+<?hr?>
+
+<?h1 Defining Variables h1?>
+<?p
+When creating a style or overriding other styles, you must define (or re-define) variables in a very specific format that the server can understand.  You have two options, depending on whether the value of your variable is going to be very short (a single line) or multiple lines.
+p?>
+<?p For a single line element, like the number of items to be shown in your most-recent journal history, you specify the variable name (which is always in ALL-CAPS) and then the characters <B><tt>=&gt;</tt></B>, and the value.  For example:
+<UL>
+<FONT COLOR=#0000FF><XMP>
+lastn_opt_items=>25
+</XMP></FONT>
+</UL>
+That will tell the server that for the "lastn" page (the recent journal history) that you want 25 items to be displayed.
+p?>
+<?p For multiple line elements, the format is similiar.  First you specify the variable name, but instead of <tt>=&gt;</tt> you do a <B><tt>&lt;=</tt></B> and go to the next line.  Then, type all the lines that you want in that variable and go to a new line and type <B><tt>&lt;=<I>VARIABLE</I></tt></B>.  For example:
+<UL>
+<FONT COLOR=#0000FF><XMP>
+lastn_page<=
+<HTML>
+<BODY BGCOLOR=yellow>
+Here's what I've been doing lately... <P>
+%%events%%
+<HR>
+Back to my 
+<A HREF="http://www.myserver.com/">
+   my home page
+</A>.
+</HTML>
+<=lastn_page
+</XMP></FONT>
+</UL>
+The variable begins at the &lt;HTML&gt; line and ends with the &lt;/HTML&gt; line.
+p?>
+<?p
+One thing interesting to note in the preceeding example is the <B>%%events%%</B> property.  All things enclosed in double percent signs are properties that the server will fill in.  All variables and properties are documented.  See the <B><A HREF="varlist.bml">list of variables</A></B> for more information.
+ page.
+p?>
+
+<=body
+page?>

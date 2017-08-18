@@ -1,0 +1,4 @@
+<uid> ppe:<uid>:<bid> == The phonepostentry row.  See phonepost.pl.
+<uid> ppelt:<uid>:<bid> == Where bid = blobid of phone post, returns hashref.  See phonepost.pl.
+<uid> ppetu:<uid>:<bid> == Number of unique transcribers to a post.
+<uid> cctry:<payid> == Array of last 20 times when the user has attempted to pay

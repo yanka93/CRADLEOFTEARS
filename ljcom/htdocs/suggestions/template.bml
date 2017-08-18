@@ -1,0 +1,30 @@
+<?page
+title=>Proposal Template
+body<=
+
+<?h1 The Proposal Form h1?>
+<?p
+Write this out in a text or html file, proofread it, then submit it to the suggestions community, as described on the <a href="/suggestions/">suggestions page</a>.
+p?>
+
+<?hr?>
+
+<?h2 Title h2?>
+<?p Supply a brief title of the idea, help get the thing rolling. p?>
+<?h2 Short, concise description of the idea h2?>
+<?p Run a short pitch for your idea, as though you were selling to a multi-billion dollar investor with only two minutes of time to do it in. Keep it clear of marketese, please. p?>
+<?h2 Full description of the idea h2?>
+<?p If the idea isn't short enough to be crammed above, detail it entirely, and thoroughly here. If someone has to ask a question here, you should make a note where to be clearer in the future. p?>
+<?h2 An ordered list of benefits h2?>
+<?p If someone is reading or has read the full description, they will probably use this as a reference. Detail, shortly, each benefit this idea has toward LiveJournal. A quick list of good points, essentially. p?>
+<?h2 An ordered list of problems/issues involved h2?>
+<?p Unless your idea is perfect, absolutely flawless (which it is probably not), you will be able to list some problems created. List them here in the same short, ordered manner you used above. Everything that could be detrimental to LiveJournal or its inhabitants. p?>
+<?h2 An organized list, or a few short paragraphs detailing suggestions for implementation h2?>
+<?p State some helpful hints, or clarifications on your idea as to how to get it going. What might need to be changed or fixed to make this implementation/feature. Try to not ramble on and on about technical details, just enough to help find a direction is good. p?>
+<?h2 Send it in for reviewing h2?>
+<?p Post the proposal to the <?ljuser suggestions ljuser?> community. p?>
+
+<=body
+page?><?_c <LJDEP>
+link: htdocs/suggestions/index.bml
+</LJDEP> _c?>
